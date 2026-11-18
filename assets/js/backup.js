@@ -91,7 +91,8 @@
           if (keys(x.days).length > 400) bad("xp.days (quá 400 ngày)");
           var dk = keys(x.days).filter(function (k) { if (BAD[k]) { drop(); return false; } return true; });
           dk.forEach(function (k) {
-            if (!isDay(k) || k > today) bad("xp.days." + k);
+            if (!isDay(k)) bad("xp.days." + k);
+            if (k > today) { drop(); return; } /* dong ho lech/lui: bo ngay tuong lai, khong tu choi tep */
             var e = x.days[k];
             if (!isObj(e)) bad("xp.days." + k);
             known(e, ["xp", "rep", "hit", "hitGoal"]);
@@ -102,7 +103,7 @@
             if (e.hitGoal !== undefined) { if (e.hitGoal !== 30 && e.hitGoal !== 50 && e.hitGoal !== 100) bad("xp.days." + k + ".hitGoal"); o.hitGoal = e.hitGoal; }
             out.xp.days[k] = o;
           });
-          /* nhieu hon 400 khoa: van doc, roi cat con 60 ngay gan nhat */
+          /* toi da 400 khoa (da kiem o tren), roi cat con 60 ngay gan nhat */
           var sorted = keys(out.xp.days).sort();
           while (sorted.length > 60) delete out.xp.days[sorted.shift()];
         }
@@ -148,8 +149,8 @@
         });
         if (u.ans !== undefined) ou.ans = map(u.ans, P + ".ans", 2000, function (v, pp) {
           if (typeof v === "boolean") return v;
-          if (typeof v === "string") { if (v.length > 500) bad(pp); return v; }
-          if (isObj(v) && typeof v.t === "string" && v.t.length <= 500) { known(v, ["t"]); return { t: v.t }; }
+          if (typeof v === "string") return v.length > 500 ? v.slice(0, 500) : v;
+          if (isObj(v) && typeof v.t === "string") { known(v, ["t"]); return { t: v.t.length > 500 ? v.t.slice(0, 500) : v.t }; }
           bad(pp);
         });
         if (u.last !== undefined) {
@@ -279,6 +280,7 @@
       o.ans[id] = copy(id in aa ? aa[id] : ba[id]);
     });
 
+    /* scores khoa theo id bai tap (ex.id), res khoa theo id cau hoi con (it.id): hai khong gian khoa khac nhau nen khong the "di cung ben"; giu luat lay ben co a lon hon (diem tot nhat) */
     var as = sub(a, "scores"), bs = sub(b, "scores");
     o.scores = {};
     keys(as).concat(keys(bs)).forEach(function (id) {
@@ -417,7 +419,7 @@
       var rMerge = el("input", { type: "radio", name: "bk-mode", id: "bk-m1", value: "merge", checked: true });
       var rRepl = el("input", { type: "radio", name: "bk-mode", id: "bk-m2", value: "replace" });
       var chk = el("input", { type: "checkbox", id: "bk-sure" });
-      var chkRow = el("div", { class: "bk-opt bk-sure", hidden: true }, [chk, el("label", { for: "bk-sure", text: "Tôi hiểu tiến độ trên máy sẽ bị thay" })]);
+      var chkRow = el("div", { class: "bk-opt bk-sure", hidden: true }, [chk, el("label", { for: "bk-sure", text: "Tôi hiểu tiến độ trên máy sẽ bị thay thế" })]);
       var go = el("button", { type: "button", class: "btn bk-btn bk-go", text: "Nhập" });
       function sync() {
         var rep = rRepl.checked;
@@ -453,21 +455,42 @@
 
     /* hoan tac */
     var undo = el("button", { type: "button", class: "btn bk-btn", text: "Hoàn tác lần nhập gần nhất", hidden: true });
+    /* hai buoc: xem thoi diem -> xac nhan. Truoc khi khoi phuc, ban hien tai duoc ghi vao .bak nen hoan tac duoc lai (khong mat du lieu). */
+    var undoBox = el("div", { class: "bk-panel" });
     function readBak() {
       try {
         var b = JSON.parse(localStorage.getItem(BAK));
-        return b && isObj(b.data) ? b : null;
+        if (!b || !isObj(b.data)) return null;
+        var r = parse(buildFile(b.data), BS.dayKey()); /* lam sach truoc khi nap vao importState */
+        return r.ok ? { t: Number(b.t) || 0, data: r.data } : null;
       } catch (e) { return null; }
+    }
+    function fmtT(ms) {
+      if (!ms) return "không rõ";
+      var d = new Date(ms);
+      return pad(d.getDate()) + "/" + pad(d.getMonth() + 1) + "/" + d.getFullYear() + " " + pad(d.getHours()) + ":" + pad(d.getMinutes());
     }
     function refreshUndo() { undo.hidden = !readBak(); }
     undo.addEventListener("click", function () {
       var b = readBak();
+      undoBox.textContent = "";
       if (!b) { refreshUndo(); return; }
-      if (!BS.importState(b.data)) { showErr(MSG.KHONG_LUU_DUOC); return; }
-      try { localStorage.removeItem(BAK); } catch (e) { /* bo qua */ }
-      panel.textContent = ""; pending = null;
-      showOk("Đã khôi phục tiến độ như trước lần nhập gần nhất.");
-      refreshUndo(); refreshMine();
+      var sm = summarize(b.data);
+      var yes = el("button", { type: "button", class: "btn bk-btn bk-go", text: "Khôi phục bản này" });
+      var no = el("button", { type: "button", class: "btn bk-btn", text: "Giữ nguyên" });
+      no.addEventListener("click", function () { undoBox.textContent = ""; undo.focus(); });
+      yes.addEventListener("click", function () {
+        var cur = BS.exportState();
+        try { localStorage.setItem(BAK, JSON.stringify({ t: Date.now(), data: cur })); }
+        catch (e) { showErr(MSG.KHONG_LUU_DUOC); return; }
+        if (!BS.importState(b.data)) { showErr(MSG.KHONG_LUU_DUOC); return; }
+        undoBox.textContent = ""; panel.textContent = ""; pending = null;
+        showOk("Đã khôi phục bản lúc " + fmtT(b.t) + ". Bản trước đó vẫn được cất, bạn có thể hoàn tác lại.");
+        refreshUndo(); refreshMine();
+      });
+      undoBox.appendChild(el("p", { class: "bk-note", text: "Bản tự động cất lúc " + fmtT(b.t) + ": " + sm.xp + " XP, " + sm.units + " bài, " + sm.cards + " thẻ đã thuộc. Tiến độ hiện tại sẽ được thay thế bằng bản này (bản hiện tại được cất lại để hoàn tác)." }));
+      undoBox.appendChild(el("div", { class: "bk-row" }, [yes, no]));
+      yes.focus();
     });
 
     var alt = el("details", { class: "bk-alt" }, [
@@ -488,7 +511,7 @@
       el("p", { class: "bk-note", text: "Bước 1. Chọn tệp sao lưu (.json) hoặc dán văn bản ở mục Cách khác." }),
       el("label", { class: "bk-lbl", for: "bk-file", text: "Chọn tệp sao lưu" }),
       fileIn, alt, panel,
-      el("div", { class: "bk-row" }, [undo]),
+      el("div", { class: "bk-row" }, [undo]), undoBox,
       errBox, okBox
     ]);
     root.appendChild(el("details", { class: "fold bk" }, [el("summary", { text: "Sao lưu & khôi phục" }), body]));
