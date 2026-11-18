@@ -1,0 +1,19 @@
+/* pwa.css - thanh cập nhật + khối cài ứng dụng. Dùng biến màu của site.css (tự đổi sáng/tối). pwa.js tự chèn file này khi cần. */
+.pwa-box{margin-top:12px}
+.pwa-box *{box-sizing:border-box}
+.pwa-status{margin:8px 0;color:var(--ok);font-weight:600;overflow-wrap:anywhere}
+.pwa-status:empty{display:none}
+.pwa-install{margin:10px 0}
+.pwa-install[hidden],.pwa-ios[hidden]{display:none}
+.pwa-btn{min-height:44px;min-width:44px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer;border-radius:var(--radius-sm);border:2px solid var(--pri);background:var(--card);color:var(--pri)}
+.pwa-btn:hover:not(:disabled){background:var(--card-2)}
+.pwa-btn-go{background:var(--pri);color:var(--pri-ink)}
+.pwa-btn-go:hover:not(:disabled){background:var(--pri-hover)}
+.pwa-btn:disabled{background:var(--dis-bg);color:var(--dis-ink);border-color:var(--dis-line);cursor:not-allowed}
+.pwa-btn:focus-visible,.pwa-sum:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.pwa-ios{margin:10px 0}
+.pwa-sum{min-height:44px;display:flex;align-items:center;cursor:pointer;font-weight:600;color:var(--pri)}
+.pwa-help{margin:6px 0;color:var(--muted)}
+.pwa-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:50;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;max-width:520px;margin:0 auto;padding:10px 14px;background:var(--card);color:var(--ink);border:2px solid var(--pri);border-radius:var(--radius-sm);box-shadow:var(--shadow)}
+.pwa-bar-msg{font-weight:700}
+@media (prefers-reduced-motion:reduce){.pwa-box *,.pwa-bar,.pwa-bar *{transition:none!important;animation:none!important}}
