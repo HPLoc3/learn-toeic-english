@@ -1,0 +1,47 @@
+/* game.css - mini-game "Nghe & chon hinh". Chi dung token var(--x, du-phong). */
+.game { max-width: 720px; margin: 0 auto; }
+.game-card { padding: 16px; border-radius: var(--radius, 20px); background: var(--card, #fff); color: var(--ink, #1c2430);
+  border: 1px solid var(--line, #d9dee7); box-shadow: var(--shadow, 0 2px 8px rgba(0, 0, 0, .08)); }
+.game-card h2 { margin-top: 0; }
+.game-btn { min-height: 44px; min-width: 44px; padding: 10px 16px; margin: 6px 6px 6px 0; cursor: pointer; }
+.game-toggle { display: flex; align-items: center; gap: 8px; min-height: 44px; cursor: pointer; }
+.game-check { width: 22px; height: 22px; accent-color: var(--pri, #2563eb); }
+.game-best, .game-rules { font-size: .92rem; color: var(--muted, #5b6675); }
+.game-head { display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: space-between; font-weight: 600; margin-bottom: 8px; }
+.game-combo { color: var(--accent, #d97706); }
+.game-timerow { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; min-height: 22px; }
+.game-time { flex: 1; height: 12px; border-radius: 999px; overflow: hidden; background: var(--card-2, #eef1f6); border: 1px solid var(--line, #d9dee7); }
+.game-time .bar-fill { height: 100%; background: var(--pri, #2563eb); transition: none; }
+.game-time-tx { min-width: 64px; text-align: right; font-size: .92rem; }
+.game-prompt { margin-bottom: 12px; }
+.game-q { margin: 0 0 6px; font-weight: 600; }
+.game-sent { min-height: 1px; }
+.game-en { font-size: 1.15rem; font-weight: 600; margin: 8px 0 2px; }
+.game-vi { margin: 2px 0 0; color: var(--muted, #5b6675); }
+.game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.game-grid[hidden], .game-pause[hidden] { display: none; }
+.game-opt { position: relative; display: block; padding: 6px; min-height: 44px; border-radius: var(--radius-sm, 12px);
+  border: 2px solid var(--line, #d9dee7); background: var(--card-2, #f4f6fa); color: var(--ink, #1c2430); cursor: pointer;
+  transition: border-color .15s, transform .15s; }
+.game-opt:hover:not(:disabled) { border-color: var(--pri, #2563eb); }
+.game-opt:focus-visible { outline: 3px solid var(--pri, #2563eb); outline-offset: 2px; }
+.game-opt img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; border-radius: 8px; background: var(--card, #fff); pointer-events: none; }
+.game-opt:disabled { cursor: default; opacity: 1; }
+.game-opt.is-ok { border-color: var(--ok, #15803d); background: var(--ok-bg, #dcfce7); }
+.game-opt.is-bad { border-color: var(--bad, #b91c1c); background: var(--bad-bg, #fee2e2); }
+.game-num { position: absolute; top: 10px; left: 10px; min-width: 28px; height: 28px; line-height: 28px; text-align: center; font-weight: 700;
+  border-radius: 50%; background: var(--pri, #2563eb); color: var(--pri-ink, #fff); }
+.game-mark { position: absolute; top: 8px; right: 12px; font-size: 1.6rem; font-weight: 700; }
+.game-opt.is-ok .game-mark { color: var(--ok, #15803d); }
+.game-opt.is-bad .game-mark { color: var(--bad, #b91c1c); }
+.game-fb { min-height: 1.5em; margin: 12px 0 4px; font-weight: 600; }
+.game-fb.is-ok { color: var(--ok, #15803d); }
+.game-fb.is-bad { color: var(--bad, #b91c1c); }
+.game-pause { text-align: center; padding: 16px; border-radius: var(--radius-sm, 12px); background: var(--card-2, #eef1f6); }
+.game-quit { margin-top: 10px; }
+.game-score { font-size: 1.15rem; font-weight: 600; }
+.game-sum { padding-left: 20px; }
+@media (max-width: 420px) { .game-card { padding: 12px; } .game-grid { gap: 8px; } }
+@media (prefers-reduced-motion: reduce) {
+  .game-opt, .game-time .bar-fill { transition: none !important; animation: none !important; }
+}

@@ -1,0 +1,15 @@
+/* nav.css - nut Tiep, mo canh thanh tab, trang khong tim thay */
+.tabs{-webkit-mask-image:none;mask-image:none;scroll-padding:0 24px}
+.tabs.fade-r{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 36px),transparent)}
+.tabs.fade-l{-webkit-mask-image:linear-gradient(to left,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(to left,#000 calc(100% - 36px),transparent)}
+.tabs.fade-l.fade-r{-webkit-mask-image:linear-gradient(to right,transparent,#000 36px,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(to right,transparent,#000 36px,#000 calc(100% - 36px),transparent)}
+.next-nav{display:flex;justify-content:flex-end;margin:24px 0 8px}
+.next-nav[hidden]{display:none}
+.next-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:10px 20px;font:inherit;font-weight:700;text-decoration:none;color:var(--pri-ink);background:var(--pri);border:2px solid var(--pri);border-radius:999px;cursor:pointer}
+.next-btn:hover{background:var(--pri-hover);border-color:var(--pri-hover)}
+.next-btn:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.nf-card .next-btn{display:inline-flex}
+#unit-main h2:focus{outline:none}
+#unit-main h2:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+@media (max-width:480px){.next-nav{justify-content:stretch}.next-nav .next-btn{width:100%}}
+@media (prefers-reduced-motion:reduce){.tabs{scroll-behavior:auto}}

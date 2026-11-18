@@ -1,0 +1,10 @@
+TỪNG BƯỚC ENGLISH - HƯỚNG DẪN NHANH
+
+1. Mở terminal trong thư mục dự án, chạy:  python -m http.server 8000
+2. Mở trình duyệt, vào http://localhost:8000/
+3. Bấm nút "Bắt đầu Unit 1" để học.
+4. Tiến độ chỉ lưu trong trình duyệt của bạn, không gửi đi đâu.
+5. Phần "Luyện nghe" dùng giọng đọc của trình duyệt (cần giọng tiếng Anh).
+6. Chi tiết (cấu trúc, cách thêm unit, chế độ biên tập): xem README.md.
+
+TOEIC là nhãn hiệu của ETS. Trang này độc lập, không liên kết với hay được ETS chứng nhận.
