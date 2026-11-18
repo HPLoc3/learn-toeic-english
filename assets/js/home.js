@@ -20,8 +20,20 @@
     return ul;
   }
 
+  var loaded = false; /* da nap xong cac unit da mo (lan dau) */
+
   function node(un) {
     var pr = BS.unitProgress(un.id);
+    if (!loaded) {
+      return el("li", null, [
+        el("a", { class: "node unit-link", href: "unit.html?u=" + encodeURIComponent(un.id), "aria-label": unitLabel(un) + ", đang tải" }, [
+          el("span", { class: "node-body" }, [
+            el("span", { class: "node-title unit-name", text: unitLabel(un) }),
+            el("span", { class: "node-sub", text: "Đang tải..." })
+          ])
+        ])
+      ]);
+    }
     var ring = el("span", { class: "ring", "aria-hidden": "true", style: "--p:" + pr.pct }, [
       el("span", { class: "ring-in", text: pr.pct + "%" })
     ]);
@@ -73,7 +85,9 @@
       });
     });
     var overall = n ? Math.round(sum / n) : 0;
-    if (prog) {
+    if (prog && !loaded) {
+      prog.appendChild(el("p", { class: "label", role: "status", text: "Đang tải tiến độ..." }));
+    } else if (prog) {
       prog.appendChild(el("p", { class: "label", text: "Tiến độ chung (các unit đã mở): " + overall + "%" }));
       prog.appendChild(BS.bar(overall, "Tiến độ chung"));
     }
@@ -128,7 +142,7 @@
     });
     if (!first) first = firstAny; /* da xong het: tro ve unit dau de on lai */
     if (!first) { a.hidden = true; return; }
-    var pr = BS.unitProgress(first.id);
+    var pr = loaded ? BS.unitProgress(first.id) : { pct: 0 };
     a.hidden = false;
     a.setAttribute("href", "unit.html?u=" + encodeURIComponent(first.id));
     a.textContent = pr.pct > 0 ? "Tiếp tục Unit " + first.no + " (" + pr.pct + "%)" : "Bắt đầu Unit " + first.no + " →";
@@ -138,10 +152,11 @@
   function init() {
     render();
     if (typeof BS.loadUnits === "function" && typeof BS.availableUnits === "function") {
-      BS.loadUnits(BS.availableUnits().map(function (u) { return u.id; }), render);
-    }
+      BS.loadUnits(BS.availableUnits().map(function (u) { return u.id; }), function () { loaded = true; render(); });
+    } else { loaded = true; render(); }
   }
-  document.addEventListener("bs:units", render);
+  /* chi ve lai khi co unit nap muon sau lan nap dau (lan dau do callback loadUnits ve mot lan) */
+  document.addEventListener("bs:units", function () { if (loaded) render(); });
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
   /* bfcache: core.js tu reload() roi phat bs:xp {reload:true}, nen khong nghe pageshow rieng (tranh ve hai lan) */
