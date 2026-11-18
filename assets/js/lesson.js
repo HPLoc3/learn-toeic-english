@@ -57,7 +57,7 @@
     }
   };
 
-  var TABS = [
+  var ALL_TABS = [
     { id: "lesson", label: "Bài học", icon: "📖" },
     { id: "anim", label: "Hoạt hình", icon: "🎬" },
     { id: "vocab", label: "Từ vựng", icon: "🃏" },
@@ -82,27 +82,72 @@
     }
   }
 
+  function hideChrome() {
+    var tabs = document.getElementById("unit-tabs"); if (tabs) tabs.hidden = true;
+    var tw = document.querySelector(".tabs-wrap"); if (tw) tw.hidden = true;
+    var hud = document.getElementById("hud"); if (hud) hud.hidden = true;
+    var up = document.getElementById("unit-part"); if (up) up.hidden = true;
+    var nx = document.getElementById("unit-next"); if (nx) nx.hidden = true;
+    var unv = document.getElementById("unit-unv"); if (unv) unv.hidden = true;
+  }
+
+  function showNotFound(main) {
+    hideChrome();
+    document.title = "Chưa có bài này | Từng Bước English";
+    document.getElementById("unit-title").textContent = "Chưa có bài này";
+    main.appendChild(el("div", { class: "card nf-card", role: "status" }, [
+      el("p", { text: "Bài này sắp ra mắt. Bạn quay lại mục lục để chọn bài khác nhé." }),
+      el("p", {}, [el("a", { class: "btn btn-primary next-btn", href: "index.html", text: "Về mục lục" })])
+    ]));
+  }
+
   function init() {
     var main = document.getElementById("unit-main");
     if (!main) return;
     var id = (new URLSearchParams(window.location.search).get("u") || "l01");
     if (!/^[a-z0-9_-]+$/i.test(id)) id = "l01";
-    var u = window.BS_UNITS && window.BS_UNITS[id];
-    var animPanel = document.getElementById("panel-anim");
-    if (!u) {
-      document.getElementById("unit-tabs").hidden = true;
-      var tw = document.querySelector(".tabs-wrap"); if (tw) tw.hidden = true;
-      var hud = document.getElementById("hud"); if (hud) hud.hidden = true;
-      var up = document.getElementById("unit-part"); if (up) up.hidden = true;
-      var nx = document.getElementById("unit-next"); if (nx) nx.hidden = true;
-      document.title = "Chưa có bài này | Từng Bước English";
-      document.getElementById("unit-title").textContent = "Chưa có bài này";
-      main.appendChild(el("div", { class: "card nf-card", role: "status" }, [
-        el("p", { text: "Bài này sắp ra mắt. Bạn quay lại mục lục để chọn bài khác nhé." }),
-        el("p", {}, [el("a", { class: "btn btn-primary next-btn", href: "index.html", text: "Về mục lục" })])
-      ]));
-      return;
+    var holder = null;
+    function clearHolder() { if (holder && holder.parentNode) holder.parentNode.removeChild(holder); holder = null; }
+    function load() {
+      clearHolder();
+      holder = el("div", { class: "card nf-card", role: "status" }, [el("p", { text: "Đang tải bài học..." })]);
+      main.appendChild(holder);
+      var done = false;
+      function got(u, err) {
+        if (done) return;
+        done = true;
+        clearHolder();
+        if (u) { build(u, id); return; }
+        if (err === "not-found") { showNotFound(main); return; }
+        holder = el("div", { class: "card nf-card", role: "alert" }, [
+          el("h2", { text: "Không tải được bài học" }),
+          el("p", { text: "Có thể do mạng chập chờn hoặc tệp bài học bị thiếu. Bạn thử tải lại nhé." }),
+          el("p", {}, [
+            el("button", { type: "button", class: "btn btn-primary next-btn", onclick: load }, ["Thử lại"]), " ",
+            el("a", { class: "btn next-btn", href: "index.html", text: "Về mục lục" })
+          ])
+        ]);
+        main.appendChild(holder);
+      }
+      if (typeof BS.loadUnit === "function") BS.loadUnit(id, got);
+      else got(window.BS_UNITS && window.BS_UNITS[id] || null, "not-found");
     }
+    load();
+  }
+
+  function nextUnitOf(id) {
+    var list = typeof BS.availableUnits === "function" ? BS.availableUnits() : [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i + 1] || null;
+    return null;
+  }
+
+  function build(u, id) {
+    var entry = (typeof BS.catalogUnit === "function" && BS.catalogUnit(id)) || {};
+    var TABS = ALL_TABS.filter(function (t) {
+      if (t.id === "anim") return !!entry.anim;
+      if (t.id === "game") return !!entry.game;
+      return true;
+    });
     document.title = "Unit " + u.unitNo + ": " + u.title_vi + " | Từng Bước English";
     document.getElementById("unit-title").textContent = "Unit " + u.unitNo + ": " + u.title_vi;
     document.getElementById("unit-part").textContent = u.part;
@@ -174,7 +219,15 @@
         node = el("button", { type: "button", class: "btn btn-primary next-btn" }, ["Tiếp: " + nt.label + " →"]);
         node.addEventListener("click", function () { goTab(nt.id); });
       } else {
-        node = el("a", { class: "btn btn-primary next-btn", href: "index.html", text: "Về mục lục" });
+        var nu = nextUnitOf(id);
+        if (nu) {
+          nextHost.appendChild(el("a", { class: "btn btn-primary next-btn", href: "unit.html?u=" + encodeURIComponent(nu.id),
+            text: "Unit kế tiếp: Unit " + nu.no + " →" }));
+          nextHost.appendChild(document.createTextNode(" "));
+          node = el("a", { class: "btn next-btn", href: "index.html", text: "Về mục lục" });
+        } else {
+          node = el("a", { class: "btn btn-primary next-btn", href: "index.html", text: "Về mục lục" });
+        }
       }
       nextHost.appendChild(node);
       nextHost.hidden = false;

@@ -68,7 +68,9 @@
     }
     var sum = 0, n = 0, stageNo = 0, idleParts = [];
     cat.parts.forEach(function (p) {
-      (p.units || []).forEach(function (un) { if (un.available) { sum += BS.unitProgress(un.id).pct; n++; } });
+      (p.units || []).forEach(function (un) {
+        if (un.available && window.BS_UNITS && window.BS_UNITS[un.id]) { sum += BS.unitProgress(un.id).pct; n++; }
+      });
     });
     var overall = n ? Math.round(sum / n) : 0;
     if (prog) {
@@ -116,8 +118,15 @@
   function cta(cat) {
     var a = document.getElementById("start-cta");
     if (!a) return;
-    var first = null;
-    cat.parts.forEach(function (p) { (p.units || []).forEach(function (un) { if (!first && un.available) first = un; }); });
+    var first = null, firstAny = null;
+    cat.parts.forEach(function (p) {
+      (p.units || []).forEach(function (un) {
+        if (!un.available) return;
+        if (!firstAny) firstAny = un;
+        if (!first && BS.unitProgress(un.id).pct < 100) first = un;
+      });
+    });
+    if (!first) first = firstAny; /* da xong het: tro ve unit dau de on lai */
     if (!first) { a.hidden = true; return; }
     var pr = BS.unitProgress(first.id);
     a.hidden = false;
@@ -125,7 +134,14 @@
     a.textContent = pr.pct > 0 ? "Tiếp tục Unit " + first.no + " (" + pr.pct + "%)" : "Bắt đầu Unit " + first.no + " →";
   }
 
-  function init() { render(); }
+  /* nap cac unit da mo (loader), ve ngay lan dau roi ve lai khi co du lieu */
+  function init() {
+    render();
+    if (typeof BS.loadUnits === "function" && typeof BS.availableUnits === "function") {
+      BS.loadUnits(BS.availableUnits().map(function (u) { return u.id; }), render);
+    }
+  }
+  document.addEventListener("bs:units", render);
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
   /* bfcache: core.js tu reload() roi phat bs:xp {reload:true}, nen khong nghe pageshow rieng (tranh ve hai lan) */
