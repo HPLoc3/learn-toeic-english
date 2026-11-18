@@ -9,7 +9,7 @@ TỪNG BƯỚC ENGLISH - HƯỚNG DẪN NHANH
 7. Học khi không có mạng: trang có thể cài như ứng dụng (nút "Cài ứng dụng" ở cuối trang chủ; iPhone: Safari > Chia sẻ > Thêm vào Màn hình chính).
    Service worker chỉ lưu file của chính trang này, không gửi dữ liệu đi đâu. Trên localhost mặc định tắt (thêm ?pwa=1 để thử, ?pwa=0 để gỡ).
 8. Thêm Unit mới: xem tools/templates/HUONG-DAN-UNIT.txt.
-9. MỖI LẦN DEPLOY: đổi VERSION ở đầu sw.js, rồi chạy  node tools/check-sw.mjs --write  và  node tools/check-sw.mjs  (phải đạt).
+9. MỖI LẦN DEPLOY: chạy  node tools/check-sw.mjs --bump  (tự tăng VERSION trong sw.js và ghi hash), rồi  node tools/check-sw.mjs  (phải đạt). Thêm Unit mới: nhớ thêm file của unit vào PRECACHE trong sw.js.
 10. Chi tiết (cấu trúc, chế độ biên tập, PWA): xem README.md.
 
 TOEIC là nhãn hiệu của ETS. Trang này độc lập, không liên kết với hay được ETS chứng nhận.

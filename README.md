@@ -32,24 +32,24 @@ Bài tập, thẻ đã thuộc, XP, chuỗi ngày học và giao diện sáng/t�
 
 Trang là ứng dụng web cài được. Service worker (`sw.js`) **chỉ lưu các file của chính trang này** vào bộ nhớ đệm của trình duyệt để mở lại khi không có mạng; nó không gửi dữ liệu đi đâu, không gọi tên miền khác, không đọc hay ghi tiến độ học.
 
-- Khung trang (HTML, CSS, JS dùng chung, `data/catalog.js`, icon) được lưu ngay khi cài. Dữ liệu và hình của từng unit chỉ được lưu khi người học mở unit đó lần đầu.
-- Chỉ đăng ký trên https. Trên localhost mặc định **không** đăng ký (tránh dính cache khi biên soạn); thêm `?pwa=1` để thử, `?pwa=0` (ở mọi nơi) để gỡ service worker và xóa cache `tb-*`.
+- Khi cài, service worker lưu sẵn khung trang (HTML, CSS, JS dùng chung, `data/catalog.js`, icon) và toàn bộ unit đã mở (`available: true` trong `data/catalog.js`: dữ liệu, trò chơi, hoạt hình, hình minh họa), nên học và ôn tập được ngay khi không có mạng. Danh sách này nằm trong `PRECACHE` của `sw.js` và do `tools/check-sw.mjs` kiểm theo catalog. Khi đổi bản, mục đã lưu lúc chạy được chép sang bản mới trước khi xóa bản cũ.
+- Chỉ đăng ký trên https. Trên localhost mặc định **không** đăng ký (tránh dính cache khi biên soạn); thêm `?pwa=1` để thử. `?pwa=0` chỉ gỡ **tạm thời** service worker và xóa cache `tb-*` của lần đó; lần vào https bình thường sau đó sẽ đăng ký lại.
 - Cài đặt: Chrome/Edge/Android dùng nút "Cài ứng dụng" ở mục "Về trang này" trên trang chủ (hoặc menu trình duyệt). iPhone/iPad: Safari, nút Chia sẻ, "Thêm vào Màn hình chính".
-- Khi có bản mới, thanh "Đã có bản mới" hiện ra; bấm "Tải lại" để dùng bản mới. Trang không tự đổi bản khi người học đang học.
+- HTML, CSS, JS và dữ liệu lấy từ mạng trước (chờ tối đa 3 giây) rồi mới dùng bản đã lưu, nên trang mới không chạy với JS cũ; ảnh và icon dùng bản đã lưu rồi cập nhật ngầm. Khi service worker mới sẵn sàng, thanh "Đã có bản mới" hiện ra: bấm "Tải lại" để chuyển sang bản mới (chỉ tab bấm mới tự tải lại), hoặc "Để sau". Phiên đang học không tự bị tải lại.
 
 ### Quy trình mỗi lần deploy (bắt buộc)
 
-1. Sửa bất kỳ file nào thuộc khung (HTML, CSS, JS dùng chung, `data/catalog.js`, manifest, icon)? Đổi hằng `VERSION` ở đầu `sw.js` (vd "1" thành "2"). Nếu không đổi, người đã cài sẽ giữ bản cũ.
-2. Chạy `node tools/check-sw.mjs --write` để cập nhật dòng `// content-hash:` trong `sw.js`. Lệnh này không tự đổi `VERSION`.
+1. Có sửa file nào thuộc khung hoặc unit (HTML, CSS, JS, `data/*`, hình, manifest, icon)? Chạy `node tools/check-sw.mjs --bump`: lệnh tự tăng `VERSION` (số nguyên) ở đầu `sw.js` và ghi dòng `// content-hash: <VERSION>@<hash>`. Hoặc tự đổi `VERSION` rồi chạy `node tools/check-sw.mjs --write`. Nếu nội dung đổi mà `VERSION` không đổi, check-sw báo lỗi (người đã cài sẽ tiếp tục dùng cache của `VERSION` cũ cho đến khi `VERSION` đổi).
+2. `--write` chỉ ghi hash khi `VERSION` đã đổi; nó không tự đổi `VERSION`.
 3. Chạy `node tools/check-sw.mjs` (phải ra "đạt", exit 0), `node tools/test-sw.mjs`, `node tools/check-units.mjs`.
-4. Thêm/bớt file CSS hoặc JS dùng chung: cập nhật danh sách `PRECACHE` trong `sw.js` (check-sw báo thiếu/thừa). File hoạt hình riêng của từng unit (`anim` trong catalog) không vào PRECACHE.
+4. Thêm/bớt file CSS hoặc JS dùng chung, hoặc thêm unit `available: true`: cập nhật danh sách `PRECACHE` trong `sw.js` (check-sw báo thiếu/thừa theo thư mục và catalog). Hoạt hình, dữ liệu và hình của unit chưa `available` không vào PRECACHE.
 5. Đổi icon: sửa `tools/make-icons.py` rồi chạy `python tools/make-icons.py`.
 
-`_headers` (Cloudflare Pages) đặt noindex, nosniff, Referrer-Policy no-referrer và không cho cache `sw.js`. Chưa có CSP.
+`_headers` (Cloudflare Pages) đặt noindex, nosniff, Referrer-Policy no-referrer và không cho cache `sw.js`. Chưa có CSP. Sau khi deploy, kiểm bằng `curl -I`: `/sw.js` có `Cache-Control: no-cache`, `/manifest.webmanifest` trả `Content-Type: application/manifest+json` (hoặc JSON), các trang có `X-Robots-Tag`.
 
 ## Thêm một unit mới
 
-Làm theo `tools/templates/HUONG-DAN-UNIT.txt` (mẫu nội dung và trò chơi nằm trong `tools/templates/`; kiểm bằng `node tools/check-units.mjs --unit <id>`). Trình nạp (`assets/js/loader.js`) tự nạp `data/<id>.js`, `data/<id>-game.js` và file hoạt hình khi `data/catalog.js` khai báo, nên không cần thêm thẻ `<script>` cho từng unit. Sau khi thêm unit, đổi `VERSION` của `sw.js` (vì `data/catalog.js` đổi) và chạy `node tools/check-sw.mjs --write`.
+Làm theo `tools/templates/HUONG-DAN-UNIT.txt` (mẫu nội dung và trò chơi nằm trong `tools/templates/`; kiểm bằng `node tools/check-units.mjs --unit <id>`). Trình nạp (`assets/js/loader.js`) tự nạp `data/<id>.js`, `data/<id>-game.js` và file hoạt hình khi `data/catalog.js` khai báo, nên không cần thêm thẻ `<script>` cho từng unit. Sau khi thêm unit và đặt `available: true`, thêm các file của unit vào `PRECACHE` trong `sw.js`, rồi chạy `node tools/check-sw.mjs --bump`.
 
 ## Chế độ biên tập
 

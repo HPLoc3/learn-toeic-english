@@ -4,9 +4,11 @@ import { readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import vm from "node:vm";
+import { readdirSync } from "node:fs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SW_SRC = readFileSync(join(ROOT, "sw.js"), "utf8");
+const CN = "tb-" + /var VERSION = "([^"]+)"/.exec(SW_SRC)[1];
 const PWA_SRC = readFileSync(join(ROOT, "assets/js/pwa.js"), "utf8");
 
 let total = 0, failed = 0;
@@ -86,9 +88,22 @@ const okFetch = (url) => {
 {
   const t = loadSw(okFetch);
   check("PRECACHE có 4 trang HTML", ["index.html", "unit.html", "review.html", "404.html"].every((f) => t.PRECACHE.includes(f)));
-  check("không precache dữ liệu/ảnh unit", !t.PRECACHE.some((f) => /^data\/l\d|^assets\/img|anim-being/.test(f)));
+  {
+    const sb = { window: {} };
+    vm.runInNewContext(readFileSync(join(ROOT, "data/catalog.js"), "utf8"), sb);
+    const need = [];
+    for (const p of sb.window.BS_CATALOG.parts) for (const u of p.units) {
+      if (u.available !== true) continue;
+      need.push("data/" + u.id + ".js");
+      if (u.game === true) need.push("data/" + u.id + "-game.js");
+      if (u.anim) need.push(u.anim);
+      for (const f of readdirSync(join(ROOT, "assets/img/" + u.id))) need.push("assets/img/" + u.id + "/" + f);
+    }
+    check("PRECACHE gồm mọi file của unit available theo catalog (" + need.length + " file)", need.length > 0 && need.every((f) => t.PRECACHE.includes(f)));
+    check("PRECACHE không chứa unit chưa available", !t.PRECACHE.some((f) => /^data\/l0[2-9]|^data\/p\d/.test(f)));
+  }
   await t.fire("install", {});
-  const c = t.caches.stores.get("tb-1");
+  const c = t.caches.stores.get(CN);
   check("install ghi cache tb-1 đủ file", c && c.size === t.PRECACHE.length, c && c.size);
   check("install dùng cache:reload", t.state.fetchCalls.length === t.PRECACHE.length && t.state.fetchCalls.every((x) => x.init && x.init.cache === "reload"));
   check("install lưu khóa chuẩn /index.html", c.has(ORIGIN + "/index.html") && c.has(ORIGIN + "/404.html"));
@@ -104,7 +119,7 @@ const okFetch = (url) => {
   let rejected = false;
   try { await t.fire("install", {}); } catch { rejected = true; }
   check("install hủy khi một file 404", rejected);
-  check("install hủy không ghi cache nào", !t.caches.stores.has("tb-1") || t.caches.stores.get("tb-1").size === 0);
+  check("install hủy không ghi cache nào", !t.caches.stores.has(CN) || t.caches.stores.get(CN).size === 0);
 }
 {
   const t = loadSw((url) => (url.endsWith("/favicon.ico") ? mk("x", { type: "opaque" }) : okFetch(url)));
@@ -116,7 +131,7 @@ const okFetch = (url) => {
 {
   const t = loadSw((url) => (url.endsWith("/unit.html") ? mk("<html>UNIT</html>", { redirected: true }) : okFetch(url)));
   await t.fire("install", {});
-  const stored = t.caches.stores.get("tb-1").get(ORIGIN + "/unit.html");
+  const stored = t.caches.stores.get(CN).get(ORIGIN + "/unit.html");
   check("response redirected được dựng lại (redirected=false)", stored && stored.redirected === false);
   check("response dựng lại giữ nguyên nội dung và status", stored && (await stored.clone().text()) === "<html>UNIT</html>" && stored.status === 200);
   check("response dựng lại giữ Content-Type", stored && /text\/html/.test(stored.headers.get("content-type")));
@@ -125,10 +140,10 @@ const okFetch = (url) => {
 // ---------- 2. activate ----------
 {
   const t = loadSw(okFetch);
-  for (const n of ["tb-0", "tb-1", "tb-old", "khac-cache", "tbx"]) await t.caches.open(n);
+  for (const n of ["tb-0", CN, "tb-old", "khac-cache", "tbx"]) await t.caches.open(n);
   await t.fire("activate", {});
   const left = [...t.caches.stores.keys()].sort().join(",");
-  check("activate chỉ xóa tb-* cũ", left === "khac-cache,tb-1,tbx", left);
+  check("activate chỉ xóa tb-* cũ", left === "khac-cache," + CN + ",tbx", left);
   check("activate gọi clients.claim", t.state.claimed === 1);
 }
 
@@ -139,7 +154,7 @@ async function installed(fetchImpl) {
   const t = loadSw((u, i, r) => (phase ? okFetch(u) : impl(u, i, r)));
   await t.fire("install", {});
   phase = false;
-  t.caches.stores.get("tb-1").clear(); // bắt đầu từ cache trống để thấy rõ cái gì được lưu
+  t.caches.stores.get(CN).clear(); // bắt đầu từ cache trống để thấy rõ cái gì được lưu
   t.state.fetchCalls.length = 0;
   return t;
 }
@@ -147,9 +162,9 @@ async function installed(fetchImpl) {
   const t = await installed();
   const cases = [["/", "/index.html"], ["/unit", "/unit.html"], ["/unit.html?u=l01", "/unit.html"], ["/review", "/review.html"], ["/review.html", "/review.html"], ["/index.html", "/index.html"]];
   for (const [path, key] of cases) {
-    t.caches.stores.get("tb-1").clear();
+    t.caches.stores.get(CN).clear();
     const r = await t.fire("fetch", t.nav(path));
-    const keys = [...t.caches.stores.get("tb-1").keys()];
+    const keys = [...t.caches.stores.get(CN).keys()];
     check(`navigation ${path} -> khóa ${key}`, r.responded && r.response.status === 200 && keys.length === 1 && keys[0] === ORIGIN + key, keys.join());
   }
   check("navigation mạng dùng đúng URL có query", t.state.fetchCalls.some((c) => c.url === ORIGIN + "/unit.html?u=l01"));
@@ -176,35 +191,35 @@ async function installed(fetchImpl) {
   const t = await installed((url) => (url.includes("/khong-co") ? mk("<html>NF</html>", { status: 404 }) : okFetch(url)));
   const r = await t.fire("fetch", t.nav("/khong-co"));
   check("online 404 trả nguyên status 404", r.response.status === 404 && (await r.response.text()) === "<html>NF</html>");
-  check("online 404 không được lưu", t.caches.stores.get("tb-1").size === 0);
+  check("online 404 không được lưu", t.caches.stores.get(CN).size === 0);
   const r2 = await t.fire("fetch", t.nav("/unit?u=zz"));
-  check("trang 200 vẫn được lưu", t.caches.stores.get("tb-1").size === 1);
+  check("trang 200 vẫn được lưu", t.caches.stores.get(CN).size === 1);
 }
 {
   // 404 trên một trang đã biết cũng không đè cache
   const t = await installed((url) => (url.endsWith("/unit.html") ? mk("<html>NF</html>", { status: 404 }) : okFetch(url)));
-  await t.caches.stores.get("tb-1").set(ORIGIN + "/unit.html", mk("<html>OLD</html>"));
+  await t.caches.stores.get(CN).set(ORIGIN + "/unit.html", mk("<html>OLD</html>"));
   const r = await t.fire("fetch", t.nav("/unit.html"));
-  check("404 trên trang đã biết không đè bản đã lưu", r.response.status === 404 && (await t.caches.stores.get("tb-1").get(ORIGIN + "/unit.html").clone().text()) === "<html>OLD</html>");
+  check("404 trên trang đã biết không đè bản đã lưu", r.response.status === 404 && (await t.caches.stores.get(CN).get(ORIGIN + "/unit.html").clone().text()) === "<html>OLD</html>");
 }
 {
   // quá 3 giây: dùng cache
   const t = await installed((url) => (url.endsWith("/unit.html") ? new Promise((res) => setTimeout(() => res(mk("<html>LATE</html>")), 120)) : okFetch(url)));
-  t.caches.stores.get("tb-1").set(ORIGIN + "/unit.html", mk("<html>CACHED</html>"));
+  t.caches.stores.get(CN).set(ORIGIN + "/unit.html", mk("<html>CACHED</html>"));
   const r = await t.fire("fetch", t.nav("/unit.html"));
   check("mạng chậm quá hạn -> dùng bản cache", (await r.response.text()) === "<html>CACHED</html>");
-  check("mạng chậm về sau cập nhật cache ngầm", (await t.caches.stores.get("tb-1").get(ORIGIN + "/unit.html").clone().text()) === "<html>LATE</html>");
+  check("mạng chậm về sau cập nhật cache ngầm", (await t.caches.stores.get(CN).get(ORIGIN + "/unit.html").clone().text()) === "<html>LATE</html>");
 }
 {
   // opaqueredirect đi thẳng
   const t = await installed((url) => mk("", { type: "opaqueredirect", status: 200 }));
   const r = await t.fire("fetch", t.nav("/unit.html"));
-  check("opaqueredirect được trả nguyên, không lưu", r.response.type === "opaqueredirect" && t.caches.stores.get("tb-1").size === 0);
+  check("opaqueredirect được trả nguyên, không lưu", r.response.type === "opaqueredirect" && t.caches.stores.get(CN).size === 0);
 }
 {
   // 5xx -> dùng cache nếu có
   const t = await installed((url) => mk("err", { status: 503 }));
-  t.caches.stores.get("tb-1").set(ORIGIN + "/index.html", mk("<html>CACHED</html>"));
+  t.caches.stores.get(CN).set(ORIGIN + "/index.html", mk("<html>CACHED</html>"));
   const r = await t.fire("fetch", t.nav("/"));
   check("5xx rơi về cache", (await r.response.text()) === "<html>CACHED</html>");
 }
@@ -212,7 +227,7 @@ async function installed(fetchImpl) {
   // response HTML lạ (không phải text/html) cho navigation không lưu vào khóa trang
   const t = await installed((url) => mk("{}", { ct: "application/json" }));
   await t.fire("fetch", t.nav("/unit.html"));
-  check("navigation không phải text/html không được lưu", t.caches.stores.get("tb-1").size === 0);
+  check("navigation không phải text/html không được lưu", t.caches.stores.get(CN).size === 0);
 }
 
 // ---------- 4. asset ----------
@@ -224,25 +239,76 @@ async function installed(fetchImpl) {
     if (p === "/data/l97.js") return mk("v2", { ct: "text/javascript" });
     return okFetch(url);
   });
-  const cache = t.caches.stores.get("tb-1");
+  const cache = t.caches.stores.get(CN);
   let r = await t.fire("fetch", t.sub("/data/l99.js"));
   check("asset text/html (trang 404 giả JS) không được lưu", r.responded && cache.size === 0);
   r = await t.fire("fetch", t.sub("/data/l98.js"));
   check("asset 404 không được lưu", cache.size === 0 && r.response.status === 404);
   r = await t.fire("fetch", t.sub("/data/l01.js"));
   check("asset 200 JS được lưu runtime", cache.has(ORIGIN + "/data/l01.js") && r.response.status === 200);
-  // stale-while-revalidate
+  // network-first: mạng thắng, cache cập nhật
   cache.set(ORIGIN + "/data/l97.js", mk("v1", { ct: "text/javascript" }));
   r = await t.fire("fetch", t.sub("/data/l97.js"));
-  check("SWR trả bản cũ ngay", (await r.response.text()) === "v1");
-  check("SWR cập nhật cache ngầm", (await cache.get(ORIGIN + "/data/l97.js").clone().text()) === "v2");
+  check("JS network-first trả bản mới từ mạng (không lệch phiên bản)", (await r.response.text()) === "v2");
+  check("JS network-first cập nhật cache", (await cache.get(ORIGIN + "/data/l97.js").clone().text()) === "v2");
   const t2 = await installed(() => mk("x", { type: "opaque", ct: "image/png" }));
   await t2.fire("fetch", t2.sub("/assets/img/l01/a.svg"));
-  check("response không basic không được lưu", t2.caches.stores.get("tb-1").size === 0);
+  check("response không basic không được lưu", t2.caches.stores.get(CN).size === 0);
   const t3 = await installed(() => { throw new TypeError("offline"); });
-  t3.caches.stores.get("tb-1").set(ORIGIN + "/assets/css/site.css", mk("css", { ct: "text/css" }));
+  t3.caches.stores.get(CN).set(ORIGIN + "/assets/css/site.css", mk("css", { ct: "text/css" }));
   const r3 = await t3.fire("fetch", t3.sub("/assets/css/site.css"));
   check("asset offline lấy từ cache", (await r3.response.text()) === "css");
+}
+
+{
+  // network-first: mạng chậm -> cache rồi cập nhật ngầm; mạng lỗi -> cache; không có gì -> lỗi mạng
+  const t = await installed((url) => (url.endsWith("/data/slow.js") ? new Promise((res) => setTimeout(() => res(mk("NEW", { ct: "text/javascript" })), 120)) : (() => { throw new TypeError("offline"); })()));
+  const cache = t.caches.stores.get(CN);
+  cache.set(ORIGIN + "/data/slow.js", mk("OLD", { ct: "text/javascript" }));
+  const r = await t.fire("fetch", t.sub("/data/slow.js"));
+  check("JS mạng chậm quá 3s -> dùng cache", (await r.response.text()) === "OLD");
+  check("JS mạng chậm về sau cập nhật cache ngầm", (await cache.get(ORIGIN + "/data/slow.js").clone().text()) === "NEW");
+  const r2 = await t.fire("fetch", t.sub("/data/slow.js?x=1"));
+  check("JS offline không có cache -> lỗi mạng (không treo)", r2.response.type === "error");
+  const r3 = await t.fire("fetch", t.sub("/data/slow.js"));
+  check("JS offline có cache -> trả cache", (await r3.response.text()) === "NEW");
+  // 5xx -> cache
+  const t5 = await installed(() => mk("err", { status: 503, ct: "text/javascript" }));
+  t5.caches.stores.get(CN).set(ORIGIN + "/assets/js/core.js", mk("CORE", { ct: "text/javascript" }));
+  const r5 = await t5.fire("fetch", t5.sub("/assets/js/core.js"));
+  check("JS 5xx rơi về cache", (await r5.response.text()) === "CORE");
+  // ảnh: SWR
+  const ts = await installed(() => mk("<svg>v2</svg>", { ct: "image/svg+xml" }));
+  ts.caches.stores.get(CN).set(ORIGIN + "/assets/img/l01/mc1.svg", mk("<svg>v1</svg>", { ct: "image/svg+xml" }));
+  const rs = await ts.fire("fetch", ts.sub("/assets/img/l01/mc1.svg"));
+  check("SVG stale-while-revalidate trả bản cũ ngay", (await rs.response.text()) === "<svg>v1</svg>");
+  check("SVG cập nhật cache ngầm", (await ts.caches.stores.get(CN).get(ORIGIN + "/assets/img/l01/mc1.svg").clone().text()) === "<svg>v2</svg>");
+}
+{
+  // cache lỗi -> rơi về fetch
+  const t = await installed(okFetch);
+  t.caches.open = async () => { throw new Error("quota"); };
+  const r = await t.fire("fetch", t.nav("/unit.html"));
+  check("navigation: caches.open ném lỗi -> rơi về mạng", r.response.status === 200 && (await r.response.text()).includes("/unit.html"));
+  const r2 = await t.fire("fetch", t.sub("/assets/js/core.js"));
+  check("asset JS: caches.open ném lỗi -> rơi về mạng", r2.response.status === 200);
+  const r3 = await t.fire("fetch", t.sub("/assets/img/l01/mc1.svg"));
+  check("asset SVG: caches.open ném lỗi -> rơi về mạng", r3.response.status === 200);
+}
+{
+  // activate chép runtime-cache từ cache cũ
+  const t = loadSw(okFetch);
+  const oldC = await t.caches.open("tb-1");
+  await oldC.put(ORIGIN + "/data/l02.js", mk("RT", { ct: "text/javascript" }));
+  await oldC.put(ORIGIN + "/index.html", mk("OLD"));
+  const newC = await t.caches.open(CN);
+  await newC.put(ORIGIN + "/index.html", mk("NEW"));
+  await t.fire("activate", {});
+  const keys = [...t.caches.stores.keys()];
+  check("activate xóa cache cũ sau khi chép", !keys.includes("tb-1") && keys.includes(CN));
+  const m = t.caches.stores.get(CN);
+  check("activate chép mục runtime sang cache mới", m.has(ORIGIN + "/data/l02.js") && (await m.get(ORIGIN + "/data/l02.js").clone().text()) === "RT");
+  check("activate giữ bản precache mới, không đè bằng bản cũ", (await m.get(ORIGIN + "/index.html").clone().text()) === "NEW");
 }
 
 // ---------- 5. bỏ qua ----------
@@ -378,6 +444,16 @@ function loadPwa({ protocol = "https:", hostname = "hoc.example", search = "", r
   t.swLs.controllerchange.forEach((f) => f());
   t.swLs.controllerchange.forEach((f) => f());
   check("pwa: controllerchange reload đúng 1 lần", t.log.reloads === 1, t.log.reloads);
+  // m1: tab chưa bấm "Tải lại" không tự reload khi controllerchange
+  const o = loadPwa({ waiting: true });
+  await tick();
+  o.swLs.controllerchange.forEach((g) => g());
+  check("pwa: tab chưa bấm Tải lại không tự reload", o.log.reloads === 0);
+  // m8: nút Để sau ẩn thanh
+  const ob = o.body.children.find((e) => e.className === "pwa-bar");
+  const later = ob.children.find((e) => e.textContent === "Để sau");
+  later.click();
+  check("pwa: nút Để sau ẩn thanh cập nhật", later && ob.hidden === true);
   // lần cài đầu (chưa có controller): không hiện thanh, không reload
   const f = loadPwa({ waiting: true, controller: false });
   await tick();
