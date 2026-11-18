@@ -55,7 +55,25 @@ t("sai format -> SAI_PHIEN_BAN", () => assert.equal(code(J({ app: "tungbuoc", fo
 t("units la mang -> SAI_CAU_TRUC", () => { const r = B.parse(wrap({ units: [] }), TODAY); assert.equal(r.code, "SAI_CAU_TRUC"); assert.match(r.msg, /units/); });
 t("total am -> SAI_CAU_TRUC kem ten truong", () => { const s = sample(); s.xp.total = -5; const r = B.parse(wrap(s), TODAY); assert.equal(r.code, "SAI_CAU_TRUC"); assert.match(r.msg, /xp\.total/); });
 t("total 1e99 -> SAI_CAU_TRUC", () => { const s = sample(); const txt = wrap(s).replace('"total":500', '"total":1e99'); assert.equal(code(txt), "SAI_CAU_TRUC"); });
-t("ngay tuong lai trong xp.days -> tu choi", () => { const s = sample(); s.xp.days["2030-01-01"] = { xp: 5 }; assert.equal(code(wrap(s)), "SAI_CAU_TRUC"); });
+t("ngay tuong lai trong xp.days: bo va dem, tep van nhap duoc", () => {
+  const s = sample(); s.xp.days["2030-01-01"] = { xp: 5 };
+  const r = B.parse(wrap(s), TODAY); assert.ok(r.ok); assert.equal(r.data.xp.days["2030-01-01"], undefined); assert.equal(r.dropped, 1);
+  assert.equal(Object.keys(r.data.xp.days).length, 2);
+});
+t("xuat 18/11 nhap tren may 17/11 (dong ho lui): khong bi tu choi", () => {
+  const r = B.parse(B.buildFile(sample()), "2026-11-17"); assert.ok(r.ok); assert.equal(r.data.xp.days["2026-11-18"], undefined);
+});
+t("ans 501 ky tu bi cat con 500 (chuoi va {t})", () => {
+  const s = sample(); s.units.u1.ans.q1 = "x".repeat(501); s.units.u1.ans.q3 = { t: "y".repeat(900) };
+  const r = B.parse(wrap(s), TODAY); assert.ok(r.ok);
+  assert.equal(r.data.units.u1.ans.q1.length, 500); assert.equal(r.data.units.u1.ans.q3.t.length, 500);
+});
+t("hoan tac: ban .bak (buildFile cua state cu) qua parse nguyen ven, bo ngay tuong lai", () => {
+  const old = sample(); old.xp.days["2031-01-01"] = { xp: 9 };
+  const r = B.parse(B.buildFile(old), TODAY); assert.ok(r.ok);
+  assert.equal(r.data.xp.total, 500); assert.equal(r.data.xp.days["2031-01-01"], undefined);
+  assert.equal(B.parse(B.buildFile({ units: [] }), TODAY).ok, false); // .bak hong -> khong nap
+});
 t("streak.last tuong lai -> n=0, last rong", () => { const s = sample(); s.xp.streak = { n: 9, best: 9, last: "2030-01-01" }; const r = B.parse(wrap(s), TODAY); assert.ok(r.ok); assert.equal(r.data.xp.streak.n, 0); assert.equal(r.data.xp.streak.last, ""); });
 t("__proto__/constructor khong lam o nhiem Object.prototype", () => {
   const txt = '{"app":"tungbuoc","format":1,"data":{"__proto__":{"polluted":1},"units":{"__proto__":{"polluted":1},"constructor":{},"u1":{"__proto__":{"polluted":1},"known":{"__proto__":1,"w1":1}}},"xp":{"once":{"__proto__":1}}}}';
