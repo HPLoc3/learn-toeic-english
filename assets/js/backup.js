@@ -4,7 +4,9 @@
 (function () {
   "use strict";
   var MAX_BYTES = 1048576, REP_CAP = 60;
-  var BAD = { "__proto__": 1, "constructor": 1, "prototype": 1 };
+  var BAD = Object.create(null); BAD["__proto__"] = 1; BAD["constructor"] = 1; BAD["prototype"] = 1;
+  function has(o, k) { return Object.prototype.hasOwnProperty.call(o, k); }
+  function nul(o) { return Object.assign(Object.create(null), isObj(o) ? o : {}); }
   var UNIT_ID = /^[a-z0-9_-]{1,24}$/;
   var ITEM_ID = /^[A-Za-z0-9_.:-]{1,64}$/;
   var ONCE_KEY = /^[A-Za-z0-9_-]{1,24}(:[A-Za-z0-9_.-]{1,40}){2,3}$/;
@@ -225,9 +227,9 @@
     var lx = isObj(local.xp) ? local.xp : {}, ix = isObj(incoming.xp) ? incoming.xp : {};
     var xp = { total: dmax(lx.total, ix.total), days: {}, streak: {}, once: {} };
 
-    var ld = isObj(lx.days) ? lx.days : {}, id = isObj(ix.days) ? ix.days : {};
+    var ld = nul(lx.days), id = nul(ix.days);
     keys(ld).concat(keys(id)).forEach(function (k) {
-      if (BAD[k] || k in xp.days) return;
+      if (BAD[k] || has(xp.days, k)) return;
       var a = isObj(ld[k]) ? ld[k] : null, b = isObj(id[k]) ? id[k] : null;
       var pick = !a ? b : !b ? a : (Number(a.xp) || 0) >= (Number(b.xp) || 0) ? a : b;
       var e = copy(pick);
@@ -248,16 +250,16 @@
     });
     out.xp = xp;
 
-    var lu = isObj(local.units) ? local.units : {}, iu = isObj(incoming.units) ? incoming.units : {};
+    var lu = nul(local.units), iu = nul(incoming.units);
     out.units = {};
     keys(lu).concat(keys(iu)).forEach(function (uid) {
-      if (BAD[uid] || uid in out.units) return;
+      if (BAD[uid] || has(out.units, uid)) return;
       out.units[uid] = mergeUnit(isObj(lu[uid]) ? lu[uid] : {}, isObj(iu[uid]) ? iu[uid] : {});
     });
     return out;
   }
 
-  function sub(u, k) { return isObj(u[k]) ? u[k] : {}; }
+  function sub(u, k) { return nul(u[k]); }
   function mergeUnit(a, b) {
     var o = {};
     o.known = {};
@@ -266,25 +268,25 @@
     var ar = sub(a, "res"), br = sub(b, "res"), aa = sub(a, "ans"), ba = sub(b, "ans");
     o.res = {}; o.ans = {};
     keys(ar).concat(keys(br)).forEach(function (id) {
-      if (BAD[id] || id in o.res) return;
+      if (BAD[id] || has(o.res, id)) return;
       var x = ar[id], y = br[id], useA;
       if (x === undefined) useA = false;
       else if (y === undefined) useA = true;
       else useA = x >= y;
       o.res[id] = useA ? x : y;
       var first = useA ? aa : ba, second = useA ? ba : aa;
-      if (id in first) o.ans[id] = copy(first[id]); else if (id in second) o.ans[id] = copy(second[id]);
+      if (has(first, id)) o.ans[id] = copy(first[id]); else if (has(second, id)) o.ans[id] = copy(second[id]);
     });
     keys(aa).concat(keys(ba)).forEach(function (id) {
-      if (BAD[id] || id in o.ans || id in o.res) return;
-      o.ans[id] = copy(id in aa ? aa[id] : ba[id]);
+      if (BAD[id] || has(o.ans, id) || has(o.res, id)) return;
+      o.ans[id] = copy(has(aa, id) ? aa[id] : ba[id]);
     });
 
     /* scores khoa theo id bai tap (ex.id), res khoa theo id cau hoi con (it.id): hai khong gian khoa khac nhau nen khong the "di cung ben"; giu luat lay ben co a lon hon (diem tot nhat) */
     var as = sub(a, "scores"), bs = sub(b, "scores");
     o.scores = {};
     keys(as).concat(keys(bs)).forEach(function (id) {
-      if (BAD[id] || id in o.scores) return;
+      if (BAD[id] || has(o.scores, id)) return;
       var x = as[id], y = bs[id];
       var pick = !isObj(y) ? x : !isObj(x) ? y : (Number(x.a) || 0) >= (Number(y.a) || 0) ? x : y;
       o.scores[id] = copy(pick);
@@ -296,7 +298,7 @@
     var asr = sub(a, "srs"), bsr = sub(b, "srs");
     o.srs = {};
     keys(asr).concat(keys(bsr)).forEach(function (id) {
-      if (BAD[id] || id in o.srs) return;
+      if (BAD[id] || has(o.srs, id)) return;
       var x = asr[id], y = bsr[id], pick;
       if (!isObj(y)) pick = x; else if (!isObj(x)) pick = y;
       else if (x.l !== y.l) pick = String(x.l) > String(y.l) ? x : y;
@@ -320,7 +322,20 @@
     return JSON.stringify({ app: "tungbuoc", format: 1, exported: stamp, data: data }, null, 1);
   }
 
-  window.BSBackup = { parse: parse, merge: merge, summarize: summarize, buildFile: buildFile, MESSAGES: MSG };
+  /* ghi cur vao .bak roi ap dung; neu ap dung that bai thi tra lai chuoi .bak cu (nguyen van) */
+  function safeApply(storage, key, cur, apply) {
+    var old = null, had = false;
+    try { old = storage.getItem(key); had = old !== null; } catch (e) { /* bo qua */ }
+    try { storage.setItem(key, JSON.stringify({ t: Date.now(), data: cur })); } catch (e2) { return false; }
+    var ok = false;
+    try { ok = apply() === true; } catch (e3) { ok = false; }
+    if (!ok) {
+      try { if (had) storage.setItem(key, old); else storage.removeItem(key); } catch (e4) { /* bo qua */ }
+    }
+    return ok;
+  }
+
+  window.BSBackup = { safeApply: safeApply, parse: parse, merge: merge, summarize: summarize, buildFile: buildFile, MESSAGES: MSG };
 
   /* ---------- giao dien ---------- */
   if (typeof document === "undefined") return;
@@ -433,10 +448,7 @@
         var replace = rRepl.checked;
         var cur = BS.exportState();
         var next = replace ? pending.data : merge(cur, pending.data);
-        try {
-          localStorage.setItem(BAK, JSON.stringify({ t: Date.now(), data: cur }));
-        } catch (e) { showErr(MSG.KHONG_LUU_DUOC); return; }
-        if (!BS.importState(next)) { showErr(MSG.KHONG_LUU_DUOC); return; }
+        if (!safeApply(localStorage, BAK, cur, function () { return BS.importState(next); })) { showErr(MSG.KHONG_LUU_DUOC); return; }
         var extra = pending.dropped ? " Đã bỏ qua " + pending.dropped + " mục không nhận ra." : "";
         panel.textContent = ""; pending = null; fileIn.value = ""; paste.value = "";
         showOk((replace ? "Đã thay thế toàn bộ tiến độ." : "Đã gộp tiến độ từ tệp (XP không bị cộng dồn).") + extra + " Bạn có thể hoàn tác lần nhập này.");
@@ -481,9 +493,7 @@
       no.addEventListener("click", function () { undoBox.textContent = ""; undo.focus(); });
       yes.addEventListener("click", function () {
         var cur = BS.exportState();
-        try { localStorage.setItem(BAK, JSON.stringify({ t: Date.now(), data: cur })); }
-        catch (e) { showErr(MSG.KHONG_LUU_DUOC); return; }
-        if (!BS.importState(b.data)) { showErr(MSG.KHONG_LUU_DUOC); return; }
+        if (!safeApply(localStorage, BAK, cur, function () { return BS.importState(b.data); })) { showErr(MSG.KHONG_LUU_DUOC); return; }
         undoBox.textContent = ""; panel.textContent = ""; pending = null;
         showOk("Đã khôi phục bản lúc " + fmtT(b.t) + ". Bản trước đó vẫn được cất, bạn có thể hoàn tác lại.");
         refreshUndo(); refreshMine();

@@ -173,5 +173,48 @@ t("summarize dem dung", () => {
   assert.deepEqual(plain(sm), { xp: 500, units: 1, cards: 2, streak: 3, best: 7 });
 });
 
+function fakeStore(failSetOn) {
+  const m = new Map(); let n = 0;
+  return { m, getItem: (k) => (m.has(k) ? m.get(k) : null), removeItem: (k) => m.delete(k),
+    setItem: (k, v) => { n++; if (n === failSetOn) throw new Error("quota"); m.set(k, v); } };
+}
+t("safeApply: importState false -> .bak cu duoc tra lai nguyen van", () => {
+  const st = fakeStore(0); st.m.set("k.bak", "CU");
+  assert.equal(B.safeApply(st, "k.bak", { a: 1 }, () => false), false);
+  assert.equal(st.getItem("k.bak"), "CU");
+});
+t("safeApply: khong co .bak cu va ap dung that bai -> khong de lai .bak", () => {
+  const st = fakeStore(0);
+  assert.equal(B.safeApply(st, "k.bak", { a: 1 }, () => false), false);
+  assert.equal(st.getItem("k.bak"), null);
+});
+t("safeApply: setItem .bak nem loi -> khong ap dung, .bak cu con", () => {
+  const st = fakeStore(1); st.m.set("k.bak", "CU"); let called = false;
+  assert.equal(B.safeApply(st, "k.bak", {}, () => { called = true; return true; }), false);
+  assert.equal(called, false); assert.equal(st.getItem("k.bak"), "CU");
+});
+t("safeApply: thanh cong -> .bak = ban hien tai", () => {
+  const st = fakeStore(0); st.m.set("k.bak", "CU");
+  assert.equal(B.safeApply(st, "k.bak", { a: 1 }, () => true), true);
+  assert.deepEqual(JSON.parse(st.getItem("k.bak")).data, { a: 1 });
+});
+t("id toString/valueOf duoc giu khi parse", () => {
+  const s = sample(); s.units.u1.known.valueOf = 1; s.units.u1.known.hasOwnProperty = 1; s.units.u1.res.toString = 1;
+  const r = B.parse(wrap(s), TODAY); assert.ok(r.ok); assert.equal(r.dropped, 0);
+  assert.deepEqual(Object.keys(r.data.units.u1.known).sort(), ["hasOwnProperty", "valueOf", "w1", "w2"]);
+  assert.equal(r.data.units.u1.res.toString, 1);
+});
+t("id toString/valueOf duoc giu khi gop (moi ben mot phia)", () => {
+  const a = sample(); a.units.u1.res.toString = 1; a.units.u1.ans.valueOf = "A"; a.units.u1.scores.toString = { c: 1, t: 2, a: 1 };
+  a.units.u1.srs.valueOf = { b: 1, d: "2026-11-19", l: "2026-11-18", w: 0, n: 1 }; a.xp.days.toString = { xp: 1 };
+  const b = sample(); b.units.u2 = { known: { toString: 1 } }; b.units.u1.res.valueOf = 1; b.units.u1.ans.toString = "B";
+  const m = B.merge(a, b);
+  const u = m.units.u1;
+  assert.equal(u.res.toString, 1); assert.equal(u.res.valueOf, 1);
+  assert.equal(u.ans.valueOf, "A"); assert.equal(u.ans.toString, "B");
+  assert.equal(u.scores.toString.a, 1); assert.equal(u.srs.valueOf.b, 1);
+  assert.equal(m.units.u2.known.toString, 1); assert.equal(m.xp.days.toString.xp, 1);
+});
+
 console.log("\nKet qua: " + pass + "/" + total + " ca dat");
 process.exit(pass === total ? 0 : 1);
