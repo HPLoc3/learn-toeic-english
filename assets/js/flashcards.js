@@ -23,6 +23,7 @@
     var card = el("div", { class: "flash flash-swipe", role: "button", tabindex: "0" });
     var wrap = el("div", { class: "flash-wrap" }, [card]);
     var summary = el("div", { class: "card flash-summary", hidden: true });
+    var dueLine = el("p", { class: "muted flash-due", hidden: true });
 
     var reviewBtn = el("button", { type: "button", class: "btn btn-review" }, [el("span", { "aria-hidden": "true", text: "↺" }), " Ôn lại"]);
     var flipBtn = el("button", { type: "button", class: "btn btn-primary", text: "Lật thẻ" });
@@ -37,6 +38,17 @@
     function list() { return deck.filter(function (w) { return !onlyNew || !st.known[w.id]; }); }
     function knownCount() { return deck.filter(function (w) { return st.known[w.id]; }).length; }
     function cur() { var l = list(); return l[idx] || null; }
+
+    /* dong "Den han hom nay: N" (srs.js nap sau nen kiem tra moi lan ve) */
+    function drawDue() {
+      var n = 0;
+      try { if (BS.srs) n = BS.srs.due(u.id, deck.map(function (w) { return w.id; })).length; } catch (e) { n = 0; }
+      dueLine.textContent = "";
+      dueLine.hidden = !BS.srs || n === 0;
+      if (dueLine.hidden) return;
+      dueLine.appendChild(document.createTextNode("Đến hạn hôm nay: " + n + " thẻ. "));
+      dueLine.appendChild(el("a", { href: "review.html", text: "Ôn ngay" }));
+    }
 
     function drawAuto() {
       var on = BS.pref("autoSpeak") !== 0;
@@ -115,6 +127,11 @@
       } else card.appendChild(el("p", { class: "flash-main", lang: "en", text: w.en || "" }));
       var meta = el("p", { class: "flash-meta" }, [BS.badgeUnverified(w.v)]);
       if (k) meta.appendChild(el("span", { class: "badge badge-ok", text: "Đã thuộc" }));
+      try {
+        var se = BS.srs && BS.srs.get(u.id, w.id);
+        if (se) meta.appendChild(el("span", { class: "badge badge-info", text: BS.srs.nextLabel(se) }));
+      } catch (e) { /* bo qua */ }
+      drawDue();
       card.appendChild(meta);
       var face = flipped ? "Mặt sau: " + (viTxt || "") + (viTxt ? ", tiếng Anh: " : "") + (w.en || "") : "Mặt trước: " + (w.en || "");
       card.setAttribute("aria-label", "Thẻ " + (idx + 1) + " trên " + l.length + (k ? ", đã thuộc" : "") + ". " + face +
@@ -163,6 +180,7 @@
         delete st.known[w.id];
         BS.addXP(1, { once: u.id + ":r:" + w.id + ":" + BS.dayKey(), rep: true });
       }
+      try { if (BS.srs) BS.srs.grade(u.id, w.id, dir > 0); } catch (e) { /* bo qua */ }
       BS.save();
       return true;
     }
@@ -239,6 +257,8 @@
     });
 
     root.appendChild(info);
+    root.appendChild(dueLine);
+    document.addEventListener("DOMContentLoaded", drawDue);
     root.appendChild(notice);
     root.appendChild(wrap);
     root.appendChild(summary);

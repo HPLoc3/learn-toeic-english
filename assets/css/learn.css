@@ -45,3 +45,4 @@
 .ls-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .explain{margin:.3em 0}
 @media (prefers-reduced-motion:reduce){.sticky-actions,.ls-card{scroll-behavior:auto;transition:none!important}}
+.flash-due{margin:4px 0 8px;font-size:.95rem}.flash-due a{display:inline-flex;align-items:center;min-height:44px;min-width:44px}
