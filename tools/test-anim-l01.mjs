@@ -162,9 +162,9 @@ function runFixture(BSAnim) {
   }
   const strip = (h) => String(h).replace(/<[^>]*>/g, '').replace(/&ldquo;|&rdquo;/g, '"').replace(/\s+/g, ' ').trim();
   const snap = (el) => {
-    const R = (n) => el.querySelector('[data-r="' + n + '"]');
+    const R = (n) => el.querySelector('[data-r="bsa.' + n + '"]');
     const sent = R('sent'), vi = R('vi');
-    return { step: R('step').textContent, shown: sent.children.filter((s) => s.classList.contains('bsa-on')).map((s) => s.textContent).join(''), full: sent.children.map((s) => s.textContent).join(''), viText: strip(vi.innerHTML), viOn: vi.classList.contains('bsa-on'), pct: Number(R('bar2').getAttribute('aria-valuenow')), sr: R('sr').textContent, play: el.querySelector('[data-a="play"]').textContent };
+    return { step: R('step').textContent, shown: sent.children.filter((s) => s.classList.contains('bsa-on')).map((s) => s.textContent).join(''), full: sent.children.map((s) => s.textContent).join(''), viText: strip(vi.textContent), viOn: vi.classList.contains('bsa-on'), pct: Number(R('bar').getAttribute('aria-valuenow')), sr: R('sr').textContent, play: el.querySelector('[data-a="play"]').textContent };
   };
   function env(reduced) {
     const q = [];
@@ -172,26 +172,46 @@ function runFixture(BSAnim) {
     w.matchMedia = () => ({ matches: reduced, addEventListener() {}, removeEventListener() {} });
     w.requestAnimationFrame = (f) => { q.push(f); return q.length; };
     w.cancelAnimationFrame = () => {};
-    ctxCast.document = { createElement: (t) => new N(t, {}) };
-    const el = new N('div', {});
+    const doc = { createElement: (t) => new N(t, {}) }; w.document = doc; w.setTimeout = () => 1; w.clearTimeout = () => {};
+    const el = new N('div', {}); el.ownerDocument = doc;
     return { el, api: w.BSAnim.mount(el, D) };
   }
   const { el, api } = env(false);
   api.pause();
   let bad1 = 0;
+  let fl = 0;
+  const cmp = (f, s) => s.step === f.step && s.shown === f.sentShown && s.full === f.sentFull && s.viText === f.viText && s.viOn === f.viOn && s.pct === f.pct && s.play === f.play;
   for (const f of fx.timed) {
     api.seek(f.t); api.pause();
-    const s = snap(el);
-    const same = s.step === f.step && s.shown === f.sentShown && s.full === f.sentFull && s.viText === f.viText && s.viOn === f.viOn && s.pct === f.pct && s.play === f.play;
+    let s = snap(el);
+    let same = cmp(f, s);
+    // sai so float tai dung moc (vd 13.2-7=6.1999..): chap nhan neu khop sau khi nhich 1e-6
+    if (!same) { api.seek(f.t + 1e-6); api.pause(); const s2 = snap(el); if (cmp(f, s2)) { same = true; fl++; s = s2; } }
     const srOk = !(f.viOn && f.sentShown === f.sentFull) || s.sr === f.sr;
     if (!same || !srOk) { bad1++; if (bad1 <= 5) console.log('  lech t=' + f.t + ' moi=' + JSON.stringify(s) + ' cu=' + JSON.stringify(f)); }
   }
+  if (fl) console.log('  luu y: ' + fl + ' mau chi khop sau khi nhich t 1e-6 (sai so float tai dung moc)');
   ok(bad1 === 0, 'fixture thoi gian lech ' + bad1 + '/231 mau');
   const r = env(true);
+  const PCT = [25, 50, 75, 100];
   fx.static.forEach((f, i) => {
     r.api.go(i); const s = snap(r.el);
-    ok(s.step === f.step && s.shown === f.sentShown && s.viText === f.viText && s.viOn === f.viOn && s.pct === f.pct, 'fixture tinh buoc ' + i + ' ' + JSON.stringify(s));
+    ok(s.step === f.step && s.shown === f.sentShown && s.full === f.sentFull && s.viText === f.viText && s.viOn === f.viOn && s.pct === PCT[i], 'fixture tinh buoc ' + i + ' ' + JSON.stringify(s));
   });
+  r.api.go(3); const so = snap(r.el);
+  ok(so.step === 'Tổng kết' && so.viText === fx.timed[230].viText && so.pct === 100, 'buoc tinh Tong ket ' + JSON.stringify(so));
+  // tay phai trung toa do neo tay cam am sau IK (canh 1, 1.2..7s)
+  const cp = BSAnim.compile(D), rig = ctxCast.window.BSRig;
+  let worst = 0;
+  for (let t = 1.2; t <= 8.5 + 1e-9; t += 0.1) {
+    const sm = BSAnim.sample(cp, t);
+    api.seek(t); api.pause();
+    const an = rig.anchor(D, 'kettle', 'handle', sm);
+    const h = el.querySelector('[data-r="man.handR"]');
+    const d = Math.hypot(Number(h.getAttribute('cx')) - an[0], Number(h.getAttribute('cy')) - an[1]);
+    if (d > worst) worst = d;
+  }
+  ok(worst < 0.05, 'tay phai lech neo am toi da ' + worst.toFixed(3) + 'px');
 }
 
 // ---------- kich thuoc ----------

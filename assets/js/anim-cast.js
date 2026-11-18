@@ -1,6 +1,5 @@
 /* anim-cast.js - dien vien, dao cu, phong nen cho hoat hinh Tung Buoc. Ve SVG tu thiet ke, goc 100%.
-   Dang ky qua BSRig.register(kind,name,spec). GIA DINH hop dong (chua co ANIM-RIG-CONTRACT.md luc viet):
-   toa do cuc bo: actor goc o giua, ban chan y=248, vai y=112; prop goc o diem tua/tay cam; chuoi markup khong chua id. */
+   Dang ky qua BSRig.register(kind,name,spec); hinh dang spec: tools/ANIM-RIG-CONTRACT.md. Khong dung id. */
 (function (g) {
   'use strict';
   var R = g.BSRig;
@@ -13,7 +12,6 @@
   var LN = ' stroke-linecap="round" stroke-linejoin="round"';
   function S(c, w) { return ' stroke="' + c + '" stroke-width="' + w + '"' + LN; }
 
-  var EYES = E(-10, 80, 2.7, 3, INK) + E(10, 80, 2.7, 3, INK);
   var FACES = {
     smile: P('M-6 92Q0 98 6 92', 'none', S(INK, 2.2)),
     open: E(0, 93, 4.5, 4, '#8a2f4a'),
@@ -29,14 +27,15 @@
     var sk = o.skin;
     return {
       name: o.name, age: o.age, job: o.job,
-      shoulder: [[-14, 112], [14, 112]], arm: 34, hand: 6, rest: [[-12, 48], [12, 48]], pivot: [0, 106],
-      skin: sk, sleeve: o.top,
-      anchors: { eye: [7, 80], apron: [-23, 104, 46, 94] },
-      legs: L(-8, 200, -8, 242, o.pants, 12) + L(8, 200, 8, 242, o.pants, 12) + E(-9, 247, 10, 4.5, o.shoe) + E(9, 247, 10, 4.5, o.shoe),
-      sit: { dy: 34, legs: L(-9, 204, -17, 224, o.pants, 12) + L(9, 204, 17, 224, o.pants, 12) + L(-17, 224, -13, 246, o.pants, 12) + L(17, 224, 13, 246, o.pants, 12) + E(-15, 249, 10, 4.5, o.shoe) + E(15, 249, 10, 4.5, o.shoe) },
+      pivot: [0, 106], hip: [0, 205],
+      eye: { L: [-10, 80], R: [10, 80], r: 2.7, c: INK },
+      faces: FACES, outfit: OUTFITS,
+      arm: { L: 34, s: [14, 112], rest: [26, 160], w: 10, c: o.top, hr: 6, hc: sk },
+      leg: { L: 21, hip: [8, 203], foot: [8, 242], w: 12, c: o.pants, shoe: { rx: 10, ry: 4.5, c: o.shoe, dx: 1, dy: 5 }, sit: { dy: 30, fx: 24 } },
+      anchors: { eye: [7, 80], apron: [0, 151, 46, 94] }, headAnchors: ['eye'],
       body: B(-20, 186, 40, 28, 8, o.pants) + (o.skirt || '') + B(-5, 98, 10, 14, 3, sk) + B(-20, 106, 40, 94, 14, o.top) + (o.bodyX || ''),
       head: E(-28, 82, 4.5, 6, sk) + E(28, 82, 4.5, 6, sk) + E(0, 78, 28, 31, sk) + E(-17, 90, 5.5, 3.4, BL, ' opacity=".55"') + E(17, 90, 5.5, 3.4, BL, ' opacity=".55"') + o.hair + (o.headX || ''),
-      eyes: EYES, faces: FACES, outfits: OUTFITS
+
     };
   }
 
@@ -66,10 +65,10 @@
   /* Dao cu */
   R.register('prop', 'cup', {
     w: 22, h: 20, z: 'back',
-    svg: '<g data-r="water">' + B(-9, 0, 18, 0.01, 0, '#5cc8ff') + '</g>' +
+    svg: '<rect data-r="~water" x="-9" y="-1" width="18" height="0.01" fill="#5cc8ff"/>' +
       P('M-11 -20L11 -20L9 0L-9 0Z', '#fff', ' fill-opacity=".4"' + S(INK, 1.8)) + B(-10, -14, 20, 5, 0, PUR, ' opacity=".8"') + P('M11 -15Q22 -14 10 -5', 'none', S(INK, 1.8)),
-    params: { fill: function (v) { var h = 16 * (v < 0 ? 0 : v > 1 ? 1 : v); return { water: { y: -h, height: Math.max(0.01, h) } }; } },
-    anchors: { rim: [-4, -20], surface: function (p) { return [0, -16 * (p.fill || 0)]; } }
+    params: { fill: { def: 0, bind: [['water', 'height', 0.01, 16], ['water', 'y', -1, -17]] } },
+    anchors: { rim: [-4, -20], surface: function (p) { return [0, -1 - 16 * (p.fill || 0)]; } }
   });
 
   R.register('prop', 'kettle', {
