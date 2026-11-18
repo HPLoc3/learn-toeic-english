@@ -122,7 +122,7 @@ for (const t of steps) {
   ok(on === expect, 'stream.on t=' + t + ' ' + on);
 }
 // gaze > 0 chi canh 2 sau 2.4s
-for (const t of steps) { const g = val('gaze.opacity', t, 0) > 0; ok(g === (t > 9.4 + 1e-9 && t < 14 - 1e-9), 'gaze t=' + t); }
+for (const t of steps) { const g = val('gaze.on', t, 0) > 0; ok(g === (t > 9.4 + 1e-9 && t < 14 - 1e-9), 'gaze t=' + t); }
 // ring > 0 chi canh 3 sau 1.6s
 for (const t of steps) { const r = val('ring.on', t, 0) > 0; ok(r === (t > 15.6 + 1e-9), 'ring t=' + t); }
 // tay phai bam tay cam am: canh 1 tu 1.2 den 7, va canh 2 den 8.5
@@ -166,7 +166,7 @@ function runFixture(BSAnim) {
     const sent = R('sent'), vi = R('vi');
     return { step: R('step').textContent, shown: sent.children.filter((s) => s.classList.contains('bsa-on')).map((s) => s.textContent).join(''), full: sent.children.map((s) => s.textContent).join(''), viText: strip(vi.textContent), viOn: vi.classList.contains('bsa-on'), pct: Number(R('bar').getAttribute('aria-valuenow')), sr: R('sr').textContent, play: el.querySelector('[data-a="play"]').textContent };
   };
-  function env(reduced) {
+  function env(reduced, def) {
     const q = [];
     const w = ctxCast.window;
     w.matchMedia = () => ({ matches: reduced, addEventListener() {}, removeEventListener() {} });
@@ -174,7 +174,7 @@ function runFixture(BSAnim) {
     w.cancelAnimationFrame = () => {};
     const doc = { createElement: (t) => new N(t, {}) }; w.document = doc; w.setTimeout = () => 1; w.clearTimeout = () => {};
     const el = new N('div', {}); el.ownerDocument = doc;
-    return { el, api: w.BSAnim.mount(el, D) };
+    return { el, api: w.BSAnim.mount(el, def || D) };
   }
   const { el, api } = env(false);
   api.pause();
@@ -212,6 +212,28 @@ function runFixture(BSAnim) {
     if (d > worst) worst = d;
   }
   ok(worst < 0.05, 'tay phai lech neo am toi da ' + worst.toFixed(3) + 'px');
+  // opacity THAT ghi len DOM sau apply (bat loi kenh on/opacity)
+  const opa = (id) => Number(el.querySelector('[data-r="' + id + '"]').getAttribute('opacity'));
+  for (let ti = 0; ti <= 230; ti++) {
+    const t = ti / 10;
+    api.seek(t); api.pause();
+    const T0 = Math.round(t * 10) / 10;
+    const g = opa('gaze'), rg = opa('ring'), st = opa('stream');
+    if (T0 <= 9.4 || T0 >= 14) ok(g === 0, 'gaze DOM phai =0 o t=' + T0 + ' (' + g + ')'); else if (T0 >= 9.5) ok(g > 0, 'gaze DOM phai >0 o t=' + T0 + ' (' + g + ')');
+    if (T0 <= 15.6) ok(rg === 0, 'ring DOM phai =0 o t=' + T0 + ' (' + rg + ')'); else if (T0 >= 15.8) ok(rg > 0, 'ring DOM phai >0 o t=' + T0 + ' (' + rg + ')');
+    if (T0 < 2.4 || T0 >= 7.2) ok(st === 0, 'stream DOM phai =0 o t=' + T0 + ' (' + st + ')'); else if (T0 >= 2.4 && T0 <= 7.1) ok(st > 0, 'stream DOM phai >0 o t=' + T0 + ' (' + st + ')');
+  }
+  // mau template: validate rong + gaze thuc su hien sau apply
+  const tpl = rd('tools/templates/unit-template-anim.js').replace(/__ID__/g, 'l02');
+  const tctx = { window: ctxCast.window }; vm.createContext(tctx);
+  vm.runInContext(tpl, tctx, { filename: 'unit-template-anim.js' });
+  const TD = ctxCast.window.BS_ANIMS.l02;
+  const terr = BSAnim.validate(TD, rig);
+  ok(Array.isArray(terr) && terr.length === 0, 'template validate: ' + JSON.stringify(terr));
+  const te = env(false, TD); te.api.pause();
+  let gmax = 0; const TT = BSAnim.compile(TD).T;
+  for (let t = 0; t <= TT; t += 0.1) { te.api.seek(t); te.api.pause(); const v = Number(te.el.querySelector('[data-r="gaze"]').getAttribute('opacity')); if (v > gmax) gmax = v; }
+  ok(gmax > 0, 'template: gaze DOM opacity phai >0 o dau do (max=' + gmax + ')');
 }
 
 // ---------- kich thuoc ----------
