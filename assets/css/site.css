@@ -119,3 +119,8 @@ a.node:hover{border-color:var(--pri);transform:translateY(-2px)}
 .listen-btns{display:inline-flex;flex-wrap:wrap;gap:8px;margin:4px 0}
 .opt-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .opt-row .opt{flex:1 1 120px;width:auto}
+
+/* khung gap dung chung cho cac khoi moi (details.fold) */
+.fold { border: 1px solid var(--line, #d9d6ee); border-radius: 12px; padding: 0.5rem 0.9rem; margin: 1rem 0; background: var(--card, transparent); }
+.fold > summary { cursor: pointer; font-weight: 600; padding: 0.35rem 0; }
+.fold[open] > summary { margin-bottom: 0.5rem; }

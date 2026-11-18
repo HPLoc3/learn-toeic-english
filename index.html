@@ -12,6 +12,8 @@
 <meta property="og:locale" content="vi_VN">
 <title>Từng Bước English | Luyện thi TOEIC</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%237c3aed'/%3E%3Ctext x='16' y='24' font-size='22' font-family='sans-serif' font-weight='bold' text-anchor='middle' fill='white'%3ET%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="stylesheet" href="assets/css/hud.css">
 <link rel="stylesheet" href="assets/css/home-extra.css">
@@ -36,7 +38,9 @@
     <p id="unv-total" class="badge badge-warn big" role="status" data-edit-only></p>
     <p class="muted" data-edit-only>Mục "Chưa kiểm tra" là nội dung cần người xem xét xác nhận thêm.</p>
   </section>
+  <div id="review-root"></div>
   <div id="catalog"></div>
+  <div id="backup-root"></div>
   <noscript><p class="card">Trang này cần JavaScript để hiển thị mục lục.</p></noscript>
 </main>
 <section class="wrap about" id="about" aria-labelledby="about-h">
@@ -46,13 +50,18 @@
     <p>Toàn bộ bài học và hình minh họa đều là nội dung gốc, do dự án tự biên soạn.</p>
     <p>Tiến độ học chỉ lưu trên máy bạn (trong trình duyệt). Trang không thu thập dữ liệu, không dùng cookie hay công cụ theo dõi.</p>
     <p id="contact" hidden></p>
+    <div id="pwa-root"></div>
   </div>
 </section>
 <footer class="site-footer"><div class="wrap"><p>Từng Bước English - Luyện thi TOEIC từng bước</p><p>Không thu thập dữ liệu · Tiến độ chỉ lưu trên máy bạn.</p><p>TOEIC là nhãn hiệu của ETS. Trang này độc lập, không liên kết với hay được ETS chứng nhận.</p></div></footer>
 <script src="data/catalog.js"></script>
 <script src="data/l01.js"></script>
 <script src="assets/js/core.js"></script>
+<script src="assets/js/loader.js"></script>
 <script src="assets/js/fx.js"></script>
 <script src="assets/js/home.js"></script>
+<script defer src="assets/js/srs.js"></script>
+<script defer src="assets/js/backup.js"></script>
+<script defer src="assets/js/pwa.js"></script>
 </body>
 </html>

@@ -77,7 +77,7 @@
   }
 
   function ensureUnit(u) {
-    ["known", "res", "scores", "last", "ans", "game"].forEach(function (k) { if (!isObj(u[k])) u[k] = {}; });
+    ["known", "res", "scores", "last", "ans", "game", "srs"].forEach(function (k) { if (!isObj(u[k])) u[k] = {}; });
     u.game.best = num(u.game.best, 0, 0);
     u.game.bestCombo = num(u.game.bestCombo, 0, 0);
     u.game.plays = num(u.game.plays, 0, 0);
@@ -99,6 +99,7 @@
   function syncInto(target, src) {
     Object.keys(target).forEach(function (k) { if (!(k in src)) delete target[k]; });
     Object.keys(src).forEach(function (k) {
+      if (k === "__proto__" || k === "constructor" || k === "prototype") return;
       if (isObj(target[k]) && isObj(src[k])) syncInto(target[k], src[k]);
       else target[k] = src[k];
     });
@@ -404,6 +405,29 @@
       [el("div", { class: "bar-fill", style: "width:" + pct + "%" })]);
   }
 
+  /* ---------- xuat / nhap trang thai (sao luu) ---------- */
+  function exportState() {
+    var c = JSON.parse(JSON.stringify(state));
+    if (!isObj(c.prefs)) c.prefs = {};
+    c.prefs.edit = 0;
+    return c;
+  }
+  /* cleanObj: doi tuong da qua kiem tra. Tra true neu da ap dung; false (khong doi state) neu khong ghi duoc */
+  function importState(cleanObj) {
+    var fresh;
+    try { fresh = normalize(JSON.parse(JSON.stringify(cleanObj))); } catch (e) { return false; }
+    try { fresh.prefs.edit = state.prefs.edit; } catch (e1) { /* bo qua */ }
+    try { window.localStorage.setItem(KEY, JSON.stringify(fresh)); } catch (e2) { return false; }
+    syncInto(state, fresh);
+    applyTheme();
+    try { document.documentElement.setAttribute("data-edit", state.prefs.edit ? "1" : "0"); } catch (e3) { /* bo qua */ }
+    var st = stats();
+    emit("bs:xp", { gain: 0, total: st.total, today: st.today, goal: st.goal, hit: 0, reload: true });
+    emit("bs:pref", { key: null, value: null, reload: true });
+    emit("bs:import", { ok: true });
+    return true;
+  }
+
   /* ---------- HUD ---------- */
   function effectiveDark() {
     var t = state.prefs.theme;
@@ -479,7 +503,7 @@
     badgeUnverified: badgeUnverified, viLine: viLine, img: img, norm: norm, KEY: KEY,
     dayKey: dayKey, addXP: addXP, stats: stats, pref: pref, setPref: setPref, isEdit: isEdit,
     speak: speak, stopSpeak: stopSpeak, hasVoice: hasVoice, onVoices: onVoices,
-    reload: reload, celebrate: celebrate, mountHud: mountHud, unitProgress: unitProgress, bar: bar,
+    reload: reload, exportState: exportState, importState: importState, REP_CAP: REP_CAP, celebrate: celebrate, mountHud: mountHud, unitProgress: unitProgress, bar: bar,
     render: {}
   };
 
@@ -494,10 +518,14 @@
     if (hud) mountHud(hud);
     var unv = document.getElementById("unv-total");
     if (unv) {
-      var total = 0;
-      Object.keys(window.BS_UNITS || {}).forEach(function (k) { total += countUnverified(window.BS_UNITS[k]); });
-      unv.textContent = "Tổng số mục chưa kiểm tra: " + total;
-      unv.hidden = total === 0;
+      var calcUnv = function () {
+        var total = 0;
+        Object.keys(window.BS_UNITS || {}).forEach(function (k) { total += countUnverified(window.BS_UNITS[k]); });
+        unv.textContent = "Tổng số mục chưa kiểm tra: " + total;
+        unv.hidden = total === 0;
+      };
+      calcUnv();
+      document.addEventListener("bs:units", calcUnv);
     }
   }
   if (DOC) {
