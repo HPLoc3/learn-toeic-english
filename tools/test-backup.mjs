@@ -26,7 +26,7 @@ const plain = (o) => JSON.parse(JSON.stringify(o));
 function sample() {
   return {
     v: 1,
-    prefs: { theme: "dark", edit: 0, goal: 100, autoSpeak: 1, noTimer: 0 },
+    prefs: { theme: "dark", edit: 0, goal: 100, autoSpeak: 1, noTimer: 0, mascot: 1 },
     xp: {
       total: 500,
       days: { "2026-11-17": { xp: 40, rep: 30, hit: 1, hitGoal: 30 }, "2026-11-18": { xp: 20, rep: 10, hit: 0 } },
@@ -122,6 +122,17 @@ t("xuat roi nhap kieu thay the cho state y het (edit=0)", () => {
   assert.ok(r.ok, r.msg); assert.equal(r.dropped, 0);
   const expect = plain(s); delete expect.prefs.edit;
   assert.deepEqual(plain(r.data), expect);
+});
+t("prefs.mascot 0/1 di-ve nguyen ven; 2 bi tu choi; ban cu thieu khoa van nhap duoc", () => {
+  for (const v of [0, 1]) {
+    const s = sample(); s.prefs.mascot = v;
+    const r = B.parse(B.buildFile(s, new Date(2026, 10, 18, 9, 5)), TODAY);
+    assert.ok(r.ok, r.msg); assert.equal(r.dropped, 0); assert.strictEqual(r.data.prefs.mascot, v);
+  }
+  const s2 = sample(); s2.prefs.mascot = 2; assert.equal(code(wrap(s2)), "SAI_CAU_TRUC");
+  const s3 = sample(); s3.prefs.mascot = true; assert.equal(code(wrap(s3)), "SAI_CAU_TRUC");
+  const old = sample(); delete old.prefs.mascot;
+  const r4 = B.parse(wrap(old), TODAY); assert.ok(r4.ok, r4.msg); assert.equal(r4.dropped, 0); assert.equal(r4.data.prefs.mascot, undefined);
 });
 t("buoc xuat dat prefs.edit = 0", () => {
   const s = sample(); s.prefs.edit = 1;

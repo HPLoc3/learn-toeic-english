@@ -149,7 +149,17 @@
   }
 
   /* nap cac unit da mo (loader), ve ngay lan dau roi ve lai khi co du lieu */
+  /* khe linh vat: chao; nhac chuoi chi khi chuoi >= 2 va hom nay chua hoc (giong nhe, khong toast) */
+  function greetMascot() {
+    var slot = document.getElementById("mascot-home");
+    if (!slot || !BS.mascot) return;
+    var st = BS.stats(), risk = st.streak >= 2 && !st.studiedToday;
+    var m = BS.mascot.mount(slot, { variant: "hero", mood: risk ? "idle" : "wave" });
+    m.say(BS.mascot.pickLine(risk ? "streak-risk" : "greet", st));
+  }
+
   function init() {
+    greetMascot();
     render();
     if (typeof BS.loadUnits === "function" && typeof BS.availableUnits === "function") {
       BS.loadUnits(BS.availableUnits().map(function (u) { return u.id; }), function () { loaded = true; render(); });

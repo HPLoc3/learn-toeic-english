@@ -61,6 +61,7 @@
     p.goal = (p.goal === 30 || p.goal === 50 || p.goal === 100) ? p.goal : 50;
     p.autoSpeak = p.autoSpeak === 0 || p.autoSpeak === false ? 0 : 1;
     p.noTimer = p.noTimer === 1 || p.noTimer === true ? 1 : 0;
+    p.mascot = (p.mascot === 0 || p.mascot === false) ? 0 : 1;
     var x = isObj(o.xp) ? o.xp : (o.xp = {});
     x.total = num(x.total, 0, 0);
     if (!isObj(x.days)) x.days = {};
@@ -262,7 +263,7 @@
       total: x.total, today: tdy, goal: goal,
       repLeft: Math.max(0, REP_CAP - (isObj(d) ? num(d.rep, 0, 0) : 0)),
       pct: goal ? Math.min(100, Math.round(tdy * 100 / goal)) : 0,
-      streak: st, best: s.best, hitToday: !!(isObj(d) && d.hit)
+      streak: st, best: s.best, hitToday: !!(isObj(d) && d.hit), studiedToday: s.last === t
     };
   }
 
