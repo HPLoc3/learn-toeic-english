@@ -1,15 +1,18 @@
 // check-sw.mjs - kiểm tra service worker + manifest trước khi deploy.
 // Chạy: node tools/check-sw.mjs          (exit 1 nếu có lỗi)
-//       node tools/check-sw.mjs --write   (cập nhật dòng "// content-hash:" trong sw.js; KHÔNG tự đổi VERSION)
+//       node tools/check-sw.mjs --write   (ghi "// content-hash: <VERSION>@<hash>"; chỉ khi VERSION đã đổi, KHÔNG tự đổi VERSION)
+//       node tools/check-sw.mjs --bump    (tự tăng VERSION số nguyên nếu hash đổi, rồi ghi)
 // Kiểm: (1) PRECACHE khớp file thật trên đĩa, (2) hash nội dung file precache khớp dòng trong sw.js,
 //       (3) manifest.webmanifest hợp lệ, icon tồn tại và đúng kích thước (đọc header PNG).
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { createHash } from "node:crypto";
+import vm from "node:vm";
 import { join, dirname, posix } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const WRITE = process.argv.includes("--write");
+const BUMP = process.argv.includes("--bump");
+const WRITE = process.argv.includes("--write") || BUMP;
 const errors = [];
 const fail = (m) => errors.push(m);
 const read = (rel) => readFileSync(join(ROOT, rel));
@@ -33,18 +36,31 @@ if (!m) { console.error("Không thấy PRECACHE trong sw.js"); process.exit(1); 
 const listed = [...m[1].matchAll(/"([^"]+)"/g)].map((x) => x[1]);
 if (new Set(listed).size !== listed.length) fail("PRECACHE có mục trùng.");
 
-// --- Tập file mong đợi ---
-const catalog = read("data/catalog.js").toString("utf8");
-const animFiles = new Set([...catalog.matchAll(/"anim"\s*:\s*"([^"]+)"/g)].map((x) => x[1]));
+// --- Tập file mong đợi: khung trang + mọi unit available:true trong catalog ---
+const catalogText = read("data/catalog.js").toString("utf8");
+const sandbox = { window: {} };
+vm.runInNewContext(catalogText, sandbox);
+const units = [];
+for (const p of (sandbox.window.BS_CATALOG && sandbox.window.BS_CATALOG.parts) || []) for (const u of p.units || []) units.push(u);
+const allAnim = new Set(units.filter((u) => u.anim).map((u) => u.anim));
+const unitFiles = [];
+for (const u of units) {
+  if (u.available !== true) continue;
+  unitFiles.push("data/" + u.id + ".js");
+  if (u.game === true) unitFiles.push("data/" + u.id + "-game.js");
+  if (u.anim) unitFiles.push(u.anim);
+  unitFiles.push(...walk("assets/img/" + u.id));
+}
 const expected = new Set([
   "index.html", "unit.html", "review.html", "404.html", "manifest.webmanifest", "favicon.ico", "data/catalog.js",
   ...walk("assets/css"), ...walk("assets/icons"),
-  ...walk("assets/js").filter((f) => !animFiles.has(f)), // file hoạt hình riêng của từng unit: lưu khi người học mở unit
+  ...walk("assets/js").filter((f) => !allAnim.has(f)), // hoạt hình: chỉ của unit available (thêm bên dưới)
+  ...unitFiles,
 ]);
-for (const f of expected) if (!listed.includes(f)) fail(`Thiếu trong PRECACHE: ${f}`);
+for (const f of expected) if (!listed.includes(f)) fail("Thiếu trong PRECACHE: " + f);
 for (const f of listed) {
-  if (!existsSync(join(ROOT, f))) fail(`PRECACHE trỏ file không tồn tại: ${f}`);
-  else if (!expected.has(f)) fail(`PRECACHE thừa (không thuộc shell): ${f}`);
+  if (!existsSync(join(ROOT, f))) fail("PRECACHE trỏ file không tồn tại: " + f);
+  else if (!expected.has(f)) fail("PRECACHE thừa (unit chưa available hoặc không thuộc shell): " + f);
 }
 
 // --- Hash nội dung ---
@@ -57,16 +73,28 @@ for (const rel of [...listed].sort()) {
   h.update("\0");
 }
 const hash = h.digest("hex").slice(0, 16);
-const hm = swText.match(/^\/\/ content-hash: ([0-9a-f]+)$/m);
-if (!hm) fail('Thiếu dòng "// content-hash: ..." trong sw.js.');
-const vm = swText.match(/var VERSION = "([^"]+)"/);
-if (!vm) fail("Thiếu VERSION trong sw.js.");
-
-if (WRITE && hm && hm[1] !== hash) {
-  writeFileSync(join(ROOT, "sw.js"), swText.replace(/^\/\/ content-hash: [0-9a-f]+$/m, `// content-hash: ${hash}`));
-  console.log(`Đã cập nhật content-hash: ${hm[1]} -> ${hash} (VERSION hiện là "${vm ? vm[1] : "?"}"; nhớ đã tăng VERSION).`);
-} else if (hm && hm[1] !== hash) {
-  fail(`Nội dung file precache đã đổi (hash ${hash}, sw.js ghi ${hm[1]}): cần đổi VERSION và cập nhật hash (node tools/check-sw.mjs --write).`);
+const hm = swText.match(/^\/\/ content-hash: (\S+)@([0-9a-f]+)$/m);
+const vmatch = swText.match(/var VERSION = "([^"]+)"/);
+if (!hm) fail('Thiếu dòng "// content-hash: <VERSION>@<hash>" trong sw.js.');
+if (!vmatch) fail("Thiếu VERSION trong sw.js.");
+let version = vmatch ? vmatch[1] : "";
+if (hm && vmatch && !errors.length) {
+  const oldV = hm[1], oldH = hm[2];
+  const hashChanged = oldH !== hash;
+  if (BUMP && hashChanged && /^\d+$/.test(version) && version === oldV) version = String(Number(version) + 1);
+  const versionChanged = version !== oldV;
+  if (hashChanged && !versionChanged) {
+    fail("Nội dung file precache đã đổi (hash " + hash + ", sw.js ghi " + oldH + ") nhưng VERSION vẫn là \"" + oldV + "\": đổi VERSION (hoặc chạy --bump) rồi cập nhật hash.");
+  } else if (hashChanged || versionChanged) {
+    if (WRITE) {
+      let out = swText.replace(/^\/\/ content-hash: .*$/m, "// content-hash: " + version + "@" + hash);
+      out = out.replace(/var VERSION = "[^"]+"/, 'var VERSION = "' + version + '"');
+      writeFileSync(join(ROOT, "sw.js"), out);
+      console.log("Đã ghi content-hash: " + oldV + "@" + oldH + " -> " + version + "@" + hash);
+    } else {
+      fail("sw.js ghi " + oldV + "@" + oldH + " nhưng hiện là " + version + "@" + hash + ": chạy node tools/check-sw.mjs --write.");
+    }
+  }
 }
 
 // --- Manifest ---
@@ -107,4 +135,4 @@ if (errors.length) {
   console.error("check-sw: LỖI\n - " + errors.join("\n - "));
   process.exit(1);
 }
-console.log(`check-sw: đạt (${listed.length} file precache, VERSION "${vm[1]}", hash ${hash}).`);
+console.log(`check-sw: đạt (${listed.length} file precache, VERSION "${version}", hash ${hash}).`);

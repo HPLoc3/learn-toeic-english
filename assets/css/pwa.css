@@ -14,6 +14,8 @@
 .pwa-ios{margin:10px 0}
 .pwa-sum{min-height:44px;display:flex;align-items:center;cursor:pointer;font-weight:600;color:var(--pri)}
 .pwa-help{margin:6px 0;color:var(--muted)}
-.pwa-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:50;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;max-width:520px;margin:0 auto;padding:10px 14px;background:var(--card);color:var(--ink);border:2px solid var(--pri);border-radius:var(--radius-sm);box-shadow:var(--shadow)}
+.pwa-bar[hidden]{display:none}
+/* đặt ở đầu trang để không che .sticky-actions (nút Nhớ/Quên) ở đáy */
+.pwa-bar{position:fixed;left:16px;right:16px;top:12px;z-index:50;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;max-width:520px;margin:0 auto;padding:10px 14px;background:var(--card);color:var(--ink);border:2px solid var(--pri);border-radius:var(--radius-sm);box-shadow:var(--shadow)}
 .pwa-bar-msg{font-weight:700}
 @media (prefers-reduced-motion:reduce){.pwa-box *,.pwa-bar,.pwa-bar *{transition:none!important;animation:none!important}}

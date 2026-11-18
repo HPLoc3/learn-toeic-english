@@ -18,6 +18,7 @@
   var root = null;
   var statusEl = null;
   var reloading = false;
+  var asked = false; /* chỉ tab đã bấm "Tải lại" mới tự reload khi controllerchange */
   var cssAdded = false;
 
   function ensureCss() {
@@ -57,10 +58,15 @@
     var btn = el("button", "pwa-btn pwa-btn-go", "Tải lại");
     btn.type = "button";
     btn.addEventListener("click", function () {
+      asked = true;
       btn.disabled = true;
       try { worker.postMessage("SKIP_WAITING"); } catch (e) { /* bỏ qua */ }
     });
     bar.appendChild(btn);
+    var later = el("button", "pwa-btn", "Để sau");
+    later.type = "button";
+    later.addEventListener("click", function () { bar.hidden = true; });
+    bar.appendChild(later);
     doc.body.appendChild(bar);
   }
   function watch(reg) {
@@ -132,7 +138,7 @@
       if (reg) setStatus("Đã sẵn sàng học khi không có mạng");
     }, function () { /* không đăng ký được: học bình thường khi có mạng */ });
     sw.addEventListener("controllerchange", function () {
-      if (reloading || !bar) return; /* chỉ tải lại khi người học đã bấm "Tải lại" */
+      if (reloading || !asked) return; /* chỉ tải lại khi người học đã bấm "Tải lại" */
       reloading = true;
       loc.reload();
     });

@@ -3,15 +3,16 @@
  * Không gửi dữ liệu đi đâu, không đụng request khác nguồn, không đụng localStorage.
  * Mỗi lần deploy có file precache đổi: sửa VERSION rồi chạy `node tools/check-sw.mjs --write`.
  */
-// content-hash: 243e6816afac74a5
+// content-hash: 2@b0040d38e664c684
 "use strict";
 
-var VERSION = "1";
+var VERSION = "2";
 var PREFIX = "tb-";
 var CACHE = PREFIX + VERSION;
 var NAV_TIMEOUT = 3000;
 
 /* Danh sách precache (đường dẫn tương đối so với thư mục gốc của site). tools/check-sw.mjs so khớp với đĩa. */
+/* Gồm khung trang và mọi unit available:true trong data/catalog.js (data, game, hoạt hình, hình). check-sw.mjs sinh/kiểm theo catalog. */
 var PRECACHE = [
   "404.html",
   "assets/css/backup.css",
@@ -28,6 +29,14 @@ var PRECACHE = [
   "assets/icons/icon-512.png",
   "assets/icons/icon-maskable-512.png",
   "assets/icons/icon.svg",
+  "assets/img/l01/focus.svg",
+  "assets/img/l01/mc1.svg",
+  "assets/img/l01/mc2.svg",
+  "assets/img/l01/mc3.svg",
+  "assets/img/l01/mc4.svg",
+  "assets/img/l01/tf1.svg",
+  "assets/img/l01/tf2.svg",
+  "assets/js/anim-being.js",
   "assets/js/backup.js",
   "assets/js/core.js",
   "assets/js/flashcards.js",
@@ -41,6 +50,8 @@ var PRECACHE = [
   "assets/js/review.js",
   "assets/js/srs.js",
   "data/catalog.js",
+  "data/l01-game.js",
+  "data/l01.js",
   "favicon.ico",
   "index.html",
   "manifest.webmanifest",
@@ -111,8 +122,24 @@ async function precacheAll() {
 
 async function purgeOld() {
   var keys = await caches.keys();
-  await Promise.all(keys.filter(function (k) { return k.indexOf(PREFIX) === 0 && k !== CACHE; })
-    .map(function (k) { return caches.delete(k); }));
+  var old = keys.filter(function (k) { return k.indexOf(PREFIX) === 0 && k !== CACHE; });
+  if (old.length) {
+    /* chép mục lưu lúc chạy (dữ liệu unit mới mở, ...) sang cache mới trước khi xóa; mục có sẵn ở cache mới được giữ */
+    try {
+      var cur = await caches.open(CACHE);
+      for (var i = 0; i < old.length; i++) {
+        var oc = await caches.open(old[i]);
+        var reqs = await oc.keys();
+        for (var j = 0; j < reqs.length; j++) {
+          var rurl = typeof reqs[j] === "string" ? reqs[j] : reqs[j].url;
+          if (await cur.match(rurl)) continue;
+          var r = await oc.match(rurl);
+          if (r) await cur.put(rurl, r);
+        }
+      }
+    } catch (e) { /* không chép được thì vẫn dọn cache cũ */ }
+  }
+  await Promise.all(old.map(function (k) { return caches.delete(k); }));
   if (self.clients && self.clients.claim) await self.clients.claim();
 }
 
@@ -127,10 +154,14 @@ async function notFoundPage(cache) {
   });
 }
 
-async function remember(cache, key, res) {
+function storable(res) {
+  return res.status === 200 && res.type === "basic" && !isHtml(res);
+}
+
+async function remember(cache, key, res, copy) {
   try {
     if (key && res.status === 200 && res.type === "basic" && isHtml(res)) {
-      await cache.put(abs(key), await clean(res.clone()));
+      await cache.put(abs(key), await clean(copy || res));
     }
   } catch (e) { /* bỏ qua */ }
 }
@@ -140,8 +171,7 @@ async function navigate(event) {
   var url = new URL(req.url);
   var key = pageName(url);
   var cache = await caches.open(CACHE);
-  var failed = false;
-  var netP = fetch(req).then(function (r) { return r; }, function () { failed = true; return null; });
+  var netP = fetch(req).then(function (r) { return r; }, function () { return null; });
   var res = await Promise.race([netP, delay(NAV_TIMEOUT)]);
   if (res === undefined) { /* quá 3 giây: dùng bản đã lưu nếu có, mạng vẫn chạy ngầm để cập nhật */
     var quick = key ? await cache.match(abs(key)) : null;
@@ -155,7 +185,7 @@ async function navigate(event) {
     if (res.type === "opaqueredirect") return res; /* trình duyệt tự theo redirect (vd Pages 308) */
     if (res.status === 404) return res; /* trả nguyên, không lưu */
     if (res.ok) {
-      await remember(cache, key, res);
+      event.waitUntil(remember(cache, key, res, res.clone()));
       return res;
     }
     var fallback = key ? await cache.match(abs(key)) : null;
@@ -166,13 +196,14 @@ async function navigate(event) {
   return cached || notFoundPage(cache);
 }
 
-async function asset(event) {
+/* Ảnh/icon: stale-while-revalidate (ít đổi, không gây lệch phiên bản). */
+async function assetSwr(event) {
   var req = event.request;
   var cache = await caches.open(CACHE);
-  var cached = await cache.match(req);
+  var cached = await cache.match(req.url);
   var update = fetch(req).then(async function (res) {
-    if (res.status === 200 && res.type === "basic" && !isHtml(res)) {
-      try { await cache.put(req, res.clone()); } catch (e) { /* bỏ qua */ }
+    if (storable(res)) {
+      try { await cache.put(req.url, res.clone()); } catch (e) { /* bỏ qua */ }
     }
     return res;
   });
@@ -182,6 +213,36 @@ async function asset(event) {
   }
   return update;
 }
+
+/* CSS/JS/data: network-first (timeout 3 giây) rồi rơi về cache, để HTML mới không bao giờ chạy với JS/catalog cũ. */
+async function assetNet(event) {
+  var req = event.request;
+  var cache = await caches.open(CACHE);
+  function save(r) {
+    if (!r || !storable(r)) return null;
+    return cache.put(req.url, r.clone()).catch(function () { return null; });
+  }
+  var netP = fetch(req).then(function (r) { return r; }, function () { return null; });
+  var res = await Promise.race([netP, delay(NAV_TIMEOUT)]);
+  if (res === undefined) {
+    var quick = await cache.match(req.url);
+    if (quick) {
+      event.waitUntil(netP.then(save));
+      return quick;
+    }
+    res = await netP;
+  }
+  if (res) {
+    if (res.ok || res.status === 404) {
+      event.waitUntil(Promise.resolve(save(res)));
+      return res;
+    }
+    return (await cache.match(req.url)) || res;
+  }
+  return (await cache.match(req.url)) || Response.error();
+}
+
+var STATIC_EXT = /\.(svg|png|ico|jpg|jpeg|webp|gif|woff2?)$/i;
 
 self.addEventListener("install", function (event) {
   event.waitUntil(precacheAll()); /* không skipWaiting: chờ người học bấm "Tải lại" */
@@ -202,6 +263,7 @@ self.addEventListener("fetch", function (event) {
   try { url = new URL(req.url); } catch (e) { return; }
   if (!inScope(url)) return; /* khác nguồn hoặc ngoài phạm vi: để trình duyệt tự xử lý */
   if (req.headers && req.headers.has && req.headers.has("range")) return;
-  if (req.mode === "navigate") event.respondWith(navigate(event));
-  else event.respondWith(asset(event));
+  var job = req.mode === "navigate" ? navigate(event) : (STATIC_EXT.test(url.pathname) ? assetSwr(event) : assetNet(event));
+  /* lỗi bộ nhớ đệm (caches.open/match ném lỗi): rơi về mạng thay vì làm hỏng trang */
+  event.respondWith(job.catch(function () { return fetch(req); }));
 });
