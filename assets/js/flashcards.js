@@ -258,7 +258,7 @@
 
     root.appendChild(info);
     root.appendChild(dueLine);
-    document.addEventListener("DOMContentLoaded", drawDue);
+    if (!BS.srs) document.addEventListener("DOMContentLoaded", drawDue, { once: true });
     root.appendChild(notice);
     root.appendChild(wrap);
     root.appendChild(summary);
