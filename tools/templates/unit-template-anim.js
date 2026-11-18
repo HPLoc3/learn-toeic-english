@@ -53,7 +53,7 @@ window.BS_ANIMS.__ID__ = {
       tracks: [
         { of: "woman", ch: "headTilt", keys: [[0.5, 0], [1.5, 10, "ease"]] },
         { of: "woman", ch: "handR", keys: [[0.3, "rest"], [1.2, [14, -6], "ease"]] },
-        { of: "gaze", ch: "opacity", keys: [[0, 0], [2.4, 0], [2.7, 1]] }
+        { of: "gaze", ch: "on", keys: [[0, 0], [2.4, 0], [2.7, 1]] }
       ]
     }
   ],

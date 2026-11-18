@@ -42,7 +42,7 @@ window.BS_ANIMS.l01 = {
         { of: "kettle", ch: "rot", keys: [[0, 25], [0.7, 0, "ease"]] },
         { of: "stream", ch: "on", keys: [[0, 1], [0.12, 0, "step"]] },
         { of: "man", ch: "headTilt", keys: [[0, 8], [1.2, 16, "ease"]] },
-        { of: "gaze", ch: "opacity", keys: [[0, 0], [2.4, 0], [2.7, 1]] }
+        { of: "gaze", ch: "on", keys: [[0, 0], [2.4, 0], [2.7, 1]] }
       ] },
     { id: "wear", dur: 7, rest: 6.8, title_vi: "Mặc tạp dề", label_vi: "mặc tạp dề",
       en: "The man is wearing an apron.",
@@ -52,7 +52,7 @@ window.BS_ANIMS.l01 = {
         { of: "man", ch: "headTilt", keys: [[0, 16], [0.8, 0, "ease"]] },
         { of: "man", ch: "handL", keys: [[0.4, "rest"], [1.3, [12, -8], "ease"]] },
         { of: "man", ch: "handR", keys: [[0.4, "rest"], [1.3, [-12, -8], "ease"]] },
-        { of: "gaze", ch: "opacity", keys: [[0, 0, "step"]] },
+        { of: "gaze", ch: "on", keys: [[0, 0, "step"]] },
         { of: "ring", ch: "on", keys: [[0, 0], [1.6, 0], [2, 1]] }
       ] }
   ],
