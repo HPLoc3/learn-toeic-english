@@ -1,0 +1,15 @@
+HUONG DAN THEM UNIT MOI (vi du: l02)
+
+1. Chon id trong data/catalog.js (vd l02). Id chi gom chu thuong, so, dau gach ngang.
+2. Sao chep tools/templates/unit-template.js thanh data/l02.js; thay het __ID__ thanh l02; viet noi dung.
+   Giu dung ten truong theo mau (id duy nhat, khong doi cau truc).
+3. Neu co tro choi: sao chep unit-template-game.js thanh data/l02-game.js (>= 10 vong) va dat "game": true trong catalog.
+   Neu co hoat hinh: dat "anim": "assets/js/<ten>.js" trong catalog.
+4. Dat anh trong assets/img/l02/ (SVG hoac anh khac). Ten tep phai khop DUNG hoa/thuong voi duong dan trong data.
+   Khong dung duong dan ".." hay http://. SVG khong duoc chua <script>, lien ket ra ngoai, <image>.
+5. Kiem tra truoc khi mo: node tools/check-units.mjs --unit l02
+   (Loi -> exit 1, phai sua. Canh bao -> nen xem lai.)
+6. Khi het loi: dat "available": true cho l02 trong data/catalog.js, roi chay: node tools/check-units.mjs
+   (khong tham so: kiem catalog va moi unit da mo).
+7. Muc chua kiem tra: them "v": {"status":"unverified","note":"..."} vao muc do; bo di khi da xac nhan.
+Luu y: tien do hoc luu theo id unit trong localStorage - khong doi id sau khi da phat hanh.
