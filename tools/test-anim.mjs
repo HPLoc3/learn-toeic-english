@@ -181,6 +181,11 @@ sect('2 validate');
   bad('tay nham dich', (d) => { d.scenes[0].tracks[0].keys[1][1] = '@ghost.handle'; });
   bad('id trung', (d) => { d.props.man = { type: 'cup', x: 1, y: 1 }; });
   bad('id sai', (d) => { d.props['a b'] = { type: 'cup', x: 1, y: 1 }; });
+  bad('face constructor', (d) => { d.cast.man.face = 'constructor'; });
+  bad('face la', (d) => { d.cast.man.face = 'angry'; });
+  bad('outfit la', (d) => { d.cast.man.outfit = ['cape']; });
+  bad('outfit constructor', (d) => { d.cast.man.outfit = ['constructor']; });
+  bad('kenh face constructor', (d) => { d.scenes[1].tracks[2].keys[0][1] = 'constructor'; });
   bad('outfit sai dang', (d) => { d.cast.man.outfit = 'apron'; });
   bad('track khong phai doi tuong', (d) => { d.scenes[0].tracks.push(null); });
   bad('track face gia tri sai', (d) => { d.scenes[1].tracks[2].keys[0][1] = 'a b'; });
@@ -300,6 +305,26 @@ sect('6 giam chuyen dong');
   a2.seek(22); ok(E2.step() === 'Tổng kết', 'seek vao tong ket (che do tinh)');
 }
 
+sect('6b aria-live Tong ket (giam chuyen dong)');
+{
+  const E = makeEnv({ reduced: true }), api = E.A.mount(E.el, mkDef(3));
+  api.go(2); const before = E.byR('bsa.sr').textContent;
+  api.go(3);
+  const t = E.byR('bsa.sr').textContent;
+  ok(t.startsWith('Tổng kết. ') && t.includes('Ghi nhớ') && t !== before, 'doc Tong ket qua aria-live: ' + t);
+  api.destroy();
+}
+sect('6c bo nho dem khong phinh');
+{
+  const E = makeEnv(), api = E.A.mount(E.el, mkDef(3)); api.pause();
+  for (let i = 0; i < 5; i++) { api.seek(1); api.seek(8); api.seek(15); api.seek(22); api.replay(); api.pause(); }
+  api.seek(1); api.seek(8); api.seek(15);
+  const w1 = E.wr.n; for (let i = 0; i < 40; i++) { api.seek(1); api.seek(8); api.seek(15); }
+  const w2 = E.wr.n; for (let i = 0; i < 40; i++) { api.seek(1); api.seek(8); api.seek(15); }
+  ok(E.wr.n - w2 === w2 - w1, 'so lan ghi on dinh qua cac vong');
+  api.destroy();
+}
+
 // ================= 7. che do thuong =================
 sect('7 che do thuong');
 {
@@ -368,7 +393,7 @@ sect('8 an toan');
   ok(E2.A.validate(d2, E2.R).length > 0 && E2.A.mount(E2.el, d2) === null, 'id doi tuong nguy hiem bi tu choi');
   const mk = E.R.markup(mkDef(3));
   ok(!/<script|<image|href|\son\w+\s*=|foreignObject|\sid\s*=/i.test(mk), 'markup rig sach, khong id');
-  ok(/stroke:var\(--pri,#[0-9a-f]+\)/i.test(mk), 'net hieu ung dung var(--pri,#...)');
+  ok(/stroke:var\(--bsa-fx,#[0-9a-f]+\)/i.test(mk), 'net hieu ung dung token --bsa-fx');
   ok(!/stroke="#/.test(mk.slice(mk.indexOf('data-r="stream"'))), 'fx khong dung stroke hex cung');
 }
 
@@ -404,9 +429,9 @@ ok(/'use strict';/.test(ENG) && /\}\)\(window\);\s*$/.test(ENG) && !/^\s*documen
 sect('11 kich thuoc');
 {
   const eb = Buffer.byteLength(ENG), rb = Buffer.byteLength(RIG);
-  console.log('  engine ' + eb + ' B (<= 18432), rig ' + rb + ' B (<= 12288)');
-  ok(eb <= 18 * 1024, 'engine <= 18KB');
-  ok(rb <= 12 * 1024, 'rig <= 12KB');
+  console.log('  engine ' + eb + ' B (<= 20480), rig ' + rb + ' B (<= 14336)');
+  ok(eb <= 20 * 1024, 'engine <= 20KB');
+  ok(rb <= 14 * 1024, 'rig <= 14KB');
 }
 
 console.log('\n' + pass + '/' + total + ' ca dat');

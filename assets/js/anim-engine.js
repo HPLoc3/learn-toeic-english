@@ -63,7 +63,9 @@
       });
     }
     group('cast', MAXS, (id, a) => {
-      e(!T(NM, a.actor) || (rig && !rig.has('actor', a.actor)) || !fin(a.x) || (a.outfit !== undefined && (!A(a.outfit) || a.outfit.length > 8)), 'cast ' + id);
+      var sp = rig && T(NM, a.actor) ? rig.spec('actor', a.actor) : null;
+      e(!T(NM, a.actor) || (rig && !sp) || !fin(a.x) || (a.outfit !== undefined && (!A(a.outfit) || a.outfit.length > 8 || (sp && a.outfit.some((o) => !own(sp.outfit, o))))), 'cast ' + id);
+      e(a.face !== undefined && (!T(ID, a.face) || (sp && !own(sp.faces, a.face))), 'face ' + id);
     });
     group('props', 24, (id, p) => {
       e(!T(NM, p.type) || (rig && !rig.has('prop', p.type)) || !fin(p.x) || !fin(p.y) || (p.z !== undefined && p.z !== 'front' && p.z !== 'back'), 'prop ' + id);
@@ -87,11 +89,11 @@
     function track(tr, w, dur) {
       var g = isObj(tr) && own(ids, tr.of) ? ids[tr.of] : '', kind = K[g], ch = tr.ch, pt = 0, hand = ch === 'handL' || ch === 'handR';
       if (e(!kind, w + ' of')) return;
-      var ps = kind === 'prop' && rig ? rig.spec('prop', def.props[tr.of].type) : null;
+      var fs = kind === 'actor' && rig ? rig.spec('actor', def.cast[tr.of].actor).faces : null, ps = kind === 'prop' && rig ? rig.spec('prop', def.props[tr.of].type) : null;
       if (e(!T(ID, ch) || !(inl(CHN[kind], ch) || (kind === 'prop' && (!rig || (ps && own(ps.params, ch))))), w + ' ch') || e(!A(tr.keys) || tr.keys.length < 1 || tr.keys.length > 64, w + ' keys')) return;
       tr.keys.forEach((k, n) => {
         var v = A(k) ? k[1] : 0, vec = A(v) && v.length === 2 && fin(v[0]) && fin(v[1]), at = typeof v === 'string' && v.charAt(0) === '@',
-          ok = hand ? v === 'rest' || at || vec : ch === 'look' ? vec : ch === 'face' ? T(ID, v) : fin(v);
+          ok = hand ? v === 'rest' || at || vec : ch === 'look' ? vec : ch === 'face' ? T(ID, v) && (!fs || own(fs, v)) : fin(v);
         if (e(!A(k) || !R(k[0], pt, dur) || (k[2] !== undefined && !inl(EASES, k[2])) || !ok, w + ' key' + n)) return;
         pt = k[0];
         if (hand && at) ref(v.slice(1), w);
@@ -192,7 +194,7 @@
     SC.forEach((s, k) => { chips[k].setAttribute('aria-label', 'Chuyển tới động tác ' + (k + 1) + ': ' + s.label_vi); });
 
     var mq = g.matchMedia ? g.matchMedia('(prefers-reduced-motion: reduce)') : null;
-    var S = { t: 0, playing: false, raf: 0, tm: 0, last: 0, step: 0, reduced: !!(mq && mq.matches), scene: -1, gen: 0, vik: '', ann: -1, wasConn: false, dead: false };
+    var S = { t: 0, playing: false, raf: 0, tm: 0, last: 0, step: 0, reduced: !!(mq && mq.matches), scene: -1, vik: '', ann: -1, wasConn: false, dead: false };
     var pe = [], subs = [];
 
     function segsTo(p, arr, base) {
@@ -221,8 +223,8 @@
     function render() {
       var s = sample(cp, tNow()), k = s.scene, rd = S.reduced, j, allOn = true, pct;
       rig.apply(rx, s);
-      if (S.scene !== k) { S.scene = k; S.gen++; pe = segsTo(n.sent, SC[k].pieces, 'bsa-p'); }
-      for (j = 0; j < pe.length; j++) { Y('p' + j + 'g' + S.gen, pe[j], 'on', s.piecesOn[j]); if (!s.piecesOn[j]) allOn = false; }
+      if (S.scene !== k) { S.scene = k; for (var q in Z) if (/^p[0-9]/.test(q)) delete Z[q]; pe = segsTo(n.sent, SC[k].pieces, 'bsa-p'); }
+      for (j = 0; j < pe.length; j++) { Y('p' + j, pe[j], 'on', s.piecesOn[j]); if (!s.piecesOn[j]) allOn = false; }
       buildVi(k, s.outro); Y('v', n.vi, 'on', s.viOn);
       Y('s', n.step, 'text', s.outro ? OU.title_vi : 'Động tác ' + (k + 1) + '/' + N + ' · ' + SC[k].title_vi);
       for (j = 0; j < N; j++) {
@@ -231,7 +233,9 @@
       pct = rd ? Math.round((S.step + 1) / (N + 1) * 100) : s.pct;
       Y('f', n.fill, 'w', pct); Y('b', n.bar, 'aria-valuenow', pct);
       var done = allOn && s.viOn;
-      if (done && S.ann !== k) { S.ann = k; n.sr.textContent = 'Câu mẫu: ' + SC[k].en + ' ' + def.sr_tail_vi; }
+      if (rd && s.outro) {
+        if (S.ann !== 'o') { S.ann = 'o'; n.sr.textContent = OU.title_vi + '. ' + OU.segs.map((q) => q[0]).join(''); }
+      } else if (done && S.ann !== k) { S.ann = k; n.sr.textContent = 'Câu mẫu: ' + SC[k].en + ' ' + def.sr_tail_vi; }
       else if (!done) S.ann = -1;
     }
 

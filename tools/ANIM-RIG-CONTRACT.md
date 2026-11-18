@@ -63,3 +63,10 @@ Kenh hieu ung: on (0..1, nhan opacity), opacity; tuy chon o du lieu `pulse:{hz,d
 - Neo tham chieu "id.ten". Tay co the ghim "@kettle.handle".
 - API cong khai cua rig: register, has(kind,name), spec(kind,name), solveArm(s,h,L,side), markup(def), bind(def,root), apply(ctx,sample), anchor(def,id,name,sample).
 - Luat key track: [t_cuc_bo, gia_tri, ease?]; ease danh cho doan DEN key do: "ease"(smoothstep)|"step"(giu gia tri truoc, nhay tai moc)|"linear"(mac dinh). Key dau la "step" => truoc moc gia tri 0. Giua hai canh KHAC NHAU giu nguyen (khong noi suy) => moi canh nen mo dau bang key gia tri hien co. Truoc key dau: giu gia tri key dau. rest phai < dur.
+
+## Bo sung (sau review)
+- Ngan sach kich thuoc: engine <= 20KB, rig <= 14KB (test-anim.mjs hang muc 11).
+- Token mau hieu ung (khong doi theo theme, de du tuong phan tren phong sang co dinh): gaze/ring dung `stroke:var(--bsa-fx,#4a2ad6)`; stream dung `var(--bsa-water,#4aa3df)`. Tac gia co the dinh nghia lai hai token tren `.bsa-root` neu can.
+- Kenh fx: `on` MAC DINH 0, `opacity` MAC DINH 1; opacity ve = on * opacity * (pulse neu co). fx an cho den khi du lieu co track `on` (vd gaze: keys [[0,0],[2.4,0],[2.7,1]]; stream: step 0->1; ring: [[0,0],[1.6,0],[2.0,1]]).
+- validate (khi truyen rig) kiem danh sach trang: cast[id].face va gia tri kenh `face` phai la khoa cua spec.faces; cast[id].outfit phai la khoa cua spec.outfit (hasOwnProperty, nen "constructor" bi tu choi).
+- Che do giam chuyen dong: vao buoc "Tong ket" thi aria-live doc tieu de outro + noi dung tom tat.
