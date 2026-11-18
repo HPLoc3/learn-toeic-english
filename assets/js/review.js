@@ -12,6 +12,7 @@
     try { return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); } catch (e) { return false; }
   }
 
+  var failedUnits = [];   /* uid nap that bai */
   var allUnits = {};      /* uid -> unit da nap */
   var session = null;     /* {queue, total, done, ok, forgot:{}, remembered:{}, flipped, busy} */
   var live = el("p", { class: "review-live", role: "status", "aria-live": "polite" });
@@ -42,11 +43,32 @@
 
   function clear() { app.textContent = ""; }
 
+  /* unit nap loi nhung state van co the da hoc / co srs */
+  function failedWithCards() {
+    return failedUnits.filter(function (uid) {
+      var u = BS.state.units && BS.state.units[uid];
+      if (!u) return false;
+      return Object.keys(u.known || {}).length > 0 || Object.keys(u.srs || {}).length > 0;
+    });
+  }
+
   function showEmpty() {
     clear();
     var s = BS.srs.summary();
     var box = el("section", { class: "card review-empty" });
     var nt = BS.srs.nextText(s), msg;
+    if (failedWithCards().length) {
+      box.appendChild(el("h2", { text: "Chưa tải được dữ liệu bài học" }));
+      msg = "Chưa tải được dữ liệu bài học (có thể đang offline). Hãy kết nối mạng rồi thử lại.";
+      box.appendChild(el("p", { text: msg }));
+      var row = el("div", { class: "row" }, [
+        el("button", { type: "button", class: "btn btn-primary", text: "Thử lại", onclick: init }),
+        el("a", { class: "btn", href: "index.html", text: "Về trang chủ" })
+      ]);
+      box.appendChild(row);
+      app.appendChild(box);
+      return;
+    }
     if (nt) {
       box.appendChild(el("h2", { text: "Chưa có thẻ nào đến hạn" }));
       msg = "Bạn đã ôn xong rồi, giỏi lắm! Lần ôn tiếp theo: " + nt + ".";
@@ -182,7 +204,8 @@
   function init() {
     var ids = BS.availableUnits().map(function (u) { return u.id; });
     BS.loadUnits(ids, function (map) {
-      Object.keys(map).forEach(function (k) { if (map[k]) allUnits[k] = map[k]; });
+      failedUnits = [];
+      Object.keys(map).forEach(function (k) { if (map[k]) allUnits[k] = map[k]; else failedUnits.push(k); });
       startSession();
     });
   }
