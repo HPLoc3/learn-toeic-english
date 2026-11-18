@@ -20,12 +20,12 @@
 .m-armL{transform-origin:44px 67px}
 .m-armR{transform-origin:76px 67px}
 .m-head{transform-origin:60px 63px}
-.m-tail{transform-origin:78px 86px;animation:m-wag 2.2s ease-in-out infinite alternate}
-.m-eyes circle{transform-box:fill-box;transform-origin:center;animation:m-blink 5s infinite}
-[data-mood=wave] .m-armR{transform:rotate(-140deg);animation:m-wv .7s ease-in-out infinite alternate}
+.m-tail{transform-origin:78px 86px;animation:m-wag .5s ease-in-out 6 alternate}
+.m-eyes circle{transform-box:fill-box;transform-origin:center;animation:m-blink 5s 2}
+[data-mood=wave] .m-armR{transform:rotate(-140deg);animation:m-wv .7s ease-in-out 4 alternate}
 [data-mood=cheer] .m-armR{transform:rotate(-150deg)}
 [data-mood=cheer] .m-armL{transform:rotate(150deg)}
-[data-mood=cheer] .m-all{animation:m-jump .6s ease-in-out infinite}
+[data-mood=cheer] .m-all{animation:m-jump .6s ease-in-out 4}
 [data-mood=cheer] .m-open,[data-mood=cheer] .m-happy,[data-mood=proud] .m-happy,[data-mood=worried] .m-flat,[data-mood=worried] .m-brows{display:inline}
 [data-mood=cheer] .m-eyes,[data-mood=proud] .m-eyes,[data-mood=cheer] .m-smile,[data-mood=worried] .m-smile{display:none}
 [data-mood=proud] .m-head{transform:rotate(-4deg)}

@@ -78,6 +78,8 @@
   function setEnabled(b) { BS.setPref("mascot", b ? 1 : 0); }
 
   var insts = [], face = null, faceTimer = null, wasOn = null;
+  /* bo host da bi go khoi DOM (vd review.js clear()) de khong ro ri / ve vao nut da tach */
+  function live() { insts = insts.filter(function (x) { return x.host.isConnected !== false; }); return insts; }
 
   function draw(it) {
     var h = it.host;
@@ -92,7 +94,7 @@
     var noop = { set: function () {}, say: function () {}, destroy: function () {} };
     if (!host) return noop;
     o = o || {};
-    insts = insts.filter(function (x) { return x.host !== host; });
+    live(); insts = insts.filter(function (x) { return x.host !== host; });
     var it = { host: host, variant: o.variant === "mini" || o.variant === "inline" ? o.variant : "hero", mood: mood(o.mood), text: "", timer: null, dead: false };
     try { host.classList.add("mascot-host", "mascot-" + it.variant); } catch (e) { /* bo qua */ }
     insts.push(it);
@@ -128,7 +130,7 @@
     if (!enabled()) return;
     if (kind === "goal") {
       faceMood("cheer", 2500);
-      insts.forEach(function (it) {
+      live().forEach(function (it) {
         if (it.variant !== "hero" || it.dead) return;
         it.mood = "cheer"; it.text = pickLine("goal", BS.stats()); draw(it);
         if (it.timer) clearTimeout(it.timer);
@@ -160,7 +162,7 @@
       var on = enabled();
       if (on === wasOn) return;
       wasOn = on;
-      insts.forEach(draw);
+      live().forEach(draw);
     });
     document.addEventListener("bs:xp", function (e) { if (e && e.detail && e.detail.hit) react("goal"); });
     if (DOC.readyState === "loading") DOC.addEventListener("DOMContentLoaded", hudButton);

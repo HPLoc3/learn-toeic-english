@@ -300,15 +300,44 @@ t("9 HTML: 3 trang co mascot.css + mascot.js sau core.js; 404.html khong co; tra
 });
 
 /* 10 */
-t("10 kich thuoc: mascot.js <= 9KB, mascot.css <= 2.5KB, an toan cu phap", () => {
+t("10 kich thuoc: mascot.js <= 10KB (tran nang tu 9KB sau khi them loc host da go), mascot.css <= 2.5KB, an toan cu phap", () => {
   const js = fs.statSync(path.join(root, "assets/js/mascot.js")).size;
   const css = fs.statSync(path.join(root, "assets/css/mascot.css")).size;
-  assert.ok(js <= 9000, "mascot.js " + js);
+  assert.ok(js <= 10240, "mascot.js " + js);
   assert.ok(css <= 2500, "mascot.css " + css);
   assert.ok(!/@import|url\(|https?:/.test(read("assets/css/mascot.css")));
   const css2 = read("assets/css/mascot.css");
   assert.match(css2, /prefers-reduced-motion:\s*reduce/);
   assert.ok(!/requestAnimationFrame|setInterval/.test(read("assets/js/mascot.js")));
+});
+
+/* 11 */
+t("11 host da go khoi DOM bi bo khoi insts; khong ve lai khi bat/tat", () => {
+  const e = makeEnv(undefined, { hud: true });
+  const a = new e.FakeEl("div"), b = new e.FakeEl("div");
+  e.BS.mascot.mount(a, { variant: "inline", mood: "proud" }).say("a");
+  e.BS.mascot.mount(b, { variant: "inline", mood: "proud" }).say("b");
+  a.isConnected = false; // nhu review.js clear() go khoi DOM
+  a.innerHTML = "(da tach)";
+  e.BS.mascot.setEnabled(false); e.BS.mascot.setEnabled(true);
+  assert.equal(a.innerHTML, "(da tach)", "host da tach khong bi ve lai");
+  assert.ok(b.innerHTML.includes("<svg"));
+  for (let i = 0; i < 5; i++) { const h = new e.FakeEl("div"); e.BS.mascot.mount(h, { variant: "inline" }); h.isConnected = false; }
+  const c = new e.FakeEl("div"); e.BS.mascot.mount(c, { variant: "inline" });
+  e.BS.mascot.setEnabled(false); e.BS.mascot.setEnabled(true);
+  assert.ok(c.innerHTML.includes("<svg"));
+});
+
+/* 12 */
+t("12 CSS: khong con infinite (WCAG 2.2.2); tay/duoi/nhay huu han <= 5s; giam chuyen dong van tinh", () => {
+  const css = read("assets/css/mascot.css");
+  assert.ok(!/infinite/.test(css), "con infinite");
+  for (const k of ["m-wag", "m-wv", "m-jump"]) {
+    const m = new RegExp("animation:" + k + " ([\\d.]+)s [\\w-]+ (\\d+)").exec(css);
+    assert.ok(m, k + " thieu so lan huu han");
+    assert.ok(Number(m[1]) * Number(m[2]) <= 5, k + " chay > 5s");
+  }
+  assert.match(css, /prefers-reduced-motion:\s*reduce\)\{\.mascot \*\{animation:none!important\}/);
 });
 
 console.log("\nKet qua: " + pass + "/" + total + " hang muc dat");
