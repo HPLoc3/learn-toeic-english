@@ -116,14 +116,15 @@ t("the known cu: rai 3 ngay tu moc co dinh, qua han dan, get/due khong ghi state
   for (let i = 0; i < 30; i++) ids.push("v" + String(i).padStart(3, "0"));
   const known = {};
   ids.forEach((i) => { known[i] = 1; });
-  setDay(2026, 11, 17);
+  const A = makeEnv().BS.srs.LEGACY_ANCHOR.split("-").map(Number);
+  setDay(A[0], A[1], A[2] - 1);
   const { BS, store } = makeEnv({ v: 1, units: { l01: { known } } });
   const before = JSON.stringify(BS.state);
   const stored0 = store["tungbuoc.v1"];
   eq(BS.srs.due("l01", ids).length, 0, "truoc moc: chua den han");
   const sizes = [];
   for (let k = 0; k < 5; k++) {
-    setDay(2026, 11, 18 + k);
+    setDay(A[0], A[1], A[2] + k);
     const d = BS.srs.due("l01", ids);
     sizes.push(d.length);
     ok(BS.srs.get("l01", ids[0]).virtual && BS.srs.get("l01", ids[0]).b === 1);
@@ -165,7 +166,7 @@ t("dong ho lui coi nhu hom nay", () => {
   eq(e.b, 1); eq(e.l, "2026-06-15");
 });
 t("loc id mo coi khi unit da nap", () => {
-  setDay(2026, 11, 25);
+  { const a = makeEnv().BS.srs.LEGACY_ANCHOR.split("-").map(Number); setDay(a[0], a[1], a[2] + 7); }
   const seed = { v: 1, units: { l01: { known: { v001: 1, gone: 1 } } } };
   const { ctx, BS } = makeEnv(seed);
   ctx.BS_UNITS = { l01: { vocab: [{ id: "v001" }], phrases: [] } };
@@ -174,7 +175,7 @@ t("loc id mo coi khi unit da nap", () => {
   eq(B2.srs.summary().due, 2, "chua nap: tinh het");
 });
 t("summary chi dem unit thuoc availableUnits", () => {
-  setDay(2026, 11, 25);
+  { const a = makeEnv().BS.srs.LEGACY_ANCHOR.split("-").map(Number); setDay(a[0], a[1], a[2] + 7); }
   const seed = { v: 1, units: { l01: { known: { v001: 1 } }, l02: { known: { v001: 1 } } } };
   const { BS } = makeEnv(seed);
   eq(BS.srs.summary().due, 2);

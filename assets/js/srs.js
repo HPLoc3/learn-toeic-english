@@ -12,7 +12,8 @@
 
   var INTERVALS = [0, 1, 3, 7, 14, 30];
   var MAX_BOX = 5;
-  var LEGACY_ANCHOR = "2026-11-18"; /* ngay phat hanh SRS: moc cho the known cu chua co srs */
+  /* Đặt bằng ngày deploy thật trước khi phát hành. Mốc cho thẻ known cũ chưa có srs (hạn = mốc + hash%3 ngày). */
+  var LEGACY_ANCHOR = "2026-11-18";
   var DAY_RE = /^\d{4}-\d\d-\d\d$/;
 
   function isObj(x) { return !!x && typeof x === "object" && !Array.isArray(x); }
@@ -196,7 +197,7 @@
   BS.srs = {
     INTERVALS: INTERVALS, get: get, grade: grade, review: review, due: due, dueCount: dueCount,
     summary: summary, nextLabel: nextLabel, nextText: nextText, compare: compare, deckIdsOf: deckIdsOf,
-    addDays: addDays, dayNum: dayNum
+    addDays: addDays, dayNum: dayNum, LEGACY_ANCHOR: LEGACY_ANCHOR
   };
 
   /* ---------- widget trang chu ---------- */
