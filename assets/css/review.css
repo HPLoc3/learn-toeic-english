@@ -1,0 +1,23 @@
+/* review.css - on tap thong minh (widget trang chu + trang review.html). Chi dung bien mau co san. */
+.review-card .review-h{margin:0 0 6px}
+.review-card .review-line{margin:0 0 10px}
+.review-go{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;text-decoration:none}
+.review-session [hidden],.review-end [hidden]{display:none!important}
+.review-count{margin:4px 0;font-weight:700}
+.review-bar{height:10px;margin:4px 0 8px}
+.review-card-face{cursor:pointer;min-height:180px;touch-action:manipulation;user-select:none;-webkit-user-select:none;max-width:100%}
+.review-card-face:focus-visible{outline:3px solid var(--focus,#c2410c);outline-offset:2px}
+.review-actions{justify-content:center}
+.review-actions .btn,.review-session .row .btn{min-height:44px;min-width:44px}
+.review-live{margin:4px 0;min-height:1.4em;font-size:.9rem;color:var(--muted)}
+.review-end,.review-empty{text-align:center}
+.review-end .row{justify-content:center}
+.review-empty .btn,.review-end .btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+.review-result{font-weight:700}
+@media (prefers-reduced-motion:reduce){
+  .review-card-face{transition:none!important;transform:none!important}
+  .review-session .btn{transition:none!important}
+}
+@media (max-width:420px){
+  .review-actions .btn{flex:1 1 100%}
+}
