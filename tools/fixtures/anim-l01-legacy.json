@@ -1,0 +1,4220 @@
+{
+ "source": "assets/js/anim-being.js @ 3f5214e",
+ "note": "sr la gia tri dinh (chi doi khi cau + o Viet da hien du); play lay sau pause(); static = che do giam chuyen dong, go(0..2)",
+ "timed": [
+  {
+   "t": 0,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 0,
+   "sr": "",
+   "play": "Phát"
+  },
+  {
+   "t": 0.1,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 0,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 0.2,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 1,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 0.3,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 1,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 0.4,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 2,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 0.5,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 2,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 0.6,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 3,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 0.7,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 3,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 0.8,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 3,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 0.9,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 4,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 1,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 4,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 1.1,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 5,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 1.2,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 5,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 1.3,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 6,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 1.4,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 6,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 1.5,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 7,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 1.6,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 7,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 1.7,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 7,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 1.8,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 8,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 1.9,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 8,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 2,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 9,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 2.1,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 9,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 2.2,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 10,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 2.3,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 10,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 2.4,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 10,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 2.5,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 11,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 2.6,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 11,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 2.7,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 12,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 2.8,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 12,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 2.9,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 13,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 3,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 13,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 3.1,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 13,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 3.2,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 14,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 3.3,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 14,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 3.4,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 15,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 3.5,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 15,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 3.6,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 16,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 3.7,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 16,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 3.8,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 17,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 3.9,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 17,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 4,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 17,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 4.1,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 18,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 4.2,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 18,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 4.3,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 19,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 4.4,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 19,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 4.5,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 20,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 4.6,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 20,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 4.7,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 20,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 4.8,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pour",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 21,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 4.9,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pour",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 21,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 5,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pour",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 22,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 5.1,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pour",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 22,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 5.2,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 23,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 5.3,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 23,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 5.4,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 23,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 5.5,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 24,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 5.6,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 24,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 5.7,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring water into a cup.",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 25,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 5.8,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring water into a cup.",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 25,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 5.9,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring water into a cup.",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 26,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 6,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring water into a cup.",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 26,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 6.1,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring water into a cup.",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": false,
+   "pct": 27,
+   "sr": "",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 6.2,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring water into a cup.",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": true,
+   "pct": 27,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 6.3,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring water into a cup.",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": true,
+   "pct": 27,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 6.4,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring water into a cup.",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": true,
+   "pct": 28,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 6.5,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring water into a cup.",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": true,
+   "pct": 28,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 6.6,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring water into a cup.",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": true,
+   "pct": 29,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 6.7,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring water into a cup.",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": true,
+   "pct": 29,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 6.8,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring water into a cup.",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": true,
+   "pct": 30,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 6.9,
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring water into a cup.",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": true,
+   "pct": 30,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 7,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 30,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 7.1,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 31,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 7.2,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 31,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 7.3,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 32,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 7.4,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 32,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 7.5,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 33,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 7.6,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 33,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 7.7,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 33,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 7.8,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 34,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 7.9,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 34,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 8,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 35,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 8.1,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 35,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 8.2,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 36,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 8.3,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 36,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 8.4,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 37,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 8.5,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 37,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 8.6,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 37,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 8.7,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 38,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 8.8,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 38,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 8.9,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 39,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 9,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 39,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 9.1,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 40,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 9.2,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 40,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 9.3,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 40,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 9.4,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 41,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 9.5,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 41,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 9.6,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 42,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 9.7,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 42,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 9.8,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 43,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 9.9,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 43,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 10,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 43,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 10.1,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 44,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 10.2,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 44,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 10.3,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 45,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 10.4,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 45,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 10.5,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 46,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 10.6,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 46,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 10.7,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 47,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 10.8,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 47,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 10.9,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 47,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 11,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 48,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 11.1,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 48,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 11.2,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 49,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 11.3,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 49,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 11.4,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 50,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 11.5,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 50,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 11.6,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 50,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 11.7,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 51,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 11.8,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is look",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 51,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 11.9,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is look",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 52,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 12,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is look",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 52,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 12.1,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is look",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 53,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 12.2,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is look",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 53,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 12.3,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 53,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 12.4,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 54,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 12.5,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 54,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 12.6,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 55,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 12.7,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 55,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 12.8,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking at the cup.",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 56,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 12.9,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking at the cup.",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 56,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 13,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking at the cup.",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 57,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 13.1,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking at the cup.",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": false,
+   "pct": 57,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 13.2,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking at the cup.",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": true,
+   "pct": 57,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 13.3,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking at the cup.",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": true,
+   "pct": 58,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 13.4,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking at the cup.",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": true,
+   "pct": 58,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 13.5,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking at the cup.",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": true,
+   "pct": 59,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 13.6,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking at the cup.",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": true,
+   "pct": 59,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 13.7,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking at the cup.",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": true,
+   "pct": 60,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 13.8,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking at the cup.",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": true,
+   "pct": 60,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 13.9,
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking at the cup.",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": true,
+   "pct": 60,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 14,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 61,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 14.1,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 61,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 14.2,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 62,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 14.3,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 62,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 14.4,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 63,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 14.5,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 63,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 14.6,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 63,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 14.7,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 64,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 14.8,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 64,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 14.9,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 65,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 15,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 65,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 15.1,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 66,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 15.2,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 66,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 15.3,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 67,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 15.4,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 67,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 15.5,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 67,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 15.6,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 68,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 15.7,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 68,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 15.8,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 69,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 15.9,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 69,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 16,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 70,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 16.1,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 70,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 16.2,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 70,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 16.3,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 71,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 16.4,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 71,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 16.5,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 72,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 16.6,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 72,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 16.7,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 73,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 16.8,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 73,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 16.9,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 73,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 17,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 74,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 17.1,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 74,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 17.2,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 75,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 17.3,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 75,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 17.4,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 76,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 17.5,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 76,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 17.6,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 77,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 17.7,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 77,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 17.8,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 77,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 17.9,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 78,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 18,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 78,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 18.1,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 79,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 18.2,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    false,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 79,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 18.3,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 80,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 18.4,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 80,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 18.5,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 80,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 18.6,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 81,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 18.7,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 81,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 18.8,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wear",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 82,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 18.9,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wear",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 82,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 19,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wear",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 83,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 19.1,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wear",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 83,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 19.2,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wear",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 83,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 19.3,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 84,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 19.4,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 84,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 19.5,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 85,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 19.6,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 85,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 19.7,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 86,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 19.8,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 86,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 19.9,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 87,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 20,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 87,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 20.1,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 87,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 20.2,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": false,
+   "pct": 88,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 20.3,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": true,
+   "pct": 88,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 20.4,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": true,
+   "pct": 89,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 20.5,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": true,
+   "pct": 89,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 20.6,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": true,
+   "pct": 90,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 20.7,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": true,
+   "pct": 90,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 20.8,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": true,
+   "pct": 90,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 20.9,
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": true,
+   "pct": 91,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 21,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 91,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 21.1,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 92,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 21.2,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 92,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 21.3,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 93,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 21.4,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 93,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 21.5,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 93,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 21.6,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 94,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 21.7,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 94,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 21.8,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 95,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 21.9,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 95,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 22,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 96,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 22.1,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 96,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 22.2,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 97,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 22.3,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 97,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 22.4,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 97,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 22.5,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 98,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 22.6,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 98,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 22.7,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 99,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 22.8,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 99,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 22.9,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 100,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Tiếp tục"
+  },
+  {
+   "t": 23,
+   "step": "Tổng kết",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "Ghi nhớ nhanh: tìm câu be + động từ-ing mô tả đúng điều đang xảy ra trong hình. Mẹo: wearing = đang mặc sẵn trên người (trạng thái); putting on = đang mặc vào (hành động).",
+   "viOn": true,
+   "pct": 100,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Phát lại"
+  }
+ ],
+ "static": [
+  {
+   "t": "step0",
+   "step": "Động tác 1/3 · Rót nước vào cốc",
+   "sentShown": "The man is pouring water into a cup.",
+   "sentFull": "The man is pouring water into a cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìpour → pouring: đang rót",
+   "viOn": true,
+   "pct": 33,
+   "sr": "Câu mẫu: The man is pouring water into a cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Phát"
+  },
+  {
+   "t": "step1",
+   "step": "Động tác 2/3 · Nhìn vào cốc",
+   "sentShown": "The man is looking at the cup.",
+   "sentFull": "The man is looking at the cup.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìlook at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
+   "viOn": true,
+   "pct": 67,
+   "sr": "Câu mẫu: The man is looking at the cup. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Phát"
+  },
+  {
+   "t": "step2",
+   "step": "Động tác 3/3 · Mặc tạp dề",
+   "sentShown": "The man is wearing an apron.",
+   "sentFull": "The man is wearing an apron.",
+   "piecesOn": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "viText": "be (is) + động từ-ing = đang làm gìwear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
+   "viOn": true,
+   "pct": 100,
+   "sr": "Câu mẫu: The man is wearing an apron. Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
+   "play": "Phát"
+  }
+ ]
+}
