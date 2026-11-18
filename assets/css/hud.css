@@ -31,6 +31,11 @@
 }
 .hud-btn:focus-visible { outline: 3px solid var(--focus, #f59e0b); outline-offset: 2px; }
 
+.hud-mascot { display: inline-flex; align-items: center; gap: 4px; }
+.hud-mascot-face, .hud-mascot-face .mascot { width: 28px; height: 28px; }
+.hud-mascot-face { display: inline-flex; }
+.hud-btn[aria-pressed="true"] .hud-mascot-face { --m-scarf: var(--hd-focus, #ffd24a); }
+
 .btn-speak {
   min-width: 44px; min-height: 44px; padding: 0 12px;
   border: 1px solid var(--line, #d9dee7); border-radius: var(--radius-sm, 12px);

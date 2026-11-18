@@ -1,0 +1,40 @@
+.mascot-host{display:flex;align-items:center;gap:10px;margin:0 0 10px}
+.mascot-host[hidden]{display:none}
+.mascot-say{margin:0;padding:8px 12px;border-radius:14px;font-weight:600;line-height:1.4;background:var(--card-2,#ede9ff);color:var(--ink,#1b1740)}
+.site-header .mascot-say{background:rgba(255,255,255,.16);color:var(--hd-ink,#fff)}
+.mascot{display:block;flex:0 0 auto;width:80px;height:80px;overflow:visible}
+.mascot-mini{width:28px;height:28px}
+.site-header .mascot-hero{--m-scarf:var(--hd-focus,#ffd24a)}
+.mf{fill:#e8892b}
+.mo{fill:#e8892b;stroke:#e8892b;stroke-width:3;stroke-linejoin:round}
+.mi{fill:#8a4314}
+.mc{fill:#fff0d2}
+.mt{fill:#fff}
+.md{fill:#4a2a14}
+.ml{fill:none;stroke:#4a2a14;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.ms{fill:none;stroke:#b8591c;stroke-width:2.2;stroke-linecap:round}
+.m-scarf{fill:var(--m-scarf,var(--pri,#5a3df0))}
+.m-steps rect{fill:var(--line-strong,#9a95c0)}
+.site-header .m-steps rect{fill:var(--hd-sub,#ece6ff)}
+.m-happy,.m-brows,.m-flat,.m-open{display:none}
+.m-armL{transform-origin:44px 67px}
+.m-armR{transform-origin:76px 67px}
+.m-head{transform-origin:60px 63px}
+.m-tail{transform-origin:78px 86px;animation:m-wag 2.2s ease-in-out infinite alternate}
+.m-eyes circle{transform-box:fill-box;transform-origin:center;animation:m-blink 5s infinite}
+[data-mood=wave] .m-armR{transform:rotate(-140deg);animation:m-wv .7s ease-in-out infinite alternate}
+[data-mood=cheer] .m-armR{transform:rotate(-150deg)}
+[data-mood=cheer] .m-armL{transform:rotate(150deg)}
+[data-mood=cheer] .m-all{animation:m-jump .6s ease-in-out infinite}
+[data-mood=cheer] .m-open,[data-mood=cheer] .m-happy,[data-mood=proud] .m-happy,[data-mood=worried] .m-flat,[data-mood=worried] .m-brows{display:inline}
+[data-mood=cheer] .m-eyes,[data-mood=proud] .m-eyes,[data-mood=cheer] .m-smile,[data-mood=worried] .m-smile{display:none}
+[data-mood=proud] .m-head{transform:rotate(-4deg)}
+[data-mood=proud] .m-armR{transform:rotate(-22deg)}
+[data-mood=proud] .m-armL{transform:rotate(22deg)}
+[data-mood=worried] .m-head{transform:rotate(5deg)}
+[data-mood=worried] .m-tail{animation:none;transform:rotate(14deg)}
+@keyframes m-wv{from{transform:rotate(-125deg)}to{transform:rotate(-155deg)}}
+@keyframes m-jump{50%{transform:translateY(-7px)}}
+@keyframes m-wag{from{transform:rotate(-5deg)}to{transform:rotate(6deg)}}
+@keyframes m-blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+@media (prefers-reduced-motion:reduce){.mascot *{animation:none!important}}

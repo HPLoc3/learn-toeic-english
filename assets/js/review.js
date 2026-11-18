@@ -43,6 +43,15 @@
 
   function clear() { app.textContent = ""; }
 
+  /* ban linh vat inline (proud) o dau hop ket qua; tat linh vat thi khe tu an */
+  function proudMascot(box) {
+    if (!BS.mascot) return;
+    var slot = el("div", { class: "mascot-slot" });
+    box.insertBefore(slot, box.firstChild);
+    BS.mascot.mount(slot, { variant: "inline", mood: "proud" }).say(BS.mascot.pickLine("review-done", BS.stats()));
+    BS.mascot.react("review-done");
+  }
+
   /* unit nap loi nhung state van co the da hoc / co srs */
   function failedWithCards() {
     return failedUnits.filter(function (uid) {
@@ -70,6 +79,7 @@
       return;
     }
     if (nt) {
+      proudMascot(box);
       box.appendChild(el("h2", { text: "Chưa có thẻ nào đến hạn" }));
       msg = "Bạn đã ôn xong rồi, giỏi lắm! Lần ôn tiếp theo: " + nt + ".";
     } else {
@@ -171,6 +181,7 @@
     var forgotN = Object.keys(s.forgot).length;
     var sum = BS.srs.summary();
     var box = el("section", { class: "card review-end", "aria-label": "Kết quả phiên ôn" });
+    proudMascot(box);
     box.appendChild(el("h2", { text: "Xong phiên ôn!" }));
     box.appendChild(el("p", { class: "review-result", text: "Nhớ ngay: " + s.ok + " thẻ. Cần ôn thêm: " + forgotN + " thẻ." }));
     var nt = BS.srs.nextText(sum);

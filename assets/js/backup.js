@@ -73,10 +73,10 @@
       if (d.prefs !== undefined) {
         if (!isObj(d.prefs)) bad("prefs");
         var p = d.prefs;
-        known(p, ["theme", "goal", "autoSpeak", "noTimer", "edit"]);
+        known(p, ["theme", "goal", "autoSpeak", "noTimer", "edit", "mascot"]);
         if (p.theme !== undefined) { if (["auto", "light", "dark"].indexOf(p.theme) < 0) bad("prefs.theme"); out.prefs.theme = p.theme; }
         if (p.goal !== undefined) { if (p.goal !== 30 && p.goal !== 50 && p.goal !== 100) bad("prefs.goal"); out.prefs.goal = p.goal; }
-        ["autoSpeak", "noTimer"].forEach(function (k) {
+        ["autoSpeak", "noTimer", "mascot"].forEach(function (k) {
           if (p[k] === undefined) return;
           if (p[k] !== 0 && p[k] !== 1) bad("prefs." + k);
           out.prefs[k] = p[k];
