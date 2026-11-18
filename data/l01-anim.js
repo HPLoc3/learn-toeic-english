@@ -50,8 +50,8 @@ window.BS_ANIMS.l01 = {
       vi_at: 6.2, note_vi: "wear → wearing: đang mặc (trạng thái đang có tạp dề trên người), khác putting on = đang mặc vào (hành động)",
       tracks: [
         { of: "man", ch: "headTilt", keys: [[0, 16], [0.8, 0, "ease"]] },
-        { of: "man", ch: "handL", keys: [[0.4, "rest"], [1.3, [0, 40], "ease"]] },
-        { of: "man", ch: "handR", keys: [[0.4, "rest"], [1.3, [0, 40], "ease"]] },
+        { of: "man", ch: "handL", keys: [[0.4, "rest"], [1.3, [12, -8], "ease"]] },
+        { of: "man", ch: "handR", keys: [[0.4, "rest"], [1.3, [-12, -8], "ease"]] },
         { of: "gaze", ch: "opacity", keys: [[0, 0, "step"]] },
         { of: "ring", ch: "on", keys: [[0, 0], [1.6, 0], [2, 1]] }
       ] }
