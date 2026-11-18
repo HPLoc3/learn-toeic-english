@@ -111,36 +111,49 @@ t("w>=3 giam nua khoang cach", () => {
   setDay(2026, 6, 14); e = B2.srs.grade("l01", "x", true);
   eq(e.b, 3); eq(e.d, "2026-06-21");
 });
-t("the known cu den han rai trong 3 ngay; get/due khong ghi state", () => {
-  setDay(2026, 6, 10);
+t("the known cu: rai 3 ngay tu moc co dinh, qua han dan, get/due khong ghi state", () => {
   const ids = [];
   for (let i = 0; i < 30; i++) ids.push("v" + String(i).padStart(3, "0"));
   const known = {};
   ids.forEach((i) => { known[i] = 1; });
+  setDay(2026, 11, 17);
   const { BS, store } = makeEnv({ v: 1, units: { l01: { known } } });
   const before = JSON.stringify(BS.state);
   const stored0 = store["tungbuoc.v1"];
-  const dueDays = {};
-  ids.forEach((id) => { dueDays[id] = 0; });
+  eq(BS.srs.due("l01", ids).length, 0, "truoc moc: chua den han");
   const sizes = [];
-  for (let k = 0; k < 3; k++) {
-    setDay(2026, 6, 10 + k);
-    const e0 = BS.srs.get("l01", ids[0]);
-    ok(e0.virtual && e0.b === 1);
+  for (let k = 0; k < 5; k++) {
+    setDay(2026, 11, 18 + k);
     const d = BS.srs.due("l01", ids);
     sizes.push(d.length);
-    d.forEach((x) => { dueDays[x.id]++; });
+    ok(BS.srs.get("l01", ids[0]).virtual && BS.srs.get("l01", ids[0]).b === 1);
     eq(BS.srs.dueCount(), d.length);
-    ids.forEach((id) => {
-      const e = BS.srs.get("l01", id);
-      ok(e.d >= BS.dayKey() && e.d <= BS.srs.addDays(BS.dayKey(), 2), "han trong 3 ngay");
-    });
   }
-  ids.forEach((id) => eq(dueDays[id], 1, "the " + id + " den han dung 1 lan / 3 ngay"));
-  ok(sizes.every((s) => s > 0), "moi ngay co the: " + sizes);
+  ok(sizes[0] > 0 && sizes[0] < 30, "ngay dau chi mot phan: " + sizes);
+  ok(sizes[0] <= sizes[1] && sizes[1] <= sizes[2], "tang dan: " + sizes);
+  eq(sizes[2], 30, "sau 3 ngay du 30 the");
+  eq(sizes[4], 30, "khong bien mat khi bo lo");
+  const dd = BS.srs.due("l01", ids);
+  ok(dd.some((x) => x.over > 0), "co the qua han");
   eq(JSON.stringify(BS.state), before, "state khong doi");
   eq(store["tungbuoc.v1"], stored0, "localStorage khong doi");
   ok(!Object.keys(BS.state.units.l01.srs).length, "srs van rong");
+});
+t("tab Tu vung: nho khi chua den han khong len hop", () => {
+  setDay(2026, 6, 10);
+  const { BS } = makeEnv();
+  BS.srs.grade("l01", "v001", true); // b1, han 06-11
+  for (let k = 1; k <= 6; k++) {
+    const e = BS.srs.grade("l01", "v001", true);
+    eq(e.b, 1, "chua den han, lan " + k);
+    eq(e.d, "2026-06-11");
+  }
+  eq(BS.srs.get("l01", "v001").n, 7);
+  setDay(2026, 6, 11); // den han
+  eq(BS.srs.grade("l01", "v001", true).b, 2);
+  setDay(2026, 6, 12); // chua den han (han 06-14); quen van dat lai
+  eq(BS.srs.grade("l01", "v001", true).b, 2);
+  eq(BS.srs.grade("l01", "v001", false).b, 0);
 });
 t("dong ho lui coi nhu hom nay", () => {
   setDay(2026, 6, 20);
@@ -152,14 +165,22 @@ t("dong ho lui coi nhu hom nay", () => {
   eq(e.b, 1); eq(e.l, "2026-06-15");
 });
 t("loc id mo coi khi unit da nap", () => {
-  setDay(2026, 6, 10);
+  setDay(2026, 11, 25);
   const seed = { v: 1, units: { l01: { known: { v001: 1, gone: 1 } } } };
   const { ctx, BS } = makeEnv(seed);
   ctx.BS_UNITS = { l01: { vocab: [{ id: "v001" }], phrases: [] } };
-  const sum3 = (B) => [0, 1, 2].reduce((a, k) => a + B.srs.summary(B.srs.addDays("2026-06-10", k)).due, 0);
-  eq(sum3(BS), 1);
+  eq(BS.srs.summary().due, 1);
   const { BS: B2 } = makeEnv(seed);
-  eq(sum3(B2), 2, "chua nap: tinh het");
+  eq(B2.srs.summary().due, 2, "chua nap: tinh het");
+});
+t("summary chi dem unit thuoc availableUnits", () => {
+  setDay(2026, 11, 25);
+  const seed = { v: 1, units: { l01: { known: { v001: 1 } }, l02: { known: { v001: 1 } } } };
+  const { BS } = makeEnv(seed);
+  eq(BS.srs.summary().due, 2);
+  BS.availableUnits = () => [{ id: "l01" }];
+  eq(BS.srs.summary().due, 1);
+  eq(BS.srs.summary().next, null);
 });
 t("sap xep due: qua han lau, hop thap, quen nhieu", () => {
   setDay(2026, 6, 10);
@@ -178,6 +199,7 @@ t("nextLabel", () => {
   const { BS } = makeEnv();
   eq(BS.srs.nextLabel({ d: "2026-06-10" }), "Đến hạn ôn");
   eq(BS.srs.nextLabel({ d: "2026-06-13" }), "Ôn lại sau 3 ngày");
+  eq(BS.srs.nextLabel({ d: "2026-06-11" }), "Ôn lại ngày mai");
 });
 t("XP: on cung the 2 lan/ngay chi +1 XP lap", () => {
   setDay(2026, 6, 10);

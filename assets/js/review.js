@@ -46,11 +46,14 @@
     clear();
     var s = BS.srs.summary();
     var box = el("section", { class: "card review-empty" });
-    box.appendChild(el("h2", { text: "Chưa có thẻ nào đến hạn" }));
-    var msg = "Bạn đã ôn xong rồi, giỏi lắm!";
-    var nt = BS.srs.nextText(s);
-    if (nt) msg += " Lần ôn tiếp theo: " + nt + ".";
-    else msg += " Hãy học từ vựng trong các unit để có thẻ ôn lại.";
+    var nt = BS.srs.nextText(s), msg;
+    if (nt) {
+      box.appendChild(el("h2", { text: "Chưa có thẻ nào đến hạn" }));
+      msg = "Bạn đã ôn xong rồi, giỏi lắm! Lần ôn tiếp theo: " + nt + ".";
+    } else {
+      box.appendChild(el("h2", { text: "Chưa có thẻ để ôn" }));
+      msg = "Bạn chưa học thẻ từ vựng nào. Hãy học từ vựng trong các unit để có thẻ ôn lại.";
+    }
     box.appendChild(el("p", { text: msg }));
     box.appendChild(el("a", { class: "btn btn-primary", href: "index.html", text: "Về trang chủ" }));
     app.appendChild(box);
@@ -85,9 +88,9 @@
     refs.count.textContent = "Thẻ " + pos + "/" + s.total;
     refs.bar.style.width = Math.round(s.done * 100 / s.total) + "%";
     var face = s.flipped ? "Mặt sau: " + (w.vi || "") + (w.vi ? ", tiếng Anh: " : "") + (w.en || "") : "Mặt trước: " + (w.en || "");
-    c.setAttribute("aria-label", "Thẻ " + pos + " trên " + s.total + ". " + face + ". Space hoặc Enter để lật, mũi tên phải là nhớ rồi, mũi tên trái là chưa nhớ.");
+    c.setAttribute("aria-label", face);
     refs.flip.textContent = s.flipped ? "Lật về mặt trước" : "Lật thẻ";
-    live.textContent = "Thẻ " + pos + "/" + s.total;
+    live.textContent = s.flipped ? "Mặt sau: " + (w.vi || w.en || "") : "Thẻ " + pos + "/" + s.total + ": " + (w.en || "");
     if (first) { try { c.focus(); } catch (e) { /* bo qua */ } }
     if (!s.flipped && BS.pref("autoSpeak") !== 0 && w.en) BS.speak(w.en, 0.9);
   }

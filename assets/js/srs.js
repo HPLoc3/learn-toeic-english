@@ -12,6 +12,7 @@
 
   var INTERVALS = [0, 1, 3, 7, 14, 30];
   var MAX_BOX = 5;
+  var LEGACY_ANCHOR = "2026-11-18"; /* ngay phat hanh SRS: moc cho the known cu chua co srs */
   var DAY_RE = /^\d{4}-\d\d-\d\d$/;
 
   function isObj(x) { return !!x && typeof x === "object" && !Array.isArray(x); }
@@ -63,8 +64,8 @@
     }
     var u = rawUnit(uid);
     if (u && isObj(u.known) && u.known[id]) {
-      var off = (((hash(id) - dayNum(t)) % 3) + 3) % 3; /* rai deu 3 ngay, on dinh theo ngay */
-      return { b: 1, d: addDays(t, off), l: "", w: 0, n: 0, virtual: true };
+      /* neo vao ngay co dinh: rai 3 ngay, van den han (qua han dan) cho toi khi duoc on */
+      return { b: 1, d: addDays(LEGACY_ANCHOR, hash(id) % 3), l: "", w: 0, n: 0, virtual: true };
     }
     return null;
   }
@@ -75,6 +76,13 @@
     var cur = get(uid, id, t) || { b: 0, d: t, l: "", w: 0, n: 0, virtual: false };
     var b = cur.b, w = cur.w;
     var d;
+    if (ok && !cur.virtual && cur.n > 0 && cur.d > t) {
+      /* chua den han (vd duyet bo the o tab Tu vung): khong len hop, chi dem so lan */
+      var keep = { b: cur.b, d: cur.d, l: cur.l, w: cur.w, n: cur.n + 1 };
+      BS.unit(uid).srs[id] = keep;
+      BS.save();
+      return { b: keep.b, d: keep.d, l: keep.l, w: keep.w, n: keep.n, virtual: false };
+    }
     if (ok) {
       if (cur.l !== t) b = Math.min(MAX_BOX, b + 1);
       var days = Math.round(INTERVALS[b] * (w >= 3 ? 0.5 : 1));
@@ -146,7 +154,15 @@
   function summary(day) {
     var t = day || today();
     var total = 0, nextD = "", nextC = 0;
+    var allowed = null;
+    try {
+      if (typeof BS.availableUnits === "function") {
+        allowed = {};
+        BS.availableUnits().forEach(function (u) { allowed[u.id] = 1; });
+      }
+    } catch (e) { allowed = null; }
     Object.keys((BS.state && BS.state.units) || {}).forEach(function (uid) {
+      if (allowed && !allowed[uid]) return;
       deckIdsOf(uid).forEach(function (id) {
         var e = get(uid, id, t);
         if (!e) return;
@@ -167,7 +183,7 @@
     var t = day || today();
     if (e.d <= t) return "Đến hạn ôn";
     var n = dayNum(e.d) - dayNum(t);
-    return "Ôn lại sau " + n + " ngày";
+    return n === 1 ? "Ôn lại ngày mai" : "Ôn lại sau " + n + " ngày";
   }
   function nextText(s, day) {
     if (!s || !s.next) return "";
