@@ -46,8 +46,8 @@
   }
 
   register('fx', 'stream', { shape: 'line', refs: ['from', 'to'], style: 'stroke:var(--bsa-water,#4aa3df)', w: 3, dash: '6 3', flow: 30, drop: 1 });
-  register('fx', 'gaze', { shape: 'line', refs: ['from', 'to'], style: 'stroke:var(--pri,#0a58ca)', w: 2.5, dash: '5 5' });
-  register('fx', 'ring', { shape: 'ring', refs: ['around'], style: 'stroke:var(--pri,#0a58ca)', w: 2.5, dash: '5 4', pad: 0 });
+  register('fx', 'gaze', { shape: 'line', refs: ['from', 'to'], style: 'stroke:var(--bsa-fx,#4a2ad6)', w: 2.5, dash: '5 5' });
+  register('fx', 'ring', { shape: 'ring', refs: ['around'], style: 'stroke:var(--bsa-fx,#4a2ad6)', w: 2.5, dash: '5 4', pad: 0 });
 
   function V(ch, id, n, d) { var v = ch[id + '.' + n]; return v === undefined ? d : v; }
   function pre(s, id) { return s.replace(/data-r="~/g, 'data-r="' + id + '.'); }
@@ -64,7 +64,7 @@
       s = '<g data-r="' + id + '"><g>' + P(id, 'legL', L) + P(id, 'legR', L);
       ['L', 'R'].forEach((k) => { s += '<ellipse data-r="' + id + '.shoe' + k + '" rx="' + fmt(sh.rx) + '" ry="' + fmt(sh.ry) + '" fill="' + col(sh.c) + '"/>'; });
       s += '</g><g data-r="' + id + '.up">' + pre(sp.body, id);
-      (e.outfit || []).forEach((o) => { if (sp.outfit && typeof sp.outfit[o] === 'string') s += pre(sp.outfit[o], id); });
+      (e.outfit || []).forEach((o) => { if (sp.outfit && HAS.call(sp.outfit, o) && typeof sp.outfit[o] === 'string') s += pre(sp.outfit[o], id); });
       s += '<g data-r="' + id + '.head">' + pre(sp.head, id);
       ['L', 'R'].forEach((k) => { s += '<circle data-r="' + id + '.eye' + k + '" r="' + fmt(sp.eye.r || 2.3) + '" fill="' + col(sp.eye.c || '#1b1b1b') + '"/>'; });
       Object.keys(sp.faces).forEach((k) => { s += '<g data-r="' + id + '.f.' + k + '" opacity="0">' + pre(sp.faces[k], id) + '</g>'; });
@@ -99,7 +99,7 @@
     return {
       sp: sp, sit: sit, tilt: tilt, lean: num(V(ch, id, 'lean', 0), 0), x: num(V(ch, id, 'x', e.x), 0), y: num(st.dy, 0) * sit,
       f: num(V(ch, id, 'flip', e.flip ? 1 : 0), 0) > 0.5 ? -1 : 1, look: [Math.max(-4, Math.min(4, lk[0])), Math.max(-4, Math.min(4, lk[1]))],
-      face: spec('actor', e.actor).faces[fc] !== undefined ? fc : Object.keys(sp.faces)[0]
+      face: HAS.call(sp.faces, fc) ? fc : Object.keys(sp.faces)[0]
     };
   }
   function toStage(a, p) { return [a.x + a.f * p[0], p[1] + a.y]; }
