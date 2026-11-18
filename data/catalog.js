@@ -10,7 +10,7 @@ window.BS_CATALOG = {
           "title_vi": "Mô tả một người trong hình",
           "available": true,
           "game": true,
-          "anim": "assets/js/anim-being.js"
+          "anim": true
         },
         {
           "id": "l02",

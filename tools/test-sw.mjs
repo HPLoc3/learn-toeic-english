@@ -96,10 +96,11 @@ const okFetch = (url) => {
       if (u.available !== true) continue;
       need.push("data/" + u.id + ".js");
       if (u.game === true) need.push("data/" + u.id + "-game.js");
-      if (u.anim) need.push(u.anim);
+      if (u.anim === true) need.push("data/" + u.id + "-anim.js");
       for (const f of readdirSync(join(ROOT, "assets/img/" + u.id))) need.push("assets/img/" + u.id + "/" + f);
     }
     check("PRECACHE gồm mọi file của unit available theo catalog (" + need.length + " file)", need.length > 0 && need.every((f) => t.PRECACHE.includes(f)));
+    check("PRECACHE có engine/rig/cast hoạt hình, mascot.js, mascot.css, không có file anim lạ", ["assets/js/anim-engine.js", "assets/js/anim-rig.js", "assets/js/anim-cast.js", "assets/js/mascot.js", "assets/css/mascot.css", "data/l01-anim.js"].every((f) => t.PRECACHE.includes(f)) && t.PRECACHE.filter((f) => /anim/.test(f)).length === 4);
     check("PRECACHE không chứa unit chưa available", !t.PRECACHE.some((f) => /^data\/l0[2-9]|^data\/p\d/.test(f)));
   }
   await t.fire("install", {});

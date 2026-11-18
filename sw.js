@@ -3,16 +3,16 @@
  * Không gửi dữ liệu đi đâu, không đụng request khác nguồn, không đụng localStorage.
  * Mỗi lần deploy có file precache đổi: sửa VERSION rồi chạy `node tools/check-sw.mjs --write`.
  */
-// content-hash: 3@e77aa423fb7b990f
+// content-hash: 4@e2249345ceb77912
 "use strict";
 
-var VERSION = "3";
+var VERSION = "4";
 var PREFIX = "tb-";
 var CACHE = PREFIX + VERSION;
 var NAV_TIMEOUT = 3000;
 
 /* Danh sách precache (đường dẫn tương đối so với thư mục gốc của site). tools/check-sw.mjs so khớp với đĩa. */
-/* Gồm khung trang và mọi unit available:true trong data/catalog.js (data, game, hoạt hình, hình). check-sw.mjs sinh/kiểm theo catalog. */
+/* Gồm khung trang và mọi unit available:true trong data/catalog.js (data, game, data/<id>-anim.js khi anim:true, hình). check-sw.mjs sinh/kiểm theo catalog. */
 var PRECACHE = [
   "404.html",
   "assets/css/backup.css",
@@ -20,6 +20,7 @@ var PRECACHE = [
   "assets/css/home-extra.css",
   "assets/css/hud.css",
   "assets/css/learn.css",
+  "assets/css/mascot.css",
   "assets/css/nav.css",
   "assets/css/pwa.css",
   "assets/css/review.css",
@@ -36,7 +37,9 @@ var PRECACHE = [
   "assets/img/l01/mc4.svg",
   "assets/img/l01/tf1.svg",
   "assets/img/l01/tf2.svg",
-  "assets/js/anim-being.js",
+  "assets/js/anim-cast.js",
+  "assets/js/anim-engine.js",
+  "assets/js/anim-rig.js",
   "assets/js/backup.js",
   "assets/js/core.js",
   "assets/js/flashcards.js",
@@ -45,11 +48,13 @@ var PRECACHE = [
   "assets/js/home.js",
   "assets/js/lesson.js",
   "assets/js/loader.js",
+  "assets/js/mascot.js",
   "assets/js/pwa.js",
   "assets/js/quiz.js",
   "assets/js/review.js",
   "assets/js/srs.js",
   "data/catalog.js",
+  "data/l01-anim.js",
   "data/l01-game.js",
   "data/l01.js",
   "favicon.ico",

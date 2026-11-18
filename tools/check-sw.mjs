@@ -42,19 +42,18 @@ const sandbox = { window: {} };
 vm.runInNewContext(catalogText, sandbox);
 const units = [];
 for (const p of (sandbox.window.BS_CATALOG && sandbox.window.BS_CATALOG.parts) || []) for (const u of p.units || []) units.push(u);
-const allAnim = new Set(units.filter((u) => u.anim).map((u) => u.anim));
 const unitFiles = [];
 for (const u of units) {
   if (u.available !== true) continue;
   unitFiles.push("data/" + u.id + ".js");
   if (u.game === true) unitFiles.push("data/" + u.id + "-game.js");
-  if (u.anim) unitFiles.push(u.anim);
+  if (u.anim === true) unitFiles.push("data/" + u.id + "-anim.js"); // anim chỉ nhận true; engine/rig/cast nằm trong assets/js (khung)
   unitFiles.push(...walk("assets/img/" + u.id));
 }
 const expected = new Set([
   "index.html", "unit.html", "review.html", "404.html", "manifest.webmanifest", "favicon.ico", "data/catalog.js",
   ...walk("assets/css"), ...walk("assets/icons"),
-  ...walk("assets/js").filter((f) => !allAnim.has(f)), // hoạt hình: chỉ của unit available (thêm bên dưới)
+  ...walk("assets/js"), // gồm anim-engine/rig/cast và mascot.js (dùng chung)
   ...unitFiles,
 ]);
 for (const f of expected) if (!listed.includes(f)) fail("Thiếu trong PRECACHE: " + f);

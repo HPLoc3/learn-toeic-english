@@ -1,6 +1,7 @@
-/* loader.js - nap du lieu unit theo yeu cau (data/<id>.js, data/<id>-game.js, file hoat hinh). Khong goi mang ngoai.
+/* loader.js - nap du lieu unit theo yeu cau (data/<id>.js, data/<id>-game.js; hoat hinh nap rieng bang loadAnim). Khong goi mang ngoai.
  * Chi nap id co trong BS_CATALOG, khop ^[a-z0-9-]+$ va available:true (localhost + che do bien tap: xem truoc ca unit chua mo).
- * API: BS.catalogUnit(id), BS.availableUnits(), BS.loadUnit(id, cb(u|null, err)), BS.loadUnits(ids, cb(map)). Phat su kien bs:units. */
+ * API: BS.catalogUnit(id), BS.availableUnits(), BS.loadUnit(id, cb(u|null, err)), BS.loadUnits(ids, cb(map)),
+ * BS.loadAnim(id, cb(def|null, err)) (chi khi catalog anim === true). Phat su kien bs:units. */
 (function () {
   "use strict";
   var BS = window.BS;
@@ -27,9 +28,6 @@
   }
   function allowed(entry) {
     return !!entry && (entry.available === true || BS.isEdit());
-  }
-  function validAnim(p) {
-    return typeof p === "string" && /^assets\/js\/[A-Za-z0-9._\/-]+\.js$/.test(p) && p.indexOf("..") < 0 && p.indexOf("//") < 0;
   }
   function emitUnits(id, ok) {
     try {
@@ -64,7 +62,6 @@
     pending[id] = [cb];
     var files = ["data/" + id + ".js"];
     if (entry.game === true) files.push("data/" + id + "-game.js");
-    if (entry.anim && validAnim(entry.anim)) files.push(entry.anim);
     var left = files.length, finished = false, timer = null;
     function end(ok, err) {
       if (finished) return;
@@ -81,7 +78,7 @@
     timer = setTimeout(function () { end(false, "timeout"); }, TIMEOUT);
     files.forEach(function (f, i) {
       addScript(f, step, function () {
-        /* chi file du lieu chinh la bat buoc; game/hoat hinh loi thi van mo bai */
+        /* chi file du lieu chinh la bat buoc; game loi thi van mo bai */
         if (i === 0) end(false, "load-error"); else step();
       });
     });
@@ -100,8 +97,58 @@
     });
   }
 
+  /* ---- hoat hinh: nap rieng khi mo tab, 3 file dung chung nap mot lan ---- */
+  var ANIM_SHARED = ["assets/js/anim-engine.js", "assets/js/anim-rig.js", "assets/js/anim-cast.js"];
+  var sharedState = null; /* null | "loading" | "ok" | "error" */
+  var sharedWait = [];
+  var animPending = {}; /* id -> [callbacks] */
+
+  function loadShared(cb) {
+    if (sharedState === "ok") { cb(true); return; }
+    sharedWait.push(cb);
+    if (sharedState === "loading") return;
+    sharedState = "loading";
+    var left = ANIM_SHARED.length, bad = false;
+    function one(ok) {
+      if (!ok) bad = true;
+      if (--left > 0) return;
+      sharedState = (!bad && window.BSAnim && window.BSRig) ? "ok" : null; /* loi thi cho phep thu lai */
+      var w = sharedWait; sharedWait = [];
+      w.forEach(function (f) { f(sharedState === "ok"); });
+    }
+    ANIM_SHARED.forEach(function (f) { addScript(f, function () { one(true); }, function () { one(false); }); });
+  }
+
+  function loadAnim(id, cb) {
+    cb = typeof cb === "function" ? cb : function () {};
+    var entry = catalogUnit(id);
+    if (!entry || !allowed(entry) || entry.anim !== true) { setTimeout(function () { cb(null, "not-found"); }, 0); return; }
+    if (window.BS_ANIMS && window.BS_ANIMS[id] && sharedState === "ok") { setTimeout(function () { cb(window.BS_ANIMS[id], null); }, 0); return; }
+    if (animPending[id]) { animPending[id].push(cb); return; }
+    animPending[id] = [cb];
+    var finished = false, timer = null;
+    function end(def, err) {
+      if (finished) return;
+      finished = true;
+      clearTimeout(timer);
+      var cbs = animPending[id] || [];
+      delete animPending[id];
+      cbs.forEach(function (f) { try { f(def, def ? null : err); } catch (e) { /* bo qua */ } });
+    }
+    timer = setTimeout(function () { end(null, "timeout"); }, TIMEOUT);
+    loadShared(function (ok) {
+      if (finished) return;
+      if (!ok) { end(null, "load-error"); return; }
+      if (window.BS_ANIMS && window.BS_ANIMS[id]) { end(window.BS_ANIMS[id]); return; }
+      addScript("data/" + id + "-anim.js", function () {
+        if (window.BS_ANIMS && window.BS_ANIMS[id]) end(window.BS_ANIMS[id]); else end(null, "missing");
+      }, function () { end(null, "load-error"); });
+    });
+  }
+
   BS.catalogUnit = catalogUnit;
   BS.availableUnits = availableUnits;
   BS.loadUnit = loadUnit;
   BS.loadUnits = loadUnits;
+  BS.loadAnim = loadAnim;
 })();

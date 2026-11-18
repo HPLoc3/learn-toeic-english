@@ -10,6 +10,9 @@ TỪNG BƯỚC ENGLISH - HƯỚNG DẪN NHANH
    Service worker chỉ lưu file của chính trang này, không gửi dữ liệu đi đâu. Trên localhost mặc định tắt (thêm ?pwa=1 để thử, ?pwa=0 để gỡ).
 8. Thêm Unit mới: xem tools/templates/HUONG-DAN-UNIT.txt.
 9. MỖI LẦN DEPLOY: chạy  node tools/check-sw.mjs --bump  (tự tăng VERSION trong sw.js và ghi hash), rồi  node tools/check-sw.mjs  (phải đạt). Thêm Unit mới: nhớ thêm file của unit vào PRECACHE trong sw.js.
-10. Chi tiết (cấu trúc, chế độ biên tập, PWA): xem README.md.
+10. Hoạt hình: dữ liệu ở data/<id>-anim.js, bật bằng "anim": true trong data/catalog.js (xem README.md, mục Hoạt hình theo dữ liệu; mẫu: tools/templates/unit-template-anim.js). Nhân vật: Nam, Mai, cô Hạnh.
+11. Linh vật Bước (chú cáo con): bật/tắt bằng nút "Linh vật Bước" trên thanh HUD (prefs.mascot).
+12. Trước khi phát hành: đặt LEGACY_ANCHOR trong assets/js/srs.js bằng ngày deploy thật. Bản hiện tại VERSION 4; lần deploy sau chạy node tools/check-sw.mjs --bump.
+13. Chi tiết (cấu trúc, chế độ biên tập, PWA): xem README.md.
 
 TOEIC là nhãn hiệu của ETS. Trang này độc lập, không liên kết với hay được ETS chứng nhận.

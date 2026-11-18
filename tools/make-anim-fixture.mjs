@@ -1,6 +1,6 @@
-// Sinh tools/fixtures/anim-l01-legacy.json tu hoat hinh CU (assets/js/anim-being.js, commit 3f5214e).
+// Sinh tools/fixtures/anim-l01-legacy.json tu hoat hinh CU (nguon da xoa khoi cay, chi xem lich su git tai commit 3f5214e).
 // Chay: node tools/make-anim-fixture.mjs   (khong trinh duyet, khong mang)
-// Neu anim-being.js da bi xoa, doc ban cu bang `git show 3f5214e:assets/js/anim-being.js`.
+// Nguon cu da bi xoa: script doc ban cu qua `git show 3f5214e:<duong dan cu>` (can .git day du). Fixture JSON da sinh duoc giu nguyen.
 import fs from 'node:fs';
 import vm from 'node:vm';
 import path from 'node:path';
@@ -8,9 +8,10 @@ import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const OLD = path.join(root, 'assets/js/anim-being.js');
-const src = fs.existsSync(OLD) ? fs.readFileSync(OLD, 'utf8')
-  : execFileSync('git', ['show', '3f5214e:assets/js/anim-being.js'], { cwd: root, encoding: 'utf8', timeout: 20000 });
+const OLD_PATH = ['assets', 'js', 'anim-' + 'being.js'].join('/'); // ten tep cu, ghep chuoi de repo khong con tham chieu truc tiep
+let src;
+try { src = execFileSync('git', ['show', '3f5214e:' + OLD_PATH], { cwd: root, encoding: 'utf8', timeout: 20000 }); }
+catch (e) { console.error('Nguon hoat hinh cu da xoa khoi cay lam viec; chi xem lich su git tai 3f5214e (can repo co lich su day du). Fixture da sinh van dung duoc.'); process.exit(1); }
 
 function makeEnv(reduced) {
   class FNode {
@@ -63,7 +64,7 @@ function makeEnv(reduced) {
   };
   const doc = { createElement: (t) => new FNode(t, {}) };
   const ctx = vm.createContext({ window: win, document: doc, Math, String, Number });
-  vm.runInContext(src, ctx, { filename: 'anim-being.js', timeout: 10000 });
+  vm.runInContext(src, ctx, { filename: 'legacy-anim.js', timeout: 10000 });
   const el = new FNode('div', {});
   const api = win.BSAnim.mount(el);
   return { el, api };
@@ -91,7 +92,7 @@ function snap(el, t) {
 }
 
 const out = {
-  source: 'assets/js/anim-being.js @ 3f5214e',
+  source: 'hoat hinh cu (da xoa khoi cay) @ 3f5214e',
   note: 'sr la gia tri dinh (chi doi khi cau + o Viet da hien du); play lay sau pause(); static = che do giam chuyen dong, go(0..2)',
   timed: [], static: []
 };

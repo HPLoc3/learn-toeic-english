@@ -70,17 +70,43 @@
     try { document.dispatchEvent(new CustomEvent("bs:tab", { detail: { tab: tab } })); } catch (e) { /* bo qua */ }
   }
 
-  function mountAnim(panel) {
+  var animApi = null;
+  function mountAnim(id) {
     var host = document.getElementById("anim-root");
-    if (!host || host.getAttribute("data-mounted")) return;
-    host.setAttribute("data-mounted", "1");
-    if (window.BSAnim && typeof window.BSAnim.mount === "function") {
-      try { window.BSAnim.mount(host); }
-      catch (e) { host.textContent = "Hoạt hình gặp lỗi khi khởi động."; }
-    } else {
-      host.appendChild(el("p", { class: "muted", text: "Hoạt hình sắp ra mắt" }));
+    if (!host) return;
+    if (animApi) { try { animApi.destroy(); } catch (e) { /* bo qua */ } animApi = null; }
+    host.textContent = "";
+    /* lesson.js cu + catalog moi (hoac nguoc lai): khong co loadAnim thi bao sap ra mat, khong vo */
+    if (typeof BS.loadAnim !== "function") {
+      host.appendChild(el("p", { class: "muted", role: "status", text: "Hoạt hình sắp ra mắt" }));
+      return;
     }
+    host.appendChild(el("p", { class: "muted", role: "status", text: "Đang tải hoạt hình..." }));
+    BS.loadAnim(id, function (def, err) {
+      host.textContent = "";
+      if (!def) {
+        if (err === "not-found") { host.appendChild(el("p", { class: "muted", role: "status", text: "Hoạt hình sắp ra mắt" })); return; }
+        host.appendChild(el("div", { class: "card nf-card", role: "alert" }, [
+          el("h3", { text: "Không tải được hoạt hình" }),
+          el("p", { text: "Có thể do mạng chập chờn. Phần học còn lại vẫn dùng bình thường, bạn thử tải lại hoạt hình nhé." }),
+          el("p", {}, [el("button", { type: "button", class: "btn btn-primary next-btn", onclick: function () { mountAnim(id); } }, ["Thử lại"])])
+        ]));
+        return;
+      }
+      var api = null;
+      try { api = window.BSAnim && typeof window.BSAnim.mount === "function" ? window.BSAnim.mount(host, def) : null; }
+      catch (e) { api = null; }
+      if (!api) {
+        host.textContent = "";
+        host.appendChild(el("p", { class: "muted", role: "status", text: "Hoạt hình chưa chạy được trên bản này. Bạn tải lại trang hoặc quay lại sau nhé." }));
+        return;
+      }
+      animApi = api;
+      if (currentTabId() !== "anim") { try { api.pause(); } catch (e) { /* bo qua */ } }
+    });
   }
+  var curTab = "lesson";
+  function currentTabId() { return curTab; }
 
   function hideChrome() {
     var tabs = document.getElementById("unit-tabs"); if (tabs) tabs.hidden = true;
@@ -144,7 +170,7 @@
   function build(u, id) {
     var entry = (typeof BS.catalogUnit === "function" && BS.catalogUnit(id)) || {};
     var TABS = ALL_TABS.filter(function (t) {
-      if (t.id === "anim") return !!entry.anim;
+      if (t.id === "anim") return entry.anim === true;
       if (t.id === "game") return !!entry.game;
       return true;
     });
@@ -184,7 +210,9 @@
     var currentTab = TABS[0].id;
     function select(tid, persist) {
       currentTab = tid;
+      curTab = tid;
       BS.stopSpeak();
+      if (tid !== "anim" && animApi) { try { animApi.pause(); } catch (e) { /* bo qua */ } }
       TABS.forEach(function (t) {
         var on = t.id === tid;
         btns[t.id].setAttribute("aria-selected", on ? "true" : "false");
@@ -193,7 +221,7 @@
       });
       if (!rendered[tid]) {
         rendered[tid] = true;
-        if (tid === "anim") mountAnim(panels.anim);
+        if (tid === "anim") mountAnim(id);
         else if (tid === "game" && typeof BS.render.game !== "function") {
           panels.game.appendChild(el("p", { class: "card", role: "status", text: "Trò chơi đang được chuẩn bị, bạn quay lại sau nhé." }));
         }
