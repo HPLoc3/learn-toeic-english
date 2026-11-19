@@ -21,7 +21,7 @@ window.BS_ANIMS.l02 = {
       en: "Some people are waiting in line.", vi: "Vài người đang xếp hàng chờ.",
       pieces: [["Some people", ""], [" are", "be"], [" wait", ""], ["ing", "ing"], [" in line.", ""]],
       note_vi: "Some people + are; wait → waiting: thêm ing (đang chờ); in line = xếp hàng",
-      kb: { from: [0.4, 0.5, 1.0], to: [0.49, 0.5, 1.2] }, focus: { x: 0.7, y: 0.56, r: 0.17, at: 2.5, label_vi: "xếp hàng" } },
+      kb: { from: [0.4, 0.5, 1.0], to: [0.465, 0.5, 1.2] }, focus: { x: 0.62, y: 0.5, r: 0.2, at: 2.5, label_vi: "xếp hàng" } },
     { id: "serve", img: "nam-serve", dur: 9, alt_vi: "Người pha chế mặc tạp dề vàng đứng sau quầy, đưa một cốc mang đi cho cô gái; một người đàn ông mặc vest đứng cạnh cô.",
       en: "One of the men is handing a cup to the woman.", vi: "Một trong hai người đàn ông đang đưa cho người phụ nữ một cái cốc.",
       pieces: [["One of the men", ""], [" is", "be"], [" hand", ""], ["ing", "ing"], [" a cup to the woman.", ""]],

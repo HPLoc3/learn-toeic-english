@@ -706,6 +706,8 @@ L02 = {
     "group-outro": (outro_bg, SC, 20.0),
 }
 SCENES_L02 = list(L02)
+
+
 def queue_counter(fg):
     """Foreground counter with till and cup stack on the side the queue faces (canvas px)."""
     top = 600
