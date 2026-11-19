@@ -9,7 +9,8 @@ Run from the repo root:
   python tools/make-outro-grid.py --src DIR [--out FILE] [--names a,b,c,d,e,f] [--margin 28] [--gap 20] [--radius 24]
 
 --src   folder holding <name>.png / .jpg / .jpeg / .webp for the six scenes
---out   output PNG, 1600x900 (default: <src>/obj-outro.png)
+--out   output PNG, 1600x900, must end in .png and must not be one of the input files
+        (when omitted, the default is <src>/obj-outro.png)
 --names row-major order, default obj-table,obj-boxes,obj-bike,obj-cars,obj-lamp,obj-books
 Then make the shipped webp files with:
   python tools/make-scenes.py --src DIR --unit l03 --names obj-outro
@@ -77,6 +78,12 @@ def main():
         y = a.margin + (i // 3) * (ch + a.gap)
         canvas.paste(cell, (x, y), mask)
     out = a.out or os.path.join(a.src, "obj-outro.png")
+    if not out.lower().endswith(".png"):
+        print("--out must end in .png", file=sys.stderr)
+        return 1
+    if os.path.abspath(out) in [os.path.abspath(p) for p in paths]:
+        print("--out would overwrite an input image: " + out, file=sys.stderr)
+        return 1
     canvas.save(out)
     print("wrote", out, canvas.size)
     return 0

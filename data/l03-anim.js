@@ -1,4 +1,5 @@
-/* l03-anim.js - du lieu hoat hinh anh tinh (v2, scenes) Unit 3: do vat va vi tri, khong co nguoi. Anh tam (placeholder), thay bang anh that roi bo placeholder. */
+/* TODO khi co anh that cho obj-cars va obj-outro: bo tien to "(Ảnh minh họa đang cập nhật)" trong alt_vi, them lai focus cua canh cars, bo placeholder:true.
+ * l03-anim.js - du lieu hoat hinh anh tinh (v2, scenes) Unit 3: do vat va vi tri, khong co nguoi. Anh tam (placeholder), thay bang anh that roi bo placeholder. */
 window.BS_ANIMS = window.BS_ANIMS || {};
 window.BS_ANIMS.l03 = {
   v: 2, kind: "scenes", id: "l03", placeholder: true,
@@ -21,12 +22,12 @@ window.BS_ANIMS.l03 = {
       en: "A bicycle is leaning against the wall.", vi: "Một chiếc xe đạp đang dựa vào tường.",
       pieces: [["A bicycle", ""], [" is", "be"], [" lean", ""], ["ing", "ing"], [" against the wall.", ""]],
       note_vi: "A bicycle + is (số ít); lean → leaning: tư thế dựa vào",
-      kb: { from: [0.5, 0.5, 1.0], to: [0.58, 0.5, 1.08] }, focus: { x: 0.68, y: 0.55, r: 0.2, at: 2.5, label_vi: "dựa vào tường" } },
-    { id: "cars", img: "obj-cars", dur: 9, alt_vi: "Trên một con phố, nhiều xe hơi đậu nối đuôi nhau dọc theo mép đường, không có người.",
+      kb: { from: [0.5, 0.5, 1.0], to: [0.58, 0.5, 1.08] }, focus: { x: 0.52, y: 0.52, r: 0.22, at: 2.5, label_vi: "dựa vào tường" } },
+    { id: "cars", img: "obj-cars", dur: 9, alt_vi: "(Ảnh minh họa đang cập nhật) Trên một con phố, nhiều xe hơi đậu nối đuôi nhau dọc theo mép đường, không có người.",
       en: "Cars are parked along the street.", vi: "Những chiếc xe hơi đang đậu dọc theo con đường.",
       pieces: [["Cars", ""], [" are", "be"], [" park", ""], ["ed", "ing"], [" along the street.", ""]],
       note_vi: "Cars + are; park + ed = parked: đang đậu (trạng thái); along = dọc theo",
-      kb: { from: [0.4, 0.5, 1.0], to: [0.55, 0.55, 1.2] }, focus: { x: 0.5, y: 0.65, r: 0.18, at: 2.5, label_vi: "đậu dọc đường" } },
+      kb: { from: [0.4, 0.5, 1.0], to: [0.55, 0.55, 1.2] } },  /* TODO anh that: them lai focus (vong nhan "đậu dọc đường") khi co anh obj-cars that */
     { id: "lamp", img: "obj-lamp", dur: 9, alt_vi: "Một chiếc đèn treo bằng dây từ trần nhà, ngay phía trên một chiếc bàn làm việc. Không có ai ở đó, trên bàn chỉ có một cuốn sổ và một cái cốc.",
       en: "A lamp is hanging above the desk.", vi: "Một cái đèn đang treo phía trên bàn làm việc.",
       pieces: [["A lamp", ""], [" is", "be"], [" hang", ""], ["ing", "ing"], [" above the desk.", ""]],
@@ -38,7 +39,7 @@ window.BS_ANIMS.l03 = {
       note_vi: "The books + are; line + d = lined (V3); lined up = xếp thành hàng",
       kb: { from: [0.4, 0.5, 1.0], to: [0.36, 0.5, 1.2] }, focus: { x: 0.34, y: 0.5, r: 0.2, at: 2.5, label_vi: "xếp thành hàng" } }
   ],
-  outro: { img: "obj-outro", dur: 2, alt_vi: "Ảnh ghép lưới 3x2 gồm sáu ô nhỏ: bàn ghế, thùng xếp chồng, xe đạp dựa tường, xe hơi đậu, đèn treo và kệ sách, không có người.", title_vi: "Tổng kết", segs: [
+  outro: { img: "obj-outro", dur: 2, alt_vi: "(Ảnh minh họa đang cập nhật) Ảnh ghép lưới 3x2 gồm sáu ô nhỏ: bàn ghế, thùng xếp chồng, xe đạp dựa tường, xe hơi đậu, đèn treo và kệ sách, không có người.", title_vi: "Tổng kết", segs: [
     ["Ghi nhớ nhanh: đồ vật nằm yên thì dùng "], ["is/are", "be"], [" + "], ["V3", "ing"],
     [" (stacked, parked), hoặc "], ["is/are", "be"], [" + V-"], ["ing", "ing"],
     [" tả tư thế (leaning, hanging). Ảnh không có người thì loại câu nhắc đến người, và cẩn thận với is being + V3 (trừ being displayed)."]
