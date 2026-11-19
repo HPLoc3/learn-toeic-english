@@ -29,6 +29,7 @@ function env(opts) {
           const m = /^data\/([a-z0-9]+)(-game|-anim)?\.js$/.exec(s.src);
           if (m && !m[2]) { (win.BS_UNITS = win.BS_UNITS || {})[m[1]] = { id: m[1] }; }
           if (m && m[2] === "-anim" && !opts.skipDef) { (win.BS_ANIMS = win.BS_ANIMS || {})[m[1]] = { id: m[1] }; }
+          if (s.src === "assets/js/anim-scenes.js" && !opts.noScenes) win.BSScenes = { mount() {} };
           if (s.src === "assets/js/anim-engine.js") win.BSAnim = { mount() {} };
           if (s.src === "assets/js/anim-rig.js") win.BSRig = {};
           s.onload && s.onload();
@@ -47,6 +48,8 @@ function env(opts) {
   return { win, added, BS: win.BS };
 }
 const later = (BS, fn, id) => new Promise((res) => BS[fn](id, (v, e) => res({ v, e })));
+const SCENES = "assets/js/anim-scenes.js";
+const asKind = (kind) => (c) => { const u = c.parts[0].units[0]; u.animKind = kind; const v = c.parts[0].units[1]; v.available = true; v.anim = true; if (kind !== undefined) v.animKind = kind; };
 const SHARED = ["assets/js/anim-engine.js", "assets/js/anim-rig.js", "assets/js/anim-cast.js"];
 
 t("loadAnim(l01) nap dung thu tu engine, rig, cast, data va async=false", async () => {
@@ -138,6 +141,68 @@ t("loadUnits khong keo theo hoat hinh", async () => {
   const E = env();
   await new Promise((res) => E.BS.loadUnits(["l01"], res));
   assert.ok(!E.added.some((x) => /anim/.test(x.src)));
+});
+t("scenes: danh sach nap [anim-scenes.js, data/l01-anim.js], async=false, khong nap trio cu", async () => {
+  const E = env({ catalog: asKind("scenes") });
+  const r = await later(E.BS, "loadAnim", "l01");
+  assert.ok(r.v && r.v.id === "l01");
+  assert.deepEqual(E.added.map((x) => x.src), [SCENES, "data/l01-anim.js"]);
+  assert.ok(E.added.every((x) => x.async === false));
+});
+t("scenes: goi lan hai khong nap lai; unit scenes thu hai chi nap data", async () => {
+  const E = env({ catalog: asKind("scenes") });
+  await later(E.BS, "loadAnim", "l01");
+  const n = E.added.length;
+  assert.ok((await later(E.BS, "loadAnim", "l01")).v);
+  assert.equal(E.added.length, n);
+  assert.ok((await later(E.BS, "loadAnim", "l02")).v);
+  assert.deepEqual(E.added.slice(n).map((x) => x.src), ["data/l02-anim.js"]);
+});
+t("animKind la / thieu / sai kieu -> roi vao rig (bo ba cu)", async () => {
+  for (const k of ["foo", undefined, 1, null, "SCENES"]) {
+    const E = env({ catalog: (c) => { if (k !== undefined) c.parts[0].units[0].animKind = k; } });
+    const r = await later(E.BS, "loadAnim", "l01");
+    assert.ok(r.v, String(k));
+    assert.deepEqual(E.added.map((x) => x.src), [...SHARED, "data/l01-anim.js"], String(k));
+  }
+});
+t("hai kind khong dung chung trang thai: rig nap trio, scenes nap rieng, moi bo nap mot lan", async () => {
+  const E = env({ catalog: (c) => { c.parts[0].units[0].animKind = "scenes"; const v = c.parts[0].units[1]; v.available = true; v.anim = true; } });
+  await later(E.BS, "loadAnim", "l01");
+  assert.deepEqual(E.added.map((x) => x.src), [SCENES, "data/l01-anim.js"]);
+  await later(E.BS, "loadAnim", "l02");
+  assert.deepEqual(E.added.map((x) => x.src), [SCENES, "data/l01-anim.js", ...SHARED, "data/l02-anim.js"]);
+  const n = E.added.length;
+  await later(E.BS, "loadAnim", "l01"); await later(E.BS, "loadAnim", "l02");
+  assert.equal(E.added.length, n);
+});
+t("scenes: file chung nap xong nhung thieu BSScenes -> load-error, thu lai duoc", async () => {
+  const E = env({ catalog: asKind("scenes"), noScenes: true });
+  const r = await later(E.BS, "loadAnim", "l01");
+  assert.equal(r.v, null); assert.equal(r.e, "load-error");
+  const r2 = await later(E.BS, "loadAnim", "l01");
+  assert.equal(r2.e, "load-error");
+  assert.equal(E.added.filter((x) => x.src === SCENES).length, 2);
+});
+t("scenes: anim-scenes.js loi mang -> load-error; roi thu lai thanh cong", async () => {
+  let broken = true;
+  const E = env({ catalog: asKind("scenes"), fail: (s) => (broken && s === SCENES ? "err" : false) });
+  assert.equal((await later(E.BS, "loadAnim", "l01")).e, "load-error");
+  broken = false;
+  assert.ok((await later(E.BS, "loadAnim", "l01")).v);
+});
+t("scenes: data thieu BS_ANIMS[id] -> missing; hai goi dong thoi nap mot lan", async () => {
+  const E = env({ catalog: asKind("scenes"), skipDef: true });
+  assert.equal((await later(E.BS, "loadAnim", "l01")).e, "missing");
+  const F = env({ catalog: asKind("scenes") });
+  const [a, b] = await Promise.all([later(F.BS, "loadAnim", "l01"), later(F.BS, "loadAnim", "l01")]);
+  assert.ok(a.v && b.v);
+  assert.equal(F.added.length, 2);
+});
+t("scenes: anim !== true van not-found, khong nap gi", async () => {
+  const E = env({ catalog: (c) => { const u = c.parts[0].units[0]; u.animKind = "scenes"; u.anim = "x"; } });
+  assert.equal((await later(E.BS, "loadAnim", "l01")).e, "not-found");
+  assert.equal(E.added.length, 0);
 });
 t("ma nguon loader: khong con dang duong dan anim, khong chuoi mang", async () => {
   const s = rd("assets/js/loader.js");
