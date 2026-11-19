@@ -127,7 +127,7 @@ window.BS_UNITS.l02 = {
         { "id": "fill1-5", "before": "Both women are", "after": "at some flowers.", "answers": ["looking"] },
         { "id": "fill1-6", "before": "Two friends are", "after": "side by side along a path.", "answers": ["walking"] },
         { "id": "fill1-7", "before": "One of the men is", "after": "at a map on the wall.", "answers": ["pointing"] },
-        { "id": "fill1-8", "before": "Both men are", "after": "helmets on their heads.", "answers": ["wearing"] },
+        { "id": "fill1-8", "before": "Both men are", "after": "helmets.", "answers": ["wearing"] },
         { "id": "fill1-9", "before": "The workers are", "after": "heavy boxes across the room.", "answers": ["carrying"] },
         { "id": "fill1-10", "before": "Everyone at the table is", "after": "notes.", "answers": ["taking"] }
       ]
