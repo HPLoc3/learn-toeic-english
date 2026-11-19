@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+<title>Phòng kho có kệ, thùng, thang và xe đẩy</title>
+<desc>Một phòng kho không có người. Ở giữa là một cái kệ sắt ba tầng. Ở tầng trên cùng, ba cái thùng giấy được xếp chồng lên nhau: hai cái ở dưới, một cái nằm lên trên. Trên sàn, phía trước kệ, có hai cái thùng đặt cạnh nhau. Bên trái kệ có một chiếc xe đẩy trống. Bên phải kệ, một cái thang dựa vào cạnh kệ.</desc>
+<rect width="800" height="600" fill="#f5f3ff"/>
+<rect x="0" y="0" width="800" height="440" fill="#ece8ff"/>
+<rect x="0" y="440" width="800" height="160" fill="#d9d2ff"/>
+<g stroke="#1b1740" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<rect x="230" y="90" width="18" height="400" rx="4" fill="#3b3a5c"/><rect x="520" y="90" width="18" height="400" rx="4" fill="#3b3a5c"/>
+<rect x="230" y="200" width="308" height="14" rx="3" fill="#8a7be0"/><rect x="230" y="300" width="308" height="14" rx="3" fill="#8a7be0"/><rect x="230" y="400" width="308" height="14" rx="3" fill="#8a7be0"/>
+<rect x="290" y="150" width="70" height="50" rx="3" fill="#d99a68"/><rect x="366" y="150" width="70" height="50" rx="3" fill="#d99a68"/><rect x="328" y="100" width="70" height="50" rx="3" fill="#e8b48a"/>
+<path d="M325 150V164M401 150V164M363 100V114" fill="none" stroke-width="4"/>
+<rect x="450" y="262" width="60" height="38" rx="3" fill="#d99a68"/>
+<rect x="282" y="510" width="76" height="60" rx="3" fill="#d99a68"/><rect x="374" y="510" width="76" height="60" rx="3" fill="#d99a68"/>
+<path d="M320 510V526M412 510V526" fill="none" stroke-width="4"/>
+<path d="M610 500L540 150M660 500L590 150" fill="none" stroke-width="8"/>
+<path d="M552 210H602M564 270H614M576 330H626M588 390H638M600 450H650" fill="none" stroke-width="6"/>
+<rect x="44" y="430" width="150" height="16" rx="4" fill="#4a90d9"/><path d="M52 430V350H80" fill="none" stroke-width="8"/>
+<circle cx="76" cy="462" r="16" fill="#3b3a5c"/><circle cx="162" cy="462" r="16" fill="#3b3a5c"/>
+</g>
+</svg>

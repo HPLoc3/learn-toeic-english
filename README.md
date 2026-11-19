@@ -1,6 +1,6 @@
 # Từng Bước English - Luyện thi TOEIC từng bước
 
-Trang web tĩnh (HTML/CSS/JS thuần, không cần build) giúp luyện TOEIC, học từng unit một. Toàn bộ bài học và hình minh họa là nội dung gốc do dự án tự biên soạn. Hiện có Unit 1 và Unit 2 (Part 1, nghe mô tả hình ảnh); các Part còn lại chưa có bài.
+Trang web tĩnh (HTML/CSS/JS thuần, không cần build) giúp luyện TOEIC, học từng unit một. Toàn bộ bài học và hình minh họa là nội dung gốc do dự án tự biên soạn. Hiện có Unit 1, Unit 2 và Unit 3 (Part 1, nghe mô tả hình ảnh); các Part còn lại chưa có bài.
 
 ## Chạy thử
 

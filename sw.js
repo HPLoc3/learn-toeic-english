@@ -3,10 +3,10 @@
  * Không gửi dữ liệu đi đâu, không đụng request khác nguồn, không đụng localStorage.
  * Mỗi lần deploy có file precache đổi: sửa VERSION rồi chạy `node tools/check-sw.mjs --write`.
  */
-// content-hash: 19@e498d02ee8af9a46
+// content-hash: 20@baeb39ca5d579154
 "use strict";
 
-var VERSION = "19";
+var VERSION = "20";
 var PREFIX = "tb-";
 var CACHE = PREFIX + VERSION;
 var NAV_TIMEOUT = 3000;
@@ -58,6 +58,20 @@ var PRECACHE = [
   "assets/img/l02/scene/trio-line-800.webp",
   "assets/img/l02/tf1.svg",
   "assets/img/l02/tf2.svg",
+  "assets/img/l03/focus.svg",
+  "assets/img/l03/mc1.svg",
+  "assets/img/l03/mc2.svg",
+  "assets/img/l03/mc3.svg",
+  "assets/img/l03/mc4.svg",
+  "assets/img/l03/scene/obj-bike-800.webp",
+  "assets/img/l03/scene/obj-books-800.webp",
+  "assets/img/l03/scene/obj-boxes-800.webp",
+  "assets/img/l03/scene/obj-cars-800.webp",
+  "assets/img/l03/scene/obj-lamp-800.webp",
+  "assets/img/l03/scene/obj-outro-800.webp",
+  "assets/img/l03/scene/obj-table-800.webp",
+  "assets/img/l03/tf1.svg",
+  "assets/img/l03/tf2.svg",
   "assets/js/anim-cast.js",
   "assets/js/anim-engine.js",
   "assets/js/anim-rig.js",
@@ -82,6 +96,9 @@ var PRECACHE = [
   "data/l02-anim.js",
   "data/l02-game.js",
   "data/l02.js",
+  "data/l03-anim.js",
+  "data/l03-game.js",
+  "data/l03.js",
   "favicon.ico",
   "index.html",
   "manifest.webmanifest",

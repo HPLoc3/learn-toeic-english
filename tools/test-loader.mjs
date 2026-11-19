@@ -43,8 +43,8 @@ function env(opts) {
   const ctx = vm.createContext({ window: win, document: doc, setTimeout, clearTimeout, console, CustomEvent: function (n, o) { this.type = n; this.detail = o && o.detail; } });
   win.BS = { isEdit: () => !!opts.edit };
   vm.runInContext(rd("data/catalog.js"), ctx);
-  /* l01 va l02 that la unit "scenes"; cac ca rig dung muc gia: bo animKind (mac dinh rig) truoc khi ap dung opts.catalog */
-  if (!opts.real) { delete win.BS_CATALOG.parts[0].units[0].animKind; delete win.BS_CATALOG.parts[0].units[1].animKind; }
+  /* l01, l02 va l03 that la unit "scenes"; cac ca rig dung muc gia: bo animKind (mac dinh rig) truoc khi ap dung opts.catalog */
+  if (!opts.real) { delete win.BS_CATALOG.parts[0].units[0].animKind; delete win.BS_CATALOG.parts[0].units[1].animKind; delete win.BS_CATALOG.parts[0].units[2].animKind; }
   if (opts.catalog) opts.catalog(win.BS_CATALOG);
   vm.runInContext(rd("assets/js/loader.js"), ctx);
   return { win, added, BS: win.BS };
@@ -225,6 +225,15 @@ t("catalog that: l02 co anim === true va animKind scenes; bo scenes nap mot lan 
   await later(E.BS, "loadAnim", "l01");
   assert.ok((await later(E.BS, "loadAnim", "l02")).v);
   assert.deepEqual(E.added.map((x) => x.src), [SCENES, "data/l01-anim.js", "data/l02-anim.js"]);
+});
+t("catalog that: l03 co anim === true va animKind scenes; bo scenes nap mot lan cho ca ba unit", async () => {
+  const E = env({ real: true });
+  assert.strictEqual(E.BS.catalogUnit("l03").anim, true);
+  assert.strictEqual(E.BS.catalogUnit("l03").animKind, "scenes");
+  await later(E.BS, "loadAnim", "l01");
+  await later(E.BS, "loadAnim", "l02");
+  assert.ok((await later(E.BS, "loadAnim", "l03")).v);
+  assert.deepEqual(E.added.map((x) => x.src), [SCENES, "data/l01-anim.js", "data/l02-anim.js", "data/l03-anim.js"]);
 });
 
 for (const [name, fn] of queue) {

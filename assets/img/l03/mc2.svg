@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+<title>Bàn làm việc có đèn treo phía trên</title>
+<desc>Một bàn làm việc không có người. Một cái đèn màu vàng treo bằng dây từ trần nhà xuống, ở phía trên chính giữa bàn. Trên mặt bàn có một màn hình ở giữa, một xấp giấy xếp chồng ở bên trái màn hình và một chậu cây nhỏ ở bên phải màn hình.</desc>
+<rect width="800" height="600" fill="#f5f3ff"/>
+<rect x="0" y="0" width="800" height="470" fill="#ece8ff"/>
+<rect x="0" y="470" width="800" height="130" fill="#d9d2ff"/>
+<g stroke="#1b1740" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M400 0V96" fill="none"/><path d="M340 152L460 152L432 96L368 96Z" fill="#ffd54a"/><circle cx="400" cy="160" r="11" fill="#fff3b0"/>
+<rect x="190" y="356" width="26" height="192" rx="6" fill="#d99a68"/><rect x="584" y="356" width="26" height="192" rx="6" fill="#d99a68"/>
+<rect x="170" y="330" width="460" height="26" rx="6" fill="#b97a4a"/>
+<rect x="390" y="300" width="20" height="22" fill="#3b3a5c"/><rect x="362" y="320" width="76" height="10" rx="4" fill="#3b3a5c"/>
+<rect x="320" y="210" width="160" height="92" rx="8" fill="#1b1740"/><rect x="330" y="220" width="140" height="72" fill="#4a90d9" stroke="none"/>
+<rect x="214" y="322" width="84" height="8" rx="2" fill="#ffffff"/><rect x="218" y="314" width="84" height="8" rx="2" fill="#ffffff"/><rect x="212" y="306" width="84" height="8" rx="2" fill="#ffffff"/><rect x="216" y="298" width="84" height="8" rx="2" fill="#ffffff"/>
+<rect x="520" y="294" width="50" height="36" rx="6" fill="#e07a5f"/>
+<path d="M545 294Q522 270 530 246Q552 262 545 294Z" fill="#5bbf6a"/><path d="M545 294Q570 272 576 250Q552 256 545 294Z" fill="#5bbf6a"/><path d="M545 294Q542 262 545 232Q560 262 545 294Z" fill="#5bbf6a"/>
+</g>
+</svg>

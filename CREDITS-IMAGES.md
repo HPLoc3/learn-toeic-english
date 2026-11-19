@@ -20,7 +20,7 @@ Files are produced with `tools/compose-scenes.py` (cut-outs + drawn backgrounds,
 1600x900) and `tools/make-scenes.py` (resized to 800x450 and 1600x900, WebP,
 metadata stripped). This file is not precached by the service worker.
 
-Status: Unit 1 and Unit 2 scene images are final art (date 2026-11-19). The Unit 2 SVG exercise pictures are original flat vector drawings.
+Status: Unit 1 and Unit 2 scene images are final art (date 2026-11-19). The Unit 2 SVG exercise pictures are original flat vector drawings. Unit 3 scene images (assets/img/l03/scene, assets/img-hd/l03) are temporary PLACEHOLDERS (gradient plus scene name, no artwork) and must be replaced with final art supplied by the owner before release (check-units --release fails while data/l03-anim.js has placeholder: true). The Unit 3 SVG exercise pictures are original flat vector drawings.
 
 | file | tool | date | notes |
 |---|---|---|---|
@@ -59,3 +59,24 @@ Status: Unit 1 and Unit 2 scene images are final art (date 2026-11-19). The Unit
 | assets/img/l02/mc2.svg | vector illustration drawn by the site owner's tooling (flat shapes, no third-party artwork) | 2026-11-19 | Unit 2, exercise/game picture |
 | assets/img/l02/mc3.svg | vector illustration drawn by the site owner's tooling (flat shapes, no third-party artwork) | 2026-11-19 | Unit 2, exercise/game picture |
 | assets/img/l02/mc4.svg | vector illustration drawn by the site owner's tooling (flat shapes, no third-party artwork) | 2026-11-19 | Unit 2, exercise/game picture |
+| assets/img/l03/scene/obj-table-800.webp | placeholder (gradient and scene name drawn by tools/make-scenes.py --placeholder; no artwork) | 2026-11-19 | Unit 3, scene obj-table, 800x450, placeholder until final art |
+| assets/img-hd/l03/obj-table-1600.webp | placeholder (gradient and scene name drawn by tools/make-scenes.py --placeholder; no artwork) | 2026-11-19 | Unit 3, scene obj-table, 1600x900, placeholder until final art |
+| assets/img/l03/scene/obj-boxes-800.webp | placeholder (gradient and scene name drawn by tools/make-scenes.py --placeholder; no artwork) | 2026-11-19 | Unit 3, scene obj-boxes, 800x450, placeholder until final art |
+| assets/img-hd/l03/obj-boxes-1600.webp | placeholder (gradient and scene name drawn by tools/make-scenes.py --placeholder; no artwork) | 2026-11-19 | Unit 3, scene obj-boxes, 1600x900, placeholder until final art |
+| assets/img/l03/scene/obj-bike-800.webp | placeholder (gradient and scene name drawn by tools/make-scenes.py --placeholder; no artwork) | 2026-11-19 | Unit 3, scene obj-bike, 800x450, placeholder until final art |
+| assets/img-hd/l03/obj-bike-1600.webp | placeholder (gradient and scene name drawn by tools/make-scenes.py --placeholder; no artwork) | 2026-11-19 | Unit 3, scene obj-bike, 1600x900, placeholder until final art |
+| assets/img/l03/scene/obj-cars-800.webp | placeholder (gradient and scene name drawn by tools/make-scenes.py --placeholder; no artwork) | 2026-11-19 | Unit 3, scene obj-cars, 800x450, placeholder until final art |
+| assets/img-hd/l03/obj-cars-1600.webp | placeholder (gradient and scene name drawn by tools/make-scenes.py --placeholder; no artwork) | 2026-11-19 | Unit 3, scene obj-cars, 1600x900, placeholder until final art |
+| assets/img/l03/scene/obj-lamp-800.webp | placeholder (gradient and scene name drawn by tools/make-scenes.py --placeholder; no artwork) | 2026-11-19 | Unit 3, scene obj-lamp, 800x450, placeholder until final art |
+| assets/img-hd/l03/obj-lamp-1600.webp | placeholder (gradient and scene name drawn by tools/make-scenes.py --placeholder; no artwork) | 2026-11-19 | Unit 3, scene obj-lamp, 1600x900, placeholder until final art |
+| assets/img/l03/scene/obj-books-800.webp | placeholder (gradient and scene name drawn by tools/make-scenes.py --placeholder; no artwork) | 2026-11-19 | Unit 3, scene obj-books, 800x450, placeholder until final art |
+| assets/img-hd/l03/obj-books-1600.webp | placeholder (gradient and scene name drawn by tools/make-scenes.py --placeholder; no artwork) | 2026-11-19 | Unit 3, scene obj-books, 1600x900, placeholder until final art |
+| assets/img/l03/scene/obj-outro-800.webp | placeholder (gradient and scene name drawn by tools/make-scenes.py --placeholder; no artwork) | 2026-11-19 | Unit 3, outro obj-outro, 800x450, placeholder until final art |
+| assets/img-hd/l03/obj-outro-1600.webp | placeholder (gradient and scene name drawn by tools/make-scenes.py --placeholder; no artwork) | 2026-11-19 | Unit 3, outro obj-outro, 1600x900, placeholder until final art |
+| assets/img/l03/focus.svg | vector illustration drawn by the site owner's tooling (flat shapes, no third-party artwork) | 2026-11-19 | Unit 3, exercise/game picture |
+| assets/img/l03/tf1.svg | vector illustration drawn by the site owner's tooling (flat shapes, no third-party artwork) | 2026-11-19 | Unit 3, exercise/game picture |
+| assets/img/l03/tf2.svg | vector illustration drawn by the site owner's tooling (flat shapes, no third-party artwork) | 2026-11-19 | Unit 3, exercise/game picture |
+| assets/img/l03/mc1.svg | vector illustration drawn by the site owner's tooling (flat shapes, no third-party artwork) | 2026-11-19 | Unit 3, exercise/game picture |
+| assets/img/l03/mc2.svg | vector illustration drawn by the site owner's tooling (flat shapes, no third-party artwork) | 2026-11-19 | Unit 3, exercise/game picture |
+| assets/img/l03/mc3.svg | vector illustration drawn by the site owner's tooling (flat shapes, no third-party artwork) | 2026-11-19 | Unit 3, exercise/game picture |
+| assets/img/l03/mc4.svg | vector illustration drawn by the site owner's tooling (flat shapes, no third-party artwork) | 2026-11-19 | Unit 3, exercise/game picture |

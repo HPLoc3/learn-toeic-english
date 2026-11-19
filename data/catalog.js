@@ -26,7 +26,10 @@ window.BS_CATALOG = {
           "id": "l03",
           "no": 3,
           "title_vi": "Mô tả đồ vật và vị trí",
-          "available": false
+          "available": true,
+          "game": true,
+          "anim": true,
+          "animKind": "scenes"
         },
         {
           "id": "l04",

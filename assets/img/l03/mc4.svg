@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+<title>Bếp có chồng đĩa trên bàn và ba lọ trên kệ</title>
+<desc>Một căn bếp không có người. Trên mặt bàn bếp bằng gỗ, bên trái, có một chồng ba cái đĩa xếp lên nhau. Phía trên bàn bếp, trên tường, có một cái kệ gỗ; trên kệ có ba cái lọ nhiều màu đứng thành một hàng.</desc>
+<rect width="800" height="600" fill="#f5f3ff"/>
+<rect x="0" y="0" width="800" height="500" fill="#ece8ff"/>
+<rect x="0" y="500" width="800" height="100" fill="#d9d2ff"/>
+<g stroke="#1b1740" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<rect x="104" y="414" width="592" height="150" rx="6" fill="#d99a68"/><path d="M400 414V564" fill="none"/>
+<rect x="364" y="440" width="22" height="8" rx="3" fill="#3b3a5c"/><rect x="414" y="440" width="22" height="8" rx="3" fill="#3b3a5c"/>
+<rect x="90" y="380" width="620" height="34" rx="8" fill="#b97a4a"/>
+<rect x="170" y="364" width="104" height="16" rx="6" fill="#ffffff"/><rect x="174" y="348" width="96" height="16" rx="6" fill="#cfe8ff"/><rect x="178" y="332" width="88" height="16" rx="6" fill="#ffffff"/>
+<path d="M350 220L350 248L378 220ZM640 220L640 248L612 220Z" fill="#b97a4a"/>
+<rect x="330" y="206" width="330" height="14" rx="3" fill="#b97a4a"/>
+<rect x="370" y="146" width="52" height="60" rx="8" fill="#ffd54a"/><rect x="368" y="134" width="56" height="12" rx="4" fill="#3b3a5c"/><rect x="384" y="160" width="24" height="22" fill="#ffffff" stroke-width="3"/>
+<rect x="470" y="146" width="52" height="60" rx="8" fill="#5bbf6a"/><rect x="468" y="134" width="56" height="12" rx="4" fill="#3b3a5c"/><rect x="484" y="160" width="24" height="22" fill="#ffffff" stroke-width="3"/>
+<rect x="570" y="146" width="52" height="60" rx="8" fill="#ff9f43"/><rect x="568" y="134" width="56" height="12" rx="4" fill="#3b3a5c"/><rect x="584" y="160" width="24" height="22" fill="#ffffff" stroke-width="3"/>
+</g>
+</svg>

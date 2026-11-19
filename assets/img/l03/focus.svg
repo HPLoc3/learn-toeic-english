@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+<title>Cái bàn có cốc, túi và chậu cây</title>
+<desc>Một cái bàn gỗ ở giữa hình. Trên mặt bàn, bên trái, có một cái cốc màu xanh. Dưới bàn, giữa hai chân bàn, có một cái túi màu cam. Bên phải cái bàn, đứng riêng trên sàn, có một chậu cây xanh. Trong hình không có người.</desc>
+<rect width="800" height="600" fill="#f5f3ff"/>
+<rect x="0" y="0" width="800" height="470" fill="#ece8ff"/>
+<rect x="0" y="470" width="800" height="130" fill="#d9d2ff"/>
+<g stroke="#1b1740" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<rect x="262" y="358" width="26" height="190" rx="6" fill="#d99a68"/><rect x="512" y="358" width="26" height="190" rx="6" fill="#d99a68"/>
+<rect x="380" y="486" width="70" height="62" rx="12" fill="#ff9f43"/><path d="M396 486Q415 458 434 486" fill="none"/>
+<rect x="240" y="330" width="320" height="28" rx="8" fill="#b97a4a"/>
+<rect x="300" y="290" width="44" height="40" rx="6" fill="#4a90d9"/><path d="M344 300Q362 300 360 314Q358 324 344 322" fill="none"/>
+<rect x="622" y="482" width="62" height="66" rx="8" fill="#e07a5f"/>
+<path d="M653 482Q618 436 630 392Q662 424 653 482Z" fill="#5bbf6a"/><path d="M653 482Q690 444 700 404Q664 412 653 482Z" fill="#5bbf6a"/><path d="M653 482Q648 424 653 372Q674 424 653 482Z" fill="#5bbf6a"/>
+</g>
+</svg>
