@@ -1,0 +1,86 @@
+#!/usr/bin/env python3
+"""Build the Unit 3 outro picture: a 3x2 grid of the six scene images, no text.
+
+Pillow only. Cells have rounded corners and are separated by thin gaps in the app's
+soft lavender (#e9e4fb). Each scene is cover-cropped to its cell (the cell is taller
+than 16:9, so the sides are trimmed; per-scene horizontal centres keep the key object).
+
+Run from the repo root:
+  python tools/make-outro-grid.py --src DIR [--out FILE] [--names a,b,c,d,e,f] [--margin 28] [--gap 20] [--radius 24]
+
+--src   folder holding <name>.png / .jpg / .jpeg / .webp for the six scenes
+--out   output PNG, 1600x900 (default: <src>/obj-outro.png)
+--names row-major order, default obj-table,obj-boxes,obj-bike,obj-cars,obj-lamp,obj-books
+Then make the shipped webp files with:
+  python tools/make-scenes.py --src DIR --unit l03 --names obj-outro
+Writes only the --out file.
+"""
+import argparse
+import os
+import sys
+
+from PIL import Image, ImageDraw
+
+W, H = 1600, 900
+BG = (233, 228, 251)
+NAMES = "obj-table,obj-boxes,obj-bike,obj-cars,obj-lamp,obj-books"
+EXTS = (".png", ".jpg", ".jpeg", ".webp")
+# horizontal centre (0..1) of the crop for scenes whose key object is off-centre
+CENTERS = {"obj-bike": 0.52, "obj-books": 0.36}
+
+
+def find(src, name):
+    for e in EXTS:
+        p = os.path.join(src, name + e)
+        if os.path.isfile(p):
+            return p
+    return None
+
+
+def cover(im, w, h, cx):
+    s = max(w / im.width, h / im.height)
+    im = im.resize((max(w, round(im.width * s)), max(h, round(im.height * s))), Image.LANCZOS)
+    x = min(max(round(cx * im.width - w / 2), 0), im.width - w)
+    y = (im.height - h) // 2
+    return im.crop((x, y, x + w, y + h))
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--src", required=True)
+    ap.add_argument("--out", default="")
+    ap.add_argument("--names", default=NAMES)
+    ap.add_argument("--margin", type=int, default=28)
+    ap.add_argument("--gap", type=int, default=20)
+    ap.add_argument("--radius", type=int, default=24)
+    a = ap.parse_args()
+    names = [n.strip() for n in a.names.split(",") if n.strip()]
+    if len(names) != 6:
+        print("need exactly 6 names", file=sys.stderr)
+        return 1
+    paths = [find(a.src, n) for n in names]
+    miss = [n for n, p in zip(names, paths) if not p]
+    if miss:
+        print("missing source images in %s: %s" % (a.src, ", ".join(miss)), file=sys.stderr)
+        return 3
+    cw = (W - 2 * a.margin - 2 * a.gap) // 3
+    ch = (H - 2 * a.margin - a.gap) // 2
+    SS = 3  # supersampled rounded-corner mask
+    mask = Image.new("L", (cw * SS, ch * SS), 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, cw * SS - 1, ch * SS - 1), a.radius * SS, fill=255)
+    mask = mask.resize((cw, ch), Image.LANCZOS)
+    canvas = Image.new("RGB", (W, H), BG)
+    for i, (n, p) in enumerate(zip(names, paths)):
+        im = Image.open(p).convert("RGB")
+        cell = cover(im, cw, ch, CENTERS.get(n, 0.5))
+        x = a.margin + (i % 3) * (cw + a.gap)
+        y = a.margin + (i // 3) * (ch + a.gap)
+        canvas.paste(cell, (x, y), mask)
+    out = a.out or os.path.join(a.src, "obj-outro.png")
+    canvas.save(out)
+    print("wrote", out, canvas.size)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

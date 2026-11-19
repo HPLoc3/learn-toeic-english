@@ -40,7 +40,7 @@ window.BS_UNITS.l03 = {
       },
       {
         "id": "tip4",
-        "text_vi": "Cẩn thận với is / are being + V3. Dạng này nghĩa là ĐANG ĐƯỢC làm, nên thường chỉ hợp lý khi trong hình có người đang làm việc đó. Ngoại lệ hay gặp: is/are being displayed (đang được trưng bày) vẫn có thể là câu đúng dù ảnh không có người. Ảnh không có người thì các câu như The boxes are being loaded hay The tables are being cleaned thường là bẫy. Thấy vật nằm yên thì chọn be + V3 (stacked, parked), đừng chọn being + V3.",
+        "text_vi": "Cẩn thận với is / are being + V3. Dạng này nghĩa là ĐANG ĐƯỢC làm, nên thường chỉ hợp lý khi trong hình có người đang làm việc đó. Ngoại lệ hay gặp: is/are being displayed (đang được trưng bày) vẫn có thể là câu đúng dù ảnh không có người. Ảnh không có người thì các câu như The boxes are being loaded hay The tables are being cleaned thường là bẫy. Thấy vật nằm yên thì chọn be + V3 (stacked, parked), đừng chọn being + V3 (trừ being displayed).",
         "examples": [
           { "en": "The boxes are stacked near the door.", "vi": "(Câu ĐÚNG khi thùng nằm yên gần cửa) Những cái thùng được xếp chồng gần cửa." },
           { "en": "The boxes are being loaded onto a truck.", "vi": "(Câu SAI khi không có ai) Những cái thùng đang được chất lên xe tải. Không có người nào đang chất hàng." },
