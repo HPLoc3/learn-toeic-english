@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
 <title>Hai người đi bộ sánh vai nhau</title>
-<desc>Một người phụ nữ mặc áo xanh ngọc và một người đàn ông mặc áo vest xanh đậm, nhìn nghiêng, đang bước đi cạnh nhau cùng hướng sang phải, mỗi người một chân bước tới và hai tay vung nhẹ. Chỉ người phụ nữ đeo ba lô màu tím: dây đeo vắt qua ngực và nắp ba lô nhô lên trên vai. Hai bên đường có cây xanh.</desc>
+<desc>Một người phụ nữ mặc áo xanh ngọc và một người đàn ông mặc áo vest xanh đậm cùng bước về phía người xem, vai sát vai, mỗi người đang bước một chân, hai tay vung nhẹ. Chỉ người phụ nữ đeo ba lô màu tím: hai dây đeo vắt qua ngực, phần nắp ba lô nhô lên trên vai và hai bên thân. Hai bên đường có cây xanh.</desc>
 <rect width="800" height="600" fill="#f5f3ff"/>
 <rect x="0" y="0" width="800" height="480" fill="#ece8ff"/>
 <rect x="0" y="480" width="800" height="120" fill="#e8e4f8"/>
@@ -8,28 +8,28 @@
 <rect x="0" y="420" width="800" height="60" fill="#cfeacb" stroke="none"/><path d="M0 470H800" fill="none"/>
 <rect x="90" y="250" width="22" height="180" fill="#b97a4a"/><circle cx="101" cy="215" r="70" fill="#7ad37a"/>
 <rect x="690" y="270" width="22" height="160" fill="#b97a4a"/><circle cx="701" cy="235" r="62" fill="#7ad37a"/>
-<path d="M290 322L240 546M290 322L336 546" fill="none" stroke-width="40"/><path d="M290 322L240 546M290 322L336 546" fill="none" stroke="#3b3a5c" stroke-width="30"/><path d="M236 560H270M332 560H370" fill="none" stroke-width="22"/>
-<path d="M500 322L450 546M500 322L546 546" fill="none" stroke-width="40"/><path d="M500 322L450 546M500 322L546 546" fill="none" stroke="#3b3a5c" stroke-width="30"/><path d="M446 560H480M542 560H580" fill="none" stroke-width="22"/>
-<rect x="228" y="188" width="40" height="112" rx="14" fill="#5a3df0"/><rect x="236" y="176" width="24" height="16" rx="6" fill="#5a3df0"/>
-<rect x="254" y="192" width="72" height="140" rx="28" fill="#2bb3a6"/>
-<rect x="464" y="192" width="72" height="140" rx="28" fill="#2a3b7a"/><path d="M504 194L522 230L530 198Z" fill="#ffffff" stroke-width="4"/>
-<path d="M270 196Q290 240 276 298" fill="none" stroke="#5a3df0" stroke-width="8"/>
-<rect x="242" y="120" width="60" height="80" rx="26" fill="#1b1740"/>
-<rect x="279" y="178" width="22" height="24" rx="8" fill="#ffcfa0"/>
-<circle cx="290" cy="150" r="38" fill="#ffcfa0"/>
-<path d="M324 142C320 98 250 98 250 160C260 136 284 128 324 142Z" fill="#1b1740"/>
-<circle cx="308" cy="152" r="4.5" fill="#1b1740" stroke="none"/>
-<path d="M327 152L337 164L326 166" fill="#ffcfa0"/>
-<path d="M304 174Q314 178 320 172" fill="none" stroke-width="4"/>
-<rect x="489" y="178" width="22" height="24" rx="8" fill="#e8b48a"/>
-<circle cx="500" cy="150" r="38" fill="#e8b48a"/>
-<path d="M534 142C530 98 460 98 460 160C470 136 494 128 534 142Z" fill="#2b2420"/>
-<circle cx="518" cy="152" r="4.5" fill="#1b1740" stroke="none"/>
-<path d="M537 152L547 164L536 166" fill="#e8b48a"/>
-<path d="M514 174Q524 178 530 172" fill="none" stroke-width="4"/>
-<path d="M288 214L262 326" fill="none" stroke-width="30"/><path d="M288 214L262 326" fill="none" stroke="#2bb3a6" stroke-width="20"/><circle cx="262" cy="326" r="12" fill="#ffcfa0" stroke-width="4"/>
-<path d="M292 214L336 320" fill="none" stroke-width="30"/><path d="M292 214L336 320" fill="none" stroke="#2bb3a6" stroke-width="20"/><circle cx="336" cy="320" r="12" fill="#ffcfa0" stroke-width="4"/>
-<path d="M498 214L472 326" fill="none" stroke-width="30"/><path d="M498 214L472 326" fill="none" stroke="#2a3b7a" stroke-width="20"/><circle cx="472" cy="326" r="12" fill="#e8b48a" stroke-width="4"/>
-<path d="M502 214L548 320" fill="none" stroke-width="30"/><path d="M502 214L548 320" fill="none" stroke="#2a3b7a" stroke-width="20"/><circle cx="548" cy="320" r="12" fill="#e8b48a" stroke-width="4"/>
+<path d="M324 320L294 546M356 320L380 546" fill="none" stroke-width="40"/><path d="M324 320L294 546M356 320L380 546" fill="none" stroke="#3b3a5c" stroke-width="30"/><path d="M268 560H306M362 560H402" fill="none" stroke-width="22"/>
+<path d="M434 320L404 538M466 320L490 538" fill="none" stroke-width="40"/><path d="M434 320L404 538M466 320L490 538" fill="none" stroke="#3b3a5c" stroke-width="30"/><path d="M378 552H416M472 552H512" fill="none" stroke-width="22"/>
+<rect x="280" y="218" width="120" height="84" rx="16" fill="#5a3df0"/><rect x="306" y="180" width="68" height="30" rx="12" fill="#5a3df0"/>
+<rect x="292" y="192" width="96" height="140" rx="30" fill="#2bb3a6"/>
+<rect x="402" y="192" width="96" height="140" rx="30" fill="#2a3b7a"/><path d="M436 194L450 238L464 194Z" fill="#ffffff" stroke-width="4"/>
+<path d="M310 196Q306 240 314 278M370 196Q374 240 366 278" fill="none" stroke="#5a3df0" stroke-width="9"/>
+<rect x="296" y="120" width="88" height="80" rx="32" fill="#1b1740"/>
+<rect x="329" y="178" width="22" height="24" rx="8" fill="#ffcfa0"/>
+<circle cx="340" cy="150" r="38" fill="#ffcfa0"/>
+<path d="M300 156C294 92 386 92 380 156C374 128 352 118 340 118C328 118 306 128 300 156Z" fill="#1b1740"/>
+<circle cx="326" cy="152" r="4.5" fill="#1b1740" stroke="none"/>
+<circle cx="354" cy="152" r="4.5" fill="#1b1740" stroke="none"/>
+<path d="M330 170Q340 179 350 170" fill="none" stroke-width="4"/>
+<rect x="439" y="178" width="22" height="24" rx="8" fill="#e8b48a"/>
+<circle cx="450" cy="150" r="38" fill="#e8b48a"/>
+<path d="M410 156C404 92 496 92 490 156C484 128 462 118 450 118C438 118 416 128 410 156Z" fill="#2b2420"/>
+<circle cx="436" cy="152" r="4.5" fill="#1b1740" stroke="none"/>
+<circle cx="464" cy="152" r="4.5" fill="#1b1740" stroke="none"/>
+<path d="M440 170Q450 179 460 170" fill="none" stroke-width="4"/>
+<path d="M296 212L278 318" fill="none" stroke-width="30"/><path d="M296 212L278 318" fill="none" stroke="#2bb3a6" stroke-width="20"/><circle cx="278" cy="318" r="12" fill="#ffcfa0" stroke-width="4"/>
+<path d="M384 212L398 296" fill="none" stroke-width="30"/><path d="M384 212L398 296" fill="none" stroke="#2bb3a6" stroke-width="20"/><circle cx="398" cy="296" r="12" fill="#ffcfa0" stroke-width="4"/>
+<path d="M406 212L392 322" fill="none" stroke-width="30"/><path d="M406 212L392 322" fill="none" stroke="#2a3b7a" stroke-width="20"/><circle cx="392" cy="322" r="12" fill="#e8b48a" stroke-width="4"/>
+<path d="M494 212L516 318" fill="none" stroke-width="30"/><path d="M494 212L516 318" fill="none" stroke="#2a3b7a" stroke-width="20"/><circle cx="516" cy="318" r="12" fill="#e8b48a" stroke-width="4"/>
 </g>
 </svg>

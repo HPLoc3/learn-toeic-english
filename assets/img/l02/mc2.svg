@@ -36,7 +36,7 @@
 <path d="M232 360H568L610 426H190Z" fill="#b97a4a"/><path d="M215 426V560M585 426V560" fill="none" stroke-width="8"/>
 <path d="M300 372H500L522 414H278Z" fill="#ffffff"/><path d="M318 386H470M308 398H490M360 378V410" fill="none" stroke="#8a84b8" stroke-width="3"/>
 <rect x="236" y="364" width="30" height="30" rx="6" fill="#ff4f87"/><path d="M266 370Q284 370 282 381Q280 390 266 388" fill="none"/>
-<path d="M440 256L512 392" fill="none" stroke-width="30"/><path d="M440 256L512 392" fill="none" stroke="#2a3b7a" stroke-width="20"/><circle cx="512" cy="392" r="12" fill="#e8b48a" stroke-width="4"/>
-<path d="M512 392L538 402" fill="none" stroke="#e8b48a" stroke-width="9"/>
+<path d="M440 256L462 388" fill="none" stroke-width="30"/><path d="M440 256L462 388" fill="none" stroke="#2a3b7a" stroke-width="20"/><circle cx="462" cy="388" r="12" fill="#e8b48a" stroke-width="4"/>
+<path d="M462 388L482 398" fill="none" stroke="#e8b48a" stroke-width="9"/>
 </g>
 </svg>

@@ -32,7 +32,7 @@ window.BS_UNITS.l02 = {
         "examples": [
           { "en": "Two people are sitting across from each other.", "vi": "Hai người đang ngồi đối diện nhau." },
           { "en": "Two people are walking side by side.", "vi": "Hai người đang đi bộ sánh vai nhau." },
-          { "en": "Some people are waiting in line.", "vi": "Một vài người đang chờ xếp hàng." },
+          { "en": "Some people are waiting in line.", "vi": "Một vài người đang xếp hàng chờ." },
           { "en": "Several people are gathered around a table.", "vi": "Nhiều người đang quây quanh một cái bàn." }
         ]
       },
