@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
-"""Compose the Unit 1 scene images: people cut-outs + flat backgrounds/props drawn here.
+"""Compose the Unit 1 and Unit 2 scene images: people cut-outs + flat backgrounds/props drawn here.
 
 Pillow only (no rembg). People are original characters made by the site owner;
 everything else (backgrounds, counters, desk, laptop, flower shelf) is drawn
 procedurally by this script (2x supersampled, then downscaled).
 
 Run from the repo root:
-  python tools/compose-scenes.py [--cut DIR] [--out DIR] [--only NAME[,NAME]] [--contact FILE]
+  python tools/compose-scenes.py [--unit l01|l02] [--cut DIR] [--out DIR] [--only NAME[,NAME]] [--contact FILE]
 
---cut  directory with <scene-id>.png RGBA cut-outs (1376x768)  default ../nguon-hinh/unit1-cut
---out  directory for composed 1600x900 PNGs (input of make-scenes.py) default ../nguon-hinh/agy-anh
+--unit which unit's scene table to use (default l01; l01 output is unchanged)
+--cut  directory with <scene-id>.png RGBA cut-outs (1376x768)  default ../nguon-hinh/unit1-cut (l02: unit2-cut)
+--out  directory for composed 1600x900 PNGs (input of make-scenes.py) default ../nguon-hinh/agy-anh (l02: agy-anh-u2)
 Writes only into --out (and --contact when given).
 """
 import argparse
@@ -487,19 +488,286 @@ def flower_shelf(cv, t):
         bucket(cv, x, y, 80, 46, ol=OL)
 
 
+# ================================================================ Unit 2 (l02)
+def _finish(cv, tint, blur=3.2, mixv=.22):
+    im = cv.out().filter(ImageFilter.GaussianBlur(blur)).convert("RGB")
+    return Image.blend(im, Image.new("RGB", (W, H), tint), mixv)
+
+
+def floor_band(cv, y, c0=(228, 214, 232), c1=(204, 188, 214), skirt=(244, 238, 246)):
+    cv.vgrad(0, y, W, H, c0, c1)
+    cv.rect(0, y - 14, W, y, fill=skirt + (255,))
+    for k in range(1, 7):
+        yy = y + (H - y) * (k / 7.0) ** 1.4
+        cv.line([(0, yy), (W, yy)], fill=mix(c0, c1, .6) + (255,), w=1.5)
+
+
+def window(cv, wx, wy, ww, wh, hills=True, cols=3):
+    cv.rect(wx, wy, wx + ww, wy + wh, fill=(252, 246, 232, 255), r=8)
+    cv.vgrad(wx + 16, wy + 16, wx + ww - 16, wy + wh - 16, (212, 224, 250), (240, 240, 252))
+    if hills:
+        for (fx, fy, r, c) in ((.2, .82, .30, (186, 211, 186)), (.62, .88, .36, (170, 202, 176)), (.92, .76, .22, (200, 222, 196))):
+            cv.ell(wx + ww * fx, wy + wh * fy, ww * r * .6, wh * r * .8, fill=c + (255,))
+    for k in range(1, cols):
+        cv.rect(wx + ww * k / cols - 9, wy + 16, wx + ww * k / cols + 9, wy + wh - 16, fill=(252, 246, 232, 255))
+    cv.rect(wx + 16, wy + wh * .55, wx + ww - 16, wy + wh * .55 + 18, fill=(252, 246, 232, 255))
+
+
+def lamp(cv, lx, ly, glow=True):
+    if glow:
+        cv.glow(lx, ly + 60, 120, (255, 238, 176), 150)
+    cv.line([(lx, 0), (lx, ly)], fill=(120, 96, 90, 255), w=3)
+    cv.poly([(lx - 26, ly + 44), (lx + 26, ly + 44), (lx + 14, ly), (lx - 14, ly)], fill=YEL + (255,))
+    cv.ell(lx, ly + 46, 26, 6, fill=YEL_S + (255,))
+
+
+def menu_board(cv, bx, by, bw, bh, rows=6):
+    cv.rect(bx, by, bx + bw, by + bh, fill=(236, 226, 214, 255), r=6)
+    cv.rect(bx + 12, by + 12, bx + bw - 12, by + bh - 12, fill=(98, 82, 128, 255), r=4)
+    for i in range(rows):
+        yy = by + 44 + i * (bh - 70) / max(1, rows - 1)
+        cv.line([(bx + 40, yy), (bx + 40 + (bw - 150) * (.55 + ((i * 37) % 40) / 100), yy)], fill=(236, 230, 246, 255), w=4)
+        cv.line([(bx + bw - 60, yy), (bx + bw - 38, yy)], fill=YEL + (255,), w=4)
+
+
+def shelf_row(cv, sx, yy, width, kind, n=5, step=105):
+    cv.rect(sx, yy, sx + width, yy + 14, fill=(190, 150, 118, 255))
+    for bxx in (sx + 40, sx + width - 60):
+        cv.poly([(bxx, yy + 14), (bxx + 22, yy + 14), (bxx, yy + 44)], fill=(160, 124, 100, 255))
+    for k in range(n):
+        x = sx + 60 + k * step
+        if kind == 0:
+            cv.rect(x, yy - 52, x + 54, yy, fill=(250, 248, 244, 255), r=6)
+            cv.rect(x + 54, yy - 38, x + 66, yy - 14, fill=(250, 248, 244, 255), r=5)
+        else:
+            cv.rect(x, yy - 70, x + 62, yy, fill=(222, 212, 238, 255), r=8)
+            cv.rect(x - 2, yy - 82, x + 64, yy - 66, fill=(190, 160, 130, 255), r=4)
+
+
+def lobby_bg():
+    cv = Cv((0, 0, 0, 255))
+    cv.vgrad(0, 0, W, H, (236, 232, 250), (246, 241, 247))
+    window(cv, 250, 70, 780, 540, cols=3)
+    for (x, w, h, c) in ((290, 90, 190, (196, 189, 236)), (400, 70, 130, (210, 204, 242)), (480, 110, 240, (190, 182, 232)),
+                         (610, 80, 160, (206, 200, 240)), (710, 120, 210, (194, 186, 234)), (850, 90, 140, (210, 204, 242))):
+        cv.rect(x, 594 - h, x + w, 594, fill=c + (255,))
+    for k in range(1, 3):
+        cv.rect(250 + 780 * k / 3 - 9, 86, 250 + 780 * k / 3 + 9, 594, fill=(252, 246, 232, 255))
+    cv.rect(266, 360, 1014, 378, fill=(252, 246, 232, 255))
+    cv.ell(1330, 250, 74, 74, fill=YEL + (255,))
+    cv.poly([(1280, 296), (1330, 214), (1380, 296)], fill=VIO + (255,))
+    lamp(cv, 1130, 150)
+    lamp(cv, 1470, 110)
+    floor_band(cv, 660)
+    # reception desk far behind
+    cv.rect(1090, 552, W + 30, 676, fill=LAV3 + (255,), r=6)
+    for k in range(4):
+        cv.rect(1120 + k * 130, 580, 1220 + k * 130, 676, fill=LAV2 + (255,), r=4)
+    cv.rect(1070, 530, W + 30, 556, fill=(226, 196, 164, 255), r=4)
+    cv.rect(1230, 430, 1340, 516, fill=(98, 82, 128, 255), r=5)
+    cv.rect(1275, 516, 1295, 530, fill=(98, 82, 128, 255))
+    cv.ell(1440, 520, 22, 10, fill=YEL + (255,))
+    plant(cv, 110, 700, 1.05)
+    plant(cv, 1500, 530, .62)
+    return _finish(cv, (242, 238, 246))
+
+
+def corner_bg():
+    cv = Cv((0, 0, 0, 255))
+    cv.vgrad(0, 0, W, H, (240, 233, 250), (247, 239, 228))
+    window(cv, 560, 90, 480, 420, cols=2)
+    lamp(cv, 800, 150)
+    shelf_row(cv, 20, 300, 330, 0, n=2)
+    shelf_row(cv, 20, 430, 330, 1, n=2)
+    menu_board(cv, 1250, 80, 310, 250, rows=5)
+    floor_band(cv, 640, c0=(226, 206, 184), c1=(196, 170, 150), skirt=(238, 226, 214))
+    plant(cv, 130, 660, .9)
+    plant(cv, 1520, 640, .7)
+    return _finish(cv, (246, 239, 236))
+
+
+def queue_bg():
+    cv = Cv((0, 0, 0, 255))
+    cv.vgrad(0, 0, W, H, (240, 233, 250), (247, 239, 228))
+    window(cv, 60, 70, 420, 470, cols=2)
+    lamp(cv, 700, 160)
+    lamp(cv, 900, 120)
+    menu_board(cv, 1220, 60, 340, 270, rows=6)
+    floor_band(cv, 640, c0=(226, 206, 184), c1=(196, 170, 150), skirt=(238, 226, 214))
+    plant(cv, 560, 650, .75)
+    # counter at the right edge (they face right)
+    cv.rect(1290, 470, 1480, 596, fill=(205, 198, 224, 255), r=10)
+    cv.rect(1304, 484, 1466, 520, fill=(176, 168, 206, 255), r=6)
+    cv.rect(1322, 540, 1356, 596, fill=(120, 106, 150, 255))
+    cv.ell(1430, 546, 14, 14, fill=YEL + (255,))
+    for k in range(3):
+        cv.rect(1500 + k * 44, 536, 1536 + k * 44, 596, fill=(238, 226, 214, 255), r=5)
+    cv.vgrad(1270, 612, W + 30, H, (190, 150, 124), (156, 118, 98))
+    cv.rect(1250, 592, W + 30, 620, fill=(222, 184, 150, 255), r=4)
+    for k in range(3):
+        cv.rect(1290 + k * 140, 664, 1400 + k * 140, H, fill=(168, 128, 104, 255), r=6)
+    return _finish(cv, (246, 239, 236))
+
+
+def serve_bg():
+    cv = Cv((0, 0, 0, 255))
+    cv.vgrad(0, 0, W, H, (240, 233, 250), (247, 239, 228))
+    window(cv, 1100, 80, 440, 440, cols=2)
+    menu_board(cv, 600, 50, 400, 190, rows=4)
+    shelf_row(cv, 20, 300, 330, 0, n=2)
+    shelf_row(cv, 20, 440, 330, 1, n=2)
+    lamp(cv, 1030, 180, glow=False)
+    floor_band(cv, 660, c0=(226, 206, 184), c1=(196, 170, 150), skirt=(238, 226, 214))
+    plant(cv, 1560, 680, .75)
+    return _finish(cv, (246, 239, 236))
+
+
+def shop_bg():
+    cv = Cv((0, 0, 0, 255))
+    cv.vgrad(0, 0, W, H, (240, 232, 250), (248, 240, 232))
+    for i in range(0, 20):
+        c = LAV3 if i % 2 == 0 else YEL_S
+        cv.poly([(i * 90, 0), (i * 90 + 90, 0), (i * 90 + 90, 70), (i * 90, 70)], fill=c + (255,))
+        cv.ell(i * 90 + 45, 70, 45, 22, fill=c + (255,))
+    cols = [(155, 134, 224), (240, 169, 196), YEL, (251, 246, 236)]
+    for yy in (270, 450):
+        cv.rect(0, yy, W, yy + 14, fill=(196, 156, 122, 255))
+        for k in range(15):
+            x = 60 + k * 110
+            cv.poly([(x - 28, yy - 52), (x + 28, yy - 52), (x + 22, yy), (x - 22, yy)],
+                    fill=((236, 228, 240) if k % 2 else (226, 190, 160)) + (255,))
+            flower(cv, x, yy - 68, 22, cols[(k + yy // 10) % 4])
+            leaf(cv, x, yy - 52, -120, 34, 8, GREEN2)
+            leaf(cv, x, yy - 52, -60, 34, 8, GREEN2)
+    cv.line([(1430, 0), (1430, 120)], fill=(140, 110, 100, 255), w=3)
+    cv.ell(1430, 145, 46, 34, fill=(222, 196, 168, 255))
+    for ang in (160, 130, 100, 70, 40, 20):
+        leaf(cv, 1430, 150, ang, 110, 13, GREEN2 if ang % 20 else GREEN1)
+    floor_band(cv, 700, c0=(222, 200, 180), c1=(196, 170, 150), skirt=(238, 226, 214))
+    for i, bx in enumerate((120, 290, 1330, 1490)):
+        bucket(cv, bx, 790, 130, 100)
+        for j in range(5):
+            fx = bx - 40 + j * 20
+            fy = 640 - ((i * 7 + j * 13) % 40)
+            cv.line([(fx, 700), (fx, fy)], fill=GREEN3 + (255,), w=3)
+            flower(cv, fx, fy, 20, cols[(i + j) % 4])
+    return _finish(cv, (246, 238, 238), mixv=.3)
+
+
+def street_bg():
+    cv = Cv((0, 0, 0, 255))
+    cv.vgrad(0, 0, W, H, (222, 230, 250), (246, 240, 238))
+    shops = [((236, 226, 244), LAV3), ((250, 240, 214), YEL), ((240, 222, 232), (239, 190, 214)),
+             ((232, 236, 250), VIO), ((248, 236, 222), (220, 170, 140))]
+    x = -40
+    for i, (wall, awn) in enumerate(shops):
+        w = 360
+        cv.rect(x, 190, x + w, 640, fill=wall + (255,))
+        cv.rect(x - 6, 170, x + w + 6, 198, fill=mix(wall, (120, 110, 150), .18) + (255,))
+        for k in range(8):
+            c = awn if k % 2 == 0 else (252, 248, 240)
+            cv.poly([(x + k * w / 8, 270), (x + (k + 1) * w / 8, 270), (x + (k + 1) * w / 8 + 4, 330), (x + k * w / 8 - 4, 330)], fill=c + (255,))
+        cv.rect(x + 34, 350, x + 190, 560, fill=(212, 224, 248, 255), r=6)
+        cv.rect(x + 34, 350, x + 190, 372, fill=(244, 240, 250, 255))
+        cv.rect(x + 230, 360, x + 316, 640, fill=(120, 100, 150, 255), r=6)
+        cv.rect(x + 242, 372, x + 304, 520, fill=(206, 214, 240, 255), r=4)
+        x += w
+    # sidewalk
+    cv.vgrad(0, 640, W, H, (228, 220, 236), (206, 196, 222))
+    cv.rect(0, 628, W, 650, fill=(244, 238, 246, 255))
+    for k in range(-2, 12):
+        cv.line([(k * 190 + 60, 650), (k * 190 - 140, H)], fill=(212, 202, 226, 255), w=2)
+    cv.line([(0, 760), (W, 760)], fill=(212, 202, 226, 255), w=2)
+    for tx, ts in ((120, 1.0), (1000, .9), (1530, 1.05)):
+        cv.rect(tx - 10, 560, tx + 10, 676, fill=(150, 112, 92, 255))
+        cv.ell(tx, 470, 100 * ts, 96 * ts, fill=GREEN2 + (255,))
+        cv.ell(tx - 60 * ts, 520, 62 * ts, 58 * ts, fill=GREEN1 + (255,))
+        cv.ell(tx + 62 * ts, 505, 58 * ts, 54 * ts, fill=GREEN3 + (255,))
+    cv.rect(560, 380, 570, 676, fill=(130, 118, 160, 255))
+    cv.ell(565, 372, 20, 20, fill=YEL_S + (255,))
+    return _finish(cv, (244, 240, 244), mixv=.24)
+
+
+def outro_bg():
+    cv = Cv((0, 0, 0, 255))
+    cv.vgrad(0, 0, W, H, (234, 228, 250), (249, 241, 230))
+    cv.glow(800, 420, 330, YEL_S, 230)
+    cv.ell(800, 430, 300, 300, fill=(252, 240, 200, 255))
+    cv.ell(230, 300, 170, 170, fill=LAV2 + (255,))
+    cv.ell(1400, 340, 200, 200, fill=LAV2 + (255,))
+    for i in range(0, 17):
+        x = i * 100
+        cv.poly([(x, 0), (x + 100, 0), (x + 50, 70)], fill=(VIO if i % 2 == 0 else YEL) + (255,))
+    floor_band(cv, 720, c0=(230, 216, 234), c1=(208, 192, 216))
+    plant(cv, 80, 760, .9)
+    plant(cv, 1520, 760, .9)
+    return _finish(cv, (246, 240, 244), blur=2.6, mixv=.18)
+
+
+# scene -> (background fn, person scale, ox); the cut-out is anchored to the bottom edge of the canvas
+L02 = {
+    "duo-shake": (lobby_bg, SC, -6.0),
+    "duo-meeting": (corner_bg, SC, -6.0),
+    "trio-line": (queue_bg, 1.2, -110.0),
+    "nam-serve": (serve_bg, SC, -6.0),
+    "duo-flowers": (shop_bg, SC, -6.0),
+    "duo-walk": (street_bg, 1.2, -90.0),
+    "group-outro": (outro_bg, SC, 20.0),
+}
+
+
+def make_scene_l02(name, cut_dir):
+    bgf, sc, ox = L02[name]
+    oy = H - SH * sc
+    t = mk_t(sc, ox, oy)
+    bg = bgf()
+    mid, fg = Cv(), Cv()
+    if name == "nam-serve":
+        xe = 700                                   # counter ends between Nam's cup hand and Mai
+        mid.poly([t(-200, 560), t(xe, 560), t(xe, 618), t(-200, 618)], fill=WOOD_T + (255,), ol=OL, w=1.6)
+        for k in range(1, 4):
+            yy = 560 + 58 * k / 4
+            mid.line([t(-200, yy), t(xe, yy)], fill=mix(WOOD_T, WOOD_L, .6) + (255,), w=1.4)
+        fg.poly([t(-200, 618), t(xe, 618), t(xe, SH + 140), t(-200, SH + 140)], fill=WOOD_F + (255,), ol=OL, w=1.6)
+        fg.poly([t(-200, 618), t(xe, 618), t(xe, 632), t(-200, 632)], fill=(232, 196, 160, 255), ol=OL, w=1.4)
+        for k in range(-1, 3):
+            px = 20 + k * 240
+            fg.poly([t(px, 660), t(px + 200, 660), t(px + 200, SH + 140), t(px, SH + 140)], fill=WOOD_D + (255,), ol=OL, w=1.4)
+    person = Image.open(os.path.join(cut_dir, name + ".png")).convert("RGBA")
+    person = person.resize((int(round(SW * sc)), int(round(SH * sc))), Image.LANCZOS)
+    out = bg.convert("RGBA")
+    out = Image.alpha_composite(out, mid.out())
+    layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    layer.paste(person, (int(round(ox)), int(round(oy))), person)
+    out = Image.alpha_composite(out, layer)
+    out = Image.alpha_composite(out, fg.out())
+    return out.convert("RGB")
+
+
 SCENES = ["nam-pour", "nam-wipe", "mai-look", "mai-type", "hanh-wear", "hanh-point", "duo-cafe"]
+
+
+SCENES_L02 = list(L02)
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--cut", default=os.path.join("..", "nguon-hinh", "unit1-cut"))
-    ap.add_argument("--out", default=os.path.join("..", "nguon-hinh", "agy-anh"))
+    ap.add_argument("--unit", default="l01", choices=["l01", "l02"])
+    ap.add_argument("--cut", default="")
+    ap.add_argument("--out", default="")
     ap.add_argument("--only", default="")
     ap.add_argument("--contact", default="")
     a = ap.parse_args()
-    names = [n for n in a.only.split(",") if n] or SCENES
+    l2 = a.unit == "l02"
+    scenes = SCENES_L02 if l2 else SCENES
+    maker = make_scene_l02 if l2 else make_scene
+    if not a.cut:
+        a.cut = os.path.join("..", "nguon-hinh", "unit2-cut" if l2 else "unit1-cut")
+    if not a.out:
+        a.out = os.path.join("..", "nguon-hinh", "agy-anh-u2" if l2 else "agy-anh")
+    names = [n for n in a.only.split(",") if n] or scenes
     for n in names:
-        if n not in SCENES:
+        if n not in scenes:
             print("unknown scene: " + n, file=sys.stderr)
             return 1
         if not os.path.exists(os.path.join(a.cut, n + ".png")):
@@ -508,7 +776,7 @@ def main():
     os.makedirs(a.out, exist_ok=True)
     done = []
     for n in names:
-        im = make_scene(n, a.cut)
+        im = maker(n, a.cut)
         p = os.path.join(a.out, n + ".png")
         im.save(p)
         done.append(im)
