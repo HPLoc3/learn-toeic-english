@@ -11,7 +11,8 @@ Run from the repo root:
 
 --src   folder holding <name>.png / .jpg / .jpeg / .webp for the six scenes
 --out   output PNG, 1600x900, must end in .png and must not be one of the input files
-        (when omitted, the default is <src>/obj-outro.png)
+        (when omitted, the default is <src>/obj-outro.png, allowed only with the default Unit 3 --names;
+        with any other --names, --out is required)
 --names row-major order of the six scene names (any unit); default is the Unit 3 list obj-table,obj-boxes,obj-bike,obj-cars,obj-lamp,obj-books
         e.g. Unit 4: --names scn-boat,scn-bridge,scn-trees,scn-mountains,scn-road,scn-harbor --out DIR/scn-outro.png
 Then make the shipped webp files with:
@@ -66,9 +67,18 @@ def main():
     if miss:
         print("missing source images in %s: %s" % (a.src, ", ".join(miss)), file=sys.stderr)
         return 3
+    if not a.out and a.names != NAMES:
+        print("--out is required when --names is not the default Unit 3 list", file=sys.stderr)
+        return 1
+    if min(a.margin, a.gap, a.radius) < 0:
+        print("--margin, --gap and --radius must be >= 0", file=sys.stderr)
+        return 1
     cw = (W - 2 * a.margin - 2 * a.gap) // 3
     ch = cw * 9 // 16
     top = (H - 2 * ch - a.gap) // 2
+    if cw < 100 or top < 0 or a.radius * 2 > min(cw, ch):
+        print("--margin/--gap/--radius leave no room for the grid (cells %dx%d, top %d)" % (cw, ch, top), file=sys.stderr)
+        return 1
     SS = 3  # supersampled rounded-corner mask
     mask = Image.new("L", (cw * SS, ch * SS), 0)
     ImageDraw.Draw(mask).rounded_rectangle((0, 0, cw * SS - 1, ch * SS - 1), a.radius * SS, fill=255)

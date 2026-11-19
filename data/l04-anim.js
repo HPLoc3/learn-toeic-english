@@ -32,7 +32,7 @@ window.BS_ANIMS.l04 = {
       pieces: [["A road", ""], [" runs", ""], [" through the field.", ""]],
       note_vi: "A road (số ít) + runs: hiện tại đơn, thêm s; con đường \"tự\" chạy qua",
       kb: { from: [0.4, 0.55, 1.0], to: [0.55, 0.55, 1.15] }, focus: { x: 0.45, y: 0.58, r: 0.18, at: 2.5, label_vi: "chạy xuyên" } },
-    { id: "harbor", img: "scn-harbor", dur: 9, alt_vi: "Đúng năm ngôi nhà nhiều tầng đứng thành một hàng, mỗi nhà một màu (xanh dương, vàng, hồng đỏ, xanh lá, kem), ở phía sau, bên kia mặt nước xanh của bến cảng; phía sau nhà là đồi cây. Không có người.",
+    { id: "harbor", img: "scn-harbor", dur: 9, alt_vi: "Đúng năm ngôi nhà nhiều tầng đứng thành một hàng trên bờ kè đá, mỗi nhà một màu (xanh dương, vàng, hồng đỏ, xanh lá, kem), ở phía sau, bên kia mặt nước xanh của bến cảng; phía sau nhà là đồi cây. Không có người.",
       en: "Several buildings are located along the harbor.", vi: "Vài tòa nhà nằm dọc theo bến cảng.",
       pieces: [["Several buildings", ""], [" are", "be"], [" located", ""], [" along the harbor.", ""]],
       note_vi: "Several buildings + are; located = V3 của locate: nằm ở (trạng thái)",
