@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+<title>Ba người quanh bàn xem bản vẽ</title>
+<desc>Ba người đứng sau một cái bàn gỗ, cùng cúi nhìn một tờ bản vẽ trải trên bàn: người phụ nữ bên trái, người đàn ông ở giữa và người phụ nữ bên phải. Chỉ người đàn ông ở giữa đưa tay chỉ vào tờ giấy. Trên bàn có một cốc nhỏ màu hồng.</desc>
+<rect width="800" height="600" fill="#f5f3ff"/>
+<rect x="0" y="0" width="800" height="470" fill="#ece8ff"/>
+<rect x="0" y="470" width="800" height="130" fill="#d9d2ff"/>
+<g stroke="#1b1740" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<rect x="152" y="212" width="96" height="140" rx="30" fill="#ff9f43"/>
+<rect x="156" y="140" width="88" height="80" rx="32" fill="#7a3b1d"/>
+<rect x="189" y="198" width="22" height="24" rx="8" fill="#ffcfa0"/>
+<circle cx="200" cy="170" r="38" fill="#ffcfa0"/>
+<path d="M160 176C154 112 246 112 240 176C234 148 212 138 200 138C188 138 166 148 160 176Z" fill="#7a3b1d"/>
+<circle cx="186" cy="177" r="4.5" fill="#1b1740" stroke="none"/>
+<circle cx="214" cy="177" r="4.5" fill="#1b1740" stroke="none"/>
+<path d="M190 190Q200 199 210 190" fill="none" stroke-width="4"/>
+<rect x="352" y="212" width="96" height="140" rx="30" fill="#2a3b7a"/><path d="M386 214L400 258L414 214Z" fill="#ffffff" stroke-width="4"/>
+<rect x="389" y="198" width="22" height="24" rx="8" fill="#e8b48a"/>
+<circle cx="400" cy="170" r="38" fill="#e8b48a"/>
+<path d="M360 176C354 112 446 112 440 176C434 148 412 138 400 138C388 138 366 148 360 176Z" fill="#2b2420"/>
+<circle cx="386" cy="177" r="4.5" fill="#1b1740" stroke="none"/>
+<circle cx="414" cy="177" r="4.5" fill="#1b1740" stroke="none"/>
+<path d="M390 190Q400 199 410 190" fill="none" stroke-width="4"/>
+<rect x="552" y="212" width="96" height="140" rx="30" fill="#5bbf6a"/>
+<rect x="589" y="198" width="22" height="24" rx="8" fill="#ffcfa0"/>
+<circle cx="600" cy="170" r="38" fill="#ffcfa0"/>
+<circle cx="600" cy="118" r="17" fill="#1b1740"/>
+<path d="M560 176C554 112 646 112 640 176C634 148 612 138 600 138C588 138 566 148 560 176Z" fill="#1b1740"/>
+<circle cx="586" cy="177" r="4.5" fill="#1b1740" stroke="none"/>
+<circle cx="614" cy="177" r="4.5" fill="#1b1740" stroke="none"/>
+<path d="M590 190Q600 199 610 190" fill="none" stroke-width="4"/>
+<path d="M80 350H720L770 424H30Z" fill="#b97a4a"/><path d="M60 424V560M740 424V560" fill="none" stroke-width="8"/>
+<path d="M270 362H530L556 408H244Z" fill="#ffffff"/><path d="M290 376H480M280 390H500M330 372V402" fill="none" stroke="#8a84b8" stroke-width="3"/>
+<rect x="640" y="364" width="34" height="34" rx="6" fill="#ff4f87"/><path d="M674 372Q692 372 690 384Q688 394 674 392" fill="none"/>
+<path d="M244 232L272 384" fill="none" stroke-width="30"/><path d="M244 232L272 384" fill="none" stroke="#ff9f43" stroke-width="20"/><circle cx="272" cy="384" r="12" fill="#ffcfa0" stroke-width="4"/>
+<path d="M556 232L530 392" fill="none" stroke-width="30"/><path d="M556 232L530 392" fill="none" stroke="#5bbf6a" stroke-width="20"/><circle cx="530" cy="392" r="12" fill="#ffcfa0" stroke-width="4"/>
+<path d="M444 232L486 380" fill="none" stroke-width="30"/><path d="M444 232L486 380" fill="none" stroke="#2a3b7a" stroke-width="20"/><circle cx="486" cy="380" r="12" fill="#e8b48a" stroke-width="4"/>
+<path d="M486 380L496 396" fill="none" stroke="#e8b48a" stroke-width="9"/>
+</g>
+</svg>

@@ -17,7 +17,10 @@ window.BS_CATALOG = {
           "id": "l02",
           "no": 2,
           "title_vi": "Mô tả nhiều người trong hình",
-          "available": false
+          "available": true,
+          "game": true,
+          "anim": true,
+          "animKind": "scenes"
         },
         {
           "id": "l03",

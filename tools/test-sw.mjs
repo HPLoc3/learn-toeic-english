@@ -102,9 +102,10 @@ const okFetch = (url) => {
       walkImg("assets/img/" + u.id);
     }
     check("PRECACHE gồm mọi file của unit available theo catalog (" + need.length + " file)", need.length > 0 && need.every((f) => t.PRECACHE.includes(f)));
-    check("PRECACHE có engine/rig/cast hoạt hình, mascot.js, mascot.css, không có file anim lạ", ["assets/js/anim-engine.js", "assets/js/anim-rig.js", "assets/js/anim-cast.js", "assets/js/anim-scenes.js", "assets/js/mascot.js", "assets/css/mascot.css", "data/l01-anim.js"].every((f) => t.PRECACHE.includes(f)) && t.PRECACHE.filter((f) => /anim/.test(f)).length === 5);
+    check("PRECACHE có engine/rig/cast hoạt hình, mascot.js, mascot.css, không có file anim lạ", ["assets/js/anim-engine.js", "assets/js/anim-rig.js", "assets/js/anim-cast.js", "assets/js/anim-scenes.js", "assets/js/mascot.js", "assets/css/mascot.css", "data/l01-anim.js", "data/l02-anim.js"].every((f) => t.PRECACHE.includes(f)) && t.PRECACHE.filter((f) => /anim/.test(f)).length === 6);
     check("PRECACHE có 7 ảnh cảnh 800w, không có ảnh HD (assets/img-hd)", t.PRECACHE.filter((f) => /^assets\/img\/l01\/scene\/[a-z-]+-800\.webp$/.test(f)).length === 7 && !t.PRECACHE.some((f) => /img-hd/.test(f)));
-    check("PRECACHE không chứa unit chưa available", !t.PRECACHE.some((f) => /^data\/l0[2-9]|^data\/p\d/.test(f)));
+    check("PRECACHE có 7 ảnh cảnh 800w của l02", t.PRECACHE.filter((f) => /^assets\/img\/l02\/scene\/[a-z-]+-800\.webp$/.test(f)).length === 7);
+    check("PRECACHE không chứa unit chưa available", !t.PRECACHE.some((f) => /^data\/l0[3-9]|^data\/p\d/.test(f)));
   }
   await t.fire("install", {});
   const c = t.caches.stores.get(CN);
@@ -305,7 +306,7 @@ async function installed(fetchImpl) {
   // activate chép runtime-cache từ cache cũ
   const t = loadSw(okFetch);
   const oldC = await t.caches.open("tb-1");
-  await oldC.put(ORIGIN + "/data/l02.js", mk("RT", { ct: "text/javascript" }));
+  await oldC.put(ORIGIN + "/data/l03.js", mk("RT", { ct: "text/javascript" }));
   await oldC.put(ORIGIN + "/index.html", mk("OLD"));
   await oldC.put(ORIGIN + "/assets/img-hd/l01/nam-pour-1600.webp", mk("PLACEHOLDER", { ct: "image/webp" }));
   const newC = await t.caches.open(CN);
@@ -314,7 +315,7 @@ async function installed(fetchImpl) {
   const keys = [...t.caches.stores.keys()];
   check("activate xóa cache cũ sau khi chép", !keys.includes("tb-1") && keys.includes(CN));
   const m = t.caches.stores.get(CN);
-  check("activate chép mục runtime sang cache mới", m.has(ORIGIN + "/data/l02.js") && (await m.get(ORIGIN + "/data/l02.js").clone().text()) === "RT");
+  check("activate chép mục runtime sang cache mới", m.has(ORIGIN + "/data/l03.js") && (await m.get(ORIGIN + "/data/l03.js").clone().text()) === "RT");
   check("activate KHÔNG chép ảnh img-hd cũ sang cache mới", !m.has(ORIGIN + "/assets/img-hd/l01/nam-pour-1600.webp"));
   check("activate giữ bản precache mới, không đè bằng bản cũ", (await m.get(ORIGIN + "/index.html").clone().text()) === "NEW");
 }

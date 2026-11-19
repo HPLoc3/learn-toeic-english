@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+<title>Hai người bắt tay nhau</title>
+<desc>Một người phụ nữ mặc áo xanh ngọc, tóc đen ngang vai và một người đàn ông mặc áo vest xanh đậm, áo sơ mi trắng đứng đối mặt nhau, mỉm cười và đang bắt tay ở giữa hình. Phía sau là một ô cửa sổ.</desc>
+<rect width="800" height="600" fill="#f5f3ff"/>
+<rect x="0" y="0" width="800" height="470" fill="#ece8ff"/>
+<rect x="0" y="470" width="800" height="130" fill="#d9d2ff"/>
+<g stroke="#1b1740" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<rect x="330" y="60" width="140" height="120" rx="8" fill="#ffffff"/><path d="M400 60V180M330 120H470" fill="none"/>
+<rect x="212" y="335" width="32" height="211" rx="8" fill="#3b3a5c"/><rect x="256" y="335" width="32" height="211" rx="8" fill="#3b3a5c"/><path d="M204 556H246M254 556H296" fill="none" stroke-width="20"/>
+<rect x="512" y="335" width="32" height="211" rx="8" fill="#3b3a5c"/><rect x="556" y="335" width="32" height="211" rx="8" fill="#3b3a5c"/><path d="M504 556H546M554 556H596" fill="none" stroke-width="20"/>
+<path d="M206 232L200 335" fill="none" stroke-width="30"/><path d="M206 232L200 335" fill="none" stroke="#2bb3a6" stroke-width="20"/><circle cx="200" cy="335" r="12" fill="#ffcfa0" stroke-width="4"/>
+<path d="M594 232L600 335" fill="none" stroke-width="30"/><path d="M594 232L600 335" fill="none" stroke="#2a3b7a" stroke-width="20"/><circle cx="600" cy="335" r="12" fill="#e8b48a" stroke-width="4"/>
+<rect x="202" y="207" width="96" height="140" rx="30" fill="#2bb3a6"/>
+<rect x="502" y="207" width="96" height="140" rx="30" fill="#2a3b7a"/><path d="M536 209L550 253L564 209Z" fill="#ffffff" stroke-width="4"/>
+<rect x="206" y="135" width="88" height="80" rx="32" fill="#1b1740"/>
+<rect x="239" y="193" width="22" height="24" rx="8" fill="#ffcfa0"/>
+<circle cx="250" cy="165" r="38" fill="#ffcfa0"/>
+<path d="M210 171C204 107 296 107 290 171C284 143 262 133 250 133C238 133 216 143 210 171Z" fill="#1b1740"/>
+<circle cx="241" cy="167" r="4.5" fill="#1b1740" stroke="none"/>
+<circle cx="269" cy="167" r="4.5" fill="#1b1740" stroke="none"/>
+<path d="M240 185Q250 194 260 185" fill="none" stroke-width="4"/>
+<rect x="539" y="193" width="22" height="24" rx="8" fill="#e8b48a"/>
+<circle cx="550" cy="165" r="38" fill="#e8b48a"/>
+<path d="M510 171C504 107 596 107 590 171C584 143 562 133 550 133C538 133 516 143 510 171Z" fill="#2b2420"/>
+<circle cx="531" cy="167" r="4.5" fill="#1b1740" stroke="none"/>
+<circle cx="559" cy="167" r="4.5" fill="#1b1740" stroke="none"/>
+<path d="M540 185Q550 194 560 185" fill="none" stroke-width="4"/>
+<path d="M294 232L392 300" fill="none" stroke-width="30"/><path d="M294 232L392 300" fill="none" stroke="#2bb3a6" stroke-width="20"/><circle cx="392" cy="300" r="12" fill="#ffcfa0" stroke-width="4"/>
+<path d="M506 232L408 300" fill="none" stroke-width="30"/><path d="M506 232L408 300" fill="none" stroke="#2a3b7a" stroke-width="20"/><circle cx="408" cy="300" r="12" fill="#e8b48a" stroke-width="4"/>
+</g>
+</svg>
