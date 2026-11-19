@@ -709,24 +709,25 @@ L02 = {
 SCENES_L02 = list(L02)
 # trio-line queue: (layer file suffix, scale, ox), back to front. Each person is a little smaller than the one
 # in front, partly overlapped by them; the front person stands at the counter on the right.
-QUEUE = ((1, 1.0, 143.0), (2, 1.12, 12.0), (3, 1.28, -200.0))
+QUEUE = ((1, 1.0, 160.0), (2, 1.12, 46.0), (3, 1.28, -200.0))
 
 
 def queue_counter(fg):
-    """Foreground counter with till, cup stack on the side the queue faces (canvas px)."""
+    """Foreground counter with till and cup stack on the side the queue faces (canvas px)."""
     top = 600
-    fg.rect(1215, top - 8, W + 40, top + 22, fill=(232, 196, 160, 255), ol=OL, w=1.6, r=4)
-    fg.rect(1225, top + 22, W + 40, H + 20, fill=WOOD_F + (255,), ol=OL, w=1.6)
+    dx = -55                                      # counter starts right next to the front person
+    fg.rect(1215 + dx, top - 8, W + 40, top + 22, fill=(232, 196, 160, 255), ol=OL, w=1.6, r=4)
+    fg.rect(1225 + dx, top + 22, W + 40, H + 20, fill=WOOD_F + (255,), ol=OL, w=1.6)
     for k in range(3):
-        fg.rect(1255 + k * 140, top + 70, 1355 + k * 140, H + 30, fill=WOOD_D + (255,), ol=OL, w=1.4, r=4)
+        fg.rect(1255 + dx + k * 140, top + 70, 1355 + dx + k * 140, H + 30, fill=WOOD_D + (255,), ol=OL, w=1.4, r=4)
     # till
-    fg.rect(1290, top - 120, 1430, top - 8, fill=(205, 198, 224, 255), ol=OL, w=1.6, r=8)
-    fg.rect(1304, top - 106, 1416, top - 70, fill=(98, 82, 128, 255), ol=OL, w=1.4, r=4)
-    fg.rect(1304, top - 62, 1360, top - 22, fill=(176, 168, 206, 255), ol=OL, w=1.4, r=3)
-    fg.ell(1392, top - 40, 12, 12, fill=YEL + (255,), ol=OL, w=1.2)
+    fg.rect(1290 + dx, top - 120, 1430 + dx, top - 8, fill=(205, 198, 224, 255), ol=OL, w=1.6, r=8)
+    fg.rect(1304 + dx, top - 106, 1416 + dx, top - 70, fill=(98, 82, 128, 255), ol=OL, w=1.4, r=4)
+    fg.rect(1304 + dx, top - 62, 1360 + dx, top - 22, fill=(176, 168, 206, 255), ol=OL, w=1.4, r=3)
+    fg.ell(1392 + dx, top - 40, 12, 12, fill=YEL + (255,), ol=OL, w=1.2)
     # takeaway cup stack
     for k in range(3):
-        x = 1470 + k * 50
+        x = 1470 + dx + k * 50
         fg.poly([(x, top - 8), (x + 38, top - 8), (x + 32, top - 76), (x + 6, top - 76)], fill=(250, 248, 244, 255), ol=OL, w=1.4)
         fg.rect(x + 2, top - 84, x + 36, top - 74, fill=(238, 226, 214, 255), ol=OL, w=1.2, r=3)
 
