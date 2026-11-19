@@ -32,7 +32,7 @@ if (engineReady) {
   vm.createContext(ctxCast);
 }
 load('assets/js/anim-cast.js', ctxCast);
-load('data/l01-anim.js', ctxCast);
+load('tools/fixtures/l01-anim-rig.js', ctxCast);
 const D = ctxCast.window.BS_ANIMS && ctxCast.window.BS_ANIMS.l01;
 
 // ---------- 4. markup an toan, dien vien ----------
@@ -240,8 +240,8 @@ function runFixture(BSAnim) {
 section('kich thuoc');
 const sz = (p) => fs.statSync(path.join(root, p)).size;
 ok(sz('assets/js/anim-cast.js') <= 14 * 1024, 'anim-cast.js ' + sz('assets/js/anim-cast.js') + ' > 14KB');
-ok(sz('data/l01-anim.js') <= 5 * 1024, 'l01-anim.js ' + sz('data/l01-anim.js') + ' > 5KB');
-ok(!/\b(fetch\(|XMLHttpRequest|localStorage|eval\(|new Function)/.test(rd('assets/js/anim-cast.js') + rd('data/l01-anim.js')), 'khong co API cam');
+ok(sz('tools/fixtures/l01-anim-rig.js') <= 5 * 1024, 'l01-anim.js ' + sz('tools/fixtures/l01-anim-rig.js') + ' > 5KB');
+ok(!/\b(fetch\(|XMLHttpRequest|localStorage|eval\(|new Function)/.test(rd('assets/js/anim-cast.js') + rd('tools/fixtures/l01-anim-rig.js')), 'khong co API cam');
 
 console.log('\nDat ' + pass + ', that bai ' + fail + ', bo qua (CHO GOI A) ' + skip);
 process.exit(fail ? 1 : 0);
