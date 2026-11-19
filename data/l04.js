@@ -118,7 +118,7 @@ window.BS_UNITS.l04 = {
     { "id": "s01", "en": "A boat is floating on the water.", "vi": "Một chiếc thuyền đang nổi trên mặt nước." },
     { "id": "s02", "en": "A bridge extends over the river.", "vi": "Một cây cầu bắc qua sông." },
     { "id": "s03", "en": "Trees are lining the path.", "vi": "Những hàng cây đứng dọc hai bên lối đi." },
-    { "id": "s04", "en": "Mountains are visible in the distance.", "vi": "Có thể nhìn thấy những ngọn núi ở phía xa." },
+    { "id": "s04", "en": "Mountains rise above the lake.", "vi": "Những ngọn núi nhô cao phía trên mặt hồ." },
     { "id": "s05", "en": "A road runs through the field.", "vi": "Một con đường chạy xuyên qua cánh đồng." },
     { "id": "s06", "en": "Several buildings are located along the harbor.", "vi": "Vài tòa nhà nằm dọc theo bến cảng." }
   ],
@@ -130,7 +130,7 @@ window.BS_UNITS.l04 = {
       "items": [
         { "id": "fill1-1", "before": "A road", "after": "through the field.", "answers": ["runs", "goes", "passes", "winds"] },
         { "id": "fill1-2", "before": "A bridge", "after": "over the river.", "answers": ["extends", "stretches", "crosses"] },
-        { "id": "fill1-3", "before": "Rivers", "after": "into the sea.", "answers": ["flow", "run"] },
+        { "id": "fill1-3", "before": "Rivers", "after": "into the sea.", "answers": ["flow", "run", "empty"] },
         { "id": "fill1-4", "before": "Trees are", "after": "the path.", "answers": ["lining", "flanking"] },
         { "id": "fill1-5", "before": "A boat is", "after": "on the water.", "answers": ["floating", "drifting", "sailing"] },
         { "id": "fill1-6", "before": "A house is", "after": "by tall trees.", "answers": ["surrounded", "shaded"] },

@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Build the Unit 3 outro picture: a 3x2 grid of the six scene images, no text.
+"""Build an outro picture: a 3x2 grid of the six scene images of a unit, no text.
 
 Pillow only. Cells have rounded corners and are separated by thin gaps in the app's
-soft lavender (#e9e4fb). Each scene is cover-cropped to its cell (the cell is taller
-than 16:9, so the sides are trimmed; per-scene horizontal centres keep the key object).
+soft lavender (#e9e4fb). Cells are 16:9 like the scenes, so the whole scene is shown
+(at most a hairline is trimmed); the grid is centred vertically and the canvas keeps
+lavender bands above and below. CENTERS only matters for sources that are not 16:9.
 
 Run from the repo root:
   python tools/make-outro-grid.py --src DIR [--out FILE] [--names a,b,c,d,e,f] [--margin 28] [--gap 20] [--radius 24]
@@ -11,9 +12,10 @@ Run from the repo root:
 --src   folder holding <name>.png / .jpg / .jpeg / .webp for the six scenes
 --out   output PNG, 1600x900, must end in .png and must not be one of the input files
         (when omitted, the default is <src>/obj-outro.png)
---names row-major order, default obj-table,obj-boxes,obj-bike,obj-cars,obj-lamp,obj-books
+--names row-major order of the six scene names (any unit); default is the Unit 3 list obj-table,obj-boxes,obj-bike,obj-cars,obj-lamp,obj-books
+        e.g. Unit 4: --names scn-boat,scn-bridge,scn-trees,scn-mountains,scn-road,scn-harbor --out DIR/scn-outro.png
 Then make the shipped webp files with:
-  python tools/make-scenes.py --src DIR --unit l03 --names obj-outro
+  python tools/make-scenes.py --src DIR --unit l03 --names obj-outro   (Unit 4: --unit l04 --names scn-outro)
 Writes only the --out file.
 """
 import argparse
@@ -65,7 +67,8 @@ def main():
         print("missing source images in %s: %s" % (a.src, ", ".join(miss)), file=sys.stderr)
         return 3
     cw = (W - 2 * a.margin - 2 * a.gap) // 3
-    ch = (H - 2 * a.margin - a.gap) // 2
+    ch = cw * 9 // 16
+    top = (H - 2 * ch - a.gap) // 2
     SS = 3  # supersampled rounded-corner mask
     mask = Image.new("L", (cw * SS, ch * SS), 0)
     ImageDraw.Draw(mask).rounded_rectangle((0, 0, cw * SS - 1, ch * SS - 1), a.radius * SS, fill=255)
@@ -75,7 +78,7 @@ def main():
         im = Image.open(p).convert("RGB")
         cell = cover(im, cw, ch, CENTERS.get(n, 0.5))
         x = a.margin + (i % 3) * (cw + a.gap)
-        y = a.margin + (i // 3) * (ch + a.gap)
+        y = top + (i // 3) * (ch + a.gap)
         canvas.paste(cell, (x, y), mask)
     out = a.out or os.path.join(a.src, "obj-outro.png")
     if not out.lower().endswith(".png"):

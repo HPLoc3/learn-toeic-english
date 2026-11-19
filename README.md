@@ -46,7 +46,7 @@ Bản hiện tại có `VERSION` là `4` (thêm hoạt hình theo dữ liệu, l
 3. Chạy `node tools/check-sw.mjs` (phải ra "đạt", exit 0), `node tools/test-sw.mjs`, `node tools/check-units.mjs`.
 4. Thêm/bớt file CSS hoặc JS dùng chung, hoặc thêm unit `available: true`: cập nhật danh sách `PRECACHE` trong `sw.js` (check-sw báo thiếu/thừa theo thư mục và catalog). Hoạt hình, dữ liệu và hình của unit chưa `available` không vào PRECACHE.
 5. Trước khi phát hành lần đầu: đặt `LEGACY_ANCHOR` trong `assets/js/srs.js` bằng ngày deploy thật (không để giá trị tạm).
-6. Trước khi deploy lên https: chạy `node tools/check-units.mjs --release`. Lệnh này cố ý báo lỗi khi còn unit có `placeholder: true` (hiện là Unit 3: cảnh `obj-cars` và ảnh tổng kết `obj-outro` còn là ảnh tạm; và Unit 4: cả bảy ảnh `scn-*` trong `assets/img/l04/scene` và `assets/img-hd/l04` còn là ảnh tạm). Chưa được deploy cho đến khi chủ site thay ảnh thật và bỏ `placeholder: true`, hoặc chủ site chủ động bỏ qua cổng này (ghi lại quyết định đó).
+6. Trước khi deploy lên https: chạy `node tools/check-units.mjs --release`. Lệnh này cố ý báo lỗi khi còn unit có `placeholder: true` (hiện là Unit 3: cảnh `obj-cars` và ảnh tổng kết `obj-outro` còn là ảnh tạm). Chưa được deploy cho đến khi chủ site thay ảnh thật và bỏ `placeholder: true`, hoặc chủ site chủ động bỏ qua cổng này (ghi lại quyết định đó).
 7. Đổi icon: sửa `tools/make-icons.py` rồi chạy `python tools/make-icons.py`.
 
 `_headers` (Cloudflare Pages) đặt noindex, nosniff, Referrer-Policy no-referrer và không cho cache `sw.js`. Chưa có CSP. Sau khi deploy, kiểm bằng `curl -I`: `/sw.js` có `Cache-Control: no-cache`, `/manifest.webmanifest` trả `Content-Type: application/manifest+json` (hoặc JSON), các trang có `X-Robots-Tag`.
