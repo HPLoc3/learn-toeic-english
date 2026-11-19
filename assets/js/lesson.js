@@ -94,7 +94,8 @@
         return;
       }
       var api = null;
-      try { api = window.BSAnim && typeof window.BSAnim.mount === "function" ? window.BSAnim.mount(host, def) : null; }
+      var eng = def.kind === "scenes" ? window.BSScenes : window.BSAnim;
+      try { api = eng && typeof eng.mount === "function" ? eng.mount(host, def) : null; }
       catch (e) { api = null; }
       if (!api) {
         host.textContent = "";

@@ -1,7 +1,7 @@
 /* loader.js - nap du lieu unit theo yeu cau (data/<id>.js, data/<id>-game.js; hoat hinh nap rieng bang loadAnim). Khong goi mang ngoai.
  * Chi nap id co trong BS_CATALOG, khop ^[a-z0-9-]+$ va available:true (localhost + che do bien tap: xem truoc ca unit chua mo).
  * API: BS.catalogUnit(id), BS.availableUnits(), BS.loadUnit(id, cb(u|null, err)), BS.loadUnits(ids, cb(map)),
- * BS.loadAnim(id, cb(def|null, err)) (chi khi catalog anim === true). Phat su kien bs:units. */
+ * BS.loadAnim(id, cb(def|null, err)) (chi khi catalog anim === true; animKind "scenes" nap anim-scenes.js, con lai nap engine/rig/cast). Phat su kien bs:units. */
 (function () {
   "use strict";
   var BS = window.BS;
@@ -97,33 +97,43 @@
     });
   }
 
-  /* ---- hoat hinh: nap rieng khi mo tab, 3 file dung chung nap mot lan ---- */
-  var ANIM_SHARED = ["assets/js/anim-engine.js", "assets/js/anim-rig.js", "assets/js/anim-cast.js"];
-  var sharedState = null; /* null | "loading" | "ok" | "error" */
-  var sharedWait = [];
+  /* ---- hoat hinh: nap rieng khi mo tab; moi kind (rig | scenes) co danh sach chung, trang thai va hang doi rieng ---- */
+  var ANIM_SHARED = {
+    rig: ["assets/js/anim-engine.js", "assets/js/anim-rig.js", "assets/js/anim-cast.js"],
+    scenes: ["assets/js/anim-scenes.js"]
+  };
+  var kindReady = {
+    rig: function () { return !!(window.BSAnim && window.BSRig); },
+    scenes: function () { return !!window.BSScenes; }
+  };
+  var shared = {}; /* kind -> { state: null|"loading"|"ok", wait: [] } */
   var animPending = {}; /* id -> [callbacks] */
 
-  function loadShared(cb) {
-    if (sharedState === "ok") { cb(true); return; }
-    sharedWait.push(cb);
-    if (sharedState === "loading") return;
-    sharedState = "loading";
-    var left = ANIM_SHARED.length, bad = false;
+  function animKind(entry) { return entry && entry.animKind === "scenes" ? "scenes" : "rig"; }
+
+  function loadShared(kind, cb) {
+    var st = shared[kind] || (shared[kind] = { state: null, wait: [] });
+    if (st.state === "ok") { cb(true); return; }
+    st.wait.push(cb);
+    if (st.state === "loading") return;
+    st.state = "loading";
+    var files = ANIM_SHARED[kind], left = files.length, bad = false;
     function one(ok) {
       if (!ok) bad = true;
       if (--left > 0) return;
-      sharedState = (!bad && window.BSAnim && window.BSRig) ? "ok" : null; /* loi thi cho phep thu lai */
-      var w = sharedWait; sharedWait = [];
-      w.forEach(function (f) { f(sharedState === "ok"); });
+      st.state = (!bad && kindReady[kind]()) ? "ok" : null; /* loi thi cho phep thu lai */
+      var w = st.wait; st.wait = [];
+      w.forEach(function (f) { f(st.state === "ok"); });
     }
-    ANIM_SHARED.forEach(function (f) { addScript(f, function () { one(true); }, function () { one(false); }); });
+    files.forEach(function (f) { addScript(f, function () { one(true); }, function () { one(false); }); });
   }
 
   function loadAnim(id, cb) {
     cb = typeof cb === "function" ? cb : function () {};
     var entry = catalogUnit(id);
     if (!entry || !allowed(entry) || entry.anim !== true) { setTimeout(function () { cb(null, "not-found"); }, 0); return; }
-    if (window.BS_ANIMS && window.BS_ANIMS[id] && sharedState === "ok") { setTimeout(function () { cb(window.BS_ANIMS[id], null); }, 0); return; }
+    var kind = animKind(entry);
+    if (window.BS_ANIMS && window.BS_ANIMS[id] && shared[kind] && shared[kind].state === "ok") { setTimeout(function () { cb(window.BS_ANIMS[id], null); }, 0); return; }
     if (animPending[id]) { animPending[id].push(cb); return; }
     animPending[id] = [cb];
     var finished = false, timer = null;
@@ -136,7 +146,7 @@
       cbs.forEach(function (f) { try { f(def, def ? null : err); } catch (e) { /* bo qua */ } });
     }
     timer = setTimeout(function () { end(null, "timeout"); }, TIMEOUT);
-    loadShared(function (ok) {
+    loadShared(kind, function (ok) {
       if (finished) return;
       if (!ok) { end(null, "load-error"); return; }
       if (window.BS_ANIMS && window.BS_ANIMS[id]) { end(window.BS_ANIMS[id]); return; }

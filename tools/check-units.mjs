@@ -3,6 +3,7 @@
  * Cach dung:
  *   node tools/check-units.mjs              kiem catalog va moi unit co "available": true
  *   node tools/check-units.mjs --unit l02   kiem them unit chua mo (bat ke available)
+ *   --release                               that bai neu du lieu hoat hinh con "placeholder": true (binh thuong chi canh bao)
  *   --root <thu-muc>                        goc du an (mac dinh: thu muc cha cua tools/), dung de thu nghiem
  * Loi -> thoat ma 1. Canh bao khong lam hong ket qua. */
 import fs from "node:fs";
@@ -19,9 +20,11 @@ const GAME_ROUNDS_PER_PLAY = 10;
 const here = path.dirname(fileURLToPath(import.meta.url));
 let ROOT = path.resolve(here, "..");
 let only = null;
+let RELEASE = false;
 const argv = process.argv.slice(2);
 for (let i = 0; i < argv.length; i++) {
   if (argv[i] === "--unit") only = argv[++i];
+  else if (argv[i] === "--release") RELEASE = true;
   else if (argv[i] === "--root") ROOT = path.resolve(argv[++i] || ".");
   else { console.error("Tham so khong hop le: " + argv[i]); process.exit(2); }
 }
@@ -83,6 +86,8 @@ function loadCatalog() {
       if (!nonEmpty(u.title_vi)) err("catalog: unit '" + u.id + "' thiếu title_vi.");
       if (u.available && u.game === true) { /* kiem game o duoi */ }
       if (u.anim !== undefined && u.anim !== true) err("catalog: unit '" + u.id + "' có 'anim' không hợp lệ: chỉ nhận true (không còn đường dẫn). Hoạt hình nằm ở data/" + u.id + "-anim.js, xem tools/templates/HUONG-DAN-UNIT.txt.");
+      if (u.animKind !== undefined && u.animKind !== "rig" && u.animKind !== "scenes") err("catalog: unit '" + u.id + "' có 'animKind' không hợp lệ ('" + u.animKind + "'): chỉ nhận \"scenes\" hoặc \"rig\".");
+      else if (u.animKind !== undefined && u.anim !== true) warn("catalog: unit '" + u.id + "' có animKind nhưng không bật \"anim\": true.");
       entries.push(u);
     });
   });
@@ -298,7 +303,8 @@ function checkUnit(entry) {
 /* ---------- hoat hinh du lieu (anim:true) ---------- */
 function checkAnim(entry, e, w) {
   const id = entry.id, file = "data/" + id + "-anim.js";
-  const shared = ["assets/js/anim-engine.js", "assets/js/anim-rig.js", "assets/js/anim-cast.js"];
+  const scenes = entry.animKind === "scenes";
+  const shared = scenes ? ["assets/js/anim-scenes.js"] : ["assets/js/anim-engine.js", "assets/js/anim-rig.js", "assets/js/anim-cast.js"];
   if (!exists(file)) { e("catalog bật anim:true nhưng thiếu tệp " + file + "."); return; }
   const miss = shared.filter((f) => !exists(f));
   if (miss.length) { e("thiếu tệp dùng chung của hoạt hình: " + miss.join(", ") + "."); return; }
@@ -309,9 +315,14 @@ function checkAnim(entry, e, w) {
   try {
     shared.forEach((f) => vm.runInNewContext(read(f), win, { filename: f, timeout: 5000 }));
     vm.runInNewContext(code, win, { filename: file, timeout: 5000 });
-  } catch (x) { e(file + " (hoặc engine/rig/cast) lỗi khi nạp: " + x.message); return; }
+  } catch (x) { e(file + " (hoặc engine) lỗi khi nạp: " + x.message); return; }
   const def = win.BS_ANIMS && win.BS_ANIMS[id];
   if (!isObj(def)) { e(file + " không đặt window.BS_ANIMS." + id + "."); return; }
+  if (def.placeholder === true) {
+    const m = file + ": dữ liệu/ảnh còn là placeholder (\"placeholder\": true).";
+    if (RELEASE) e(m + " Không được phát hành (--release)."); else w(m);
+  }
+  if (scenes) { checkScenes(entry, def, file, win, e, w); return; }
   if (!win.BSAnim || typeof win.BSAnim.validate !== "function" || !win.BSRig) { e("engine/rig không xuất BSAnim.validate / BSRig."); return; }
   let errs;
   try { errs = win.BSAnim.validate(def, win.BSRig); } catch (x) { e(file + ": validate ném lỗi: " + x.message); return; }
@@ -321,6 +332,36 @@ function checkAnim(entry, e, w) {
     if (!isObj(sc) || !Array.isArray(sc.pieces)) return;
     const joined = sc.pieces.map((p) => (Array.isArray(p) ? p[0] : "")).join("");
     if (joined !== sc.en) e(file + ": scenes[" + i + "] câu 'en' (" + JSON.stringify(sc.en) + ") không khớp các pieces nối lại (" + JSON.stringify(joined) + ").");
+  });
+}
+
+/* du lieu v2 (animKind "scenes"): validate cua BSScenes + kiem nhe hinh dang va anh 800 */
+function checkScenes(entry, def, file, win, e, w) {
+  const id = entry.id;
+  if (!win.BSScenes || typeof win.BSScenes.validate !== "function") { e("anim-scenes.js không xuất BSScenes.validate."); return; }
+  let errs;
+  try { errs = win.BSScenes.validate(def); } catch (x) { e(file + ": BSScenes.validate ném lỗi: " + x.message); return; }
+  (errs || []).forEach((m) => e(file + ": " + m));
+  if (def.v !== 2 || def.kind !== "scenes") e(file + ": cần v:2 và kind:\"scenes\".");
+  if (def.id !== id) e(file + ": id trong dữ liệu ('" + def.id + "') khác catalog ('" + id + "').");
+  if (!isObj(def.img) || typeof def.img.base !== "string") { e(file + ": thiếu img.base."); return; }
+  const list = Array.isArray(def.scenes) ? def.scenes : [];
+  if (!list.length) e(file + ": scenes rỗng.");
+  const names = list.map((sc) => sc && sc.img);
+  if (isObj(def.outro)) names.push(def.outro.img);
+  const sids = {};
+  list.forEach((sc, i) => {
+    if (!isObj(sc)) return;
+    if (sids[sc.id]) e(file + ": scenes[" + i + "] id '" + sc.id + "' bị trùng."); sids[sc.id] = 1;
+    if (Array.isArray(sc.pieces) && sc.pieces.map((p) => (Array.isArray(p) ? p[0] : "")).join("") !== sc.en) e(file + ": scenes[" + i + "] pieces nối lại không bằng 'en'.");
+  });
+  const seen = {};
+  names.forEach((n) => {
+    if (typeof n !== "string" || !/^[a-z0-9-]{1,32}$/.test(n) || seen[n]) return;
+    seen[n] = 1;
+    const f = def.img.base + n + "-800.webp";
+    if (!/^assets\/img\//.test(f) || f.includes("..")) { e(file + ": đường dẫn ảnh '" + f + "' không hợp lệ."); return; }
+    if (!exists(f)) e(file + ": thiếu ảnh " + f + ".");
   });
 }
 
