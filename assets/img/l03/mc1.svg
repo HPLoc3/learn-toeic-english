@@ -10,7 +10,7 @@
 <rect x="128" y="250" width="24" height="152" rx="4" fill="#8a5a3b"/><circle cx="140" cy="214" r="66" fill="#5bbf6a"/>
 <rect x="630" y="90" width="170" height="380" fill="#e7b9a0"/>
 <path d="M630 150H800M630 210H800M630 270H800M630 330H800M700 90V150M760 150V210M700 210V270M760 270V330M700 330V470M630 390H800" fill="none" stroke-width="3"/>
-<g transform="translate(509 444) rotate(12 42 0)">
+<g transform="translate(514 444)">
 <circle cx="0" cy="-32" r="32" fill="#ffffff" fill-opacity="0.6"/><circle cx="84" cy="-32" r="32" fill="#ffffff" fill-opacity="0.6"/>
 <circle cx="0" cy="-32" r="5" fill="#1b1740"/><circle cx="84" cy="-32" r="5" fill="#1b1740"/>
 <path d="M0 -32L38 -30L26 -72L72 -74L38 -30M72 -74L84 -32M72 -74L68 -92L82 -94M14 -78H38M38 -30L46 -22" fill="none" stroke-width="12"/>

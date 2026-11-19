@@ -9,7 +9,7 @@ window.BS_UNITS.l03 = {
     "tips": [
       {
         "id": "tip1",
-        "text_vi": "Khi ảnh chỉ có đồ vật, hãy nghe thật kỹ giới từ chỉ vị trí: on (trên, có chạm vào), above / over (phía trên, không chạm), under / below (bên dưới), next to / beside (bên cạnh), in front of (phía trước), behind (phía sau), between (ở giữa hai vật), along (dọc theo), across from (đối diện), near (gần). Nghe giới từ xong thì nhìn xem vật có đúng chỗ đó không. Cặp hay bị đổi chỗ nhất là on với above, và in front of với behind.",
+        "text_vi": "Khi ảnh chỉ có đồ vật, hãy nghe thật kỹ giới từ chỉ vị trí: on (trên, có chạm vào), above (phía trên, không chạm), over (phía trên, có thể phủ lên), under / below (bên dưới), next to / beside (bên cạnh), in front of (phía trước), behind (phía sau), between (ở giữa hai vật), along (dọc theo), across from (đối diện), near (gần). Nghe giới từ xong thì nhìn xem vật có đúng chỗ đó không. Cặp hay bị đổi chỗ nhất là on với above, và in front of với behind.",
         "image": "assets/img/l03/focus.svg",
         "examples": [
           { "en": "The cup is on the table.", "vi": "Cái cốc ở trên bàn." },
@@ -29,17 +29,18 @@ window.BS_UNITS.l03 = {
       },
       {
         "id": "tip3",
-        "text_vi": "Đồ vật không tự làm gì, nên Part 1 hay dùng be + V3 (quá khứ phân từ) để tả trạng thái: vật đang ở tình trạng đó, không ai đang làm lúc này. Hay gặp: stacked (xếp chồng), arranged (sắp xếp), parked (đậu), displayed (trưng bày), lined up (xếp thành hàng), placed (đặt), piled (chất đống), stored (cất giữ), mounted (gắn lên), covered with (phủ bằng), filled with (đầy). Một số vật dùng V-ing để tả tư thế: leaning against (dựa vào), hanging above (treo phía trên), lying on (nằm trên).",
+        "text_vi": "Đồ vật không tự làm gì, nên Part 1 hay dùng be + V3 (quá khứ phân từ) để tả trạng thái: vật đang ở tình trạng đó, không ai đang làm lúc này. Hay gặp: stacked (xếp chồng), arranged (sắp xếp), parked (đậu), displayed (trưng bày), lined up (xếp thành hàng), placed (đặt), piled (chất đống), stored (cất giữ), mounted (gắn lên), covered with (phủ bằng), filled with (đầy). Một số vật dùng V-ing để tả tư thế: leaning against (dựa vào), hanging above (treo phía trên), lying on (nằm trên). Động từ hang có thể dùng cả hai dạng: be + hung (đã được treo sẵn) hoặc be + hanging (đang treo ở đó).",
         "examples": [
           { "en": "Some boxes are stacked on a shelf.", "vi": "Một vài cái thùng được xếp chồng trên kệ." },
           { "en": "Cars are parked along the street.", "vi": "Những chiếc xe hơi đang đậu dọc theo con đường." },
           { "en": "The chairs are arranged around a table.", "vi": "Những cái ghế được sắp xếp quanh một cái bàn." },
-          { "en": "A bicycle is leaning against the wall.", "vi": "Một chiếc xe đạp đang dựa vào tường." }
+          { "en": "A bicycle is leaning against the wall.", "vi": "Một chiếc xe đạp đang dựa vào tường." },
+          { "en": "A car is parked in front of the house.", "vi": "Một chiếc xe hơi đang đậu phía trước ngôi nhà." }
         ]
       },
       {
         "id": "tip4",
-        "text_vi": "Cẩn thận với is / are being + V3. Dạng này nghĩa là ĐANG ĐƯỢC làm, nên chỉ hợp lý khi trong hình có người đang làm việc đó. Ảnh không có người thì các câu như The boxes are being loaded hay The tables are being cleaned thường là bẫy. Thấy vật nằm yên thì chọn be + V3 (stacked, parked), đừng chọn being + V3.",
+        "text_vi": "Cẩn thận với is / are being + V3. Dạng này nghĩa là ĐANG ĐƯỢC làm, nên thường chỉ hợp lý khi trong hình có người đang làm việc đó. Ngoại lệ hay gặp: is/are being displayed (đang được trưng bày) vẫn có thể là câu đúng dù ảnh không có người. Ảnh không có người thì các câu như The boxes are being loaded hay The tables are being cleaned thường là bẫy. Thấy vật nằm yên thì chọn be + V3 (stacked, parked), đừng chọn being + V3.",
         "examples": [
           { "en": "The boxes are stacked near the door.", "vi": "(Câu ĐÚNG khi thùng nằm yên gần cửa) Những cái thùng được xếp chồng gần cửa." },
           { "en": "The boxes are being loaded onto a truck.", "vi": "(Câu SAI khi không có ai) Những cái thùng đang được chất lên xe tải. Không có người nào đang chất hàng." },
@@ -62,7 +63,7 @@ window.BS_UNITS.l03 = {
     { "id": "v001", "en": "table", "vi": "cái bàn", "group": "focus" },
     { "id": "v002", "en": "under", "vi": "ở dưới", "group": "focus" },
     { "id": "v003", "en": "next to", "vi": "bên cạnh", "group": "focus" },
-    { "id": "v004", "en": "above", "vi": "ở phía trên (không chạm)", "group": "focus" },
+    { "id": "v004", "en": "above", "vi": "ở phía trên (không chạm vào)", "group": "focus" },
     { "id": "v005", "en": "in front of", "vi": "phía trước", "group": "focus" },
     { "id": "v006", "en": "behind", "vi": "phía sau", "group": "focus" },
     { "id": "v007", "en": "between", "vi": "ở giữa (hai vật)", "group": "focus" },
@@ -80,7 +81,7 @@ window.BS_UNITS.l03 = {
     { "id": "v019", "en": "floor", "vi": "sàn nhà", "group": "tf2" },
     { "id": "v020", "en": "stack", "vi": "xếp chồng; chồng", "group": "tf2" },
     { "id": "v021", "en": "storeroom", "vi": "phòng kho", "group": "tf2" },
-    { "id": "v022", "en": "bench", "vi": "ghế dài", "group": "tf2" },
+    { "id": "v022", "en": "bench", "vi": "ghế dài", "group": "focus" },
     { "id": "v023", "en": "arrange", "vi": "sắp xếp", "group": "fill" },
     { "id": "v024", "en": "lean", "vi": "dựa, nghiêng vào", "group": "fill" },
     { "id": "v025", "en": "park", "vi": "đậu (xe)", "group": "fill" },
@@ -126,11 +127,11 @@ window.BS_UNITS.l03 = {
         { "id": "fill1-2", "before": "Some boxes are", "after": "on top of each other in the corner.", "answers": ["stacked"] },
         { "id": "fill1-3", "before": "A bicycle is", "after": "against the fence.", "answers": ["leaning"] },
         { "id": "fill1-4", "before": "Cars are", "after": "along both sides of the street.", "answers": ["parked"] },
-        { "id": "fill1-5", "before": "A lamp is", "after": "from the ceiling above the desk.", "answers": ["hanging"] },
+        { "id": "fill1-5", "before": "A lamp is", "after": "from the ceiling above the desk.", "answers": ["hanging", "hung"] },
         { "id": "fill1-6", "before": "The books are", "after": "up on the shelf.", "answers": ["lined"] },
         { "id": "fill1-7", "before": "The table is", "after": "with a white cloth.", "answers": ["covered"] },
         { "id": "fill1-8", "before": "The vase is", "after": "with fresh flowers.", "answers": ["filled"] },
-        { "id": "fill1-9", "before": "Some jackets are", "after": "on hooks by the door.", "answers": ["hung"] },
+        { "id": "fill1-9", "before": "Some jackets are", "after": "on hooks by the door.", "answers": ["hung", "hanging"] },
         { "id": "fill1-10", "before": "Some papers are", "after": "high on the desk.", "answers": ["piled", "stacked"] }
       ]
     },
