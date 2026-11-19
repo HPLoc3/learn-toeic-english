@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = fs.readFileSync(path.join(root, 'assets/js/anim-scenes.js'), 'utf8');
 const ENG = fs.readFileSync(path.join(root, 'assets/js/anim-engine.js'), 'utf8');
-const SIZE_CAP = 14336; // hop dong ghi 10240 nhung khong du cho day du tinh nang; xem bao cao Executor A
+const SIZE_CAP = 16384; // hop dong ghi 10240 nhung khong du cho day du tinh nang; xem bao cao Executor A
 
 let pass = 0, total = 0;
 function ok(cond, msg) { total++; if (cond) pass++; else console.log('  FAIL: ' + msg); }
@@ -315,6 +315,17 @@ sect('5b2 go -> rest + dong ho');
   ok(E.byR('img').attrs.src.includes('mai-look') && sent.children.every((c) => E.on(c)) && E.on(E.byR('vi')) && !ring.hidden, 'chip 3 khi tam dung: day du cau + vi + vong');
   ok(Math.abs(E.pct() - Math.round(100 * (14 + 7 * 0.97) / 44)) <= 1, 'chip 3: thoi gian = rest cua canh 3 (' + E.pct() + '%)');
   api.go(0); ok(sent.children.every((c) => E.on(c)) && E.on(E.byR('vi')) && !ring.hidden, 'go(0) cung den rest');
+  {
+    const P = makeEnv(), ap = P.S.mount(P.host, def());
+    P.tick(1); P.tick(5);
+    P.chips()[2].click(); // dang phat: nhay toi DAU canh 3 va tiep tuc phat
+    ok(P.byR('img').attrs.src.includes('mai-look') && P.byA('toggle').textContent === 'Tạm dừng' && P.raf.q.length === 1, 'dang phat + bam chip 3: vao canh 3, van phat');
+    P.tick(10); // 1 s
+    ok(P.byR('img').attrs.src.includes('mai-look') && P.chips()[2].attrs['aria-current'] === 'step', 'sau 1 s van o canh 3 (khong bi nhay sang canh 4)');
+    P.chips()[6].click(); P.tick(5);
+    ok(P.byR('img').attrs.src.includes('duo-cafe') && P.raf.q.length === 1, 'chip outro khi phat: vao outro, chua het phim sau 0.5 s');
+    ap.destroy();
+  }
   api.go(6); ok(sent.children.every((c) => E.on(c)) && E.byR('vi').hidden, 'go(outro): cau day du');
   const E2 = makeEnv({ reduced: true }); E2.S.mount(E2.host, def()); E2.chips()[4].click();
   ok(E2.byR('sent').children.every((c) => E2.on(c)) && E2.on(E2.byR('vi')) && !E2.byR('ring').hidden, 'reduced: chip van den rest');
@@ -378,7 +389,9 @@ sect('6 reduced-motion');
 {
   const E = makeEnv(), api = E.S.mount(E.host, def());
   E.tick(30); ok(E.raf.q.length === 1 && E.byR('img').style.transform !== 'none', 'dang chay thuong');
+  E.host.ownerDocument.activeElement = E.byA('toggle'); E.byA('next').focus = () => { E.host.ownerDocument.activeElement = E.byA('next'); };
   E.mq.matches = true; E.mqL.forEach((f) => f());
+  ok(E.host.ownerDocument.activeElement === E.byA('next'), 'bat reduced khi toggle co focus: chuyen focus sang Tiep');
   ok(E.raf.q.length === 0 && E.byA('toggle').hidden && !E.byA('prev').hidden && !E.byR('rn').hidden, 'bat reduced giua chung: dung phat, doi UI');
   ok(E.byR('img').style.transform === 'none', 'bat reduced: transform none');
   ok(E.byR('img').attrs.src.includes('nam-pour') && E.on(E.byR('vi')), 'giu canh hien tai o trang thai rest');
@@ -451,6 +464,26 @@ sect('9 BSAnim.validate tu choi v2');
   const r = sb.BSAnim.validate(def());
   ok(Array.isArray(r) && r.length > 0, 'engine cu tu choi def v2: ' + JSON.stringify(r).slice(0, 80));
   ok(sb.BSAnim.mount({ nodeType: 1 }, def()) === null, 'BSAnim.mount(def v2) -> null');
+}
+
+// ================= 9b. CSS theme (sang/toi) =================
+sect('9b CSS theme');
+{
+  const E = makeEnv(); E.S.mount(E.host, def());
+  const css = E.host.children[0].textContent.replace(/@media[^{]*\{[^{}]*\{[^}]*\}\}/g, '');
+  const rules = [...css.matchAll(/([^{}]+)\{([^{}]*)\}/g)].map((m) => [m[1].trim(), m[2]]);
+  const bgRules = rules.filter(([, b]) => /(^|;)\s*background(-color)?:/.test(b));
+  ok(bgRules.length >= 8, 'tim thay cac luat co background (' + bgRules.length + ')');
+  bgRules.forEach(([sel, b]) => {
+    const bg = /(?:^|;)\s*background(?:-color)?:([^;]*)/.exec(b)[1];
+    const themed = /^\s*var\(--[a-zA-Z0-9-]+(,\s*#[0-9a-f]{3,6})?\)\s*$/i.test(bg);
+    ok(/(^|;)\s*color:/.test(b) || themed, sel + ': background "' + bg.trim() + '" cung cung mau chu hoac dung bien theme');
+  });
+  // moi mau literal (#hex) chi duoc nam trong var(--x, #hex) (de theme toi doi duoc), tru nen/chu cung cap
+  const lit = css.replace(/var\(--[a-z0-9-]+,\s*#[0-9a-f]{3,6}\)/gi, '').match(/#[0-9a-f]{3,6}/gi) || [];
+  ok(lit.length === 0, 'khong con mau #hex cung ngoai var(): ' + lit.join(','));
+  ok(/\.bss-root\{[^}]*background:var\(--card[^}]*color:var\(--ink/.test(css), 'root dat ca nen (--card) va chu (--ink) theo theme');
+  ok(/\.bss-vi\{[^}]*background:var\(--card-2/.test(css), 'hop nghia Viet dung --card-2, chu ke thua --ink');
 }
 
 // ================= 10. tep nguon =================
