@@ -141,7 +141,7 @@ def bucket(cv, x, y, w, h, col=(201, 197, 222), ol=None):
     cv.line([(x - w * .3, y - h * .55), (x + w * .3, y - h * .55)], fill=mix(col, (120, 110, 170), .4) + (255,), w=2)
 
 
-def bouquet(cv, cx, base_y, spread, ol=None, seed=0):
+def bouquet(cv, cx, base_y, spread, ol=None):
     """Flowers fanning up from (cx, base_y): stems, leaves, heads."""
     cols = [(155, 134, 224), YEL, (240, 169, 196), (251, 246, 236), (244, 162, 97), (183, 163, 240)]
     heads = [(-0.70, -0.95, 0), (-0.30, -1.15, 1), (0.15, -1.25, 2), (0.62, -1.02, 3), (0.92, -0.72, 3),
@@ -458,28 +458,28 @@ def laptop(cv, t0):
 
 def flower_shelf(cv, t):
     """Wooden flower shelf where Hanh's finger points, with a bouquet."""
-    x0, x1 = 985, 1376 + 100
+    x0, x1 = 1055, 1376 + 160
     top, bot = 230, 660
     cv.poly([t(x0 - 24, top), t(x0, top), t(x0, bot), t(x0 - 24, bot)], fill=WOOD_F + (255,), ol=OL, w=1.6)
     for yy in (top + 24, 380, 540, 624):
         cv.poly([t(x0 - 24, yy), t(x1, yy), t(x1, yy + 22), t(x0 - 24, yy + 22)], fill=WOOD_T + (255,), ol=OL, w=1.6)
     # upper shelf: pots
     for k in range(3):
-        px = 1030 + k * 120
+        px = 1100 + k * 120
         cv.poly([t(px - 26, 232), t(px + 26, 232), t(px + 20, 252), t(px - 20, 252)], fill=(236, 228, 240, 255), ol=OL, w=1.3)
     for k in range(3):
-        px = 1070 + k * 130
+        px = 1140 + k * 130
         x, y = t(px, 380)
         cv.poly([(x - 30, y), (x + 30, y), (x + 24, y - 44), (x - 24, y - 44)], fill=((226, 190, 160) if k % 2 else (230, 224, 244)) + (255,), ol=OL, w=1.3)
         flower(cv, x, y - 58, 22, [(240, 169, 196), YEL, (155, 134, 224)][k], ol=OL)
     # middle shelf: big bouquet in a wrapped bucket, right where the finger points
-    bx, by = t(1135, 488)
-    bouquet(cv, bx, by, 190 * SC, ol=OL)
+    bx, by = t(1205, 488)
+    bouquet(cv, bx, by, 172 * SC, ol=OL)
     cv.poly([(bx - 64, by - 4), (bx + 64, by - 4), (bx + 44, by + 62), (bx - 44, by + 62)], fill=(201, 197, 222, 255), ol=OL, w=1.5)
     cv.rect(bx - 70, by - 10, bx + 70, by + 6, fill=(220, 216, 236, 255), ol=OL, w=1.5, r=3)
     # lower shelf: small buckets with flowers
     for k in range(3):
-        x, y = t(1060 + k * 130, 624)
+        x, y = t(1125 + k * 105, 624)
         for j in range(3):
             fx = x - 18 + j * 18
             cv.line([(fx, y - 40), (fx, y - 66 - 6 * ((k + j) % 2))], fill=GREEN3 + (255,), w=2.5)
