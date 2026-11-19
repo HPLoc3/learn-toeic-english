@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+<title>Ngọn núi phủ tuyết in bóng xuống hồ, ba cây thông bên trái</title>
+<desc>Một khung cảnh không có người và không có thuyền. Ở phía xa, một ngọn núi lớn màu tím, phần đỉnh phủ tuyết trắng. Phía trước núi là mặt hồ xanh, trên mặt hồ in bóng ngọn núi (bóng ngược, màu nhạt hơn). Ở phía gần bên trái, trên bờ cỏ, có ba cây thông xanh, không có tuyết trên cây.</desc>
+<rect width="800" height="600" fill="#f5f3ff"/>
+<rect x="0" y="0" width="800" height="330" fill="#ece8ff"/>
+<rect x="0" y="330" width="800" height="270" fill="#8fc5f0"/>
+<g stroke="#1b1740" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M130 330L400 550L670 330Z" fill="#b7aee8" stroke-opacity="0.5"/>
+<path d="M400 550L340 468L372 484L400 460L428 484L460 468Z" fill="#ffffff" stroke="none" fill-opacity="0.7"/>
+<path d="M130 330L400 110L670 330Z" fill="#8c82d4"/>
+<path d="M400 110L340 192L372 176L400 202L428 176L460 192Z" fill="#ffffff"/>
+<path d="M0 330H800" fill="none" stroke-width="3"/>
+<path d="M0 390Q150 410 230 480Q270 530 330 600H0Z" fill="#c8ecc0"/>
+<g transform="translate(60 470)"><rect x="-6" y="-2" width="12" height="18" fill="#8a5a3b"/><path d="M-34 0L0 -60L34 0Z" fill="#3f9d57"/><path d="M-28 -34L0 -90L28 -34Z" fill="#3f9d57"/></g>
+<g transform="translate(150 505)"><rect x="-6" y="-2" width="12" height="18" fill="#8a5a3b"/><path d="M-34 0L0 -60L34 0Z" fill="#3f9d57"/><path d="M-28 -34L0 -90L28 -34Z" fill="#3f9d57"/></g>
+<g transform="translate(240 545)"><rect x="-6" y="-2" width="12" height="18" fill="#8a5a3b"/><path d="M-34 0L0 -60L34 0Z" fill="#3f9d57"/><path d="M-28 -34L0 -90L28 -34Z" fill="#3f9d57"/></g>
+</g>
+</svg>

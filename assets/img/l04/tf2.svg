@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+<title>Bến cảng có ba tòa nhà, hai chiếc thuyền và một cầu tàu</title>
+<desc>Một bến cảng không có người. Ở phía xa, bên kia mặt nước, ba tòa nhà đứng thành một hàng trên bờ: tòa bên trái màu hồng nhạt, tòa ở giữa màu vàng nhạt, tòa bên phải màu tím nhạt. Trên mặt nước có hai chiếc thuyền: một thuyền buồm màu cam ở bên trái và một thuyền máy màu xanh dương ở giữa. Ở phía gần bên phải, một cầu tàu bằng gỗ vươn từ bờ ra mặt nước.</desc>
+<rect width="800" height="600" fill="#f5f3ff"/>
+<rect x="0" y="0" width="800" height="300" fill="#ece8ff"/>
+<rect x="0" y="300" width="800" height="300" fill="#8fc5f0"/>
+<g stroke="#1b1740" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<rect x="60" y="150" width="140" height="150" fill="#e7b9a0"/><rect x="230" y="180" width="140" height="120" fill="#f3d28b"/><rect x="400" y="130" width="150" height="170" fill="#c9b8f5"/>
+<path d="M40 300H580" fill="none"/>
+<path d="M90 190H120M150 190H180M90 240H120M150 240H180M260 215H290M310 215H340M260 255H290M310 255H340M430 170H460M490 170H520M430 220H460M490 220H520" fill="none" stroke-width="12" stroke="#ffffff"/>
+<path d="M130 380H250L232 410H148Z" fill="#ff9f43"/><path d="M190 380V316" fill="none"/><path d="M196 320L238 372H196Z" fill="#ffffff"/>
+<rect x="360" y="360" width="130" height="30" rx="10" fill="#4a90d9"/><rect x="396" y="336" width="54" height="26" rx="6" fill="#ffffff"/>
+<path d="M620 410H800V600H600Z" fill="#d9d2ff"/>
+<rect x="400" y="440" width="10" height="46" fill="#8a5a3b"/><rect x="470" y="440" width="10" height="46" fill="#8a5a3b"/><rect x="540" y="440" width="10" height="46" fill="#8a5a3b"/>
+<rect x="390" y="424" width="250" height="24" rx="4" fill="#b97a4a"/>
+</g>
+</svg>

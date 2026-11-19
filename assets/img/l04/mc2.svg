@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+<title>Con đường chạy qua cánh đồng, hàng rào và nhà kho</title>
+<desc>Một cánh đồng xanh không có người và không có xe. Một con đường nhựa duy nhất chạy thẳng từ phía gần ra xa, xuyên qua cánh đồng, với vạch trắng ở giữa. Một hàng rào gỗ chạy dọc theo bên phải con đường, chỉ có ở một bên. Ở phía xa bên trái có một nhà kho nhỏ màu đỏ.</desc>
+<rect width="800" height="600" fill="#f5f3ff"/>
+<rect x="0" y="0" width="800" height="270" fill="#ece8ff"/>
+<rect x="0" y="270" width="800" height="330" fill="#c8ecc0"/>
+<g stroke="#1b1740" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M0 270H800" fill="none"/>
+<rect x="150" y="255" width="90" height="40" fill="#e07a5f"/><path d="M140 257L195 222L250 257Z" fill="#b5523b"/><rect x="180" y="270" width="30" height="25" fill="#ffffff" stroke-width="3"/>
+<path d="M380 270H420L600 600H200Z" fill="#6b6a8a"/>
+<path d="M400 276V600" fill="none" stroke="#ffffff" stroke-width="6" stroke-dasharray="26 22"/>
+<g stroke-width="4" fill="none"><path d="M692 590V522M622 500V450M568 430V394M521 370V346M486 325V310M463 295V286"/>
+<path d="M692 522L622 450L568 394L521 346L486 310L463 286"/><path d="M692 556L622 475L568 412L521 358L486 317L463 290"/></g>
+</g>
+</svg>

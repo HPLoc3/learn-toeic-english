@@ -35,7 +35,10 @@ window.BS_CATALOG = {
           "id": "l04",
           "no": 4,
           "title_vi": "Mô tả cảnh vật và khung cảnh",
-          "available": false
+          "available": true,
+          "game": true,
+          "anim": true,
+          "animKind": "scenes"
         }
       ]
     },

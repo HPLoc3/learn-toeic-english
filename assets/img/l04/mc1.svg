@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+<title>Cây cầu bắc ngang con sông, mỗi bờ có một cái cây</title>
+<desc>Một khung cảnh không có người. Một con sông xanh chảy ở giữa hình, hai bên là bờ cỏ. Một cây cầu duy nhất, mặt cầu bằng gỗ có lan can, bắc ngang qua sông từ bờ trái sang bờ phải, đỡ bởi hai trụ trong nước. Trên bờ trái có một cái cây xanh và trên bờ phải có một cái cây xanh, mỗi bờ một cây. Trên sông không có thuyền.</desc>
+<rect width="800" height="600" fill="#f5f3ff"/>
+<rect x="0" y="0" width="800" height="376" fill="#ece8ff"/>
+<rect x="0" y="376" width="800" height="224" fill="#c8ecc0"/>
+<g stroke="#1b1740" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M0 376H800" fill="none"/>
+<rect x="230" y="376" width="340" height="224" fill="#8fc5f0"/>
+<rect x="330" y="376" width="30" height="224" fill="#8b89a8"/><rect x="440" y="376" width="30" height="224" fill="#8b89a8"/>
+<rect x="170" y="346" width="460" height="30" rx="4" fill="#b97a4a"/>
+<path d="M170 318H630M176 318V346M292 318V346M408 318V346M524 318V346M624 318V346" fill="none"/>
+<rect x="68" y="290" width="24" height="86" rx="4" fill="#8a5a3b"/><circle cx="80" cy="240" r="62" fill="#5bbf6a"/>
+<rect x="708" y="290" width="24" height="86" rx="4" fill="#8a5a3b"/><circle cx="720" cy="240" r="62" fill="#5bbf6a"/>
+</g>
+</svg>

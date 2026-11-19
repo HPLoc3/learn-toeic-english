@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+<title>Công viên có lối đi, hàng cây, ghế dài và cột đèn</title>
+<desc>Một công viên không có người. Một lối đi màu be chạy thẳng từ phía gần ra xa. Mỗi bên lối đi có hai cái cây xanh, tổng cộng bốn cây, một cây to ở gần và một cây nhỏ hơn ở xa. Ở phía gần bên phải, ngay cạnh lối đi, có một cái ghế dài bằng gỗ. Ở phía gần bên trái có một cột đèn đường màu xám, không sáng. Ở phía xa, sau cuối lối đi, có một ngọn đồi xanh.</desc>
+<rect width="800" height="600" fill="#f5f3ff"/>
+<rect x="0" y="0" width="800" height="255" fill="#ece8ff"/>
+<rect x="0" y="255" width="800" height="345" fill="#c8ecc0"/>
+<g stroke="#1b1740" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M180 255Q400 150 620 255Z" fill="#a8d89a"/>
+<path d="M350 255H450L620 600H180Z" fill="#e8d9b8"/>
+<rect x="263" y="305" width="14" height="30" rx="3" fill="#8a5a3b"/><circle cx="270" cy="282" r="30" fill="#5bbf6a"/>
+<rect x="523" y="305" width="14" height="30" rx="3" fill="#8a5a3b"/><circle cx="530" cy="282" r="30" fill="#5bbf6a"/>
+<rect x="160" y="390" width="22" height="60" rx="4" fill="#8a5a3b"/><circle cx="171" cy="350" r="62" fill="#5bbf6a"/>
+<rect x="619" y="390" width="22" height="60" rx="4" fill="#8a5a3b"/><circle cx="630" cy="350" r="62" fill="#5bbf6a"/>
+<rect x="42" y="330" width="12" height="236" rx="3" fill="#8b89a8"/><circle cx="48" cy="316" r="17" fill="#c9c6dd"/>
+<rect x="630" y="540" width="10" height="30" fill="#b97a4a"/><rect x="750" y="540" width="10" height="30" fill="#b97a4a"/>
+<rect x="620" y="520" width="150" height="14" rx="4" fill="#b97a4a"/><rect x="620" y="490" width="150" height="14" rx="4" fill="#b97a4a"/>
+<rect x="626" y="504" width="10" height="16" fill="#b97a4a"/><rect x="754" y="504" width="10" height="16" fill="#b97a4a"/>
+</g>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+<title>Con phố lúc chiều tối có bốn tòa nhà và ba đèn đường sáng</title>
+<desc>Một con phố lúc chiều tối, không có người và không có xe. Ở phía sau, bốn tòa nhà đứng sát nhau thành một dãy dọc theo con đường, cao thấp khác nhau, cửa sổ tối. Trên vỉa hè phía trước các tòa nhà có ba cột đèn đường, cách đều nhau, và cả ba đèn đều đang sáng vàng. Phía trước vỉa hè là mặt đường trống có vạch trắng ở giữa.</desc>
+<rect width="800" height="600" fill="#f5f3ff"/>
+<rect x="0" y="0" width="800" height="400" fill="#5a5fa8"/>
+<rect x="0" y="400" width="800" height="40" fill="#a9a6c9"/>
+<rect x="0" y="440" width="800" height="160" fill="#4b4a6e"/>
+<g stroke="#1b1740" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<rect x="30" y="170" width="170" height="230" fill="#e7b9a0"/><rect x="200" y="120" width="160" height="280" fill="#c9b8f5"/><rect x="360" y="200" width="180" height="200" fill="#f3d28b"/><rect x="540" y="150" width="230" height="250" fill="#9fd3c7"/>
+<path d="M0 400H800M0 440H800" fill="none"/>
+<path d="M70 210H100M130 210H160M70 270H100M130 270H160M240 160H270M290 160H320M240 220H270M290 220H320M240 280H270M290 280H320M400 240H430M460 240H490M400 300H430M460 300H490M580 190H610M650 190H680M720 190H750M580 260H610M650 260H680M720 260H750" fill="none" stroke="#8f93c9" stroke-width="14"/>
+<path d="M60 520H140M260 520H340M460 520H540M660 520H740" fill="none" stroke="#ffffff" stroke-width="6"/>
+<circle cx="110" cy="292" r="46" fill="#ffd54a" fill-opacity="0.55" stroke="none"/><circle cx="400" cy="292" r="46" fill="#ffd54a" fill-opacity="0.55" stroke="none"/><circle cx="690" cy="292" r="46" fill="#ffd54a" fill-opacity="0.55" stroke="none"/>
+<rect x="105" y="304" width="10" height="130" rx="3" fill="#3b3a5c"/><rect x="395" y="304" width="10" height="130" rx="3" fill="#3b3a5c"/><rect x="685" y="304" width="10" height="130" rx="3" fill="#3b3a5c"/>
+<circle cx="110" cy="292" r="16" fill="#ffd54a"/><circle cx="400" cy="292" r="16" fill="#ffd54a"/><circle cx="690" cy="292" r="16" fill="#ffd54a"/>
+</g>
+</svg>
