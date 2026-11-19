@@ -19,11 +19,11 @@ window.BS_UNITS.l02 = {
       },
       {
         "id": "tip2",
-        "text_vi": "Chỉ một người trong nhóm làm việc gì đó thì chọn One of the men / One of the women / Each person + is + V-ing. Chủ ngữ thật là One (hoặc Each), nên động từ luôn là is chứ không phải are, dù đứng ngay sau là chữ men hay women số nhiều.",
+        "text_vi": "Chỉ một người trong nhóm làm việc gì đó thì chọn One of the men / One of the women + is + V-ing. Chủ ngữ thật là One, nên động từ luôn là is chứ không phải are, dù đứng ngay sau là chữ men hay women số nhiều. Ghi chú riêng: Everyone / Each person + is + V-ing lại có nghĩa MỖI người đều làm hành động đó, nên chỉ chọn khi ai trong hình cũng làm như vậy.",
         "examples": [
           { "en": "One of the men is holding a phone.", "vi": "Một trong những người đàn ông đang cầm điện thoại." },
           { "en": "One of the women is carrying a backpack.", "vi": "Một trong những người phụ nữ đang đeo ba lô." },
-          { "en": "Each person is holding a pen.", "vi": "Mỗi người đang cầm một cây bút." }
+          { "en": "One of the men is wearing a cap.", "vi": "Một trong những người đàn ông đang đội mũ lưỡi trai." }
         ]
       },
       {
@@ -32,7 +32,7 @@ window.BS_UNITS.l02 = {
         "examples": [
           { "en": "Two people are sitting across from each other.", "vi": "Hai người đang ngồi đối diện nhau." },
           { "en": "Two people are walking side by side.", "vi": "Hai người đang đi bộ sánh vai nhau." },
-          { "en": "Some people are waiting in line.", "vi": "Vài người đang chờ xếp hàng." },
+          { "en": "Some people are waiting in line.", "vi": "Một vài người đang chờ xếp hàng." },
           { "en": "Several people are gathered around a table.", "vi": "Nhiều người đang quây quanh một cái bàn." }
         ]
       },
@@ -49,7 +49,7 @@ window.BS_UNITS.l02 = {
         "id": "tip5",
         "text_vi": "Dạng bị động is being + V3 (đang được...) chỉ đúng khi trong hình có ai đó đang làm hành động ấy lên vật. Nếu vật chỉ nằm yên thì đó là bẫy. Ngoài ra hãy cẩn thận các từ nghe gần giống nhau như walking và working, waiting và waving.",
         "examples": [
-          { "en": "A paper is being folded.", "vi": "(Câu SAI) Tờ giấy đang được gấp. Giấy chỉ nằm trên bàn, không ai đang gấp nên không dùng được is being folded." },
+          { "en": "A piece of paper is being folded.", "vi": "(Câu SAI) Tờ giấy đang được gấp. Giấy chỉ nằm trên bàn, không ai đang gấp nên không dùng được is being folded." },
           { "en": "They are walking in the park.", "vi": "(Câu ĐÚNG khi hình là hai người đi bộ) Họ đang đi bộ trong công viên." },
           { "en": "They are working in the park.", "vi": "(Câu SAI) Họ đang làm việc trong công viên. Nghe gần giống walking nhưng nghĩa khác hẳn." }
         ]
@@ -108,8 +108,8 @@ window.BS_UNITS.l02 = {
   ],
   "sentences": [
     { "id": "s01", "en": "The man and the woman are shaking hands.", "vi": "Người đàn ông và người phụ nữ đang bắt tay nhau." },
-    { "id": "s02", "en": "Some people are waiting in line to buy coffee.", "vi": "Vài người đang xếp hàng chờ mua cà phê." },
-    { "id": "s03", "en": "The people are sitting across from each other at a table.", "vi": "Mọi người đang ngồi đối diện nhau ở một cái bàn." },
+    { "id": "s02", "en": "Some people are waiting in line to buy coffee.", "vi": "Một vài người đang xếp hàng chờ mua cà phê." },
+    { "id": "s03", "en": "The people are sitting across from each other at a table.", "vi": "Hai người đang ngồi đối diện nhau ở một cái bàn." },
     { "id": "s04", "en": "Two women are looking at some flowers together.", "vi": "Hai người phụ nữ đang cùng nhìn mấy bông hoa." },
     { "id": "s05", "en": "Several people are gathered around a table.", "vi": "Nhiều người đang quây quanh một cái bàn." },
     { "id": "s06", "en": "One of the men is carrying a box.", "vi": "Một trong những người đàn ông đang bê một cái thùng." }
@@ -127,9 +127,9 @@ window.BS_UNITS.l02 = {
         { "id": "fill1-5", "before": "Both women are", "after": "at some flowers.", "answers": ["looking"] },
         { "id": "fill1-6", "before": "Two friends are", "after": "side by side along a path.", "answers": ["walking"] },
         { "id": "fill1-7", "before": "One of the men is", "after": "at a map on the wall.", "answers": ["pointing"] },
-        { "id": "fill1-8", "before": "Both men are", "after": "caps on their heads.", "answers": ["wearing"] },
+        { "id": "fill1-8", "before": "Both men are", "after": "helmets on their heads.", "answers": ["wearing"] },
         { "id": "fill1-9", "before": "The workers are", "after": "heavy boxes across the room.", "answers": ["carrying"] },
-        { "id": "fill1-10", "before": "Everyone at the table is", "after": "notes in a notebook.", "answers": ["writing"] }
+        { "id": "fill1-10", "before": "Everyone at the table is", "after": "notes.", "answers": ["taking"] }
       ]
     },
     {
@@ -171,7 +171,7 @@ window.BS_UNITS.l02 = {
         { "label": "A", "en": "They are sitting on a bench.", "why_vi": "Động từ sai: hai người đang đi bộ (walking), không ngồi (sitting)." },
         { "label": "B", "en": "They are facing each other.", "why_vi": "Vị trí sai: hai người đi cùng một hướng, không quay mặt vào nhau." },
         { "label": "C", "en": "They are walking side by side." },
-        { "label": "D", "en": "Both people are carrying backpacks.", "why_vi": "Sai vì hành động của một người bị gán cho cả hai: chỉ người phụ nữ đeo ba lô, người đàn ông thì không." }
+        { "label": "D", "en": "Both people are carrying backpacks.", "why_vi": "Sai vì hành động của một người bị gán cho cả hai: chỉ một trong hai người đeo ba lô." }
       ],
       "answer": "C",
       "explain_vi": "Hai người đang đi bộ sánh vai nhau trên đường."
@@ -184,8 +184,8 @@ window.BS_UNITS.l02 = {
       "options": [
         { "label": "A", "en": "The people are sitting in a classroom.", "why_vi": "Sai cả động từ và nơi chốn: ba người đang đứng quanh một cái bàn, không có lớp học." },
         { "label": "B", "en": "The three people are gathered around a table." },
-        { "label": "C", "en": "One of the women is pointing at the paper.", "why_vi": "Sai người làm: người chỉ vào tờ giấy là người đàn ông ở giữa, không phải một trong hai người phụ nữ." },
-        { "label": "D", "en": "A paper is being folded.", "why_vi": "Bẫy bị động: tờ giấy chỉ nằm trải trên bàn, không ai đang gấp nó." }
+        { "label": "C", "en": "One of the women is pointing at the paper.", "why_vi": "Sai người làm: không phải một trong hai người phụ nữ đang chỉ vào tờ giấy." },
+        { "label": "D", "en": "A piece of paper is being folded.", "why_vi": "Bẫy bị động: tờ giấy chỉ nằm trải trên bàn, không ai đang gấp nó." }
       ],
       "answer": "B",
       "explain_vi": "Ba người đang quây quanh một cái bàn và cùng nhìn tờ giấy."
@@ -196,7 +196,7 @@ window.BS_UNITS.l02 = {
       "image": "assets/img/l02/mc3.svg",
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
-        { "label": "A", "en": "Both men are holding clipboards.", "why_vi": "Sai vì hành động của một người bị gán cho cả hai: chỉ người bên phải cầm bìa kẹp giấy, người bên trái ôm một thùng giấy." },
+        { "label": "A", "en": "Both men are holding clipboards.", "why_vi": "Sai vì hành động của một người bị gán cho cả hai: chỉ một người cầm bìa kẹp giấy." },
         { "label": "B", "en": "The men are sitting on some boxes.", "why_vi": "Động từ sai: hai người đang đứng (standing), không ngồi trên thùng." },
         { "label": "C", "en": "One of the men is taking a box off a shelf.", "why_vi": "Trong hình không có cái kệ nào, người đàn ông chỉ đang ôm thùng giấy trên tay." },
         { "label": "D", "en": "One of the men is carrying a box." }

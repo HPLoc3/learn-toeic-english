@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
 <title>Hai người phụ nữ ở tiệm hoa</title>
-<desc>Hai người phụ nữ đứng cạnh nhau sau quầy trong một tiệm hoa. Người bên trái mặc áo len nâu, đeo kính tròn, tóc búi, tay cầm một bó hoa. Người bên phải tóc đen ngang vai, mặc áo xanh ngọc, đưa tay chỉ vào bó hoa. Cả hai cùng nhìn bó hoa. Trên tường có những lọ hoa.</desc>
+<desc>Hai người phụ nữ đứng cạnh nhau sau quầy trong một tiệm hoa. Người bên trái mặc áo len nâu, đeo kính tròn, tóc búi, tay cầm một bó hoa. Người bên phải tóc đen ngang vai, mặc áo xanh ngọc, đưa tay chỉ vào bó hoa. Cả hai cúi đầu, mắt cùng nhìn xuống bó hoa. Trên tường có những lọ hoa.</desc>
 <rect width="800" height="600" fill="#f5f3ff"/>
 <rect x="0" y="0" width="800" height="470" fill="#ece8ff"/>
 <rect x="0" y="470" width="800" height="130" fill="#d9d2ff"/>
@@ -16,16 +16,16 @@
 <circle cx="280" cy="170" r="38" fill="#ffcfa0"/>
 <circle cx="280" cy="118" r="17" fill="#8a8a96"/>
 <path d="M240 176C234 112 326 112 320 176C314 148 292 138 280 138C268 138 246 148 240 176Z" fill="#8a8a96"/>
-<circle cx="271" cy="172" r="4.5" fill="#1b1740" stroke="none"/>
-<circle cx="299" cy="172" r="4.5" fill="#1b1740" stroke="none"/>
+<circle cx="276" cy="182" r="4.5" fill="#1b1740" stroke="none"/>
+<circle cx="304" cy="182" r="4.5" fill="#1b1740" stroke="none"/>
 <circle cx="266" cy="172" r="13" fill="none" stroke-width="4"/><circle cx="294" cy="172" r="13" fill="none" stroke-width="4"/><path d="M279 172H281" fill="none" stroke-width="4"/>
 <path d="M270 190Q280 199 290 190" fill="none" stroke-width="4"/>
 <rect x="476" y="140" width="88" height="80" rx="32" fill="#1b1740"/>
 <rect x="509" y="198" width="22" height="24" rx="8" fill="#ffcfa0"/>
 <circle cx="520" cy="170" r="38" fill="#ffcfa0"/>
 <path d="M480 176C474 112 566 112 560 176C554 148 532 138 520 138C508 138 486 148 480 176Z" fill="#1b1740"/>
-<circle cx="501" cy="172" r="4.5" fill="#1b1740" stroke="none"/>
-<circle cx="529" cy="172" r="4.5" fill="#1b1740" stroke="none"/>
+<circle cx="496" cy="182" r="4.5" fill="#1b1740" stroke="none"/>
+<circle cx="524" cy="182" r="4.5" fill="#1b1740" stroke="none"/>
 <path d="M510 190Q520 199 530 190" fill="none" stroke-width="4"/>
 <path d="M324 232L392 296" fill="none" stroke-width="30"/><path d="M324 232L392 296" fill="none" stroke="#8a5a3a" stroke-width="20"/><circle cx="392" cy="296" r="12" fill="#ffcfa0" stroke-width="4"/>
 <path d="M376 310L392 282L408 310Z" fill="#c9f0d4"/><circle cx="378" cy="262" r="14" fill="#ff4f87"/><circle cx="404" cy="258" r="14" fill="#ffd54a"/><circle cx="391" cy="240" r="14" fill="#ff9f43"/><circle cx="392" cy="296" r="12" fill="#ffcfa0"/>
