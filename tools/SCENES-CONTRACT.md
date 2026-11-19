@@ -16,12 +16,11 @@ Mot dinh nghia duy nhat duoi day la hop dong. Engine SVG cu (anim-engine/rig/cas
   scenes:[1..8 x Scene], outro:Outro }
 Scene = { id:/^[a-z][A-Za-z0-9]{0,15}$/ (duy nhat), img:/^[a-z0-9-]{1,32}$/, alt_vi:str(1..400, khong rong),
   dur:number 2..60, en:str, vi:str (khong rong), pieces:[[txt,tag?]...1..20], note_vi:str,
-  pos?:[x,y] 0..1 (neo nhan cau, mac dinh [0.5,0.5]),
   kb:{ from:[cx,cy,z], to:[cx,cy,z] }  cx,cy in 0..1, z in 1..2 (tam cua so cat, he so phong),
   focus?:{ x:0..1, y:0..1, r:0.02..0.4 (ban kinh theo chieu rong anh), at:0..dur, label_vi:str } }
 Outro = { img:basename, alt_vi:str, dur:2..60, title_vi:str, segs:[[txt,tag?]...] }
 ```
-- `str` = chuoi <= 400 ky tu. `tag` in `""|"be"|"ing"` (dung lai bang tu vung cu). `pieces` noi lai PHAI bang dung `en` (so sanh `===`). Tong thoi luong (sum dur + outro.dur) <= 300. `img.base`/`img.hd` regex `^assets/img(-hd)?/[a-z0-9_-]+/(scene/)?$`; `img.w` dung `[800,1600]`. Moi `scenes[].img` va `outro.img` phai la basename hop le; `alt_vi` rong = loi. Khoa la bi bo qua (khong loi). `placeholder:true` => du lieu/anh tam (check-units --release se fail).
+- `str` = chuoi <= 400 ky tu. `tag` in `""|"be"|"ing"` (dung lai bang tu vung cu). `pieces` noi lai PHAI bang dung `en` (so sanh `===`). Tong thoi luong (sum dur + outro.dur) <= 300. `img.base`/`img.hd` regex `^assets/img(-hd)?/[a-z0-9_-]+/(scene/)?$`; `img.w` dung `[800,1600]`. Moi `scenes[].img` va `outro.img` phai la basename hop le; `alt_vi` rong = loi. Khoa la bi bo qua (khong loi), ke ca `pos` cu (khong con dung, khong validate; da bo khoi data/template). Nen `dur` >= 8 s: cau tieng Anh day du hien >= 4 s va nghia tieng Viet hien >= 3 s moi canh (test-scenes-l01 kiem tra). `placeholder:true` => du lieu/anh tam (check-units --release se fail).
 - Day la `BS_ANIMS.l01` day du (C ghi vao `data/l01-anim.js` nguyen van, ngoai comment dau file):
 ```js
 window.BS_ANIMS = window.BS_ANIMS || {};
@@ -32,35 +31,35 @@ window.BS_ANIMS.l01 = {
   sr_tail_vi: "Cấu trúc be + V-ing (ở đây là is + động từ-ing) nghĩa là đang làm gì.",
   img: { base: "assets/img/l01/scene/", hd: "assets/img-hd/l01/", w: [800, 1600], ratio: "16:9" },
   scenes: [
-    { id: "pour", img: "nam-pour", dur: 7, alt_vi: "Một người đàn ông trong quán cà phê đang nghiêng ấm rót nước vào chiếc cốc trên quầy.",
+    { id: "pour", img: "nam-pour", dur: 9, alt_vi: "Một người đàn ông trong quán cà phê đang nghiêng ấm rót nước vào chiếc cốc trên quầy.",
       en: "He is pouring water into a cup.", vi: "Anh ấy đang rót nước vào cốc.",
       pieces: [["He", ""], [" is", "be"], [" pour", ""], ["ing", "ing"], [" water into a cup.", ""]],
-      note_vi: "pour → pouring: đang rót", pos: [0.7, 0.4],
+      note_vi: "pour → pouring: đang rót",
       kb: { from: [0.5, 0.5, 1.0], to: [0.62, 0.55, 1.25] }, focus: { x: 0.62, y: 0.58, r: 0.12, at: 2.5, label_vi: "đang rót" } },
-    { id: "wipe", img: "nam-wipe", dur: 7, alt_vi: "Người đàn ông cầm khăn lau mặt quầy bằng một tay.",
+    { id: "wipe", img: "nam-wipe", dur: 9, alt_vi: "Người đàn ông cầm khăn lau mặt quầy bằng một tay.",
       en: "He is wiping the counter.", vi: "Anh ấy đang lau quầy.",
       pieces: [["He", ""], [" is", "be"], [" wip", ""], ["ing", "ing"], [" the counter.", ""]],
-      note_vi: "wipe → wiping: bỏ e rồi thêm ing (đang lau)", pos: [0.3, 0.4],
+      note_vi: "wipe → wiping: bỏ e rồi thêm ing (đang lau)",
       kb: { from: [0.6, 0.5, 1.0], to: [0.45, 0.6, 1.25] }, focus: { x: 0.45, y: 0.65, r: 0.12, at: 2.5, label_vi: "đang lau" } },
-    { id: "look", img: "mai-look", dur: 7, alt_vi: "Một cô gái ngồi bàn làm việc, mắt nhìn vào tờ tài liệu cầm trên tay.",
+    { id: "look", img: "mai-look", dur: 9, alt_vi: "Một cô gái ngồi bàn làm việc, mắt nhìn vào tờ tài liệu cầm trên tay.",
       en: "She is looking at a document.", vi: "Cô ấy đang nhìn vào một tài liệu.",
       pieces: [["She", ""], [" is", "be"], [" look", ""], ["ing", "ing"], [" at a document.", ""]],
-      note_vi: "look at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)", pos: [0.3, 0.35],
+      note_vi: "look at → looking at: thêm ing sau động từ, giữ nguyên at (đang nhìn vào)",
       kb: { from: [0.5, 0.5, 1.0], to: [0.4, 0.45, 1.3] }, focus: { x: 0.42, y: 0.5, r: 0.13, at: 2.5, label_vi: "đang nhìn" } },
-    { id: "type", img: "mai-type", dur: 7, alt_vi: "Cô gái ngồi trước máy tính xách tay, hai tay đặt trên bàn phím.",
+    { id: "type", img: "mai-type", dur: 9, alt_vi: "Cô gái ngồi trước máy tính xách tay, hai tay đặt trên bàn phím.",
       en: "She is typing on a laptop.", vi: "Cô ấy đang gõ trên máy tính xách tay.",
       pieces: [["She", ""], [" is", "be"], [" typ", ""], ["ing", "ing"], [" on a laptop.", ""]],
-      note_vi: "type → typing: bỏ e rồi thêm ing (đang gõ)", pos: [0.3, 0.35],
+      note_vi: "type → typing: bỏ e rồi thêm ing (đang gõ)",
       kb: { from: [0.55, 0.5, 1.0], to: [0.5, 0.6, 1.3] }, focus: { x: 0.5, y: 0.66, r: 0.12, at: 2.5, label_vi: "đang gõ" } },
-    { id: "wear", img: "hanh-wear", dur: 7, alt_vi: "Một cô gái đeo cặp kính tròn, mỉm cười nhìn thẳng về phía trước.",
+    { id: "wear", img: "hanh-wear", dur: 9, alt_vi: "Một cô gái đeo cặp kính tròn, mỉm cười nhìn thẳng về phía trước.",
       en: "She is wearing glasses.", vi: "Cô ấy đang đeo kính.",
       pieces: [["She", ""], [" is", "be"], [" wear", ""], ["ing", "ing"], [" glasses.", ""]],
-      note_vi: "wear → wearing: đang đeo/mặc (trạng thái đang có trên người), khác putting on = đang mặc vào (hành động)", pos: [0.3, 0.3],
+      note_vi: "wear → wearing: đang đeo/mặc (trạng thái đang có trên người), khác putting on = đang mặc vào (hành động)",
       kb: { from: [0.5, 0.5, 1.0], to: [0.5, 0.4, 1.35] }, focus: { x: 0.5, y: 0.38, r: 0.14, at: 2.5, label_vi: "đang đeo" } },
-    { id: "point", img: "hanh-point", dur: 7, alt_vi: "Cô gái giơ một tay chỉ vào lọ hoa trên bàn bên cạnh.",
+    { id: "point", img: "hanh-point", dur: 9, alt_vi: "Cô gái giơ một tay chỉ vào lọ hoa trên bàn bên cạnh.",
       en: "She is pointing at the flowers.", vi: "Cô ấy đang chỉ vào những bông hoa.",
       pieces: [["She", ""], [" is", "be"], [" point", ""], ["ing", "ing"], [" at the flowers.", ""]],
-      note_vi: "point at → pointing at: thêm ing sau động từ, giữ nguyên at (đang chỉ vào)", pos: [0.3, 0.35],
+      note_vi: "point at → pointing at: thêm ing sau động từ, giữ nguyên at (đang chỉ vào)",
       kb: { from: [0.45, 0.5, 1.0], to: [0.65, 0.5, 1.3] }, focus: { x: 0.7, y: 0.55, r: 0.13, at: 2.5, label_vi: "đang chỉ" } }
   ],
   outro: { img: "duo-cafe", dur: 2, alt_vi: "Hai người bạn ngồi cạnh nhau trong quán cà phê, cùng mỉm cười.", title_vi: "Tổng kết", segs: [
@@ -69,12 +68,12 @@ window.BS_ANIMS.l01 = {
   ] }
 };
 ```
-(`pos` chi dung dat vi tri nhan/ghi chu khong bat buoc; engine A co the bo qua nhung PHAI validate neu co. 7 muc = 6 scenes + outro.)
+(7 muc = 6 scenes + outro; moi canh dur 9 s, T = 56 s.)
 
-## 2. `window.BSScenes` (file `assets/js/anim-scenes.js`, <= 14336 bytes (nang tu 10240, quyet dinh cua chu du an; file hien 13894 B), owner A)
+## 2. `window.BSScenes` (file `assets/js/anim-scenes.js`, <= 14336 bytes (nang tu 10240, quyet dinh cua chu du an; file hien ~14.2 KB), owner A)
 - `BSScenes.validate(def)` -> **mang chuoi loi** (rong = hop le), boc try/catch -> `['x']`. Kiem moi rang buoc muc 1 (v===2, kind==="scenes", alt rong, vi thieu, pieces!==en, kb/focus ngoai khoang, tong >300, img sai regex). Khong nem loi.
-- `BSScenes.plan(def)` (thuan, khong DOM) -> `{ T, outroStart, scenes:[{ start, dur, at:[t_i...] , viAt, focusAt, rest }], outro:{start,dur} }`, thoi gian cuc bo giay: `at[i] = dur*(0.45+0.35*i/n)` (n = so pieces), `viAt = dur*0.88`, `focusAt = focus ? focus.at : null`, `rest = dur*0.97` (thoi diem "tinh" dung cho reduced-motion), `T = sum(dur)+outro.dur`, lam tron 3 so le.
-- `BSScenes.mount(host, def)` -> `null` neu host khong phai Element, `!def` hoac `validate(def).length` (khong throw); tra api **cung hinh dang BSAnim**: `{ duration:T, play(), pause(), replay(), seek(t), go(k) (k 0..N, N = outro), destroy() }`. Huy mount cu qua `host.__bss`. Khong phat su kien, khong XP/mascot/storage/fetch. Auto `play()` neu khong reduced.
+- `BSScenes.plan(def)` (thuan, khong DOM) -> `{ T, outroStart, scenes:[{ start, dur, at:[t_i...] , viAt, focusAt, rest }], outro:{start,dur} }`, thoi gian cuc bo giay: `at[i] = dur*(0.15+0.25*i/n)` (n = so pieces; manh cuoi hien o <= 0.4*dur), `viAt = dur*0.5` (nghia Viet hien tu giua canh), `focusAt = focus ? focus.at : null`, `rest = dur*0.97` (thoi diem "tinh" dung cho reduced-motion), `T = sum(dur)+outro.dur`, lam tron 3 so le.
+- `BSScenes.mount(host, def)` -> `null` neu host khong phai Element, `!def` hoac `validate(def).length` (khong throw); tra api **cung hinh dang BSAnim**: `{ duration:T, play(), pause(), replay(), seek(t), go(k) (k 0..N, N = outro), destroy() }`. `go(k)` (va chip Bước k+1) nhay toi thoi diem `rest` cua canh k o CA HAI che do (cau day du + vi + vong lay net da hien, hinh dung yen o cuoi canh), de nguoi dang tam dung khong thay khung chu trong. Dong ho phat gioi han dt <= 0.5 s/khung (tab bi bop khung van chay gan dung thoi gian thuc). Host chua ket noi (`isConnected===false`) o khung dau tien => `pl=0`, hien Phat. `matchMedia` dung `addEventListener`, neu khong co thi `addListener/removeListener` (Safari <=13). Loi anh duoc ghi theo chi so canh luc dat `src`. Huy mount cu qua `host.__bss`. Khong phat su kien, khong XP/mascot/storage/fetch. Auto `play()` neu khong reduced.
 - Markup (CSS **tiem bang `<style>` trong host**, giong anim-engine; KHONG co file CSS rieng, owner A; lop tien to `bss-`):
 ```
 <div class="bss-root" role="region" aria-label=region_vi data-r="root">
@@ -83,15 +82,15 @@ window.BS_ANIMS.l01 = {
    <span class="bss-ring" aria-hidden="true" hidden></span></div>
   <figcaption class="bss-cap"> <p class="bss-step"> <p class="bss-sent" lang="en"> (span.bss-p[.bss-be|.bss-ing]) <div class="bss-vi"> (formula spans + <small> note_vi) </figcaption></figure>
  <div class="bss-bar" role="progressbar" aria-label="Tiến độ hoạt hình" aria-valuemin/max/now> 
- <div class="bss-row" role="group" aria-label="Điều khiển hoạt hình"> button.bss-btn[data-a=play|pause|prev|next|replay] (type=button, min 44px, aria-disabled thay disabled)
- <div class="bss-row" role="group" aria-label="Chọn động tác"> button.bss-btn[data-s=k] "Bước k+1" aria-current="step" khi dang chon, aria-label "Chuyển tới động tác k: <note_vi hoac en>"
+ <div class="bss-row" role="group" aria-label="Điều khiển hoạt hình"> button.bss-btn[data-a=toggle|prev|next|replay] (type=button, min 44px, aria-disabled thay disabled). MOT nut `toggle`: nhan doi "Phát" <-> "Tạm dừng" (khong bao gio hidden khi khong reduced, de giu focus ban phim); chi an khi reduced-motion
+ <div class="bss-row" role="group" aria-label="Chọn động tác"> button.bss-btn[data-s=k] "Bước k+1" aria-current="step" khi dang chon, aria-label "Bước k+1: <note_vi hoac en>" (bat dau bang chu hien thi, WCAG 2.5.3)
  <p class="bss-note" hidden> thong bao reduced-motion (cung chu voi .bsa-note)</p>
  <p class="bss-src">Ảnh minh họa do Từng Bước English tạo.</p> <div class="bss-sr" aria-live="polite">
 ```
   Caption nam DUOI anh. `.bss-focus` vong = `.bss-ring` dat bang `left/top` % + kich thuoc `r*2*100%` chieu rong, hien tu `focusAt`, kem nhan `label_vi` (span aria-hidden). Mau/bien lay tu CSS vars site (`--pri`, `--ink`, `--card`, ... co fallback giong `.bsa-*`). `.bss-be`/`.bss-ing` dung y style `.bsa-be/.bsa-ing`.
 - Ken Burns: `transform: translate/scale` tren `<img>` (transform-origin 0 0), noi suy smoothstep `kb.from`->`kb.to` theo toan thoi luong canh; tam duoc kep de cua so khong lo ra ngoai anh (`c in [0.5/z, 1-0.5/z]`). Chuyen canh = doi `src/srcset/alt`, cap nhat chu, dat `.bss-p` bang class `bss-on` (opacity), vi `.bss-vi` hien o `viAt`.
-- aria-live: mot lan moi canh khi cau + vi da hien: `"Câu mẫu: <en>. <vi>. <note_vi>. <sr_tail_vi>"`; outro: `title_vi + ". " + segs noi`. Khong noi lai trong cung canh.
-- `prefers-reduced-motion: reduce`: khong Ken Burns (transform = none), khong autoplay, khong transition, doi canh tuc thi, vong `.bss-ring` hien tinh ngay, an Phat/Tam dung/hien Truoc/Tiep + `.bss-note`, moi canh o trang thai `rest` (pieces + vi + ghi chu da hien), thanh progress theo `(step+1)/(N+1)`. Doi cai dat khi dang chay => `change` listener cap nhat (dung phat, dung canh hien tai).
+- aria-live: mot lan moi canh khi cau + vi da hien: dung cac `<span>` con: `"Câu mẫu: "` + `<span lang="en">en</span>` + `" <vi>. <note_vi>."` (cat dau cham cuoi truoc khi noi, khong con "..") khi viAt = dur*0.5; `sr_tail_vi` chi doc MOT lan o outro: `title_vi + ". " + segs noi (cat dau cuoi) + ". " + sr_tail_vi`. Khong noi lai trong cung canh.
+- `prefers-reduced-motion: reduce`: khong Ken Burns (transform = none), khong autoplay, khong transition, doi canh tuc thi, vong `.bss-ring` hien tinh ngay, an nut toggle (Phat/Tam dung)/hien Truoc/Tiep + `.bss-note`, moi canh o trang thai `rest` (pieces + vi + ghi chu da hien), thanh progress theo `(step+1)/(N+1)`. Doi cai dat khi dang chay => `change` listener cap nhat (dung phat, dung canh hien tai).
 - onerror (moi `<img>`, theo tung anh): lan 1 -> go `srcset`, dat `src` = url 800 lai (cache-bust KHONG); lan 2 -> thay `.bss-stage` bang the `.bss-fb` (gradient `linear-gradient`, `role="img"`, `aria-label=alt_vi`, `data-fallback="1"`, chu `en` lon), van chay caption/dieu khien. Khong nem loi, khong lam gay bai hoc.
 - Don dep: `destroy()` idempotent: huy raf + setTimeout, go moi listener (click, matchMedia, img error), `host.__bss=null`, `host.textContent=''`. Khi `host.isConnected===false` sau khi tung noi => tu dung phat; khi an (`getClientRects().length===0`) cho 400ms roi thu lai (nhu engine cu). Tat ca timer duoc dem de test.
 - Cam trong file: `fetch(`, `XMLHttpRequest`, `localStorage`, `eval(`, `new Function`, `innerHTML` voi chuoi du lieu (chi cho khung tinh + gia tri da regex).
@@ -115,7 +114,7 @@ window.BS_ANIMS.l01 = {
 - B cung viet `CREDITS-IMAGES.md` (goc repo, khong precache): bang `file | cong cu | ngay | ghi chu`, noi ro anh do chu site tao bang AI, nhan vat goc, khong IP ben thu ba; hang placeholder ghi "placeholder".
 
 ## 6. Test (chi Node, moi lenh <= 60s) va tran kich thuoc
-- `tools/test-anim-scenes.mjs` (A; vm + DOM gia nhu test-anim.mjs): (1) validate chap nhan l01 mau muc 1; tu choi: alt rong, thieu vi, pieces!==en, kb z=3, focus.at>dur, img sai regex, v:1, scenes rong, >8; (2) `plan` T=44, at tang dan, viAt>at cuoi, rest<dur; (3) mount tra api co 7 ham, markup co `alt`, `srcset` 800w+1600w, `aria-live`, `role=region`, `.bss-fig` truoc `.bss-cap`; (4) mount tu choi def sai -> null; (5) reduced-motion: khong raf, play/pause an, prev/next hien, transform none, ring hien; (6) onerror 1 -> bo srcset, 2 -> `.bss-fb`; (7) destroy: 0 timer/raf con, host rong, goi 2 lan an toan; (8) `BSAnim.validate` (engine cu) tu choi def v2; (9) `anim-scenes.js` <= 14336 byte, khong co API cam.
+- `tools/test-anim-scenes.mjs` (A; vm + DOM gia nhu test-anim.mjs): (1) validate chap nhan l01 mau muc 1; tu choi: alt rong, thieu vi, pieces!==en, kb z=3, focus.at>dur, img sai regex, v:1, scenes rong, >8; (2) `plan` T=44 (mau test dur 7), at tang dan, viAt>at cuoi, rest<dur; (3) mount tra api co 7 ham, markup co `alt`, `srcset` 800w+1600w, `aria-live`, `role=region`, `.bss-fig` truoc `.bss-cap`; (4) mount tu choi def sai -> null; (5) reduced-motion: khong raf, toggle an, prev/next hien, transform none, ring hien; (6) onerror 1 -> bo srcset, 2 -> `.bss-fb`; (7) destroy: 0 timer/raf con, host rong, goi 2 lan an toan; (8) `BSAnim.validate` (engine cu) tu choi def v2; (9) `anim-scenes.js` <= 14336 byte, khong co API cam.
 - `tools/test-scenes-l01.mjs` (C): doc `data/l01-anim.js`; `BSScenes.validate` rong; 7 anh 800 va 7 anh hd ton tai; parse RIFF/WEBP: chieu rong/cao dung 800x450 / 1600x900 (VP8/VP8L/VP8X); cap 110000/280000; tong 800 <= 800000; pieces noi lai = en; alt_vi khong rong; `data/l01-anim.js` <= 6144 byte; khong API cam; canh `id` va `img` duy nhat.
 - Cap nhat co san: `tools/test-anim-l01.mjs` doi duong dan sang `tools/fixtures/l01-anim-rig.js` va dong gioi han 5KB (C); `tools/test-loader.mjs` them ca scenes: danh sach nap `[anim-scenes.js, data/l01-anim.js]`, kind la roi vao rig, hai kind khong dung chung state (D); `tools/test-sw.mjs`/`check-sw.mjs` (E): PRECACHE them `assets/js/anim-scenes.js` + 7 file 800 (khong co file hd; so file anim trong PRECACHE doi tuong ung), bump VERSION.
 

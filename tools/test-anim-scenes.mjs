@@ -16,7 +16,7 @@ const clone = (o) => JSON.parse(JSON.stringify(o));
 
 // ---------- du lieu mau (rut gon tu hop dong muc 1; C ghi ban that) ----------
 function sc(id, img, en, pieces, note, kbTo, focus) {
-  return { id, img, dur: 7, alt_vi: 'Mô tả ảnh ' + id + '.', en, vi: 'Câu tiếng Việt ' + id + '.', pieces, note_vi: note, pos: [0.3, 0.4],
+  return { id, img, dur: 7, alt_vi: 'Mô tả ảnh ' + id + '.', en, vi: 'Câu tiếng Việt ' + id + '.', pieces, note_vi: note,
     kb: { from: [0.5, 0.5, 1.0], to: kbTo }, focus: Object.assign({ x: 0.5, y: 0.5, r: 0.12, at: 2.5, label_vi: 'đang ' + id }, focus || {}) };
 }
 function def() {
@@ -44,7 +44,8 @@ function makeEnv(opts = {}) {
   sb.cancelAnimationFrame = (id) => { raf.cancels++; raf.q = raf.q.filter((x) => x[0] !== id); };
   sb.setTimeout = (f) => { const id = ++tm.id; tm.q.push([id, f]); return id; };
   sb.clearTimeout = (id) => { tm.q = tm.q.filter((x) => x[0] !== id); };
-  const mq = { matches: !!opts.reduced, addEventListener: (t, f) => mqL.push(f), removeEventListener: (t, f) => { const i = mqL.indexOf(f); if (i >= 0) mqL.splice(i, 1); } };
+  const mq = { matches: !!opts.reduced }, mqAdd = (t, f) => { if (typeof t === 'function') f = t; mqL.push(f); }, mqRem = (t, f) => { if (typeof t === 'function') f = t; const i = mqL.indexOf(f); if (i >= 0) mqL.splice(i, 1); };
+  if (opts.legacy) { mq.addListener = mqAdd; mq.removeListener = mqRem; } else { mq.addEventListener = mqAdd; mq.removeEventListener = mqRem; }
   sb.matchMedia = () => mq;
   const doc = { createElement: (t) => mk(t) };
   function mk(tag) {
@@ -123,7 +124,6 @@ sect('1 nap + validate');
   bad('focus.at > dur', (d) => { d.scenes[0].focus.at = 8; });
   bad('focus.r qua lon', (d) => { d.scenes[0].focus.r = 0.5; });
   bad('focus.x ngoai', (d) => { d.scenes[0].focus.x = 1.5; });
-  bad('pos sai', (d) => { d.scenes[0].pos = [2, 0]; });
   bad('img sai regex', (d) => { d.scenes[0].img = '../x'; });
   bad('img chu hoa', (d) => { d.scenes[0].img = 'Nam'; });
   bad('outro.img sai', (d) => { d.outro.img = 'a/b'; });
@@ -149,7 +149,8 @@ sect('1 nap + validate');
   ok(S.validate(null).length > 0 && S.validate(undefined).length > 0 && S.validate('x').length > 0 && S.validate([]).length > 0, 'validate(null/chuoi/mang) tra loi');
   const cyc = def(); cyc.scenes[0].self = cyc; ok(S.validate(cyc).length === 0, 'khoa la bi bo qua');
   const d2 = def(); d2.zzz = 1; d2.scenes[0].zzz = 2; ok(S.validate(d2).length === 0, 'khoa la khong loi');
-  const d3 = def(); delete d3.scenes[0].pos; delete d3.scenes[0].focus; delete d3.placeholder; ok(S.validate(d3).length === 0, 'pos/focus/placeholder tuy chon');
+  const d3 = def(); delete d3.scenes[0].pos; delete d3.scenes[0].focus; delete d3.placeholder; ok(S.validate(d3).length === 0, 'focus/placeholder tuy chon');
+  const d5 = def(); d5.scenes[0].pos = [2, 'x']; d5.scenes[1].pos = 'abc'; ok(S.validate(d5).length === 0, 'pos cu (rac) duoc bo qua, khong loi');
   const d4 = def(); d4.scenes.length = 8 - 0; while (d4.scenes.length < 8) { const c = clone(d4.scenes[0]); c.id = 'c' + d4.scenes.length; d4.scenes.push(c); } ok(S.validate(d4).length === 0, '8 canh van hop le (56+2 giay)');
   const th = { get v() { throw new Error('boom'); } }; let r; try { r = S.validate(th); } catch (x) { r = null; }
   ok(Array.isArray(r) && r.length === 1 && r[0] === 'x', 'validate boc try/catch -> [x]');
@@ -169,8 +170,9 @@ sect('2 plan');
     ok(s.rest < s.dur && s.rest > s.viAt, 'rest < dur va > viAt canh ' + i);
   });
   const s0 = p.scenes[0];
-  ok(s0.at[0] === 3.15 && s0.viAt === 6.16 && s0.rest === 6.79, 'cong thuc at/viAt/rest: ' + [s0.at[0], s0.viAt, s0.rest]);
-  ok(s0.at[4] === 5.11, 'at[4] = dur*(0.45+0.35*4/5) = 5.11 (got ' + s0.at[4] + ')');
+  ok(s0.at[0] === 1.05 && s0.viAt === 3.5 && s0.rest === 6.79, 'cong thuc at/viAt/rest: ' + [s0.at[0], s0.viAt, s0.rest]);
+  ok(s0.at[4] === 2.45, 'at[4] = dur*(0.15+0.25*4/5) = 2.45 (got ' + s0.at[4] + ')');
+  p.scenes.forEach((x, i) => { ok(x.dur - x.at[x.at.length - 1] >= 4, 'canh ' + i + ': cau tieng Anh day du hien >= 4 s'); ok(x.dur - x.viAt >= 3, 'canh ' + i + ': nghia tieng Viet hien >= 3 s'); });
   ok(s0.focusAt === 2.5, 'focusAt = focus.at');
   const d = def(); delete d.scenes[1].focus; ok(S.plan(d).scenes[1].focusAt === null, 'focusAt null khi khong co focus');
   ok(JSON.stringify(S.plan(def())) === JSON.stringify(p), 'plan thuan (lap lai = nhau)');
@@ -198,10 +200,10 @@ sect('3 mount markup');
   ok(idx('bss-fig') >= 0 && idx('bss-cap') > idx('bss-stage'), 'figure/stage truoc figcaption (caption duoi anh)');
   ok(E.all.find((e) => e.classes.has('bss-cap')).tag === 'figcaption' && E.all.find((e) => e.classes.has('bss-fig')).tag === 'figure', 'figure/figcaption');
   ok(E.chips().length === 7, '7 chip buoc (6 + outro)');
-  ok(E.chips().every((c, i) => c.textContent === 'Bước ' + (i + 1) && /^Chuyển tới động tác /.test(c.attrs['aria-label']) && c.attrs.type === 'button'), 'chip nhan + aria-label + type=button');
+  ok(E.chips().every((c, i) => c.textContent === 'Bước ' + (i + 1) && c.attrs['aria-label'].startsWith(c.textContent + ':') && c.attrs.type === 'button'), 'chip nhan + aria-label bat dau bang chu hien thi (WCAG 2.5.3) + type=button');
   ok(E.chips()[0].attrs['aria-current'] === 'step' && E.chips().filter((c) => 'aria-current' in c.attrs).length === 1, 'chi chip hien tai co aria-current');
   ok(/pour → pouring/.test(E.chips()[0].attrs['aria-label']), 'aria-label chip dung note_vi');
-  ['play', 'pause', 'prev', 'next', 'replay'].forEach((a) => ok(E.byA(a) && E.byA(a).attrs.type === 'button', 'nut ' + a));
+  ['toggle', 'prev', 'next', 'replay'].forEach((a) => ok(E.byA(a) && E.byA(a).attrs.type === 'button', 'nut ' + a));
   ok(E.byA('prev').hidden && E.byA('next').hidden, 'prev/next an khi khong reduced');
   const sent = E.byR('sent'); ok(sent.attrs.lang === 'en', 'sent lang=en');
   ok(sent.children.map((c) => c.textContent).join('') === def().scenes[0].en, 'cau noi lai = en');
@@ -230,32 +232,32 @@ sect('5 playback');
 {
   const E = makeEnv(), api = E.S.mount(E.host, def());
   const sr = E.byR('sr'), img = E.byR('img'), ring = E.byR('ring'), sent = E.byR('sent'), vi = E.byR('vi');
-  ok(E.pct() === 0 && E.byA('play').hidden && !E.byA('pause').hidden, 'dang chay: Phat an, Tam dung hien');
+  ok(E.pct() === 0 && !E.byA('toggle').hidden && E.byA('toggle').textContent === 'Tạm dừng' && !E.byA('play') && !E.byA('pause'), 'dang chay: mot nut toggle, nhan Tam dung');
   ok(sr.textContent === '' && !E.on(sent.children[0]) && !E.on(vi) && ring.hidden, 'luc dau: chua hien cau/vi/vong');
   E.tick(1);
-  E.tick(24); // ~2.4s
-  ok(ring.hidden, 'vong chua hien truoc focus.at 2.5s');
+  E.tick(9); // ~0.9s
+  ok(!sent.children.some((c) => E.on(c)), 'chua den at[0]=1.05 -> chua hien manh nao');
   const tr0 = img.style.transform;
   ok(/^translate\(-?[\d.]+%,-?[\d.]+%\) scale\([\d.]+\)$/.test(tr0), 'Ken Burns: transform translate+scale: ' + tr0);
-  E.tick(2);
+  E.tick(2); // ~1.1s
+  ok(E.on(sent.children[0]) && !E.on(sent.children[4]) && ring.hidden, 'at[0] da qua: hien manh dau, chua manh cuoi, vong chua hien');
+  E.tick(15); // ~2.6s
   ok(!ring.hidden && ring.style.left && ring.style.top && /%$/.test(ring.style.width), 'vong hien tu focusAt: ' + ring.style.left + ' ' + ring.style.top + ' ' + ring.style.width);
   ok(E.byR('lab').textContent === 'đang pour' || E.byR('lab').textContent === 'đang ' + def().scenes[0].id, 'nhan label_vi');
-  ok(!E.on(sent.children[0]), 'chua den at[0]=3.15 -> chua hien manh dau');
-  E.tick(6); // ~3.2s
-  ok(E.on(sent.children[0]) && !E.on(sent.children[4]), 'at[0] da qua: hien manh dau, chua hien manh cuoi');
+  ok(sent.children.every((c) => E.on(c)), 'hien het manh cau (<= 0.4*dur)');
+  ok(!E.on(vi) && sr.textContent === '', 'chua viAt (3.5s): vi chua hien, chua doc');
+  E.tick(10); // ~3.6s
+  ok(E.on(vi), 'qua viAt: vi hien');
+  ok(sr.textContent === 'Câu mẫu: He is pouring water into a cup. Câu tiếng Việt pour. pour → pouring.', 'aria-live doc cau + vi + note (khong tail, khong "..."): ' + sr.textContent);
+  ok(!/\.\./.test(sr.textContent) && !sr.textContent.includes('Cấu trúc be'), 'khong dau cham doi, sr_tail_vi khong doc o canh');
+  ok(sr.children.length === 3 && sr.children[1].attrs.lang === 'en' && sr.children[1].textContent === def().scenes[0].en && !('lang' in sr.children[0].attrs), 'cau tieng Anh nam trong span lang=en, phan Viet khong gan lang');
+  ok(sr.textContent.includes(def().scenes[0].vi.replace(/\.$/, '')) && sr.textContent.includes('pour → pouring'), 'doc du en/vi/note');
+  const w0 = sr.tw; E.tick(3); ok(sr.tw === w0, 'khong doc lai trong cung canh');
   const z = (s) => +/scale\(([\d.]+)\)/.exec(s)[1];
   const tx = (s) => +/translate\((-?[\d.]+)%/.exec(s)[1], ty = (s) => +/translate\(-?[\d.]+%,(-?[\d.]+)%/.exec(s)[1];
   const t1 = img.style.transform; ok(z(t1) > z(tr0), 'Ken Burns phong to theo thoi gian');
-  E.tick(25); // ~5.7s
-  ok(E.on(sent.children[4]), 'hien het manh cau');
-  ok(!E.on(vi) && sr.textContent === '', 'chua viAt: vi chua hien, chua doc');
-  E.tick(8);
-  ok(E.on(vi), 'qua viAt: vi hien');
-  ok(sr.textContent === 'Câu mẫu: He is pouring water into a cup.. Câu tiếng Việt pour.. pour → pouring. Cấu trúc be + V-ing nghĩa là đang làm gì.' || /^Câu mẫu: He is pouring water into a cup\./.test(sr.textContent), 'aria-live doc cau + vi + note + tail: ' + sr.textContent);
-  ok(/Cấu trúc be \+ V-ing/.test(sr.textContent) && sr.textContent.includes(def().scenes[0].vi) && sr.textContent.includes('pour → pouring'), 'doc du en/vi/note/tail');
-  const w0 = sr.tw; E.tick(3); ok(sr.tw === w0, 'khong doc lai trong cung canh');
   // chuyen canh
-  E.tick(4);
+  E.tick(32); // ~7.1s
   ok(img.attrs.src === 'assets/img/l01/scene/nam-wipe-800.webp' && img.attrs.alt === def().scenes[1].alt_vi, 'sang canh 2: src/alt doi');
   ok(sent.children.map((c) => c.textContent).join('') === def().scenes[1].en, 'sang canh 2: cau doi');
   ok(!E.on(sent.children[4]) && !E.on(vi), 'sang canh 2: manh/vi reset');
@@ -275,7 +277,7 @@ sect('5 playback');
   api.go(2); ok(E.byR('img').attrs.src.includes('mai-look-800'), 'go(2) -> canh look');
   api.go(99); ok(E.byR('img').attrs.src.includes('duo-cafe-800') && E.byR('step').textContent === 'Tổng kết', 'go(99) -> outro (duo-cafe)');
   ok(E.byR('img').attrs.alt === def().outro.alt_vi, 'outro alt');
-  ok(E.byR('sr').textContent.startsWith('Tổng kết. Ghi nhớ nhanh: be + động từ-ing.'), 'outro doc: title + segs: ' + E.byR('sr').textContent);
+  ok(E.byR('sr').textContent === 'Tổng kết. Ghi nhớ nhanh: be + động từ-ing. ' + def().sr_tail_vi, 'outro doc: title + segs + sr_tail_vi (mot lan, khong ..): ' + E.byR('sr').textContent);
   api.go(-5); ok(E.byR('img').attrs.src.includes('nam-pour-800'), 'go(-5) -> canh 0');
   api.destroy();
 }
@@ -283,20 +285,50 @@ sect('5 playback');
 // ================= 5b. chay het, nut, chip =================
 sect('5b nut + chay het');
 {
-  const E = makeEnv(), api = E.S.mount(E.host, def());
-  E.byA('pause').click(); ok(E.raf.q.length === 0 && E.raf.cancels === 1, 'Tam dung huy raf');
-  ok(!E.byA('play').hidden && E.byA('pause').hidden, 'Tam dung -> hien Phat');
+  const E = makeEnv(), api = E.S.mount(E.host, def()), tg = E.byA('toggle');
+  const live = () => E.all.filter((e) => e.tag === 'button' && !e.hidden).length;
+  ok(!tg.hidden && tg.textContent === 'Tạm dừng', 'dang chay: toggle hien, nhan Tam dung');
+  tg.click(); ok(E.raf.q.length === 0 && E.raf.cancels === 1, 'Tam dung huy raf');
+  ok(!tg.hidden && tg.textContent === 'Phát', 'Tam dung -> cung nut, nhan Phat, KHONG an (giu focus ban phim)');
   const p0 = E.pct(); E.tick(5); ok(E.pct() === p0, 'dung hinh khi pause');
-  E.byA('play').click(); ok(E.raf.q.length === 1, 'Phat lai: co raf');
+  tg.click(); ok(E.raf.q.length === 1 && !tg.hidden && tg.textContent === 'Tạm dừng', 'Phat lai: co raf, nut van hien, nhan Tam dung');
   E.chips()[3].click(); ok(E.byR('img').attrs.src.includes('mai-type-800') && E.chips()[3].attrs['aria-current'] === 'step', 'bam chip 4 -> canh type');
   E.chips()[6].click(); ok(E.byR('img').attrs.src.includes('duo-cafe'), 'bam chip 7 -> outro');
   E.tick(60); // qua T
-  ok(E.byA('play') && !E.byA('play').hidden && E.byA('pause').hidden && E.pct() === 100, 'het phim: dung, hien Phat, 100%');
+  ok(!tg.hidden && tg.textContent === 'Phát' && E.pct() === 100, 'het phim tu dung: nut van hien (khong mat focus), nhan Phat, 100%');
   ok(E.raf.q.length === 0, 'het phim khong con raf');
-  E.byA('play').click(); ok(E.raf.q.length === 1 && E.pct() === 0, 'Phat sau khi het -> chay lai tu dau');
+  tg.click(); ok(E.raf.q.length === 1 && E.pct() === 0, 'Phat sau khi het -> chay lai tu dau');
   E.tick(10); E.byA('replay').click(); ok(E.pct() === 0 && E.byR('img').attrs.src.includes('nam-pour'), 'Xem lai ve canh 1');
   E.tick(80); ok(/^Câu mẫu: He is pouring/.test(E.byR('sr').textContent), 'sau replay doc lai canh 1');
+  // moi nut vua bam khong duoc bien mat (focus ban phim)
+  const clicked = [tg, tg, E.byA('replay'), E.chips()[2], E.chips()[6], E.chips()[0], tg];
+  clicked.forEach((b, i) => { b.click(); ok(!b.hidden, 'sau khi bam nut #' + i + ' (' + (b.attrs['data-a'] || b.attrs['data-s']) + ') nut khong bi an'); });
+  ok(live() === 2 + 7, 'chay thuong: 2 nut dieu khien (toggle, replay; prev/next an) + 7 chip hien: ' + live());
   api.destroy();
+}
+// ---- 5b2. go(k)/chip nhay toi rest o ca hai che do; dong ho dt ----
+sect('5b2 go -> rest + dong ho');
+{
+  const E = makeEnv(), api = E.S.mount(E.host, def()), sent = E.byR('sent'), ring = E.byR('ring');
+  E.byA('toggle').click(); // dung hinh
+  E.chips()[2].click();
+  ok(E.byR('img').attrs.src.includes('mai-look') && sent.children.every((c) => E.on(c)) && E.on(E.byR('vi')) && !ring.hidden, 'chip 3 khi tam dung: day du cau + vi + vong');
+  ok(Math.abs(E.pct() - Math.round(100 * (14 + 7 * 0.97) / 44)) <= 1, 'chip 3: thoi gian = rest cua canh 3 (' + E.pct() + '%)');
+  api.go(0); ok(sent.children.every((c) => E.on(c)) && E.on(E.byR('vi')) && !ring.hidden, 'go(0) cung den rest');
+  api.go(6); ok(sent.children.every((c) => E.on(c)) && E.byR('vi').hidden, 'go(outro): cau day du');
+  const E2 = makeEnv({ reduced: true }); E2.S.mount(E2.host, def()); E2.chips()[4].click();
+  ok(E2.byR('sent').children.every((c) => E2.on(c)) && E2.on(E2.byR('vi')) && !E2.byR('ring').hidden, 'reduced: chip van den rest');
+  // dt toi da 0.5s/khung: tab bi bop khung (1.3 fps ~ 770 ms/khung) van chay ~ 0.5 s thuc moi khung
+  const E3 = makeEnv(), a3 = E3.S.mount(E3.host, def());
+  E3.tick(1, 770); E3.tick(10, 770); // 10 khung x 0.5 s = 5 s
+  ok(Math.abs(E3.pct() - Math.round(100 * 5 / 44)) <= 1, 'cap dt = 0.5: 10 khung 770ms -> t = 5 s (got ' + E3.pct() + '%)');
+  const E4 = makeEnv(), a4 = E4.S.mount(E4.host, def());
+  E4.tick(1, 100); E4.tick(1, 30000); // nhay tab: chi tien 0.5 s
+  ok(E4.pct() === Math.round(100 * 0.5 / 44), 'nhay tab 30 s van chi tien 0.5 s (got ' + E4.pct() + '%)');
+  const E5 = makeEnv(), a5 = E5.S.mount(E5.host, def());
+  E5.tick(1, 100); E5.tick(10, 300); // 3 s: truoc day cap 0.1 se chi 1 s
+  ok(E5.pct() === Math.round(100 * 3 / 44), 'khung 300ms tien du 300ms (got ' + E5.pct() + '%)');
+  [a3, a4, a5, api].forEach((x) => x.destroy());
 }
 
 // ================= 5c. an / ngat ket noi =================
@@ -308,8 +340,12 @@ sect('5c an + ngat ket noi');
   E.host.rects = 1; E.fire(); ok(E.raf.q.length === 1 && E.tm.q.length === 0, 'het an: tiep tuc raf');
   E.tick(2); E.host.isConnected = false; E.tick(1);
   ok(E.raf.q.length === 0 && E.tm.q.length === 0, 'ngat ket noi: dung phat');
-  ok(!E.byA('play').hidden, 'ngat ket noi: hien Phat');
+  ok(!E.byA('toggle').hidden && E.byA('toggle').textContent === 'Phát', 'ngat ket noi: hien Phat');
   api.destroy();
+  // host chua tung ket noi: khong chay ngam
+  const F = makeEnv(); F.host.isConnected = false; const af = F.S.mount(F.host, def()); F.tick(1);
+  ok(F.raf.q.length === 0 && F.tm.q.length === 0 && F.byA('toggle').textContent === 'Phát' && !F.byA('toggle').hidden, 'host chua ket noi: pl=0, hien Phat, khong raf/timer');
+  af.destroy();
 }
 
 // ================= 6. reduced motion =================
@@ -317,7 +353,7 @@ sect('6 reduced-motion');
 {
   const E = makeEnv({ reduced: true }), api = E.S.mount(E.host, def());
   ok(api && E.raf.calls === 0 && E.tm.q.length === 0, 'khong raf/timer, khong autoplay');
-  ok(E.byA('play').hidden && E.byA('pause').hidden, 'Phat/Tam dung an');
+  ok(E.byA('toggle').hidden, 'toggle an');
   ok(!E.byA('prev').hidden && !E.byA('next').hidden, 'Truoc/Tiep hien');
   ok(E.byA('prev').attrs['aria-disabled'] === 'true' && E.byA('next').attrs['aria-disabled'] === 'false', 'prev bi vo hieu o canh 1');
   ok(!E.byR('rn').hidden && /Bấm “Tiếp”/.test(E.byR('rn').textContent), 'hien ghi chu reduced-motion');
@@ -343,13 +379,20 @@ sect('6 reduced-motion');
   const E = makeEnv(), api = E.S.mount(E.host, def());
   E.tick(30); ok(E.raf.q.length === 1 && E.byR('img').style.transform !== 'none', 'dang chay thuong');
   E.mq.matches = true; E.mqL.forEach((f) => f());
-  ok(E.raf.q.length === 0 && E.byA('play').hidden && E.byA('pause').hidden && !E.byA('prev').hidden && !E.byR('rn').hidden, 'bat reduced giua chung: dung phat, doi UI');
+  ok(E.raf.q.length === 0 && E.byA('toggle').hidden && !E.byA('prev').hidden && !E.byR('rn').hidden, 'bat reduced giua chung: dung phat, doi UI');
   ok(E.byR('img').style.transform === 'none', 'bat reduced: transform none');
   ok(E.byR('img').attrs.src.includes('nam-pour') && E.on(E.byR('vi')), 'giu canh hien tai o trang thai rest');
   E.mq.matches = false; E.mqL.forEach((f) => f());
-  ok(E.raf.q.length === 0 && !E.byA('play').hidden && E.byA('prev').hidden && E.byR('rn').hidden, 'tat reduced: dung, hien Phat, an Truoc/Tiep');
-  E.byA('play').click(); ok(E.raf.q.length === 1, 'Phat lai duoc sau khi tat reduced');
+  ok(E.raf.q.length === 0 && !E.byA('toggle').hidden && E.byA('toggle').textContent === 'Phát' && E.byA('prev').hidden && E.byR('rn').hidden, 'tat reduced: dung, hien Phat, an Truoc/Tiep');
+  E.byA('toggle').click(); ok(E.raf.q.length === 1, 'Phat lai duoc sau khi tat reduced');
   api.destroy();
+}
+{
+  // Safari <= 13: chi co addListener/removeListener
+  const E = makeEnv({ legacy: true }), api = E.S.mount(E.host, def());
+  ok(api && E.mqL.length === 1, 'legacy mq: dung addListener (khong nem loi)');
+  E.mq.matches = true; E.mqL.forEach((f) => f()); ok(E.byA('toggle').hidden, 'legacy mq: change chay');
+  api.destroy(); ok(E.mqL.length === 0 && E.listeners() === 0, 'legacy mq: destroy go removeListener');
 }
 
 // ================= 7. onerror =================
@@ -368,6 +411,9 @@ sect('7 onerror');
   api.go(1);
   ok(E.byR('fb').hidden && !E.byR('stage').hidden && E.byR('img').attrs.srcset, 'canh khac: anh binh thuong tro lai (theo tung anh), srcset khoi phuc');
   api.go(0); ok(!E.byR('fb').hidden, 'quay lai canh loi: fallback');
+  api.go(2); E.byR('img').fire('error'); api.go(3);
+  ok(E.byR('img').attrs.srcset && E.byR('fb').hidden, 'loi 1 lan o canh 3 roi sang canh 4: canh 4 chua bi tinh loi');
+  E.byR('img').fire('error'); ok(!('srcset' in E.byR('img').attrs) && E.byR('fb').hidden, 'loi dau tien cua canh 4 chi go srcset (khong cong don tu canh 3)');
   api.destroy();
 }
 

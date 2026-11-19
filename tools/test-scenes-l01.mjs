@@ -68,6 +68,15 @@ if (fs.existsSync(P('assets/js/anim-scenes.js'))) {
   const B = c2.window.BSScenes;
   ok(!!B && typeof B.validate === 'function', 'thieu BSScenes.validate');
   if (B) { const e = B.validate(D); ok(e.length === 0, 'validate bao loi: ' + JSON.stringify(e)); }
+  if (B) {
+    const pl = B.plan(D);
+    pl.scenes.forEach((x, i) => {
+      const last = x.at[x.at.length - 1];
+      ok(x.dur - last >= 4, 'canh ' + scenes[i].id + ': cau tieng Anh day du chi hien ' + (x.dur - last).toFixed(2) + ' s (< 4 s)');
+      ok(x.dur - x.viAt >= 3, 'canh ' + scenes[i].id + ': nghia tieng Viet chi hien ' + (x.dur - x.viAt).toFixed(2) + ' s (< 3 s)');
+    });
+  }
+  ok(scenes.every((s) => !('pos' in s)), 'data khong con truong pos (khong dung)');
 } else console.log('  bo qua: chua co assets/js/anim-scenes.js');
 
 // ---------- anh ----------

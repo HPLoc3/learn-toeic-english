@@ -17,12 +17,11 @@ window.BS_ANIMS.__ID__ = {
     { id: "pour",                                /* duy nhat; chu thuong dau, <= 16 ky tu chu/so */
       img: "nam-pour",                           /* ten file goc: nam-pour-800.webp / nam-pour-1600.webp */
       alt_vi: "Mô tả anh: ai đang làm gì, ở đâu.",
-      dur: 7,                                    /* giay, 2..60 */
+      dur: 9,                                    /* giay, 2..60; nen >= 8: cau day du hien >= 4 giay, nghia Viet >= 3 giay */
       en: "He is pouring water into a cup.",
       vi: "Anh ấy đang rót nước vào cốc.",
       pieces: [["He", ""], [" is", "be"], [" pour", ""], ["ing", "ing"], [" water into a cup.", ""]],  /* noi lai === en */
-      note_vi: "pour → pouring: đang rót",
-      pos: [0.7, 0.4],                           /* tuy chon: neo nhan cau 0..1 */
+      note_vi: "pour → pouring: đang rót"
       kb: { from: [0.5, 0.5, 1.0], to: [0.62, 0.55, 1.25] },   /* Ken Burns: [tam x, tam y, he so phong 1..2] */
       focus: { x: 0.62, y: 0.58, r: 0.12, at: 2.5, label_vi: "đang rót" } }  /* tuy chon: vong nhan manh */
   ],
