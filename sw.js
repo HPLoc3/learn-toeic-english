@@ -146,6 +146,8 @@ async function purgeOld() {
         for (var j = 0; j < reqs.length; j++) {
           var rurl = typeof reqs[j] === "string" ? reqs[j] : reqs[j].url;
           if (await cur.match(rurl)) continue;
+          /* ảnh HD (img-hd/) không chép sang bản mới: có thể là ảnh tạm của bản cũ; ngoại tuyến đã có ảnh 800w precache */
+          if (/\/assets\/img-hd\//.test(rurl)) continue;
           var r = await oc.match(rurl);
           if (r) await cur.put(rurl, r);
         }

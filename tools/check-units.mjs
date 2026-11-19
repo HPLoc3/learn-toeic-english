@@ -362,6 +362,10 @@ function checkScenes(entry, def, file, win, e, w) {
     const f = def.img.base + n + "-800.webp";
     if (!/^assets\/img\//.test(f) || f.includes("..")) { e(file + ": đường dẫn ảnh '" + f + "' không hợp lệ."); return; }
     if (!exists(f)) e(file + ": thiếu ảnh " + f + ".");
+    if (typeof def.img.hd === "string" && /^assets\/img-hd\/[a-z0-9_-]+\/$/.test(def.img.hd)) {
+      const g = def.img.hd + n + "-1600.webp";
+      if (!exists(g)) w(file + ": thiếu ảnh HD " + g + " (máy màn hình nét cao sẽ rơi về 800w).");
+    }
   });
 }
 

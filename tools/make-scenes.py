@@ -6,7 +6,8 @@ Run from the repo root:
       [--outhd DIR] [--cap800 110000] [--cap1600 280000] [--crop NAME=cx,cy]
       [--placeholder] [--dry-run]
 
-Exit codes: 0 ok, 1 bad arguments, 2 missing source images, 3 cap not reached.
+Exit codes: 0 ok, 1 bad arguments (own validation), 2 argparse usage error,
+3 missing source images, 4 cap not reached (nothing is written in that case).
 Only writes into the two output directories.
 """
 import argparse
@@ -15,10 +16,13 @@ import io
 import os
 import sys
 
-from PIL import Image, ImageDraw, ImageFont
+import re
+
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 NAMES = "nam-pour,nam-wipe,mai-look,mai-type,hanh-wear,hanh-point,duo-cafe"
 SIZES = ((800, 450), (1600, 900))
+SLUG = re.compile(r"^[a-z0-9-]+$")
 EXTS = (".png", ".jpg", ".jpeg")
 QUALITIES = (82, 78, 74, 70, 66, 62, 60)
 # Soft palette harmonising with #4a2ad6 (violet) and #f7c948 (yellow).
@@ -90,10 +94,16 @@ def main():
     ap.add_argument("--placeholder", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
+    if not SLUG.match(a.unit):
+        print("bad --unit, expected ^[a-z0-9-]+$", file=sys.stderr)
+        return 1
     out800 = a.out800 or os.path.join("assets", "img", a.unit, "scene")
     outhd = a.outhd or os.path.join("assets", "img-hd", a.unit)
     names = [n.strip() for n in a.names.split(",")
              if n.strip() and not n.strip().endswith("-sheet")]
+    if not names or not all(SLUG.match(n) for n in names):
+        print("bad --names, each name must match ^[a-z0-9-]+$", file=sys.stderr)
+        return 1
     crops = {}
     try:
         for c in a.crop:
@@ -116,15 +126,15 @@ def main():
         if missing:
             print("missing source images in %s: %s" % (a.src, ", ".join(missing)),
                   file=sys.stderr)
-            return 2
+            return 3
 
-    rows, total800, failed = [], 0, []
+    rows, total800, failed, pending = [], 0, [], []
     for n in names:
         base = None
         if not a.placeholder:
             im = Image.open(srcs[n])
             im.load()
-            base = crop169(im.convert("RGB"), crops.get(n, (0.5, 0.5)))
+            base = crop169(ImageOps.exif_transpose(im).convert("RGB"), crops.get(n, (0.5, 0.5)))
         for (w, h), outdir, suffix, cap in ((SIZES[0], out800, "800", a.cap800),
                                             (SIZES[1], outhd, "1600", a.cap1600)):
             img = placeholder(n, (w, h)) if a.placeholder else base.resize((w, h), Image.LANCZOS)
@@ -133,20 +143,22 @@ def main():
             if data is None:
                 failed.append(path)
                 continue
-            if not a.dry_run:
-                os.makedirs(outdir, exist_ok=True)
-                with open(path, "wb") as fh:
-                    fh.write(data)
+            pending.append((outdir, path, data))
             if suffix == "800":
                 total800 += len(data)
             rows.append((path.replace("\\", "/"), "%dx%d" % (w, h), len(data)))
+    if not failed and not a.dry_run:  # write only when every file met its cap
+        for outdir, path, data in pending:
+            os.makedirs(outdir, exist_ok=True)
+            with open(path, "wb") as fh:
+                fh.write(data)
     print("%-48s %-10s %s" % ("file", "WxH", "bytes"))
     for r in rows:
         print("%-48s %-10s %d" % r)
     print("total 800w: %d bytes%s" % (total800, " (dry run, nothing written)" if a.dry_run else ""))
     if failed:
-        print("cap not reached at quality 60: " + ", ".join(failed), file=sys.stderr)
-        return 3
+        print("cap not reached at quality 60: " + ", ".join(failed) + " (nothing written)", file=sys.stderr)
+        return 4
     return 0
 
 

@@ -307,6 +307,7 @@ async function installed(fetchImpl) {
   const oldC = await t.caches.open("tb-1");
   await oldC.put(ORIGIN + "/data/l02.js", mk("RT", { ct: "text/javascript" }));
   await oldC.put(ORIGIN + "/index.html", mk("OLD"));
+  await oldC.put(ORIGIN + "/assets/img-hd/l01/nam-pour-1600.webp", mk("PLACEHOLDER", { ct: "image/webp" }));
   const newC = await t.caches.open(CN);
   await newC.put(ORIGIN + "/index.html", mk("NEW"));
   await t.fire("activate", {});
@@ -314,6 +315,7 @@ async function installed(fetchImpl) {
   check("activate xóa cache cũ sau khi chép", !keys.includes("tb-1") && keys.includes(CN));
   const m = t.caches.stores.get(CN);
   check("activate chép mục runtime sang cache mới", m.has(ORIGIN + "/data/l02.js") && (await m.get(ORIGIN + "/data/l02.js").clone().text()) === "RT");
+  check("activate KHÔNG chép ảnh img-hd cũ sang cache mới", !m.has(ORIGIN + "/assets/img-hd/l01/nam-pour-1600.webp"));
   check("activate giữ bản precache mới, không đè bằng bản cũ", (await m.get(ORIGIN + "/index.html").clone().text()) === "NEW");
 }
 
