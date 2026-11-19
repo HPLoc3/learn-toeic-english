@@ -17,11 +17,11 @@ window.BS_ANIMS.l02 = {
       pieces: [["They", ""], [" are", "be"], [" sitt", ""], ["ing", "ing"], [" across from each other.", ""]],
       note_vi: "sit → sitting: gấp đôi t rồi thêm ing; across from each other = đối diện nhau",
       kb: { from: [0.5, 0.5, 1.0], to: [0.5, 0.48, 1.25] }, focus: { x: 0.48, y: 0.6, r: 0.13, at: 2.5, label_vi: "đối diện nhau" } },
-    { id: "line", img: "trio-line", dur: 9, alt_vi: "Trong quán cà phê, ba người đứng thành một hàng nhìn về phía quầy gọi đồ bên phải: một người đàn ông cầm điện thoại, một cô gái và một bà tóc búi đeo kính.",
+    { id: "line", img: "trio-line", dur: 9, alt_vi: "Trong quán cà phê, ba người xếp hàng nối đuôi nhau, người này đứng sau người kia, hướng về quầy gọi đồ bên phải: bà tóc búi đeo kính đứng đầu hàng, sát quầy, rồi đến cô gái, và người đàn ông cầm điện thoại đứng cuối.",
       en: "Some people are waiting in line.", vi: "Vài người đang xếp hàng chờ.",
       pieces: [["Some people", ""], [" are", "be"], [" wait", ""], ["ing", "ing"], [" in line.", ""]],
       note_vi: "Some people + are; wait → waiting: thêm ing (đang chờ); in line = xếp hàng",
-      kb: { from: [0.4, 0.5, 1.0], to: [0.58, 0.48, 1.2] }, focus: { x: 0.58, y: 0.55, r: 0.18, at: 2.5, label_vi: "xếp hàng" } },
+      kb: { from: [0.4, 0.5, 1.0], to: [0.52, 0.5, 1.1] }, focus: { x: 0.55, y: 0.5, r: 0.25, at: 2.5, label_vi: "xếp hàng" } },
     { id: "serve", img: "nam-serve", dur: 9, alt_vi: "Người pha chế mặc tạp dề vàng đứng sau quầy, đưa một cốc mang đi cho cô gái; một người đàn ông mặc vest đứng cạnh cô.",
       en: "One of the men is handing a cup to the woman.", vi: "Một trong hai người đàn ông đang đưa cho người phụ nữ một cái cốc.",
       pieces: [["One of the men", ""], [" is", "be"], [" hand", ""], ["ing", "ing"], [" a cup to the woman.", ""]],
@@ -32,11 +32,11 @@ window.BS_ANIMS.l02 = {
       pieces: [["The women", ""], [" are", "be"], [" look", ""], ["ing", "ing"], [" at some flowers.", ""]],
       note_vi: "The women + are; look at → looking at: thêm ing, giữ at (đang nhìn)",
       kb: { from: [0.45, 0.5, 1.0], to: [0.5, 0.5, 1.2] }, focus: { x: 0.51, y: 0.66, r: 0.12, at: 2.5, label_vi: "đang nhìn hoa" } },
-    { id: "walk", img: "duo-walk", dur: 9, alt_vi: "Người pha chế mặc tạp dề vàng và cô gái đi bộ cạnh nhau trên vỉa hè trước những cửa hàng, cùng hướng về phía trước.",
+    { id: "walk", img: "duo-walk", dur: 9, alt_vi: "Người pha chế mặc tạp dề vàng và cô gái đi bộ cạnh nhau trên vỉa hè trước những cửa hàng, hai người nhìn nhau mỉm cười, mỗi người một tay buông xuôi.",
       en: "Two people are walking side by side.", vi: "Hai người đang đi bộ sánh vai nhau.",
       pieces: [["Two people", ""], [" are", "be"], [" walk", ""], ["ing", "ing"], [" side by side.", ""]],
       note_vi: "Two people + are; walk → walking: thêm ing; side by side = sát cạnh nhau",
-      kb: { from: [0.35, 0.5, 1.0], to: [0.45, 0.47, 1.2] }, focus: { x: 0.43, y: 0.55, r: 0.15, at: 2.5, label_vi: "đi sánh vai" } }
+      kb: { from: [0.35, 0.5, 1.0], to: [0.5, 0.5, 1.2] }, focus: { x: 0.49, y: 0.7, r: 0.12, at: 2.5, label_vi: "đi sánh vai" } }
   ],
   outro: { img: "group-outro", dur: 2, alt_vi: "Bốn người bạn đứng thành một hàng, cùng mỉm cười: người pha chế mặc tạp dề vàng, cô gái, người đàn ông mặc vest và bà tóc búi đeo kính đang giơ tay vẫy.", title_vi: "Tổng kết", segs: [
     ["Ghi nhớ nhanh: nhiều người thì "], ["are", "be"], [" + động từ-"], ["ing", "ing"],

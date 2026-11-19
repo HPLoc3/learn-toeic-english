@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Compose the Unit 1 and Unit 2 scene images: people cut-outs + flat backgrounds/props drawn here.
 
-Pillow only (no rembg). People are original characters made by the site owner;
+Pillow only (no rembg; trio-line expects the pre-split figures trio-line-1..3.png next to the cut-out). People are original characters made by the site owner;
 everything else (backgrounds, counters, desk, laptop, flower shelf) is drawn
 procedurally by this script (2x supersampled, then downscaled).
 
@@ -554,8 +554,10 @@ def lobby_bg():
     for k in range(1, 3):
         cv.rect(250 + 780 * k / 3 - 9, 86, 250 + 780 * k / 3 + 9, 594, fill=(252, 246, 232, 255))
     cv.rect(266, 360, 1014, 378, fill=(252, 246, 232, 255))
-    cv.ell(1330, 250, 74, 74, fill=YEL + (255,))
-    cv.poly([(1280, 296), (1330, 214), (1380, 296)], fill=VIO + (255,))
+    cv.rect(1250, 170, 1410, 330, fill=(250, 246, 238, 255), r=6)          # plain framed picture
+    cv.rect(1266, 186, 1394, 314, fill=LAV2 + (255,), r=3)
+    cv.ell(1330, 270, 60, 40, fill=(186, 211, 186, 255))
+    cv.ell(1362, 222, 14, 14, fill=YEL_S + (255,))
     lamp(cv, 1130, 150)
     lamp(cv, 1470, 110)
     floor_band(cv, 660)
@@ -594,18 +596,7 @@ def queue_bg():
     lamp(cv, 900, 120)
     menu_board(cv, 1220, 60, 340, 270, rows=6)
     floor_band(cv, 640, c0=(226, 206, 184), c1=(196, 170, 150), skirt=(238, 226, 214))
-    plant(cv, 560, 650, .75)
-    # counter at the right edge (they face right)
-    cv.rect(1290, 470, 1480, 596, fill=(205, 198, 224, 255), r=10)
-    cv.rect(1304, 484, 1466, 520, fill=(176, 168, 206, 255), r=6)
-    cv.rect(1322, 540, 1356, 596, fill=(120, 106, 150, 255))
-    cv.ell(1430, 546, 14, 14, fill=YEL + (255,))
-    for k in range(3):
-        cv.rect(1500 + k * 44, 536, 1536 + k * 44, 596, fill=(238, 226, 214, 255), r=5)
-    cv.vgrad(1270, 612, W + 30, H, (190, 150, 124), (156, 118, 98))
-    cv.rect(1250, 592, W + 30, 620, fill=(222, 184, 150, 255), r=4)
-    for k in range(3):
-        cv.rect(1290 + k * 140, 664, 1400 + k * 140, H, fill=(168, 128, 104, 255), r=6)
+    plant(cv, 380, 650, .75)
     return _finish(cv, (246, 239, 236))
 
 
@@ -704,16 +695,40 @@ def outro_bg():
     return _finish(cv, (246, 240, 244), blur=2.6, mixv=.18)
 
 
-# scene -> (background fn, person scale, ox); the cut-out is anchored to the bottom edge of the canvas
+# scene -> (background fn, person scale, ox); the cut-out is anchored to the bottom edge of the canvas.
+# trio-line is composed from three separate figures instead (see make_scene_l02).
 L02 = {
     "duo-shake": (lobby_bg, SC, -6.0),
     "duo-meeting": (corner_bg, SC, -6.0),
     "trio-line": (queue_bg, 1.2, -110.0),
     "nam-serve": (serve_bg, SC, -6.0),
     "duo-flowers": (shop_bg, SC, -6.0),
-    "duo-walk": (street_bg, 1.2, -90.0),
+    "duo-walk": (street_bg, 1.1, 44.0),
     "group-outro": (outro_bg, SC, 20.0),
 }
+SCENES_L02 = list(L02)
+# trio-line queue: (layer file suffix, scale, ox), back to front. Each person is a little smaller than the one
+# in front, partly overlapped by them; the front person stands at the counter on the right.
+QUEUE = ((1, 1.0, 143.0), (2, 1.12, 12.0), (3, 1.28, -200.0))
+
+
+def queue_counter(fg):
+    """Foreground counter with till, cup stack on the side the queue faces (canvas px)."""
+    top = 600
+    fg.rect(1215, top - 8, W + 40, top + 22, fill=(232, 196, 160, 255), ol=OL, w=1.6, r=4)
+    fg.rect(1225, top + 22, W + 40, H + 20, fill=WOOD_F + (255,), ol=OL, w=1.6)
+    for k in range(3):
+        fg.rect(1255 + k * 140, top + 70, 1355 + k * 140, H + 30, fill=WOOD_D + (255,), ol=OL, w=1.4, r=4)
+    # till
+    fg.rect(1290, top - 120, 1430, top - 8, fill=(205, 198, 224, 255), ol=OL, w=1.6, r=8)
+    fg.rect(1304, top - 106, 1416, top - 70, fill=(98, 82, 128, 255), ol=OL, w=1.4, r=4)
+    fg.rect(1304, top - 62, 1360, top - 22, fill=(176, 168, 206, 255), ol=OL, w=1.4, r=3)
+    fg.ell(1392, top - 40, 12, 12, fill=YEL + (255,), ol=OL, w=1.2)
+    # takeaway cup stack
+    for k in range(3):
+        x = 1470 + k * 50
+        fg.poly([(x, top - 8), (x + 38, top - 8), (x + 32, top - 76), (x + 6, top - 76)], fill=(250, 248, 244, 255), ol=OL, w=1.4)
+        fg.rect(x + 2, top - 84, x + 36, top - 74, fill=(238, 226, 214, 255), ol=OL, w=1.2, r=3)
 
 
 def make_scene_l02(name, cut_dir):
@@ -722,7 +737,18 @@ def make_scene_l02(name, cut_dir):
     t = mk_t(sc, ox, oy)
     bg = bgf()
     mid, fg = Cv(), Cv()
+    if name == "trio-line":
+        out = bg.convert("RGBA")
+        for idx, qs, qox in QUEUE:
+            p = Image.open(os.path.join(cut_dir, "trio-line-%d.png" % idx)).convert("RGBA")
+            p = p.resize((int(round(SW * qs)), int(round(SH * qs))), Image.LANCZOS)
+            lay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            lay.paste(p, (int(round(qox)), int(round(H - SH * qs))), p)
+            out = Image.alpha_composite(out, lay)
+        queue_counter(fg)
+        return Image.alpha_composite(out, fg.out()).convert("RGB")
     if name == "nam-serve":
+        # t() maps cut-out pixel space (1376x768) to the canvas, so these numbers are cut-out pixels
         xe = 700                                   # counter ends between Nam's cup hand and Mai
         mid.poly([t(-200, 560), t(xe, 560), t(xe, 618), t(-200, 618)], fill=WOOD_T + (255,), ol=OL, w=1.6)
         for k in range(1, 4):
@@ -744,10 +770,8 @@ def make_scene_l02(name, cut_dir):
     return out.convert("RGB")
 
 
+# scene lists: SCENES = Unit 1, SCENES_L02 = Unit 2 (defined with L02 above)
 SCENES = ["nam-pour", "nam-wipe", "mai-look", "mai-type", "hanh-wear", "hanh-point", "duo-cafe"]
-
-
-SCENES_L02 = list(L02)
 
 
 def main():
