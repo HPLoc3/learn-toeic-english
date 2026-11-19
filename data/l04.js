@@ -19,10 +19,10 @@ window.BS_UNITS.l04 = {
       },
       {
         "id": "tip2",
-        "text_vi": "Với cảnh vật, câu đúng thường rơi vào ba dạng. (1) Cảnh vật tự \"làm\" việc đó, dùng hiện tại đơn: a road runs (con đường chạy), a bridge extends / crosses (cây cầu bắc qua), a path winds (lối đi uốn lượn), a river flows (sông chảy), a pier stretches (cầu tàu vươn ra), mountains rise (núi cao lên). (2) Trạng thái, dùng be + V3: is surrounded by (được bao quanh bởi), is covered with (được phủ bằng), is lined with (có hai bên là), is located (nằm ở), is reflected in (in bóng trong), are scattered across (rải rác khắp), are lit (được thắp sáng). (3) Điều đang diễn ra, dùng be + V-ing: a boat is floating, clouds are drifting, waves are crashing. Đây là xu hướng thường gặp, không phải luật cứng: nhiều động từ dùng được hai dạng (a path winds hay a path is winding; trees line the path hay trees are lining the path). Chỗ cần chắc chắn là câu phải khớp với ảnh.",
+        "text_vi": "Với cảnh vật, câu đúng thường rơi vào ba dạng. (1) Cảnh vật tự \"làm\" việc đó, dùng hiện tại đơn: a road runs (con đường chạy), a bridge extends / crosses (cây cầu bắc qua), a path winds (lối đi uốn lượn), a river flows (sông chảy), a pier stretches (cầu tàu vươn ra), mountains rise (núi nhô cao); nhớ chia động từ theo chủ ngữ: số ít thêm s (a road runs), số nhiều thì không (mountains rise). (2) Trạng thái, dùng be + V3: is surrounded by (được bao quanh bởi), is covered with (được phủ bằng), is lined with (có ... xếp dọc theo), is located (nằm ở), is reflected in (in bóng trong), are scattered across (rải rác khắp), are lit (được thắp sáng). (3) Điều đang diễn ra, dùng be + V-ing: a boat is floating, clouds are drifting, waves are crashing. Đây là xu hướng thường gặp, không phải luật cứng: nhiều động từ dùng được hai dạng (a path winds hay a path is winding; trees line the path hay trees are lining the path). Chỗ cần chắc chắn là câu phải khớp với ảnh.",
         "examples": [
           { "en": "A road runs through the field.", "vi": "Một con đường chạy xuyên qua cánh đồng." },
-          { "en": "Mountains rise above the lake.", "vi": "Những ngọn núi cao lên phía trên hồ." },
+          { "en": "Hills rise behind the village.", "vi": "Những ngọn đồi nhô cao phía sau ngôi làng." },
           { "en": "A house is surrounded by tall trees.", "vi": "Một ngôi nhà được bao quanh bởi những hàng cây cao." },
           { "en": "Lamps are lit along the sidewalk.", "vi": "Những cây đèn được thắp sáng dọc theo vỉa hè." },
           { "en": "A boat is floating on the water.", "vi": "Một chiếc thuyền đang nổi trên mặt nước." },
@@ -47,7 +47,7 @@ window.BS_UNITS.l04 = {
           { "en": "Two bridges extend over the river.", "vi": "(Câu SAI khi chỉ có một cây cầu) Hai cây cầu bắc qua sông. Sai số lượng." },
           { "en": "A fisherman is sitting by the river.", "vi": "(Câu SAI khi không có ai) Một người câu cá đang ngồi bên sông. Ảnh không có người." },
           { "en": "The bridge is being repaired.", "vi": "(Câu SAI khi không có ai) Cây cầu đang được sửa. Không ai đang sửa." },
-          { "en": "Houses are visible in the foreground.", "vi": "(Câu SAI khi những ngôi nhà ở xa) Những ngôi nhà ở phía gần. Sai vị trí: nhà ở phía xa, không phải phía gần." }
+          { "en": "Houses are visible in the foreground.", "vi": "(Câu SAI khi những ngôi nhà ở xa) Có thể nhìn thấy những ngôi nhà ở phía gần. Sai vị trí: nhà ở phía xa, không phải phía gần." }
         ]
       },
       {
@@ -112,7 +112,7 @@ window.BS_UNITS.l04 = {
     { "id": "p11", "en": "surrounded by trees", "vi": "được cây cối bao quanh", "group_vi": "Trạng thái của cảnh vật (be + V3)" },
     { "id": "p12", "en": "covered with snow", "vi": "được phủ tuyết", "group_vi": "Trạng thái của cảnh vật (be + V3)" },
     { "id": "p13", "en": "reflected in the water", "vi": "in bóng trên mặt nước", "group_vi": "Trạng thái của cảnh vật (be + V3)" },
-    { "id": "p14", "en": "lined with shops", "vi": "hai bên là các cửa hàng", "group_vi": "Trạng thái của cảnh vật (be + V3)" }
+    { "id": "p14", "en": "lined with shops", "vi": "có các cửa hàng nằm dọc theo", "group_vi": "Trạng thái của cảnh vật (be + V3)" }
   ],
   "sentences": [
     { "id": "s01", "en": "A boat is floating on the water.", "vi": "Một chiếc thuyền đang nổi trên mặt nước." },
@@ -130,7 +130,7 @@ window.BS_UNITS.l04 = {
       "items": [
         { "id": "fill1-1", "before": "A road", "after": "through the field.", "answers": ["runs", "goes", "passes", "winds"] },
         { "id": "fill1-2", "before": "A bridge", "after": "over the river.", "answers": ["extends", "stretches", "crosses"] },
-        { "id": "fill1-3", "before": "Mountains", "after": "above the lake.", "answers": ["rise", "tower"] },
+        { "id": "fill1-3", "before": "Rivers", "after": "into the sea.", "answers": ["flow", "run"] },
         { "id": "fill1-4", "before": "Trees are", "after": "the path.", "answers": ["lining", "flanking"] },
         { "id": "fill1-5", "before": "A boat is", "after": "on the water.", "answers": ["floating", "drifting", "sailing"] },
         { "id": "fill1-6", "before": "A house is", "after": "by tall trees.", "answers": ["surrounded", "shaded"] },
@@ -220,7 +220,7 @@ window.BS_UNITS.l04 = {
       "options": [
         { "label": "A", "en": "Pedestrians are walking along the sidewalk.", "why_vi": "Sai: trong hình không có người đi bộ nào." },
         { "label": "B", "en": "Several buildings are located along the street." },
-        { "label": "C", "en": "Only one building is located along the street.", "why_vi": "Sai số lượng: có nhiều tòa nhà (bốn tòa), không chỉ một." },
+        { "label": "C", "en": "A building is being constructed on the corner.", "why_vi": "Bẫy is being + V3: không có ai đang xây và trong hình không có công trình nào đang xây." },
         { "label": "D", "en": "The street is being repaired.", "why_vi": "Bẫy is being + V3: không có ai đang sửa đường, mặt đường trống." }
       ],
       "answer": "B",
@@ -275,7 +275,7 @@ window.BS_UNITS.l04 = {
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
         { "label": "A", "en": "A lamp post is lit in the middle of the street.", "why_vi": "Sai vị trí: các cột đèn đứng trên vỉa hè, không đứng giữa lòng đường." },
-        { "label": "B", "en": "Only one lamp is lit along the sidewalk.", "why_vi": "Sai số lượng: có ba cây đèn đang sáng, không chỉ một." },
+        { "label": "B", "en": "A lamp post has fallen onto the sidewalk.", "why_vi": "Sai: không có cột đèn nào bị đổ, cả ba cột đều đứng thẳng." },
         { "label": "C", "en": "The lamps are being turned on.", "why_vi": "Bẫy is being + V3: không có ai đang bật đèn, các đèn đã sáng sẵn." },
         { "label": "D", "en": "Lamps are lit along the sidewalk." }
       ],

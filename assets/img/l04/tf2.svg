@@ -10,7 +10,7 @@
 <path d="M90 190H120M150 190H180M90 240H120M150 240H180M260 215H290M310 215H340M260 255H290M310 255H340M430 170H460M490 170H520M430 220H460M490 220H520" fill="none" stroke-width="12" stroke="#ffffff"/>
 <path d="M130 380H250L232 410H148Z" fill="#ff9f43"/><path d="M190 380V316" fill="none"/><path d="M196 320L238 372H196Z" fill="#ffffff"/>
 <rect x="360" y="360" width="130" height="30" rx="10" fill="#4a90d9"/><rect x="396" y="336" width="54" height="26" rx="6" fill="#ffffff"/>
-<path d="M620 410H800V600H600Z" fill="#d9d2ff"/>
+<path d="M620 410H800V600H600Z" fill="#b8b6c8"/>
 <rect x="400" y="440" width="10" height="46" fill="#8a5a3b"/><rect x="470" y="440" width="10" height="46" fill="#8a5a3b"/><rect x="540" y="440" width="10" height="46" fill="#8a5a3b"/>
 <rect x="390" y="424" width="250" height="24" rx="4" fill="#b97a4a"/>
 </g>
