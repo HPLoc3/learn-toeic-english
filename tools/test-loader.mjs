@@ -43,6 +43,8 @@ function env(opts) {
   const ctx = vm.createContext({ window: win, document: doc, setTimeout, clearTimeout, console, CustomEvent: function (n, o) { this.type = n; this.detail = o && o.detail; } });
   win.BS = { isEdit: () => !!opts.edit };
   vm.runInContext(rd("data/catalog.js"), ctx);
+  /* l01 that la unit "scenes"; cac ca rig dung muc gia: bo animKind (mac dinh rig) truoc khi ap dung opts.catalog */
+  if (!opts.real) delete win.BS_CATALOG.parts[0].units[0].animKind;
   if (opts.catalog) opts.catalog(win.BS_CATALOG);
   vm.runInContext(rd("assets/js/loader.js"), ctx);
   return { win, added, BS: win.BS };
@@ -209,9 +211,12 @@ t("ma nguon loader: khong con dang duong dan anim, khong chuoi mang", async () =
   assert.ok(!/validAnim/.test(s));
   assert.ok(!/https?:\/\/|fetch\s*\(|XMLHttpRequest/.test(s));
 });
-t("catalog that: l01 co anim === true", async () => {
-  const E = env();
+t("catalog that: l01 co anim === true va animKind scenes; nap bang bo scenes", async () => {
+  const E = env({ real: true });
   assert.strictEqual(E.BS.catalogUnit("l01").anim, true);
+  assert.strictEqual(E.BS.catalogUnit("l01").animKind, "scenes");
+  assert.ok((await later(E.BS, "loadAnim", "l01")).v);
+  assert.deepEqual(E.added.map((x) => x.src), [SCENES, "data/l01-anim.js"]);
 });
 
 for (const [name, fn] of queue) {

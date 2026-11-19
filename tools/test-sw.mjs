@@ -81,6 +81,7 @@ const okFetch = (url) => {
   if (/\.js$/.test(p)) return mk("//js", { ct: "text/javascript" });
   if (/\.css$/.test(p)) return mk("/*css*/", { ct: "text/css" });
   if (/\.png$/.test(p)) return mk("png", { ct: "image/png" });
+  if (/\.webp$/.test(p)) return mk("webp", { ct: "image/webp" });
   return mk("<html>" + p + "</html>");
 };
 
@@ -97,10 +98,12 @@ const okFetch = (url) => {
       need.push("data/" + u.id + ".js");
       if (u.game === true) need.push("data/" + u.id + "-game.js");
       if (u.anim === true) need.push("data/" + u.id + "-anim.js");
-      for (const f of readdirSync(join(ROOT, "assets/img/" + u.id))) need.push("assets/img/" + u.id + "/" + f);
+      const walkImg = (rel) => { for (const e of readdirSync(join(ROOT, rel), { withFileTypes: true })) { if (e.isDirectory()) walkImg(rel + "/" + e.name); else need.push(rel + "/" + e.name); } };
+      walkImg("assets/img/" + u.id);
     }
     check("PRECACHE gồm mọi file của unit available theo catalog (" + need.length + " file)", need.length > 0 && need.every((f) => t.PRECACHE.includes(f)));
-    check("PRECACHE có engine/rig/cast hoạt hình, mascot.js, mascot.css, không có file anim lạ", ["assets/js/anim-engine.js", "assets/js/anim-rig.js", "assets/js/anim-cast.js", "assets/js/mascot.js", "assets/css/mascot.css", "data/l01-anim.js"].every((f) => t.PRECACHE.includes(f)) && t.PRECACHE.filter((f) => /anim/.test(f)).length === 4);
+    check("PRECACHE có engine/rig/cast hoạt hình, mascot.js, mascot.css, không có file anim lạ", ["assets/js/anim-engine.js", "assets/js/anim-rig.js", "assets/js/anim-cast.js", "assets/js/anim-scenes.js", "assets/js/mascot.js", "assets/css/mascot.css", "data/l01-anim.js"].every((f) => t.PRECACHE.includes(f)) && t.PRECACHE.filter((f) => /anim/.test(f)).length === 5);
+    check("PRECACHE có 7 ảnh cảnh 800w, không có ảnh HD (assets/img-hd)", t.PRECACHE.filter((f) => /^assets\/img\/l01\/scene\/[a-z-]+-800\.webp$/.test(f)).length === 7 && !t.PRECACHE.some((f) => /img-hd/.test(f)));
     check("PRECACHE không chứa unit chưa available", !t.PRECACHE.some((f) => /^data\/l0[2-9]|^data\/p\d/.test(f)));
   }
   await t.fire("install", {});
@@ -252,6 +255,8 @@ async function installed(fetchImpl) {
   r = await t.fire("fetch", t.sub("/data/l97.js"));
   check("JS network-first trả bản mới từ mạng (không lệch phiên bản)", (await r.response.text()) === "v2");
   check("JS network-first cập nhật cache", (await cache.get(ORIGIN + "/data/l97.js").clone().text()) === "v2");
+  r = await t.fire("fetch", t.sub("/assets/img-hd/l01/nam-pour-1600.webp"));
+  check("ảnh HD webp (không precache) được lưu khi tải lần đầu từ mạng", r.response.status === 200 && cache.has(ORIGIN + "/assets/img-hd/l01/nam-pour-1600.webp"));
   const t2 = await installed(() => mk("x", { type: "opaque", ct: "image/png" }));
   await t2.fire("fetch", t2.sub("/assets/img/l01/a.svg"));
   check("response không basic không được lưu", t2.caches.stores.get(CN).size === 0);
