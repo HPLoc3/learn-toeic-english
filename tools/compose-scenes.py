@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Compose the Unit 1 and Unit 2 scene images: people cut-outs + flat backgrounds/props drawn here.
 
-Pillow only (no rembg; trio-line expects the pre-split figures trio-line-1..3.png next to the cut-out). People are original characters made by the site owner;
+Pillow only (no rembg). People are original characters made by the site owner;
 everything else (backgrounds, counters, desk, laptop, flower shelf) is drawn
 procedurally by this script (2x supersampled, then downscaled).
 
@@ -696,22 +696,16 @@ def outro_bg():
 
 
 # scene -> (background fn, person scale, ox); the cut-out is anchored to the bottom edge of the canvas.
-# trio-line is composed from three separate figures instead (see make_scene_l02).
 L02 = {
     "duo-shake": (lobby_bg, SC, -6.0),
     "duo-meeting": (corner_bg, SC, -6.0),
-    "trio-line": (queue_bg, 1.2, -110.0),
+    "trio-line": (queue_bg, 1.1, -150.0),
     "nam-serve": (serve_bg, SC, -6.0),
     "duo-flowers": (shop_bg, SC, -6.0),
     "duo-walk": (street_bg, 1.1, 44.0),
     "group-outro": (outro_bg, SC, 20.0),
 }
 SCENES_L02 = list(L02)
-# trio-line queue: (layer file suffix, scale, ox), back to front. Each person is a little smaller than the one
-# in front, partly overlapped by them; the front person stands at the counter on the right.
-QUEUE = ((1, 1.0, 160.0), (2, 1.12, 46.0), (3, 1.28, -200.0))
-
-
 def queue_counter(fg):
     """Foreground counter with till and cup stack on the side the queue faces (canvas px)."""
     top = 600
@@ -739,16 +733,8 @@ def make_scene_l02(name, cut_dir):
     bg = bgf()
     mid, fg = Cv(), Cv()
     if name == "trio-line":
-        out = bg.convert("RGBA")
-        for idx, qs, qox in QUEUE:
-            p = Image.open(os.path.join(cut_dir, "trio-line-%d.png" % idx)).convert("RGBA")
-            p = p.resize((int(round(SW * qs)), int(round(SH * qs))), Image.LANCZOS)
-            lay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-            lay.paste(p, (int(round(qox)), int(round(H - SH * qs))), p)
-            out = Image.alpha_composite(out, lay)
-        queue_counter(fg)
-        return Image.alpha_composite(out, fg.out()).convert("RGB")
-    if name == "nam-serve":
+        queue_counter(fg)                          # foreground counter on the side the queue faces
+    elif name == "nam-serve":
         # t() maps cut-out pixel space (1376x768) to the canvas, so these numbers are cut-out pixels
         xe = 700                                   # counter ends between Nam's cup hand and Mai
         mid.poly([t(-200, 560), t(xe, 560), t(xe, 618), t(-200, 618)], fill=WOOD_T + (255,), ol=OL, w=1.6)
