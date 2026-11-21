@@ -855,7 +855,7 @@ window.BS_UNITS["p2-01"] = {
             {
               "label": "B",
               "en": "Probably at the community hall downtown.",
-              "vi": "Có lẽ ở nhà văn hóa ở trung tâm thành phố."
+              "vi": "Có lẽ ở nhà văn hóa khu trung tâm."
             },
             {
               "label": "C",

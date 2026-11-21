@@ -1186,7 +1186,9 @@ window.BS_UNITS["p2-02"] = {
           "answers": [
             "to",
             "in order to",
-            "so as to"
+            "so as to",
+            "so I could",
+            "so that I could"
           ]
         },
         {
@@ -1195,8 +1197,7 @@ window.BS_UNITS["p2-02"] = {
           "after": "the power went out.",
           "answers": [
             "Because",
-            "Since",
-            "As"
+            "Since"
           ]
         }
       ]

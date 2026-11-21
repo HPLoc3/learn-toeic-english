@@ -275,7 +275,15 @@
       var fb = el("div", { class: "fb", "aria-live": "polite" });
       var full = el("p", { class: "muted", lang: "en" });
       var sentence = fillSentence(it);
-      function reveal() { if (sentence) full.textContent = "Lời thoại: " + sentence; }
+      function reveal() {
+        if (!sentence) return;
+        /* chấm đúng bằng một đáp án khác answers[0] (vd. "What time" thay vì "When"): hiện câu với đáp án người học đã gõ */
+        var text = sentence, typed = BS.norm(inp.value), a0 = BS.norm(it.answers[0]);
+        if (st.res[it.id] === 1 && typed !== a0) {
+          for (var q = 1; q < it.answers.length; q++) if (BS.norm(it.answers[q]) === typed) { text = [it.before, it.answers[q], it.after].filter(Boolean).join(" "); break; }
+        }
+        full.textContent = "Lời thoại: " + text;
+      }
       reveals.push(reveal);
       inp.addEventListener("input", function () { st.ans[it.id] = inp.value; BS.save(); });
       inp.addEventListener("keydown", function (e) {

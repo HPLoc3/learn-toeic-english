@@ -514,5 +514,25 @@ const M5 = makeEnv({ voices: [V("en-US")], files: ["core.js", "quiz.js", "qr.js"
   M5.BS.render.quiz({ id: "p2-x", exercises: [EX()] }, root);
   check("quiz.js: BS.render.quiz giao bai type qr cho qr.js", byClass(root, "qr-item").length === 2);
 }
+/* bài fill: đáp án phụ đúng thì dòng Lời thoại hiện đáp án người học gõ; đơn đáp án và đáp án đầu giữ nguyên */
+{
+  const M = makeEnv({ voices: [V("en-US")], files: ["core.js", "quiz.js"] });
+  const FX = { id: "fx", type: "fill", instruction_vi: "x", items: [
+    { id: "fx-1", before: "", after: "does the next train leave? At ten past nine.", answers: ["When", "What time"] },
+    { id: "fx-2", before: "Why did the store close early?", after: "the power went out.", answers: ["Because", "Since"] },
+    { id: "fx-3", before: "", after: "is the nearest bank?", answers: ["Where", "where"] },
+    { id: "fx-4", before: "I took a taxi", after: "get there on time.", answers: ["to", "in order to"] } ] };
+  const root = M.doc.createElement("div");
+  M.BS.render.quiz({ id: "fx", exercises: [FX] }, root);
+  const inps = all(root, (n) => n.tag === "input");
+  const typed = ["What time", " because. ", "where", "wrong"];
+  inps.forEach((n, i) => { n.value = typed[i]; });
+  btnText(root, "Chấm điểm")[0].click();
+  const lines = byClass(root, "muted").map((n) => n.textContent).filter((t) => /^Lời thoại/.test(t));
+  check("fill: đáp án phụ đúng ('What time') -> Lời thoại hiện câu với đáp án đã gõ", lines[0] === "Lời thoại: What time does the next train leave? At ten past nine.", lines[0]);
+  check("fill: gõ ' because. ' (đáp án đầu, thừa dấu/khoảng trắng) -> câu chuẩn với 'Because'", lines[1] === "Lời thoại: Why did the store close early? Because the power went out.", lines[1]);
+  check("fill: đáp án 'where' (cùng đáp án đầu, khác hoa/thường) giữ nguyên câu với answers[0]", lines[2] === "Lời thoại: Where is the nearest bank?", lines[2]);
+  check("fill: trả lời sai -> Lời thoại vẫn là câu với answers[0]", lines[3] === "Lời thoại: I took a taxi to get there on time.", lines[3]);
+}
 console.log("\ntest-qr: " + pass + " đạt, " + fail + " lỗi");
 process.exit(fail ? 1 : 0);

@@ -21,7 +21,7 @@ const QR_KINDS = ["who", "where", "when", "why", "what", "which", "how", "yesno"
 const QR_TRAPS = ["similar-sound", "repeat-word", "wrong-wh", "wrong-tense", "wrong-subject", "related-word", "yesno-to-wh"];
 const QR_LABELS = ["A", "B", "C"];
 const QR_MIN_ITEMS = 20;
-const QR_LEAK_ALLOW =["qr1-05|as soon as"]; /* ngoại lệ có chủ đích: "id câu|đoạn tiếng anh đã chuẩn hóa". Hiện: liên từ thông dụng "as soon as" trong từ vựng p2-02, phần còn lại của đáp án không bị lộ. */
+const QR_LEAK_ALLOW = ["qr1-05|as soon as"]; /* ngoại lệ có chủ đích: "id câu|đoạn tiếng anh đã chuẩn hóa". Hiện: liên từ thông dụng "as soon as" trong từ vựng p2-02, phần còn lại của đáp án không bị lộ. */
 const QR_LETTER_MIN = 0.2, QR_LETTER_MAX = 0.45;
 const QR_STOP = new Set(("a an the and or but if so as of to in on at by for with from into onto up down out off over under about than then that this these those " +
   "i me my mine we us our you your he him his she her it its they them their is am are was were be been being do does did done have has had will would can could shall should may might must " +
