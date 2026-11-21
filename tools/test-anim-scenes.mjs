@@ -503,5 +503,94 @@ sect('10 kich thuoc + API cam');
   ok(!/\.bsa-|BSAnim|BSRig/.test(SRC), 'khong dung lop/engine cu');
 }
 
+// ================= 11. doc tieng Anh (BS.speak) =================
+sect('11 doc tieng Anh');
+{
+  const mkBS = (o = {}) => {
+    const B = { calls: [], stops: 0, prefs: Object.assign({}, o.prefs), sets: [], voice: o.voice !== false, cbs: [] };
+    if (!o.noSpeak) B.speak = (t, x) => { B.calls.push([t, x]); return true; };
+    B.stopSpeak = () => { B.stops++; };
+    B.hasVoice = () => B.voice;
+    B.onVoices = (cb) => { B.cbs.push(cb); cb(B.voice); };
+    B.pref = (k) => B.prefs[k];
+    B.setPref = (k, v) => { B.prefs[k] = v; B.sets.push([k, v]); };
+    return B;
+  };
+  const start = (o = {}, bo = {}) => { const B = mkBS(bo), E = makeEnv(o); E.sb.BS = B; const a = E.S.mount(E.host, def()); return { B, E, a, tg: E.byA('toggle') }; };
+  const EN = def().scenes.map((s) => s.en);
+
+  { // autoplay chua co cu bam -> khong doc
+    const { B, E } = start(); E.tick(500);
+    ok(B.calls.length === 0, 'chua bam Phat (autoplay) -> khong speak');
+  }
+  { // chay het sau cu bam: moi canh dung 1 lan, khong doc outro
+    const { B, E, tg } = start(); tg.click(); tg.click(); // tam dung roi phat
+    E.tick(600);
+    ok(B.calls.length === 6 && B.calls.every((c, i) => c[0] === EN[i] && c[1].rate === 0.9), 'moi canh dung 1 lan, dung cau tieng Anh, rate 0.9: ' + JSON.stringify(B.calls.map((c) => c[0])));
+    ok(!B.calls.some((c) => /Ghi nh|Tổng kết/.test(c[0])), 'khong doc outro/tieng Viet');
+    ok(B.stops >= 6, 'doi canh goi stopSpeak truoc khi doc (' + B.stops + ')');
+  }
+  { // nhay chip khi dang chay
+    const { B, E, tg } = start(); tg.click(); tg.click(); E.tick(3);
+    E.chips()[3].click(); const n0 = B.calls.length; E.tick(30);
+    const t3 = B.calls.filter((c) => c[0] === EN[3]).length;
+    ok(t3 === 1 && B.calls.length === n0 + 1, 'nhay chip 4 khi dang chay -> doc canh 4 dung 1 lan (' + t3 + ')');
+  }
+  { // tam dung + destroy
+    const { B, E, a, tg } = start(); tg.click(); tg.click(); E.tick(20);
+    const s0 = B.stops; tg.click(); ok(B.stops === s0 + 1 && tg.textContent === 'Phát', 'Tam dung goi stopSpeak');
+    const s1 = B.stops; a.destroy(); ok(B.stops === s1 + 1, 'destroy goi stopSpeak');
+  }
+  { // nut nghe lai
+    const { B, E } = start(); const say = E.byA('say');
+    ok(say && say.tag === 'button' && say.attrs['aria-label'] === 'Nghe câu tiếng Anh' && !say.hidden && say.attrs['aria-disabled'] === 'false', 'nut nghe lai la <button> co ten truy cap');
+    E.chips()[2].click(); const n0 = B.calls.length; say.click();
+    ok(B.calls.length === n0 + 1 && B.calls[n0][0] === EN[2], 'bam nghe lai doc cau canh hien tai');
+  }
+  { // tat Tu doc
+    const { B, E, tg } = start(); const au = E.byA('auto');
+    ok(au.attrs['aria-pressed'] === 'true' && au.textContent === 'Tự đọc', 'Tu doc bat mac dinh (aria-pressed=true)');
+    const s0 = B.stops; au.click();
+    ok(au.attrs['aria-pressed'] === 'false' && B.sets.length === 1 && B.sets[0][0] === 'animSpeak' && B.sets[0][1] === 0 && B.stops === s0 + 1, 'tat: luu pref animSpeak=0 + dung doc');
+    tg.click(); tg.click(); E.tick(600);
+    ok(B.calls.length === 0, 'tat Tu doc -> khong tu doc');
+    tg.click(); E.byA('say').click(); ok(B.calls.length === 1 && /^(He|She) /.test(B.calls[0][0]), 'nut nghe lai van dung khi tat Tu doc');
+    au.click(); ok(B.sets[1][1] === 1 && au.attrs['aria-pressed'] === 'true', 'bat lai luu animSpeak=1');
+  }
+  { // pref da luu = 0 tu truoc
+    const { B, E, tg } = start({}, { prefs: { animSpeak: 0 } });
+    ok(E.byA('auto').attrs['aria-pressed'] === 'false', 'doc pref animSpeak=0 luc mount'); tg.click(); tg.click(); E.tick(600);
+    ok(B.calls.length === 0, 'pref tat -> khong tu doc');
+  }
+  { // khong co giong
+    let thrown = null, S;
+    try { S = start({}, { voice: false }); S.tg.click(); S.tg.click(); S.E.tick(20); S.E.byA('say').click(); } catch (e) { thrown = e; }
+    ok(!thrown, 'khong giong: khong nem loi ' + (thrown && thrown.message));
+    const say = S.E.byA('say');
+    ok(say.hidden || say.attrs['aria-disabled'] === 'true', 'khong giong: nut nghe lai an/vo hieu');
+    ok(!!say.attrs.title, 'khong giong: co title goi y');
+    ok(S.B.calls.length === 0, 'khong giong: khong goi speak');
+    S.B.voice = true; S.B.cbs.forEach((cb) => cb(true));
+    ok(!S.E.byA('say').hidden && S.E.byA('say').attrs['aria-disabled'] === 'false', 'giong nap xong (onVoices) -> nut nghe lai bat lai');
+  }
+  { // reduced motion
+    const { B, E } = start({ reduced: true });
+    ok(B.calls.length === 0, 'reduced: mount khong doc');
+    E.byA('next').click(); ok(B.calls.length === 1 && B.calls[0][0] === EN[1], 'reduced: Tiep -> doc canh 2');
+    E.chips()[4].click(); ok(B.calls.length === 2 && B.calls[1][0] === EN[4], 'reduced: chip 5 -> doc canh 5');
+    E.chips()[6].click(); ok(B.calls.length === 2, 'reduced: outro khong doc');
+    E.byA('auto').click(); E.chips()[1].click(); ok(B.calls.length === 2, 'reduced + tat Tu doc -> khong doc');
+  }
+  { // BS thieu speak / khong co BS
+    const { E, tg } = start({}, { noSpeak: true }); let thrown = null;
+    try { tg.click(); tg.click(); E.tick(600); E.chips()[2].click(); E.byA('auto').click(); } catch (e) { thrown = e; }
+    ok(!thrown && E.byA('say').hidden, 'BS thieu speak: chay binh thuong, nut nghe lai an ' + (thrown && thrown.message));
+    const E2 = makeEnv(), a2 = E2.S.mount(E2.host, def()); let t2 = null;
+    try { E2.byA('toggle').click(); E2.tick(50); a2.destroy(); } catch (e) { t2 = e; }
+    ok(!t2, 'khong co BS: khong loi');
+  }
+  ok(!/speechSynthesis|SpeechSynthesisUtterance/.test(SRC), 'anim-scenes.js khong cham speechSynthesis (chi qua BS)');
+}
+
 console.log('\n' + pass + '/' + total + ' passed');
 process.exit(pass === total ? 0 : 1);
