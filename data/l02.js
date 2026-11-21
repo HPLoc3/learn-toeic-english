@@ -214,7 +214,7 @@ window.BS_UNITS.l02 = {
         { "label": "A", "en": "Two women are looking at a bouquet." },
         { "label": "B", "en": "The women are putting flowers in a vase.", "why_vi": "Hoa có trong hình nhưng không ai đang cắm hoa vào lọ. Trong hình không có hành động này." },
         { "label": "C", "en": "Some flowers are being watered.", "why_vi": "Bẫy bị động: không ai đang tưới hoa, trong hình không có bình tưới nào." },
-        { "label": "D", "en": "One of the women is smelling a flower.", "why_vi": "Không có hành động đó: không ai đang ngửi hoa, cả hai chỉ nhìn bó hoa." }
+        { "label": "D", "en": "One of the women is smelling a flower.", "why_vi": "Không có hành động đó: không ai đang ngửi hoa, một người cầm bó hoa và người kia chỉ vào nó." }
       ],
       "answer": "A",
       "explain_vi": "Hai người phụ nữ cùng nhìn một bó hoa."

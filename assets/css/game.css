@@ -20,13 +20,13 @@
 .game-vi { margin: 2px 0 0; color: var(--muted, #5b6675); }
 .game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .game-grid[hidden], .game-pause[hidden] { display: none; }
-.game-opt { position: relative; display: block; padding: 6px; min-height: 44px; border-radius: var(--radius-sm, 12px);
+.game-opt { position: relative; display: flex; align-items: center; padding: 6px; min-height: 44px; border-radius: var(--radius-sm, 12px);
   border: 2px solid var(--line, #d9dee7); background: var(--card-2, #f4f6fa); color: var(--ink, #1c2430); cursor: pointer;
   transition: border-color .15s, transform .15s; }
 .game-opt:hover:not(:disabled) { border-color: var(--pri, #2563eb); }
 .game-opt:focus-visible { outline: 3px solid var(--pri, #2563eb); outline-offset: 2px; }
 .game-opt img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; border-radius: 8px; background: var(--card, #fff); pointer-events: none; }
-.game-grid--16x9 .game-opt img { aspect-ratio: 16 / 9; }
+.game-opt img[src$=".webp"], .game-grid--16x9 .game-opt img { aspect-ratio: 16 / 9; }
 .game-opt:disabled { cursor: default; opacity: 1; }
 .game-opt.is-ok { border-color: var(--ok, #15803d); background: var(--ok-bg, #dcfce7); }
 .game-opt.is-bad { border-color: var(--bad, #b91c1c); background: var(--bad-bg, #fee2e2); }
