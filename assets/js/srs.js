@@ -13,7 +13,7 @@
   var INTERVALS = [0, 1, 3, 7, 14, 30];
   var MAX_BOX = 5;
   /* Đặt bằng ngày deploy thật trước khi phát hành. Mốc cho thẻ known cũ chưa có srs (hạn = mốc + hash%3 ngày). */
-  var LEGACY_ANCHOR = "2026-11-18";
+  var LEGACY_ANCHOR = "2026-11-21";
   var DAY_RE = /^\d{4}-\d\d-\d\d$/;
 
   function isObj(x) { return !!x && typeof x === "object" && !Array.isArray(x); }
