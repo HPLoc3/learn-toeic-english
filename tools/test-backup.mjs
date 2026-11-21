@@ -134,6 +134,10 @@ t("prefs.mascot 0/1 di-ve nguyen ven; 2 bi tu choi; ban cu thieu khoa van nhap d
   const old = sample(); delete old.prefs.mascot;
   const r4 = B.parse(wrap(old), TODAY); assert.ok(r4.ok, r4.msg); assert.equal(r4.dropped, 0); assert.equal(r4.data.prefs.mascot, undefined);
 });
+t("prefs.animSpeak 0/1 di-ve nguyen ven (khong bi bo); 2 bi tu choi", () => {
+  [0, 1].forEach((v) => { const s = sample(); s.prefs.animSpeak = v; const r = B.parse(wrap(s), TODAY); assert.ok(r.ok, r.msg); assert.equal(r.dropped, 0); assert.strictEqual(r.data.prefs.animSpeak, v); });
+  const s2 = sample(); s2.prefs.animSpeak = 2; assert.equal(code(wrap(s2)), "SAI_CAU_TRUC");
+});
 t("buoc xuat dat prefs.edit = 0", () => {
   const s = sample(); s.prefs.edit = 1;
   assert.equal(JSON.parse(B.buildFile(s)).data.prefs.edit, 0);

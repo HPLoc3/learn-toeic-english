@@ -270,7 +270,7 @@ t("8 sao luu: chay tools/test-backup.mjs (mascot 0/1, 2 bi tu choi, ban cu thieu
   assert.ok(!/LOI/.test(out));
   const m = /(\d+)\/(\d+) ca dat/.exec(out); assert.ok(m && m[1] === m[2]);
   const bk = read("assets/js/backup.js");
-  assert.ok(/"mascot"\]\)/.test(bk) && /\["autoSpeak", "noTimer", "mascot"\]/.test(bk));
+  assert.ok(/"mascot", "animSpeak"\]\)/.test(bk) && /\["autoSpeak", "noTimer", "mascot", "animSpeak"\]/.test(bk));
 });
 
 /* 9 */

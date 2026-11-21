@@ -519,9 +519,27 @@ sect('11 doc tieng Anh');
   const start = (o = {}, bo = {}) => { const B = mkBS(bo), E = makeEnv(o); E.sb.BS = B; const a = E.S.mount(E.host, def()); return { B, E, a, tg: E.byA('toggle') }; };
   const EN = def().scenes.map((s) => s.en);
 
-  { // autoplay chua co cu bam -> khong doc
+  // Sua theo bug chu trang bao: truoc day autoplay luon im lang (yeu cau cu bam ngay trong player). Nay kich hoat (navigator.userActivation) cua trang cung tinh la dong y.
+  { // autoplay, trang chua tung duoc bam -> im lang + goi y
     const { B, E } = start(); E.tick(500);
-    ok(B.calls.length === 0, 'chua bam Phat (autoplay) -> khong speak');
+    ok(B.calls.length === 0, 'autoplay, chua tung bam trang -> khong speak');
+    E.sb.navigator = undefined; const E2 = start(); E2.E.tick(3);
+    ok(!E2.E.byR('hint').hidden && /Bấm 🔊 hoặc Phát/.test(E2.E.byR('hint').textContent), 'chua kich hoat + Tu doc bat + co giong -> hien goi y');
+  }
+  { // autoplay, trang da duoc kich hoat (bam tab Hoat hinh) -> doc canh 1
+    const B = mkBS(), E = makeEnv(); E.sb.BS = B; E.sb.navigator = { userActivation: { hasBeenActive: true } }; E.S.mount(E.host, def()); E.tick(20);
+    ok(B.calls.length === 1 && B.calls[0][0] === EN[0], 'autoplay sau khi trang co kich hoat -> doc canh 1 (' + JSON.stringify(B.calls.map((c) => c[0])) + ')');
+    ok(E.byR('hint').hidden, 'da kich hoat -> an goi y');
+    E.tick(600); ok(B.calls.length === 6 && !B.calls.some((c) => /Ghi nh|Tổng kết/.test(c[0])), 'autoplay doc 6 canh, khong doc outro');
+  }
+  { // giong nap tre: canh 1 khong bi bo qua
+    const B = mkBS({ voice: false }), E = makeEnv(); E.sb.BS = B; E.sb.navigator = { userActivation: { hasBeenActive: true } }; E.S.mount(E.host, def()); E.tick(20);
+    ok(B.calls.length === 0, 'chua co giong -> chua doc'); B.voice = true; E.tick(2);
+    ok(B.calls.length === 1 && B.calls[0][0] === EN[0], 'giong den muon -> van doc canh 1');
+  }
+  { // pause khi khong chay (vd. player nap tre) khong cat giong noi khac
+    const { B, a } = start(); const tg = 0; a.pause(); const s0 = B.stops; a.pause();
+    ok(B.stops === s0, 'pause() luc dang dung khong goi stopSpeak');
   }
   { // chay het sau cu bam: moi canh dung 1 lan, khong doc outro
     const { B, E, tg } = start(); tg.click(); tg.click(); // tam dung roi phat

@@ -72,8 +72,9 @@
   if (!host || host.nodeType !== 1 || !d || validate(d).length) return null;
   if (host.__bss) host.__bss.destroy();
   var doc = host.ownerDocument || g.document, P = plan(d), SC = d.scenes, N = SC.length, T = P.T, O = d.outro, n = {}, X = {}, ch = [], ps = [], err = {}, i, l = '', api;
-  var mq = g.matchMedia ? g.matchMedia('(prefers-reduced-motion: reduce)') : null, t = 0, pl = 0, raf = 0, tm = 0, last = 0, ug = 0, spk = -1, am = 1, k = -1, ann = -1, rd = !!(mq && mq.matches), dead = 0;
+  var mq = g.matchMedia ? g.matchMedia('(prefers-reduced-motion: reduce)') : null, t = 0, pl = 0, raf = 0, tm = 0, last = 0, ug = UA(), spk = -1, am = 1, k = -1, ann = -1, rd = !!(mq && mq.matches), dead = 0;
   function B(f) { var o = g.BS; return o && typeof o[f] === 'function' ? o : null; }
+  function UA() { var u = g.navigator && g.navigator.userActivation; return u ? +!!u.hasBeenActive : 0; }
   function stp() { var o = B('stopSpeak'); if (o) try { o.stopSpeak(); } catch (x) { /* bo qua */ } }
   function au() { var o = B('pref'); return o ? o.pref('animSpeak') !== 0 : !!am; }
   function vo() { var o = B('speak'), h = B('hasVoice'); return !!o && (!h || !!h.hasVoice()); }
@@ -88,7 +89,7 @@
    '<div class="bss-stage" style="aspect-ratio:16/9" data-r="stage"><img class="bss-img" sizes="(max-width:720px) 100vw, 720px" width="800" height="450" decoding="async" draggable="false" data-r="img">' +
    '<span class="bss-ring" aria-hidden="true" hidden data-r="ring"><span data-r="lab"></span></span></div><div class="bss-fb" role="img" data-fallback="1" hidden data-r="fb"></div>' +
    '<figcaption class="bss-cap"><p class="bss-step" data-r="step"></p><p class="bss-sent" lang="en" data-r="sent"></p>' +
-   '<div class="bss-row">' + b('a="say', '🔊', ' bss-sec') + b('a="auto', 'Tự đọc', ' bss-sec') + '</div><div class="bss-vi" data-r="vi"><span data-r="vt"></span><span class="bss-fm" data-r="fm"></span><small data-r="note"></small></div></figcaption></figure>' +
+   '<div class="bss-row">' + b('a="say', '🔊', ' bss-sec') + b('a="auto', 'Tự đọc', ' bss-sec') + '<span class="bss-note" hidden data-r="hint">Bấm 🔊 hoặc Phát để nghe</span></div><div class="bss-vi" data-r="vi"><span data-r="vt"></span><span class="bss-fm" data-r="fm"></span><small data-r="note"></small></div></figcaption></figure>' +
    '<div class="bss-bar" role="progressbar" aria-label="Tiến độ hoạt hình" aria-valuemin="0" aria-valuemax="100" data-r="bar"><div class="bss-fill" data-r="fill"></div></div>' +
    '<div class="bss-row" role="group" aria-label="Điều khiển hoạt hình">' + b('a="toggle', 'Phát', '') + b('a="prev', 'Trước', ' bss-sec', 1) + b('a="next', 'Tiếp', '', 1) + b('a="replay', 'Xem lại', ' bss-sec') + '</div>' +
    '<div class="bss-row" role="group" aria-label="Chọn động tác">' + l + '</div>' +
@@ -128,7 +129,7 @@
    n.vi.classList.toggle('bss-on', !out && lt >= p.viAt);
    f = !out && s.focus; r.hidden = !(f && (rd || lt >= f.at));
    if (f) { r.style.left = r3((tx + z * f.x) * 100) + '%'; r.style.top = r3((ty + z * f.y) * 100) + '%'; r.style.width = r3(f.r * 2 * z * 100) + '%'; }
-   if (!out && pl && ug && spk !== j && lt >= p.at[0]) { spk = j; if (au()) say(j); }
+   if (!out && pl && (ug || (ug = UA())) && spk !== j && lt >= p.at[0] && (!au() || vo())) { spk = j; if (au()) say(j); }
    if (ann !== j && (out || lt >= p.viAt)) { ann = j; n.sr.textContent = '';
    if (out) ss(O.title_vi + '. ' + tr(O.segs.map((e) => e[0]).join('')) + '. ' + d.sr_tail_vi);
    else { ss('Câu mẫu: '); ss(s.en, 'en'); ss(' ' + [tr(s.vi), tr(s.note_vi)].filter(Boolean).join('. ') + '.'); } }
@@ -137,7 +138,7 @@
   function ui() {
    var p = rd ? (k + 1) / (N + 1) : t / T, l;
    z(X.toggle, rd); l = pl ? 'Tạm dừng' : 'Phát'; if (X.toggle.textContent !== l) X.toggle.textContent = l;
-   z(X.prev, !rd, k < 1); z(X.next, !rd, k >= N); z(X.replay); l = vo(); z(X.say, k === N || !B('speak'), !l); at(X.say, 'title', l ? 'Nghe câu tiếng Anh' : 'Máy chưa có giọng đọc tiếng Anh'); z(X.auto, !B('speak')); at(X.auto, 'aria-pressed', au());
+   z(X.prev, !rd, k < 1); z(X.next, !rd, k >= N); z(X.replay); l = vo(); z(X.say, k === N || !B('speak'), !l); at(X.say, 'title', l ? 'Nghe câu tiếng Anh' : 'Máy chưa có giọng đọc tiếng Anh'); z(X.auto, !B('speak')); at(X.auto, 'aria-pressed', au()); n.hint.hidden = !(pl && !(ug || UA()) && au() && l);
    n.rn.hidden = !rd; at(n.bar, 'aria-valuenow', Math.round(p * 100)); n.fill.style.width = r3(p * 100) + '%';
   }
   function stop() { if (raf) { g.cancelAnimationFrame(raf); raf = 0; } if (tm) { g.clearTimeout(tm); tm = 0; } }
@@ -167,10 +168,10 @@
   api = {
    duration: T,
    play() { if (rd || dead) return; if (t >= T) { t = 0; spk = -1; } pl = 1; last = 0; if (!raf && !tm) raf = g.requestAnimationFrame(frame); draw(); ui(); },
-   pause() { pl = 0; stop(); stp(); ui(); },
+   pause() { var w = pl; pl = 0; stop(); if (w) stp(); ui(); },
    replay() { stop(); stp(); t = 0; spk = ann = k = -1; if (rd) { pl = 0; snap(); draw(); ui(); } else { draw(); api.play(); } },
    seek(x) { spk = -1; t = fin(x) ? cl(x, 0, T) : 0; if (rd) snap(); draw(); ui(); },
-   go(j) { j = cl(j | 0, 0, N); spk = -1; t = rd || !pl ? rest(j) : j < N ? P.scenes[j].start : P.outroStart; draw(); ui(); if (rd && ug && au()) { spk = j; say(j); } },
+   go(j) { j = cl(j | 0, 0, N); spk = -1; t = rd || !pl ? rest(j) : j < N ? P.scenes[j].start : P.outroStart; draw(); ui(); if (rd && (ug || (ug = UA())) && au()) { spk = j; say(j); } },
    destroy() {
     if (dead) return;
     dead = 1; pl = 0; stop(); stp();
