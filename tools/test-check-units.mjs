@@ -37,7 +37,15 @@ const allWebp = (cfg) => { cfg.rounds.forEach((r, i) => { r.img = SCENES[i % SCE
 const MIX_L02 = /\[l02\] game trộn ảnh/;
 try {
   let r = run(() => {});
-  check("thật: l02 hiện tại không lỗi, có cảnh báo trộn svg/webp", r.code === 0 && MIX_L02.test(r.out), r.out);
+  check("thật: l02 hiện tại không lỗi, không còn cảnh báo trộn svg/webp (toàn webp, ratio 16:9)", r.code === 0 && !MIX_L02.test(r.out) && !/ratio/.test(r.out), r.out);
+
+  for (const u of ["l01", "l02"]) {
+    const g = fs.readFileSync(path.join(REAL, "data/" + u + "-game.js"), "utf8");
+    const gw = {}; gw.window = gw;
+    vm.runInNewContext(g, gw);
+    const imgs = gw.BS_GAMES[u].rounds.map((x) => x.img);
+    check("thật: " + u + " mọi ảnh game là webp và ratio 16:9", gw.BS_GAMES[u].ratio === "16:9" && imgs.every((x) => /\.webp$/.test(x)), imgs.join(","));
+  }
 
   r = run(allWebp);
   check("toàn webp: không cảnh báo trộn", r.code === 0 && !MIX_L02.test(r.out), r.out);

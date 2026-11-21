@@ -3,10 +3,10 @@
  * Không gửi dữ liệu đi đâu, không đụng request khác nguồn, không đụng localStorage.
  * Mỗi lần deploy có file precache đổi: sửa VERSION rồi chạy `node tools/check-sw.mjs --write`.
  */
-// content-hash: 33@bcae4638ade7996e
+// content-hash: 34@33f75bd3a5f4f137
 "use strict";
 
-var VERSION = "33";
+var VERSION = "34";
 var PREFIX = "tb-";
 var CACHE = PREFIX + VERSION;
 var NAV_TIMEOUT = 3000;
@@ -32,9 +32,11 @@ var PRECACHE = [
   "assets/icons/icon.svg",
   "assets/img/l01/pic/focus-800.webp",
   "assets/img/l01/pic/mc1-800.webp",
-  "assets/img/l01/mc2.svg",
-  "assets/img/l01/mc3.svg",
-  "assets/img/l01/mc4.svg",
+  "assets/img/l01/pic/mc2-800.webp",
+  "assets/img/l01/pic/mc3-800.webp",
+  "assets/img/l01/pic/mc4-800.webp",
+  "assets/img/l01/pic/tf1-800.webp",
+  "assets/img/l01/pic/tf2-800.webp",
   "assets/img/l01/scene/duo-cafe-800.webp",
   "assets/img/l01/scene/hanh-point-800.webp",
   "assets/img/l01/scene/hanh-wear-800.webp",
@@ -42,10 +44,9 @@ var PRECACHE = [
   "assets/img/l01/scene/mai-type-800.webp",
   "assets/img/l01/scene/nam-pour-800.webp",
   "assets/img/l01/scene/nam-wipe-800.webp",
-  "assets/img/l01/tf1.svg",
-  "assets/img/l01/tf2.svg",
-  "assets/img/l02/mc2.svg",
-  "assets/img/l02/mc3.svg",
+  "assets/img/l02/pic/mc2-800.webp",
+  "assets/img/l02/pic/mc3-800.webp",
+  "assets/img/l02/pic/tf1-800.webp",
   "assets/img/l02/scene/duo-flowers-800.webp",
   "assets/img/l02/scene/duo-meeting-800.webp",
   "assets/img/l02/scene/duo-shake-800.webp",
@@ -53,7 +54,6 @@ var PRECACHE = [
   "assets/img/l02/scene/group-outro-800.webp",
   "assets/img/l02/scene/nam-serve-800.webp",
   "assets/img/l02/scene/trio-line-800.webp",
-  "assets/img/l02/tf1.svg",
   "assets/img/l03/focus.svg",
   "assets/img/l03/mc1.svg",
   "assets/img/l03/mc2.svg",

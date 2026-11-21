@@ -136,7 +136,7 @@ window.BS_UNITS.l02 = {
     {
       "id": "tf1",
       "type": "tf",
-      "image": "assets/img/l02/tf1.svg",
+      "image": "assets/img/l02/pic/tf1-800.webp",
       "instruction_vi": "Nhìn hình và chọn Đúng hoặc Sai cho từng câu mô tả.",
       "items": [
         { "id": "tf1-A", "label": "A", "en": "Some people are waiting in line.", "answer": true, "explain_vi": "Đúng: ba người đang đứng thành một hàng trước quầy." },
@@ -180,7 +180,7 @@ window.BS_UNITS.l02 = {
     {
       "id": "mc2",
       "type": "mc",
-      "image": "assets/img/l02/mc2.svg",
+      "image": "assets/img/l02/pic/mc2-800.webp",
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
         { "label": "A", "en": "The people are sitting in a classroom.", "why_vi": "Sai cả động từ và nơi chốn: ba người đang đứng quanh một cái bàn, không có lớp học." },
@@ -194,7 +194,7 @@ window.BS_UNITS.l02 = {
     {
       "id": "mc3",
       "type": "mc",
-      "image": "assets/img/l02/mc3.svg",
+      "image": "assets/img/l02/pic/mc3-800.webp",
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
         { "label": "A", "en": "Both men are holding clipboards.", "why_vi": "Sai vì hành động của một người bị gán cho cả hai: chỉ một người cầm bìa kẹp giấy." },
@@ -236,7 +236,7 @@ window.BS_UNITS.l02 = {
     {
       "id": "mc6",
       "type": "mc",
-      "image": "assets/img/l02/mc2.svg",
+      "image": "assets/img/l02/pic/mc2-800.webp",
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
         { "label": "A", "en": "The women are pointing at the paper.", "why_vi": "Sai người làm: chỉ có người đàn ông ở giữa đưa tay chỉ vào tờ giấy." },
@@ -250,7 +250,7 @@ window.BS_UNITS.l02 = {
     {
       "id": "mc7",
       "type": "mc",
-      "image": "assets/img/l02/mc3.svg",
+      "image": "assets/img/l02/pic/mc3-800.webp",
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
         { "label": "A", "en": "The man on the right is holding a clipboard." },

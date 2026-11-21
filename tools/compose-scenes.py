@@ -7,6 +7,8 @@ procedurally by this script (2x supersampled, then downscaled).
 
 Run from the repo root:
   python tools/compose-scenes.py [--unit l01|l02] [--cut DIR] [--out DIR] [--only NAME[,NAME]] [--contact FILE]
+  python tools/compose-scenes.py --only l01-tf1,l01-tf2,...   (exercise pictures from tools/cut-people.py cut-outs;
+                                  default --cut ../nguon-hinh/people/cut, --out ../nguon-hinh/people/raw)
 
 --unit which unit's scene table to use (default l01; l01 output is unchanged)
 --cut  directory with <scene-id>.png RGBA cut-outs (1376x768)  default ../nguon-hinh/unit1-cut (l02: unit2-cut)
@@ -847,6 +849,413 @@ def make_scene_l02(name, cut_dir):
 SCENES = ["nam-pour", "nam-wipe", "mai-look", "mai-type", "hanh-wear", "hanh-point", "duo-cafe"]
 
 
+# ================================================================ exercise pictures (l01 / l02 pic)
+# People cut-outs from tools/cut-people.py (l01-tf1 ... l02-mc3), backgrounds drawn here.
+# Each builder gets t(x, y) (cut-out pixel -> canvas) and returns (bg, mid, fg, post):
+# bg = blurred background (RGB), mid = crisp props behind the people, fg = props in front, post = on top of all.
+def shadow(cv, cx, cy, rx, ry, alpha=80, col=(96, 74, 110)):
+    """Soft contact shadow (blurred ellipse) on the ground."""
+    m = Image.new("L", cv.im.size, 0)
+    ImageDraw.Draw(m).ellipse([(cx - rx) * SS, (cy - ry) * SS, (cx + rx) * SS, (cy + ry) * SS], fill=alpha)
+    m = m.filter(ImageFilter.GaussianBlur(ry * SS * 0.45))
+    lay = Image.new("RGBA", cv.im.size, col + (0,))
+    lay.putalpha(m)
+    cv.im = Image.alpha_composite(cv.im, lay)
+    cv.d = ImageDraw.Draw(cv.im)
+
+
+def tree(cv, x, base, h, crown_r, ol=None, trunk=(150, 112, 92)):
+    """Leafy tree: trunk with two branches and a crown of overlapping blobs; x, base = trunk foot."""
+    cv.poly([(x - 26, base), (x + 26, base), (x + 14, base - h * .55), (x - 14, base - h * .55)], fill=trunk + (255,), ol=ol, w=1.5)
+    cv.poly([(x - 14, base - h * .5), (x - 4, base - h * .5), (x - crown_r * .7, base - h * .9), (x - crown_r * .7 - 14, base - h * .9)], fill=trunk + (255,))
+    cv.poly([(x + 4, base - h * .5), (x + 14, base - h * .5), (x + crown_r * .6 + 14, base - h * .85), (x + crown_r * .6, base - h * .85)], fill=trunk + (255,))
+    cy = base - h
+    blobs = [(0, 0, 1.0, GREEN2), (-.62, .18, .72, GREEN3), (.66, .14, .74, GREEN3), (-.3, -.46, .66, GREEN1), (.38, -.44, .68, GREEN1),
+             (0, -.7, .5, GREEN1), (-.85, -.1, .46, GREEN2), (.86, -.05, .46, GREEN2), (-.2, .42, .6, GREEN3), (.35, .4, .56, GREEN2)]
+    for dx, dy, k, c in blobs:
+        cv.ell(x + dx * crown_r, cy + dy * crown_r, crown_r * k * .72, crown_r * k * .66, fill=c + (255,), ol=ol, w=1.2)
+    for dx, dy in ((-.5, -.2), (.3, -.1), (0, -.55), (.6, .2), (-.2, .25)):
+        cv.ell(x + dx * crown_r, cy + dy * crown_r, crown_r * .2, crown_r * .15, fill=mix(GREEN1, (255, 255, 255), .35) + (255,))
+
+
+def old_lamp(cv, x, base, h, ol=None):
+    """Old-style cast-iron street lamp: fluted post, collar rings, lantern with a cap and a finial."""
+    iron = (92, 86, 116)
+    cv.poly([(x - 30, base), (x + 30, base), (x + 20, base - 46), (x - 20, base - 46)], fill=iron + (255,), ol=ol, w=1.4)
+    cv.poly([(x - 9, base - 46), (x + 9, base - 46), (x + 6, base - h), (x - 6, base - h)], fill=iron + (255,), ol=ol, w=1.4)
+    for k in (.18, .52, .86):
+        cv.rect(x - 14, base - h * k - 6, x + 14, base - h * k + 6, fill=mix(iron, (255, 255, 255), .15) + (255,), ol=ol, w=1.2, r=3)
+    ty = base - h
+    cv.glow(x, ty - 36, 90, (255, 238, 176), 150)
+    cv.rect(x - 26, ty - 4, x + 26, ty + 8, fill=iron + (255,), ol=ol, w=1.4, r=3)
+    cv.poly([(x - 24, ty - 4), (x + 24, ty - 4), (x + 32, ty - 78), (x - 32, ty - 78)], fill=(255, 241, 190, 255), ol=ol, w=1.6)
+    cv.line([(x, ty - 4), (x, ty - 78)], fill=iron + (255,), w=2)
+    cv.line([(x - 28, ty - 41), (x + 28, ty - 41)], fill=iron + (255,), w=2)
+    cv.poly([(x - 40, ty - 78), (x + 40, ty - 78), (x + 14, ty - 104), (x - 14, ty - 104)], fill=iron + (255,), ol=ol, w=1.5)
+    cv.ell(x, ty - 110, 8, 8, fill=iron + (255,), ol=ol, w=1.2)
+
+
+def fence(cv, y0, y1, ol=None, pick=34, gap=12):
+    """Wooden picket fence across the canvas, pickets y0 (pointed tops) .. y1, two rails."""
+    col, dark = (234, 210, 178), (214, 184, 150)
+    x = -10
+    while x < W + 10:
+        cv.poly([(x, y0 + 16), (x + pick / 2, y0 - 4), (x + pick, y0 + 16), (x + pick, y1), (x, y1)], fill=col + (255,), ol=ol, w=1.3)
+        x += pick + gap
+    for ry in (y0 + 70, y1 - 70):
+        cv.rect(0, ry, W, ry + 22, fill=dark + (255,), ol=ol, w=1.3)
+
+
+def shovel(cv, x, ground, ol=None):
+    """Garden shovel stuck upright in the soil at x: handle with D-grip, shaft, blade sunk into a soil mound."""
+    wood, steel = (200, 152, 112), (172, 178, 200)
+    cv.rect(x - 6, ground - 300, x + 6, ground - 54, fill=wood + (255,), ol=ol, w=1.4, r=3)
+    cv.rect(x - 34, ground - 322, x + 34, ground - 290, fill=None, ol=ol, w=1.4, r=14)
+    cv.rect(x - 32, ground - 320, x + 32, ground - 292, fill=None, ol=wood, w=5, r=13)
+    cv.poly([(x - 8, ground - 58), (x + 8, ground - 58), (x + 30, ground - 40), (x + 28, ground + 4), (x - 28, ground + 4), (x - 30, ground - 40)], fill=steel + (255,), ol=ol, w=1.5)
+    cv.line([(x, ground - 52), (x, ground - 2)], fill=mix(steel, (255, 255, 255), .45) + (255,), w=3)
+    cv.ell(x, ground + 6, 56, 14, fill=(150, 112, 90, 255), ol=ol, w=1.3)
+    cv.ell(x - 22, ground + 2, 22, 7, fill=(168, 128, 102, 255))
+
+
+def road_sign(cv, x, base, top, ol=None):
+    """One plain round road sign on a post: blue disc, white arrow, no letters."""
+    cv.rect(x - 6, top + 60, x + 6, base, fill=(150, 144, 170, 255), ol=ol, w=1.3)
+    cv.ell(x, top, 66, 66, fill=(244, 240, 250, 255), ol=ol, w=1.6)
+    cv.ell(x, top, 56, 56, fill=(70, 96, 200, 255))
+    cv.poly([(x - 10, top + 32), (x - 10, top - 4), (x - 28, top - 4), (x, top - 36), (x + 28, top - 4), (x + 10, top - 4), (x + 10, top + 32)],
+            fill=(250, 248, 252, 255))
+
+
+def shelf_wall(cv, y0, y1, x0=0, x1=W, rows=5, seed=0):
+    """Tall supermarket shelving: uprights, boards and plain colour-block products (no text)."""
+    pal = [(239, 169, 196), YEL, (155, 134, 224), (140, 190, 150), (251, 246, 236), (244, 162, 97), (183, 163, 240), (120, 180, 214)]
+    cv.rect(x0, y0, x1, y1, fill=(224, 218, 238, 255))
+    rh = (y1 - y0) / rows
+    bays = 6
+    bw = (x1 - x0) / bays
+    for r in range(rows):
+        top = y0 + r * rh
+        cv.rect(x0, top + rh - 16, x1, top + rh, fill=(188, 180, 210, 255))
+        x = x0 + 6
+        k = r * 7 + seed
+        while x < x1 - 20:
+            wd = 34 + (k * 17) % 40
+            hh = rh * (.50 + ((k * 13) % 30) / 100)
+            c = pal[(k * 3 + r) % len(pal)]
+            cv.rect(x, top + rh - 16 - hh, x + wd, top + rh - 16, fill=c + (255,), r=5)
+            cv.rect(x + 4, top + rh - 16 - hh * .6, x + wd - 4, top + rh - 16 - hh * .32, fill=mix(c, (255, 255, 255), .55) + (255,), r=3)
+            x += wd + 6
+            k += 1
+    for b in range(bays + 1):
+        xx = x0 + b * bw
+        cv.rect(xx - 7, y0, xx + 7, y1, fill=(160, 152, 190, 255))
+
+
+def floor_persp(cv, y, vx=W / 2, c0=(236, 230, 244), c1=(210, 202, 226)):
+    cv.vgrad(0, y, W, H, c0, c1)
+    for k in range(-12, 13):
+        cv.line([(vx + k * 70, y), (vx + k * 330, H)], fill=mix(c0, c1, .8) + (255,), w=2)
+    for k in range(1, 5):
+        yy = y + (H - y) * (k / 5.0) ** 1.5
+        cv.line([(0, yy), (W, yy)], fill=mix(c0, c1, .8) + (255,), w=2)
+
+
+def cup_paper(cv, x, by, s=1.0, ol=OL):
+    """One takeaway paper cup with lid and sleeve; base centre (x, by)."""
+    cv.ell(x, by, 44 * s, 8 * s, fill=(150, 104, 80, 90))
+    cv.poly([(x - 34 * s, by - 96 * s), (x + 34 * s, by - 96 * s), (x + 25 * s, by), (x - 25 * s, by)], fill=(252, 250, 246, 255), ol=ol, w=1.5)
+    cv.poly([(x - 31 * s, by - 62 * s), (x + 31 * s, by - 62 * s), (x + 27 * s, by - 26 * s), (x - 27 * s, by - 26 * s)], fill=(214, 172, 134, 255), ol=ol, w=1.3)
+    cv.rect(x - 38 * s, by - 108 * s, x + 38 * s, by - 94 * s, fill=(236, 228, 246, 255), ol=ol, w=1.5, r=5)
+    cv.rect(x - 28 * s, by - 118 * s, x + 28 * s, by - 106 * s, fill=(246, 240, 250, 255), ol=ol, w=1.3, r=5)
+
+
+def cafe_counter(mid, x0, top, depth, floor_y, ol=OL):
+    """Small counter seen from the side-front: top plane, front face, panels. Extends from x0 to the right edge."""
+    mid.poly([(x0 + 40, top - depth), (W + 60, top - depth), (W + 60, top), (x0, top)], fill=WOOD_T + (255,), ol=ol, w=1.6)
+    for k in range(1, 4):
+        f = k / 4.0
+        mid.line([(x0 + 40 - 40 * f, top - depth + depth * f), (W + 60, top - depth + depth * f)], fill=mix(WOOD_T, WOOD_L, .6) + (255,), w=1.3)
+    mid.rect(x0, top, W + 60, top + 16, fill=(232, 196, 160, 255), ol=ol, w=1.4)
+    mid.rect(x0, top + 16, W + 60, floor_y + 30, fill=WOOD_F + (255,), ol=ol, w=1.6)
+    for k in range(0, 4):
+        px = x0 + 30 + k * 190
+        mid.rect(px, top + 56, px + 150, floor_y + 20, fill=WOOD_D + (255,), ol=ol, w=1.3, r=4)
+
+
+def till(cv, x, by, ol=OL):
+    cv.rect(x, by - 96, x + 120, by, fill=(205, 198, 224, 255), ol=ol, w=1.5, r=8)
+    cv.rect(x + 12, by - 84, x + 108, by - 54, fill=(98, 82, 128, 255), ol=ol, w=1.3, r=4)
+    cv.rect(x + 12, by - 44, x + 66, by - 14, fill=(176, 168, 206, 255), ol=ol, w=1.3, r=3)
+    cv.ell(x + 90, by - 30, 10, 10, fill=YEL + (255,), ol=ol, w=1.2)
+
+
+def corrugated(cv, x0, y0, x1, y1, c0, c1, step=26):
+    cv.rect(x0, y0, x1, y1, fill=c0 + (255,))
+    x = x0
+    k = 0
+    while x < x1:
+        cv.rect(x, y0, x + step / 2, y1, fill=(c1 if k % 2 else c0) + (255,))
+        x += step / 2
+        k += 1
+
+
+def roller_door(cv, x0, y0, x1, y1, ol=OL):
+    cv.rect(x0 - 14, y0 - 14, x1 + 14, y1, fill=(196, 188, 218, 255), ol=ol, w=1.5)
+    cv.rect(x0, y0, x1, y1, fill=(232, 226, 244, 255), ol=ol, w=1.5)
+    yy = y0 + 22
+    while yy < y1:
+        cv.line([(x0, yy), (x1, yy)], fill=(190, 182, 214, 255), w=2.5)
+        yy += 26
+    cv.rect(x0 + (x1 - x0) / 2 - 40, y1 - 40, x0 + (x1 - x0) / 2 + 40, y1 - 24, fill=(160, 152, 190, 255), r=5)
+
+
+def hazard_strip(cv, y, h, x0=0, x1=W):
+    cv.rect(x0, y, x1, y + h, fill=YEL + (255,))
+    x = x0 - h
+    while x < x1:
+        cv.poly([(x, y + h), (x + h, y), (x + h * 1.5, y), (x + h * .5, y + h)], fill=(96, 84, 120, 255))
+        x += h * 1.5
+
+
+def pic_bg_tf1(t, bb):
+    cv = Cv((0, 0, 0, 255))
+    cv.vgrad(0, 0, W, 700, (208, 224, 250), (240, 238, 248))
+    for (cx, cy, r, c) in ((180, 560, 190, (186, 211, 186)), (620, 590, 230, (170, 202, 176)), (1100, 580, 200, (190, 214, 190)), (1500, 560, 190, (170, 202, 176))):
+        cv.ell(cx, cy, r, r * .5, fill=c + (255,))
+    for tx, th, cr in ((560, 150, 70), (1030, 170, 80), (1500, 140, 64)):
+        tree(cv, tx, 640, th, cr)
+    cv.vgrad(0, 610, W, H, (170, 204, 160), (136, 178, 128))                      # grass
+    cv.poly([(560, 640), (1040, 640), (1600, 900), (0, 900)], fill=(226, 208, 184, 255))           # path
+    cv.poly([(560, 640), (1040, 640), (1100, 660), (500, 660)], fill=(214, 194, 170, 255))
+    for k in range(0, 18):
+        gx = 40 + k * 95 + (k * 37) % 40
+        leaf(cv, gx, 650 + (k * 29) % 40, -90, 22, 5, GREEN3)
+    tree(cv, 300, 700, 330, 230)                                                   # big leafy tree beside the bench
+    old_lamp(cv, 1290, 700, 380)
+    return _finish(cv, (244, 240, 244), blur=3.0, mixv=.2)
+
+
+def pic_bg_tf2(t, bb):
+    cv = Cv((0, 0, 0, 255))
+    cv.vgrad(0, 0, W, H, (214, 226, 250), (244, 240, 244))
+    for (cx, cy, r, c) in ((200, 300, 150, GREEN1), (520, 280, 190, GREEN2), (900, 300, 160, GREEN1), (1320, 290, 200, GREEN2), (1560, 310, 140, GREEN1)):
+        cv.ell(cx, cy, r, r * .62, fill=c + (255,))                                # hedge / shrubs behind the fence
+    fence(cv, 330, 640)
+    cv.vgrad(0, 640, W, 760, (170, 204, 156), (146, 186, 134))                     # lawn
+    cv.poly([(0, 740), (W, 740), (W, H), (0, H)], fill=(182, 140, 110, 255))      # soil bed
+    for k in range(0, 40):
+        sx, sy = 30 + (k * 71) % 1540, 770 + (k * 43) % 120
+        cv.ell(sx, sy, 20 + k % 4 * 6, 6 + k % 3 * 2, fill=(156, 116, 92, 255))
+    cols = [(155, 134, 224), (240, 169, 196), YEL, (251, 246, 236)]
+    for gx in (110, 240, 1380, 1500):                                              # border flowers along the fence
+        for j in range(4):
+            fx = gx + j * 34
+            fy = 600 - (j * 23) % 50
+            cv.line([(fx, 700), (fx, fy)], fill=GREEN3 + (255,), w=3)
+            flower(cv, fx, fy, 20, cols[(j + gx // 10) % 4])
+        leaf(cv, gx + 20, 700, -120, 50, 9, GREEN2)
+        leaf(cv, gx + 70, 700, -60, 50, 9, GREEN2)
+    return _finish(cv, (246, 240, 240), blur=3.0, mixv=.18)
+
+
+def pic_bg_mc2(t, bb):
+    cv = Cv((0, 0, 0, 255))
+    cv.vgrad(0, 0, W, 560, (214, 226, 250), (242, 238, 248))
+    shops = [((236, 226, 244), LAV3), ((250, 240, 214), YEL), ((240, 222, 232), (239, 190, 214)), ((232, 236, 250), VIO)]
+    x = -60
+    for wall, awn in shops:
+        cv.rect(x, 190, x + 420, 560, fill=wall + (255,))
+        cv.rect(x - 6, 172, x + 426, 198, fill=mix(wall, (120, 110, 150), .18) + (255,))
+        cv.rect(x + 40, 260, x + 190, 420, fill=(212, 224, 248, 255), r=6)
+        cv.rect(x + 240, 260, x + 330, 560, fill=(150, 124, 170, 255), r=6)
+        x += 420
+    for tx, th, cr in ((1000, 110, 72), (1380, 120, 78)):
+        tree(cv, tx, 600, th + 60, cr)
+    cv.rect(0, 556, W, 640, fill=(236, 230, 244, 255))                             # sidewalk
+    for k in range(-2, 18):
+        cv.line([(k * 120, 556), (k * 120 - 40, 640)], fill=(214, 204, 228, 255), w=2)
+    cv.rect(0, 636, W, 664, fill=(246, 242, 248, 255))                             # curb
+    cv.vgrad(0, 664, W, H, (186, 180, 206), (168, 160, 194))                       # road
+    for k in range(-1, 9):
+        cv.rect(k * 230 + 20, 716, k * 230 + 150, 730, fill=(246, 242, 236, 255))
+    road_sign(cv, 330, 628, 330)
+    return _finish(cv, (244, 240, 246), blur=3.0, mixv=.2)
+
+
+def pic_bg_mc3(t, bb):
+    cv = Cv((0, 0, 0, 255))
+    cv.vgrad(0, 0, W, H, (240, 236, 248), (246, 241, 247))
+    shelf_wall(cv, 60, 640, rows=5, seed=1)
+    cv.rect(0, 0, W, 60, fill=(250, 248, 244, 255))
+    for k in range(5):
+        cv.rect(120 + k * 330, 22, 330 + k * 330, 40, fill=(255, 252, 232, 255), r=6)
+    floor_persp(cv, 640)
+    cv.rect(0, 626, W, 650, fill=(214, 206, 232, 255))
+    return _finish(cv, (244, 240, 248), blur=3.4, mixv=.2)
+
+
+def pic_bg_mc4(t, bb):
+    cv = Cv((0, 0, 0, 255))
+    cv.rect(0, 0, W, 760, fill=(250, 245, 236, 255))                               # wall: cream
+    cv.rect(0, 0, 700, 760, fill=(244, 216, 128, 255))                             # part already painted yellow
+    cv.rect(560, 30, 700, 400, fill=(250, 226, 140, 255))                          # fresh wet stripe under the roller
+    for k in range(7):
+        cv.rect(560 + k * 20, 30, 566 + k * 20, 400, fill=(252, 232, 156, 255))
+    cv.rect(1090, 140, 1440, 520, fill=(252, 246, 232, 255), r=8)                  # window
+    cv.vgrad(1108, 158, 1422, 502, (212, 224, 250), (240, 240, 252))
+    cv.ell(1200, 470, 90, 50, fill=(186, 211, 186, 255))
+    cv.rect(1255, 158, 1275, 502, fill=(252, 246, 232, 255))
+    cv.rect(1108, 320, 1422, 338, fill=(252, 246, 232, 255))
+    cv.rect(0, 730, W, 764, fill=(240, 232, 226, 255))                             # skirting board
+    cv.vgrad(0, 764, W, H, (214, 190, 170), (190, 160, 140))                       # floor
+    for k in range(1, 6):
+        yy = 764 + (H - 764) * (k / 6.0) ** 1.3
+        cv.line([(0, yy), (W, yy)], fill=(176, 148, 130, 255), w=1.5)
+    return _finish(cv, (246, 240, 238), blur=3.0, mixv=.16)
+
+
+def pic_bg_l02tf1(t, bb):
+    cv = Cv((0, 0, 0, 255))
+    cv.vgrad(0, 0, W, H, (240, 233, 250), (247, 239, 228))
+    window(cv, 60, 70, 420, 470, cols=2)
+    lamp(cv, 700, 160)
+    lamp(cv, 900, 120)
+    menu_board(cv, 1040, 50, 360, 260, rows=5)
+    shelf_row(cv, 520, 380, 360, 1, n=3)
+    floor_band(cv, 650, c0=(226, 206, 184), c1=(196, 170, 150), skirt=(238, 226, 214))
+    plant(cv, 560, 670, .7)
+    return _finish(cv, (246, 239, 236))
+
+
+def pic_bg_l02mc2(t, bb):
+    cv = Cv((0, 0, 0, 255))
+    cv.vgrad(0, 0, W, H, (236, 232, 250), (246, 241, 247))
+    window(cv, 340, 80, 920, 520, cols=3)
+    for (x, w, h, c) in ((370, 100, 190, (196, 189, 236)), (490, 80, 130, (210, 204, 242)), (590, 120, 250, (190, 182, 232)),
+                         (730, 90, 160, (206, 200, 240)), (840, 130, 220, (194, 186, 234)), (990, 100, 150, (210, 204, 242)), (1110, 90, 200, (196, 189, 236))):
+        cv.rect(x, 584 - h, x + w, 584, fill=c + (255,))
+    for k in range(1, 3):
+        cv.rect(340 + 920 * k / 3 - 9, 96, 340 + 920 * k / 3 + 9, 584, fill=(252, 246, 232, 255))
+    cv.rect(356, 350, 1244, 368, fill=(252, 246, 232, 255))
+    cv.rect(80, 150, 250, 330, fill=(250, 246, 238, 255), r=6)                     # plain framed picture
+    cv.rect(96, 166, 234, 314, fill=LAV2 + (255,), r=3)
+    cv.ell(165, 270, 62, 40, fill=(186, 211, 186, 255))
+    cv.ell(200, 214, 16, 16, fill=YEL_S + (255,))
+    lamp(cv, 700, 120)
+    lamp(cv, 1000, 120)
+    floor_band(cv, 660, c0=(222, 204, 192), c1=(196, 174, 164), skirt=(244, 238, 246))
+    plant(cv, 1460, 700, 1.0)
+    plant(cv, 150, 700, .8)
+    return _finish(cv, (242, 238, 246))
+
+
+def pic_bg_l02mc3(t, bb):
+    cv = Cv((0, 0, 0, 255))
+    cv.vgrad(0, 0, W, H, (230, 232, 246), (240, 238, 246))
+    corrugated(cv, 0, 0, W, 700, (226, 228, 246), (214, 216, 238))
+    roller_door(cv, 90, 170, 560, 690)
+    cv.rect(1020, 90, 1480, 230, fill=(252, 246, 232, 255), r=6)                   # high window strip
+    cv.vgrad(1034, 104, 1466, 216, (212, 224, 250), (240, 240, 252))
+    for k in range(1, 4):
+        cv.rect(1020 + 460 * k / 4 - 5, 104, 1020 + 460 * k / 4 + 5, 216, fill=(252, 246, 232, 255))
+    for lx in (820, 1240):
+        cv.glow(lx, 150, 100, (255, 238, 176), 130)
+        cv.line([(lx, 0), (lx, 70)], fill=(120, 96, 90, 255), w=3)
+        cv.poly([(lx - 50, 118), (lx + 50, 118), (lx + 28, 70), (lx - 28, 70)], fill=(190, 182, 214, 255))
+    cv.vgrad(0, 700, W, H, (214, 210, 226), (186, 180, 204))                       # concrete floor
+    cv.rect(0, 690, W, 712, fill=(246, 242, 248, 255))
+    hazard_strip(cv, 770, 24)
+    for k in range(1, 5):
+        yy = 700 + (H - 700) * (k / 5.0) ** 1.4
+        cv.line([(0, yy), (W, yy)], fill=(176, 170, 196, 255), w=1.5)
+    return _finish(cv, (244, 240, 248), blur=3.0, mixv=.2)
+
+
+# name -> (background fn, scale, anchor x (canvas centre of the figure box), bottom y of the figure box)
+PIC_NEW = {
+    "l01-tf1": (pic_bg_tf1, 1.10, 800, 852),
+    "l01-tf2": (pic_bg_tf2, 1.14, 760, 856),
+    "l01-mc2": (pic_bg_mc2, 1.05, 860, 822),
+    "l01-mc3": (pic_bg_mc3, 1.08, 800, 852),
+    "l01-mc4": (pic_bg_mc4, 1.10, 800, 856),
+    "l02-tf1": (pic_bg_l02tf1, 1.05, 650, 852),
+    "l02-mc2": (pic_bg_l02mc2, 1.12, 800, 858),
+    "l02-mc3": (pic_bg_l02mc3, 1.12, 800, 862),
+}
+
+
+def pic_props(name, t, bb, mid, fg, post):
+    x0, y0, x1, y1 = bb          # figure box in cut-out pixels
+    gx = lambda sx, sy: t(sx, sy)
+    if name == "l01-tf1":
+        shadow(mid, *t((x0 + x1) / 2, y1 - 5), 330, 26, 90)
+    elif name == "l01-tf2":
+        shadow(mid, *t((x0 + x1) / 2, y1 - 8), 330, 24, 90)
+        shovel(mid, 1330, 836, ol=OL)
+        # water: thin translucent arcs from the spout onto the middle pot
+        p0 = t(748, 424)
+        for (cx, cy, ex, ey, wd) in ((772, 436, 806, 588, 7), (782, 426, 822, 560, 5), (762, 430, 790, 572, 4)):
+            c1, e = t(cx, cy), t(ex, ey)
+            pts = []
+            for i in range(0, 21):
+                u = i / 20.0
+                pts.append(((1 - u) ** 2 * p0[0] + 2 * u * (1 - u) * c1[0] + u * u * e[0],
+                            (1 - u) ** 2 * p0[1] + 2 * u * (1 - u) * c1[1] + u * u * e[1]))
+            post.line(pts, fill=(150, 196, 232, 150), w=wd + 3)
+            post.line(pts, fill=(222, 240, 252, 235), w=wd)
+        for dx, dy in ((812, 582), (826, 572), (796, 590), (830, 590)):
+            x, y = t(dx, dy)
+            post.ell(x, y, 3.5, 3.5, fill=(222, 240, 252, 235))
+    elif name == "l01-mc2":
+        shadow(mid, *t((x0 + x1) / 2, y1 - 6), 340, 18, 100)
+    elif name == "l01-mc3":
+        shadow(mid, *t((x0 + x1) / 2, y1 - 6), 320, 22, 90)
+    elif name == "l01-mc4":
+        shadow(mid, *t((x0 + x1) / 2, y1 - 8), 300, 22, 90)
+        # drop cloth on the floor under the ladder and the bucket (drawn before the people)
+        cl = [(300, 800), (1340, 800), (1480, 890), (200, 890)]
+        mid.poly(cl, fill=(246, 242, 232, 255), ol=OL, w=1.5)
+        for fx in (480, 700, 900, 1120):
+            mid.line([(fx, 806), (fx - 60 + (fx % 50), 886)], fill=(224, 216, 204, 255), w=2)
+        shadow(mid, *t((x0 + x1) / 2, y1 - 8), 300, 20, 90)
+        shadow(mid, *t(931, 728), 56, 9, 110)
+    elif name == "l02-tf1":
+        cx0 = t(x1 + 20, 0)[0] + 70
+        ftop = t(0, 392)[1]
+        floor_y = t(0, y1)[1]
+        cafe_counter(mid, cx0, ftop, 44, floor_y)
+        cup_paper(mid, cx0 + 110, ftop - 18, 1.05)
+        till(mid, cx0 + 190, ftop - 22)
+        for xx in (t(300, 0)[0], t(690, 0)[0], t(1010, 0)[0]):
+            shadow(mid, xx + 30, floor_y - 6, 110, 14, 90)
+    elif name == "l02-mc2":
+        shadow(mid, *t((x0 + x1) / 2, y1 - 8), 380, 22, 90)
+    elif name == "l02-mc3":
+        shadow(mid, *t((x0 + x1) / 2, y1 - 8), 300, 22, 90)
+
+
+def make_pic(name, cut_dir):
+    bgf, sc, ax, by = PIC_NEW[name]
+    person0 = Image.open(os.path.join(cut_dir, name + ".png")).convert("RGBA")
+    bb = person0.split()[3].point(lambda v: 255 if v > 40 else 0).getbbox()
+    ox = ax - (bb[0] + bb[2]) / 2 * sc
+    oy = by - bb[3] * sc
+    t = mk_t(sc, ox, oy)
+    bg = bgf(t, bb)
+    mid, fg, post = Cv(), Cv(), Cv()
+    pic_props(name, t, bb, mid, fg, post)
+    person = person0.resize((int(round(SW * sc)), int(round(SH * sc))), Image.LANCZOS)
+    out = bg.convert("RGBA")
+    out = Image.alpha_composite(out, mid.out())
+    layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    layer.paste(person, (int(round(ox)), int(round(oy))), person)
+    out = Image.alpha_composite(out, layer)
+    out = Image.alpha_composite(out, fg.out())
+    out = Image.alpha_composite(out, post.out())
+    return out.convert("RGB")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--unit", default="l01", choices=["l01", "l02"])
@@ -857,6 +1266,17 @@ def main():
     a = ap.parse_args()
     l2 = a.unit == "l02"
     scenes = SCENES_L02 if l2 else SCENES
+    if a.only and all(n in PIC_NEW for n in a.only.split(",") if n):
+        a.cut = a.cut or os.path.join("..", "nguon-hinh", "people", "cut")
+        a.out = a.out or os.path.join("..", "nguon-hinh", "people", "raw")
+        scenes = list(PIC_NEW)
+        maker = make_pic
+        os.makedirs(a.out, exist_ok=True)
+        for n in a.only.split(","):
+            im = maker(n, a.cut)
+            im.save(os.path.join(a.out, n + ".png"))
+            print("wrote", os.path.join(a.out, n + ".png"), im.size)
+        return 0
     maker = make_scene_l02 if l2 else make_scene
     if not a.cut:
         a.cut = os.path.join("..", "nguon-hinh", "unit2-cut" if l2 else "unit1-cut")

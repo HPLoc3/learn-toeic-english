@@ -112,7 +112,7 @@ window.BS_UNITS.l01 = {
     {
       "id": "tf1",
       "type": "tf",
-      "image": "assets/img/l01/tf1.svg",
+      "image": "assets/img/l01/pic/tf1-800.webp",
       "instruction_vi": "Nhìn hình và chọn Đúng hoặc Sai cho từng câu mô tả.",
       "items": [
         { "id": "tf1-A", "label": "A", "en": "The woman is sitting on a bench.", "answer": true, "explain_vi": "Đúng: người phụ nữ đang ngồi trên ghế dài trong công viên." },
@@ -125,7 +125,7 @@ window.BS_UNITS.l01 = {
     {
       "id": "tf2",
       "type": "tf",
-      "image": "assets/img/l01/tf2.svg",
+      "image": "assets/img/l01/pic/tf2-800.webp",
       "instruction_vi": "Nhìn hình và chọn Đúng hoặc Sai cho từng câu mô tả.",
       "items": [
         { "id": "tf2-A", "label": "A", "en": "The man is moving a flower pot.", "answer": false, "explain_vi": "Có vật nhưng không có hành động đó: chậu hoa có trong hình nhưng ông không đang di chuyển nó." },
@@ -154,7 +154,7 @@ window.BS_UNITS.l01 = {
     {
       "id": "mc2",
       "type": "mc",
-      "image": "assets/img/l01/mc2.svg",
+      "image": "assets/img/l01/pic/mc2-800.webp",
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
         { "label": "A", "en": "The man is pushing a bicycle.", "why_vi": "Động từ sai: ông đang ngồi trên xe và đạp (riding) chứ không dắt hay đẩy (pushing) xe." },
@@ -168,7 +168,7 @@ window.BS_UNITS.l01 = {
     {
       "id": "mc3",
       "type": "mc",
-      "image": "assets/img/l01/mc3.svg",
+      "image": "assets/img/l01/pic/mc3-800.webp",
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
         { "label": "A", "en": "The woman is taking boxes off a shelf.", "why_vi": "Kệ hàng và hộp có trong hình nhưng cô không đang lấy hộp khỏi kệ. Trong hình không có hành động này." },
@@ -182,7 +182,7 @@ window.BS_UNITS.l01 = {
     {
       "id": "mc4",
       "type": "mc",
-      "image": "assets/img/l01/mc4.svg",
+      "image": "assets/img/l01/pic/mc4-800.webp",
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
         { "label": "A", "en": "The man is painting a wall." },
@@ -210,7 +210,7 @@ window.BS_UNITS.l01 = {
     {
       "id": "mc6",
       "type": "mc",
-      "image": "assets/img/l01/mc2.svg",
+      "image": "assets/img/l01/pic/mc2-800.webp",
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
         { "label": "A", "en": "The man is wearing a helmet." },
@@ -224,7 +224,7 @@ window.BS_UNITS.l01 = {
     {
       "id": "mc7",
       "type": "mc",
-      "image": "assets/img/l01/mc4.svg",
+      "image": "assets/img/l01/pic/mc4-800.webp",
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
         { "label": "A", "en": "The man is carrying a ladder.", "why_vi": "Cái thang có trong hình nhưng ông đang đứng trên đó chứ không xách hay vác (carrying) nó. Trong hình không có hành động này." },
@@ -238,7 +238,7 @@ window.BS_UNITS.l01 = {
     {
       "id": "mc8",
       "type": "mc",
-      "image": "assets/img/l01/mc3.svg",
+      "image": "assets/img/l01/pic/mc3-800.webp",
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
         { "label": "A", "en": "The woman is wearing a coat.", "why_vi": "Trong hình không có áo khoác nào, cô mặc váy liền." },
