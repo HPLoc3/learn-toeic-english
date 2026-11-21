@@ -523,8 +523,8 @@ sect('11 doc tieng Anh');
   { // autoplay, trang chua tung duoc bam -> im lang + goi y
     const { B, E } = start(); E.tick(500);
     ok(B.calls.length === 0, 'autoplay, chua tung bam trang -> khong speak');
-    E.sb.navigator = undefined; const E2 = start(); E2.E.tick(3);
-    ok(!E2.E.byR('hint').hidden && /Bấm 🔊 hoặc Phát/.test(E2.E.byR('hint').textContent), 'chua kich hoat + Tu doc bat + co giong -> hien goi y');
+    const E2 = start(); E2.E.tick(3); // sandbox moi khong co navigator -> khong co userActivation
+    ok(!E2.E.byR('hint').hidden && /Bấm 🔊 để nghe/.test(E2.E.byR('hint').textContent), 'chua kich hoat + Tu doc bat + co giong -> hien goi y');
   }
   { // autoplay, trang da duoc kich hoat (bam tab Hoat hinh) -> doc canh 1
     const B = mkBS(), E = makeEnv(); E.sb.BS = B; E.sb.navigator = { userActivation: { hasBeenActive: true } }; E.S.mount(E.host, def()); E.tick(20);
@@ -537,8 +537,15 @@ sect('11 doc tieng Anh');
     ok(B.calls.length === 0, 'chua co giong -> chua doc'); B.voice = true; E.tick(2);
     ok(B.calls.length === 1 && B.calls[0][0] === EN[0], 'giong den muon -> van doc canh 1');
   }
+  { // chip khi dang tam dung roi bam Phat: phat lai canh do tu dau va doc tron cau (khong bi cat o 97%)
+    const B = mkBS(), E = makeEnv(); E.sb.BS = B; E.sb.navigator = { userActivation: { hasBeenActive: true } }; E.S.mount(E.host, def());
+    const tg = E.byA('toggle'); tg.click(); E.chips()[3].click(); const n0 = B.calls.length; const s0 = B.stops; tg.click(); E.tick(30);
+    ok(E.byR('img').attrs.src.includes('mai-type') && B.calls.slice(n0).filter((c) => c[0] === EN[3]).length === 1, 'chip luc tam dung + Phat -> canh 4 chay lai tu dau, doc 1 lan');
+    E.tick(60); ok(B.calls.slice(n0).length === 2 && B.calls[n0 + 1][0] === EN[4], 'sau do sang canh 5 doc bth (' + JSON.stringify(B.calls.slice(n0).map((c) => c[0])) + ')');
+    const E3 = makeEnv(); E3.S.mount(E3.host, def()); E3.byA('toggle').click(); E3.chips()[6].click(); E3.byA('toggle').click(); ok(E3.byR('img').attrs.src.includes('duo-cafe'), 'Phat tu outro (dang tam dung) khong lui ve canh truoc');
+  }
   { // pause khi khong chay (vd. player nap tre) khong cat giong noi khac
-    const { B, a } = start(); const tg = 0; a.pause(); const s0 = B.stops; a.pause();
+    const { B, a } = start(); a.pause(); const s0 = B.stops; a.pause();
     ok(B.stops === s0, 'pause() luc dang dung khong goi stopSpeak');
   }
   { // chay het sau cu bam: moi canh dung 1 lan, khong doc outro
