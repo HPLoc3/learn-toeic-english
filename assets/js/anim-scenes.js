@@ -72,13 +72,13 @@
   if (!host || host.nodeType !== 1 || !d || validate(d).length) return null;
   if (host.__bss) host.__bss.destroy();
   var doc = host.ownerDocument || g.document, P = plan(d), SC = d.scenes, N = SC.length, T = P.T, O = d.outro, n = {}, X = {}, ch = [], ps = [], err = {}, i, l = '', api;
-  var mq = g.matchMedia ? g.matchMedia('(prefers-reduced-motion: reduce)') : null, t = 0, pl = 0, raf = 0, tm = 0, last = 0, ug = UA(), spk = -1, am = 1, k = -1, ann = -1, rd = !!(mq && mq.matches), dead = 0;
+  var mq = g.matchMedia ? g.matchMedia('(prefers-reduced-motion: reduce)') : null, t = 0, pl = 0, raf = 0, tm = 0, last = 0, ug = UA(), spk = -1, am = 1, k = -1, ann = -1, rd = !!(mq && mq.matches), dead = 0, vc = -1, uv;
   function B(f) { var o = g.BS; return o && typeof o[f] === 'function' ? o : null; }
   function UA() { var u = g.navigator && g.navigator.userActivation; return u ? +!!u.hasBeenActive : 0; }
-  function stp() { var o = B('stopSpeak'); if (o) try { o.stopSpeak(); } catch (x) { /* bo qua */ } }
+  function stp() { var o = B('stopSpeak'); if (o) try { o.stopSpeak(); } catch (x) { } }
   function au() { var o = B('pref'); return o ? o.pref('animSpeak') !== 0 : !!am; }
-  function vo() { var o = B('speak'), h = B('hasVoice'); return !!o && (!h || !!h.hasVoice()); }
-  function say(j) { var o = B('speak'); if (o && j < N && vo()) try { o.speak(SC[j].en, { rate: 0.9 }); } catch (x) { /* bo qua */ } }
+  function vo() { var o = B('speak'), h = B('hasVoice'); return !!o && (!h || (vc < 0 ? !!h.hasVoice() : !!vc)); }
+  function say(j) { var o = B('speak'); if (o && j < N && vo()) try { o.speak(SC[j].en, { rate: 0.9 }); } catch (x) { } }
   function tog() { var o = B('setPref'); am = !au(); if (o) o.setPref('animSpeak', am ? 1 : 0); if (!am) stp(); ui(); }
   function at(e, a, v) { e.setAttribute(a, v); }
   function b(a, x, c, h) { return '<button type="button" class="bss-btn' + c + '" data-' + a + (h ? '" hidden' : '"') + '>' + x + '</button>'; }
@@ -152,7 +152,7 @@
    draw(); ui(); raf = g.requestAnimationFrame(frame);
   }
   function snap() { t = rest(kOf(t)); }
-  function onMq() { var f = doc.activeElement === X.toggle; rd = !!mq.matches; stop(); pl = 0; if (rd) snap(); draw(); ui(); if (rd && f) X.next.focus(); }
+  function onMq() { var f = doc.activeElement === X.toggle; rd = !!mq.matches; stop(); stp(); pl = 0; if (rd) snap(); draw(); ui(); if (rd && f) X.next.focus(); }
   function onClick(v) {
    var e = v.target && v.target.closest && v.target.closest('button'), a, c;
    if (!e || e.getAttribute('aria-disabled') === 'true') return;
@@ -174,7 +174,7 @@
    go(j) { j = cl(j | 0, 0, N); spk = -1; t = rd || !pl ? rest(j) : j < N ? P.scenes[j].start : P.outroStart; draw(); ui(); if (rd && (ug || (ug = UA())) && au()) { spk = j; say(j); } },
    destroy() {
     if (dead) return;
-    dead = 1; pl = 0; stop(); stp();
+    dead = 1; pl = 0; stop(); stp(); if (typeof uv === 'function') uv();
     n.root.removeEventListener('click', onClick); n.img.removeEventListener('error', onErr);
     if (mq) { if (mq.removeEventListener) mq.removeEventListener('change', onMq); else mq.removeListener(onMq); }
     if (host.__bss === api) host.__bss = null;
@@ -186,7 +186,7 @@
   host.__bss = api;
   if (rd) snap();
   draw(); ui();
-  if (B('onVoices')) g.BS.onVoices(() => { if (!dead) ui(); });
+  if (B('onVoices')) uv = g.BS.onVoices((ok) => { vc = +!!ok; if (!dead) ui(); });
   if (!rd) api.play();
   return api;
  }

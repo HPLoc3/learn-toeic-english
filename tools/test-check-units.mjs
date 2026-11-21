@@ -70,7 +70,20 @@ try {
   const gw = {}; gw.window = gw;
   vm.runInNewContext(fs.readFileSync(path.join(REAL, "assets/js/game.js"), "utf8"), gw);
   const G = gw.BSGame;
-  check("imgClass: webp (kể cả ?query/#hash) thành game-img--wide, svg thì không", G.imgClass("a/b.webp") === "game-img game-img--wide" && G.imgClass("a/b.webp?v=3") === "game-img game-img--wide" && G.imgClass("a/b.svg") === "game-img" && G.imgClass("a/b.webpx") === "game-img" && G.imgClass(undefined) === "game-img");
+  /* core.js: BS.isWide dùng chung; BS.img thêm fig--wide cho webp (kể cả ?query/#hash), không thêm cho svg/undefined */
+  const mkEl = () => ({ className: "", attrs: {}, kids: [], setAttribute(k, v) { this.attrs[k] = v; }, addEventListener() {}, appendChild(c) { this.kids.push(c); return c; } });
+  const cw = { console, setTimeout, clearTimeout, URLSearchParams, JSON, Math, Object, Array, Number, String, RegExp, Date,
+    localStorage: { getItem: () => null, setItem() {} },
+    document: { readyState: "complete", getElementById: () => null, createElement: mkEl, createTextNode: (t) => ({ t }), createEvent: () => ({ initCustomEvent() {} }), dispatchEvent() {}, addEventListener() {}, documentElement: { setAttribute() {}, removeAttribute() {} }, body: null },
+    location: { hostname: "example.com", protocol: "https:", search: "" } };
+  cw.window = cw; cw.addEventListener = () => {}; cw.matchMedia = () => ({ matches: false });
+  vm.createContext(cw);
+  vm.runInContext(fs.readFileSync(path.join(REAL, "assets/js/core.js"), "utf8"), cw, { filename: "core.js" });
+  const B = cw.BS;
+  check("BS.isWide: webp (kể cả ?query/#hash) đúng; svg/.webpx/undefined sai", B.isWide("a/b.webp") && B.isWide("a/b.WEBP?v=3") && B.isWide("a/b.webp#x") && !B.isWide("a/b.svg") && !B.isWide("a/b.webpx") && !B.isWide(undefined));
+  check("BS.img: fig--wide cho webp và webp?v=3, không cho svg/undefined", B.img("x/a.webp", "t").className === "fig fig--wide" && B.img("x/a.webp?v=3", "t").className === "fig fig--wide" && B.img("x/a.svg", "t").className === "fig" && B.img(undefined, "t").className === "fig");
+  const gsrc = fs.readFileSync(path.join(REAL, "assets/js/game.js"), "utf8");
+  check("game.js dùng BS.isWide (không lặp regex)", /game-img--wide/.test(gsrc) && /BS\.isWide\(src\)/.test(gsrc) && !/\\.webp/.test(gsrc));
   check("gridClass mặc định 4:3", G.gridClass({}) === "game-grid" && G.gridClass(undefined) === "game-grid");
   check("gridClass 16:9", G.gridClass({ ratio: "16:9" }) === "game-grid game-grid--16x9");
   check("gridClass bỏ qua ratio lạ", G.gridClass({ ratio: "1:1" }) === "game-grid");

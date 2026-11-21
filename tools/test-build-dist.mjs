@@ -6,7 +6,7 @@ import { join, dirname } from "node:path";
 import { tmpdir } from "node:os";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { build, isSiteFile, runGate, gitFiles, parsePrecache, localRefs, verifyDist, walkFiles, GATE, ROOT } from "./build-dist.mjs";
+import { build, isSiteFile, isPublicMeta, copySite, runGate, gitFiles, parsePrecache, localRefs, verifyDist, walkFiles, GATE, ROOT } from "./build-dist.mjs";
 
 let total = 0, failed = 0;
 function check(name, cond, extra) {
@@ -101,6 +101,24 @@ try {
   check("verifyDist bắt .md lọt vào", /README\.md/.test(v));
 } finally {
   rmSync(vtmp, { recursive: true, force: true });
+}
+
+// --- robots.txt và .well-known/ (tùy chọn, nếu có tệp được theo dõi thì phải được chép) ---
+for (const f of ["robots.txt", ".well-known/security.txt", ".well-known/assetlinks.json"]) check("allowlist nhận " + f, isSiteFile(f) && isPublicMeta(f));
+for (const f of ["assets/robots.txt", "sub/robots.txt", "robots.txt.bak", ".well-known/", ".well-known", ".git/config", ".well-known/../x.html"]) check("allowlist loại " + f, !isSiteFile(f));
+const mtmp = mkdtempSync(join(tmpdir(), "tb-meta-"));
+try {
+  const src = join(mtmp, "src"), out = join(mtmp, "out");
+  mkdirSync(join(src, ".well-known"), { recursive: true }); mkdirSync(out, { recursive: true });
+  writeFileSync(join(src, "robots.txt"), "User-agent: *\n");
+  writeFileSync(join(src, ".well-known", "security.txt"), "Contact: none\n");
+  writeFileSync(join(src, "README.md"), "x"); writeFileSync(join(src, "sw.js"), "var PRECACHE = [\n  \"robots.txt\"\n];");
+  const cp = copySite(src, out, ["robots.txt", ".well-known/security.txt", "README.md", "sw.js"]);
+  check("copySite chép robots.txt và .well-known, bỏ README.md", cp.list.includes("robots.txt") && cp.list.includes(".well-known/security.txt") && !cp.list.includes("README.md"), cp.list);
+  check("tệp đã nằm trong dist thật", existsSync(join(out, "robots.txt")) && existsSync(join(out, ".well-known", "security.txt")));
+  check("verifyDist không coi robots.txt/.well-known là file nội bộ", verifyDist(out).errors.length === 0, verifyDist(out).errors);
+} finally {
+  rmSync(mtmp, { recursive: true, force: true });
 }
 
 console.log(`test-build-dist: ${total - failed}/${total} ca đạt`);
