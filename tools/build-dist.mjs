@@ -20,9 +20,14 @@ const SITE_DIRS = ["assets/", "data/"];
 // Đuôi file nội bộ không bao giờ được vào dist, kể cả nằm trong thư mục được phép.
 const FORBIDDEN_EXT = /\.(md|txt|py|mjs|log)$/i;
 
-// Tệp công khai cho máy chủ/trình thu thập: robots.txt ở gốc và mọi thứ dưới .well-known/ (kể cả .txt, thư mục ẩn).
+// Tệp công khai cho máy chủ/trình thu thập: robots.txt ở gốc và tệp dưới .well-known/ (kể cả .txt, .json).
+// .well-known/ CHỈ dành cho tệp công khai: không nhận đường dẫn có "..", dấu "\\", .md/.py/.mjs/.log, tệp README*, hay tệp ẩn (tên bắt đầu bằng ".").
 export function isPublicMeta(rel) {
-  return rel === "robots.txt" || (rel.startsWith(".well-known/") && rel.length > ".well-known/".length);
+  if (typeof rel !== "string" || rel.includes("\\") || rel.split("/").includes("..")) return false;
+  if (rel === "robots.txt") return true;
+  if (!rel.startsWith(".well-known/") || rel.length === ".well-known/".length) return false;
+  const base = rel.slice(rel.lastIndexOf("/") + 1);
+  return base !== "" && !base.startsWith(".") && !/^readme/i.test(base) && !/\.(md|py|mjs|log)$/i.test(base);
 }
 
 export function isSiteFile(rel) {

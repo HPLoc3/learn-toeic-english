@@ -106,6 +106,23 @@ try {
 // --- robots.txt và .well-known/ (tùy chọn, nếu có tệp được theo dõi thì phải được chép) ---
 for (const f of ["robots.txt", ".well-known/security.txt", ".well-known/assetlinks.json"]) check("allowlist nhận " + f, isSiteFile(f) && isPublicMeta(f));
 for (const f of ["assets/robots.txt", "sub/robots.txt", "robots.txt.bak", ".well-known/", ".well-known", ".git/config", ".well-known/../x.html"]) check("allowlist loại " + f, !isSiteFile(f));
+for (const f of [".well-known/../README.md", ".well-known/../robots.txt", ".well-known\\x.txt", "../robots.txt", ".well-known/notes.md", ".well-known/tool.py", ".well-known/x.mjs", ".well-known/debug.log", ".well-known/README", ".well-known/readme.txt", ".well-known/.DS_Store", ".well-known/sub/.hidden"]) {
+  check("isPublicMeta/isSiteFile loại " + f, !isPublicMeta(f) && !isSiteFile(f));
+}
+check("isPublicMeta nhận .well-known/sub/file.json", isPublicMeta(".well-known/sub/file.json") && isSiteFile(".well-known/sub/file.json"));
+check("isPublicMeta không nhận kiểu không phải chuỗi", !isPublicMeta(undefined) && !isPublicMeta(null));
+const mtmp2 = mkdtempSync(join(tmpdir(), "tb-meta2-"));
+try {
+  mkdirSync(join(mtmp2, ".well-known"), { recursive: true });
+  writeFileSync(join(mtmp2, ".well-known", "notes.md"), "x"); writeFileSync(join(mtmp2, "sw.js"), "var PRECACHE = [];");
+  const out2 = join(mtmp2, "out"); mkdirSync(out2);
+  const cp2 = copySite(mtmp2, out2, [".well-known/notes.md"]);
+  check("copySite bỏ .well-known/notes.md", cp2.list.length === 0 && !existsSync(join(out2, ".well-known", "notes.md")), cp2.list);
+  mkdirSync(join(out2, ".well-known"), { recursive: true }); writeFileSync(join(out2, ".well-known", "notes.md"), "x"); copyFileSync(join(mtmp2, "sw.js"), join(out2, "sw.js"));
+  check("verifyDist bắt .well-known/notes.md lọt vào", verifyDist(out2).errors.some((e) => /notes\.md/.test(e)));
+} finally {
+  rmSync(mtmp2, { recursive: true, force: true });
+}
 const mtmp = mkdtempSync(join(tmpdir(), "tb-meta-"));
 try {
   const src = join(mtmp, "src"), out = join(mtmp, "out");
