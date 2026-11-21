@@ -1,18 +1,17 @@
-/* TODO khi co anh that cho obj-cars va obj-outro: bo tien to "(Ảnh minh họa đang cập nhật)" trong alt_vi, them lai focus cua canh cars, bo placeholder:true.
- * l03-anim.js - du lieu hoat hinh anh tinh (v2, scenes) Unit 3: do vat va vi tri, khong co nguoi. Anh tam (placeholder), thay bang anh that roi bo placeholder. */
+/* l03-anim.js - du lieu hoat hinh anh tinh (v2, scenes) Unit 3: do vat va vi tri, khong co nguoi. Anh that do chu site tao (AI); anh tong ket ghep luoi bang tools/make-outro-grid.py. */
 window.BS_ANIMS = window.BS_ANIMS || {};
 window.BS_ANIMS.l03 = {
-  v: 2, kind: "scenes", id: "l03", placeholder: true,
+  v: 2, kind: "scenes", id: "l03",
   region_vi: "Hoạt hình mẹo đồ vật: is/are + V3 (trạng thái) và is/are + V-ing (tư thế)",
   formula: [["Đồ vật: "], ["is/are", "be"], [" + "], ["V3", "ing"], [" (stacked, parked)  |  "], ["is/are", "be"], [" + V-"], ["ing", "ing"], [" (leaning, hanging)"]],
   sr_tail_vi: "Đồ vật nằm yên thì dùng is hoặc are cộng quá khứ phân từ, như stacked, parked; một số vật dùng is hoặc are cộng động từ-ing để tả tư thế, như leaning, hanging.",
   img: { base: "assets/img/l03/scene/", hd: "assets/img-hd/l03/", w: [800, 1600], ratio: "16:9" },
   scenes: [
-    { id: "table", img: "obj-table", dur: 9, alt_vi: "Một góc quán cà phê có cửa sổ lớn, không có người. Bốn chiếc ghế gỗ được xếp quanh một chiếc bàn tròn ở giữa; ở hai góc dưới có hai bộ bàn ghế nhỏ hơn.",
+    { id: "table", img: "obj-table", dur: 9, alt_vi: "Một góc quán cà phê có cửa sổ lớn và hai bức tường, không có người. Chỉ có một chiếc bàn tròn ở giữa và bốn chiếc ghế gỗ được xếp quanh bàn.",
       en: "The chairs are arranged around a table.", vi: "Những cái ghế được sắp xếp quanh một cái bàn.",
       pieces: [["The chairs", ""], [" are", "be"], [" arrange", ""], ["d", "ing"], [" around a table.", ""]],
       note_vi: "The chairs + are; arrange + d = arranged (V3): trạng thái, không ai đang xếp",
-      kb: { from: [0.5, 0.5, 1.0], to: [0.5, 0.53, 1.06] }, focus: { x: 0.5, y: 0.52, r: 0.22, at: 2.5, label_vi: "quanh cái bàn" } },
+      kb: { from: [0.5, 0.5, 1.0], to: [0.5, 0.53, 1.06] }, focus: { x: 0.5, y: 0.5, r: 0.2, at: 2.5, label_vi: "quanh cái bàn" } },
     { id: "boxes", img: "obj-boxes", dur: 9, alt_vi: "Trong một phòng kho trống, một cái kệ kim loại bốn tầng; ba thùng giấy xếp chồng lên nhau ở trên cùng của kệ, không có người.",
       en: "Some boxes are stacked on a shelf.", vi: "Một vài cái thùng được xếp chồng trên kệ.",
       pieces: [["Some boxes", ""], [" are", "be"], [" stack", ""], ["ed", "ing"], [" on a shelf.", ""]],
@@ -23,11 +22,11 @@ window.BS_ANIMS.l03 = {
       pieces: [["A bicycle", ""], [" is", "be"], [" lean", ""], ["ing", "ing"], [" against the wall.", ""]],
       note_vi: "A bicycle + is (số ít); lean → leaning: tư thế dựa vào",
       kb: { from: [0.5, 0.5, 1.0], to: [0.58, 0.5, 1.08] }, focus: { x: 0.52, y: 0.52, r: 0.22, at: 2.5, label_vi: "dựa vào tường" } },
-    { id: "cars", img: "obj-cars", dur: 9, alt_vi: "(Ảnh minh họa đang cập nhật) Trên một con phố, nhiều xe hơi đậu nối đuôi nhau dọc theo mép đường, không có người.",
+    { id: "cars", img: "obj-cars", dur: 9, alt_vi: "Trên một con phố có dãy cửa hàng, bốn chiếc xe hơi nhỏ màu đỏ, xanh dương, xanh lá và vàng đậu thành một hàng thẳng sát mép vỉa hè, cùng quay đầu về một hướng, không có người.",
       en: "Cars are parked along the street.", vi: "Những chiếc xe hơi đang đậu dọc theo con đường.",
       pieces: [["Cars", ""], [" are", "be"], [" park", ""], ["ed", "ing"], [" along the street.", ""]],
       note_vi: "Cars + are; park + ed = parked: đang đậu (trạng thái); along = dọc theo",
-      kb: { from: [0.4, 0.5, 1.0], to: [0.55, 0.55, 1.2] } },  /* TODO anh that: them lai focus (vong nhan "đậu dọc đường") khi co anh obj-cars that */
+      kb: { from: [0.5, 0.5, 1.0], to: [0.5, 0.55, 1.04] }, focus: { x: 0.5, y: 0.56, r: 0.17, at: 2.5, label_vi: "đậu dọc đường" } },
     { id: "lamp", img: "obj-lamp", dur: 9, alt_vi: "Một chiếc đèn treo bằng dây từ trần nhà, ngay phía trên một chiếc bàn làm việc. Không có ai ở đó, trên bàn chỉ có một cuốn sổ và một cái cốc.",
       en: "A lamp is hanging above the desk.", vi: "Một cái đèn đang treo phía trên bàn làm việc.",
       pieces: [["A lamp", ""], [" is", "be"], [" hang", ""], ["ing", "ing"], [" above the desk.", ""]],
@@ -39,7 +38,7 @@ window.BS_ANIMS.l03 = {
       note_vi: "The books + are; line + d = lined (V3); lined up = xếp thành hàng",
       kb: { from: [0.4, 0.5, 1.0], to: [0.36, 0.5, 1.2] }, focus: { x: 0.34, y: 0.5, r: 0.2, at: 2.5, label_vi: "xếp thành hàng" } }
   ],
-  outro: { img: "obj-outro", dur: 2, alt_vi: "(Ảnh minh họa đang cập nhật) Ảnh ghép lưới 3x2 gồm sáu ô nhỏ: bàn ghế, thùng xếp chồng, xe đạp dựa tường, xe hơi đậu, đèn treo và kệ sách, không có người.", title_vi: "Tổng kết", segs: [
+  outro: { img: "obj-outro", dur: 2, alt_vi: "Ảnh ghép lưới 3x2 gồm sáu cảnh nhỏ, không có người: hàng trên là bàn tròn với bốn ghế, kệ kim loại có ba thùng xếp chồng, xe đạp dựa tường gạch; hàng dưới là bốn xe hơi đậu thành hàng, đèn treo phía trên bàn làm việc, kệ sách có một hàng sách.", title_vi: "Tổng kết", segs: [
     ["Ghi nhớ nhanh: đồ vật nằm yên thì dùng "], ["is/are", "be"], [" + "], ["V3", "ing"],
     [" (stacked, parked), hoặc "], ["is/are", "be"], [" + V-"], ["ing", "ing"],
     [" tả tư thế (leaning, hanging). Ảnh không có người thì loại câu nhắc đến người, và cẩn thận với is being + V3 (trừ being displayed)."]
