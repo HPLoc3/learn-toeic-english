@@ -26,6 +26,7 @@
 .game-opt:hover:not(:disabled) { border-color: var(--pri, #2563eb); }
 .game-opt:focus-visible { outline: 3px solid var(--pri, #2563eb); outline-offset: 2px; }
 .game-opt img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; border-radius: 8px; background: var(--card, #fff); pointer-events: none; }
+.game-grid--16x9 .game-opt img { aspect-ratio: 16 / 9; }
 .game-opt:disabled { cursor: default; opacity: 1; }
 .game-opt.is-ok { border-color: var(--ok, #15803d); background: var(--ok-bg, #dcfce7); }
 .game-opt.is-bad { border-color: var(--bad, #b91c1c); background: var(--bad-bg, #fee2e2); }

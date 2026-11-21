@@ -100,6 +100,7 @@ function listDir(rel) {
   if (!(rel in dirCache)) { try { dirCache[rel] = fs.readdirSync(path.join(ROOT, rel)); } catch { dirCache[rel] = null; } }
   return dirCache[rel];
 }
+const MAX_WEBP_BYTES = 110000;
 const checkedImgs = {};
 function checkImage(id, src, where) {
   if (typeof src !== "string" || !src) { err(where + ": đường dẫn ảnh rỗng hoặc không phải chuỗi."); return; }
@@ -121,6 +122,12 @@ function checkImage(id, src, where) {
       return;
     }
     cur = cur ? cur + "/" + parts[i] : parts[i];
+  }
+  if (!/\.(svg|webp)$/i.test(src)) { err(where + ": ảnh '" + src + "' chỉ được là .svg hoặc .webp."); return; }
+  if (/\.webp$/i.test(src)) {
+    let size = 0;
+    try { size = fs.statSync(path.join(ROOT, src)).size; } catch { err(where + ": không đọc được " + src); return; }
+    if (size > MAX_WEBP_BYTES) err(src + ": ảnh webp nặng " + size + " B, tối đa " + MAX_WEBP_BYTES + " B.");
   }
   if (/\.svg$/i.test(src)) {
     let txt = "";
@@ -269,6 +276,7 @@ function checkUnit(entry) {
       else if (!isObj(cfg) || !Array.isArray(cfg.rounds)) e(gameFile + " không đặt BS_GAMES." + id + ".rounds.");
       else {
         if (cfg.rounds.length < MIN_GAME_ROUNDS) e("game có " + cfg.rounds.length + " vòng, cần ít nhất " + MIN_GAME_ROUNDS + ".");
+        if (cfg.ratio !== undefined && cfg.ratio !== "16:9") e("BS_GAMES." + id + ".ratio '" + cfg.ratio + "' không hợp lệ: chỉ nhận \"16:9\" (bỏ trống = 4:3).");
         const imgs = {};
         cfg.rounds.forEach((rd, i) => {
           const wr = "game.rounds[" + i + "]";
@@ -282,6 +290,22 @@ function checkUnit(entry) {
             if (!ex) e(wr + ": avoid '" + a + "' không phải bài tập.");
             else if (!ex.image) e(wr + ": avoid '" + a + "' trỏ tới bài tập không có ảnh.");
           });
+        });
+        const kinds = {};
+        Object.keys(imgs).forEach((p) => { if (typeof p === "string") kinds[/\.webp$/i.test(p) ? "webp" : "svg"] = 1; });
+        if (kinds.svg && kinds.webp) w("game trộn ảnh .svg (4:3) với .webp (16:9); khung hình sẽ có viền, nên đồng nhất định dạng.");
+        const byEn = {};
+        cfg.rounds.forEach((rd, i) => {
+          if (!isObj(rd)) return;
+          const s = resolveSentence(u, rd.ref);
+          if (!s || !nonEmpty(s.en)) return;
+          const k = s.en.trim().toLowerCase();
+          (byEn[k] = byEn[k] || { en: s.en, imgs: {}, at: [] });
+          byEn[k].imgs[rd.img] = 1; byEn[k].at.push(i);
+        });
+        Object.keys(byEn).forEach((k) => {
+          const b = byEn[k];
+          if (Object.keys(b.imgs).length > 1) w("câu \"" + b.en + "\" dùng ở các vòng " + b.at.join(", ") + " với ảnh khác nhau.");
         });
         const distinct = Object.keys(imgs).length;
         if (distinct < GAME_CHOICES) e("game chỉ có " + distinct + " ảnh khác nhau, cần ít nhất " + GAME_CHOICES + ".");

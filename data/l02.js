@@ -10,7 +10,7 @@ window.BS_UNITS.l02 = {
       {
         "id": "tip1",
         "text_vi": "Chủ ngữ số nhiều thì dùng are + V-ing: They, The people, Some people, Two people, Both women, The man and the woman. Hãy đếm người trong hình trước rồi nghe xem chủ ngữ có khớp số người không.",
-        "image": "assets/img/l02/focus.svg",
+        "image": "assets/img/l02/scene/duo-shake-800.webp",
         "examples": [
           { "en": "The man and the woman are shaking hands.", "vi": "Người đàn ông và người phụ nữ đang bắt tay nhau." },
           { "en": "They are shaking hands.", "vi": "Họ đang bắt tay nhau." },
@@ -150,10 +150,10 @@ window.BS_UNITS.l02 = {
     {
       "id": "tf2",
       "type": "tf",
-      "image": "assets/img/l02/tf2.svg",
+      "image": "assets/img/l02/scene/duo-meeting-800.webp",
       "instruction_vi": "Nhìn hình và chọn Đúng hoặc Sai cho từng câu mô tả.",
       "items": [
-        { "id": "tf2-A", "label": "A", "en": "The people are sitting across from each other.", "answer": true, "explain_vi": "Đúng: hai người ngồi hai đầu bàn, đối diện nhau." },
+        { "id": "tf2-A", "label": "A", "en": "The people are sitting across from each other.", "answer": true, "explain_vi": "Đúng: hai người ngồi hai bên cái bàn, đối diện nhau." },
         { "id": "tf2-B", "label": "B", "en": "They are shaking hands.", "answer": false, "explain_vi": "Sai ở động từ: hai người không bắt tay, mỗi người đang làm việc riêng của mình." },
         { "id": "tf2-C", "label": "C", "en": "The woman is writing in a notebook.", "answer": true, "explain_vi": "Đúng: người phụ nữ cầm bút viết vào cuốn sổ trên bàn." },
         { "id": "tf2-D", "label": "D", "en": "Both people are writing.", "answer": false, "explain_vi": "Sai vì hành động của một người bị gán cho cả hai: chỉ người phụ nữ viết, người đàn ông đang cầm cốc." },
@@ -165,13 +165,13 @@ window.BS_UNITS.l02 = {
     {
       "id": "mc1",
       "type": "mc",
-      "image": "assets/img/l02/mc1.svg",
+      "image": "assets/img/l02/scene/duo-walk-800.webp",
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
         { "label": "A", "en": "They are sitting on a bench.", "why_vi": "Động từ sai: hai người đang đi bộ (walking), không ngồi (sitting)." },
-        { "label": "B", "en": "They are facing each other.", "why_vi": "Vị trí sai: hai người đi cùng một hướng, không quay mặt vào nhau." },
+        { "label": "B", "en": "They are shaking hands.", "why_vi": "Động từ sai: hai người đang đi bộ, không ai bắt tay." },
         { "label": "C", "en": "They are walking side by side." },
-        { "label": "D", "en": "Both people are carrying backpacks.", "why_vi": "Sai vì hành động của một người bị gán cho cả hai: chỉ một trong hai người đeo ba lô." }
+        { "label": "D", "en": "Both people are wearing aprons.", "why_vi": "Sai vì hành động của một người bị gán cho cả hai: chỉ người đàn ông mặc tạp dề, người phụ nữ thì không." }
       ],
       "answer": "C",
       "explain_vi": "Hai người đang đi bộ sánh vai nhau trên đường."
@@ -207,7 +207,7 @@ window.BS_UNITS.l02 = {
     {
       "id": "mc4",
       "type": "mc",
-      "image": "assets/img/l02/mc4.svg",
+      "image": "assets/img/l02/scene/duo-flowers-800.webp",
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
         { "label": "A", "en": "Two women are looking at a bouquet." },
@@ -221,16 +221,16 @@ window.BS_UNITS.l02 = {
     {
       "id": "mc5",
       "type": "mc",
-      "image": "assets/img/l02/mc1.svg",
+      "image": "assets/img/l02/scene/duo-walk-800.webp",
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
-        { "label": "A", "en": "The man is carrying a backpack.", "why_vi": "Sai người làm: người đeo ba lô là người phụ nữ, người đàn ông thì không." },
-        { "label": "B", "en": "The woman is carrying a backpack." },
+        { "label": "A", "en": "The woman is wearing an apron.", "why_vi": "Sai người làm: người mặc tạp dề là người đàn ông, người phụ nữ thì không." },
+        { "label": "B", "en": "The man is wearing an apron." },
         { "label": "C", "en": "Both of them are wearing hats.", "why_vi": "Trong hình không ai đội mũ." },
         { "label": "D", "en": "The man and the woman are running.", "why_vi": "Động từ sai: hai người đang đi bộ (walking), không chạy (running)." }
       ],
       "answer": "B",
-      "explain_vi": "Người phụ nữ đang đeo ba lô."
+      "explain_vi": "Người đàn ông đang mặc tạp dề."
     },
     {
       "id": "mc6",
@@ -263,10 +263,10 @@ window.BS_UNITS.l02 = {
     {
       "id": "mc8",
       "type": "mc",
-      "image": "assets/img/l02/mc4.svg",
+      "image": "assets/img/l02/scene/duo-flowers-800.webp",
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
-        { "label": "A", "en": "Both women are holding bouquets.", "why_vi": "Sai vì hành động của một người bị gán cho cả hai: chỉ người bên trái cầm bó hoa, người bên phải đang chỉ vào nó." },
+        { "label": "A", "en": "Both women are holding bouquets.", "why_vi": "Sai vì hành động của một người bị gán cho cả hai: chỉ người bên phải cầm bó hoa, người bên trái đang chỉ vào nó." },
         { "label": "B", "en": "One of the women is watering a plant.", "why_vi": "Trong hình không có hành động tưới cây và không có bình tưới." },
         { "label": "C", "en": "One of the women is holding a bouquet." },
         { "label": "D", "en": "A bouquet is being wrapped in paper.", "why_vi": "Bẫy bị động: không ai đang gói hoa, bó hoa chỉ được cầm trên tay." }

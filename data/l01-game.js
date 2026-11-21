@@ -9,7 +9,7 @@ window.BS_GAMES.l01 = {
     { "img": "assets/img/l01/tf2.svg", "ref": { "ex": "tf2", "item": "tf2-B" }, "avoid": [] },
     { "img": "assets/img/l01/tf2.svg", "ref": { "ex": "tf2", "item": "tf2-E" }, "avoid": [] },
     { "img": "assets/img/l01/mc1.svg", "ref": { "ex": "mc1" }, "avoid": [] },
-    { "img": "assets/img/l01/mc1.svg", "ref": { "ex": "mc5" }, "avoid": [] },
+    { "img": "assets/img/l01/scene/hanh-wear-800.webp", "ref": { "ex": "mc5" }, "avoid": ["mc1"] },
     { "img": "assets/img/l01/mc2.svg", "ref": { "ex": "mc2" }, "avoid": [] },
     { "img": "assets/img/l01/mc2.svg", "ref": { "ex": "mc6" }, "avoid": ["tf2"] },
     { "img": "assets/img/l01/mc3.svg", "ref": { "ex": "mc3" }, "avoid": [] },
