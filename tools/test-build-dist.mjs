@@ -6,7 +6,7 @@ import { join, dirname } from "node:path";
 import { tmpdir } from "node:os";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { build, isSiteFile, isPublicMeta, copySite, runGate, gitFiles, parsePrecache, localRefs, verifyDist, walkFiles, GATE, ROOT } from "./build-dist.mjs";
+import { build, isSiteFile, isPublicMeta, copySite, runGate, gitFiles, parsePrecache, localRefs, verifyDist, walkFiles, unavailableIds, isUnreleasedData, GATE, ROOT } from "./build-dist.mjs";
 
 let total = 0, failed = 0;
 function check(name, cond, extra) {
@@ -43,8 +43,9 @@ try {
     check("đọc được PRECACHE", Array.isArray(pre) && pre.length > 50, pre && pre.length);
     check("mọi mục PRECACHE có trong dist", pre.every((f) => set.has(f)), pre.filter((f) => !set.has(f)));
     // dist = đúng tập file được theo dõi và nằm trong allowlist
-    const expected = gitFiles(ROOT).filter(isSiteFile).filter((f) => existsSync(join(ROOT, f))).sort();
-    check("dist khớp git ls-files ∩ allowlist", JSON.stringify(expected) === JSON.stringify([...files].sort()));
+    const skipIds = unavailableIds(ROOT);
+    const expected = gitFiles(ROOT).filter(isSiteFile).filter((f) => !isUnreleasedData(f, skipIds)).filter((f) => existsSync(join(ROOT, f))).sort();
+    check("dist khớp git ls-files ∩ allowlist (trừ dữ liệu unit chưa mở)", JSON.stringify(expected) === JSON.stringify([...files].sort()));
     check("verifyDist không báo lỗi", verifyDist(dist).errors.length === 0);
     check("số file/byte báo cáo khớp", r.count === files.length && r.bytes === files.reduce((s, f) => s + statSync(join(dist, f)).size, 0));
     // Rác chưa theo dõi không lọt vào dist
@@ -136,6 +137,30 @@ try {
   check("verifyDist không coi robots.txt/.well-known là file nội bộ", verifyDist(out).errors.length === 0, verifyDist(out).errors);
 } finally {
   rmSync(mtmp, { recursive: true, force: true });
+}
+
+/* unit chưa mở: không phát hành data/<id>*.js; unit đã mở thì có */
+{
+  const ids = ["p2-01", "p2-02"];
+  check("isUnreleasedData: data/<id>.js, -game.js, -anim.js của unit chưa mở bị loại", isUnreleasedData("data/p2-01.js", ids) && isUnreleasedData("data/p2-02-game.js", ids) && isUnreleasedData("data/p2-01-anim.js", ids));
+  check("isUnreleasedData: unit đã mở, catalog.js và tệp khác không bị loại", !isUnreleasedData("data/l01.js", ids) && !isUnreleasedData("data/catalog.js", ids) && !isUnreleasedData("data/p2-03.js", ids) && !isUnreleasedData("assets/js/p2-01.js", ids) && !isUnreleasedData("data/p2-010.js", ids));
+  const t = mkdtempSync(join(tmpdir(), "tb-unrel-"));
+  try {
+    mkdirSync(join(t, "data"), { recursive: true });
+    const cat = (a) => "window.BS_CATALOG={parts:[{id:'p2',title:'P2',units:[{id:'p2-01',no:1,title_vi:'a',available:" + a + "},{id:'p2-02',no:2,title_vi:'b',available:false}]}]};";
+    writeFileSync(join(t, "data", "catalog.js"), cat("false"));
+    check("unavailableIds: đọc đúng từ catalog (cả hai chưa mở)", JSON.stringify(unavailableIds(t)) === JSON.stringify(["p2-01", "p2-02"]));
+    writeFileSync(join(t, "data", "catalog.js"), cat("true"));
+    check("unavailableIds: unit available:true không bị liệt kê (sẽ được phát hành)", JSON.stringify(unavailableIds(t)) === JSON.stringify(["p2-02"]));
+    for (const f of ["data/p2-01.js", "data/p2-02.js", "data/catalog.js"]) if (!existsSync(join(t, f))) writeFileSync(join(t, f), "x");
+    writeFileSync(join(t, "data", "catalog.js"), cat("true"));
+    const o = join(t, "out"); mkdirSync(o);
+    const cp = copySite(t, o, ["data/p2-01.js", "data/p2-02.js", "data/catalog.js"], unavailableIds(t));
+    check("copySite: chép unit đã mở và catalog, bỏ unit chưa mở", cp.list.join() === "data/p2-01.js,data/catalog.js" && !existsSync(join(o, "data", "p2-02.js")), cp.list);
+    check("unavailableIds: catalog hỏng -> rỗng, không nem", unavailableIds(join(t, "none")).length === 0);
+  } finally { rmSync(t, { recursive: true, force: true }); }
+  const realSkip = unavailableIds(ROOT);
+  check("catalog thật: p2-01 vẫn nằm trong lộ trình (catalog) nhưng bị loại khỏi dist", realSkip.includes("p2-01") && readFileSync(join(ROOT, "data", "catalog.js"), "utf8").includes('"p2-01"'));
 }
 
 console.log(`test-build-dist: ${total - failed}/${total} ca đạt`);

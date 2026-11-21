@@ -66,7 +66,7 @@ function makeEnv(o = {}) {
   const synth = o.noSynth ? undefined : {
     voices: o.voices || [], spoken: [], cancels: 0, auto: o.auto !== false, auto_ms: 120,
     getVoices() { return this.voices; },
-    speak(m) { this.spoken.push(m); if (this.auto) setTimeout_(() => m.onend && m.onend({}), this.auto_ms); },
+    speak(m) { this.spoken.push(m); if (this.auto) { if (m.onstart) m.onstart({}); setTimeout_(() => m.onend && m.onend({}), this.auto_ms); } },
     cancel() { this.cancels++; log.push("cancel"); },
     addEventListener() {}, removeEventListener() {}
   };
@@ -262,7 +262,7 @@ const fbOf = (it) => byClass(it, "fb")[0];
   check("truoc khi tra loi: khong in ban dich tieng Viet cua cau hoi/dap an", !/Ai chủ trì|Cô Alvarez|Trong tủ/.test(txt));
   const o = opts(M.items[0]);
   check("nut dap an: button, type=button, aria-label 'Chọn đáp án A/B/C'", o.length === 3 && o.every((b, i) => b.tag === "button" && b.getAttribute("type") === "button" && b.getAttribute("aria-label") === "Chọn đáp án " + "ABC"[i] && b.textContent === "ABC"[i]));
-  check("nut dap an: aria-pressed=false luc dau, lang=en", o.every((b) => b.getAttribute("aria-pressed") === "false" && b.getAttribute("lang") === "en"));
+  check("nut dap an: aria-pressed=false luc dau; nhan tieng Viet nen KHONG dat lang=en tren nut", o.every((b) => b.getAttribute("aria-pressed") === "false" && b.getAttribute("lang") === null));
   const play = byClass(M.items[0], "qr-play")[0];
   check("nut nghe la button that voi nhan 'Nghe câu hỏi và 3 đáp án'", play.tag === "button" && play.textContent === "Nghe câu hỏi và 3 đáp án");
   check("fb khong la vung aria-live (khong ghi vao live region khi dang doc)", fbOf(M.items[0]).getAttribute("aria-live") === null && fbOf(M.items[0]).getAttribute("tabindex") === "-1");
@@ -273,7 +273,7 @@ const fbOf = (it) => byClass(it, "fb")[0];
   play.click();
   check("nut nghe: doc cau hoi (en-US) roi 3 dap an (en-GB)", M.synth.spoken.length === 1 && M.synth.spoken[0].text === "Who is leading the sales meeting?" && M.synth.spoken[0].lang === "en-US");
   M.advance(120 + 900 + 120 + 700 + 120 + 700 + 120 + 50);
-  check("nut nghe: du 4 phan, thu tu cau hoi, A, B, C", M.synth.spoken.map((m) => m.text).join("|") === "Who is leading the sales meeting?|It starts at three.|Ms. Alvarez from the head office.|Yes, I led it last year." && M.synth.spoken[1].lang === "en-GB" && M.synth.spoken[3].lang === "en-GB");
+  check("nut nghe: du 4 phan, thu tu cau hoi roi A, B, C (doc kem chu cai A./B./C.)", M.synth.spoken.map((m) => m.text).join("|") === "Who is leading the sales meeting?|A. It starts at three.|B. Ms. Alvarez from the head office.|C. Yes, I led it last year." && M.synth.spoken[1].lang === "en-GB" && M.synth.spoken[3].lang === "en-GB");
   check("nut nghe: toc do mac dinh 0.9", M.synth.spoken.every((m) => m.rate === 0.9));
   check("sau khi nghe, nut doi thanh 'Nghe lại câu hỏi và 3 đáp án' va cho nghe lai khong gioi han (luyen tap)", play.textContent === "Nghe lại câu hỏi và 3 đáp án" && !play.disabled);
   const n0 = M.synth.spoken.length;
@@ -308,6 +308,7 @@ const fbOf = (it) => byClass(it, "fb")[0];
   const labels = all(fb, (x) => x.tag === "button").map((b) => b.getAttribute("aria-label"));
   check("ket qua: nhan nut nghe lai ro rang", labels.includes("Nghe lại câu hỏi") && labels.includes("Nghe lại đáp án A") && labels.includes("Nghe lại đáp án C"));
   check("ket qua: dap an dung duoc danh dau bang chu '(đúng)', khong chi bang mau", /B\. \(đúng\)/.test(t));
+  check("sau khi tra loi: tieng Anh nam trong span lang=en, nut van khong co lang", opts(it).every((b) => b.getAttribute("lang") === null && all(b, (x) => x.tag === "span" && x.getAttribute("lang") === "en").length === 1) && opts(it)[1].kids[1].textContent === "Ms. Alvarez from the head office.");
   check("nut dap an sau khi tra loi: khoa, co dau ✓ voi dap an dung va aria-pressed theo lua chon", opts(it).every((b) => b.disabled) && opts(it)[1].textContent.startsWith("✓ B.") && opts(it)[1].getAttribute("aria-pressed") === "true" && opts(it)[0].getAttribute("aria-pressed") === "false");
   const scoreP = byClass(M.card, "score")[0];
   check("diem: 'Điểm: 1/2 (đã làm 1/2)'", scoreP.textContent === "Điểm: 1/2 (đã làm 1/2)" && M.st.scores.qr1.c === 1);
@@ -426,11 +427,62 @@ const fbOf = (it) => byClass(it, "fb")[0];
   check("khong co speechSynthesis: nut nghe khong bi tinh la da dung luot (che do thi van nghe duoc khi co tieng)", byClass(it, "qr-play")[0].textContent === "Nghe câu hỏi và 3 đáp án");
 }
 
+/* Che do thi: giu tieu diem, onstop, nhan 'Dang phat' khong ket */
+{
+  const M = mount();
+  const eb = btnText(M.card, "Chế độ thi")[0];
+  eb.click();
+  const it = M.items[0], play = byClass(it, "qr-play")[0];
+  play.focus();
+  play.click();
+  check("Che do thi: bam Nghe -> tieu diem chuyen sang nut dap an A (khong roi ve body)", M.doc.activeElement === opts(it)[0] && play.disabled);
+  key(M.doc.activeElement, "2");
+  check("Che do thi: sau do phim 2 van chon duoc (listener tren the cau)", M.st.ans["qr1-01"] === "B");
+  const N = mount();
+  const p2 = byClass(N.items[1], "qr-play")[0];
+  p2.click();
+  check("Dang phat: nhan 'Đang phát...' khi dang doc", p2.textContent === "Đang phát...");
+  byClass(N.items[0], "qr-play")[0].click(); /* phat o cau khac: huy cau 2 */
+  check("Phat o cau khac: nhan cau 2 tro lai 'Nghe lại', khong ket 'Đang phát...'", p2.textContent === "Nghe lại câu hỏi và 3 đáp án" && !/Đang phát/.test(p2.textContent));
+  p2.click();
+  N.BS.stopSpeak();
+  check("BS.stopSpeak tu ben ngoai (doi tab...): nhan khong ket", p2.textContent !== "Đang phát...");
+  opts(N.items[0])[0].click(); /* chon dap an o cau khac cung tat tieng */
+  check("Chon dap an o cau khac: cau dang doc duoc dat lai", byClass(N.items[1], "qr-play")[0].textContent !== "Đang phát...");
+  /* che do thi: huy truoc khi am thanh bat dau -> hoan lai luot nghe */
+  const X = mount({ auto: false });
+  btnText(X.card, "Chế độ thi")[0].click();
+  const xp = byClass(X.items[0], "qr-play")[0];
+  xp.click();
+  X.BS.stopSpeak();
+  check("Che do thi: bi huy khi am thanh CHUA bat dau -> hoan lai luot nghe (Play mo lai)", !xp.disabled && xp.textContent === "Nghe câu hỏi và 3 đáp án");
+  xp.click();
+  X.synth.spoken[X.synth.spoken.length - 1].onstart({});
+  X.BS.stopSpeak();
+  check("Che do thi: da bat dau doc roi bi huy -> luot nghe da dung, Play khoa", xp.disabled);
+}
+/* speakSeq onstop */
+{
+  const E = makeEnv({ voices: [V("en-US")] });
+  const calls = [];
+  E.BS.speakSeq([{ text: "a", accent: "us" }, { text: "b", accent: "us" }], { onstop: (r) => calls.push(JSON.stringify(r)), onend: () => calls.push("end") });
+  E.advance(5000);
+  check("speakSeq onstop: doc het -> goi dung mot lan voi completed:true, started:true (sau do onend)", calls.join("|") === '{"completed":true,"started":true}|end', calls.join("|"));
+  const c2 = [];
+  E.BS.speakSeq([{ text: "a", accent: "us" }], { onstop: (r) => c2.push(JSON.stringify(r)) });
+  E.BS.stopSpeak(); E.BS.stopSpeak(); E.advance(5000);
+  check("speakSeq onstop: huy -> goi dung mot lan voi completed:false", c2.length === 1 && /"completed":false/.test(c2[0]), c2.join());
+  const c3 = [];
+  E.BS.speakSeq([{ text: "a", accent: "us" }], { onstop: () => { c3.push(1); throw new Error("x"); } });
+  let ok = true; try { E.BS.stopSpeak(); } catch (e) { ok = false; }
+  check("speakSeq onstop nem loi: khong lan ra ngoai", ok && c3.length === 1);
+}
+
 /* qrSeq */
 {
   const M = mount();
   const s = M.BS.qrSeq(ITEMS[0]);
-  check("qrSeq: [cau hoi us, A gb, B gb, C gb]", s.length === 4 && s[0].accent === "us" && s.slice(1).every((p) => p.accent === "gb") && s[0].pause === 900);
+  check("qrSeq: [cau hoi us, A gb, B gb, C gb], moi dap an doc kem chu cai", s.length === 4 && s[0].accent === "us" && s.slice(1).every((p) => p.accent === "gb") && s[0].pause === 900 && s.slice(1).map((p) => p.text.slice(0, 3)).join() === "A. ,B. ,C. ");
 }
 /* quiz.js: qr khong co qr.js van khong vo */
 {

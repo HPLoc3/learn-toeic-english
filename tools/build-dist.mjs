@@ -7,6 +7,7 @@ import { spawnSync } from "node:child_process";
 import { readFileSync, existsSync, rmSync, mkdirSync, copyFileSync, statSync, readdirSync, realpathSync } from "node:fs";
 import { join, dirname, resolve, relative, sep, posix } from "node:path";
 import { fileURLToPath } from "node:url";
+import vm from "node:vm";
 
 const here = dirname(fileURLToPath(import.meta.url));
 export const ROOT = resolve(here, "..");
@@ -74,9 +75,26 @@ export function safeDist(root = ROOT) {
   return dist;
 }
 
+/* ---------- unit chưa mở ---------- */
+// Id các unit có "available": false trong catalog (đọc từ root/data/catalog.js); lỗi đọc -> mảng rỗng (không loại gì).
+export function unavailableIds(root = ROOT) {
+  try {
+    const w = {}; w.window = w;
+    vm.runInNewContext(readFileSync(join(root, "data", "catalog.js"), "utf8"), w, { timeout: 5000 });
+    const out = [];
+    for (const p of (w.BS_CATALOG && w.BS_CATALOG.parts) || []) for (const u of p.units || []) if (u && u.available !== true && typeof u.id === "string") out.push(u.id);
+    return out;
+  } catch { return []; }
+}
+// data/<id>.js, data/<id>-game.js, data/<id>-anim.js của unit chưa mở không được phát hành (nội dung nháp/chưa kiểm).
+export function isUnreleasedData(rel, ids) {
+  const m = /^data\/([a-z0-9-]+?)(?:-(?:game|anim))?\.js$/.exec(rel);
+  return !!m && ids.includes(m[1]);
+}
+
 /* ---------- chép ---------- */
-export function copySite(root, dist, files) {
-  const list = files.filter(isSiteFile).filter((f) => existsSync(join(root, f)));
+export function copySite(root, dist, files, skipIds = []) {
+  const list = files.filter(isSiteFile).filter((f) => !isUnreleasedData(f, skipIds)).filter((f) => existsSync(join(root, f)));
   let bytes = 0;
   for (const f of list) {
     const to = join(dist, ...f.split("/"));
@@ -154,7 +172,7 @@ export function build(root = ROOT, opts = {}) {
   const dist = safeDist(root);
   rmSync(dist, { recursive: true, force: true });
   mkdirSync(dist, { recursive: true });
-  const { bytes } = copySite(root, dist, tracked);
+  const { bytes } = copySite(root, dist, tracked, unavailableIds(root));
   const v = verifyDist(dist);
   if (v.errors.length) return { ok: false, errors: v.errors };
   return { ok: true, count: v.files.length, bytes, dist, files: v.files };

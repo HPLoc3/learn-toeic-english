@@ -335,7 +335,8 @@
     return { v: vs.filter(function (x) { return /^en[-_]US$/i.test(x.lang); })[0] || vs[0] || null, exact: false };
   }
   /* Doc mot day cau lien tiep (vd cau hoi, A, B, C): parts = [{ text, accent: "us"|"gb"|"au", pause: ms sau phan nay }].
-   * opts: { rate, onend }. onend chi chay khi doc het (khong chay khi huy). Tra ve { cancel() } hoac null (khong ho tro / khong co phan nao).
+   * opts: { rate, onend, onstop }. onend chi chay khi doc het (khong chay khi huy). onstop({ completed, started }) chay DUNG MOT LAN khi day ket thuc
+   * vi bat ky ly do nao (doc het, huy tu ben ngoai, loi); started = da thay phan nao bat dau doc. Tra ve { cancel() } hoac null (khong ho tro / khong co phan nao).
    * Khong nem loi. Dat dong ho canh chung vi onend khong dang tin tren mot so ban Android; Chrome Android hay bo qua `voice`
    * nen moi phan dat them utterance.lang theo accent. Khong co giong rieng cho accent: dung chung giong, nang cao do (pitch) de phan biet. */
   var seqCur = null;
@@ -352,13 +353,21 @@
       if (!list.length) return null;
       var rate = isObj(opts) && isFinite(Number(opts.rate)) && Number(opts.rate) > 0 ? Number(opts.rate) : 0.9;
       var onend = isObj(opts) && typeof opts.onend === "function" ? opts.onend : null;
+      var onstop = isObj(opts) && typeof opts.onstop === "function" ? opts.onstop : null;
+      var started = false, stopped = false, completed = false;
       cancelSeq();
       s.cancel();
       var i = 0, over = false, wd = 0, gap = 0;
       var h = { cancel: function () { if (seqCur === h) seqCur = null; h.stop(); },
-        stop: function () { over = true; clearTimeout(wd); clearTimeout(gap); } };
+        stop: function () {
+          over = true; clearTimeout(wd); clearTimeout(gap);
+          if (stopped) return;
+          stopped = true;
+          if (onstop) { try { onstop({ completed: completed, started: started }); } catch (e) { /* bo qua */ } }
+        } };
       function finish(done) {
         if (over) return;
+        completed = !!done;
         h.cancel();
         if (done && onend) { try { onend(); } catch (e) { /* bo qua */ } }
       }
@@ -383,7 +392,8 @@
           if (pk.v) m.voice = pk.v;
           h.keep = m; /* giu tham chieu: Chrome co the nuot onend neu utterance bi don rac */
           if (!pk.exact && accent !== "us") m.pitch = 1.2;
-          m.onend = function () { adv(false); };
+          m.onstart = function () { started = true; };
+          m.onend = function () { started = true; adv(false); };
           m.onerror = function (ev) { var er = ev && ev.error; adv(er === "canceled" || er === "interrupted"); };
           /* neu onend khong ve: sang phan sau (khi do cac phan xep hang trong hang doi cua trinh duyet) */
           wd = setTimeout(function () { adv(false); }, 2500 + Math.round(p.text.length * 95 / rate));

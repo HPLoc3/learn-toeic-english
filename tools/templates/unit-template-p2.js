@@ -1,6 +1,8 @@
 /* MAU UNIT PART 2 (Hoi - dap) - KHONG duoc nap boi trang nao. Sao chep thanh data/p2-0N.js (vd p2-03), thay __ID__ = p2-03, "unitNo" = "no" trong catalog.
  * Part 2: nguoi hoc NGHE mot cau hoi/cau tran thuat va 3 cau tra loi A/B/C (khong in gi ra), chon cau tra loi tot nhat.
  * Giong doc: chi dung giong trinh duyet (cau hoi en-US, 3 dap an en-GB). Truong "audio" cua tung cau da duoc de san (chua dung).
+ * KHONG LO DAP AN: cau hoi va dap an DUNG cua qr khong duoc xuat hien (nguyen van) o tips, phrases, sentences (tab Luyen nghe) hay bai fill: viet cau KHAC, cung dang
+ * (check-units bao LOI, ke ca khi chay --unit). Dap an SAI (bay) thi duoc dung o noi khac. Mau duoi day dung noi dung rieng cho tips/sentences/fill.
  * Quy tac: moi id duy nhat trong unit; khong dua dia chi mang vao du lieu; unit Part 2 khong co anh, khong co tro choi, khong co hoat hinh
  * (de nguyen catalog khong co "game" va "anim"). Moi unit: 24 cau qr (3 bai x 8: theo dang, theo bay, tong hop) + 1 bai fill >= 5 cau.
  * Moi dap an SAI bat buoc co "trap" (xem danh sach duoi) va "why_vi" (vi sao sai, tieng Viet); dap an DUNG khong duoc co hai truong nay.
@@ -20,7 +22,7 @@ window.BS_UNITS["__ID__"] = {
         "text_vi": "Mẹo 1: dấu hiệu của đáp án đúng và bẫy thường gặp.",
         "examples": [
           /* q = cau hoi (en-US), en = cau tra loi (en-GB), vi = nghia cua cau tra loi, q_vi = nghia cua cau hoi (tuy chon). Nut "Nghe" doc ca hai. */
-          { "q": "Who is leading the meeting?", "en": "Ms. Alvarez, I think.", "vi": "Tôi nghĩ là cô Alvarez.", "q_vi": "Ai chủ trì cuộc họp?" }
+          { "q": "Who is in charge of the hiring plan?", "en": "Our director, Mr. Okada.", "vi": "Giám đốc của chúng tôi, ông Okada.", "q_vi": "Ai phụ trách kế hoạch tuyển dụng?" }
         ]
       }
     ]
@@ -34,7 +36,7 @@ window.BS_UNITS["__ID__"] = {
   ],
   "sentences_title_vi": "Nghe và chép lại câu trả lời",   /* tuy chon: thay tieu de cua muc cau luyen nghe/chep chinh ta */
   "sentences": [
-    { "id": "s01", "en": "Ms. Alvarez from the head office.", "vi": "Cô Alvarez từ trụ sở chính." }
+    { "id": "s01", "en": "Mr. Park from the marketing team.", "vi": "Ông Park ở nhóm tiếp thị." }
   ],
   "exercises": [
     {
@@ -67,7 +69,7 @@ window.BS_UNITS["__ID__"] = {
       "type": "fill",                       /* dien tu hoi (khong can anh) */
       "instruction_vi": "Điền từ để hỏi vào chỗ trống.",
       "items": [
-        { "id": "fill1-1", "before": "", "after": "is leading the sales meeting this afternoon?", "answers": ["Who"] }
+        { "id": "fill1-1", "before": "", "after": "wrote the quarterly report?", "answers": ["Who"] }
       ]
     }
   ]

@@ -13,7 +13,7 @@ window.BS_UNITS["p2-01"] = {
         "text_vi": "Với Who, đáp án đúng thường là tên người, chức danh hoặc bộ phận. Đáp án trả lời giờ giấc hoặc Yes/No là bẫy.",
         "v": { "status": "unverified", "note": "mẫu thử engine" },
         "examples": [
-          { "q": "Who is leading the sales meeting this afternoon?", "en": "Ms. Alvarez from the head office.", "vi": "Cô Alvarez từ trụ sở chính.", "q_vi": "Ai sẽ chủ trì cuộc họp bán hàng chiều nay?" }
+          { "q": "Who is in charge of the hiring plan?", "en": "Our director, Mr. Okada.", "vi": "Giám đốc của chúng tôi, ông Okada.", "q_vi": "Ai phụ trách kế hoạch tuyển dụng?" }
         ]
       },
       {
@@ -21,7 +21,7 @@ window.BS_UNITS["p2-01"] = {
         "text_vi": "Với Where, hãy nghe cụm chỉ nơi chốn: in the supply closet, at the front desk, on the second floor.",
         "v": { "status": "unverified", "note": "mẫu thử engine" },
         "examples": [
-          { "q": "Where can I find the visitor passes?", "en": "They're at the front desk.", "vi": "Chúng ở quầy lễ tân.", "q_vi": "Tôi có thể lấy thẻ khách ở đâu?" }
+          { "q": "Where should I leave these boxes?", "en": "Over by the loading dock.", "vi": "Ở chỗ bốc dỡ hàng kia.", "q_vi": "Tôi nên để những hộp này ở đâu?" }
         ]
       }
     ]
@@ -37,8 +37,8 @@ window.BS_UNITS["p2-01"] = {
   ],
   "sentences_title_vi": "Nghe và chép lại câu trả lời",
   "sentences": [
-    { "id": "s01", "en": "Ms. Alvarez from the head office.", "vi": "Cô Alvarez từ trụ sở chính.", "v": { "status": "unverified", "note": "mẫu thử engine" } },
-    { "id": "s02", "en": "They're at the front desk.", "vi": "Chúng ở quầy lễ tân.", "v": { "status": "unverified", "note": "mẫu thử engine" } }
+    { "id": "s01", "en": "Mr. Park from the marketing team.", "vi": "Ông Park ở nhóm tiếp thị.", "v": { "status": "unverified", "note": "mẫu thử engine" } },
+    { "id": "s02", "en": "It's on the third floor, past the elevators.", "vi": "Ở tầng ba, qua khỏi thang máy.", "v": { "status": "unverified", "note": "mẫu thử engine" } }
   ],
   "exercises": [
     {
@@ -99,8 +99,8 @@ window.BS_UNITS["p2-01"] = {
       "instruction_vi": "Điền từ để hỏi (Who hoặc Where) vào chỗ trống.",
       "v": { "status": "unverified", "note": "mẫu thử engine" },
       "items": [
-        { "id": "fill1-1", "before": "", "after": "is leading the sales meeting this afternoon?", "answers": ["Who"] },
-        { "id": "fill1-2", "before": "", "after": "can I find the visitor passes?", "answers": ["Where"] }
+        { "id": "fill1-1", "before": "", "after": "wrote the quarterly report?", "answers": ["Who"] },
+        { "id": "fill1-2", "before": "", "after": "is the nearest post office?", "answers": ["Where"] }
       ]
     }
   ]

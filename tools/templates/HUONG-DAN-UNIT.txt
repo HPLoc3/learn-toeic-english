@@ -21,6 +21,7 @@ UNIT PART 2 (Hoi - dap, id p2-01 ... p2-07)
 a. Sao chep tools/templates/unit-template-p2.js thanh data/p2-0N.js (thay __ID__; "unitNo" bang "no" trong catalog).
    Khong dat "game" va "anim" trong catalog (Part 2 khong co hinh); khong can anh, khong can unit-template-game/anim.
 b. Moi unit: 24 cau qr (3 bai x 8 cau: theo dang cau hoi, theo bay, tong hop) + 1 bai fill >= 5 cau. Moi dap an SAI co "trap" va "why_vi" (tieng Viet), dap an DUNG khong co hai truong do.
+b2. KHONG de lo dap an: cau hoi va dap an DUNG cua qr khong duoc trung (hoac chua nguyen cau) voi tips (en, q), phrases, sentences (tab Luyen nghe) hay bai fill; viet cau KHAC cung dang. check-units bao LOI. Dap an sai (bay) co the dung lai o noi khac.
 c. Nghe thu tung cau tren thiet bi that (co giong tieng Anh en-US va en-GB) roi moi bo "v": {"status":"unverified"}. check-units --release se LOI neu unit available:true con cau qr unverified.
 d. Kiem tra: node tools/check-units.mjs --unit p2-0N   (loi: sai trap/why_vi/so dap an; canh bao: it hon 20 cau, mot chu cai dap an chiem <20% hoac >45%, dap an dung lap tu cua cau hoi).
 e. Khi het loi: dat "available": true cho unit trong catalog, them data/p2-0N.js vao PRECACHE trong sw.js, chay node tools/check-sw.mjs --bump, roi node tools/check-units.mjs --release.

@@ -153,7 +153,7 @@ try {
 
     u = base(); qrs(u)[0].v = { status: "unverified", note: "x" };
     r = runQ(u, ["--release"]);
-    check("--release: qr item còn unverified bị LỖI", r.code === 1 && /items\[0\]: còn 'unverified'/.test(r.out), r.out);
+    check("--release: qr item còn unverified bị LỖI", r.code === 1 && /items\[0\]: còn 1 mục 'unverified'/.test(r.out), r.out);
     r = runQ(u);
     check("không --release: qr item unverified chỉ là cảnh báo/không lỗi", r.code === 0, r.out);
     u = base(); u.exercises[0].v = { status: "unverified" };
@@ -191,6 +191,44 @@ try {
     check("unit qr vẫn kiểm bài tf không có ảnh (tf thiếu image là lỗi)", /bài tf thiếu image/.test(runQ(u).out));
     u = base(); u.exercises.push({ id: "zz", type: "abc", instruction_vi: "x", items: [] });
     check("type lạ: thông báo liệt kê cả qr", /không hợp lệ \(fill, tf, mc, qr\)/.test(runQ(u).out));
+
+    /* --release: v trên từng đáp án */
+    u = base(); qrs(u)[0].options[2].v = { status: "unverified" };
+    r = runQ(u, ["--release"]);
+    check("--release: v unverified trên MỘT ĐÁP ÁN cũng bị LỖI", r.code === 1 && /items\[0\]: còn 1 mục 'unverified' \(câu hoặc đáp án\)/.test(r.out), r.out);
+    check("không --release: v trên đáp án không gây lỗi", runQ(u).code === 0);
+    u = base(); qrs(u)[0].options[2].v = { status: "verified" };
+    check("--release: v verified trên đáp án được chấp nhận", runQ(u, ["--release"]).code === 0);
+
+    /* không để lộ lời thoại/đáp án */
+    const rightOf = (it) => it.options.find((o) => o.label === it.answer);
+    const leak = (mut, re, name, extra) => { const x = base(); mut(x); const o = runQ(x, extra); check(name, o.code === 1 && re.test(o.out), o.out); };
+    leak((x) => { x.focus.tips[0].examples[0].en = qrs(x)[0].q.en.toUpperCase().replace("?", ""); }, /qr1-01: câu hỏi .* trùng với nội dung ở focus\.tips\[0\]\.examples\[0\]\.en/, "lộ câu hỏi qr trong ví dụ mẹo (en), khác hoa/thường và dấu câu: LỖI");
+    leak((x) => { x.focus.tips[0].examples[0].q = qrs(x)[1].q.en; }, /qr1-02: câu hỏi .*examples\[0\]\.q/, "lộ câu hỏi qr trong ví dụ mẹo (q): LỖI");
+    leak((x) => { x.sentences[0].en = "  " + rightOf(qrs(x)[2]).en + " "; }, /qr1-03: đáp án đúng .* sentences\[0\]/, "đáp án đúng trùng câu trong Luyện nghe (sentences): LỖI");
+    leak((x) => { x.phrases[0].en = rightOf(qrs(x)[3]).en; }, /qr1-04: đáp án đúng .* phrases\[0\]/, "đáp án đúng trùng cụm từ (phrases): LỖI");
+    leak((x) => { const f = x.exercises.find((e) => e.type === "fill"); f.items[0].before = "Who is leading the sales meeting"; f.items[0].after = "this afternoon?"; f.items[0].answers = ["?"]; }, /qr1-01: câu hỏi .* bài điền 'fill1'/, "câu hỏi qr bị ghép lại trong bài fill: LỖI");
+    leak((x) => { x.focus.tips[1].examples[0].en = rightOf(qrs(x)[1]).en; }, /qr1-02: đáp án đúng/, "lộ đáp án: LỖI cả khi chạy --unit (không cần available)", ["--unit", "p2-01"]);
+    leak((x) => { x.sentences[1].en = "Please say, " + rightOf(qrs(x)[0]).en + " again please."; }, /qr1-01: đáp án đúng/, "câu Luyện nghe chứa nguyên đáp án đúng (câu dài): LỖI");
+    u = base(); u.focus.tips[0].examples[0].en = qrs(u)[0].options[0].en; u.sentences[0].en = qrs(u)[1].options[1].en;
+    check("đáp án SAI (bẫy) dùng ở nơi khác: không bị báo", runQ(u).code === 0);
+    u = base(); u.phrases[0].en = "Yes.";
+    check("cụm ngắn thông thường không gây báo nhầm", runQ(u).code === 0);
+    r = runQ(base(), ["--release"]);
+    check("fixture sạch (không lộ): 0 lỗi", r.code === 0 && !/trùng với nội dung/.test(r.out), r.out);
+
+    /* unit không phải Part 2 có bài qr vẫn chịu mức tối thiểu của Part 1 */
+    {
+      const u9 = base(); u9.id = "l09"; u9.part = "Part 1 - Mô tả hình ảnh";
+      fs.writeFileSync(path.join(qtmp, "data/catalog.js"), 'window.BS_CATALOG={parts:[{id:"p1",title:"Part 1",units:[{id:"l09",no:5,title_vi:"Câu hỏi Who và Where",available:true}]}]};');
+      fs.writeFileSync(path.join(qtmp, "data/l09.js"), "window.BS_UNITS = window.BS_UNITS || {};\nwindow.BS_UNITS['l09'] = " + JSON.stringify(u9) + ";\n");
+      const o9 = spawnSync(process.execPath, [path.join(REAL, "tools/check-units.mjs"), "--root", qtmp], { encoding: "utf8" });
+      const out9 = (o9.stdout || "") + (o9.stderr || "");
+      check("unit id l09 (không phải p2-) có bài qr: vẫn cảnh báo thiếu câu luyện tập và câu đúng/sai", /câu luyện tập 2 < 4/.test(out9) && /câu đúng\/sai 0 < 4/.test(out9), out9);
+      check("unit không phải p2- : không áp mức 20 câu qr (chỉ p2-)", !/câu hỏi đáp \(qr\)/.test(out9), out9);
+      fs.unlinkSync(path.join(qtmp, "data/l09.js"));
+      fs.writeFileSync(path.join(qtmp, "data/catalog.js"), 'window.BS_CATALOG={parts:[{id:"p2",title:"Part 2 - Hỏi - đáp",units:[{id:"p2-01",no:5,title_vi:"Câu hỏi Who và Where",available:true}]}]};');
+    }
   } finally {
     fs.rmSync(qtmp, { recursive: true, force: true });
   }

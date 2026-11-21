@@ -12,14 +12,14 @@
 
   /* câu hỏi (en-US), rồi 3 đáp án (en-GB) cách nhau ~0.7 giây */
   function seqOf(it) {
-    return [{ text: it.q.en, accent: "us", pause: 900 }].concat((it.options || []).map(function (o) { return { text: o.en, accent: "gb" }; }));
+    return [{ text: it.q.en, accent: "us", pause: 900 }].concat((it.options || []).map(function (o) { return { text: o.label + ". " + o.en, accent: "gb" }; }));
   }
   function btn(text, label, fn, cls) {
     return el("button", { type: "button", class: "btn" + (cls ? " " + cls : ""), "aria-label": label, text: text, onclick: fn });
   }
 
   function buildItem(ex, it, n, total, ctx) {
-    var answered = false, peeked = false, played = 0, playing = false;
+    var answered = false, peeked = false, played = 0, playing = false, cur = null;
     var sec = el("section", { class: "qr-item", role: "group", "aria-label": "Câu " + n + " trên " + total });
     var play = el("button", { type: "button", class: "btn btn-primary qr-play" });
     var note = el("p", { class: "muted qr-note" });
@@ -27,7 +27,7 @@
     var tr = el("div", { class: "qr-tr" });
     var fb = el("div", { class: "fb", tabindex: "-1", role: "group" });
     var opts = (it.options || []).map(function (o) {
-      var b = el("button", { type: "button", class: "btn opt qr-opt", lang: "en", "aria-pressed": "false", "aria-label": "Chọn đáp án " + o.label, text: o.label });
+      var b = el("button", { type: "button", class: "btn opt qr-opt", "aria-pressed": "false", "aria-label": "Chọn đáp án " + o.label, text: o.label });
       b.addEventListener("click", function () { pick(o.label); });
       return { b: b, o: o };
     });
@@ -40,9 +40,18 @@
     function stop() { BS.stopSpeak(); playing = false; }
     function doPlay() {
       if (!canPlay()) return;
-      var h = BS.speakSeq(seqOf(it), { rate: ctx.rate(), onend: function () { playing = false; sync(); } });
-      if (!h) { note.textContent = "Không phát được âm thanh trên thiết bị này. Hãy dùng nút \"Hiện lời thoại\"."; peek.hidden = false; return; }
-      played++; playing = true; sync();
+      var mine = null, counted = true; // counted: luot nghe nay da tinh vao played
+      mine = BS.speakSeq(seqOf(it), { rate: ctx.rate(), onstop: function (r) {
+        if (mine !== cur) return; /* day cu da bi thay: bo qua */
+        playing = false; cur = null;
+        /* Che do thi: bi huy tu ben ngoai truoc khi am thanh bat dau thi hoan lai luot nghe duy nhat */
+        if (r && !r.completed && !r.started && counted && !answered) played = Math.max(0, played - 1);
+        sync();
+      } });
+      if (!mine) { note.textContent = "Không phát được âm thanh trên thiết bị này. Hãy dùng nút \"Hiện lời thoại\"."; peek.hidden = false; return; }
+      cur = mine; played++; playing = true;
+      if (exam && !answered && opts[0]) { try { opts[0].b.focus(); } catch (e) { /* bo qua */ } } /* Play sap bi khoa: giu tieu diem trong the cau */
+      sync();
     }
     function line(en, vi, accent, what) {
       return [el("span", { class: "en", lang: "en", text: en }), " ",
@@ -63,7 +72,8 @@
         x.b.setAttribute("aria-pressed", mine ? "true" : "false");
         x.b.removeAttribute("aria-label");
         x.b.className = "btn opt qr-opt" + (right ? " opt-ok" : mine ? " opt-bad" : "");
-        x.b.textContent = (right ? "✓ " : mine ? "✗ " : "") + x.o.label + ". " + x.o.en;
+        x.b.textContent = (right ? "✓ " : mine ? "✗ " : "") + x.o.label + ". ";
+        x.b.appendChild(el("span", { lang: "en", text: x.o.en }));
       });
       fb.textContent = ""; fb.className = "fb";
       fb.setAttribute("aria-label", "Kết quả câu " + n + ": " + (ok ? "chính xác" : "chưa đúng, đáp án đúng là " + it.answer));

@@ -297,7 +297,16 @@ function checkUnit(entry) {
           const dup = right && nonEmpty(right.en) ? qrWords(right.en).filter((x) => qw.has(x)) : [];
           if (dup.length) w(wi + ": đáp án đúng lặp từ của câu hỏi (" + [...new Set(dup)].join(", ") + "); thường là dấu hiệu bẫy, hãy xem lại.");
         }
-        if (RELEASE && it.v && it.v.status === "unverified") e(wi + ": còn 'unverified', không được phát hành (--release).");
+        if (RELEASE) { /* đếm mọi `v` unverified trong câu, kể cả trên từng đáp án */
+          let n = 0;
+          (function walk(x) {
+            if (!x || typeof x !== "object") return;
+            if (Array.isArray(x)) { x.forEach(walk); return; }
+            if (x.v && typeof x.v === "object" && x.v.status === "unverified") n++;
+            Object.keys(x).forEach((k) => { if (k !== "v") walk(x[k]); });
+          })(it);
+          if (n) e(wi + ": còn " + n + " mục 'unverified' (câu hoặc đáp án), không được phát hành (--release).");
+        }
       });
     } else e(wh + ": type '" + ex.type + "' không hợp lệ (fill, tf, mc, qr).");
     if (nonEmpty(ex.instruction_vi) === false) w(wh + ": thiếu instruction_vi.");
@@ -307,8 +316,9 @@ function checkUnit(entry) {
   cnt(tips.length, MIN.tips, "mẹo (tips)"); cnt(vocab.length, MIN.vocab, "từ vựng");
   cnt(phrases.length, MIN.phrases, "cụm từ");
   cnt(exs.length, MIN.exercises, "bài tập"); cnt(fillN, MIN.fillItems, "câu điền từ");
-  if (qrN) { /* unit Part 2: không có ảnh nên bỏ mức tối thiểu của câu tả hình và câu đúng/sai */
-    cnt(qrN, QR_MIN_ITEMS, "câu hỏi đáp (qr)");
+  const isP2 = /^p2-/.test(id); /* chỉ unit Part 2 (không có ảnh) được bỏ mức tối thiểu của câu tả hình và câu đúng/sai */
+  if (qrN) {
+    if (isP2) cnt(qrN, QR_MIN_ITEMS, "câu hỏi đáp (qr)");
     const byL = {};
     qrItems.forEach((it) => { if (QR_LABELS.includes(it.answer)) byL[it.answer] = (byL[it.answer] || 0) + 1; });
     const tot = qrItems.length;
@@ -323,7 +333,38 @@ function checkUnit(entry) {
       if (seenQ[k]) e("câu hỏi \"" + it.q.en + "\" bị trùng (" + seenQ[k] + " và " + it.id + ").");
       else seenQ[k] = it.id;
     });
-  } else { cnt(sentences.length, MIN.sentences, "câu luyện tập"); cnt(tfN, MIN.tfItems, "câu đúng/sai"); }
+  }
+  if (!(qrN && isP2)) { cnt(sentences.length, MIN.sentences, "câu luyện tập"); cnt(tfN, MIN.tfItems, "câu đúng/sai"); }
+  /* Không để lộ lời thoại/đáp án: câu hỏi và đáp án ĐÚNG của qr không được xuất hiện ở bài học, cụm từ, luyện nghe (sentences) hay bài điền.
+   * Đáp án sai (bẫy) thì được phép. So sánh sau khi chuẩn hóa (chữ thường, bỏ dấu câu và khoảng trắng thừa); trùng khớp hoặc chứa nguyên cả câu dài (>= 15 ký tự). */
+  if (qrN) {
+    const nz = (t) => String(t || "").toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9' ]+/g, " ").replace(/\s+/g, " ").trim();
+    const pool = [];
+    const add = (t, where) => { const k = nz(t); if (k) pool.push({ k, where }); };
+    tips.forEach((t, i) => (isObj(t) && Array.isArray(t.examples) ? t.examples : []).forEach((x, j) => { if (isObj(x)) { add(x.en, "focus.tips[" + i + "].examples[" + j + "].en"); add(x.q, "focus.tips[" + i + "].examples[" + j + "].q"); } }));
+    phrases.forEach((x, i) => { if (isObj(x)) add(x.en, "phrases[" + i + "]"); });
+    sentences.forEach((x, i) => { if (isObj(x)) add(x.en, "sentences[" + i + "]"); });
+    exs.forEach((ex) => {
+      if (!isObj(ex) || ex.type !== "fill") return;
+      (Array.isArray(ex.items) ? ex.items : []).forEach((it) => {
+        if (!isObj(it) || !Array.isArray(it.answers)) return;
+        const wh = "bài điền '" + ex.id + "' (" + it.id + ")";
+        add([it.before, it.answers[0], it.after].filter(Boolean).join(" "), wh);
+        add(it.before, wh); add(it.after, wh);
+      });
+    });
+    const hit = (txt, what, itemId) => {
+      const k = nz(txt);
+      if (!k) return;
+      const f = pool.find((p) => p.k === k || (k.length >= 15 && p.k.includes(k)) || (p.k.length >= 20 && k.includes(p.k)));
+      if (f) e(itemId + ": " + what + " \"" + txt + "\" trùng với nội dung ở " + f.where + " (lộ lời thoại/đáp án); hãy viết câu khác cùng dạng.");
+    };
+    qrItems.forEach((it) => {
+      if (isObj(it.q)) hit(it.q.en, "câu hỏi", it.id);
+      const right = Array.isArray(it.options) ? it.options.find((o) => isObj(o) && o.label === it.answer) : null;
+      if (right) hit(right.en, "đáp án đúng", it.id);
+    });
+  }
 
   /* the 'v' unverified */
   let unv = 0;
