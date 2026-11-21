@@ -10,7 +10,7 @@ window.BS_UNITS["p2-01"] = {
     "tips": [
       {
         "id": "tip1",
-        "text_vi": "Who hỏi về NGƯỜI. Đáp án đúng thường là tên (Ms. Alvarez), chức danh (the finance manager), bộ phận hoặc nhóm (the sales team, the security office), hoặc đại từ như He/She kèm tên. Câu trả lời gián tiếp cũng hay gặp: Ask the receptionist, hay Mr. Chen usually handles it. Bẫy 1: câu trả lời nói về giờ giấc, địa điểm hay số lượng (đó là câu trả lời cho When, Where, How many). Bẫy 2: Yes hoặc No, vì Who là câu hỏi Wh và không trả lời bằng Yes/No.",
+        "text_vi": "Who hỏi về NGƯỜI. Đáp án đúng thường là tên (Ms. Alvarez), chức danh (the office manager), bộ phận hoặc nhóm (the sales team, the IT department), hoặc đại từ như He/She kèm tên. Câu trả lời gián tiếp cũng hay gặp: Ask the receptionist, hay Mr. Chen usually handles it. Bẫy 1: câu trả lời nói về giờ giấc, địa điểm hay số lượng (đó là câu trả lời cho When, Where, How many). Bẫy 2: Yes hoặc No, vì Who là câu hỏi Wh và không trả lời bằng Yes/No.",
         "examples": [
           {
             "q": "Who is handling the new customer accounts?",
@@ -34,7 +34,7 @@ window.BS_UNITS["p2-01"] = {
       },
       {
         "id": "tip2",
-        "text_vi": "Where hỏi về NƠI CHỐN. Hãy nghe cụm chỉ nơi chốn: in the supply closet, at the front desk, on the second floor, next to the kitchen, across from the bank, behind the building. Đáp án đúng cũng có thể chỉ một người đang giữ đồ (The receptionist has it) hoặc gợi ý nơi để tìm (Try the help desk). Bẫy: câu trả lời về thời gian (At five o'clock), về giá (It costs forty dollars), hoặc Yes/No.",
+        "text_vi": "Where hỏi về NƠI CHỐN. Hãy nghe cụm chỉ nơi chốn: in the supply closet, at the information counter, on the second floor, next to the elevator, across from the bank, behind the building. Đáp án đúng cũng có thể chỉ một người đang giữ đồ (My assistant is holding it) hoặc gợi ý nơi để tìm (Try the help desk). Bẫy: câu trả lời về thời gian (At five o'clock), về giá (It costs forty dollars), hoặc Yes/No.",
         "examples": [
           {
             "q": "Where can I find the visitor passes?",
@@ -134,7 +134,7 @@ window.BS_UNITS["p2-01"] = {
     {
       "id": "v006",
       "en": "finance manager",
-      "vi": "giám đốc tài chính",
+      "vi": "trưởng phòng tài chính",
       "group": "Công sở"
     },
     {
@@ -200,7 +200,7 @@ window.BS_UNITS["p2-01"] = {
     {
       "id": "v017",
       "en": "community hall",
-      "vi": "hội trường cộng đồng",
+      "vi": "nhà văn hóa",
       "group": "Nơi chốn"
     },
     {
@@ -303,7 +303,7 @@ window.BS_UNITS["p2-01"] = {
     },
     {
       "id": "p09",
-      "en": "I'm not sure. Let me check.",
+      "en": "I'm not certain. Let me check.",
       "vi": "Tôi không chắc. Để tôi kiểm tra.",
       "group_vi": "Trả lời gián tiếp"
     },
@@ -324,7 +324,7 @@ window.BS_UNITS["p2-01"] = {
     {
       "id": "s02",
       "en": "Where do I sign in as a visitor?",
-      "vi": "Tôi đăng ký vào cửa với tư cách khách ở đâu?"
+      "vi": "Khách đến thăm thì ký tên ở đâu?"
     },
     {
       "id": "s03",
@@ -762,7 +762,7 @@ window.BS_UNITS["p2-01"] = {
             {
               "label": "B",
               "en": "Ms. Torres in travel services.",
-              "vi": "Cô Torres ở bộ phận du lịch."
+              "vi": "Cô Torres ở bộ phận phụ trách đi lại, công tác."
             },
             {
               "label": "C",
@@ -817,7 +817,7 @@ window.BS_UNITS["p2-01"] = {
             {
               "label": "A",
               "en": "Ken is. He's already on his way.",
-              "vi": "Ken đi. Anh ấy đang trên đường rồi."
+              "vi": "Là Ken. Anh ấy đang trên đường tới rồi."
             },
             {
               "label": "B",
@@ -855,7 +855,7 @@ window.BS_UNITS["p2-01"] = {
             {
               "label": "B",
               "en": "Probably at the community hall downtown.",
-              "vi": "Có lẽ ở hội trường cộng đồng trong trung tâm."
+              "vi": "Có lẽ ở nhà văn hóa, tại trung tâm thành phố."
             },
             {
               "label": "C",

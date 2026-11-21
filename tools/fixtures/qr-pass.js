@@ -22,7 +22,7 @@ window.BS_UNITS["p2-01"] = {
       },
       {
         "id": "tip2",
-        "text_vi": "Với Where, hãy nghe cụm chỉ nơi chốn: in the supply closet, at the front desk, on the second floor.",
+        "text_vi": "Với Where, hãy nghe cụm chỉ nơi chốn: in the storage room, at the information counter, on the second floor.",
         "examples": [
           {
             "q": "Where should I leave these boxes?",

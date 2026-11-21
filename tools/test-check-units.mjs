@@ -207,7 +207,7 @@ try {
     leak((x) => { x.focus.tips[0].examples[0].q = qrs(x)[1].q.en; }, /qr1-02: câu hỏi .*examples\[0\]\.q/, "lộ câu hỏi qr trong ví dụ mẹo (q): LỖI");
     leak((x) => { x.sentences[0].en = "  " + rightOf(qrs(x)[2]).en + " "; }, /qr1-03: đáp án đúng .* sentences\[0\]/, "đáp án đúng trùng câu trong Luyện nghe (sentences): LỖI");
     leak((x) => { x.phrases[0].en = rightOf(qrs(x)[3]).en; }, /qr1-04: đáp án đúng .* phrases\[0\]/, "đáp án đúng trùng cụm từ (phrases): LỖI");
-    leak((x) => { const f = x.exercises.find((e) => e.type === "fill"); f.items[0].before = "Who is leading the sales meeting"; f.items[0].after = "this afternoon?"; f.items[0].answers = ["?"]; }, /qr1-01: câu hỏi .* bài điền 'fill1'/, "câu hỏi qr bị ghép lại trong bài fill: LỖI");
+    leak((x) => { const f = x.exercises.find((e) => e.type === "fill"); f.items[0].before = "Who is leading the sales meeting"; f.items[0].after = "this afternoon?"; f.items[0].answers = ["?"]; }, /qr1-01: câu hỏi .* \(câu ghép\)/, "câu hỏi qr bị ghép lại trong bài fill: LỖI");
     leak((x) => { x.focus.tips[1].examples[0].en = rightOf(qrs(x)[1]).en; }, /qr1-02: đáp án đúng/, "lộ đáp án: LỖI cả khi chạy --unit (không cần available)", ["--unit", "p2-01"]);
     leak((x) => { x.sentences[1].en = "Please say, " + rightOf(qrs(x)[0]).en + " again please."; }, /qr1-01: đáp án đúng/, "câu Luyện nghe chứa nguyên đáp án đúng (câu dài): LỖI");
     u = base(); u.focus.tips[0].examples[0].en = qrs(u)[0].options[0].en; u.sentences[0].en = qrs(u)[1].options[1].en;
@@ -216,6 +216,25 @@ try {
     check("cụm ngắn thông thường không gây báo nhầm", runQ(u).code === 0);
     r = runQ(base(), ["--release"]);
     check("fixture sạch (không lộ): 0 lỗi", r.code === 0 && !/trùng với nội dung/.test(r.out), r.out);
+
+    /* mở rộng: quét MỌI chuỗi ngoài bài qr (text_vi, intro_vi, từ vựng...), tách đoạn tiếng Anh trong câu tiếng Việt */
+    leak((x) => { x.focus.tips[0].text_vi = "Ví dụ hay gặp: Ms. Alvarez from the head office là một câu trả lời đúng."; }, /qr1-01: đáp án đúng .* focus\.tips\[0\]\.text_vi/, "đáp án đúng được trích bằng tiếng Anh trong text_vi tiếng Việt: LỖI");
+    leak((x) => { x.focus.intro_vi = "Hãy nghe: Where did you put the new printer paper? rồi chọn đáp án."; }, /qr1-02: câu hỏi .* focus\.intro_vi/, "câu hỏi qr được trích trong intro_vi: LỖI");
+    leak((x) => { x.vocab[0].en = "They're at the front desk."; }, /qr1-03: đáp án đúng .* vocab\[0\]\.en/, "đáp án đúng nằm trong từ vựng: LỖI");
+    leak((x) => { x.focus.tips[1].text_vi = "Hãy nghe cụm next to the copier trong đáp án."; }, /qr1-02: đáp án đúng .* focus\.tips\[1\]\.text_vi/, "đoạn tiếng Anh >= 4 từ nằm trong đáp án đúng: LỖI");
+    leak((x) => { x.title_vi = "Ai và ở đâu: Mr. Chen in accounting handles those"; }, /qr1-04: đáp án đúng .* title_vi/, "đáp án đúng trong tiêu đề: LỖI");
+    u = base(); u.focus.tips[0].text_vi = "Cụm the head office rất thường gặp.";
+    r = runQ(u);
+    check("đoạn 3 từ chiếm >= 50% câu qr: CẢNH BÁO (không lỗi)", r.code === 0 && /qr1-01: đáp án đúng .* gần trùng với đoạn tiếng Anh "the head office"/.test(r.out), r.out);
+    r = runQ(u, ["--release"]);
+    check("--release: cảnh báo gần trùng trở thành LỖI", r.code === 1 && /gần trùng/.test(r.out), r.out);
+    u = base(); u.focus.tips[0].text_vi = "Hãy nghe cụm the supply closet nhé.";
+    r = runQ(u, ["--release"]);
+    check("đoạn 3 từ chiếm < 50% câu qr: không báo", r.code === 0 && !/gần trùng/.test(r.out), r.out);
+    u = base(); u.focus.tips[0].text_vi = "Bẫy hay gặp: " + qrs(u)[0].options.find((o) => o.label !== qrs(u)[0].answer).en + " (đáp án sai thì được nhắc).";
+    check("đáp án SAI được trích trong text_vi: không báo", runQ(u, ["--release"]).code === 0);
+    r = runQ(base(), ["--unit", "p2-01"]);
+    check("--unit <id>: chỉ kiểm đúng unit đó", /Đã kiểm 1 unit \(p2-01\)/.test(r.out), r.out);
 
     /* unit không phải Part 2 có bài qr vẫn chịu mức tối thiểu của Part 1 */
     {

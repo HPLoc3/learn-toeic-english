@@ -2,7 +2,7 @@
 /* check-units.mjs - kiem tra du lieu cac unit cua Tung Buoc English. Chi dung node (khong phu thuoc goi ngoai).
  * Cach dung:
  *   node tools/check-units.mjs              kiem catalog va moi unit co "available": true
- *   node tools/check-units.mjs --unit l02   kiem them unit chua mo (bat ke available)
+ *   node tools/check-units.mjs --unit l02   chi kiem unit do (ke ca unit chua mo)
  *   --release                               that bai neu du lieu hoat hinh con "placeholder": true (binh thuong chi canh bao)
  *   --root <thu-muc>                        goc du an (mac dinh: thu muc cha cua tools/), dung de thu nghiem
  * Loi -> thoat ma 1. Canh bao khong lam hong ket qua. */
@@ -21,6 +21,7 @@ const QR_KINDS = ["who", "where", "when", "why", "what", "which", "how", "yesno"
 const QR_TRAPS = ["similar-sound", "repeat-word", "wrong-wh", "wrong-tense", "wrong-subject", "related-word", "yesno-to-wh"];
 const QR_LABELS = ["A", "B", "C"];
 const QR_MIN_ITEMS = 20;
+const QR_LEAK_ALLOW = ["qr1-05|as soon as"]; /* ngoại lệ có chủ đích: "id câu|đoạn tiếng anh đã chuẩn hóa". Hiện: liên từ thông dụng "as soon as" trong từ vựng p2-02, phần còn lại của đáp án không bị lộ. */
 const QR_LETTER_MIN = 0.2, QR_LETTER_MAX = 0.45;
 const QR_STOP = new Set(("a an the and or but if so as of to in on at by for with from into onto up down out off over under about than then that this these those " +
   "i me my mine we us our you your he him his she her it its they them their is am are was were be been being do does did done have has had will would can could shall should may might must " +
@@ -335,29 +336,64 @@ function checkUnit(entry) {
     });
   }
   if (!(qrN && isP2)) { cnt(sentences.length, MIN.sentences, "câu luyện tập"); cnt(tfN, MIN.tfItems, "câu đúng/sai"); }
-  /* Không để lộ lời thoại/đáp án: câu hỏi và đáp án ĐÚNG của qr không được xuất hiện ở bài học, cụm từ, luyện nghe (sentences) hay bài điền.
-   * Đáp án sai (bẫy) thì được phép. So sánh sau khi chuẩn hóa (chữ thường, bỏ dấu câu và khoảng trắng thừa); trùng khớp hoặc chứa nguyên cả câu dài (>= 15 ký tự). */
+  /* Không để lộ lời thoại/đáp án: câu hỏi và đáp án ĐÚNG của qr không được xuất hiện ở BẤT KỲ chuỗi nào ngoài bài qr: bài học (text_vi, ví dụ), intro_vi,
+   * từ vựng, cụm từ, luyện nghe, tiêu đề, hướng dẫn, bài điền (kể cả câu ghép lại). Đáp án sai (bẫy) thì được phép.
+   * So sánh sau khi chuẩn hóa (chữ thường, bỏ dấu câu); với chuỗi tiếng Việt xen tiếng Anh thì tách các đoạn tiếng Anh (cắt ở chữ có dấu và . , ; : ! ? ( )), giữ đoạn >= 3 từ.
+   * LỖI: trùng khớp một chuỗi/đoạn; hoặc cả câu (>= 12 ký tự) nằm trong một chuỗi/đoạn; hoặc một đoạn tiếng Anh >= 4 từ và >= 12 ký tự nằm trong câu qr.
+   * Đoạn >= 3 từ nằm liền trong câu qr và chiếm >= 50% số từ của nó: CẢNH BÁO (LỖI khi --release, trừ khi có trong QR_LEAK_ALLOW). */
   if (qrN) {
     const nz = (t) => String(t || "").toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9' ]+/g, " ").replace(/\s+/g, " ").trim();
-    const pool = [];
-    const add = (t, where) => { const k = nz(t); if (k) pool.push({ k, where }); };
-    tips.forEach((t, i) => (isObj(t) && Array.isArray(t.examples) ? t.examples : []).forEach((x, j) => { if (isObj(x)) { add(x.en, "focus.tips[" + i + "].examples[" + j + "].en"); add(x.q, "focus.tips[" + i + "].examples[" + j + "].q"); } }));
-    phrases.forEach((x, i) => { if (isObj(x)) add(x.en, "phrases[" + i + "]"); });
-    sentences.forEach((x, i) => { if (isObj(x)) add(x.en, "sentences[" + i + "]"); });
-    exs.forEach((ex) => {
-      if (!isObj(ex) || ex.type !== "fill") return;
-      (Array.isArray(ex.items) ? ex.items : []).forEach((it) => {
-        if (!isObj(it) || !Array.isArray(it.answers)) return;
-        const wh = "bài điền '" + ex.id + "' (" + it.id + ")";
-        add([it.before, it.answers[0], it.after].filter(Boolean).join(" "), wh);
-        add(it.before, wh); add(it.after, wh);
+    const pool = []; /* { k, where, run } */
+    const addStr = (s, where) => {
+      if (typeof s !== "string" || !s.trim()) return;
+      const k = nz(s);
+      if (k) pool.push({ k, where, run: false });
+      /* cắt ở dấu câu (. , ; : ! ? ( )), rồi ở mọi từ có chữ không phải ASCII (từ tiếng Việt có dấu); giữ đoạn >= 3 từ */
+      s.split(/[.,;:!?()"“”]+/).forEach((seg) => {
+        let cur = [], ln = false; /* ln/rn: rìa đoạn giáp từ tiếng Việt, nơi có thể dính từ tiếng Việt không dấu (trong, nghe...) */
+        const flush = (rn) => { const r = nz(cur.join(" ")); if (r && r.split(" ").length >= 3) pool.push({ k: r, where, run: true, ln, rn }); cur = []; ln = rn; };
+        seg.split(/\s+/).forEach((tok) => { if (/[^\x00-\x7F]/.test(tok)) flush(true); else if (tok) cur.push(tok); });
+        flush(false);
       });
-    });
+    };
+    (function walk(x, where) {
+      if (typeof x === "string") { addStr(x, where); return; }
+      if (!x || typeof x !== "object") return;
+      if (Array.isArray(x)) { x.forEach((y, i) => walk(y, where + "[" + i + "]")); return; }
+      if (Array.isArray(x.answers) && typeof x.after === "string") { /* bài điền: ghép lại câu hoàn chỉnh */
+        addStr([x.before, x.answers[0], x.after].filter(Boolean).join(" "), where + " (câu ghép)");
+      }
+      Object.keys(x).forEach((k) => {
+        if (k === "v") return;
+        if (k === "exercises" && Array.isArray(x[k])) { x[k].forEach((ex, i) => { if (!(isObj(ex) && ex.type === "qr")) walk(ex, where + "exercises[" + i + "]"); }); return; }
+        walk(x[k], where ? where + "." + k : k);
+      });
+    })(u, "");
+    const padK = (k) => " " + k + " ";
+    const place = (p) => p.where;
     const hit = (txt, what, itemId) => {
       const k = nz(txt);
       if (!k) return;
-      const f = pool.find((p) => p.k === k || (k.length >= 15 && p.k.includes(k)) || (p.k.length >= 20 && k.includes(p.k)));
-      if (f) e(itemId + ": " + what + " \"" + txt + "\" trùng với nội dung ở " + f.where + " (lộ lời thoại/đáp án); hãy viết câu khác cùng dạng.");
+      const nw = k.split(" ").length;
+      const kw = k.split(" ");
+      /* đoạn chung liền nhau dài nhất (theo từ) giữa một đoạn tiếng Anh và câu qr; chịu được từ tiếng Việt không dấu dính ở rìa đoạn */
+      const common = (p) => {
+        const pw = p.k.split(" "); let best = 0, at = 0;
+        for (let i = 0; i < pw.length; i++) for (let j = 0; j < kw.length; j++) {
+          let n = 0; while (i + n < pw.length && j + n < kw.length && pw[i + n] === kw[j + n]) n++;
+          /* cả đoạn phải nằm trong câu qr; riêng rìa giáp chữ Việt được bỏ tối đa 2 từ */
+          if (n > best && i <= (p.ln ? 2 : 0) && pw.length - (i + n) <= (p.rn ? 2 : 0)) { best = n; at = i; }
+        }
+        return { n: best, text: pw.slice(at, at + best).join(" ") };
+      };
+      const f = pool.find((p) => p.k === k || (k.length >= 12 && padK(p.k).includes(padK(k))) || (p.run && (() => { const c = common(p); return c.n >= 4 && c.text.length >= 12; })()));
+      if (f) { e(itemId + ": " + what + " \"" + txt + "\" trùng với nội dung ở " + place(f) + " (lộ lời thoại/đáp án); hãy viết câu khác cùng dạng."); return; }
+      let g = null, gt = "";
+      pool.some((p) => { if (!p.run) return false; const c = common(p); if (c.n >= 3 && c.n / nw >= 0.5 && !QR_LEAK_ALLOW.includes(itemId + "|" + c.text)) { g = p; gt = c.text; return true; } return false; });
+      if (g) {
+        const m = itemId + ": " + what + " \"" + txt + "\" gần trùng với đoạn tiếng Anh \"" + gt + "\" ở " + place(g) + " (chiếm từ 50% số từ); nên viết lại.";
+        if (RELEASE) e(m + " Không được phát hành (--release)."); else w(m);
+      }
     };
     qrItems.forEach((it) => {
       if (isObj(it.q)) hit(it.q.en, "câu hỏi", it.id);
@@ -365,6 +401,7 @@ function checkUnit(entry) {
       if (right) hit(right.en, "đáp án đúng", it.id);
     });
   }
+
 
   /* the 'v' unverified */
   let unv = 0;
@@ -508,7 +545,7 @@ function checkScenes(entry, def, file, win, e, w) {
 /* ---------- chay ---------- */
 const entries = loadCatalog();
 const targets = [];
-entries.forEach((u) => { if (u.available || u.id === only) targets.push(u); });
+entries.forEach((u) => { if (only ? u.id === only : u.available) targets.push(u); }); /* --unit <id>: chỉ kiểm unit đó (kể cả khi chưa mở); catalog vẫn được kiểm toàn bộ */
 if (only && !entries.some((u) => u.id === only)) err("--unit " + only + ": id không có trong catalog (hãy thêm vào data/catalog.js trước).");
 targets.forEach((u) => {
   if (u.available && !exists("data/" + u.id + ".js")) return checkUnit(u);

@@ -6,7 +6,7 @@ window.BS_UNITS["p2-02"] = {
   "unitNo": 6,
   "title_vi": "Câu hỏi When và Why",
   "focus": {
-    "intro_vi": "Ở Part 2, bạn chỉ nghe một câu hỏi và ba đáp án A, B, C, không có gì được in ra. Hãy bắt cho được từ để hỏi ngay đầu câu: When hỏi về thời điểm, Why hỏi về lý do. Chọn đáp án trả lời đúng loại thông tin được hỏi, rồi kiểm tra thêm thì của động từ. Bài này luyện cả hai loại câu hỏi, cùng những bẫy hay gặp.",
+    "intro_vi": "Ở Part 2, bạn chỉ nghe một câu hỏi và ba đáp án A, B, C, không có gì được in ra. Hãy bắt cho được từ để hỏi ngay đầu câu: When hỏi về thời điểm, Why hỏi về lý do. Chọn đáp án trả lời đúng loại thông tin được hỏi, rồi kiểm tra thêm thì của động từ. Unit này luyện cả hai loại câu hỏi, cùng những bẫy hay gặp.",
     "tips": [
       {
         "id": "tip1",
@@ -34,7 +34,7 @@ window.BS_UNITS["p2-02"] = {
       },
       {
         "id": "tip2",
-        "text_vi": "Hãy nhìn thì của động từ trong câu hỏi When. When did the package arrive? hỏi việc đã xảy ra, nên đáp án phải là thời gian quá khứ: late last night, last week. When will the report be done? hỏi tương lai, nên cần: tomorrow, by Friday. Bẫy wrong-tense: câu hỏi quá khứ mà đáp án nói thời điểm tương lai (hoặc ngược lại), dù từ vựng nghe rất hợp.",
+        "text_vi": "Hãy nhìn thì của động từ trong câu hỏi When. When did the package arrive? hỏi việc đã xảy ra, nên đáp án phải là thời gian quá khứ: late last night, last week. When will the report be done? hỏi tương lai, nên cần: tomorrow, by Friday. Bẫy \"Sai thì\": câu hỏi quá khứ mà đáp án nói thời điểm tương lai (hoặc ngược lại), dù từ vựng nghe rất hợp.",
         "examples": [
           {
             "q": "When did Mr. Brown call?",
@@ -52,7 +52,7 @@ window.BS_UNITS["p2-02"] = {
       },
       {
         "id": "tip3",
-        "text_vi": "Why hỏi lý do hoặc mục đích. Đáp án đúng thường bắt đầu bằng Because..., To + động từ (để làm gì), For + danh từ, hoặc nêu thẳng nguyên nhân: The printer broke down. Nhiều đáp án đúng không dùng từ Because mà chỉ nói sự việc: There was a storm. Bẫy: đáp án bắt đầu bằng Because nhưng nội dung không liên quan đến câu hỏi, và đáp án trả lời Where hoặc When cho câu hỏi Why.",
+        "text_vi": "Why hỏi lý do hoặc mục đích. Đáp án đúng thường bắt đầu bằng Because..., To + động từ (để làm gì), For + danh từ, hoặc nêu thẳng nguyên nhân: The printer broke down. Nhiều đáp án đúng không dùng từ Because mà chỉ nói sự việc: The road was flooded. Bẫy: đáp án bắt đầu bằng Because nhưng nội dung không liên quan đến câu hỏi, và đáp án trả lời Where hoặc When cho câu hỏi Why.",
         "examples": [
           {
             "q": "Why is the elevator closed?",
@@ -67,8 +67,8 @@ window.BS_UNITS["p2-02"] = {
             "vi": "Vì hộ chiếu của tôi hết hạn."
           },
           {
-            "q": "Why is the café so quiet?",
-            "q_vi": "Tại sao quán cà phê yên tĩnh thế?",
+            "q": "Why is the shop so quiet?",
+            "q_vi": "Tại sao cửa hàng yên tĩnh thế?",
             "en": "The lunch rush is over.",
             "vi": "Giờ cao điểm bữa trưa đã qua."
           }
@@ -76,7 +76,7 @@ window.BS_UNITS["p2-02"] = {
       },
       {
         "id": "tip4",
-        "text_vi": "Cẩn thận: Why don't we...? và Why don't you...? thường KHÔNG phải câu hỏi lý do mà là lời đề nghị, gợi ý (tương tự: Let's... hoặc How about...?). Ví dụ Why don't we take a break? nghĩa là Chúng ta nghỉ giải lao nhé. Đáp án đúng thường là đồng ý hoặc từ chối: Good idea. Loại câu này sẽ được học kỹ ở bài về đề nghị và gợi ý (p2-05). Trong bài này, khi câu hỏi mở đầu bằng Why + động từ thường (Why is..., Why did..., Why was...), hãy tìm lý do.",
+        "text_vi": "Cẩn thận: Why don't we...? và Why don't you...? thường KHÔNG phải câu hỏi lý do mà là lời đề nghị, gợi ý (tương tự: Let's... hoặc How about...?). Ví dụ Why don't we take a break? nghĩa là Chúng ta nghỉ giải lao nhé. Đáp án đúng thường là đồng ý hoặc từ chối: Good idea. Loại câu này sẽ được học kỹ ở bài về đề nghị và gợi ý (Unit 9: Lời đề nghị, gợi ý và yêu cầu). Trong unit này, khi câu hỏi là Why + is/are/was/did... ở dạng khẳng định (không phải Why don't...), hãy tìm lý do.",
         "examples": [
           {
             "q": "Why don't we order lunch?",
@@ -176,7 +176,7 @@ window.BS_UNITS["p2-02"] = {
     {
       "id": "v014",
       "en": "not until",
-      "vi": "phải đến khi mới",
+      "vi": "mãi đến ... mới",
       "group": "Cách nói về thời gian"
     },
     {
@@ -580,7 +580,7 @@ window.BS_UNITS["p2-02"] = {
           "kind": "when",
           "q": {
             "en": "When does the museum close on Sundays?",
-            "vi": "Bảo tàng đóng cửa vào lúc nào vào Chủ nhật?"
+            "vi": "Chủ nhật bảo tàng đóng cửa lúc mấy giờ?"
           },
           "answer": "B",
           "explain_vi": "B nêu giờ đóng cửa cụ thể; I believe chỉ làm câu mềm hơn, vẫn trả lời trực tiếp.",
@@ -732,8 +732,8 @@ window.BS_UNITS["p2-02"] = {
               "label": "C",
               "en": "The numbers look weak.",
               "vi": "Các con số trông yếu.",
-              "trap": "similar-sound",
-              "why_vi": "'weak' nghe giống 'week' (tuần) nhưng nghĩa là yếu, và không nêu thời điểm hoàn thành."
+              "trap": "related-word",
+              "why_vi": "Nói về các con số (có liên quan đến báo cáo ngân sách) nhưng không nêu thời điểm hoàn thành."
             }
           ]
         },
@@ -838,7 +838,7 @@ window.BS_UNITS["p2-02"] = {
             "vi": "Tại sao các kệ hàng trống rỗng?"
           },
           "answer": "A",
-          "explain_vi": "A nêu lý do kệ trống: đang chờ hàng mới. Bẫy related-word: nói chung chung về cửa hàng.",
+          "explain_vi": "A nêu lý do kệ trống: đang chờ hàng mới. Bẫy \"Từ liên quan nhưng lạc đề\": nói chung chung về cửa hàng.",
           "options": [
             {
               "label": "A",
@@ -957,7 +957,7 @@ window.BS_UNITS["p2-02"] = {
             {
               "label": "C",
               "en": "I'd ask the accounting office.",
-              "vi": "Tôi sẽ hỏi phòng kế toán."
+              "vi": "Tôi mà là bạn thì sẽ hỏi phòng kế toán."
             }
           ]
         },
@@ -1093,7 +1093,7 @@ window.BS_UNITS["p2-02"] = {
             "vi": "Khi nào tôi có thể lấy bộ vest từ tiệm giặt là?"
           },
           "answer": "A",
-          "explain_vi": "A (khách và nhân viên tiệm giặt) trả lời thời điểm đồ sẽ xong: thứ Năm.",
+          "explain_vi": "Khách hỏi nhân viên tiệm giặt; A nêu thời điểm đồ sẽ xong: thứ Năm.",
           "options": [
             {
               "label": "A",
@@ -1157,7 +1157,7 @@ window.BS_UNITS["p2-02"] = {
         {
           "id": "fill1-1",
           "before": "",
-          "after": "was the road closed? There was an accident.",
+          "after": "is the parking lot so full today? There's a big event downtown.",
           "answers": [
             "Why"
           ]
@@ -1165,7 +1165,7 @@ window.BS_UNITS["p2-02"] = {
         {
           "id": "fill1-2",
           "before": "",
-          "after": "will the repairs be done? By Friday.",
+          "after": "does the next train leave? At ten past nine.",
           "answers": [
             "When"
           ]
@@ -1188,8 +1188,8 @@ window.BS_UNITS["p2-02"] = {
         },
         {
           "id": "fill1-5",
-          "before": "The store was closed",
-          "after": "the power went out.",
+          "before": "The store closed early",
+          "after": "of the power outage.",
           "answers": [
             "because"
           ]

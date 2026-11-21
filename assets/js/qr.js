@@ -37,11 +37,11 @@
       play.disabled = !canPlay();
       note.textContent = exam && !answered && played ? "Chế độ thi: bạn đã dùng lượt nghe duy nhất của câu này." : "";
     }
-    function stop() { BS.stopSpeak(); playing = false; }
+    function stop() { if (typeof BS.stopSpeak === "function") BS.stopSpeak(); playing = false; }
     function doPlay() {
       if (!canPlay()) return;
       var mine = null, counted = true; // counted: luot nghe nay da tinh vao played
-      mine = BS.speakSeq(seqOf(it), { rate: ctx.rate(), onstop: function (r) {
+      mine = typeof BS.speakSeq !== "function" ? null : BS.speakSeq(seqOf(it), { rate: ctx.rate(), onstop: function (r) {
         if (mine !== cur) return; /* day cu da bi thay: bo qua */
         playing = false; cur = null;
         /* Che do thi: bi huy tu ben ngoai truoc khi am thanh bat dau thi hoan lai luot nghe duy nhat */
@@ -55,7 +55,7 @@
     }
     function line(en, vi, accent, what) {
       return [el("span", { class: "en", lang: "en", text: en }), " ",
-        btn("🔊", "Nghe lại " + what, function () { BS.speakSeq([{ text: en, accent: accent }], { rate: ctx.rate() }); }, "btn-speak"),
+        btn("🔊", "Nghe lại " + what, function () { if (typeof BS.speakSeq === "function") BS.speakSeq([{ text: en, accent: accent }], { rate: ctx.rate() }); }, "btn-speak"),
         vi ? el("span", { class: "vi muted", text: " " + vi }) : null];
     }
     function showPeek() {
@@ -155,7 +155,7 @@
     card.appendChild(el("div", { class: "row qr-ctl" }, [el("span", { class: "listen-btns", role: "group", "aria-label": "Tốc độ nghe" }, speedBtns.map(function (x) { return x.b; })), examBtn]));
     card.appendChild(el("p", { class: "muted qr-keys", text: "Phím tắt khi đang chọn một câu: 1, 2, 3 chọn đáp án A, B, C; R nghe lại. Đề thi thật chỉ đọc một lần: hãy thử Chế độ thi." }));
     items.forEach(function (it, i) { var r = buildItem(ex, it, i + 1, items.length, ctx); rows.push(r); card.appendChild(r.node); });
-    BS.onVoices(function (ok) { noVoice = !ok; rows.forEach(function (r) { if (!r.isAnswered()) r.peek.hidden = ok; }); });
+    if (typeof BS.onVoices === "function") BS.onVoices(function (ok) { noVoice = !ok; rows.forEach(function (r) { if (!r.isAnswered()) r.peek.hidden = ok; }); });
     var redo = el("button", { type: "button", class: "btn", text: "Làm lại" });
     redo.addEventListener("click", function () { K.resetEx(st, ex, items); rows.forEach(function (r) { r.reset(); }); scoreBox.textContent = ""; });
     card.appendChild(el("div", { class: "row" }, [redo]));

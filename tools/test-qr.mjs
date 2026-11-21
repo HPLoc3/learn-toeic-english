@@ -491,6 +491,23 @@ const fbOf = (it) => byClass(it, "fb")[0];
   M.BS.render.quiz({ id: "x", exercises: [EX()] }, root);
   check("quiz.js khong co qr.js: bo qua bai qr, khong nem", root.kids.length >= 1);
 }
+/* qr.js mới + core.js cũ đã cache (không có speakSeq/stopSpeak/onVoices): không ném lỗi, rơi về nhánh không có giọng đọc */
+{
+  const M = makeEnv({ voices: [V("en-US")], files: ["core.js", "quiz.js"] });
+  delete M.BS.speakSeq; delete M.BS.stopSpeak; /* core.js cũ vẫn có onVoices (Part 1 dùng) */
+  let threw = null, card = null;
+  try {
+    vm.runInContext(src("qr.js"), M.win, { filename: "qr.js" });
+    const st = M.BS.unit("p2-old");
+    card = M.BS.renderQR(EX(), 0, st, "p2-old");
+    const it = byClass(card, "qr-item")[0];
+    byClass(it, "qr-play")[0].click();
+    check("core.js cũ (thiếu speakSeq): bấm Nghe rơi về thông báo không phát được, hiện nút lời thoại", /Không phát được/.test(byClass(it, "qr-note")[0].textContent) && !byClass(it, "qr-peek")[0].attrs.hidden && true);
+    byClass(it, "qr-opt")[0].click();
+    check("core.js cũ: vẫn chọn đáp án và chấm điểm được", byClass(it, "fb")[0].textContent.length > 0);
+  } catch (x) { threw = x; }
+  check("core.js cũ (thiếu speakSeq/stopSpeak): qr.js không ném lỗi", threw === null, threw && threw.message);
+}
 const M5 = makeEnv({ voices: [V("en-US")], files: ["core.js", "quiz.js", "qr.js"] });
 {
   const root = M5.doc.createElement("div");
