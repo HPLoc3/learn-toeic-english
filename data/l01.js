@@ -9,7 +9,7 @@ window.BS_UNITS.l01 = {
     "tips": [
       {
         "id": "tip1",
-        "text_vi": "Tìm chủ ngữ và động từ chính của câu: xác định đó là the man hay the woman, rồi nghe kỹ cụm be + V-ing (is pouring, is typing, is wearing...) để biết người ấy đang làm gì.",
+        "text_vi": "Tìm chủ ngữ và động từ chính của câu: xác định đó là the man hay the woman, rồi nghe kỹ cụm be + V-ing (is pouring, is typing, is holding...) để biết người ấy đang làm gì.",
         "image": "assets/img/l01/pic/focus-800.webp",
         "examples": [
           { "en": "The man is pouring water from a kettle.", "vi": "Người đàn ông đang rót nước từ ấm ra." },

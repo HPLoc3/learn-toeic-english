@@ -374,7 +374,7 @@
   }
 
   function img(src, alt) {
-    var i = el("img", { src: src, alt: alt, class: "fig" });
+    var i = el("img", { src: src, alt: alt, class: "fig" + (/\.webp(?:[?#]|$)/i.test(String(src || "")) ? " fig--wide" : "") });
     i.addEventListener("error", function () {
       var p = el("p", { class: "muted fig-missing", text: "(Chưa có ảnh: " + alt + ")" });
       if (i.parentNode) i.parentNode.replaceChild(p, i);
