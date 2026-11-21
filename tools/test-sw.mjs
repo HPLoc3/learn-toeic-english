@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import vm from "node:vm";
-import { readdirSync } from "node:fs";
+import { readdirSync, existsSync } from "node:fs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SW_SRC = readFileSync(join(ROOT, "sw.js"), "utf8");
@@ -99,7 +99,7 @@ const okFetch = (url) => {
       if (u.game === true) need.push("data/" + u.id + "-game.js");
       if (u.anim === true) need.push("data/" + u.id + "-anim.js");
       const walkImg = (rel) => { for (const e of readdirSync(join(ROOT, rel), { withFileTypes: true })) { if (e.isDirectory()) walkImg(rel + "/" + e.name); else need.push(rel + "/" + e.name); } };
-      walkImg("assets/img/" + u.id);
+      if (existsSync(join(ROOT, "assets/img/" + u.id))) walkImg("assets/img/" + u.id);
     }
     check("PRECACHE gồm mọi file của unit available theo catalog (" + need.length + " file)", need.length > 0 && need.every((f) => t.PRECACHE.includes(f)));
     check("PRECACHE có engine/rig/cast hoạt hình, mascot.js, mascot.css, không có file anim lạ", ["assets/js/anim-engine.js", "assets/js/anim-rig.js", "assets/js/anim-cast.js", "assets/js/anim-scenes.js", "assets/js/mascot.js", "assets/css/mascot.css", "data/l01-anim.js", "data/l02-anim.js", "data/l03-anim.js", "data/l04-anim.js"].every((f) => t.PRECACHE.includes(f)) && t.PRECACHE.filter((f) => /anim/.test(f)).length === 8);
@@ -107,7 +107,7 @@ const okFetch = (url) => {
     check("PRECACHE có 7 ảnh cảnh 800w của l02", t.PRECACHE.filter((f) => /^assets\/img\/l02\/scene\/[a-z-]+-800\.webp$/.test(f)).length === 7);
     check("PRECACHE có 7 ảnh cảnh 800w của l03, không có ảnh HD", t.PRECACHE.filter((f) => /^assets\/img\/l03\/scene\/[a-z-]+-800\.webp$/.test(f)).length === 7 && !t.PRECACHE.some((f) => /img-hd/.test(f)));
     check("PRECACHE có 7 ảnh cảnh 800w của l04, không có ảnh HD", t.PRECACHE.filter((f) => /^assets\/img\/l04\/scene\/[a-z-]+-800\.webp$/.test(f)).length === 7 && !t.PRECACHE.some((f) => /img-hd/.test(f)));
-    check("PRECACHE không chứa unit chưa available", !t.PRECACHE.some((f) => /^data\/l0[5-9]|^data\/p\d/.test(f)));
+    check("PRECACHE không chứa unit chưa available", !t.PRECACHE.some((f) => /^data\/l0[5-9]|^data\/p2-0[3-7]|^data\/p[3-9]/.test(f)));
   }
   await t.fire("install", {});
   const c = t.caches.stores.get(CN);

@@ -50,13 +50,13 @@ window.BS_CATALOG = {
           "id": "p2-01",
           "no": 5,
           "title_vi": "Câu hỏi Who và Where",
-          "available": false
+          "available": true
         },
         {
           "id": "p2-02",
           "no": 6,
           "title_vi": "Câu hỏi When và Why",
-          "available": false
+          "available": true
         },
         {
           "id": "p2-03",

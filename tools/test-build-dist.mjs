@@ -160,7 +160,7 @@ try {
     check("unavailableIds: catalog hỏng -> rỗng, không nem", unavailableIds(join(t, "none")).length === 0);
   } finally { rmSync(t, { recursive: true, force: true }); }
   const realSkip = unavailableIds(ROOT);
-  check("catalog thật: p2-01 vẫn nằm trong lộ trình (catalog) nhưng bị loại khỏi dist", realSkip.includes("p2-01") && readFileSync(join(ROOT, "data", "catalog.js"), "utf8").includes('"p2-01"'));
+  check("catalog thật: p2-01 và p2-02 đã mở (không bị loại), p2-03 còn trong lộ trình nhưng bị loại khỏi dist", !realSkip.includes("p2-01") && !realSkip.includes("p2-02") && realSkip.includes("p2-03") && readFileSync(join(ROOT, "data", "catalog.js"), "utf8").includes('"p2-03"'));
 }
 
 console.log(`test-build-dist: ${total - failed}/${total} ca đạt`);
