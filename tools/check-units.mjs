@@ -21,11 +21,13 @@ const QR_KINDS = ["who", "where", "when", "why", "what", "which", "how", "yesno"
 const QR_TRAPS = ["similar-sound", "repeat-word", "wrong-wh", "wrong-tense", "wrong-subject", "related-word", "yesno-to-wh"];
 const QR_LABELS = ["A", "B", "C"];
 const QR_MIN_ITEMS = 20;
-const QR_LEAK_ALLOW = ["qr1-05|as soon as"]; /* ngoại lệ có chủ đích: "id câu|đoạn tiếng anh đã chuẩn hóa". Hiện: liên từ thông dụng "as soon as" trong từ vựng p2-02, phần còn lại của đáp án không bị lộ. */
+const QR_LEAK_ALLOW =["qr1-05|as soon as"]; /* ngoại lệ có chủ đích: "id câu|đoạn tiếng anh đã chuẩn hóa". Hiện: liên từ thông dụng "as soon as" trong từ vựng p2-02, phần còn lại của đáp án không bị lộ. */
 const QR_LETTER_MIN = 0.2, QR_LETTER_MAX = 0.45;
 const QR_STOP = new Set(("a an the and or but if so as of to in on at by for with from into onto up down out off over under about than then that this these those " +
   "i me my mine we us our you your he him his she her it its they them their is am are was were be been being do does did done have has had will would can could shall should may might must " +
   "not no yes ok okay please there here what which who whom whose when where why how too very just also still already again s t ll d re ve m").split(/\s+/));
+/* từ chức năng cho luật "gần trùng": QR_STOP thêm giới từ/trạng từ mẫu câu thường gặp */
+const QR_LEAK_STOP = new Set([...QR_STOP, "until", "next", "last", "across", "behind", "near", "before", "after", "during", "between", "through", "around", "inside", "outside", "any", "some", "more", "much", "many", "let", "say"]);
 const qrWords = (t) => String(t || "").toLowerCase().replace(/[’‘]/g, "'").split(/[^a-z0-9]+/).filter((w) => w && !QR_STOP.has(w));
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -340,7 +342,7 @@ function checkUnit(entry) {
    * từ vựng, cụm từ, luyện nghe, tiêu đề, hướng dẫn, bài điền (kể cả câu ghép lại). Đáp án sai (bẫy) thì được phép.
    * So sánh sau khi chuẩn hóa (chữ thường, bỏ dấu câu); với chuỗi tiếng Việt xen tiếng Anh thì tách các đoạn tiếng Anh (cắt ở chữ có dấu và . , ; : ! ? ( )), giữ đoạn >= 3 từ.
    * LỖI: trùng khớp một chuỗi/đoạn; hoặc cả câu (>= 12 ký tự) nằm trong một chuỗi/đoạn; hoặc một đoạn tiếng Anh >= 4 từ và >= 12 ký tự nằm trong câu qr.
-   * Đoạn >= 3 từ nằm liền trong câu qr và chiếm >= 50% số từ của nó: CẢNH BÁO (LỖI khi --release, trừ khi có trong QR_LEAK_ALLOW). */
+   * Đoạn liền nhau dài nhất giữa một đoạn tiếng Anh và câu qr (không cần cả đoạn nằm trong câu qr) dài >= 3 từ, chiếm >= 50% số từ của câu qr và có >= 2 từ không thuộc QR_LEAK_STOP: CẢNH BÁO (LỖI khi --release, trừ khi có trong QR_LEAK_ALLOW). */
   if (qrN) {
     const nz = (t) => String(t || "").toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9' ]+/g, " ").replace(/\s+/g, " ").trim();
     const pool = []; /* { k, where, run } */
@@ -389,7 +391,20 @@ function checkUnit(entry) {
       const f = pool.find((p) => p.k === k || (k.length >= 12 && padK(p.k).includes(padK(k))) || (p.run && (() => { const c = common(p); return c.n >= 4 && c.text.length >= 12; })()));
       if (f) { e(itemId + ": " + what + " \"" + txt + "\" trùng với nội dung ở " + place(f) + " (lộ lời thoại/đáp án); hãy viết câu khác cùng dạng."); return; }
       let g = null, gt = "";
-      pool.some((p) => { if (!p.run) return false; const c = common(p); if (c.n >= 3 && c.n / nw >= 0.5 && !QR_LEAK_ALLOW.includes(itemId + "|" + c.text)) { g = p; gt = c.text; return true; } return false; });
+      /* đoạn liền nhau dài nhất theo thứ tự giữa MỌI đoạn tiếng Anh và câu qr (không cần cả đoạn nằm trong câu qr): bắt cả câu diễn đạt lại có thêm từ */
+      const lcs = (p) => {
+        const pw = p.k.split(" "); let best = 0, at = 0;
+        for (let i = 0; i < pw.length; i++) for (let j = 0; j < kw.length; j++) { let n = 0; while (i + n < pw.length && j + n < kw.length && pw[i + n] === kw[j + n]) n++; if (n > best) { best = n; at = i; } }
+        return { n: best, text: pw.slice(at, at + best).join(" ") };
+      };
+      pool.some((p) => {
+        if (!p.run) return false;
+        const c = lcs(p);
+        if (c.n < 3 || c.n / nw < 0.5) return false;
+        if (c.text.split(" ").filter((x) => !QR_LEAK_STOP.has(x)).length < 2) return false; /* mẫu câu trần (across from the, not until next, who is in charge of the): bỏ qua */
+        if (QR_LEAK_ALLOW.includes(itemId + "|" + c.text)) return false;
+        g = p; gt = c.text; return true;
+      });
       if (g) {
         const m = itemId + ": " + what + " \"" + txt + "\" gần trùng với đoạn tiếng Anh \"" + gt + "\" ở " + place(g) + " (chiếm từ 50% số từ); nên viết lại.";
         if (RELEASE) e(m + " Không được phát hành (--release)."); else w(m);

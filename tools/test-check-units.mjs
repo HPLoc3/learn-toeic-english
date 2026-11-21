@@ -236,6 +236,28 @@ try {
     r = runQ(base(), ["--unit", "p2-01"]);
     check("--unit <id>: chỉ kiểm đúng unit đó", /Đã kiểm 1 unit \(p2-01\)/.test(r.out), r.out);
 
+    u = base(); rightOf(qrs(u)[0]).en = "The receptionist in the lobby has it."; u.sentences[0].en = "The receptionist in the lobby keeps them.";
+    check("diễn đạt lại 'the receptionist in the lobby keeps them' (5/7 từ liền nhau): --release LỖI", /gần trùng với đoạn tiếng Anh "the receptionist in the lobby"/.test(runQ(u, ["--release"]).out));
+    u = base(); rightOf(qrs(u)[0]).en = "She got a better offer."; u.sentences[0].en = "She got a better job offer last week.";
+    check("diễn đạt lại 'She got a better job offer last week.' (4/5 từ liền nhau): --release LỖI", /gần trùng với đoạn tiếng Anh "she got a better"/.test(runQ(u, ["--release"]).out));
+    u = base(); rightOf(qrs(u)[0]).en = "Just across from the post office."; u.focus.tips[0].text_vi = "Mẫu hay gặp: across from the nhé.";
+    check("mẫu trần 'across from the' (3/6 từ, chỉ 1 từ nội dung): không báo", runQ(u, ["--release"]).code === 0);
+
+    /* diễn đạt lại: đoạn liền nhau dài nhất, kể cả khi chuỗi có thêm từ (cảnh báo, --release thành LỖI) */
+    u = base(); u.sentences[0].en = "Mr. Chen in accounting usually handles those requests.";
+    r = runQ(u);
+    check("diễn đạt lại đáp án đúng trong sentences (3/6 từ liền nhau, có thêm từ): CẢNH BÁO", r.code === 0 && /qr1-04: đáp án đúng .* gần trùng với đoạn tiếng Anh "chen in accounting"/.test(r.out), r.out);
+    check("diễn đạt lại: --release thành LỖI", runQ(u, ["--release"]).code === 1);
+    u = base(); u.phrases[0].en = "The visitor passes are at the front desk now.";
+    r = runQ(u, ["--release"]);
+    check("diễn đạt lại có thêm từ ở hai đầu (at the front desk): --release LỖI", r.code === 1 && /qr1-03: đáp án đúng .* "at the front desk"/.test(r.out), r.out);
+    u = base(); u.sentences[0].en = "Please put it next to the window today.";
+    check("mẫu trần chiếm < 50% câu qr (next to the / 3 trên 8 từ): không báo", runQ(u, ["--release"]).code === 0);
+    u = base(); rightOf(qrs(u)[1]).en = "Not until next Monday."; u.focus.tips[0].text_vi = "Hãy nhớ mẫu not until next trong câu trả lời.";
+    check("mẫu trần toàn từ chức năng (not until next) dù chiếm 3/4 câu: không báo", runQ(u, ["--release"]).code === 0);
+    u = base(); rightOf(qrs(u)[1]).en = "Not until next Monday."; u.focus.tips[0].text_vi = "Hãy nhớ mẫu not until next Monday trong câu trả lời.";
+    check("nhưng nếu có thêm từ nội dung (Monday): vẫn bị báo", runQ(u, ["--release"]).code === 1);
+
     /* unit không phải Part 2 có bài qr vẫn chịu mức tối thiểu của Part 1 */
     {
       const u9 = base(); u9.id = "l09"; u9.part = "Part 1 - Mô tả hình ảnh";

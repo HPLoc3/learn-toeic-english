@@ -10,7 +10,7 @@ window.BS_UNITS["p2-02"] = {
     "tips": [
       {
         "id": "tip1",
-        "text_vi": "When hỏi thời điểm. Đáp án đúng thường là một mốc hoặc khoảng thời gian: on Friday, at nine thirty, in two weeks, next month. Thường gặp cả những cách nói gián tiếp: as soon as the meeting ends (ngay khi...), after the meeting (sau cuộc họp), not until next Friday (phải đến thứ Sáu tuần sau), hay Let me check the calendar (để tôi xem lịch). Bẫy: đáp án chỉ nơi chốn (in the lobby) hoặc Yes/No cho câu hỏi When.",
+        "text_vi": "When hỏi thời điểm. Đáp án đúng thường là một mốc hoặc khoảng thời gian: on Friday, at nine thirty, in two weeks, next month. Thường gặp cả những cách nói gián tiếp: as soon as the meeting ends (ngay khi...), after the meeting (sau cuộc họp), not until the end of the month (mãi đến cuối tháng mới), hay Let me check the calendar (để tôi xem lịch). Bẫy: đáp án chỉ nơi chốn (in the lobby) hoặc Yes/No cho câu hỏi When.",
         "examples": [
           {
             "q": "When does the new store open?",
@@ -67,8 +67,8 @@ window.BS_UNITS["p2-02"] = {
             "vi": "Vì hộ chiếu của tôi hết hạn."
           },
           {
-            "q": "Why is the shop so quiet?",
-            "q_vi": "Tại sao cửa hàng yên tĩnh thế?",
+            "q": "Why is the restaurant so quiet?",
+            "q_vi": "Tại sao nhà hàng vắng thế?",
             "en": "The lunch rush is over.",
             "vi": "Giờ cao điểm bữa trưa đã qua."
           }
@@ -76,7 +76,7 @@ window.BS_UNITS["p2-02"] = {
       },
       {
         "id": "tip4",
-        "text_vi": "Cẩn thận: Why don't we...? và Why don't you...? thường KHÔNG phải câu hỏi lý do mà là lời đề nghị, gợi ý (tương tự: Let's... hoặc How about...?). Ví dụ Why don't we take a break? nghĩa là Chúng ta nghỉ giải lao nhé. Đáp án đúng thường là đồng ý hoặc từ chối: Good idea. Loại câu này sẽ được học kỹ ở bài về đề nghị và gợi ý (Unit 9: Lời đề nghị, gợi ý và yêu cầu). Trong unit này, khi câu hỏi là Why + is/are/was/did... ở dạng khẳng định (không phải Why don't...), hãy tìm lý do.",
+        "text_vi": "Cẩn thận: Why don't we...? và Why don't you...? thường KHÔNG phải câu hỏi lý do mà là lời đề nghị, gợi ý (tương tự: Let's... hoặc How about...?). Ví dụ Why don't we take a break? nghĩa là Chúng ta nghỉ giải lao nhé. Đáp án đúng thường là đồng ý hoặc từ chối: Good idea. Loại câu này sẽ được học kỹ ở bài về đề nghị và gợi ý (Unit 9: Lời đề nghị, gợi ý và yêu cầu). Trong unit này, các câu Why khác (Why is..., Why did..., kể cả dạng phủ định như Why haven't...?) đều hỏi lý do. Chỉ Why don't we/you...? (và Why not...?) thường là lời đề nghị.",
         "examples": [
           {
             "q": "Why don't we order lunch?",
@@ -1167,7 +1167,8 @@ window.BS_UNITS["p2-02"] = {
           "before": "",
           "after": "does the next train leave? At ten past nine.",
           "answers": [
-            "When"
+            "When",
+            "What time"
           ]
         },
         {
@@ -1183,15 +1184,19 @@ window.BS_UNITS["p2-02"] = {
           "before": "I took a taxi",
           "after": "get there on time.",
           "answers": [
-            "to"
+            "to",
+            "in order to",
+            "so as to"
           ]
         },
         {
           "id": "fill1-5",
-          "before": "The store closed early",
-          "after": "of the power outage.",
+          "before": "Why did the store close early?",
+          "after": "the power went out.",
           "answers": [
-            "because"
+            "Because",
+            "Since",
+            "As"
           ]
         }
       ]

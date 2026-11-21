@@ -38,7 +38,7 @@ window.BS_UNITS["p2-01"] = {
         "examples": [
           {
             "q": "Where can I find the visitor passes?",
-            "en": "They're at the front desk.",
+            "en": "They're at the reception desk.",
             "vi": "Chúng ở quầy lễ tân.",
             "q_vi": "Tôi có thể lấy thẻ khách ở đâu?"
           },
@@ -285,7 +285,7 @@ window.BS_UNITS["p2-01"] = {
     },
     {
       "id": "p06",
-      "en": "They're at the front desk.",
+      "en": "They're at the reception desk.",
       "vi": "Chúng ở quầy lễ tân.",
       "group_vi": "Trả lời cho câu hỏi Where"
     },
@@ -762,7 +762,7 @@ window.BS_UNITS["p2-01"] = {
             {
               "label": "B",
               "en": "Ms. Torres in travel services.",
-              "vi": "Cô Torres ở bộ phận phụ trách đi lại, công tác."
+              "vi": "Cô Torres ở bộ phận lo việc đi công tác."
             },
             {
               "label": "C",
@@ -855,7 +855,7 @@ window.BS_UNITS["p2-01"] = {
             {
               "label": "B",
               "en": "Probably at the community hall downtown.",
-              "vi": "Có lẽ ở nhà văn hóa, tại trung tâm thành phố."
+              "vi": "Có lẽ ở nhà văn hóa ở trung tâm thành phố."
             },
             {
               "label": "C",
@@ -1167,7 +1167,7 @@ window.BS_UNITS["p2-01"] = {
         {
           "id": "fill1-5",
           "before": "",
-          "after": "is in charge of the budget this year? The finance team.",
+          "after": "is in charge of the budget this year? Ms. Park, I think.",
           "answers": [
             "Who",
             "who"
