@@ -16,6 +16,16 @@ const MIN = { tips: 2, vocab: 20, phrases: 8, sentences: 4, exercises: 3, fillIt
 const MIN_GAME_ROUNDS = 10;   /* duoi muc nay la LOI */
 const GAME_CHOICES = 4;       /* phai trung CHOICES trong game.js */
 const GAME_ROUNDS_PER_PLAY = 10;
+/* Part 2 (type "qr") */
+const QR_KINDS = ["who", "where", "when", "why", "what", "which", "how", "yesno", "negative", "tag", "request", "suggestion", "choice", "statement", "indirect"];
+const QR_TRAPS = ["similar-sound", "repeat-word", "wrong-wh", "wrong-tense", "wrong-subject", "related-word", "yesno-to-wh"];
+const QR_LABELS = ["A", "B", "C"];
+const QR_MIN_ITEMS = 20;
+const QR_LETTER_MIN = 0.2, QR_LETTER_MAX = 0.45;
+const QR_STOP = new Set(("a an the and or but if so as of to in on at by for with from into onto up down out off over under about than then that this these those " +
+  "i me my mine we us our you your he him his she her it its they them their is am are was were be been being do does did done have has had will would can could shall should may might must " +
+  "not no yes ok okay please there here what which who whom whose when where why how too very just also still already again s t ll d re ve m").split(/\s+/));
+const qrWords = (t) => String(t || "").toLowerCase().replace(/[’‘]/g, "'").split(/[^a-z0-9]+/).filter((w) => w && !QR_STOP.has(w));
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 let ROOT = path.resolve(here, "..");
@@ -180,6 +190,7 @@ function checkUnit(entry) {
     arr(t.examples, wh + ".examples").forEach((x, j) => {
       if (!isObj(x) || !nonEmpty(x.en)) e(wh + ".examples[" + j + "]: thiếu en.");
       else if (!nonEmpty(x.vi)) w(wh + ".examples[" + j + "]: thiếu bản dịch vi.");
+      if (isObj(x) && x.q !== undefined && !nonEmpty(x.q)) e(wh + ".examples[" + j + "]: q (câu hỏi Part 2) phải là chuỗi không rỗng.");
     });
   });
   const vocab = arr(u.vocab, "vocab");
@@ -196,6 +207,7 @@ function checkUnit(entry) {
     if (!isObj(x) || !nonEmpty(x.en) || !nonEmpty(x.vi)) e(wh + ": thiếu en hoặc vi.");
     else if (!nonEmpty(x.group_vi)) e(wh + ": thiếu group_vi.");
   });
+  if (u.sentences_title_vi !== undefined && !nonEmpty(u.sentences_title_vi)) e("sentences_title_vi phải là chuỗi không rỗng.");
   const sentences = arr(u.sentences, "sentences");
   sentences.forEach((x, i) => {
     const wh = "sentences[" + i + "]";
@@ -203,7 +215,8 @@ function checkUnit(entry) {
     if (!isObj(x) || !nonEmpty(x.en) || !nonEmpty(x.vi)) e(wh + ": thiếu en hoặc vi.");
   });
   const exs = arr(u.exercises, "exercises");
-  let fillN = 0, tfN = 0;
+  let fillN = 0, tfN = 0, qrN = 0;
+  const qrItems = [];
   exs.forEach((ex, i) => {
     const wh = "exercise[" + i + "]" + (ex && ex.id ? " '" + ex.id + "'" : "");
     uniq(ex && ex.id, wh);
@@ -245,14 +258,72 @@ function checkUnit(entry) {
       });
       if (!labels[ex.answer]) e(wh + ": answer '" + ex.answer + "' không thuộc các label.");
       if (!nonEmpty(ex.explain_vi)) e(wh + ": thiếu explain_vi.");
-    } else e(wh + ": type '" + ex.type + "' không hợp lệ (fill, tf, mc).");
+    } else if (ex.type === "qr") {
+      if (ex.image !== undefined) w(wh + ": bài qr không dùng ảnh (Part 2 chỉ nghe).");
+      if (RELEASE && ex.v && ex.v.status === "unverified") e(wh + ": còn 'unverified', không được phát hành (--release).");
+      arr(ex.items, wh + ".items").forEach((it, j) => {
+        const wi = wh + ".items[" + j + "]";
+        uniq(it && it.id, wi);
+        if (!isObj(it)) return;
+        qrN++; qrItems.push(it);
+        if (!QR_KINDS.includes(it.kind)) e(wi + ": kind '" + it.kind + "' không hợp lệ (" + QR_KINDS.join(", ") + ").");
+        if (!isObj(it.q) || !nonEmpty(it.q.en) || !nonEmpty(it.q.vi)) e(wi + ": q cần en và vi không rỗng.");
+        if (!nonEmpty(it.explain_vi)) e(wi + ": thiếu explain_vi.");
+        if (it.audio !== undefined) {
+          if (!isObj(it.audio)) e(wi + ": audio phải là đối tượng {q, A, B, C} (đường dẫn tương đối).");
+          else Object.keys(it.audio).forEach((k) => {
+            const a = it.audio[k];
+            if (!["q", "A", "B", "C"].includes(k)) e(wi + ": audio có khóa lạ '" + k + "'.");
+            else if (!nonEmpty(a) || /^[a-z][a-z0-9+.-]*:/i.test(a) || a.startsWith("/") || a.startsWith("//") || a.includes("\\") || a.split("/").includes("..")) e(wi + ": audio." + k + " phải là đường dẫn tương đối, không URL và không '..'.");
+          });
+        }
+        const os = Array.isArray(it.options) ? it.options : [];
+        if (os.length !== 3 || os.some((o, k) => !isObj(o) || o.label !== QR_LABELS[k])) { e(wi + ": cần đúng 3 đáp án có label A, B, C theo thứ tự."); return; }
+        if (!QR_LABELS.includes(it.answer)) e(wi + ": answer '" + it.answer + "' phải là A, B hoặc C.");
+        os.forEach((o, k) => {
+          const wo = wi + ".options[" + QR_LABELS[k] + "]";
+          if (!nonEmpty(o.en) || !nonEmpty(o.vi)) e(wo + ": thiếu en hoặc vi.");
+          if (o.label === it.answer) {
+            if (o.trap !== undefined) e(wo + ": đáp án đúng không được có trap.");
+            if (o.why_vi !== undefined) e(wo + ": đáp án đúng không được có why_vi.");
+          } else {
+            if (!QR_TRAPS.includes(o.trap)) e(wo + ": đáp án sai cần trap thuộc (" + QR_TRAPS.join(", ") + ").");
+            if (!nonEmpty(o.why_vi)) e(wo + ": đáp án sai thiếu why_vi (giải thích tiếng Việt vì sao sai).");
+          }
+        });
+        if (QR_LABELS.includes(it.answer) && isObj(it.q) && nonEmpty(it.q.en)) {
+          const right = os.find((o) => o.label === it.answer);
+          const qw = new Set(qrWords(it.q.en));
+          const dup = right && nonEmpty(right.en) ? qrWords(right.en).filter((x) => qw.has(x)) : [];
+          if (dup.length) w(wi + ": đáp án đúng lặp từ của câu hỏi (" + [...new Set(dup)].join(", ") + "); thường là dấu hiệu bẫy, hãy xem lại.");
+        }
+        if (RELEASE && it.v && it.v.status === "unverified") e(wi + ": còn 'unverified', không được phát hành (--release).");
+      });
+    } else e(wh + ": type '" + ex.type + "' không hợp lệ (fill, tf, mc, qr).");
     if (nonEmpty(ex.instruction_vi) === false) w(wh + ": thiếu instruction_vi.");
   });
 
   const cnt = (n, v, name) => { if (n < v) w("ít hơn mức tối thiểu: " + name + " " + n + " < " + v + "."); };
   cnt(tips.length, MIN.tips, "mẹo (tips)"); cnt(vocab.length, MIN.vocab, "từ vựng");
-  cnt(phrases.length, MIN.phrases, "cụm từ"); cnt(sentences.length, MIN.sentences, "câu luyện tập");
-  cnt(exs.length, MIN.exercises, "bài tập"); cnt(fillN, MIN.fillItems, "câu điền từ"); cnt(tfN, MIN.tfItems, "câu đúng/sai");
+  cnt(phrases.length, MIN.phrases, "cụm từ");
+  cnt(exs.length, MIN.exercises, "bài tập"); cnt(fillN, MIN.fillItems, "câu điền từ");
+  if (qrN) { /* unit Part 2: không có ảnh nên bỏ mức tối thiểu của câu tả hình và câu đúng/sai */
+    cnt(qrN, QR_MIN_ITEMS, "câu hỏi đáp (qr)");
+    const byL = {};
+    qrItems.forEach((it) => { if (QR_LABELS.includes(it.answer)) byL[it.answer] = (byL[it.answer] || 0) + 1; });
+    const tot = qrItems.length;
+    QR_LABELS.forEach((L) => {
+      const r = (byL[L] || 0) / tot;
+      if (r < QR_LETTER_MIN || r > QR_LETTER_MAX) w("đáp án " + L + " chiếm " + Math.round(r * 100) + "% (" + (byL[L] || 0) + "/" + tot + ") các câu qr; nên nằm trong " + QR_LETTER_MIN * 100 + "-" + QR_LETTER_MAX * 100 + "%.");
+    });
+    const seenQ = {};
+    qrItems.forEach((it) => {
+      if (!isObj(it.q) || !nonEmpty(it.q.en)) return;
+      const k = it.q.en.trim().toLowerCase().replace(/\s+/g, " ");
+      if (seenQ[k]) e("câu hỏi \"" + it.q.en + "\" bị trùng (" + seenQ[k] + " và " + it.id + ").");
+      else seenQ[k] = it.id;
+    });
+  } else { cnt(sentences.length, MIN.sentences, "câu luyện tập"); cnt(tfN, MIN.tfItems, "câu đúng/sai"); }
 
   /* the 'v' unverified */
   let unv = 0;

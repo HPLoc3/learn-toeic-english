@@ -231,5 +231,29 @@ t("id toString/valueOf duoc giu khi gop (moi ben mot phia)", () => {
   assert.equal(m.units.u2.known.toString, 1); assert.equal(m.xp.days.toString.xp, 1);
 });
 
+t("Part 2 (qr): dap an 'A'/'B'/'C' va res 0/1 di vong xuat/nhap nguyen ven (khong can doi schema)", () => {
+  const s = sample();
+  s.units["p2-01"] = { known: {}, res: { "qr1-01": 1, "qr1-02": 0, "qr1-03": 1 }, scores: { qr1: { c: 2, t: 8, a: 3 } },
+    ans: { "qr1-01": "B", "qr1-02": "C", "qr1-03": "A" }, last: { tab: "quiz" }, game: {}, srs: {} };
+  const r = B.parse(B.buildFile(s), TODAY); assert.ok(r.ok); assert.equal(r.dropped, 0);
+  const u = r.data.units["p2-01"];
+  assert.deepEqual(plain(u.ans), { "qr1-01": "B", "qr1-02": "C", "qr1-03": "A" });
+  assert.deepEqual(plain(u.res), { "qr1-01": 1, "qr1-02": 0, "qr1-03": 1 });
+  assert.deepEqual(plain(u.scores.qr1), { c: 2, t: 8, a: 3 });
+});
+t("Part 2 (qr): gop - lay ben co res cao hon kem dap an cua ben do; luy dang", () => {
+  const a = sample(), b = sample();
+  a.units["p2-01"] = { res: { "qr1-01": 0, "qr1-02": 1 }, ans: { "qr1-01": "C", "qr1-02": "A" } };
+  b.units["p2-01"] = { res: { "qr1-01": 1, "qr1-03": 0 }, ans: { "qr1-01": "B", "qr1-03": "A" } };
+  const m = B.merge(a, b), u = m.units["p2-01"];
+  assert.equal(u.res["qr1-01"], 1); assert.equal(u.ans["qr1-01"], "B");
+  assert.equal(u.ans["qr1-02"], "A"); assert.equal(u.ans["qr1-03"], "A"); assert.equal(u.res["qr1-03"], 0);
+  assert.deepEqual(plain(B.merge(m, b)), plain(m));
+});
+t("Part 2 (qr): pref khong co khoa 'che do thi' (chi trong phien): nhap khoa la bi bo", () => {
+  const s = sample(); s.prefs.exam = 1;
+  const r = B.parse(wrap(s), TODAY); assert.ok(r.ok); assert.equal(r.data.prefs.exam, undefined); assert.equal(r.dropped, 1);
+});
+
 console.log("\nKet qua: " + pass + "/" + total + " ca dat");
 process.exit(pass === total ? 0 : 1);

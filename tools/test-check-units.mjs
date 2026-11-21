@@ -101,5 +101,100 @@ try {
 } finally {
   fs.rmSync(tmp, { recursive: true, force: true });
 }
+/* ---------- Part 2: bai tap type "qr" ---------- */
+{
+  const qtmp = fs.mkdtempSync(path.join(os.tmpdir(), "cu-qr-"));
+  try {
+    fs.mkdirSync(path.join(qtmp, "data"));
+    fs.writeFileSync(path.join(qtmp, "data/catalog.js"), 'window.BS_CATALOG={parts:[{id:"p2",title:"Part 2 - Hỏi - đáp",units:[{id:"p2-01",no:5,title_vi:"Câu hỏi Who và Where",available:true}]}]};');
+    const fx = (n) => fs.readFileSync(path.join(REAL, "tools/fixtures/" + n + ".js"), "utf8");
+    const load = (code) => { const w = {}; w.window = w; vm.runInNewContext(code, w); return JSON.parse(JSON.stringify(w.BS_UNITS["p2-01"])); };
+    const runQ = (u, extra) => {
+      fs.writeFileSync(path.join(qtmp, "data/p2-01.js"), "window.BS_UNITS = window.BS_UNITS || {};\nwindow.BS_UNITS['p2-01'] = " + JSON.stringify(u) + ";\n");
+      const r = spawnSync(process.execPath, [path.join(REAL, "tools/check-units.mjs"), "--root", qtmp].concat(extra || []), { encoding: "utf8" });
+      return { out: (r.stdout || "") + (r.stderr || ""), code: r.status };
+    };
+    const base = () => load(fx("qr-pass"));
+    const qrs = (u) => u.exercises.find((e) => e.type === "qr").items;
+    const LET = ["A", "B", "C"];
+    const mk = (i, answer) => ({
+      id: "qr9-" + i, kind: "who", q: { en: "Who handles request number " + i + "?", vi: "Ai xử lý yêu cầu " + i + "?" }, answer, explain_vi: "Giải thích " + i,
+      options: LET.map((L) => L === answer ? { label: L, en: "Mr. Chen in accounting.", vi: "Ông Chen." } : { label: L, en: "Not related answer " + L + " " + i + ".", vi: "Không liên quan.", trap: "wrong-wh", why_vi: "Sai loại câu hỏi." })
+    });
+    const many = (u, n, letters) => { qrs(u).length = 0; for (let i = 0; i < n; i++) qrs(u).push(mk(i + 1, letters(i))); return u; };
+
+    let r = runQ(base(), ["--release"]);
+    check("qr hợp lệ (fixture qr-pass): 0 lỗi, kể cả --release, không còn cảnh báo thiếu tf/câu luyện tập", r.code === 0 && /0 lỗi/.test(r.out) && !/câu đúng\/sai/.test(r.out) && !/câu luyện tập/.test(r.out), r.out);
+    check("qr hợp lệ: chỉ 4 câu nên cảnh báo < 20 câu và phân bố đáp án", /câu hỏi đáp \(qr\) 4 < 20/.test(r.out) && /đáp án B chiếm 50%/.test(r.out), r.out);
+
+    r = runQ(load(fx("qr-fail")));
+    check("fixture qr-fail: exit 1", r.code === 1, r.out);
+    for (const [name, re] of [
+      ["kind lạ", /kind 'weather' không hợp lệ/], ["thiếu q.vi", /q cần en và vi không rỗng/],
+      ["đáp án sai thiếu trap", /options\[B\]: đáp án sai cần trap/], ["đáp án sai thiếu why_vi", /options\[C\]: đáp án sai thiếu why_vi/],
+      ["đáp án đúng có trap", /đáp án đúng không được có trap/], ["đáp án đúng có why_vi", /đáp án đúng không được có why_vi/],
+      ["chỉ 2 đáp án", /cần đúng 3 đáp án có label A, B, C/], ["câu hỏi trùng", /bị trùng \(qr1-01 và qr1-05\)/]
+    ]) check("qr-fail báo lỗi: " + name, re.test(r.out), r.out);
+
+    let u = base(); qrs(u)[0].options[0].why_vi = "";
+    check("thiếu why_vi (chuỗi rỗng) là LỖI", /LỖI.*why_vi/.test(runQ(u).out));
+    u = base(); qrs(u)[0].answer = "D";
+    check("answer không thuộc A/B/C là lỗi", /answer 'D' phải là A, B hoặc C/.test(runQ(u).out));
+    u = base(); qrs(u)[0].options[1].label = "C"; qrs(u)[0].options[2].label = "B";
+    check("label sai thứ tự (A, C, B) là lỗi", /đúng 3 đáp án có label A, B, C theo thứ tự/.test(runQ(u).out));
+    u = base(); delete qrs(u)[0].explain_vi;
+    check("thiếu explain_vi là lỗi", /items\[0\]: thiếu explain_vi/.test(runQ(u).out));
+    u = base(); qrs(u)[0].options[0].vi = "";
+    check("đáp án thiếu vi là lỗi", /options\[A\]: thiếu en hoặc vi/.test(runQ(u).out));
+    u = base(); qrs(u)[0].options[0].trap = "nonsense";
+    check("trap ngoài danh sách là lỗi", /đáp án sai cần trap thuộc/.test(runQ(u).out));
+    u = base(); qrs(u)[1].kind = "yesno";
+    check("kind trong danh sách (yesno) được chấp nhận", runQ(u).code === 0);
+
+    u = base(); qrs(u)[0].v = { status: "unverified", note: "x" };
+    r = runQ(u, ["--release"]);
+    check("--release: qr item còn unverified bị LỖI", r.code === 1 && /items\[0\]: còn 'unverified'/.test(r.out), r.out);
+    r = runQ(u);
+    check("không --release: qr item unverified chỉ là cảnh báo/không lỗi", r.code === 0, r.out);
+    u = base(); u.exercises[0].v = { status: "unverified" };
+    check("--release: cả bài qr unverified cũng bị lỗi", /LỖI.*còn 'unverified'/.test(runQ(u, ["--release"]).out));
+
+    u = many(base(), 24, (i) => LET[i % 3]);
+    r = runQ(u);
+    check("24 câu, đáp án chia đều: không cảnh báo số lượng/phân bố, 0 lỗi", r.code === 0 && !/câu hỏi đáp/.test(r.out) && !/chiếm/.test(r.out) && !/đúng lặp từ/.test(r.out), r.out);
+    u = many(base(), 20, (i) => LET[i % 3]);
+    check("đúng 20 câu: không cảnh báo thiếu số lượng", !/câu hỏi đáp \(qr\)/.test(runQ(u).out));
+    u = many(base(), 24, (i) => (i < 12 ? "A" : LET[i % 3]));
+    r = runQ(u);
+    check("đáp án A quá nhiều (>45%): cảnh báo", /đáp án A chiếm/.test(r.out) && r.code === 0, r.out);
+    u = many(base(), 24, (i) => (i % 3 === 0 ? "A" : "B"));
+    check("đáp án C <20%: cảnh báo", /đáp án C chiếm 0%/.test(runQ(u).out));
+    u = many(base(), 24, (i) => LET[i % 3]); qrs(u)[0].q.en = "Where is the budget report?"; qrs(u)[0].options.forEach((o) => { if (o.label === qrs(u)[0].answer) o.en = "The budget report is on my desk."; });
+    r = runQ(u);
+    check("đáp án đúng lặp từ nội dung của câu hỏi: cảnh báo (nêu từ lặp)", /items\[0\]: đáp án đúng lặp từ của câu hỏi \(budget, report\)/.test(r.out), r.out);
+    u = many(base(), 24, (i) => LET[i % 3]); qrs(u)[0].q.en = "Who is the manager?"; qrs(u)[0].options.forEach((o) => { if (o.label === qrs(u)[0].answer) o.en = "It is the new one."; });
+    check("chỉ trùng từ chức năng (is, the): không cảnh báo", !/đúng lặp từ/.test(runQ(u).out));
+
+    u = base(); qrs(u)[0].audio = { q: "assets/audio/p2-01/q1.mp3", A: "assets/audio/p2-01/q1a.mp3" };
+    check("audio tùy chọn dạng {q,A,B,C} đường dẫn tương đối: hợp lệ", runQ(u).code === 0);
+    u = base(); qrs(u)[0].audio = { q: "https://x.test/a.mp3" };
+    check("audio là URL ngoài: lỗi", /audio\.q phải là đường dẫn tương đối/.test(runQ(u).out));
+    u = base(); qrs(u)[0].audio = { D: "a.mp3" };
+    check("audio khóa lạ: lỗi", /audio có khóa lạ 'D'/.test(runQ(u).out));
+    u = base(); qrs(u)[0].audio = "a.mp3";
+    check("audio không phải đối tượng: lỗi", /audio phải là đối tượng/.test(runQ(u).out));
+    u = base(); u.focus.tips[0].examples[0].q = "  ";
+    check("tip example q rỗng: lỗi", /examples\[0\]: q \(câu hỏi Part 2\) phải là chuỗi không rỗng/.test(runQ(u).out));
+    u = base(); u.sentences_title_vi = "";
+    check("sentences_title_vi rỗng: lỗi", /sentences_title_vi phải là chuỗi không rỗng/.test(runQ(u).out));
+    u = base(); u.exercises.push({ id: "tf9", type: "tf", instruction_vi: "x", items: [] });
+    check("unit qr vẫn kiểm bài tf không có ảnh (tf thiếu image là lỗi)", /bài tf thiếu image/.test(runQ(u).out));
+    u = base(); u.exercises.push({ id: "zz", type: "abc", instruction_vi: "x", items: [] });
+    check("type lạ: thông báo liệt kê cả qr", /không hợp lệ \(fill, tf, mc, qr\)/.test(runQ(u).out));
+  } finally {
+    fs.rmSync(qtmp, { recursive: true, force: true });
+  }
+}
+
 console.log("\ntest-check-units: " + pass + " đạt, " + fail + " lỗi");
 process.exit(fail ? 1 : 0);

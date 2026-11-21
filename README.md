@@ -16,7 +16,7 @@ Mở `http://localhost:8000/` (thư mục gốc dự án). Không cần cài đ�
 - `review.html`: ôn tập. `sw.js`, `manifest.webmanifest`, `assets/icons/`, `_headers`: PWA và cấu hình Cloudflare Pages.
 - `unit.html?u=<id>`: trang một unit với các tab theo thứ tự: Bài học, Hoạt hình, Từ vựng, Luyện nghe, Bài tập, Trò chơi. Tab Trò chơi có nút "Chia sẻ kết quả" (dùng chia sẻ của thiết bị hoặc chép vào bộ nhớ tạm).
 - `data/catalog.js`: mục lục (Part, unit, `available`). `data/<id>.js`: nội dung unit; `data/<id>-game.js`: dữ liệu trò chơi; `data/<id>-anim.js`: dữ liệu hoạt hình (khi catalog có `"anim": true`).
-- `assets/js/`: `core.js` (lưu trữ, tiến độ, HUD), `loader.js`, `home.js`, `lesson.js`, `flashcards.js`, `quiz.js`, `game.js`, `srs.js`, `review.js`, `backup.js`, `pwa.js`, `fx.js`, `mascot.js` (linh vật Bước), `anim-engine.js`, `anim-rig.js`, `anim-cast.js` (hoạt hình theo dữ liệu, kiểu `rig`), `anim-scenes.js` (hoạt hình ảnh tĩnh, kiểu `scenes`).
+- `assets/js/`: `core.js` (lưu trữ, tiến độ, HUD), `loader.js`, `home.js`, `lesson.js`, `flashcards.js`, `quiz.js`, `qr.js` (bài tập nghe hỏi - đáp của Part 2), `game.js`, `srs.js`, `review.js`, `backup.js`, `pwa.js`, `fx.js`, `mascot.js` (linh vật Bước), `anim-engine.js`, `anim-rig.js`, `anim-cast.js` (hoạt hình theo dữ liệu, kiểu `rig`), `anim-scenes.js` (hoạt hình ảnh tĩnh, kiểu `scenes`).
 - `assets/css/`: `site.css` (token màu, giao diện chung, có chế độ tối), `nav.css`, `home-extra.css` (trang chủ và 404), `hud.css`, `learn.css`, `game.css`, `review.css`, `backup.css`, `pwa.css`, `mascot.css`. `assets/img/<id>/`: hình minh họa.
 
 ## Tiến độ học lưu ở đâu
@@ -75,6 +75,17 @@ Sau khi deploy, kiểm bằng `curl -I`: `/sw.js` có `Cache-Control: no-cache`,
 ## Thêm một unit mới
 
 Làm theo `tools/templates/HUONG-DAN-UNIT.txt` (mẫu nội dung và trò chơi nằm trong `tools/templates/`; kiểm bằng `node tools/check-units.mjs --unit <id>`). Trình nạp (`assets/js/loader.js`) tự nạp `data/<id>.js` và `data/<id>-game.js` khi `data/catalog.js` khai báo; hoạt hình chỉ nạp khi người học mở tab Hoạt hình (`BS.loadAnim`). Không cần thêm thẻ `<script>` cho từng unit. Sau khi thêm unit và đặt `available: true`, thêm các file của unit vào `PRECACHE` trong `sw.js`, rồi chạy `node tools/check-sw.mjs --bump`.
+
+## Part 2 (Hỏi - đáp)
+
+Part 2 của TOEIC là nghe một câu hỏi (hoặc câu nói) rồi chọn câu trả lời tốt nhất trong ba đáp án A, B, C; trên đề không in gì. Bài tập loại này là `type: "qr"` (`assets/js/qr.js`). Catalog có bảy unit `p2-01` đến `p2-07` (mới mở những unit đã có nội dung).
+
+- Giọng đọc: chỉ dùng giọng của trình duyệt (`BS.speakSeq` trong `core.js`, file duy nhất chạm `speechSynthesis`): câu hỏi giọng en-US, ba đáp án giọng en-GB, cách nhau khoảng 0,7 giây. Không có tệp âm thanh; mỗi câu qr có trường tùy chọn `audio` ({q, A, B, C}, đường dẫn tương đối) dành cho sau này, hiện chưa được phát.
+- Trước khi trả lời không in gì ra (chỉ nút Nghe và A, B, C). Sau khi chọn: hiện câu hỏi và cả ba đáp án (tiếng Anh và tiếng Việt), đáp án đúng/sai, tên bẫy kèm `why_vi` của từng đáp án sai, giải thích. Luyện tập nghe lại không giới hạn; "Chế độ thi" (chỉ trong phiên, không lưu, không nằm trong sao lưu) chỉ cho nghe một lần, tốc độ 1.0. Phím 1/2/3 chọn A/B/C và R nghe lại (chỉ tác dụng trong câu đang được focus). Máy không có giọng tiếng Anh: có thông báo và nút "Hiện lời thoại" (câu đó không được XP).
+- Điểm lưu như các bài khác: `ans[id]` là "A", "B" hoặc "C", `res[id]` là 0 hoặc 1, +10 XP một lần mỗi câu; sao lưu không cần đổi định dạng. Tab Trò chơi và Hoạt hình tắt với unit Part 2.
+- Cách soạn một unit: sao chép `tools/templates/unit-template-p2.js` thành `data/p2-0N.js`. Mỗi unit gồm 24 câu qr (ba bài, mỗi bài 8 câu: theo dạng câu hỏi, theo bẫy, tổng hợp) cộng một bài `fill` về từ để hỏi. Mỗi đáp án sai bắt buộc có `trap` (similar-sound, repeat-word, wrong-wh, wrong-tense, wrong-subject, related-word, yesno-to-wh) và `why_vi`; đáp án đúng không có hai trường này. Thứ tự A/B/C cố định (lời giải nhắc theo chữ cái); `kind` thuộc danh sách trong `tools/check-units.mjs`.
+- Quy trình kiểm: (1) soạn, đánh dấu `"v": {"status": "unverified"}` ở các câu chưa nghe thử; (2) `node tools/check-units.mjs --unit p2-0N` (lỗi phải sửa; cảnh báo: dưới 20 câu qr, một chữ cái đáp án chiếm dưới 20% hoặc trên 45%, đáp án đúng lặp từ nội dung của câu hỏi); (3) mở `unit.html?u=p2-0N&edit=1` trên localhost (xem được unit chưa mở), nghe từng câu trên thiết bị thật có giọng en-US và en-GB, sửa rồi bỏ `unverified`; (4) đặt `available: true`, thêm file vào `PRECACHE`, `node tools/check-sw.mjs --bump`, rồi `node tools/check-units.mjs --release` (cổng này báo lỗi nếu còn câu qr `unverified`).
+- Kiểm tự động: `node tools/test-qr.mjs` (speakSeq, bộ chọn giọng, đồng hồ canh, hủy, chấm điểm, khôi phục, phím tắt, Chế độ thi), `node tools/test-check-units.mjs` (luật qr, dữ liệu mẫu ở `tools/fixtures/qr-*.js`), `node tools/test-backup.mjs`.
 
 ## Hoạt hình theo dữ liệu
 

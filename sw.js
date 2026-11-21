@@ -3,10 +3,10 @@
  * Không gửi dữ liệu đi đâu, không đụng request khác nguồn, không đụng localStorage.
  * Mỗi lần deploy có file precache đổi: sửa VERSION rồi chạy `node tools/check-sw.mjs --write`.
  */
-// content-hash: 34@bd6bb9ea0ff5139e
+// content-hash: 35@49edc8bee69d10b0
 "use strict";
 
-var VERSION = "34";
+var VERSION = "35";
 var PREFIX = "tb-";
 var CACHE = PREFIX + VERSION;
 var NAV_TIMEOUT = 3000;
@@ -96,6 +96,7 @@ var PRECACHE = [
   "assets/js/loader.js",
   "assets/js/mascot.js",
   "assets/js/pwa.js",
+  "assets/js/qr.js",
   "assets/js/quiz.js",
   "assets/js/review.js",
   "assets/js/srs.js",

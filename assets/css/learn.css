@@ -46,3 +46,24 @@
 .explain{margin:.3em 0}
 @media (prefers-reduced-motion:reduce){.sticky-actions,.ls-card{scroll-behavior:auto;transition:none!important}}
 .flash-due{margin:4px 0 8px;font-size:.95rem}.flash-due a{display:inline-flex;align-items:center;min-height:44px;min-width:44px}
+
+/* ---- Part 2: bai tap hoi - dap (qr) ---- */
+.qr-item{border-top:1px solid var(--line,#d9dee7);padding:12px 0 6px;margin-top:8px}
+.qr-item h4{margin:0 0 6px}
+.qr-play,.qr-peek,.qr-ctl .btn,.qr-lines .btn{min-height:44px;min-width:44px}
+.qr-note{margin:4px 0;font-size:.95rem}
+.qr-opts{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.qr-opt{flex:1 1 140px;text-align:left;white-space:normal;justify-content:flex-start;height:auto}
+.qr-opts .btn.opt-ok{border-color:var(--ok,#1a7f37);background:var(--ok-bg,#e6f4ea);color:var(--ink,#1c2733)}
+.qr-opts .btn.opt-bad{border-color:var(--bad,#c62828);background:var(--bad-bg,#fdeaea);color:var(--ink,#1c2733)}
+.qr-item .fb:focus{outline:3px solid var(--accent,#f59e0b);outline-offset:2px}
+.qr-lines{padding-left:0;list-style:none;margin:6px 0}
+.qr-lines li{margin:8px 0}
+.qr-right{border-left:4px solid var(--ok,#1a7f37);padding-left:8px}
+.qr-wrong{border-left:4px solid var(--bad,#c62828);padding-left:8px}
+.qr-trap{margin:.2em 0 0}
+.qr-keys{font-size:.9rem}
+.qr-tr p{margin:.2em 0}
+.qr-res{font-weight:700;margin:.3em 0}
+.qr-res-ok{color:var(--ok,#1a7f37)}
+.qr-res-bad{color:var(--bad,#c62828)}

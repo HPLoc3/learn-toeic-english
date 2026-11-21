@@ -32,7 +32,7 @@
 
   function collect(u) {
     var out = [];
-    (u.sentences || []).forEach(function (s) { out.push({ sid: s.id, group: "Luyện tập mô tả hành động trong hình", en: s.en, obj: s, v: s.v }); });
+    (u.sentences || []).forEach(function (s) { out.push({ sid: s.id, group: u.sentences_title_vi || "Luyện tập mô tả hành động trong hình", en: s.en, obj: s, v: s.v }); });
     (u.exercises || []).forEach(function (ex, exIdx) {
       (ex.items || []).forEach(function (it) {
         if (ex.type === "fill") { var t = fillSentence(it); if (t) out.push({ sid: it.id, group: "Điền chỗ trống (Bài " + (exIdx + 1) + ")", en: t, obj: null, v: it.v }); }
@@ -437,13 +437,17 @@
     return card;
   }
 
+  /* dung chung cho qr.js (Part 2) */
+  BS.quizKit = { saveScore: saveScore, resetEx: resetEx, scoreText: scoreText, makeNotice: makeNotice, SPEEDS: SPEEDS };
+
   BS.render.quiz = function (u, root) {
     var st = BS.unit(u.id);
     root.appendChild(el("h2", { text: "Bài tập" }));
     var exs = u.exercises || [];
     if (!exs.length) { root.appendChild(el("p", { text: "Chưa có bài tập." })); return; }
     exs.forEach(function (ex, i) {
-      var card = ex.type === "fill" ? renderFill(ex, i, st, u.id) : ex.type === "tf" ? renderTF(ex, i, st, u.id) : ex.type === "mc" ? renderMC(ex, i, st, u.id) : null;
+      var card = ex.type === "fill" ? renderFill(ex, i, st, u.id) : ex.type === "tf" ? renderTF(ex, i, st, u.id) : ex.type === "mc" ? renderMC(ex, i, st, u.id)
+        : ex.type === "qr" && typeof BS.renderQR === "function" ? BS.renderQR(ex, i, st, u.id) : null;
       if (card) root.appendChild(card);
     });
   };

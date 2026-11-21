@@ -12,14 +12,20 @@
 
   function exampleItem(ex) {
     var vi = BS.viLine(ex);
-    var kids = [
-      el("p", { class: "en", lang: "en" }, [
-        ex.en || "", " ",
-        el("button", { type: "button", class: "btn btn-speak", "aria-label": "Nghe câu: " + (ex.en || ""),
-          onclick: function () { BS.speak(ex.en || "", 0.9); } }, [el("span", { "aria-hidden": "true", text: "🔊" }), " Nghe"]),
-        " ", BS.badgeUnverified(ex.v)
-      ])
-    ];
+    var q = typeof ex.q === "string" && ex.q ? ex.q : null; /* Part 2: q = cau hoi, en = cau tra loi */
+    function play() {
+      if (q && typeof BS.speakSeq === "function") BS.speakSeq([{ text: q, accent: "us" }, { text: ex.en || "", accent: "gb" }], { rate: 0.9 });
+      else BS.speak(ex.en || "", 0.9);
+    }
+    var kids = [];
+    if (q) kids.push(el("p", { class: "en", lang: "en" }, [el("strong", { text: "Hỏi: " }), q]));
+    kids.push(el("p", { class: "en", lang: "en" }, [
+      q ? el("strong", { text: "Đáp: " }) : null, ex.en || "", " ",
+      el("button", { type: "button", class: "btn btn-speak", "aria-label": (q ? "Nghe câu hỏi và câu trả lời: " : "Nghe câu: ") + (q ? q + " " : "") + (ex.en || ""), onclick: play },
+        [el("span", { "aria-hidden": "true", text: "🔊" }), " Nghe"]),
+      " ", BS.badgeUnverified(ex.v)
+    ]));
+    if (q && ex.q_vi) kids.push(el("p", { class: "vi-line" }, ["Hỏi: " + ex.q_vi]));
     if (vi) kids.push(el("p", { class: "vi-line" }, [vi]));
     return el("li", { class: "ex" }, kids);
   }
@@ -40,7 +46,7 @@
       root.appendChild(card);
     });
     if (u.sentences && u.sentences.length) {
-      root.appendChild(el("h2", { text: "Luyện tập mô tả hành động trong hình" }));
+      root.appendChild(el("h2", { text: u.sentences_title_vi || "Luyện tập mô tả hành động trong hình" }));
       root.appendChild(el("ul", { class: "list card" }, u.sentences.map(exampleItem)));
     }
     if (u.phrases && u.phrases.length) {

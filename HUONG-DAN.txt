@@ -15,6 +15,7 @@ TỪNG BƯỚC ENGLISH - HƯỚNG DẪN NHANH
 12. Trước khi phát hành lần đầu: LEGACY_ANCHOR trong assets/js/srs.js phải là ngày deploy thật (đã đặt 2026-11-21). Số VERSION xem trong sw.js; mỗi lần deploy chạy node tools/check-sw.mjs --bump.
     Deploy lên Cloudflare Pages: nhánh main, framework preset None, build command  node tools/build-dist.mjs , build output directory  dist , root directory để trống, tên miền hophuloc.online.
     build-dist tự chạy cổng phát hành (check-units --release và check-sw) rồi chỉ chép file của website vào dist/ (không có tools/, .md, .txt). Chi tiết: README.md, mục "Deploy lên Cloudflare Pages".
-13. Chi tiết (cấu trúc, chế độ biên tập, PWA): xem README.md.
+13. Part 2 (Hỏi - đáp): bài tập nghe câu hỏi + 3 đáp án A/B/C bằng giọng đọc của trình duyệt (không có tệp âm thanh); mẫu tools/templates/unit-template-p2.js, quy trình soạn và kiểm: README.md, mục "Part 2".
+14. Chi tiết (cấu trúc, chế độ biên tập, PWA): xem README.md.
 
 TOEIC là nhãn hiệu của ETS. Trang này độc lập, không liên kết với hay được ETS chứng nhận.

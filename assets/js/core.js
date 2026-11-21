@@ -311,6 +311,7 @@
         if (isFinite(Number(opts.rate)) && Number(opts.rate) > 0) rate = Number(opts.rate);
         if (opts.accent === "gb" || opts.accent === "au" || opts.accent === "us") accent = opts.accent;
       }
+      cancelSeq();
       s.cancel();
       var m = new SpeechSynthesisUtterance(text);
       var tag = { us: "US", gb: "GB", au: "AU" }[accent];
@@ -325,7 +326,77 @@
       return true;
     } catch (e) { return false; }
   }
+  /* Giong cho mot accent ("us"|"gb"|"au"): { v: giong | null, exact: co dung accent khong }. Chi dung khi co giong en-*. */
+  function pickVoice(accent) {
+    var vs = enVoices(), tag = { us: "US", gb: "GB", au: "AU" }[accent] || "US";
+    var re = new RegExp("^en[-_]" + tag + "$", "i");
+    var v = vs.filter(function (x) { return re.test(x.lang); })[0];
+    if (v) return { v: v, exact: true };
+    return { v: vs.filter(function (x) { return /^en[-_]US$/i.test(x.lang); })[0] || vs[0] || null, exact: false };
+  }
+  /* Doc mot day cau lien tiep (vd cau hoi, A, B, C): parts = [{ text, accent: "us"|"gb"|"au", pause: ms sau phan nay }].
+   * opts: { rate, onend }. onend chi chay khi doc het (khong chay khi huy). Tra ve { cancel() } hoac null (khong ho tro / khong co phan nao).
+   * Khong nem loi. Dat dong ho canh chung vi onend khong dang tin tren mot so ban Android; Chrome Android hay bo qua `voice`
+   * nen moi phan dat them utterance.lang theo accent. Khong co giong rieng cho accent: dung chung giong, nang cao do (pitch) de phan biet. */
+  var seqCur = null;
+  function cancelSeq() {
+    var c = seqCur;
+    seqCur = null;
+    if (c) c.stop();
+  }
+  function speakSeq(parts, opts) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === "undefined" || !Array.isArray(parts)) return null;
+      var list = parts.filter(function (p) { return isObj(p) && typeof p.text === "string" && p.text.trim(); });
+      if (!list.length) return null;
+      var rate = isObj(opts) && isFinite(Number(opts.rate)) && Number(opts.rate) > 0 ? Number(opts.rate) : 0.9;
+      var onend = isObj(opts) && typeof opts.onend === "function" ? opts.onend : null;
+      cancelSeq();
+      s.cancel();
+      var i = 0, over = false, wd = 0, gap = 0;
+      var h = { cancel: function () { if (seqCur === h) seqCur = null; h.stop(); },
+        stop: function () { over = true; clearTimeout(wd); clearTimeout(gap); } };
+      function finish(done) {
+        if (over) return;
+        h.cancel();
+        if (done && onend) { try { onend(); } catch (e) { /* bo qua */ } }
+      }
+      function next() {
+        if (over) return;
+        if (i >= list.length) { finish(true); return; }
+        var p = list[i++], moved = false;
+        function adv(bad) {
+          if (moved || over) return;
+          moved = true;
+          clearTimeout(wd);
+          if (bad) { finish(false); return; }
+          var pause = isFinite(Number(p.pause)) ? Number(p.pause) : 700;
+          if (i >= list.length) pause = 0;
+          gap = setTimeout(next, pause);
+        }
+        try {
+          var accent = p.accent === "gb" || p.accent === "au" ? p.accent : "us";
+          var m = new SpeechSynthesisUtterance(p.text), pk = pickVoice(accent);
+          m.lang = "en-" + { us: "US", gb: "GB", au: "AU" }[accent];
+          m.rate = rate;
+          if (pk.v) m.voice = pk.v;
+          h.keep = m; /* giu tham chieu: Chrome co the nuot onend neu utterance bi don rac */
+          if (!pk.exact && accent !== "us") m.pitch = 1.2;
+          m.onend = function () { adv(false); };
+          m.onerror = function (ev) { var er = ev && ev.error; adv(er === "canceled" || er === "interrupted"); };
+          /* neu onend khong ve: sang phan sau (khi do cac phan xep hang trong hang doi cua trinh duyet) */
+          wd = setTimeout(function () { adv(false); }, 2500 + Math.round(p.text.length * 95 / rate));
+          s.speak(m);
+        } catch (e) { finish(false); }
+      }
+      seqCur = h;
+      next();
+      return h;
+    } catch (e) { return null; }
+  }
   function stopSpeak() {
+    cancelSeq();
     try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) { /* bo qua */ }
   }
   function onVoices(cb) {
@@ -514,7 +585,7 @@
     el: el, state: state, save: save, unit: unit, countUnverified: countUnverified,
     badgeUnverified: badgeUnverified, viLine: viLine, img: img, isWide: isWide, norm: norm, KEY: KEY,
     dayKey: dayKey, addXP: addXP, stats: stats, pref: pref, setPref: setPref, isEdit: isEdit,
-    speak: speak, stopSpeak: stopSpeak, hasVoice: hasVoice, onVoices: onVoices,
+    speak: speak, speakSeq: speakSeq, stopSpeak: stopSpeak, hasVoice: hasVoice, onVoices: onVoices,
     reload: reload, exportState: exportState, importState: importState, REP_CAP: REP_CAP, celebrate: celebrate, mountHud: mountHud, unitProgress: unitProgress, bar: bar,
     render: {}
   };
