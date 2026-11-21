@@ -13,7 +13,7 @@ window.BS_UNITS.l01 = {
         "image": "assets/img/l01/pic/focus-800.webp",
         "examples": [
           { "en": "The man is pouring water from a kettle.", "vi": "Người đàn ông đang rót nước từ ấm ra." },
-          { "en": "The man is filling a cup with water.", "vi": "Người đàn ông đang rót đầy nước vào cái cốc." }
+          { "en": "The man is pouring water into a cup.", "vi": "Người đàn ông đang rót nước vào cái cốc." }
         ]
       },
       {

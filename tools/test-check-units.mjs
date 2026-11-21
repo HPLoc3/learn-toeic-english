@@ -34,12 +34,13 @@ function run(mutate) {
 }
 const allWebp = (cfg) => { cfg.rounds.forEach((r, i) => { r.img = SCENES[i % SCENES.length]; }); };
 
+const MIX_L02 = /\[l02\] game trộn ảnh/;
 try {
   let r = run(() => {});
-  check("thật: l02 hiện tại không lỗi, có cảnh báo trộn svg/webp", r.code === 0 && /trộn ảnh \.svg/.test(r.out), r.out);
+  check("thật: l02 hiện tại không lỗi, có cảnh báo trộn svg/webp", r.code === 0 && MIX_L02.test(r.out), r.out);
 
   r = run(allWebp);
-  check("toàn webp: không cảnh báo trộn", r.code === 0 && !/[l02] game trộn ảnh/.test(r.out), r.out);
+  check("toàn webp: không cảnh báo trộn", r.code === 0 && !MIX_L02.test(r.out), r.out);
 
   r = run((cfg) => { allWebp(cfg); cfg.ratio = "16:9"; });
   check("ratio 16:9 hợp lệ", r.code === 0 && !/ratio/.test(r.out), r.out);

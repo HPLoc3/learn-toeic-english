@@ -88,7 +88,8 @@ window.BS_UNITS.l02 = {
     { "id": "v029", "en": "box", "vi": "cái hộp, thùng giấy", "group": "fill" },
     { "id": "v030", "en": "bouquet", "vi": "bó hoa", "group": "fill" },
     { "id": "v031", "en": "carry", "vi": "mang, xách, đeo", "group": "fill" },
-    { "id": "v032", "en": "hand", "vi": "đưa, trao (động từ)", "group": "fill" }
+    { "id": "v032", "en": "hand", "vi": "đưa, trao (động từ)", "group": "fill" },
+    { "id": "v033", "en": "apron", "vi": "tạp dề", "group": "fill" }
   ],
   "phrases": [
     { "id": "p01", "en": "shake hands with a colleague", "vi": "bắt tay với một đồng nghiệp", "group_vi": "Hành động chung của cả nhóm" },
@@ -171,7 +172,7 @@ window.BS_UNITS.l02 = {
         { "label": "A", "en": "They are sitting on a bench.", "why_vi": "Động từ sai: hai người đang đi bộ (walking), không ngồi (sitting)." },
         { "label": "B", "en": "They are shaking hands.", "why_vi": "Động từ sai: hai người đang đi bộ, không ai bắt tay." },
         { "label": "C", "en": "They are walking side by side." },
-        { "label": "D", "en": "Both people are wearing aprons.", "why_vi": "Sai vì hành động của một người bị gán cho cả hai: chỉ người đàn ông mặc tạp dề, người phụ nữ thì không." }
+        { "label": "D", "en": "Both people are wearing aprons.", "why_vi": "Sai vì trang phục của một người bị gán cho cả hai: chỉ người đàn ông mặc tạp dề, người phụ nữ thì không." }
       ],
       "answer": "C",
       "explain_vi": "Hai người đang đi bộ sánh vai nhau trên đường."
