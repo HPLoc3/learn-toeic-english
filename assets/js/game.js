@@ -94,7 +94,12 @@
     return 2 + (combo >= 5 ? 2 : combo >= 3 ? 1 : 0);
   }
 
-  var api = { shuffle: shuffle, pickDistractors: pickDistractors, resolveSentence: resolveSentence,
+  /* Lop CSS cho luoi hinh theo cfg.ratio ("16:9" cho anh nen 16:9); moi gia tri khac giu 4:3. */
+  function gridClass(cfg) {
+    return "game-grid" + (cfg && cfg.ratio === "16:9" ? " game-grid--16x9" : "");
+  }
+
+  var api = { gridClass: gridClass, shuffle: shuffle, pickDistractors: pickDistractors, resolveSentence: resolveSentence,
     avoidImages: avoidImages, pickRounds: pickRounds, gainFor: gainFor, ROUNDS_PER_GAME: ROUNDS_PER_GAME };
 
   if (typeof window === "undefined") return;
@@ -199,12 +204,12 @@
       if (S.voice) prompt.appendChild(listenBtn);
       prompt.appendChild(sentBox);
 
-      var grid = el("div", { class: "game-grid", role: "group", "aria-labelledby": "game-q" });
+      var grid = el("div", { class: gridClass(cfg), role: "group", "aria-labelledby": "game-q" });
       ui.opts = S.opts.map(function (src, i) {
         var b = el("button", { type: "button", class: "game-opt", "aria-keyshortcuts": String(i + 1), "aria-label": "Hình " + (i + 1),
           onclick: function () { choose(i); } }, [
           el("span", { class: "game-num", "aria-hidden": "true", text: String(i + 1) }),
-          el("img", { src: src, alt: "Hình " + (i + 1), draggable: "false" }),
+          el("img", { src: src, alt: "Hình " + (i + 1), draggable: "false", class: "game-img" + (BS.isWide(src) ? " game-img--wide" : "") }),
           el("span", { class: "game-mark", "aria-hidden": "true" })
         ]);
         grid.appendChild(b);

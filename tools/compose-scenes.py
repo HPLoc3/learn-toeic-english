@@ -308,7 +308,77 @@ def flower_bg(var):
     return Image.blend(im, Image.new("RGB", (W, H), (246, 238, 238)), 0.2)
 
 
+def kitchen_bg():
+    """Kitchen wall for the Unit 1 focus picture: window, tiled backsplash, wall cabinets, jars."""
+    cv = Cv((0, 0, 0, 255))
+    cv.vgrad(0, 0, W, H, (246, 240, 232), (240, 233, 246))
+    cv.rect(70, 90, 480, 520, fill=(252, 246, 232, 255), r=8)                 # window
+    cv.vgrad(88, 108, 462, 502, (212, 224, 250), (240, 240, 252))
+    cv.ell(170, 470, 100, 80, fill=(186, 211, 186, 255))
+    cv.ell(360, 480, 120, 90, fill=(170, 202, 176, 255))
+    cv.rect(266, 108, 284, 502, fill=(252, 246, 232, 255))
+    cv.rect(88, 300, 462, 316, fill=(252, 246, 232, 255))
+    for k in range(2):                                                        # wall cabinets
+        x = 560 + k * 250
+        cv.rect(x, 60, x + 236, 300, fill=(238, 226, 214, 255), r=8)
+        cv.rect(x + 14, 74, x + 222, 286, fill=(222, 208, 236, 255), r=6)
+        cv.rect(x + 100, 250, x + 136, 262, fill=(150, 112, 94, 255), r=4)
+    cv.rect(0, 440, W, 650, fill=(236, 230, 246, 255))                        # backsplash tiles
+    for yy in range(440, 650, 52):
+        cv.line([(0, yy), (W, yy)], fill=(210, 200, 232, 255), w=3)
+    for r_, yy in enumerate(range(440, 650, 52)):
+        for xx in range((r_ % 2) * 60 - 120, W, 120):
+            cv.line([(xx, yy), (xx, yy + 52)], fill=(210, 200, 232, 255), w=3)
+    cv.rect(0, 640, W, 660, fill=(222, 184, 150, 255))                        # back worktop edge
+    # plain wall corner right of x=900: the man stands here, a flat wall keeps the matte gap in his cut-out invisible
+    cv.rect(900, 300, W, 770, fill=(247, 241, 236, 255))
+    cv.rect(896, 300, 904, 770, fill=(214, 204, 226, 255))
+    im = cv.out().filter(ImageFilter.GaussianBlur(3.2)).convert("RGB")
+    return Image.blend(im, Image.new("RGB", (W, H), (246, 240, 238)), 0.2)
+
+
+def fruit_bowl(cv, cx, by, s=1.0):
+    """Bowl of fruit (apples, orange, pear, grapes) on a counter; centre x cx, base y by (canvas px)."""
+    fr = [(-58, -62, 34, (222, 92, 84)), (6, -78, 36, (244, 162, 72)), (62, -58, 32, (226, 104, 92)),
+          (-18, -54, 30, (246, 214, 96)), (34, -50, 26, (160, 196, 110))]
+    for dx, dy, r, c in fr:
+        cv.ell(cx + dx * s, by + dy * s, r * s, r * s, fill=c + (255,), ol=OL, w=1.6)
+        cv.ell(cx + (dx - r * .3) * s, by + (dy - r * .35) * s, r * .22 * s, r * .16 * s, fill=mix(c, (255, 255, 255), .55) + (255,))
+        cv.line([(cx + dx * s, by + (dy - r) * s), (cx + (dx + 4) * s, by + (dy - r - 12) * s)], fill=(120, 84, 64, 255), w=2.5)
+    leaf(cv, cx + 2 * s, by - 112 * s, -30, 34 * s, 9 * s, GREEN2, OL)
+    cv.poly([(cx - 110 * s, by - 56 * s), (cx + 110 * s, by - 56 * s), (cx + 80 * s, by - 6 * s), (cx - 80 * s, by - 6 * s)],
+            fill=(236, 230, 250, 255), ol=OL, w=1.8)
+    cv.rect(cx - 116 * s, by - 62 * s, cx + 116 * s, by - 48 * s, fill=(190, 176, 236, 255), ol=OL, w=1.6, r=5)
+    cv.rect(cx - 50 * s, by - 6 * s, cx + 50 * s, by + 6 * s, fill=(190, 176, 236, 255), ol=OL, w=1.6, r=4)
+
+
+def desk_props(cv):
+    """Mug, stack of papers and desk lamp on the right of the desk (mai-type picture, canvas px)."""
+    # stack of papers
+    for k in range(4):
+        y1 = 806 - k * 10
+        cv.poly([(1140 - k * 3, y1 - 8), (1320 - k * 2, y1 - 8), (1350 - k * 2, y1 + 12), (1110 - k * 3, y1 + 12)],
+                fill=((252, 250, 246) if k % 2 == 0 else (240, 236, 250)) + (255,), ol=OL, w=1.4)
+    cv.line([(1140, 758), (1270, 758)], fill=(176, 168, 214, 255), w=3)
+    # mug
+    cv.ell(1430, 806, 40, 9, fill=(150, 104, 80, 110))
+    cv.rect(1392, 744, 1468, 806, fill=(250, 246, 240, 255), ol=OL, w=1.6, r=8)
+    cv.d.arc([x * SS for x in (1450, 756, 1494, 796)], -90, 90, fill=OL, width=int(7 * SS))
+    cv.rect(1392, 744, 1468, 754, fill=(110, 76, 66, 255), r=4)
+    # desk lamp
+    lx = 1566
+    cv.ell(lx, 780, 34, 8, fill=(150, 104, 80, 110))
+    cv.rect(lx - 30, 770, lx + 30, 784, fill=VIO + (255,), ol=OL, w=1.6, r=6)
+    cv.line([(lx, 770), (lx - 40, 640)], fill=OL, w=8)
+    cv.line([(lx - 40, 640), (lx - 120, 600)], fill=OL, w=8)
+    cv.line([(lx, 770), (lx - 40, 640)], fill=(190, 176, 236, 255), w=4)
+    cv.line([(lx - 40, 640), (lx - 120, 600)], fill=(190, 176, 236, 255), w=4)
+    cv.poly([(lx - 160, 596), (lx - 100, 580), (lx - 84, 628), (lx - 150, 632)], fill=YEL + (255,), ol=OL, w=1.6)
+
+
 BG = {"cafe": cafe_bg, "office": office_bg, "flower": flower_bg}
+CUT_ALIAS = {"focus": "nam-pour", "mc1": "mai-type"}
+PIC_SCENES = ["focus", "mc1"]     # exercise pictures: same cut-outs, new backgrounds/props (l01)
 
 
 # ---------------------------------------------------------------- scene specs
@@ -392,9 +462,23 @@ def make_scene(name, cut_dir):
         for k in range(-1, 3):
             px = 20 + k * 240
             fg.poly([t(px, 660), t(px + 200, 660), t(px + 200, SH + 140), t(px, SH + 140)], fill=WOOD_D + (255,), ol=OL, w=1.4)
+    elif name == "focus":
+        bg = kitchen_bg()
+        t = mk_t(sc, ox, oy)
+        counter_plain(mid, fg, t, 650, 714)
+        cx, cy = t(860, 698)
+        mid.ell(cx, cy, 70 * sc, 10 * sc, fill=(150, 104, 80, 120))
+        fruit_bowl(mid, 330, 822)
+    elif name == "mc1":
+        bg = office_bg(1)
+        t = mk_t(sc, ox, oy)
+        desk_top(mid, t, 618, 716)
+        laptop(mid, t)
+        desk_props(mid)
+        desk_front(fg, t, 716)
     else:
         raise SystemExit("unknown scene " + name)
-    person = Image.open(os.path.join(cut_dir, name + ".png")).convert("RGBA")
+    person = Image.open(os.path.join(cut_dir, CUT_ALIAS.get(name, name) + ".png")).convert("RGBA")
     person = person.resize((int(round(SW * sc)), int(round(SH * sc))), Image.LANCZOS)
     out = bg.convert("RGBA")
     out = Image.alpha_composite(out, mid.out())
@@ -780,11 +864,11 @@ def main():
         a.out = os.path.join("..", "nguon-hinh", "agy-anh-u2" if l2 else "agy-anh")
     names = [n for n in a.only.split(",") if n] or scenes
     for n in names:
-        if n not in scenes:
+        if n not in scenes and not (a.unit == "l01" and n in PIC_SCENES):
             print("unknown scene: " + n, file=sys.stderr)
             return 1
-        if not os.path.exists(os.path.join(a.cut, n + ".png")):
-            print("missing cut-out: " + os.path.join(a.cut, n + ".png"), file=sys.stderr)
+        if not os.path.exists(os.path.join(a.cut, CUT_ALIAS.get(n, n) + ".png")):
+            print("missing cut-out: " + os.path.join(a.cut, CUT_ALIAS.get(n, n) + ".png"), file=sys.stderr)
             return 3
     os.makedirs(a.out, exist_ok=True)
     done = []

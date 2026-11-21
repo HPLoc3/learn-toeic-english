@@ -13,15 +13,26 @@ export const ROOT = resolve(here, "..");
 
 /* ---------- ALLOWLIST ---------- */
 // File ở thư mục gốc được phép (đường dẫn dạng posix).
-const ROOT_FILES = new Set(["_headers", "_redirects", "sw.js", "manifest.webmanifest", "favicon.ico"]);
+const ROOT_FILES = new Set(["_headers", "_redirects", "sw.js", "manifest.webmanifest", "favicon.ico", "robots.txt"]);
 const ROOT_HTML = /^[A-Za-z0-9_-]+\.html$/;
 // Thư mục được phép (gồm assets/img-hd/).
 const SITE_DIRS = ["assets/", "data/"];
 // Đuôi file nội bộ không bao giờ được vào dist, kể cả nằm trong thư mục được phép.
 const FORBIDDEN_EXT = /\.(md|txt|py|mjs|log)$/i;
 
+// Tệp công khai cho máy chủ/trình thu thập: robots.txt ở gốc và tệp dưới .well-known/ (kể cả .txt, .json).
+// .well-known/ CHỈ dành cho tệp công khai: không nhận đường dẫn có "..", dấu "\\", .md/.py/.mjs/.log, tệp README*, hay tệp ẩn (tên bắt đầu bằng ".").
+export function isPublicMeta(rel) {
+  if (typeof rel !== "string" || rel.includes("\\") || rel.split("/").includes("..")) return false;
+  if (rel === "robots.txt") return true;
+  if (!rel.startsWith(".well-known/") || rel.length === ".well-known/".length) return false;
+  const base = rel.slice(rel.lastIndexOf("/") + 1);
+  return base !== "" && !base.startsWith(".") && !/^readme/i.test(base) && !/\.(md|py|mjs|log)$/i.test(base);
+}
+
 export function isSiteFile(rel) {
   if (rel.includes("\\") || rel.startsWith("/") || rel.split("/").includes("..")) return false;
+  if (isPublicMeta(rel)) return true;
   if (FORBIDDEN_EXT.test(rel)) return false;
   if (!rel.includes("/")) return ROOT_FILES.has(rel) || ROOT_HTML.test(rel);
   return SITE_DIRS.some((d) => rel.startsWith(d));
@@ -126,7 +137,7 @@ export function verifyDist(dist) {
     }
   }
   for (const f of files) {
-    if (/\.(md|txt)$/i.test(f) || /^tools\//.test(f) || /(^|\/)\.[^/]/.test(f)) errors.push("File nội bộ lọt vào dist: " + f);
+    if (!isPublicMeta(f) && (/\.(md|txt)$/i.test(f) || /^tools\//.test(f) || /(^|\/)\.[^/]/.test(f))) errors.push("File nội bộ lọt vào dist: " + f);
     if (!isSiteFile(f)) errors.push("File ngoài allowlist trong dist: " + f);
   }
   return { errors, files };

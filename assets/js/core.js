@@ -330,15 +330,23 @@
   }
   function onVoices(cb) {
     if (typeof cb !== "function") return;
-    function run() { try { cb(hasVoice()); } catch (e) { /* bo qua */ } }
+    var live = true, tid = 0, ss = null;
+    function run() { if (live) try { cb(hasVoice()); } catch (e) { /* bo qua */ } }
     run();
     try {
       if ("speechSynthesis" in window) {
-        window.speechSynthesis.getVoices();
-        if (typeof window.speechSynthesis.addEventListener === "function") window.speechSynthesis.addEventListener("voiceschanged", run);
+        ss = window.speechSynthesis;
+        ss.getVoices();
+        if (typeof ss.addEventListener === "function") ss.addEventListener("voiceschanged", run);
       }
     } catch (e) { /* bo qua */ }
-    setTimeout(run, 800);
+    tid = setTimeout(run, 800);
+    /* tra ve ham huy dang ky (go lang nghe voiceschanged, huy hen gio); noi goi cu khong dung ket qua nen khong doi */
+    return function () {
+      live = false;
+      if (tid) { clearTimeout(tid); tid = 0; }
+      try { if (ss && typeof ss.removeEventListener === "function") ss.removeEventListener("voiceschanged", run); } catch (e) { /* bo qua */ }
+    };
   }
 
   /* ---------- tien ich hien thi ---------- */
@@ -373,8 +381,11 @@
     return box;
   }
 
+  /* Ảnh .webp (kể cả có ?query/#hash) là ảnh 16:9; dùng chung cho .fig và ô ảnh của game. */
+  function isWide(src) { return /\.webp(?:[?#]|$)/i.test(String(src || "")); }
+
   function img(src, alt) {
-    var i = el("img", { src: src, alt: alt, class: "fig" });
+    var i = el("img", { src: src, alt: alt, class: "fig" + (isWide(src) ? " fig--wide" : "") });
     i.addEventListener("error", function () {
       var p = el("p", { class: "muted fig-missing", text: "(Chưa có ảnh: " + alt + ")" });
       if (i.parentNode) i.parentNode.replaceChild(p, i);
@@ -501,7 +512,7 @@
 
   window.BS = {
     el: el, state: state, save: save, unit: unit, countUnverified: countUnverified,
-    badgeUnverified: badgeUnverified, viLine: viLine, img: img, norm: norm, KEY: KEY,
+    badgeUnverified: badgeUnverified, viLine: viLine, img: img, isWide: isWide, norm: norm, KEY: KEY,
     dayKey: dayKey, addXP: addXP, stats: stats, pref: pref, setPref: setPref, isEdit: isEdit,
     speak: speak, stopSpeak: stopSpeak, hasVoice: hasVoice, onVoices: onVoices,
     reload: reload, exportState: exportState, importState: importState, REP_CAP: REP_CAP, celebrate: celebrate, mountHud: mountHud, unitProgress: unitProgress, bar: bar,

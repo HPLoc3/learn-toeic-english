@@ -9,11 +9,11 @@ window.BS_UNITS.l01 = {
     "tips": [
       {
         "id": "tip1",
-        "text_vi": "Tìm chủ ngữ và động từ chính của câu: xác định đó là the man hay the woman, rồi nghe kỹ cụm be + V-ing (is pouring, is filling, is typing...) để biết người ấy đang làm gì.",
-        "image": "assets/img/l01/focus.svg",
+        "text_vi": "Tìm chủ ngữ và động từ chính của câu: xác định đó là the man hay the woman, rồi nghe kỹ cụm be + V-ing (is pouring, is typing, is holding...) để biết người ấy đang làm gì.",
+        "image": "assets/img/l01/pic/focus-800.webp",
         "examples": [
           { "en": "The man is pouring water from a kettle.", "vi": "Người đàn ông đang rót nước từ ấm ra." },
-          { "en": "The man is filling a cup with water.", "vi": "Người đàn ông đang rót đầy nước vào cái cốc." }
+          { "en": "The man is pouring water into a cup.", "vi": "Người đàn ông đang rót nước vào cái cốc." }
         ]
       },
       {
@@ -140,7 +140,7 @@ window.BS_UNITS.l01 = {
     {
       "id": "mc1",
       "type": "mc",
-      "image": "assets/img/l01/mc1.svg",
+      "image": "assets/img/l01/pic/mc1-800.webp",
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
         { "label": "A", "en": "The woman is drinking from a mug.", "why_vi": "Cái cốc (mug) có trên bàn nhưng cô không đang uống (drinking). Trong hình không có hành động này." },
@@ -196,13 +196,13 @@ window.BS_UNITS.l01 = {
     {
       "id": "mc5",
       "type": "mc",
-      "image": "assets/img/l01/mc1.svg",
+      "image": "assets/img/l01/scene/hanh-wear-800.webp",
       "instruction_vi": "Nhìn hình và chọn câu mô tả đúng nhất.",
       "options": [
         { "label": "A", "en": "The woman is holding a telephone.", "why_vi": "Trong hình không có điện thoại." },
         { "label": "B", "en": "The woman is taking off her glasses.", "why_vi": "Động từ sai: cô đang đeo kính sẵn (wearing) chứ không phải đang tháo (taking off) kính." },
         { "label": "C", "en": "The woman is wearing glasses." },
-        { "label": "D", "en": "The woman is carrying a stack of papers.", "why_vi": "Chồng giấy (papers) nằm trên bàn nhưng cô không đang xách (carrying) nó. Trong hình không có hành động này." }
+        { "label": "D", "en": "The woman is watering some flowers.", "why_vi": "Hoa có trong hình nhưng cô không đang tưới (watering) hoa. Trong hình không có hành động này và không có bình tưới." }
       ],
       "answer": "C",
       "explain_vi": "Người phụ nữ đang đeo kính."

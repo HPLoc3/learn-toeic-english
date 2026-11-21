@@ -58,6 +58,7 @@ main.wrap{padding-top:8px}
 [role="tabpanel"]:focus{outline:none}
 /* anh */
 .fig{display:block;max-width:100%;height:auto;margin:12px 0;border:1px solid var(--line);border-radius:var(--radius-sm)}
+.fig--wide{aspect-ratio:16/9;object-fit:contain;background:var(--card)}
 .fig-missing{font-style:italic}
 /* details / summary dung chung */
 .fold{margin:12px 0}

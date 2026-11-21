@@ -534,7 +534,7 @@ sect('11 doc tieng Anh');
   }
   { // giong nap tre: canh 1 khong bi bo qua
     const B = mkBS({ voice: false }), E = makeEnv(); E.sb.BS = B; E.sb.navigator = { userActivation: { hasBeenActive: true } }; E.S.mount(E.host, def()); E.tick(20);
-    ok(B.calls.length === 0, 'chua co giong -> chua doc'); B.voice = true; E.tick(2);
+    ok(B.calls.length === 0, 'chua co giong -> chua doc'); B.voice = true; B.cbs.forEach((cb) => cb(true)); E.tick(2);
     ok(B.calls.length === 1 && B.calls[0][0] === EN[0], 'giong den muon -> van doc canh 1');
   }
   { // chip khi dang tam dung roi bam Phat: phat lai canh do tu dau va doc tron cau (khong bi cat o 97%)
@@ -613,6 +613,28 @@ sect('11 doc tieng Anh');
     const E2 = makeEnv(), a2 = E2.S.mount(E2.host, def()); let t2 = null;
     try { E2.byA('toggle').click(); E2.tick(50); a2.destroy(); } catch (e) { t2 = e; }
     ok(!t2, 'khong co BS: khong loi');
+  }
+  { // hasVoice duoc luu tam (khong goi moi khung hinh), onVoices huy dang ky khi destroy, doi sang giam chuyen dong thi dung giong
+    const B = mkBS(); let hv = 0; const real = B.hasVoice; B.hasVoice = () => { hv++; return real(); };
+    let unsub = 0; B.onVoices = (cb) => { B.cbs.push(cb); cb(B.voice); return () => { unsub++; }; };
+    const E = makeEnv(); E.sb.BS = B; E.sb.navigator = { userActivation: { hasBeenActive: true } }; const a = E.S.mount(E.host, def());
+    const h0 = hv; E.tick(60); ok(hv === h0, 'hasVoice khong bi goi lai moi khung hinh (' + (hv - h0) + ' lan them)');
+    B.voice = false; B.cbs.forEach((cb) => cb(false)); ok(E.byA('say').attrs['aria-disabled'] === 'true', 'giong mat -> nut nghe lai bi khoa theo gia tri luu tam');
+    const s1 = B.stops; E.mq.matches = true; E.mqL.forEach((f) => f()); ok(B.stops > s1, 'chuyen sang giam chuyen dong giua cau -> stopSpeak');
+    a.destroy(); ok(unsub === 1, 'destroy goi ham huy dang ky cua onVoices');
+  }
+  { // core.js onVoices tra ham huy: go voiceschanged va khong goi cb nua
+    const rem = []; const add = [];
+    const ss = { getVoices: () => [], addEventListener: (t, f) => add.push([t, f]), removeEventListener: (t, f) => rem.push([t, f]) };
+    const cw = { console, setTimeout, clearTimeout, URLSearchParams, JSON, Math, Object, Array, Number, String, RegExp, Date, speechSynthesis: ss,
+      localStorage: { getItem: () => null, setItem() {} },
+      document: { readyState: 'complete', getElementById: () => null, createElement: () => ({ setAttribute() {}, addEventListener() {}, appendChild() {} }), createEvent: () => ({ initCustomEvent() {} }), dispatchEvent() {}, addEventListener() {}, documentElement: { setAttribute() {}, removeAttribute() {} }, body: null },
+      location: { hostname: 'example.com', protocol: 'https:', search: '' } };
+    cw.window = cw; cw.addEventListener = () => {}; cw.matchMedia = () => ({ matches: false });
+    vm.createContext(cw); vm.runInContext(fs.readFileSync(new URL('../assets/js/core.js', import.meta.url), 'utf8'), cw, { filename: 'core.js' });
+    let n = 0; const un = cw.BS.onVoices(() => { n++; });
+    ok(typeof un === 'function' && add.length === 1 && add[0][0] === 'voiceschanged', 'onVoices dang ky voiceschanged va tra ham huy');
+    const n1 = n; un(); add[0][1](); ok(rem.length === 1 && rem[0][1] === add[0][1] && n === n1, 'huy: removeEventListener dung ham da dang ky, cb khong chay nua');
   }
   ok(!/speechSynthesis|SpeechSynthesisUtterance/.test(SRC), 'anim-scenes.js khong cham speechSynthesis (chi qua BS)');
 }
