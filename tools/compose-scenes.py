@@ -13,6 +13,9 @@ Run from the repo root:
 --unit which unit's scene table to use (default l01; l01 output is unchanged)
 --cut  directory with <scene-id>.png RGBA cut-outs (1376x768)  default ../nguon-hinh/unit1-cut (l02: unit2-cut)
 --out  directory for composed 1600x900 PNGs (input of make-scenes.py) default ../nguon-hinh/agy-anh (l02: agy-anh-u2)
+After composing: copy raw/l01-tf1.png to a staging dir as tf1.png, then
+  python tools/make-scenes.py --src STAGE --unit l01 --names tf1,... --out800 assets/img/l01/pic --outhd OUTDIR
+  (writes tf1-800.webp / tf1-1600.webp; the 1600 files are not shipped; same for l02).
 Writes only into --out (and --contact when given).
 """
 import argparse
@@ -909,9 +912,9 @@ def fence(cv, y0, y1, ol=None, pick=34, gap=12):
 def shovel(cv, x, ground, ol=None):
     """Garden shovel stuck upright in the soil at x: handle with D-grip, shaft, blade sunk into a soil mound."""
     wood, steel = (200, 152, 112), (172, 178, 200)
-    cv.rect(x - 6, ground - 300, x + 6, ground - 54, fill=wood + (255,), ol=ol, w=1.4, r=3)
-    cv.rect(x - 34, ground - 322, x + 34, ground - 290, fill=None, ol=ol, w=1.4, r=14)
-    cv.rect(x - 32, ground - 320, x + 32, ground - 292, fill=None, ol=wood, w=5, r=13)
+    cv.rect(x - 6, ground - 420, x + 6, ground - 54, fill=wood + (255,), ol=ol, w=1.4, r=3)
+    cv.rect(x - 34, ground - 442, x + 34, ground - 410, fill=None, ol=ol, w=1.4, r=14)
+    cv.rect(x - 32, ground - 440, x + 32, ground - 412, fill=None, ol=wood, w=5, r=13)
     cv.poly([(x - 8, ground - 58), (x + 8, ground - 58), (x + 30, ground - 40), (x + 28, ground + 4), (x - 28, ground + 4), (x - 30, ground - 40)], fill=steel + (255,), ol=ol, w=1.5)
     cv.line([(x, ground - 52), (x, ground - 2)], fill=mix(steel, (255, 255, 255), .45) + (255,), w=3)
     cv.ell(x, ground + 6, 56, 14, fill=(150, 112, 90, 255), ol=ol, w=1.3)
@@ -977,10 +980,10 @@ def cafe_counter(mid, x0, top, depth, floor_y, ol=OL):
         f = k / 4.0
         mid.line([(x0 + 40 - 40 * f, top - depth + depth * f), (W + 60, top - depth + depth * f)], fill=mix(WOOD_T, WOOD_L, .6) + (255,), w=1.3)
     mid.rect(x0, top, W + 60, top + 16, fill=(232, 196, 160, 255), ol=ol, w=1.4)
-    mid.rect(x0, top + 16, W + 60, floor_y + 30, fill=WOOD_F + (255,), ol=ol, w=1.6)
+    mid.rect(x0, top + 16, W + 60, floor_y, fill=WOOD_F + (255,), ol=ol, w=1.6)
     for k in range(0, 4):
         px = x0 + 30 + k * 190
-        mid.rect(px, top + 56, px + 150, floor_y + 20, fill=WOOD_D + (255,), ol=ol, w=1.3, r=4)
+        mid.rect(px, top + 56, px + 150, floor_y - 10, fill=WOOD_D + (255,), ol=ol, w=1.3, r=4)
 
 
 def till(cv, x, by, ol=OL):
@@ -1099,9 +1102,6 @@ def pic_bg_mc4(t, bb):
     cv = Cv((0, 0, 0, 255))
     cv.rect(0, 0, W, 760, fill=(250, 245, 236, 255))                               # wall: cream
     cv.rect(0, 0, 700, 760, fill=(244, 216, 128, 255))                             # part already painted yellow
-    cv.rect(560, 30, 700, 400, fill=(250, 226, 140, 255))                          # fresh wet stripe under the roller
-    for k in range(7):
-        cv.rect(560 + k * 20, 30, 566 + k * 20, 400, fill=(252, 232, 156, 255))
     cv.rect(1090, 140, 1440, 520, fill=(252, 246, 232, 255), r=8)                  # window
     cv.vgrad(1108, 158, 1422, 502, (212, 224, 250), (240, 240, 252))
     cv.ell(1200, 470, 90, 50, fill=(186, 211, 186, 255))
@@ -1187,12 +1187,11 @@ PIC_NEW = {
 
 def pic_props(name, t, bb, mid, fg, post):
     x0, y0, x1, y1 = bb          # figure box in cut-out pixels
-    gx = lambda sx, sy: t(sx, sy)
     if name == "l01-tf1":
         shadow(mid, *t((x0 + x1) / 2, y1 - 5), 330, 26, 90)
     elif name == "l01-tf2":
         shadow(mid, *t((x0 + x1) / 2, y1 - 8), 330, 24, 90)
-        shovel(mid, 1330, 836, ol=OL)
+        shovel(mid, 1330, 816, ol=OL)
         # water: thin translucent arcs from the spout onto the middle pot
         p0 = t(748, 424)
         for (cx, cy, ex, ey, wd) in ((772, 436, 806, 588, 7), (782, 426, 822, 560, 5), (762, 430, 790, 572, 4)):
@@ -1212,7 +1211,6 @@ def pic_props(name, t, bb, mid, fg, post):
     elif name == "l01-mc3":
         shadow(mid, *t((x0 + x1) / 2, y1 - 6), 320, 22, 90)
     elif name == "l01-mc4":
-        shadow(mid, *t((x0 + x1) / 2, y1 - 8), 300, 22, 90)
         # drop cloth on the floor under the ladder and the bucket (drawn before the people)
         cl = [(300, 800), (1340, 800), (1480, 890), (200, 890)]
         mid.poly(cl, fill=(246, 242, 232, 255), ol=OL, w=1.5)
@@ -1220,6 +1218,12 @@ def pic_props(name, t, bb, mid, fg, post):
             mid.line([(fx, 806), (fx - 60 + (fx % 50), 886)], fill=(224, 216, 204, 255), w=2)
         shadow(mid, *t((x0 + x1) / 2, y1 - 8), 300, 20, 90)
         shadow(mid, *t(931, 728), 56, 9, 110)
+        # wet roller track: starts at the roller head and runs down the wall (glossy fresh yellow)
+        rx0, rx1, ry = t(546, 0)[0], t(632, 0)[0], t(0, 82)[1]
+        mid.rect(rx0, ry, rx1, ry + 330, fill=(252, 232, 150, 255), ol=(236, 196, 96, 255), w=1.6, r=10)
+        for k in range(1, 5):
+            mid.line([(rx0 + (rx1 - rx0) * k / 5, ry + 20), (rx0 + (rx1 - rx0) * k / 5, ry + 320)], fill=(255, 244, 190, 255), w=3)
+        mid.ell((rx0 + rx1) / 2, ry + 330, (rx1 - rx0) / 2, 8, fill=(236, 206, 110, 255))
     elif name == "l02-tf1":
         cx0 = t(x1 + 20, 0)[0] + 70
         ftop = t(0, 392)[1]
@@ -1269,11 +1273,9 @@ def main():
     if a.only and all(n in PIC_NEW for n in a.only.split(",") if n):
         a.cut = a.cut or os.path.join("..", "nguon-hinh", "people", "cut")
         a.out = a.out or os.path.join("..", "nguon-hinh", "people", "raw")
-        scenes = list(PIC_NEW)
-        maker = make_pic
         os.makedirs(a.out, exist_ok=True)
         for n in a.only.split(","):
-            im = maker(n, a.cut)
+            im = make_pic(n, a.cut)
             im.save(os.path.join(a.out, n + ".png"))
             print("wrote", os.path.join(a.out, n + ".png"), im.size)
         return 0
