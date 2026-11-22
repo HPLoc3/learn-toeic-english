@@ -258,6 +258,24 @@ try {
     u = base(); rightOf(qrs(u)[1]).en = "Not until next Monday."; u.focus.tips[0].text_vi = "Hãy nhớ mẫu not until next Monday trong câu trả lời.";
     check("nhưng nếu có thêm từ nội dung (Monday): vẫn bị báo", runQ(u, ["--release"]).code === 1);
 
+    /* lớp 2: trùng THEO TỪ NỘI DUNG (thêm/bớt/đảo từ, đồng nghĩa); cảnh báo, --release thành LỖI */
+    const OV = /gần trùng về nội dung/;
+    const ovFlag = (mut, re, name) => { const x = base(); mut(x); const a = runQ(x), b = runQ(x, ["--release"]); check(name + ": cảnh báo, --release LỖI", a.code === 0 && re.test(a.out) && b.code === 1 && re.test(b.out), a.out + b.out); };
+    const ovNo = (mut, name) => { const x = base(); mut(x); const b = runQ(x, ["--release"]); check(name + ": không báo", b.code === 0 && !OV.test(b.out), b.out); };
+    ovFlag((x) => { rightOf(qrs(x)[0]).en = "She got a better offer."; x.sentences[0].en = "She got a much better offer."; }, /qr1-01: đáp án đúng .* sentences\[0\]/, "thêm một từ chen giữa ('She got a much better offer.')");
+    ovFlag((x) => { rightOf(qrs(x)[0]).en = "She got a better offer."; x.focus.tips[0].text_vi = "Hãy nghe câu she got a much better offer nhé."; }, /qr1-01: đáp án đúng .*.text_vi/, "thêm một từ chen giữa, nằm trong câu tiếng Việt (text_vi)");
+    ovFlag((x) => { rightOf(qrs(x)[0]).en = "Their budget was cut."; x.sentences[0].en = "Their budget was reduced."; }, /qr1-01: đáp án đúng .* sentences\[0\].*budget/, "đồng nghĩa cut/reduced");
+    ovFlag((x) => { rightOf(qrs(x)[0]).en = "They plan to buy more chairs."; x.phrases[0].en = "They plan to purchase more chairs soon."; }, /qr1-01: đáp án đúng .* phrases\[0\]/, "đồng nghĩa buy/purchase");
+    ovFlag((x) => { rightOf(qrs(x)[0]).en = "There's one next to the train station."; x.sentences[0].en = "Next to the station there is one."; }, /qr1-01: đáp án đúng .* sentences\[0\]/, "đảo thứ tự và rút gọn ('There's one next to the train station.')");
+    ovFlag((x) => { rightOf(qrs(x)[0]).en = "She got a better offer."; x.sentences[0].en = "A better offer was what she got."; }, /qr1-01: đáp án đúng/, "đảo thứ tự + chia lại động từ");
+    ovFlag((x) => { qrs(x)[0].q.en = "Why was the quarterly report delayed?"; x.sentences[0].en = "The quarterly report was postponed."; }, /qr1-01: câu hỏi .* sentences\[0\]/, "câu hỏi: đồng nghĩa delayed/postponed");
+    ovNo((x) => { rightOf(qrs(x)[0]).en = "Just across from the post office."; x.vocab[0].en = "post office"; x.vocab[1].en = "finance manager"; }, "từ vựng 1-2 từ ('post office', 'finance manager')");
+    ovNo((x) => { rightOf(qrs(x)[0]).en = "At the technology help desk."; x.sentences[0].en = "The help desk can fix it."; }, "cụm danh từ 2 từ (help desk) trong câu khác");
+    ovNo((x) => { qrs(x)[0].q.en = "Where is the nearest bank?"; x.focus.tips[0].examples[0].en = "Where is the nearest post office?"; }, "ví dụ mẹo chỉ chung từ mở đầu ('Where is the nearest ...?')");
+    ovNo((x) => { rightOf(qrs(x)[0]).en = "She got a better offer."; x.focus.tips[0].text_vi = "Cô ấy về nhà muộn. She got home late, then there were many long meetings about the new schedule, and in the afternoon a better plan came from the manager who then made an offer to the client."; }, "đoạn văn dài chứa các từ khóa nhưng rải xa nhau");
+    ovNo((x) => { const it = qrs(x)[1], ws = it.options.filter((o) => o.label !== it.answer); x.sentences[0].en = ws[0].en; x.phrases[0].en = ws[1].en; x.focus.tips[0].text_vi = "Bẫy hay gặp: " + ws[0].en + " (đáp án sai chỉ để so sánh)."; x.focus.tips[1].examples[0].en = ws[1].en; }, "đáp án SAI được trích ở bất cứ đâu");
+    ovNo((x) => { rightOf(qrs(x)[0]).en = "She got a better offer."; x.sentences[0].en = "She got home late today."; }, "chỉ chung vài từ (she got) không đủ");
+
     /* unit không phải Part 2 có bài qr vẫn chịu mức tối thiểu của Part 1 */
     {
       const u9 = base(); u9.id = "l09"; u9.part = "Part 1 - Mô tả hình ảnh";
