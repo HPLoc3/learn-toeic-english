@@ -21,7 +21,14 @@ const QR_KINDS = ["who", "where", "when", "why", "what", "which", "how", "yesno"
 const QR_TRAPS = ["similar-sound", "repeat-word", "wrong-wh", "wrong-tense", "wrong-subject", "related-word", "yesno-to-wh"];
 const QR_LABELS = ["A", "B", "C"];
 const QR_MIN_ITEMS = 20;
-const QR_LEAK_ALLOW = ["qr1-05|as soon as"]; /* ngoại lệ có chủ đích: "id câu|đoạn tiếng anh đã chuẩn hóa". Hiện: liên từ thông dụng "as soon as" trong từ vựng p2-02, phần còn lại của đáp án không bị lộ. */
+/* Ngoại lệ có chủ đích, KHÔNG dùng chung giữa các unit (id câu qr1-01... lặp lại ở mọi unit Part 2), nên luôn có tiền tố unit:
+ *   "<unit>/<id câu>|<đoạn tiếng Anh đã chuẩn hóa>"          luật đoạn liền nhau (lớp 1)
+ *   "<unit>/<id câu>|*overlap*"                              lớp 2, cả câu
+ *   "<unit>/<id câu>|*overlap*|<vị trí, ví dụ vocab[3].en>"  lớp 2, một chỗ (phải đúng từng ký tự)
+ * Hiện: liên từ thông dụng "as soon as" trong từ vựng p2-02, phần còn lại của đáp án không bị lộ.
+ * Chỉ để thử nghiệm: biến môi trường CU_LEAK_ALLOW (cách nhau bằng ;) được cộng thêm, và bị BỎ QUA khi --release. */
+const QR_LEAK_ALLOW = ["p2-02/qr1-05|as soon as"];
+const QR_LEAK_ALLOW_TEST = (process.env.CU_LEAK_ALLOW || "").split(";").filter(Boolean);
 const QR_LETTER_MIN = 0.2, QR_LETTER_MAX = 0.45;
 const QR_STOP = new Set(("a an the and or but if so as of to in on at by for with from into onto up down out off over under about than then that this these those " +
   "i me my mine we us our you your he him his she her it its they them their is am are was were be been being do does did done have has had will would can could shall should may might must " +
@@ -31,11 +38,12 @@ const QR_LEAK_STOP = new Set([...QR_STOP, "until", "next", "last", "across", "be
 /* Lớp 2 của luật lộ đáp án: so khớp THEO TỪ NỘI DUNG, không cần liền nhau/đúng thứ tự (bắt câu thêm/bớt/đảo từ và câu đồng nghĩa).
  * Cho phép riêng lớp này: "<id câu>|*overlap*" (cả câu) hoặc "<id câu>|*overlap*|<vị trí, ví dụ vocab[3].en>" (một chỗ). */
 const QR_OV_STOP = new Set("mr ms mrs dr miss sir think guess sorry thanks thank sure well really probably maybe actually yeah".split(/\s+/));
-/* Từ đồng nghĩa CHẮC CHẮN trong ngữ cảnh công sở/TOEIC Part 2 (giữ ít và thận trọng; cố ý bỏ các từ nhiều nghĩa như leave, check, ring, get). Mỗi dòng là một nhóm. */
+/* Từ đồng nghĩa CHẮC CHẮN trong ngữ cảnh công sở/TOEIC Part 2 (giữ ít và thận trọng; cố ý bỏ các từ nhiều nghĩa: leave, check, ring, get, pick (pick up), lower (lower floor), come). Mỗi dòng là một nhóm.
+ * Còn rủi ro nhỏ với call/phone và show/display (call a meeting, show up); chấp nhận vì luật còn đòi các từ khác cùng khớp. */
 const QR_SYNONYMS = [
-  ["cut", "reduce", "lower", "decrease"], ["quit", "resign"], ["begin", "start", "commence"], ["finish", "complete", "conclude"],
+  ["cut", "reduce", "decrease"], ["quit", "resign"], ["begin", "start", "commence"], ["finish", "complete", "conclude"],
   ["buy", "purchase"], ["help", "assist"], ["big", "large"], ["fix", "repair", "mend"], ["call", "phone"], ["show", "display"],
-  ["arrive", "come"], ["delay", "postpone"], ["need", "require"], ["choose", "select", "pick"], ["fast", "quick", "rapid"],
+  ["arrive", "reach"], ["delay", "postpone"], ["need", "require"], ["choose", "select"], ["fast", "quick", "rapid"],
   ["cheap", "inexpensive"], ["expensive", "costly", "pricey"], ["answer", "reply", "respond"], ["talk", "speak"], ["tell", "inform", "notify"],
   ["increase", "raise"], ["employee", "worker"], ["salary", "wage"], ["rent", "lease"], ["enough", "sufficient"],
   ["glad", "happy", "pleased"], ["ready", "prepared"], ["soon", "shortly"], ["incorrect", "wrong", "mistaken"]
@@ -43,27 +51,30 @@ const QR_SYNONYMS = [
 const QR_IRREG = { went: "go", gone: "go", got: "get", gotten: "get", took: "take", taken: "take", bought: "buy", left: "leave", ran: "run", came: "come", saw: "see", seen: "see", made: "make", paid: "pay", sent: "send",
   gave: "give", given: "give", told: "tell", found: "find", held: "hold", met: "meet", wrote: "write", written: "write", began: "begin", begun: "begin", chose: "choose", chosen: "choose", spoke: "speak", spoken: "speak",
   thought: "think", brought: "bring", kept: "keep", lost: "lose", sold: "sell", built: "build", taught: "teach", wore: "wear", worn: "wear", drove: "drive", driven: "drive", flew: "fly", flown: "fly",
-  ate: "eat", eaten: "eat", knew: "know", known: "know", understood: "understand", heard: "hear", led: "lead" };
+  ate: "eat", eaten: "eat", knew: "know", known: "know", understood: "understand", heard: "hear", led: "lead", shown: "show", news: "news",
+  bigger: "big", biggest: "big", larger: "large", largest: "large", faster: "fast", fastest: "fast", quicker: "quick", quickest: "quick", cheaper: "cheap", cheapest: "cheap", happier: "happy", happiest: "happy", newer: "new", newest: "new" };
 /* rút gọn nhẹ: bất quy tắc, đuôi -ies/-ied/-ing/-ed/-es/-s, bỏ e cuối và phụ âm đôi cuối; dùng đồng nhất cho cả hai phía nên chỉ cần nhất quán */
 const qrStem = (t) => {
-  if (QR_IRREG[t]) t = QR_IRREG[t];
+  if (QR_IRREG[t]) { t = QR_IRREG[t]; if (t === "news") return t; }
   if (t.length > 4 && /ies$/.test(t)) t = t.slice(0, -3) + "y";
   else if (t.length > 4 && /ied$/.test(t)) t = t.slice(0, -3) + "y";
   else if (t.length > 5 && /ing$/.test(t)) t = t.slice(0, -3);
   else if (t.length > 4 && /ed$/.test(t)) t = t.slice(0, -2);
-  else if (t.length > 4 && /es$/.test(t)) t = t.slice(0, -2);
+  else if (t.length > 4 && /(s|x|z|ch|sh)es$/.test(t)) t = t.slice(0, -2); /* -es chỉ sau s, x, z, ch, sh (boxes, watches); còn lại bỏ -s (employees, offices) */
   else if (t.length > 3 && /s$/.test(t) && !/(ss|us|is)$/.test(t)) t = t.slice(0, -1);
   if (t.length > 3 && /e$/.test(t)) t = t.slice(0, -1);
-  if (t.length > 3 && /([b-df-hj-np-tv-z])\1$/.test(t) && !/(ll|ss)$/.test(t)) t = t.slice(0, -1);
+  if (t.length > 3 && /([b-df-hj-np-tv-z])\1$/.test(t)) t = t.slice(0, -1); /* phụ âm đôi (planned, cancelled/canceled, fill) */
   return t;
 };
 const QR_SYN_MAP = (() => { const m = {}; QR_SYNONYMS.forEach((g) => { const c = qrStem(g[0]); g.forEach((x) => { m[qrStem(x)] = c; }); }); return m; })();
 /* chuỗi -> [{c: dạng chuẩn, stop}] (đã bung viết tắt: he's -> he is, it'll -> it will, we're -> we are, n't -> not) */
 const qrToks = (s) => String(s || "").toLowerCase().replace(/[’‘]/g, "'")
   .replace(/\bwon't\b/g, "will not").replace(/\bcan't\b/g, "can not").replace(/n't\b/g, " not").replace(/'re\b/g, " are").replace(/'ll\b/g, " will")
-  .replace(/'ve\b/g, " have").replace(/'m\b/g, " am").replace(/'d\b/g, " would").replace(/'s\b/g, " is")
+  .replace(/'ve\b/g, " have").replace(/'m\b/g, " am").replace(/'d\b/g, " would")
+  .replace(/\b(he|she|it|that|there|here|what|who|where|how|let)'s\b/g, "$1 is").replace(/'s\b/g, "") /* sở hữu cách (cleaner's) chỉ bỏ 's, không thành "is" */
   .replace(/[^a-z0-9]+/g, " ").trim().split(" ").filter(Boolean)
-  .map((t) => { if (QR_LEAK_STOP.has(t) || QR_OV_STOP.has(t)) return { c: t, stop: true }; const st = qrStem(t); return { c: QR_SYN_MAP[st] || st, stop: false }; });
+  .map((t) => { if (QR_LEAK_STOP.has(t) || QR_OV_STOP.has(t)) return { c: t, stop: true, o: t }; const st = qrStem(t); return { c: QR_SYN_MAP[st] || st, stop: false, o: t }; });
+const QR_OV_RAW = 0.6; /* phần từ khác nhau của câu qr (kể cả từ chức năng) phải xuất hiện trong cửa sổ */
 const qrWords = (t) => String(t || "").toLowerCase().replace(/[’‘]/g, "'").split(/[^a-z0-9]+/).filter((w) => w && !QR_STOP.has(w));
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -411,27 +422,30 @@ function checkUnit(entry) {
     const padK = (k) => " " + k + " ";
     const place = (p) => p.where;
     /* lớp 2: trùng THEO TỪ NỘI DUNG (không cần liền nhau/đúng thứ tự; đồng nghĩa quy về một dạng) trong cửa sổ (số từ câu qr + 3) của MỘT chuỗi.
-     * Câu qr có >= 3 từ nội dung: cần >= n-1 từ khi n = 3-4, >= 75% khi n >= 5, và >= 75% mọi từ khác nhau của câu (kể cả từ chức năng). Có đúng 2 từ nội dung: cần cả 2 và >= 75% mọi từ của câu (câu >= 4 từ).
+     * Câu qr có >= 3 từ nội dung: cần >= n-1 từ khi n = 3-4, >= 75% khi n >= 5, và > QR_OV_RAW (60%, nghĩa là floor(n*0.6)+1) mọi từ khác nhau của câu (kể cả từ chức năng). Có đúng 2 từ nội dung: cần cả 2 và cũng >= QR_OV_RAW mọi từ của câu (câu >= 4 từ).
      * Chuỗi được so phải có >= 4 từ (từ vựng/cụm 1-3 từ không bị tính). Chuỗi thuần Anh so cả chuỗi; chuỗi có chữ Việt chỉ so các đoạn tiếng Anh. */
     const ovPool = pool.filter((p) => (p.run ? !p.asc : p.asc)).map((p) => ({ p, t: qrToks(p.k) })).filter((x) => x.t.length >= 4);
+    const okAllow = (key) => QR_LEAK_ALLOW.includes(key) || (!RELEASE && QR_LEAK_ALLOW_TEST.includes(key));
     const overlap = (txt, what, itemId) => {
       const tt = qrToks(txt);
       const C = [...new Set(tt.filter((x) => !x.stop && x.c.length > 1).map((x) => x.c))];
       const nC = C.length, raw = tt.length;
-      let need, rawNeed;
+      let need;
       if (nC >= 3) need = nC <= 4 ? nC - 1 : Math.ceil(nC * 0.75);
-      else if (nC === 2 && raw >= 4) { need = 2; rawNeed = -1; }
+      else if (nC === 2 && raw >= 4) need = 2;
       else return;
       const T = new Set(tt.map((x) => x.c)), W = raw + 3, CS = new Set(C);
-      rawNeed = Math.ceil(T.size * 0.75); /* thêm: cả từ chức năng cũng phải khớp phần lớn, để một cụm danh từ 2 từ (help desk) không đủ */
-      if (QR_LEAK_ALLOW.includes(itemId + "|*overlap*")) return;
+      const rawNeed = Math.floor(T.size * QR_OV_RAW) + 1; /* LỚN HƠN 60% */ /* cả từ chức năng cũng phải khớp phần lớn, để một cụm danh từ 2 từ (help desk) không đủ */
+      const orig = {}; tt.forEach((x) => { if (CS.has(x.c) && !orig[x.c]) orig[x.c] = x.o; });
+      const uk = id + "/" + itemId;
+      if (okAllow(uk + "|*overlap*")) return;
       for (const { p, t } of ovPool) {
-        if (QR_LEAK_ALLOW.includes(itemId + "|*overlap*|" + place(p))) continue;
+        if (okAllow(uk + "|*overlap*|" + place(p))) continue;
         for (let i = 0; i <= Math.max(0, t.length - W); i++) {
-          const mc = new Set(), mr = new Set();
-          for (let j = i; j < Math.min(t.length, i + W); j++) { if (CS.has(t[j].c)) mc.add(t[j].c); if (T.has(t[j].c)) mr.add(t[j].c); }
+          const mc = new Set(), mr = new Set(); let lo = -1, hi = -1;
+          for (let j = i; j < Math.min(t.length, i + W); j++) { if (CS.has(t[j].c)) { mc.add(t[j].c); if (lo < 0) lo = j; hi = j; } if (T.has(t[j].c)) mr.add(t[j].c); }
           if (mc.size >= need && mr.size >= rawNeed) {
-            const m = itemId + ": " + what + " \"" + txt + "\" gần trùng về nội dung (cùng từ khóa, có thể thêm/bớt/đảo từ hoặc dùng từ đồng nghĩa) với \"" + p.k.slice(0, 90) + "\" ở " + place(p) + " (khớp " + mc.size + "/" + nC + " từ nội dung: " + [...mc].join(", ") + "); nên viết lại.";
+            const m = itemId + ": " + what + " \"" + txt + "\" gần trùng về nội dung (cùng từ khóa, có thể thêm/bớt/đảo từ hoặc dùng từ đồng nghĩa) với \"" + t.slice(lo, hi + 1).map((x) => x.o).join(" ") + "\" ở " + place(p) + " (khớp " + mc.size + "/" + nC + " từ nội dung của câu qr: " + [...mc].map((c) => orig[c]).join(", ") + "); nên viết lại.";
             if (RELEASE) e(m + " Không được phát hành (--release)."); else w(m);
             return;
           }
@@ -467,7 +481,7 @@ function checkUnit(entry) {
         const c = lcs(p);
         if (c.n < 3 || c.n / nw < 0.5) return false;
         if (c.text.split(" ").filter((x) => !QR_LEAK_STOP.has(x)).length < 2) return false; /* mẫu câu trần (across from the, not until next, who is in charge of the): bỏ qua */
-        if (QR_LEAK_ALLOW.includes(itemId + "|" + c.text)) return false;
+        if (okAllow(id + "/" + itemId + "|" + c.text)) return false;
         g = p; gt = c.text; return true;
       });
       if (!g) { overlap(txt, what, itemId); return; }

@@ -276,6 +276,42 @@ try {
     ovNo((x) => { const it = qrs(x)[1], ws = it.options.filter((o) => o.label !== it.answer); x.sentences[0].en = ws[0].en; x.phrases[0].en = ws[1].en; x.focus.tips[0].text_vi = "Bẫy hay gặp: " + ws[0].en + " (đáp án sai chỉ để so sánh)."; x.focus.tips[1].examples[0].en = ws[1].en; }, "đáp án SAI được trích ở bất cứ đâu");
     ovNo((x) => { rightOf(qrs(x)[0]).en = "She got a better offer."; x.sentences[0].en = "She got home late today."; }, "chỉ chung vài từ (she got) không đủ");
 
+    /* vòng 2: tense/article/câu hỏi diễn đạt lại, gốc từ (employees, cancelled, bigger), từ nhiều nghĩa không còn là đồng nghĩa */
+    ovFlag((x) => { rightOf(qrs(x)[0]).en = "We're waiting for a new delivery."; x.sentences[0].en = "We waited for new deliveries."; }, /qr1-01: đáp án đúng .* sentences\[0\]/, "đổi thì + bỏ mạo từ + số nhiều (waiting/waited, delivery/deliveries)");
+    ovFlag((x) => { qrs(x)[0].q.en = "Who should I ask about my parking permit?"; x.sentences[0].en = "Who do I talk to about a parking permit?"; }, /qr1-01: câu hỏi .* sentences\[0\]/, "câu hỏi diễn đạt lại (ask/talk, my/a)");
+    ovFlag((x) => { rightOf(qrs(x)[0]).en = "I will pick up the package at noon."; x.sentences[0].en = "I'll collect the package at noon."; }, /qr1-01: đáp án đúng .* sentences\[0\]/, "pick up / collect (đoạn còn lại khớp)");
+    ovFlag((x) => { rightOf(qrs(x)[0]).en = "The new employees start Monday."; x.sentences[0].en = "A new employee will start Monday."; }, /qr1-01: đáp án đúng/, "số nhiều -ees (employees/employee)");
+    ovFlag((x) => { rightOf(qrs(x)[0]).en = "The meeting was cancelled."; x.sentences[0].en = "They canceled the meeting yesterday."; }, /qr1-01: đáp án đúng/, "cancelled/canceled");
+    ovFlag((x) => { rightOf(qrs(x)[0]).en = "We need a bigger room."; x.sentences[0].en = "We require a big room."; }, /qr1-01: đáp án đúng/, "so sánh hơn (bigger/big) + need/require");
+    ovNo((x) => { rightOf(qrs(x)[0]).en = "You should choose my suit today."; x.sentences[0].en = "Please pick up my suit this week."; }, "'pick up' không phải đồng nghĩa của 'choose'");
+    ovNo((x) => { rightOf(qrs(x)[0]).en = "I met the new manager Kim."; x.sentences[0].en = "The news about Kim was good."; }, "'news' không bị gộp với 'new'");
+    ovNo((x) => { rightOf(qrs(x)[0]).en = "The new manager arrived yesterday."; x.sentences[0].en = "The news came yesterday afternoon."; }, "'came' không còn đồng nghĩa với 'arrived'");
+    ovNo((x) => { rightOf(qrs(x)[0]).en = "They cut the power early."; x.sentences[0].en = "Use the lower floor power switch early."; }, "'lower' không còn đồng nghĩa với 'cut'");
+    ovNo((x) => { qrs(x)[0].q.en = "Which form should I fill out first?"; x.sentences[0].en = "Fill out the online form."; }, "'Fill out the online form.' vs 'Which form should I fill out first?'");
+    ovNo((x) => { rightOf(qrs(x)[0]).en = "The cleaner's office is closed today."; x.sentences[0].en = "The cleaner is a nice person today."; }, "sở hữu cách cleaner's không thành 'cleaner is'");
+
+    /* ngoại lệ theo unit (CU_LEAK_ALLOW chỉ có tác dụng khi không --release) */
+    {
+      const warnOf = (x, allow, re) => { process.env.CU_LEAK_ALLOW = allow; try { return re.test(runQ(x).out); } finally { delete process.env.CU_LEAK_ALLOW; } };
+      const mkOv = () => { const x = base(); rightOf(qrs(x)[0]).en = "She got a better offer."; x.sentences[0].en = "She got a much better offer."; return x; };
+      const RO = /qr1-01: đáp án đúng .*gần trùng về nội dung/;
+      check("ngoại lệ lớp 2 kiểu cả câu: <unit>/<id>|*overlap* chỉ bỏ qua câu của đúng unit", !warnOf(mkOv(), "p2-01/qr1-01|*overlap*", RO));
+      check("ngoại lệ lớp 2: unit khác cùng id câu KHÔNG được bỏ qua", warnOf(mkOv(), "p2-02/qr1-01|*overlap*", RO));
+      check("ngoại lệ lớp 2: không tiền tố unit (kiểu cũ toàn cục) KHÔNG còn tác dụng", warnOf(mkOv(), "qr1-01|*overlap*", RO));
+      check("ngoại lệ lớp 2: đúng vị trí sentences[0].en thì bỏ qua", !warnOf(mkOv(), "p2-01/qr1-01|*overlap*|sentences[0].en", RO));
+      check("ngoại lệ lớp 2: vị trí khác không bỏ qua", warnOf(mkOv(), "p2-01/qr1-01|*overlap*|sentences[1].en", RO));
+      check("ngoại lệ lớp 2: vị trí sai định dạng (thiếu .en) không bỏ qua gì", warnOf(mkOv(), "p2-01/qr1-01|*overlap*|sentences[0]", RO));
+      check("ngoại lệ lớp 2: id câu khác không bỏ qua", warnOf(mkOv(), "p2-01/qr1-02|*overlap*", RO));
+      const mkRun = () => { const x = base(); x.focus.tips[0].text_vi = "Cụm the head office rất thường gặp."; return x; };
+      const RR = /qr1-01: đáp án đúng .* gần trùng với đoạn tiếng Anh "the head office"/;
+      check("ngoại lệ lớp 1: <unit>/<id>|<đoạn> bỏ qua đúng unit", !warnOf(mkRun(), "p2-01/qr1-01|the head office", RR));
+      check("ngoại lệ lớp 1: unit khác không bỏ qua", warnOf(mkRun(), "p2-02/qr1-01|the head office", RR));
+      check("ngoại lệ lớp 1: không tiền tố unit không còn tác dụng", warnOf(mkRun(), "qr1-01|the head office", RR));
+      process.env.CU_LEAK_ALLOW = "p2-01/qr1-01|*overlap*";
+      const rel = runQ(mkOv(), ["--release"]); delete process.env.CU_LEAK_ALLOW;
+      check("--release bỏ qua biến CU_LEAK_ALLOW (không thể lách cổng)", rel.code === 1 && RO.test(rel.out), rel.out);
+    }
+
     /* unit không phải Part 2 có bài qr vẫn chịu mức tối thiểu của Part 1 */
     {
       const u9 = base(); u9.id = "l09"; u9.part = "Part 1 - Mô tả hình ảnh";
