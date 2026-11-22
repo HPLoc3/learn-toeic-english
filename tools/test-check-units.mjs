@@ -290,6 +290,21 @@ try {
     ovNo((x) => { qrs(x)[0].q.en = "Which form should I fill out first?"; x.sentences[0].en = "Fill out the online form."; }, "'Fill out the online form.' vs 'Which form should I fill out first?'");
     ovNo((x) => { rightOf(qrs(x)[0]).en = "The cleaner's office is closed today."; x.sentences[0].en = "The cleaner is a nice person today."; }, "sở hữu cách cleaner's không thành 'cleaner is'");
 
+    ovNo((x) => { rightOf(qrs(x)[0]).en = "Please call the weekly meeting today."; x.sentences[0].en = "Please phone the meeting room today."; }, "'call' không còn đồng nghĩa với 'phone' (call a meeting)");
+    ovNo((x) => { rightOf(qrs(x)[0]).en = "We saw the show at the office."; x.sentences[0].en = "We display the sign at the office."; }, "'show' (danh từ) không còn đồng nghĩa với 'display'");
+
+    /* rút gọn từ: nhất quán và không nhập nhầm (đọc thẳng các hằng số của check-units) */
+    {
+      const src = fs.readFileSync(path.join(REAL, "tools/check-units.mjs"), "utf8");
+      const stem = new Function(src.slice(src.indexOf("const QR_IRREG"), src.indexOf("const QR_SYN_MAP")) + "\nreturn qrStem;")();
+      [["meeting", "meetings"], ["meeting", "meet"], ["building", "buildings"], ["used", "use"], ["agreed", "agree"], ["agrees", "agree"], ["hoping", "hope"], ["filed", "file"], ["filling", "fill"],
+        ["cancelled", "canceled"], ["employees", "employee"], ["reduced", "reduce"], ["waited", "waiting"], ["deliveries", "delivery"], ["planned", "plan"]]
+        .forEach(([a, b]) => check("rút gọn: '" + a + "' = '" + b + "'", stem(a) === stem(b), stem(a) + " vs " + stem(b)));
+      [["file", "fill"], ["hope", "hop"], ["hoping", "hopping"], ["filing", "filling"], ["speed", "spe"], ["indeed", "ind"]]
+        .forEach(([a, b]) => check("rút gọn: '" + a + "' khác '" + b + "'", stem(a) !== stem(b), stem(a) + " vs " + stem(b)));
+      check("rút gọn: speed, indeed, news giữ nguyên", stem("speed") === "speed" && stem("indeed") === "indeed" && stem("news") === "news");
+    }
+
     /* ngoại lệ theo unit (CU_LEAK_ALLOW chỉ có tác dụng khi không --release) */
     {
       const warnOf = (x, allow, re) => { process.env.CU_LEAK_ALLOW = allow; try { return re.test(runQ(x).out); } finally { delete process.env.CU_LEAK_ALLOW; } };
