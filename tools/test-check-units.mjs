@@ -300,6 +300,10 @@ try {
       [["meeting", "meetings"], ["meeting", "meet"], ["building", "buildings"], ["used", "use"], ["agreed", "agree"], ["agrees", "agree"], ["hoping", "hope"], ["filed", "file"], ["filling", "fill"],
         ["cancelled", "canceled"], ["employees", "employee"], ["reduced", "reduce"], ["waited", "waiting"], ["deliveries", "delivery"], ["planned", "plan"]]
         .forEach(([a, b]) => check("rút gọn: '" + a + "' = '" + b + "'", stem(a) === stem(b), stem(a) + " vs " + stem(b)));
+      [["bus", "buses"], ["gas", "gases"], ["add", "added"], ["add", "adding"], ["go", "goes"], ["die", "died"], ["die", "dying"], ["tie", "tied"], ["lie", "lying"], ["movie", "movies"], ["menu", "menus"], ["sit", "sat"], ["win", "won"],
+        ["use", "uses"], ["cause", "causes"], ["raise", "raises"], ["close", "closes"], ["case", "cases"], ["house", "houses"], ["bonus", "bonuses"], ["focus", "focuses"], ["hop", "hopping"]]
+        .forEach(([a, b]) => check("rút gọn (vòng 2): '" + a + "' = '" + b + "'", stem(a) === stem(b), stem(a) + " vs " + stem(b)));
+      [["add", "ad"], ["bus", "buse"]].forEach(([a, b]) => check("rút gọn (vòng 2): '" + a + "' khác '" + b + "'", stem(a) !== stem(b), stem(a) + " vs " + stem(b)));
       [["file", "fill"], ["hope", "hop"], ["hoping", "hopping"], ["filing", "filling"], ["speed", "spe"], ["indeed", "ind"]]
         .forEach(([a, b]) => check("rút gọn: '" + a + "' khác '" + b + "'", stem(a) !== stem(b), stem(a) + " vs " + stem(b)));
       check("rút gọn: speed, indeed, news giữ nguyên", stem("speed") === "speed" && stem("indeed") === "indeed" && stem("news") === "news");

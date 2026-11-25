@@ -50,7 +50,7 @@ const QR_SYNONYMS = [
 const QR_IRREG = { went: "go", gone: "go", got: "get", gotten: "get", took: "take", taken: "take", bought: "buy", left: "leave", ran: "run", came: "come", saw: "see", seen: "see", made: "make", paid: "pay", sent: "send",
   gave: "give", given: "give", told: "tell", found: "find", held: "hold", met: "meet", wrote: "write", written: "write", began: "begin", begun: "begin", chose: "choose", chosen: "choose", spoke: "speak", spoken: "speak",
   thought: "think", brought: "bring", kept: "keep", lost: "lose", sold: "sell", built: "build", taught: "teach", wore: "wear", worn: "wear", drove: "drive", driven: "drive", flew: "fly", flown: "fly",
-  ate: "eat", eaten: "eat", knew: "know", known: "know", understood: "understand", heard: "hear", led: "lead", shown: "show", news: "news",
+  ate: "eat", eaten: "eat", knew: "know", known: "know", understood: "understand", heard: "hear", led: "lead", shown: "show", news: "news", buses: "bus", gases: "gas", goes: "go", died: "die", dies: "die", dying: "die", tied: "tie", tying: "tie", lying: "lie", movies: "movie", menus: "menu", sat: "sit", won: "win",
   bigger: "big", biggest: "big", larger: "large", largest: "large", faster: "fast", fastest: "fast", quicker: "quick", quickest: "quick", cheaper: "cheap", cheapest: "cheap", happier: "happy", happiest: "happy", newer: "new", newest: "new" };
 /* rút gọn nhẹ, dùng đồng nhất cho cả hai phía nên chỉ cần nhất quán: bất quy tắc; số nhiều (-ies, -ses/-xes/-ches/-shes, -s) TRƯỚC, rồi -ied/-ing/-ed (meetings -> meeting -> meet);
  * từ một âm tiết dạng phụ âm-nguyên âm-phụ âm khi bỏ -ing/-ed thì thêm lại e (hoping/hoped -> hope, filing -> file, used -> use) để không nhập với hop/fill;
@@ -69,7 +69,7 @@ const qrStem = (t) => {
     else if (t.length > 4 && /ing$/.test(t)) m = t.slice(0, -3);
     else if (t.length > 3 && /ed$/.test(t)) m = t.slice(0, -2);
     if (m !== null) {
-      if (/([b-df-hj-np-tv-z])\1$/.test(m)) m = m.slice(0, -1);
+      if (m.length > 3 && /([b-df-hj-np-tv-z])\1$/.test(m)) m = m.slice(0, -1); /* không gộp phụ âm đôi của gốc <= 3 chữ (add, odd, egg) */
       else if (QR_SHORT.test(m)) m += "e";
       if (/[aeiouy]/.test(m)) t = m; /* kết quả không còn nguyên âm (str, sh, br) thì giữ nguyên từ gốc */
     }
