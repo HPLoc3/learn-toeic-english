@@ -4,8 +4,9 @@
 // BAT BUOC co dung MOT trong --manifest, --units, --only: danh sach unit/cau PHAI duoc kiem lay tu do, khong lay tu tep cua nguoi giai (unit hay cau ca hai
 // cung bo sot van bi tinh la KHONG DAT). --manifest: manifest.json do export-blind --batch hoac --only ghi (lay unit va id cau; manifest cu khong con khop du lieu thi ma 2).
 // Can it nhat 2 nguoi giai. Moi nguoi co the co nhieu tep (vd pha B luu truoc, pha A luu sau); mot muc xuat hien o hai tep cua cung nguoi la loi.
-// Hai nguoi giai tro toi cung mot tep: ma 2. Hai nguoi co du lieu giong het nhau: ma 2 (nghi chep bai); neu da kiem tra ho giai doc lap (vd goi delta rat nho,
-// ca hai cung dung conf 5) thi chay lai voi --allow-identical (bao cao se ghi ro).
+// Hai nguoi giai tro toi cung mot tep: ma 2. Hai nguoi co du lieu giong het nhau: ma 2 (nghi chep bai). CHI voi lan kiem delta (--only, hoac manifest co
+// "only": true), neu da kiem tra ho giai doc lap (goi rat nho, ca hai cung dung conf 5) thi chay lai voi --allow-identical (dong tong ket ghi "(allow-identical)").
+// Dung --allow-identical o lan kiem day du: ma 2.
 // Dinh dang tep (co dinh): { "<unitId>": { "<mode>": { "<qid>": [answer, conf, flag] } } }   (dung 3 phan tu)
 //   answer: chu cai (hoac chu go vao voi bai dien; voi cau trac nghiem co the ghi nguyen van dap an hoac "B) ..."); conf: so nguyen 1-5;
 //   flag: CHI mot trong: "" ; chuoi bat dau bang "second" (bao co dap an thu hai: chan pha A) ; chuoi bat dau bang "note:" (ghi chu, in ra, khong chan).
@@ -248,11 +249,6 @@ function main() {
   });
   if (solvers.length < 2) die("Can it nhat 2 --solver.");
   if (new Set(solvers.map((x) => x.name)).size !== solvers.length) die("Ten nguoi giai bi trung.");
-  const identical = [];
-  solvers.forEach((a, i) => solvers.slice(i + 1).forEach((b) => { if (canon(a.data) === canon(b.data)) identical.push(a.name + " = " + b.name); }));
-  if (identical.length && !allowIdentical) die("Du lieu cua hai nguoi giai giong het nhau (" + identical.join(", ") + "): kiem tra xem co chep/dung nham tep khong. Neu ho thuc su giai doc lap, chay lai voi --allow-identical.");
-  if (identical.length) console.log("CHU Y: --allow-identical: du lieu giong het nhau (" + identical.join(", ") + ").\n");
-
   let ids, expect = null, delta = false;
   if (manifestFile !== null) {
     const m = readManifest(manifestFile, root);
@@ -263,6 +259,11 @@ function main() {
     only.forEach((x) => { const [u, q] = x.split("/"); (expect[u] = expect[u] || []).push(q); });
     ids = Object.keys(expect);
   } else ids = [...new Set(units)];
+  if (allowIdentical && !delta) die("--allow-identical chi dung cho lan kiem delta (--only hoac manifest co \"only\": true).");
+  const identical = [];
+  solvers.forEach((a, i) => solvers.slice(i + 1).forEach((b) => { if (canon(a.data) === canon(b.data)) identical.push(a.name + " = " + b.name); }));
+  if (identical.length && !allowIdentical) die("Du lieu cua hai nguoi giai giong het nhau (" + identical.join(", ") + "): kiem tra xem co chep/dung nham tep khong." + (delta ? " Neu ho thuc su giai doc lap, chay lai voi --allow-identical." : ""));
+  if (identical.length) console.log("CHU Y: --allow-identical: du lieu giong het nhau (" + identical.join(", ") + ").\n");
   if (!ids.length) die("Khong co unit nao de so.");
   const names = solvers.map((x) => x.name), results = [];
   for (const id of ids) {
@@ -278,7 +279,7 @@ function main() {
   const ignored = [...new Set([].concat(...solvers.map((x) => Object.keys(x.data))))].filter((u) => !ids.includes(u));
   if (ignored.length) console.log("ghi chu: tep nguoi giai co unit khong duoc yeu cau (bo qua): " + ignored.join(", "));
   const bad = results.filter((r) => !r.pass).map((r) => r.unit);
-  console.log("blind-compare: " + results.length + " unit; pha A " + (bad.length ? "KHONG DAT: " + bad.join(", ") : "DAT tat ca") + (delta ? " (kiem delta: " + results.reduce((n, r) => n + r.items, 0) + " cau)" : "") + ".");
+  console.log("blind-compare: " + results.length + " unit; pha A " + (bad.length ? "KHONG DAT: " + bad.join(", ") : "DAT tat ca") + (delta ? " (kiem delta: " + results.reduce((n, r) => n + r.items, 0) + " cau)" : "") + "." + (allowIdentical ? " (allow-identical)" : ""));
   if (jsonOut) fs.writeFileSync(jsonOut, JSON.stringify({ solvers: names, identicalAllowed: identical, results }, null, 2) + "\n");
   process.exit(bad.length ? 1 : 0);
 }

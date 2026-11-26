@@ -97,6 +97,40 @@ try {
   r = x3(["Tidewell Freight will call Anders about the pallets."]);
   check("X3: ten trong danh sach cua chinh unit khong bi gan", r.code === 0, r.out);
 
+  /* bai dien: chu hoa cua dap an o dau cau / sau goi y khong phai ten rieng */
+  const FILL = (items) => [{ id: "fill1", type: "fill", items: items.map((x, i) => ({ id: "fill1-" + i, before: x[0], answers: x[1], after: x[2] })) }];
+  const two2 = (a, b) => { const w = clean(); w[0].exercises = FILL(a); w[1].exercises = FILL(b); put(w); };
+  const linkers = (tail) => [
+    ["The " + tail + " lake path is longer than the road. (H...)", ["However"], ", most walkers like " + tail + "."],
+    ["A storm damaged the " + tail + " roof. (T...)", ["Therefore", "therefore"], ", the " + tail + " show moved."],
+    ["Keep your " + tail + " pass close. (O...)", ["Otherwise"], ", the " + tail + " guard will stop you."],
+    ["First, slice the " + tail + " apples. (A...)", ["Afterward"], ", dry them."],
+    ["", ["Meanwhile"], ", the " + tail + " team waited."],
+    ["Bring the " + tail + " form; [m...]", ["Moreover"], ", sign it."],
+    ["One more " + tail + " thing —", ["Besides"], ", it is late."],
+  ];
+  two2(linkers("north"), linkers("south"));
+  r = run(["--root", tmp, "--list-names"]);
+  check("bai dien: However/Therefore/Otherwise/Afterward/... o dau cau hoac sau goi y khong bi coi la ten", r.code === 0 && !/However|Therefore|Otherwise|Afterward|Meanwhile|Moreover|Besides/.test(r.out), r.out);
+  fs.writeFileSync(nf, JSON.stringify({ "p2-03": ["Anders", "Bhatt"], "p2-04": ["Gallo", "Hoang"] }));
+  r = run(["--root", tmp, "--names", nf]);
+  check("bai dien: cung khong bi X3 khi co --names", r.code === 0, r.out);
+  const bothNames = (item) => { two2([item], [[item[0], item[1], item[2] + " Then we left the north office."]]); return run(["--root", tmp]); };
+  r = bothNames(["Please send the file to", ["Quentin"], "before noon."]);
+  check("bai dien: ten la dap an GIUA cau van bi phat hien", r.code === 1 && /LOI X2: ten "Quentin"/.test(r.out), r.out);
+  r = bothNames(["Please call Mr.", ["Quentin"], "before noon."]);
+  check("bai dien: dap an sau Mr. van bi phat hien", r.code === 1 && /LOI X2: ten "Quentin"/.test(r.out), r.out);
+  r = bothNames(["The form is ready. (H...)", ["However"], ", ask Quentin to sign it."]);
+  check("bai dien: ten o phan after van bi phat hien, tu noi thi khong", r.code === 1 && /LOI X2: ten "Quentin"/.test(r.out) && !/ten "However"/.test(r.out), r.out);
+  r = bothNames(["We met Quentin at the gate. (H...)", ["However"], ", he left early."]);
+  check("bai dien: ten o phan before van bi phat hien", r.code === 1 && /LOI X2: ten "Quentin"/.test(r.out), r.out);
+  { const w = clean(); w[0].exercises = FILL([["", ["Quentin"], "will open the gate."]]); w[1].sentences.push({ id: "q1", en: "Please give the key to Quentin tonight." }); put(w); }
+  r = run(["--root", tmp]);
+  check("bai dien: ten o dau cau van bi tinh khi noi khac dung no giua cau", r.code === 1 && /LOI X2: ten "Quentin" dung chung o p2-03.*p2-04/.test(r.out), r.out);
+  two2([["", ["Gallo"], "will open the gate."]], []);
+  r = run(["--root", tmp, "--names", nf]);
+  check("bai dien: ten trong danh sach unit khac dung o dau cau van bi X3 (kiem chinh xac)", r.code === 1 && /LOI X3: p2-03: "Gallo"/.test(r.out), r.out);
+
   /* X5 khoa "vi" */
   u = clean(); u[0].sentences[0].vi = "Xem dòng 4 trong bài."; put(u); r = run(["--root", tmp]);
   check("X5: khoa vi (khong chi *_vi) cung bi kiem", r.code === 1 && /LOI X5: p2-03: sentences\[s0\]\.vi nhac "dòng 4"/.test(r.out), r.out);

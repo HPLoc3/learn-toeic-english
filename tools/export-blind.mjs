@@ -17,8 +17,8 @@
 // --batch ghi <out>/passA/<id>.full.json (pha A), <out>/passB/<id>.<mode>.json (pha B: chi cac che do hop voi loai unit), <out>/reviewer/<id>.lesson.json
 // (cho nguoi duyet, khong cham) va <out>/manifest.json (khong chua dap an; blind-compare --manifest doc unit va id cau tu day).
 // Dua cho nguoi giai thu muc passB truoc, luu cau tra loi roi moi dua passA.
-// --only (kiem lai sau khi sua, chi pha A): <out>/passA/<id>.full.json chi gom cac cau da neu kem ngu canh cua chung (ca loi thoai + hinh cua doan, ca bai doc cua bo);
-// bo cloze: gui CA bo (4 cau), vi bai doc can du cac cho trong. manifest.json co "only": true va id cua moi cau trong goi.
+// --only (kiem lai sau khi sua, chi pha A): <out>/passA/<id>.full.json chi gom phan co cau da neu. conv va read: chon mot cau nao cua doan/bo thi gui CA doan/bo
+// (loi thoai + hinh hoac bai doc, va MOI cau cua no). qr, gram, bai dien: chi cac cau da neu. manifest.json co "only": true va id cua moi cau trong goi (deu phai tra loi).
 import fs from "node:fs";
 import path from "node:path";
 import vm from "node:vm";
@@ -153,18 +153,14 @@ export function blind(unit, mode) {
   return { id: unit.id, mode, exercises: out };
 }
 
-/* goi delta: goi full chi giu cac cau trong want (bo cloze co cau duoc chon: giu ca bo) */
+/* goi delta: qr/gram/fill chi giu cac cau trong want; doan conv va bo read co cau trong want thi giu NGUYEN ca doan/bo */
 export function blindOnly(unit, want) {
   const full = blind(unit, "full"), have = new Set(questionIds(full)), need = new Set(want);
   const missing = want.filter((q) => !have.has(q));
   if (missing.length) throw new Error(unit.id + " khong co cau: " + missing.join(", "));
   full.exercises = full.exercises.filter((ex) => {
     if (ex.items) { ex.items = ex.items.filter((it) => need.has(it.id)); return ex.items.length > 0; }
-    ex.sets = (ex.sets || []).filter((s) => {
-      if (!(s.questions || []).some((q) => need.has(q.id))) return false;
-      if (s.kind !== "cloze") s.questions = s.questions.filter((q) => need.has(q.id));
-      return true;
-    });
+    ex.sets = (ex.sets || []).filter((s) => (s.questions || []).some((q) => need.has(q.id)));
     return ex.sets.length > 0;
   });
   return full;

@@ -11,7 +11,8 @@
 //       rieng biet cua cum (khong phai tu thuong/tu chung, chi nam trong MOT danh sach). Ten co trong danh sach cua chinh unit thi bo qua.
 //   X5  chuoi "vi" hoac *_vi nhac "Dong N" / "line N" (nguoi hoc khong thay so dong).
 // Cach nhan ten rieng: tu viet hoa dung GIUA cau (hoac sau Mr./Ms./Mrs./Dr.) trong chuoi tieng Anh khong phai tieu de, khong nam trong danh sach tu thuong (STOP),
-// va KHONG xuat hien o dang chu thuong o bat ky dau trong cac unit. Tu viet tat (toan chu hoa) bi bo qua. Day la phep doan: dung --list-names de xem.
+// va KHONG xuat hien o dang chu thuong o bat ky dau trong cac unit. Bai dien: chu dau cua dap an viet hoa vi dung o dau cau hoac ngay sau goi y trong ngoac
+// (vd "(H...) However") khong duoc dung de PHAT HIEN ten (sau Mr./Ms./Mrs./Dr. thi van tinh; kiem chinh xac voi --names van xet moi tu). Tu viet tat (toan chu hoa) bi bo qua. Day la phep doan: dung --list-names de xem.
 import fs from "node:fs";
 import path from "node:path";
 import vm from "node:vm";
@@ -49,7 +50,12 @@ const TITLES = new Set(["mr", "mrs", "ms", "dr"]);
 const WORD = /[A-Za-zÀ-ÖØ-öø-ÿ]+(?:['’-][A-Za-zÀ-ÖØ-öø-ÿ]+)*/g;
 const isObj = (x) => x && typeof x === "object" && !Array.isArray(x);
 
-/* ---------- thu thap chuoi tieng Anh: [{ s, where, sent }] (sent = tinh cho X1) ---------- */
+/* ---------- thu thap chuoi tieng Anh: [{ s, where, sent, d }] (sent = tinh cho X1; d = ban dung de phat hien ten, neu khac s) ---------- */
+/* bai dien: dap an dung o dau cau / sau goi y trong ngoac thi chu hoa dau tien la do vi tri, khong phai dau hieu ten rieng */
+const atBoundary = (before) => {
+  const b = String(before || "").replace(/\s+$/, "");
+  return !/(^|[^\p{L}])(Mr|Mrs|Ms|Dr)\.$/u.test(b) && (b === "" || /[.!?:;"”)\]\-–—]$/.test(b));
+};
 export function englishStrings(u) {
   const out = [];
   const add = (s, where, sent) => { if (typeof s === "string" && s.trim()) out.push({ s: s.trim(), where, sent: !!sent }); };
@@ -65,7 +71,11 @@ export function englishStrings(u) {
   (u.phrases || []).forEach((x) => add(x.en, x.id, true));
   (u.sentences || []).forEach((x) => add(x.en, x.id, true));
   (u.exercises || []).forEach((ex) => {
-    if (ex.type === "fill") (ex.items || []).forEach((it) => add([it.before, (it.answers || [])[0], it.after].filter(Boolean).join(" "), it.id, true));
+    if (ex.type === "fill") (ex.items || []).forEach((it) => {
+      const a = String((it.answers || [])[0] || ""), join = (x) => [it.before, x, it.after].filter(Boolean).join(" ").trim();
+      add(join(a), it.id, true);
+      if (a && atBoundary(it.before)) out[out.length - 1].d = join(a.charAt(0).toLowerCase() + a.slice(1));
+    });
     else if (ex.type === "tf") (ex.items || []).forEach((it) => add(it.en, it.id, true));
     else if (ex.type === "mc") (ex.options || []).forEach((o) => add(o.en, ex.id + "." + o.label, true));
     else if (ex.type === "qr") (ex.items || []).forEach((it) => { add((it.q || {}).en, it.id + ".q", true); (it.options || []).forEach((o) => add(o.en, it.id + "." + o.label, true)); });
@@ -123,7 +133,7 @@ export function findNames(units) {
   const cands = new Set();
   for (const list of strings.values()) for (const x of list) {
     if (titleLike(x.s)) continue;
-    for (const sent of sentencesOf(x.s)) {
+    for (const sent of sentencesOf(x.d || x.s)) {
       const re = new RegExp(WORD.source, "g");
       let m, prev = null;
       while ((m = re.exec(sent))) {
