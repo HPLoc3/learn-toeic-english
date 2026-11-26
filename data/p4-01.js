@@ -759,8 +759,8 @@ window.BS_UNITS["p4-01"] = {
             },
             {
               "s": "A",
-              "en": "Guests arriving before then may have to wait at the front desk.",
-              "vi": "Khách đến trước lúc đó có thể phải chờ ở quầy lễ tân."
+              "en": "If you're expecting visitors this morning, you may want to meet them in the lobby.",
+              "vi": "Nếu bạn có khách đến vào buổi sáng, có lẽ bạn nên xuống sảnh đón họ."
             },
             {
               "s": "A",
@@ -830,22 +830,23 @@ window.BS_UNITS["p4-01"] = {
               },
               "answer": "B",
               "evidence": [
+                2,
                 3,
                 4
               ],
-              "explain_vi": "Ngay sau câu này, cô nói khách đến sớm có thể phải chờ ở quầy lễ tân: khu bốc dỡ bận nên khách có thể bị chậm trễ.",
+              "explain_vi": "Thang máy duy nhất còn chạy nằm sau khu bốc dỡ; khu này bận đến trưa nên khách khó lên tầng, vì vậy cô gợi ý xuống sảnh đón khách.",
               "options": [
                 {
                   "label": "A",
                   "en": "She is asking staff to help unload trucks",
                   "vi": "Cô nhờ nhân viên giúp dỡ hàng từ xe tải",
                   "trap": "over-inference",
-                  "why_vi": "Không có lời nhờ giúp dỡ hàng; câu sau nói về việc nhờ khách đến muộn."
+                  "why_vi": "Không có lời nhờ giúp dỡ hàng; cô chỉ báo khu bốc dỡ bận, nơi có thang máy chở hàng duy nhất còn chạy."
                 },
                 {
                   "label": "B",
-                  "en": "She is cautioning that visitors may be kept waiting",
-                  "vi": "Cô cảnh báo khách đến thăm có thể phải chờ"
+                  "en": "She expects visitors to have trouble getting upstairs",
+                  "vi": "Cô dự đoán khách sẽ khó lên các tầng trên"
                 },
                 {
                   "label": "C",
@@ -986,27 +987,27 @@ window.BS_UNITS["p4-01"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "At a fitness center",
-                  "vi": "Ở một trung tâm thể hình"
+                  "en": "A fitness center",
+                  "vi": "Một trung tâm thể hình"
                 },
                 {
                   "label": "B",
-                  "en": "At a yoga studio",
-                  "vi": "Ở một phòng tập yoga",
+                  "en": "A yoga studio",
+                  "vi": "Một phòng tập yoga",
                   "trap": "wrong-detail",
                   "why_vi": "Phòng tập yoga không có máy tập phải chờ và hồ bơi."
                 },
                 {
                   "label": "C",
-                  "en": "At a dance school",
-                  "vi": "Ở một trường dạy nhảy",
+                  "en": "A dance school",
+                  "vi": "Một trường dạy nhảy",
                   "trap": "wrong-detail",
                   "why_vi": "Trường nhảy không phải nơi có máy tập, hồ bơi."
                 },
                 {
                   "label": "D",
-                  "en": "At a community pool",
-                  "vi": "Ở một hồ bơi cộng đồng",
+                  "en": "A community pool",
+                  "vi": "Một hồ bơi cộng đồng",
                   "trap": "wrong-detail",
                   "why_vi": "Hồ bơi chỉ là một trong nhiều tiện ích."
                 }
