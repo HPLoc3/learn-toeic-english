@@ -237,8 +237,8 @@ window.BS_UNITS["p3-02"] = {
     },
     {
       "id": "p02",
-      "en": "Could I swap this for a different color?",
-      "vi": "Tôi đổi món này sang màu khác được không?",
+      "en": "Could I exchange this blender for a different model?",
+      "vi": "Tôi đổi chiếc máy xay này sang mẫu khác được không?",
       "group_vi": "Đổi trả"
     },
     {
@@ -273,8 +273,8 @@ window.BS_UNITS["p3-02"] = {
     },
     {
       "id": "p08",
-      "en": "Can you give me an estimate?",
-      "vi": "Anh có thể báo giá cho tôi không?",
+      "en": "Can you give me a quote for repainting the fence?",
+      "vi": "Anh báo giá giúp tôi việc sơn lại hàng rào được không?",
       "group_vi": "Dịch vụ sửa chữa"
     },
     {
@@ -512,8 +512,8 @@ window.BS_UNITS["p3-02"] = {
                   "label": "A",
                   "en": "He is glad the jacket is available in his size.",
                   "vi": "Anh ấy mừng vì áo có cỡ của anh.",
-                  "trap": "changed-plan",
-                  "why_vi": "Chuyện cỡ áo mới được nhắc sau câu này, khi anh nói muốn đổi cỡ lớn hơn."
+                  "trap": "over-inference",
+                  "why_vi": "Lúc này chưa ai nói còn cỡ áo; chuyện cỡ lớn hơn chỉ được nhắc sau câu này."
                 },
                 {
                   "label": "B",
@@ -1044,7 +1044,7 @@ window.BS_UNITS["p3-02"] = {
                   "label": "B",
                   "en": "A property manager",
                   "vi": "Một người quản lý bất động sản",
-                  "trap": "wrong-speaker",
+                  "trap": "heard-word",
                   "why_vi": "Quản lý tòa nhà là người mà hai người đàn ông sẽ đi hỏi, không phải người phụ nữ."
                 },
                 {
@@ -1635,10 +1635,10 @@ window.BS_UNITS["p3-02"] = {
         },
         {
           "id": "fill1-5",
-          "before": "Unfortunately, that item is out",
-          "after": "stock.",
+          "before": "I'm afraid we've run",
+          "after": "of the blue model.",
           "answers": [
-            "of"
+            "out"
           ]
         }
       ]
