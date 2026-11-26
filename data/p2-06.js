@@ -766,10 +766,10 @@ window.BS_UNITS["p2-06"] = {
             },
             {
               "label": "B",
-              "en": "A short loan form I can sign online, please.",
-              "vi": "Cho tôi mẫu phiếu mượn ngắn có thể ký trực tuyến.",
+              "en": "The loan form takes only a minute to sign.",
+              "vi": "Phiếu mượn chỉ mất một phút để ký.",
               "trap": "related-word",
-              "why_vi": "Phiếu mượn có liên quan đến việc mượn máy, nhưng câu này chọn loại phiếu, không chọn cỡ máy."
+              "why_vi": "Phiếu mượn có liên quan đến việc mượn máy, nhưng câu này nói về việc ký phiếu, không chọn cỡ máy."
             },
             {
               "label": "C",
@@ -823,7 +823,7 @@ window.BS_UNITS["p2-06"] = {
             "vi": "Máy làm việc mới của bạn nên dùng chuột có dây hay chuột không dây?"
           },
           "answer": "A",
-          "explain_vi": "Both nghĩa là lấy cả hai; A nêu lý do là mình dùng hai máy tính.",
+          "explain_vi": "Both nghĩa là lấy cả hai; A giải thích một chiếc sẽ để trong ngăn kéo làm dự phòng.",
           "options": [
             {
               "label": "A",
@@ -868,10 +868,10 @@ window.BS_UNITS["p2-06"] = {
             },
             {
               "label": "B",
-              "en": "Have you checked which station is yours?",
-              "vi": "Bạn đã kiểm tra xem ga nào là ga của bạn chưa?",
+              "en": "Which train station is closest to you?",
+              "vi": "Ga tàu nào gần chỗ bạn nhất?",
               "trap": "repeat-word",
-              "why_vi": "Lặp lại từ station và cũng là câu hỏi kiểm tra, nhưng hỏi về ga, không giúp tìm lỗi sạc."
+              "why_vi": "Lặp lại từ station nhưng hỏi về ga tàu, không giúp tìm lỗi sạc."
             },
             {
               "label": "C",
