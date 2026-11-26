@@ -369,8 +369,8 @@ window.BS_UNITS["p5-04"] = {
         {
           "id": "g1-02",
           "cat": "vocabulary",
-          "en": "To keep products from expiring in storage, Trevor tells his team to ------ older stock ahead of newer deliveries.",
-          "vi": "Để sản phẩm không hết hạn trong kho, Trevor yêu cầu nhóm của mình xuất hàng cũ đi trước các lô mới nhận.",
+          "en": "To keep products from expiring in storage, Trevor tells the Coppice Lane team to ------ older stock before newer deliveries.",
+          "vi": "Để sản phẩm không hết hạn trong kho, Trevor yêu cầu nhóm ở Coppice Lane xuất hàng cũ đi trước các lô mới nhận.",
           "answer": "D",
           "explain_vi": "Mục tiêu là không để hàng hết hạn trong kho, nên hàng cũ phải được gửi đi trước: 'dispatch older stock'.",
           "options": [
@@ -1443,10 +1443,10 @@ window.BS_UNITS["p5-04"] = {
       "items": [
         {
           "id": "fill1-1",
-          "before": "The speaker asked everyone to pay at",
+          "before": "The speaker asked everyone to pay att",
           "after": "to the next chart.",
           "answers": [
-            "tention"
+            "ention"
           ]
         },
         {
