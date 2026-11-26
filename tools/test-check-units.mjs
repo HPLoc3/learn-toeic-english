@@ -640,7 +640,29 @@ try {
     check("read-pass: 0 lỗi, 0 cảnh báo kể cả --release", r.code === 0 && /0 lỗi, 0 cảnh báo/.test(r.out), r.out);
     check("read-pass: unit p7 không bị hỏi câu đúng/sai", !/câu đúng\/sai/.test(r.out), r.out);
     r = spawnSync(process.execPath, [path.join(REAL, "tools/check-units.mjs"), "--release"], { encoding: "utf8" });
-    check("cây thật --release: 13 unit, 0 lỗi, 0 cảnh báo", r.status === 0 && /Đã kiểm 13 unit .*: 0 lỗi, 0 cảnh báo\./.test(r.stdout), r.stdout);
+    /* so unit va danh sach id lay tu catalog (dung ca truoc va sau khi mo them unit) */
+    const cw = {}; cw.window = cw; vm.runInNewContext(fs.readFileSync(path.join(REAL, "data/catalog.js"), "utf8"), cw);
+    const avail = [].concat(...cw.BS_CATALOG.parts.map((p) => p.units)).filter((x) => x.available === true).map((x) => x.id);
+    check("cây thật --release: " + avail.length + " unit (theo catalog), 0 lỗi, 0 cảnh báo", r.status === 0 && avail.length >= 13 && r.stdout.includes("Đã kiểm " + avail.length + " unit (" + avail.join(", ") + "): 0 lỗi, 0 cảnh báo."), r.stdout);
+
+    /* bộ triple (fixtures/read-triple.js): luật như bộ double */
+    {
+      const tw = {}; tw.window = tw; vm.runInNewContext(fs.readFileSync(path.join(REAL, "tools/fixtures/read-triple.js"), "utf8"), tw);
+      const withT = () => { const x = R0(); x.exercises.filter((y) => y.type === "read").pop().sets.push(JSON.parse(JSON.stringify(tw.BS_TRIPLE))); return x; };
+      const TS = (x) => x.exercises.filter((y) => y.type === "read").map((y) => y.sets).flat().find((s) => s.kind === "triple");
+      let t = runR(withT(), ["--release"]);
+      check("read-pass + bộ triple: 0 lỗi, 0 cảnh báo kể cả --release", t.code === 0 && /0 lỗi, 0 cảnh báo/.test(t.out), t.out);
+      let x = withT(); TS(x).questions.forEach((q) => { if (q.cross) { delete q.cross; q.evidence = [q.evidence[0]]; } });
+      check("triple không có câu cross: LỖI", errRe(x, /r2-s6': bộ triple cần ít nhất một câu cross/));
+      x = withT(); TS(x).questions[4].evidence = [[1, 0]];
+      check("triple có bài không câu không-cross nào trích dẫn: cảnh báo bài thừa", warnRe(x, /r2-s6'\.passages\[2\]: bài đọc không được câu không-cross nào trích dẫn/));
+      x = withT(); TS(x).questions.pop(); TS(x).passages[2].genre = "chat";
+      check("p7: triple khác 5 câu: cảnh báo", /CẢNH BÁO.*bộ triple 'r2-s6' cần đúng 5 câu hỏi \(hiện 4\)/.test(runR(x).out));
+      x = withT(); TS(x).passages.pop();
+      check("triple chỉ 2 bài: LỖI", errRe(x, /r2-s6': kind 'triple' cần đúng 3 bài đọc \(hiện 2\)/));
+      x = withT(); x.exercises.filter((y) => y.type === "read").forEach((y) => { y.sets = y.sets.filter((s) => s.kind !== "double"); });
+      check("p7 chỉ có triple (không double): không bị cảnh báo thiếu bộ nhiều bài", !/chưa có bộ double/.test(runR(x).out));
+    }
 
     /* read-fail: moi luat mot bo/cau */
     const RF = runR(fxu("read-fail", "p7-01"));

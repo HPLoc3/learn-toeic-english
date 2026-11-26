@@ -107,7 +107,15 @@ const okFetch = (url) => {
     check("PRECACHE có 7 ảnh cảnh 800w của l02", t.PRECACHE.filter((f) => /^assets\/img\/l02\/scene\/[a-z-]+-800\.webp$/.test(f)).length === 7);
     check("PRECACHE có 7 ảnh cảnh 800w của l03, không có ảnh HD", t.PRECACHE.filter((f) => /^assets\/img\/l03\/scene\/[a-z-]+-800\.webp$/.test(f)).length === 7 && !t.PRECACHE.some((f) => /img-hd/.test(f)));
     check("PRECACHE có 7 ảnh cảnh 800w của l04, không có ảnh HD", t.PRECACHE.filter((f) => /^assets\/img\/l04\/scene\/[a-z-]+-800\.webp$/.test(f)).length === 7 && !t.PRECACHE.some((f) => /img-hd/.test(f)));
-    check("PRECACHE không chứa unit chưa available", !t.PRECACHE.some((f) => /^data\/l0[5-9]|^data\/p2-0[3-7]|^data\/p[34]-0[3-7]|^data\/p5-0[2-4]|^data\/p6-0[23]|^data\/p7-0[2-4]|^data\/p[89]/.test(f)));
+  {
+    /* suy tu catalog: moi data/*.js (tru catalog.js) va assets/img/<id>/ trong PRECACHE phai thuoc mot unit available (dung ca truoc va sau khi mo them unit) */
+    const sb = { window: {} };
+    vm.runInNewContext(readFileSync(join(ROOT, "data/catalog.js"), "utf8"), sb);
+    const open = new Set([].concat(...sb.window.BS_CATALOG.parts.map((p) => p.units)).filter((u) => u.available === true).map((u) => u.id));
+    const owner = (f) => (/^data\/([a-z0-9-]+?)(?:-(?:game|anim))?\.js$/.exec(f) || /^assets\/img\/([a-z0-9-]+)\//.exec(f) || [])[1];
+    const bad = t.PRECACHE.filter((f) => f !== "data/catalog.js" && (/^data\//.test(f) || /^assets\/img\//.test(f)) && !open.has(owner(f)));
+    check("PRECACHE không chứa unit chưa available", open.size > 0 && bad.length === 0, bad.join());
+  }
   }
   await t.fire("install", {});
   const c = t.caches.stores.get(CN);

@@ -135,7 +135,8 @@ const KEYS = (set) => set.questions.map((q) => q.answer);
   check("unit.html: read.js nap ngay sau conv.js", /assets\/js\/conv\.js"><\/script>\s*<script src="assets\/js\/read\.js"><\/script>/.test(html));
   check("unit.html van noindex; index.html giu the lien he rong", /noindex/.test(html) && /<p id="contact" hidden><\/p>/.test(fs.readFileSync(path.join(ROOT, "index.html"), "utf8")));
   const sw = fs.readFileSync(path.join(ROOT, "sw.js"), "utf8");
-  check("sw.js: read.js nam trong PRECACHE, VERSION 38", /"assets\/js\/read\.js"/.test(sw) && /var VERSION = "38"/.test(sw));
+  const ver = (/var VERSION = "(\d+)"/.exec(sw) || [])[1];
+  check("sw.js: read.js nam trong PRECACHE, VERSION >= 38 va khop dong content-hash", /"assets\/js\/read\.js"/.test(sw) && Number(ver) >= 38 && sw.includes("// content-hash: " + ver + "@"));
   const css = fs.readFileSync(path.join(ROOT, "assets/css/learn.css"), "utf8");
   const blk = css.slice(css.indexOf("/* Part 5/6/7 (read.js) */"));
   check("learn.css: co khoi .rd-*", blk.length > 200 && /\.rd-blank/.test(blk) && /\.rd-pin\b/.test(blk));
@@ -425,6 +426,24 @@ const KEYS = (set) => set.questions.map((q) => q.answer);
   ropts(byClass(c1, "rd-item")[0], 0)[1].click();
   const tags = [].concat(all(c1, () => true), all(c2, () => true)).map((n) => n.tag);
   check("XSS: ma HTML trong du lieu chi thanh van ban (khong co the img/script nao)", !tags.includes("img") && !tags.includes("script") && tags.every((t) => t === "#text" || /^[a-z0-9]+$/.test(t)) && c1.textContent.includes(X) && c2.textContent.includes(X));
+}
+
+/* ================= triple: ba bai doc (fixtures/read-triple.js) ================= */
+{
+  const w = {}; w.window = w; vm.runInNewContext(fs.readFileSync(path.join(ROOT, "tools/fixtures/read-triple.js"), "utf8"), w);
+  const TRI = clone(w.BS_TRIPLE);
+  const M = mountR({ ex: () => ({ id: "rx", type: "read", instruction_vi: "Đọc.", sets: [clone(TRI)] }) });
+  const s = M.sets[0], passes = byClass(s, "rd-pass"), heads = byClass(s, "rd-ph").map((n) => n.textContent);
+  check("triple: ba bai doc trong mot khung rd-doc, tieu de 'Bài đọc i/3 (the loai)' dung thu tu", passes.length === 3 && byClass(s, "rd-doc").length === 1 && heads.join("|") === "Bài đọc 1/3 (notice)|Bài đọc 2/3 (email)|Bài đọc 3/3 (chat)" && passes.map((n) => n.getAttribute("aria-label")).join("|") === "Bài đọc 1: notice|Bài đọc 2: email|Bài đọc 3: chat", heads.join("|"));
+  check("triple: du noi dung ca ba bai (doan, head, dong chat) va 5 cau hoi 4 dap an", TRI.passages.every((p) => p.paras.every((x) => s.textContent.includes(x.en))) && s.textContent.includes("Warehouse Desk") && byClass(s, "rd-chat").length === 1 && byClass(s, "rd-q").length === 5 && byClass(s, "rd-opt").length === 20);
+  const pb = byClass(s, "rd-pinbtn")[0], d = byClass(s, "rd-doc")[0];
+  pb.click();
+  check("triple: ghim ca ba bai cung mot vung cuon", /rd-pin/.test(d.className) && byClass(d, "rd-pass").length === 3);
+  pb.click();
+  pickAll(s, KEYS(TRI)); rchk(s).click();
+  const ev = passes.map((n) => byClass(n, "rd-ev").length);
+  const want = TRI.passages.map((p, i) => new Set([].concat(...TRI.questions.map((q) => q.evidence)).filter((e) => e[0] === i).map((e) => e[1])).size);
+  check("triple: cham dung 5/5, bang chung danh dau o ca ba bai dung so doan, ban dich mo ra", M.st.scores.rx.c === 5 && ev.join() === want.join() && want.every((n) => n > 0) && all(s, (x) => x.tag === "details").every((x) => !x.hidden), ev.join() + " / " + want.join());
 }
 
 /* ================= mau unit nap duoc va render duoc ================= */

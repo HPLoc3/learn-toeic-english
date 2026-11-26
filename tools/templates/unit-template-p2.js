@@ -7,7 +7,26 @@
  * (de nguyen catalog khong co "game" va "anim"). Moi unit: 24 cau qr (3 bai x 8: theo dang, theo bay, tong hop) + 1 bai fill >= 5 cau.
  * Moi dap an SAI bat buoc co "trap" (xem danh sach duoi) va "why_vi" (vi sao sai, tieng Viet); dap an DUNG khong duoc co hai truong nay.
  * Quy trinh kiem tra noi dung: xem README.md, muc "Part 2". Cau chua duoc nguoi khac nghe/kiem: them  "v": {"status":"unverified","note":"..."}
- * (check-units --release se LOI neu con cau qr unverified trong unit available:true). */
+ * (check-units --release se LOI neu con cau qr unverified trong unit available:true).
+ *
+ * THU TU VIET (bat buoc):
+ *   1. World sheet: boi canh cua unit (nguoi, to chuc, dia diem trong danh sach ten duoc giao) va moi dieu cau hoi ngam gia dinh; dap an phai tuong thich.
+ *   2. Viet cau hoi (stem) va TAT CA 3 dap an tuong thich voi world sheet.
+ *   3. Dat dap an dung theo chu cai DA DUOC GIAO TRUOC (va loai cau da giao), khong tu chon theo thoi quen.
+ *   4. Sua cau hoi/cau tra loi sao cho dap an da dat la dap an duy nhat dung.
+ *   5. Viet cac tab bai hoc (tips, vocab, phrases, sentences, fill) sau cung, dung cau va kich ban khac. Moi noi dung de "v" unverified.
+ * LUAT R1-R8 (viet cho Part 3/4; voi Part 2 doc "set" = mot cau qr, "script" = cau hoi + dap an dung):
+ *   R1 Intent (Part 2 khong co cau intent): where an utterance's purpose matters, use a plain, literal sentence of fact with no idiom; idioms may stay in vocab
+ *      but must not decide the key.
+ *   R2 Cross-question independence: no stem or option may contain or entail another item's key.
+ *   R3 Counterfactual-line test for every distractor: write the question that WOULD make that reply correct in this same world; if it is odd or contradicts the world
+ *      sheet, replace the distractor (a trap must be tempting, not absurd).
+ *   R4 Valence/typicality parity: the key must not be the only polite, positive or schema-default reply; take the key by rotation (the assigned letter), then edit
+ *      the question to make it true.
+ *   R5 All three options consistent with the world sheet; none can be dropped without hearing the question.
+ *   R6 Graphic: not used in Part 2 (no graphic, no image).
+ *   R7 Form: option lengths within plus or minus 30% of the mean of the others; same shape; the key is not systematically the longest or the only indirect reply.
+ *   R8 Uniqueness guard: after each rewrite, re-check that exactly ONE reply answers the question naturally (indirect replies included). */
 window.BS_UNITS = window.BS_UNITS || {};
 window.BS_UNITS["__ID__"] = {
   "id": "__ID__",
@@ -46,7 +65,7 @@ window.BS_UNITS["__ID__"] = {
       "items": [
         {
           "id": "qr1-01",
-          /* kind: who, where, when, why, what, which, how, yesno, negative, tag, request, suggestion, choice, statement, indirect */
+          /* kind: who, where, when, why, what, which, how, yesno, negative, tag, request, suggestion, offer, choice, statement, indirect */
           "kind": "who",
           "q": { "en": "Who is leading the sales meeting this afternoon?", "vi": "Ai sẽ chủ trì cuộc họp bán hàng chiều nay?" },
           "answer": "B",                    /* A, B hoac C; trat tu A/B/C co dinh (khong xao tron) vi loi giai nhac theo chu cai */

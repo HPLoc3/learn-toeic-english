@@ -17,7 +17,7 @@ const MIN_GAME_ROUNDS = 10;   /* duoi muc nay la LOI */
 const GAME_CHOICES = 4;       /* phai trung CHOICES trong game.js */
 const GAME_ROUNDS_PER_PLAY = 10;
 /* Part 2 (type "qr") */
-const QR_KINDS = ["who", "where", "when", "why", "what", "which", "how", "yesno", "negative", "tag", "request", "suggestion", "choice", "statement", "indirect"];
+const QR_KINDS = ["who", "where", "when", "why", "what", "which", "how", "yesno", "negative", "tag", "request", "suggestion", "offer", "choice", "statement", "indirect"];
 const QR_TRAPS = ["similar-sound", "repeat-word", "wrong-wh", "wrong-tense", "wrong-subject", "related-word", "yesno-to-wh"];
 const QR_LABELS = ["A", "B", "C"];
 const QR_MIN_ITEMS = 20;
@@ -682,8 +682,8 @@ function checkUnit(entry) {
       else if (nIns !== 1) rel(ws + ": bài cloze cần đúng một câu chèn (insert), hiện có " + nIns + ".");
       if (nCtx < 2) w(ws + ": bài cloze nên có ít nhất 2 câu cần ngữ cảnh (ctx), hiện " + nCtx + ".");
     }
-    if (s.kind === "double") {
-      if (!nCross) e(ws + ": bộ double cần ít nhất một câu cross.");
+    if (s.kind === "double" || s.kind === "triple") {
+      if (!nCross) e(ws + ": bộ " + s.kind + " cần ít nhất một câu cross.");
       ps.forEach((p, k) => { if (!cited.has(k)) w(ws + ".passages[" + k + "]: bài đọc không được câu không-cross nào trích dẫn (bài thừa?)."); });
     }
     if (letters.length > 1 && letters.every((x) => x === letters[0])) w(ws + ": cả " + letters.length + " câu cùng đáp án " + letters[0] + ".");
@@ -945,10 +945,10 @@ function checkUnit(entry) {
     if (/^p6-/.test(id)) cnt(rdSets.filter((x) => isObj(x) && x.kind === "cloze").length, 4, "bài cloze (Part 6)");
     if (/^p7-/.test(id)) {
       cnt(rdSets.length, 5, "bộ đọc (Part 7)"); cnt(rdN, 15, "câu đọc (Part 7)");
-      if (!rdSets.some((x) => isObj(x) && x.kind === "double")) w("ít hơn mức tối thiểu: chưa có bộ double (hai bài đọc).");
+      if (!rdSets.some((x) => isObj(x) && (x.kind === "double" || x.kind === "triple"))) w("ít hơn mức tối thiểu: chưa có bộ double (hai bài đọc).");
       const ks = new Set(rdQs.map((q) => q.kind));
       ["not", "inference", "vocab", "position"].forEach((kd) => { if (!ks.has(kd)) w("ít hơn mức tối thiểu: chưa có câu kind \"" + kd + "\"."); });
-      rdSets.filter((x) => isObj(x) && x.kind === "double").forEach((x) => { const n = Array.isArray(x.questions) ? x.questions.length : 0; if (n !== 5) w("bộ double '" + x.id + "' cần đúng 5 câu hỏi (hiện " + n + ")."); });
+      rdSets.filter((x) => isObj(x) && (x.kind === "double" || x.kind === "triple")).forEach((x) => { const n = Array.isArray(x.questions) ? x.questions.length : 0; if (n !== 5) w("bộ " + x.kind + " '" + x.id + "' cần đúng 5 câu hỏi (hiện " + n + ")."); });
     }
     [[gmItems, "gram"], [rdQs, "đọc"]].forEach(([arr_, name]) => {
       const okA = arr_.filter((q) => CV_LABELS.includes(q.answer)), by = {};

@@ -27,7 +27,35 @@
  * thanh LOI). Cau dem ngan ("Sure, no problem.") va dap an ngan khong bi bao ve. Ngoai le co chu dich khai trong QR_LEAK_ALLOW (check-units.mjs),
  * vi du "p3-03/c1-s2|*overlap*|phrases[4].en" (id doan o giua, khong phai id cau).
  * Cau chua duoc nghe/kiem: them "v": {"status":"unverified","note":"..."} o doan, cau hoac dap an (check-units --release se LOI neu unit available:true con muc nay).
- * Nghe thu tung doan tren thiet bi that (giong en-US, en-GB, en-AU) truoc khi bo unverified. Quy trinh: README.md muc "Part 3 và Part 4". */
+ * Nghe thu tung doan tren thiet bi that (giong en-US, en-GB, en-AU) truoc khi bo unverified. Quy trinh: README.md muc "Part 3 và Part 4".
+ *
+ * THU TU VIET (bat buoc; ly do: viet loi thoai truoc roi bia 3 dap an sai thi 3 cau hoi + 12 dap an + hinh cung ke lai chuyen, chi dap an dung khop):
+ *   1. World sheet cho tung doan: liet ke moi su that ma 3 cau hoi va hinh ngam gia dinh. MOI dap an cua moi cau phai tuong thich voi tat ca.
+ *   2. Viet 3 cau hoi va TAT CA dap an, tuong thich voi world sheet.
+ *   3. Dat dap an dung theo chu cai DA DUOC GIAO TRUOC (va loai cau, hang dap an cua hinh da giao), khong tu chon theo thoi quen.
+ *   4. Viet loi thoai SAU CUNG sao cho dap an da dat la dung (loi thoai duoc phep sua: audio la TTS).
+ *   5. Viet cac tab bai hoc (tips, vocab, phrases, sentences, fill) sau cung, dung kich ban khac. Moi noi dung de "v" unverified.
+ * LUAT R1-R8 (chong doan duoc; ma loi D1-D7: D1 cau nay suy ra dap an cau kia, D2 quote thanh ngu, D3 dap an dung la muc "ôn hoa/dien hinh" duy nhat,
+ * D4 dap an sai trai world sheet, D5 hinh lo dap an, D6 hinh thuc lech, D7 cau khong dung hinh lai hoi bien quyet dinh cua hinh):
+ *   R1 Intent: the quote is a plain, literal sentence of fact with no idiom (e.g. "We have a waiting list for that morning"). All four options are different
+ *      pragmatic functions the quote could serve. Two-context test: for at least 2 distractors you can write the alternative preceding line that would make that
+ *      distractor correct; if not, rewrite. Idioms may stay in scripts/vocab but are not tested as intent. "evidence" must include a line other than the quote line.
+ *   R2 Cross-question independence: no stem or option may contain or entail another question's key. Neutral stems ("Which item is the speaker calling about?",
+ *      "What does the man offer?"). Where two questions are causally linked (problem and next, main and request), build a pairing matrix: each option of one has a
+ *      matching option in the other, so the correlation carries no information.
+ *   R3 Counterfactual-line test for every distractor of detail/problem/request/next/inference: write the single script line that would make it true in this same set;
+ *      if that line is odd for the genre or contradicts the world sheet, replace the distractor.
+ *   R4 Valence/typicality parity: ad options all selling points; inference options equally moderate; next/request options four equally default closings
+ *      (e.g. four notification channels, four callback timings). For next/request, take the key by rotation (the assigned letter), not by schema default, then edit
+ *      the script line to make it true.
+ *   R5 Main/speaker: all four options consistent with the world sheet (four kinds of sale, four order changes, four scheduling purposes). If that makes the script
+ *      ambiguous, replace with a detail question. Keep at least 2 speaker items per unit (unless the unit brief says otherwise).
+ *   R6 Graphic: neutral titles (company name + generic noun; never a word that a question asks about, e.g. no "Weekend", "Evening", "Discounts"). Use the assigned
+ *      key rows (each data row at most twice per unit). Key is not the max/min of the relevant column unless a distractor is equally salient. No other question in
+ *      the set asks about the deciding variable.
+ *   R7 Form: each option length within plus or minus 30% of the mean of the other three; all four options same shape; a number option is never a sum or difference
+ *      of two others.
+ *   R8 Uniqueness guard: after each rewrite, re-check that the script supports exactly one option. */
 window.BS_UNITS = window.BS_UNITS || {};
 window.BS_UNITS["__ID__"] = {
   "id": "__ID__",

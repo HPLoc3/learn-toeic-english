@@ -6,6 +6,7 @@ import { join, dirname } from "node:path";
 import { tmpdir } from "node:os";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import vm from "node:vm";
 import { build, isSiteFile, isPublicMeta, copySite, runGate, gitFiles, parsePrecache, localRefs, verifyDist, walkFiles, unavailableIds, isUnreleasedData, GATE, ROOT } from "./build-dist.mjs";
 
 let total = 0, failed = 0;
@@ -159,21 +160,19 @@ try {
     check("copySite: chép unit đã mở và catalog, bỏ unit chưa mở", cp.list.join() === "data/p2-01.js,data/catalog.js" && !existsSync(join(o, "data", "p2-02.js")), cp.list);
     check("unavailableIds: catalog hỏng -> rỗng, không nem", unavailableIds(join(t, "none")).length === 0);
   } finally { rmSync(t, { recursive: true, force: true }); }
+  /* cay that: ky vong suy tu catalog, dung ca truoc va sau khi mo them unit */
   const realSkip = unavailableIds(ROOT);
-  check("catalog thật: p2-01 và p2-02 đã mở (không bị loại), p2-03 còn trong lộ trình nhưng bị loại khỏi dist", !realSkip.includes("p2-01") && !realSkip.includes("p2-02") && realSkip.includes("p2-03") && readFileSync(join(ROOT, "data", "catalog.js"), "utf8").includes('"p2-03"'));
+  const sb = {}; sb.window = sb; vm.runInNewContext(readFileSync(join(ROOT, "data", "catalog.js"), "utf8"), sb);
+  const all = [].concat(...sb.BS_CATALOG.parts.map((p) => p.units));
+  const closed = all.filter((u) => u.available !== true).map((u) => u.id), opened = all.filter((u) => u.available === true).map((u) => u.id);
+  check("catalog thật: unavailableIds đúng bằng các unit chưa mở theo catalog (" + closed.length + "/" + all.length + ")", all.length >= 36 && JSON.stringify(realSkip) === JSON.stringify(closed), realSkip.join());
+  check("catalog thật: unit đã mở không bị loại, unit chưa mở bị loại khỏi dist (cả tệp -game, -anim)", opened.every((id) => ["", "-game", "-anim"].every((x) => !isUnreleasedData("data/" + id + x + ".js", realSkip))) && closed.every((id) => ["", "-game", "-anim"].every((x) => isUnreleasedData("data/" + id + x + ".js", realSkip))));
+  check("catalog thật: 13 unit đã có từ trước vẫn mở", ["l01", "l02", "l03", "l04", "p2-01", "p2-02", "p3-01", "p3-02", "p4-01", "p4-02", "p5-01", "p6-01", "p7-01"].every((id) => opened.includes(id)), opened.join());
 }
 
 {
-  /* unit Part 3/4 da mo duoc phat hanh, unit chua mo thi khong */
-  const skip = unavailableIds(ROOT);
-  check("catalog that: p3-01, p3-02, p4-01, p4-02 da mo (khong bi loai); p3-03 va p4-07 chua mo (bi loai)", ["p3-01", "p3-02", "p4-01", "p4-02"].every((id) => !isUnreleasedData("data/" + id + ".js", skip)) && isUnreleasedData("data/p3-03.js", skip) && isUnreleasedData("data/p4-07.js", skip));
+  /* tep dung chung cua Part 3-7 la tep trang web hop le (vao dist) */
   check("assets/js/conv.js la tep trang web hop le (vao dist)", isSiteFile("assets/js/conv.js"));
-}
-
-{
-  /* unit doc Part 5/6/7 da mo duoc phat hanh, unit chua mo thi khong */
-  const skip = unavailableIds(ROOT);
-  check("catalog that: p5-01, p6-01, p7-01 da mo (khong bi loai); p5-02, p6-02, p7-02 chua mo (bi loai)", ["p5-01", "p6-01", "p7-01"].every((id) => !isUnreleasedData("data/" + id + ".js", skip)) && ["p5-02", "p6-02", "p7-02"].every((id) => isUnreleasedData("data/" + id + ".js", skip)));
   check("assets/js/read.js la tep trang web hop le (vao dist)", isSiteFile("assets/js/read.js"));
 }
 console.log(`test-build-dist: ${total - failed}/${total} ca đạt`);
