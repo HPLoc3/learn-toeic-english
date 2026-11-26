@@ -902,10 +902,10 @@ window.BS_UNITS["p2-06"] = {
           "options": [
             {
               "label": "A",
-              "en": "I'll ask them to add more cable channels.",
-              "vi": "Tôi sẽ đề nghị họ thêm kênh truyền hình cáp.",
+              "en": "Our cable TV bill went up again.",
+              "vi": "Hóa đơn truyền hình cáp của chúng tôi lại tăng.",
               "trap": "repeat-word",
-              "why_vi": "Lặp lại từ cable và cũng là lời hứa làm giúp, nhưng nói về kênh truyền hình cáp."
+              "why_vi": "Lặp lại từ cable nhưng than về hóa đơn truyền hình cáp, không phản hồi chuyện dây cáp nằm lộn xộn."
             },
             {
               "label": "B",
@@ -1199,7 +1199,7 @@ window.BS_UNITS["p2-06"] = {
         {
           "id": "fill1-4",
           "before": "I tested two old microphones, and",
-          "after": "of them works, so I'll request a replacement.",
+          "after": "of the two works, so I don't have a usable one at all.",
           "answers": [
             "neither",
             "Neither"
@@ -1207,11 +1207,11 @@ window.BS_UNITS["p2-06"] = {
         },
         {
           "id": "fill1-5",
-          "before": "Yasmin's card reader and keypad are",
-          "after": "working again, so she doesn't need a visit.",
+          "before": "",
+          "after": "of Yasmin's two broken devices are working again, so she no longer needs a visit.",
           "answers": [
-            "both",
-            "Both"
+            "Both",
+            "both"
           ]
         }
       ]
