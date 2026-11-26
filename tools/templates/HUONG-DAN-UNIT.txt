@@ -37,6 +37,6 @@ c. KHONG de lo: cau trong loi thoai (>= 5 tu) va dap an DUNG (>= 4 tu) khong duo
 d. Kiem tra: node tools/check-units.mjs --unit p3-0N   (loi: cau truc, trap/why_vi, evidence, quote, hinh, lo loi thoai; canh bao: doan ngoai 60-160 tu, cau > 160 ky tu, < 6 doan, chua co doan co hinh,
    chu cai dap an ngoai 15-35%, 3 cau cung dap an, dap an dung chep nguyen van tu loi thoai, cau hinh co dap an dung nam trong loi thoai hoac khong la o cua hinh; --release: cac canh bao ve noi dung thanh LOI).
    Nghe thu tung doan tren thiet bi that (giong en-US, en-GB, en-AU), mo unit.html?u=p3-0N&edit=1 tren localhost, roi bo "v": {"status":"unverified"} (--release LOI neu con trong doan, cau hoac dap an).
-e. Khi het loi: dat "available": true trong catalog, them data/p3-0N.js vao PRECACHE trong sw.js, doi VERSION va chay node tools/check-sw.mjs --write, cap nhat mau ^data\/p[3-9] trong tools/test-sw.mjs,
+e. Khi het loi: dat "available": true trong catalog, them data/p3-0N.js vao PRECACHE trong sw.js, doi VERSION va chay node tools/check-sw.mjs --write, khi mo them unit thi thu hep cac mau ^data\/p[34]-0[3-7] (va ^data\/p2-0[3-7]) trong tools/test-sw.mjs,
    roi node tools/check-units.mjs --release. Khong doi id sau khi da phat hanh.
 Luu y: tien do hoc luu theo id unit trong localStorage - khong doi id sau khi da phat hanh.
