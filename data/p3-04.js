@@ -354,8 +354,8 @@ window.BS_UNITS["p3-04"] = {
       },
       {
        "s": "W",
-       "en": "Postcards. So far we've only bathed and trimmed dogs, but next month we're taking cats too.",
-       "vi": "Bưu thiếp. Đến giờ chúng tôi mới chỉ tắm và tỉa lông cho chó, nhưng tháng sau sẽ nhận cả mèo."
+       "en": "Postcards to announce a new service. So far we've only bathed and trimmed dogs, but next month we're taking cats too.",
+       "vi": "Bưu thiếp để báo dịch vụ mới. Đến giờ chúng tôi mới chỉ tắm và tỉa lông cho chó, nhưng tháng sau sẽ nhận cả mèo."
       },
       {
        "s": "M",
@@ -374,8 +374,8 @@ window.BS_UNITS["p3-04"] = {
       },
       {
        "s": "W",
-       "en": "That's fine, as long as I don't pay for a bigger batch than I need. I took the photo for the front myself.",
-       "vi": "Không sao, miễn là tôi không phải trả tiền cho lô lớn hơn mức cần. Ảnh mặt trước là tôi tự chụp."
+       "en": "That's fine, as long as I get the smallest batch that covers everyone. I took the photo for the front myself.",
+       "vi": "Không sao, miễn là tôi lấy lô nhỏ nhất đủ cho mọi người. Ảnh mặt trước là tôi tự chụp."
       },
       {
        "s": "M",
@@ -484,7 +484,7 @@ window.BS_UNITS["p3-04"] = {
         4,
         5
        ],
-       "explain_vi": "Cần đủ cho khoảng bốn trăm hộ và không trả cho lô lớn hơn mức cần, nên chọn lô nhỏ nhất đủ dùng là 500 tấm, giá 72 đô.",
+       "explain_vi": "Cần đủ cho khoảng bốn trăm hộ và lấy lô nhỏ nhất đủ cho mọi người, nên đó là lô 500 tấm, giá 72 đô.",
        "options": [
         {
          "label": "A",
@@ -538,8 +538,8 @@ window.BS_UNITS["p3-04"] = {
          "label": "B",
          "en": "Sign a price quote",
          "vi": "Ký bảng báo giá",
-         "trap": "changed-plan",
-         "why_vi": "Bình thường phải ký, nhưng anh ấy nói việc nhỏ thì bỏ qua bước này."
+         "trap": "wrong-detail",
+         "why_vi": "Bình thường mới phải ký bảng báo giá; anh ấy nói việc nhỏ như lần này thì bỏ qua."
         },
         {
          "label": "C",
@@ -681,8 +681,8 @@ window.BS_UNITS["p3-04"] = {
        "kind": "graphic",
        "uses_graphic": true,
        "q": {
-        "en": "Look at the graphic. Which office is the man looking for?",
-        "vi": "Nhìn hình. Người đàn ông đang tìm văn phòng nào?"
+        "en": "Look at the graphic. Which suite will the man most likely visit?",
+        "vi": "Nhìn hình. Người đàn ông nhiều khả năng sẽ đến phòng nào?"
        },
        "answer": "C",
        "evidence": [
@@ -822,7 +822,7 @@ window.BS_UNITS["p3-04"] = {
       {
        "s": "W",
        "en": "Sit near the front. The speakers in these rooms are very quiet.",
-       "vi": "Anh nên ngồi gần phía trên. Loa trong các phòng này rất nhỏ."
+       "vi": "Anh nên ngồi gần phía trước. Loa trong các phòng này rất nhỏ."
       }
      ],
      "graphic": {
@@ -879,8 +879,8 @@ window.BS_UNITS["p3-04"] = {
         },
         {
          "label": "D",
-         "en": "Choosing a talk that one of them can hear",
-         "vi": "Chọn một bài trình bày mà một trong hai người nghe được"
+         "en": "Choosing a talk for one of them to go to",
+         "vi": "Chọn một bài trình bày để một trong hai người đến dự"
         }
        ]
       },
@@ -1050,22 +1050,22 @@ window.BS_UNITS["p3-04"] = {
       ],
       "rows": [
        [
-        "Type A",
+        "Type 1",
         "Monday to Friday",
         "$95"
        ],
        [
-        "Type B",
+        "Type 2",
         "All seven days",
         "$140"
        ],
        [
-        "Type C",
+        "Type 3",
         "Any two days a week",
         "$40"
        ],
        [
-        "Type D",
+        "Type 4",
         "Any three days a week",
         "$60"
        ]
@@ -1130,31 +1130,31 @@ window.BS_UNITS["p3-04"] = {
         4,
         6
        ],
-       "explain_vi": "Anh ấy đến ba ngày mỗi tuần, ngày không cố định và có khi là thứ Bảy, chi không quá 80 đô: chỉ Type D (ba ngày bất kỳ, 60 đô) thỏa.",
+       "explain_vi": "Anh ấy đến ba ngày mỗi tuần, ngày không cố định và có khi là thứ Bảy, chi không quá 80 đô: chỉ Type 4 (ba ngày bất kỳ, 60 đô) thỏa.",
        "options": [
         {
          "label": "A",
-         "en": "Type D",
-         "vi": "Loại D"
+         "en": "Type 4",
+         "vi": "Loại 4"
         },
         {
          "label": "B",
-         "en": "Type A",
-         "vi": "Loại A",
+         "en": "Type 1",
+         "vi": "Loại 1",
          "trap": "wrong-detail",
          "why_vi": "Không gồm thứ Bảy và phí 95 đô vượt mức 80 đô."
         },
         {
          "label": "C",
-         "en": "Type B",
-         "vi": "Loại B",
+         "en": "Type 2",
+         "vi": "Loại 2",
          "trap": "graphic-only",
          "why_vi": "Gồm mọi ngày nhưng phí 140 đô vượt mức chi."
         },
         {
          "label": "D",
-         "en": "Type C",
-         "vi": "Loại C",
+         "en": "Type 3",
+         "vi": "Loại 3",
          "trap": "graphic-only",
          "why_vi": "Phí trong mức chi nhưng chỉ gồm hai ngày mỗi tuần."
         }
@@ -1262,8 +1262,8 @@ window.BS_UNITS["p3-04"] = {
       },
       {
        "s": "W",
-       "en": "Yes, I'm revising them before I teach the sales representatives that Human Resources is hiring.",
-       "vi": "Đúng vậy, tôi đang sửa slide trước khi dạy các đại diện bán hàng mà phòng Nhân sự đang tuyển."
+       "en": "Yes, I'm revising them before I train the new sales representatives our personnel team has just hired.",
+       "vi": "Đúng vậy, tôi đang sửa slide trước khi đào tạo các đại diện bán hàng mà bộ phận nhân sự vừa tuyển."
       }
      ],
      "graphic": {
@@ -1314,7 +1314,7 @@ window.BS_UNITS["p3-04"] = {
         7,
         8
        ],
-       "explain_vi": "Chị ấy đang sửa slide để dạy các đại diện bán hàng được tuyển mới, nên là người phụ trách đào tạo.",
+       "explain_vi": "Chị ấy đang sửa slide để đào tạo các đại diện bán hàng được tuyển mới, nên là người phụ trách đào tạo.",
        "options": [
         {
          "label": "A",
@@ -1340,7 +1340,7 @@ window.BS_UNITS["p3-04"] = {
          "en": "A recruiting specialist",
          "vi": "Một chuyên viên tuyển dụng",
          "trap": "wrong-detail",
-         "why_vi": "Phòng Nhân sự mới là bên tuyển người; chị ấy là người sẽ dạy họ."
+         "why_vi": "Bộ phận nhân sự mới là bên tuyển người; chị ấy là người sẽ đào tạo họ."
         }
        ]
       },
@@ -1498,8 +1498,8 @@ window.BS_UNITS["p3-04"] = {
       "title": "Hexley Transit - Shuttle Times",
       "cols": [
        "Shuttle",
-       "Departs",
-       "Arrives"
+       "Leaves Wrayford Junction",
+       "Arrives at Ludlam Building"
       ],
       "rows": [
        [
