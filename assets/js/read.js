@@ -11,6 +11,14 @@
     "breaks-flow": "Không nối mạch", "wrong-reference": "Sai từ chỉ định" };
   var exam = false, syncs = [];
 
+  var tabsOn = false;
+  function tabsH() { /* chieu cao thanh tab dinh (sticky) de bai doc ghim nam duoi no */
+    try {
+      var t = document.querySelector(".tabs-wrap");
+      if (t) document.documentElement.style.setProperty("--tabs-h", t.offsetHeight + "px");
+      if (!tabsOn) { tabsOn = true; window.addEventListener("resize", tabsH); }
+    } catch (e) { /* bo qua */ }
+  }
   function foc(n) { try { n.focus(); } catch (e) { /* bo qua */ } }
   function fill(n, kids) {
     n.textContent = "";
@@ -67,6 +75,7 @@
     return c;
   }
   function addRedo(c, ex, all, rows, first) {
+    if (!c.st.scores[ex.id] && all.some(function (q) { return c.st.res[q.id] !== undefined; })) c.score();
     var redo = el("button", { type: "button", class: "btn", text: "Làm lại" });
     redo.addEventListener("click", function () {
       K.resetEx(c.st, ex, all); rows.forEach(function (r) { r.reset(); }); c.scoreBox.textContent = "";
@@ -104,7 +113,7 @@
     function reset() { graded = false; pick = null; opts.forEach(function (y) { setOpt(y); }); sentence(null); fill(fb, []); fb.removeAttribute("aria-label"); sync(); }
     sentence(null);
     if (c.st.res[it.id] !== undefined) { var a = okLetter(c.st.ans[it.id]); pick = a || (c.st.res[it.id] === 1 ? it.answer : null); show(false); } else sync();
-    return { node: el("div", { class: "rd-item" }, [q.fs, fb]), reset: reset, grade: grade, isGraded: function () { return graded; }, picked: function () { return pick; }, first: function () { return opts[0].b; } };
+    return { node: el("div", { class: "rd-item" }, [q.fs, fb]), reset: reset, grade: grade, isGraded: function () { return graded; }, picked: function () { return pick; }, first: function () { return opts[0].b; }, fb: fb };
   }
   BS.renderGram = function (ex, idx, st, uid) {
     var items = ex.items || [], rows = [];
@@ -119,6 +128,7 @@
       if (submit.disabled) return;
       rows.forEach(function (r) { r.grade(r.picked(), false); });
       c.sync();
+      if (rows[0]) foc(rows[0].fb);
     });
     c.card.appendChild(el("div", { class: "row rd-ctl" }, [c.examBtn, submit]));
     c.card.appendChild(el("p", { class: "muted rd-keys", text: "Phím 1, 2, 3, 4 chọn A, B, C, D. Chế độ thi: chọn lại được, bấm Nộp bài để chấm." }));
@@ -141,11 +151,12 @@
   function buildSet(set, n, total, qa, c, uid) {
     var qs = set.questions || [], pas = set.passages || [], cloze = set.kind === "cloze";
     var graded = false, picks = [], blanks = {}, marks = {}, paras = {}, hasPin = false;
+    tabsH();
     var sec = el("section", { class: "rd-set", role: "group", "aria-label": "Bài đọc " + n + " trên " + total });
     var fb = el("div", { class: "fb rd-fb", tabindex: "-1", role: "group" });
     var chk = el("button", { type: "button", class: "btn btn-primary rd-check", disabled: true, text: "Kiểm tra" });
     var pinBtn = el("button", { type: "button", class: "btn rd-pinbtn", "aria-pressed": "false", text: "Ghim bài đọc" });
-    var doc = el("div", { class: "rd-doc" });
+    var doc = el("div", { class: "rd-doc", role: "region", tabindex: "0", "aria-label": "Bài đọc" });
     var body = el("div", { class: "rd-body" });
     var vocab = {};
     qs.forEach(function (q) { if (q.kind === "vocab" && q.at && q.word) vocab[q.at[0] + "." + q.at[1]] = q.word; });
@@ -156,7 +167,7 @@
         var m = /^\{(\d)\}$/.exec(seg), k = /^\[(\d)\]$/.exec(seg);
         if (m) {
           var bn = +m[1], b = el("button", { type: "button", class: "rd-blank" });
-          b.addEventListener("click", function () { var x = qn[bn - 1]; if (x) foc(x.opts[0].b); });
+          b.addEventListener("click", function () { var x = qn[bn - 1]; if (x) foc(graded ? fb : x.opts[0].b); });
           blanks[bn] = b; kids.push(b);
         } else if (k) {
           var ins = el("span", { class: "rd-ins" });
@@ -267,8 +278,8 @@
       hasPin = !hasPin;
       pinBtn.setAttribute("aria-pressed", hasPin ? "true" : "false");
       doc.className = "rd-doc" + (hasPin ? " rd-pin" : "");
-      if (hasPin) { doc.setAttribute("role", "region"); doc.setAttribute("tabindex", "0"); doc.setAttribute("aria-label", "Bài đọc (đã ghim)"); }
-      else { doc.removeAttribute("role"); doc.removeAttribute("tabindex"); doc.removeAttribute("aria-label"); }
+      doc.setAttribute("aria-label", hasPin ? "Bài đọc (đã ghim)" : "Bài đọc");
+      tabsH();
     });
     chk.addEventListener("click", check);
     sec.appendChild(el("h4", {}, ["Bài đọc " + n + "/" + total + " (câu " + qa + (qs.length > 1 ? "–" + (qa + qs.length - 1) : "") + ")", " ", BS.badgeUnverified(set.v)]));

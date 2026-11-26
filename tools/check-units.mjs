@@ -477,9 +477,18 @@ function checkUnit(entry) {
       if (run === 4) { w(wh + ": có từ 4 câu liên tiếp cùng đáp án " + letters[i] + "."); return; }
     }
   };
+  /* moi chuoi trong bai gram/read (tru head va paras da co thong bao rieng) khong duoc chua e-mail hay URL */
+  const rdNet = (ex, wh) => {
+    (function walk(x, p) {
+      if (typeof x === "string") { if (rdNoNet.test(x)) e(wh + p + ": chứa địa chỉ e-mail hoặc URL."); return; }
+      if (!x || typeof x !== "object") return;
+      if (Array.isArray(x)) { x.forEach((y, i) => walk(y, p + "[" + i + "]")); return; }
+      Object.keys(x).forEach((k) => { if (k !== "head" && k !== "paras") walk(x[k], p + "." + k); });
+    })(ex, "");
+  };
   const gramEx = (ex, wh) => {
     if (ex.image !== undefined || ex.audio !== undefined) e(wh + ": bài gram không dùng image hay audio (Part 5 chỉ đọc chữ).");
-    rdUnv(ex, wh);
+    rdUnv(ex, wh); rdNet(ex, wh);
     const items = arr(ex.items, wh + ".items"), letters = [];
     if (!items.length) e(wh + ": items không được rỗng.");
     items.forEach((it, j) => {
@@ -495,8 +504,9 @@ function checkUnit(entry) {
       if (!nonEmpty(it.en)) e(wi + ": thiếu en.");
       else {
         const parts = it.en.split(GM_BLANK);
-        if (parts.length !== 2) e(wi + ": en phải có đúng một chỗ trống \"" + GM_BLANK + "\" (hiện " + (parts.length - 1) + ").");
-        else if (/-{3,}/.test(parts.join(" "))) e(wi + ": en có thêm chuỗi gạch ngang ngoài chỗ trống \"" + GM_BLANK + "\".");
+        const runs = it.en.match(/-{3,}/g) || [], nb = runs.filter((x) => x === GM_BLANK).length;
+        if (runs.length > nb) e(wi + ": en có thêm chuỗi gạch ngang ngoài chỗ trống \"" + GM_BLANK + "\" (đúng 6 dấu gạch).");
+        else if (nb !== 1) e(wi + ": en phải có đúng một chỗ trống \"" + GM_BLANK + "\" (hiện " + nb + ").");
         if (!/[.?!]["')\u201d]?$/.test(it.en.trim())) e(wi + ": en phải kết thúc bằng dấu . ? hoặc !.");
         const wc = it.en.trim().split(/\s+/).length;
         if (wc < 8 || wc > 25) w(wi + ": câu dài " + wc + " từ, nên nằm trong 8-25.");
@@ -597,7 +607,7 @@ function checkUnit(entry) {
           if (!pnorm.some((x) => cvHas(x, kc))) e(wq + ": clue \"" + q.clue + "\" không có nguyên văn trong bài.");
           else {
             const own = full.split(/(?<=[.!?])\s+/).find((t) => t.includes("{" + q.blank + "}"));
-            if (own && cvHas(cvNorm(own.replace(/\{\d+\}/g, " ")), kc)) e(wq + ": clue \"" + q.clue + "\" nằm trong chính câu chứa chỗ trống; clue phải ở câu khác.");
+            if (own && q.kind !== "insert" && cvHas(cvNorm(own.replace(/\{\d+\}/g, " ")), kc)) e(wq + ": clue \"" + q.clue + "\" nằm trong chính câu chứa chỗ trống; clue phải ở câu khác.");
           }
         }
       }
@@ -668,7 +678,8 @@ function checkUnit(entry) {
       if (isObj(p) && /\[\d\]/.test(ptxt[k]) && !qs.some((q) => isObj(q) && q.kind === "position" && q.at === k)) e(ws + ".passages[" + k + "]: bài có dấu [n] nhưng bộ không có câu position cho bài này.");
     });
     if (cloze) {
-      if (nIns !== 1) rel(ws + ": bài cloze cần đúng một câu chèn (insert), hiện có " + nIns + ".");
+      if (nIns > 1) e(ws + ": bài cloze chỉ được có một câu chèn (insert), hiện có " + nIns + ".");
+      else if (nIns !== 1) rel(ws + ": bài cloze cần đúng một câu chèn (insert), hiện có " + nIns + ".");
       if (nCtx < 2) w(ws + ": bài cloze nên có ít nhất 2 câu cần ngữ cảnh (ctx), hiện " + nCtx + ".");
     }
     if (s.kind === "double") {
@@ -679,7 +690,7 @@ function checkUnit(entry) {
   };
   const readEx = (ex, wh) => {
     if (ex.image !== undefined || ex.audio !== undefined) e(wh + ": bài read không dùng image hay audio (Part 6/7 chỉ đọc chữ).");
-    rdUnv(ex, wh);
+    rdUnv(ex, wh); rdNet(ex, wh);
     const ss = arr(ex.sets, wh + ".sets");
     if (!ss.length) e(wh + ": sets không được rỗng.");
     ss.forEach((x, j) => rdSet(x, wh + ".sets[" + j + "]" + (x && x.id ? " '" + x.id + "'" : "")));
@@ -830,7 +841,7 @@ function checkUnit(entry) {
         const kq = cvNorm(q.quote), at = lnN.map((t, i) => (cvHas(t, kq) ? i : -1)).filter((i) => i >= 0);
         if (Array.isArray(q.evidence) && q.evidence.length && at.length && q.evidence.every((i) => at.includes(i))) cw(q.id, "intent-ctx", "câu intent: evidence chỉ có dòng chứa quote; cần thêm dòng ngữ cảnh (dòng trước/sau) để suy ra ý.");
         const idm = CV_IDIOMS.find((p) => cvHas(kq, p));
-        if (idm) cw(q.id, "idiom", "quote chứa thành ngữ/cụm khó \"" + idm + "\"; người học dễ hiểu sai theo nghĩa đen hoặc đoán được nhờ từ này.");
+        if (idm && !RDQ.has(q)) cw(q.id, "idiom", "quote chứa thành ngữ/cụm khó \"" + idm + "\"; người học dễ hiểu sai theo nghĩa đen hoặc đoán được nhờ từ này.");
       });
       const gTok = new Set();
       if (isObj(s.graphic)) [s.graphic.title].concat(Array.isArray(s.graphic.cols) ? s.graphic.cols : []).forEach((t) => T(t).forEach((x) => gTok.add(x)));
@@ -848,7 +859,7 @@ function checkUnit(entry) {
             const b = hit(T(o.options.find((x) => x.label === o.answer).en)); if (b.length) why.push("đáp án đúng của " + o.id + " (" + b.join(", ") + ")");
             const n2 = o.options.filter((x) => hit(T(x.en)).length).length; if (n2 >= 2) why.push(n2 + " đáp án của " + o.id);
           });
-          if (why.length) cw(q.id, "xq", "từ chỉ có ở đáp án đúng (" + D.join(", ") + ") lại xuất hiện ở: " + why.join("; ") + "; có thể đoán đáp án mà không cần nghe.");
+          if (why.length) cw(q.id, "xq", "từ chỉ có ở đáp án đúng (" + D.join(", ") + ") lại xuất hiện ở: " + why.join("; ") + "; có thể đoán đáp án mà không cần " + (RDQ.has(q) ? "đọc bài" : "nghe") + ".");
         }
         const mean = dis.reduce((a, o) => a + o.en.length, 0) / 3, r = key.en.length / mean;
         if (!rdSkipLen(q) && (r > CV_LEN_HI || r < CV_LEN_LO)) cw(q.id, "len", "đáp án đúng dài " + key.en.length + " ký tự, " + (r > 1 ? "dài" : "ngắn") + " hơn hẳn trung bình " + Math.round(mean) + " của ba đáp án sai (tỉ lệ " + r.toFixed(2) + ").");

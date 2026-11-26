@@ -5,6 +5,7 @@
 //   options      : bo bai doc va de; chi con dap an (gram: bo cau, chi con 4 dap an)
 //   own-sentence : cloze chi con cau chua cho trong cua tung cau (cau chen: chi con dap an); bo bai doc o cac bo khac; gram giu nguyen
 //   p1 | p2      : chi cac bo double, moi bo chi con bai doc thu nhat (p1) hoac thu hai (p2); cac cau cross van hoi nhu cu
+// Cloze: chi giu kind "insert" (kind tense/word-form... la goi y loai tu). p1/p2: "at" tro toi bai da bo thi bi bo, con lai doi thanh chi so 0.
 // Bo khoi dau ra: answer, trap, why_vi, explain_vi, evidence, clue, ref, ctx, cross, cat, pos, vi, v, _note (khoa de lo dap an hoac nghia).
 import fs from "node:fs";
 import path from "node:path";
@@ -40,7 +41,16 @@ export function blind(unit, mode) {
     let sets = e.sets || [];
     if (mode === "p1" || mode === "p2") sets = sets.filter((s) => s.kind === "double");
     sets.forEach((s) => {
-      if (mode === "p1" || mode === "p2") { s.passages = [s.passages[mode === "p1" ? 0 : 1]]; return; }
+      if (s.kind === "cloze") (s.questions || []).forEach((q) => { if (q.kind !== "insert") delete q.kind; }); /* kind (tense, word-form...) goi y loai tu: bo */
+      if (mode === "p1" || mode === "p2") {
+        const k = mode === "p1" ? 0 : 1; /* at tro toi bai con lai thi doi ve chi so 0, tro toi bai da bo thi bo at */
+        (s.questions || []).forEach((q) => {
+          if (Array.isArray(q.at)) { if (q.at[0] === k) q.at = [0, q.at[1]]; else delete q.at; }
+          else if (Number.isInteger(q.at)) { if (q.at === k) q.at = 0; else delete q.at; }
+        });
+        s.passages = [s.passages[k]];
+        return;
+      }
       if (mode === "own-sentence" && s.kind === "cloze") (s.questions || []).forEach((q) => { if (q.kind !== "insert") q.sentence = ownSentence(s, q); });
       if (mode !== "full") delete s.passages;
       if (mode === "options") (s.questions || []).forEach((q) => { delete q.q; delete q.sentence; delete q.word; delete q.at; delete q.quote; delete q.at_time; });

@@ -709,6 +709,32 @@ try {
     u = G0(); u.exercises[0].items.push(JSON.parse(JSON.stringify(u.exercises[0].items[0])));
     check("gram: id trùng: lỗi", errRe(u, /id 'g1-01' bị trùng/));
 
+    /* vong sua sau review */
+    u = R0(); RS(u, 0).questions[0].kind = "insert"; RS(u, 0).questions[0].options.forEach((o, i) => { o.en = "Please call me about item number " + (i + 3) + " today."; });
+    check("cloze hai cau insert: LOI ngay ca khi khong --release", errRe(u, /r1-s1': bài cloze chỉ được có một câu chèn \(insert\), hiện có 2/));
+    u = G0(); GI(u, 0).en = GI(u, 0).en.replace("------", "-------");
+    check("gram: bay dau gach ngang khong lot qua chinh la cho trong: LOI", errRe(u, /g1-01': en có thêm chuỗi gạch ngang/));
+    u = G0(); GI(u, 0).en = GI(u, 0).en.replace("------", "---- --");
+    check("gram: chuoi gach ngang bi cat nho (khong phai 6 dau) la khong co cho trong: LOI", errRe(u, /g1-01': en phải có đúng một chỗ trống/) || errRe(u, /g1-01': en có thêm/));
+    u = R0(); RS(u, 1).questions[0].options[2].en = "To write to a@b.invalid"; check("read: e-mail trong mot dap an: LOI", errRe(u, /r1-s2-q1'\.options\[C\]\.en: chứa địa chỉ e-mail hoặc URL|exercise\[0\]'? ?.*options\[2\]\.en: chứa địa chỉ/) || errRe(u, /options\[2\]\.en: chứa địa chỉ e-mail hoặc URL/));
+    u = R0(); RS(u, 3).questions[1].q.vi = "xem www.example.invalid"; check("read: URL trong q.vi: LOI", errRe(u, /q\.vi: chứa địa chỉ e-mail hoặc URL/));
+    u = R0(); RS(u, 1).passages[0].title = "Mail me: x@y.invalid"; check("read: e-mail trong title bai: LOI", errRe(u, /title: chứa địa chỉ e-mail hoặc URL/));
+    u = G0(); GI(u, 1).options[0].vi = "go to www.example.invalid"; check("gram: URL trong gloss dap an: LOI", errRe(u, /options\[0\]\.vi: chứa địa chỉ e-mail hoặc URL/));
+    u = R0(); RS(u, 3).questions[2].options.forEach((o) => { if (o.label === "D") o.en = "Warn the client about a delay"; });
+    check("xq cho read: noi khong can doc bai (khong noi nghe)", (() => { const o = runR(u).out; return /r2-s4-q3: \[xq\].*mà không cần đọc bài/.test(o) && !/r2-s4-q3: \[xq\].*không cần nghe/.test(o); })());
+    u = R0(); RS(u, 3).passages[0].paras[3].en = "I can hold up a car. What is your flight number?"; RS(u, 3).questions[0].quote = "I can hold up a car."; RS(u, 3).questions[0].q.en = 'What does Mr. Fisk mean when he writes, "I can hold up a car"?';
+    check("idiom: luat idiom cua conv khong ap dung cho intent cua read", (() => { const o = runR(u).out; return !/\[idiom\]/.test(o); })());
+    u = R0(); RS(u, 0).questions[2].clue = "Please keep the loading area clear that morning";
+    check("insert: clue o cau SAU cho trong chen duoc chap nhan (chi can nguyen van trong bai)", runR(u, ["--release"]).code === 0);
+    u = R0(); RS(u, 0).questions[2].clue = "Our driver will call your office the day before";
+    check("insert: clue o cau TRUOC cho trong cung duoc chap nhan", runR(u, ["--release"]).code === 0);
+    u = R0(); RS(u, 0).questions[2].clue = "a phrase that is not there";
+    check("insert: clue van phai la nguyen van trong bai", errRe(u, /r1-s1-q3': clue .* không có nguyên văn trong bài/));
+    u = R0(); RS(u, 0).questions[2].clue = "";
+    check("insert: ctx van can clue khong rong", errRe(u, /r1-s1-q3': câu ctx cần clue/));
+    u = R0(); RS(u, 0).questions[1].clue = "The chairs";
+    check("khong phai insert: clue nam trong chinh cau chua cho trong van bi LOI", errRe(u, /r1-s1-q2': clue .* nằm trong chính câu chứa chỗ trống/));
+
     /* luat doan duoc: chi canh bao, co allowlist */
     const lift = () => { const x = R0(); RS(x, 1).questions[0].options[0].en = "To confirm that the booking is done"; return x; };
     check("lift: chỉ đáp án đúng có 3 từ liền nhau trùng bài đọc → cảnh báo", warnRe(lift(), /r1-s2-q1: \[lift\]/));

@@ -121,7 +121,7 @@
 .rd-tr{margin:2px 0 6px;font-size:.95rem}
 .rd-tr summary{min-height:44px;display:flex;align-items:center;cursor:pointer}
 .rd-pinbtn,.rd-check,.rd-submit,.rd-ctl .btn,.rd-ol .btn{min-height:44px;min-width:44px}
-.rd-pin{position:sticky;top:64px;z-index:2;max-height:42vh;overflow:auto;background:var(--card);border:1px solid var(--line,#d9dee7)}
+.rd-pin{position:sticky;top:var(--tabs-h,72px);z-index:2;max-height:42vh;overflow:auto;background:var(--card);border:1px solid var(--line,#d9dee7)}
 .rd-pin:focus{outline:3px solid var(--accent,#f59e0b);outline-offset:2px}
 .rd-blank{font:inherit;min-height:44px;min-width:44px;padding:2px 10px;margin:0 2px;color:var(--ink);background:var(--card);border:2px dashed var(--line-strong,#7b75a8);border-radius:var(--radius-sm,8px);cursor:pointer;white-space:normal;text-align:left}
 .rd-blank.rd-on{border-style:solid;border-color:var(--accent,#f59e0b)}
@@ -154,6 +154,6 @@
 .rd-keys{font-size:.9rem}
 @media (min-width:900px) and (min-height:600px){
 .rd-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
-.rd-doc{position:sticky;top:64px;max-height:calc(100vh - 80px);overflow:auto}
+.rd-doc{position:sticky;top:var(--tabs-h,72px);max-height:calc(100vh - var(--tabs-h,72px) - 16px);overflow:auto}
 .rd-pinbtn{display:none}
 }

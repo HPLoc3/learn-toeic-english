@@ -50,7 +50,7 @@ function makeEnv(o = {}) {
     get disabled() { return "disabled" in this.attrs; }
     set disabled(v) { if (v) this.attrs.disabled = ""; else delete this.attrs.disabled; }
     get style() { return {}; }
-    focus() { doc.activeElement = this; }
+    focus() { for (let n = this; n; n = n.parent) if (n.hidden) return; if (this.disabled) return; doc.activeElement = this; }
     click() { if (this.disabled) return; this.dispatch({ type: "click" }); }
     dispatch(ev) { ev.target = this; ev.preventDefault = ev.preventDefault || function () { this.prevented = true; }; for (let n = this; n; n = n.parent) (n.ls[ev.type] || []).forEach((f) => f(ev)); return ev; }
   }
@@ -369,11 +369,11 @@ const KEYS = (set) => set.questions.map((q) => q.answer);
 {
   const M = mountR({ ex: () => REX(4) });
   const s = M.sets[0], pb = byClass(s, "rd-pinbtn")[0], doc = byClass(s, "rd-doc")[0];
-  check("ghim: nut 'Ghim bài đọc' aria-pressed=false, mac dinh khong ghim", pb.textContent === "Ghim bài đọc" && pb.getAttribute("aria-pressed") === "false" && !/rd-pin\b/.test(doc.className) && doc.getAttribute("tabindex") === null);
+  check("ghim: nut 'Ghim bài đọc' aria-pressed=false, mac dinh khong ghim", pb.textContent === "Ghim bài đọc" && pb.getAttribute("aria-pressed") === "false" && !/rd-pin\b/.test(doc.className) && doc.getAttribute("tabindex") === "0" && doc.getAttribute("role") === "region");
   pb.click();
   check("ghim: bat: aria-pressed=true, bai doc co rd-pin va thanh vung cuon duoc (role=region, tabindex=0, aria-label)", pb.getAttribute("aria-pressed") === "true" && /rd-pin/.test(doc.className) && doc.getAttribute("role") === "region" && doc.getAttribute("tabindex") === "0" && /ghim/.test(doc.getAttribute("aria-label")));
   pb.click();
-  check("ghim: tat: tro ve binh thuong", pb.getAttribute("aria-pressed") === "false" && !/rd-pin\b/.test(doc.className) && doc.getAttribute("role") === null && doc.getAttribute("tabindex") === null);
+  check("ghim: tat: tro ve binh thuong", pb.getAttribute("aria-pressed") === "false" && !/rd-pin\b/.test(doc.className) && doc.getAttribute("role") === "region" && doc.getAttribute("tabindex") === "0" && doc.getAttribute("aria-label") === "Bài đọc");
 }
 {
   const G = mountG({ noSynth: true }), R = mountR({ noSynth: true, ex: () => REX([0, 3]) });
@@ -385,6 +385,46 @@ const KEYS = (set) => set.questions.map((q) => q.answer);
   let threw = false;
   try { E.BS.render.quiz({ id: "x", exercises: [{ id: "g", type: "gram", items: [] }, { id: "r", type: "read", sets: [] }] }, root); } catch (e) { threw = true; }
   check("quiz.js: thieu read.js thi bo qua bai gram/read (khong nem loi)", !threw && !byClass(root, "rd-card").length);
+}
+
+/* ================= vong sua sau review ================= */
+{
+  /* nop bai (Part 5 che do thi): tieu diem sang khung ket qua, khong ket o nut da an */
+  const M = mountG();
+  btnText(M.card, "Chế độ thi")[0].click();
+  const sub = byClass(M.card, "rd-submit")[0];
+  [2, 1, 3].forEach((l, i) => ropts(M.items[i], 0)[l].click());
+  sub.focus();
+  check("test DOM: focus() tren nut bi an khong doi activeElement", (() => { const h = byClass(M.card, "rd-submit")[0]; h.hidden = true; M.doc.activeElement = null; h.focus(); h.hidden = false; return M.doc.activeElement === null; })());
+  sub.click();
+  const fb0 = rfb(M.items[0]);
+  check("nop bai: sau khi nut Nop bai bi an, tieu diem nam o khung ket qua (.rd-fb) hien thi", sub.hidden && M.doc.activeElement === fb0 && fb0.textContent !== "");
+}
+{
+  /* bam cho trong cloze sau khi cham: tieu diem vao khung ket qua (dap an da bi khoa) */
+  const M = mountR({ ex: () => REX(0) }), s = M.sets[0];
+  pickAll(s, KEYS(RSETS[0])); rchk(s).click();
+  M.doc.activeElement = null;
+  byClass(s, "rd-blank")[1].click();
+  check("cloze: bam cho trong sau khi cham dua tieu diem vao khung ket qua, khong vao dap an bi khoa", M.doc.activeElement === rfb(s));
+}
+{
+  /* diem khoi phuc khi co res ma khong co scores (vd sau khi gop sao luu) */
+  const G = mountG({ pre: (st) => { st.ans["g1-01"] = "C"; st.res["g1-01"] = 1; } });
+  check("gram khoi phuc: co res ma thieu scores thi tinh lai va hien diem", /Điểm: 1\/3/.test(scoreOf(G.card).textContent) && G.st.scores.g1.c === 1);
+  const R = mountR({ pre: (st) => { RSETS[1].questions.forEach((q) => { st.ans[q.id] = q.answer; st.res[q.id] = 1; }); } });
+  check("read khoi phuc: co res ma thieu scores thi tinh lai va hien diem", /Điểm: 3\/3/.test(scoreOf(R.card).textContent) && R.st.scores.rx.c === 3);
+}
+{
+  /* du lieu co ma HTML van chi la van ban */
+  const X = "<img src=x onerror=alert(1)><script>alert(2)</script>";
+  const gx = GEX(); gx.items[0].en = "The " + X + " will announce ------ now."; gx.items[0].options[0].en = X; gx.items[0].vi = X; gx.items[0].options[0].why_vi = X;
+  const rx = REX([0, 4]); rx.sets[0].passages[0].paras[0].en = X + " " + rx.sets[0].passages[0].paras[0].en; rx.sets[1].passages[0].head[0][1] = X; rx.sets[1].passages[1].table.rows[0][0] = X; rx.sets[1].questions[0].options[0].en = X;
+  const E = makeEnv({ files: RF }), st = E.BS.unit("xss");
+  const c1 = E.BS.renderGram(gx, 0, st, "xss"), c2 = E.BS.renderRead(rx, 1, st, "xss");
+  ropts(byClass(c1, "rd-item")[0], 0)[1].click();
+  const tags = [].concat(all(c1, () => true), all(c2, () => true)).map((n) => n.tag);
+  check("XSS: ma HTML trong du lieu chi thanh van ban (khong co the img/script nao)", !tags.includes("img") && !tags.includes("script") && tags.every((t) => t === "#text" || /^[a-z0-9]+$/.test(t)) && c1.textContent.includes(X) && c2.textContent.includes(X));
 }
 
 /* ================= mau unit nap duoc va render duoc ================= */

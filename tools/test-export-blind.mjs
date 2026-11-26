@@ -58,6 +58,13 @@ try {
   check("tham số lạ: thoát mã 2", run(["--unit", "p7-01", "--bogus"]).status === 2);
   const real = spawnSync(process.execPath, [path.join(REAL, "tools/export-blind.mjs"), "--unit", "p3-01"], { encoding: "utf8" });
   check("unit thật p3-01 (không có gram/read): xuất ra danh sách bài rỗng", real.status === 0 && JSON.parse(real.stdout).exercises.length === 0);
+  {
+    const rc = exp("p7-01", "full"), czq = sets(rc.j).find((s) => s.questions[0].blank).questions;
+    check("cloze: bo kind goi y loai tu (tense, word-form...), chi giu kind insert", czq.map((q) => q.kind).join() === ",,insert," || czq.filter((q) => q.kind && q.kind !== "insert").length === 0);
+    const pq = (r) => qs(r.j).filter((q) => q.at !== undefined);
+    const a1 = pq(r1), a2 = pq(r2);
+    check("p1/p2: at tro toi bai da bo thi bi bo; at tro toi bai con lai doi thanh 0 (vocab 'offered' o bai 2)", a1.length === 0 && a2.length === 1 && JSON.stringify(a2[0].at) === "[0,0]" && a2[0].word === "offered");
+  }
 } finally {
   fs.rmSync(tmp, { recursive: true, force: true });
 }
