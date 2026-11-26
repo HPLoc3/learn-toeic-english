@@ -339,9 +339,9 @@
    * giong da dung cho nguoi truoc (-3), giong mac dinh (+1); hoa nhau thi theo thu tu danh sach. Giong "la" (Bells, Zarvox...) bi loai.
    * pitch 1.0 khi ten giong khop gioi tinh; nguoc lai 0.8 (nam) / 1.2 (nu). Hai nguoi cung giong + cung pitch: nguoi sau lech them 0.15.
    * lang luon theo accent yeu cau (Chrome Android bo qua voice nhung nghe theo lang). */
-  var VOICE_F = /\b(female|woman|samantha|victoria|karen|moira|tessa|fiona|susan|hazel|zira|catherine|serena|kate|jenny|aria|sonia|libby|natasha|emma|ava|allison|amy|joanna|salli|kimberly|ivy|nicole|veena|heera|linda|michelle|ana|clara|molly)\b/i;
-  var VOICE_M = /\b(male|daniel|alex|tom|oliver|david|mark|george|james|guy|ryan|william|rishi|aaron|arthur|gordon|thomas|brian|matthew|joey|justin|russell|eric|liam|christopher|steffan|prabhat|sean)\b/i;
-  var VOICE_NOVELTY = /\b(albert|bad news|bahh|bells|boing|bubbles|cellos|good news|jester|organ|superstar|trinoids|whisper|wobble|zarvox|fred|junior|princess|ralph|kathy|deranged|hysterical|pipe organ)\b/i;
+  var VOICE_F = /\b(female|woman|samantha|victoria|karen|moira|tessa|fiona|susan|hazel|zira|catherine|serena|kate|jenny|aria|sonia|libby|natasha|emma|ava|allison|amy|joanna|salli|kimberly|ivy|nicole|veena|heera|linda|michelle|ana|clara|molly|martha|nicky|zoe|maisie|noelle)\b/i;
+  var VOICE_M = /\b(male|daniel|alex|tom|oliver|david|mark|george|james|guy|ryan|william|rishi|aaron|arthur|gordon|thomas|brian|matthew|joey|justin|russell|eric|liam|christopher|steffan|prabhat|sean|evan|nathan|lee)\b/i;
+  var VOICE_NOVELTY = /\b(albert|bad news|bahh|bells|boing|bubbles|cellos|good news|jester|organ|superstar|trinoids|whisper|wobble|zarvox|fred|junior|princess|ralph|kathy|deranged|hysterical|pipe organ|eddy|flo|grandma|grandpa|reed|rocko|sandy|shelley)\b/i;
   function voiceGender(v) {
     var n = String(v && v.name || "");
     return VOICE_F.test(n) ? "f" : VOICE_M.test(n) ? "m" : "";
@@ -359,8 +359,11 @@
       });
       var matched = !!best && voiceGender(best) === g;
       var pitch = matched ? 1 : g === "f" ? 1.2 : 0.8;
-      for (var k = 0; k < out.length; k++) {
-        if (out[k].v === best && out[k].pitch === pitch) { pitch = Math.min(1.6, Math.max(0.5, Math.round((pitch + 0.15) * 100) / 100)); k = -1; }
+      /* tranh trung giong + pitch: thu pitch +0.15, -0.15, +0.3, ... trong 0.5-1.6 (huu han); het cho thi giu pitch goc */
+      var p0 = pitch;
+      for (var t = 1; t <= 14 && out.some(function (o) { return o.v === best && o.pitch === pitch; }); t++) {
+        var c2 = Math.round((p0 + (t % 2 ? 1 : -1) * Math.ceil(t / 2) * 0.15) * 100) / 100;
+        if (c2 >= 0.5 && c2 <= 1.6) pitch = c2;
       }
       if (best) used.push(best);
       out.push({ id: c.id, v: best, lang: "en-" + tag, pitch: pitch, matched: matched });

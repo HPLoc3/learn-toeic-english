@@ -384,12 +384,14 @@ try {
       ["quote không có trong lời thoại", /cf-s20-q2': quote "That is not said anywhere" không có nguyên văn/], ["intent thiếu quote", /cf-s21-q2': câu intent cần quote/],
       ["uses_graphic không có graphic", /cf-s22-q3': uses_graphic cần graphic/], ["hàng bảng lệch cột", /cf-s23'\.graphic\.rows\[1\]: cần đúng 3 ô/], ["graphic không câu nào dùng", /cf-s24': có graphic nhưng không câu nào đặt uses_graphic/],
       ["câu hình không mở đầu Look at the graphic", /cf-s25-q2': câu dùng hình phải bắt đầu bằng "Look at the graphic"/], ["câu hỏi trùng trong đoạn", /cf-s26-q3': câu hỏi .* bị trùng trong đoạn/],
-      ["đáp án trùng nội dung", /cf-s27-q1'\.options\[D\]: nội dung trùng với đáp án B/], ["đoạn có image", /cf-s35': đoạn conv không dùng image hay audio/], ["list ít hơn 3 mục", /cf-s36'\.graphic: list cần items/]
+      ["đáp án trùng nội dung", /cf-s27-q1'\.options\[D\]: nội dung trùng với đáp án B/], ["đoạn có image", /cf-s35': đoạn conv không dùng image hay audio/], ["list ít hơn 3 mục", /cf-s36'\.graphic: list cần items/],
+      ["kind graphic mà thiếu uses_graphic", /cf-s37-q2': kind "graphic" và uses_graphic: true phải đi cùng nhau/], ["Look at the graphic mà thiếu uses_graphic", /cf-s38-q1': câu hỏi mở đầu "Look at the graphic" thì phải đặt uses_graphic/],
+      ["uses_graphic mà kind không phải graphic", /cf-s22-q3': kind "graphic" và uses_graphic: true phải đi cùng nhau/]
     ]) check("conv-fail báo lỗi: " + name, new RegExp("LỖI.*" + re.source).test(r.out), r.out.slice(0, 400));
     for (const [name, re] of [
       ["cả 3 câu cùng đáp án", /cf-s29': cả 3 câu cùng đáp án B/], ["lời thoại quá ngắn", /cf-s30': lời thoại \d+ từ/], ["câu dài > 160 ký tự", /cf-s31'\.lines\[1\]: có câu dài \d+ ký tự/],
       ["đáp án chép nguyên văn", /cf-s32-q1': đáp án đúng .* chép nguyên văn/], ["đáp án hình có trong lời thoại", /cf-s33-q2': câu dùng hình mà đáp án đúng "Birch" cũng xuất hiện/], ["đáp án hình không là ô của hình", /cf-s34-q2': .*không phải một ô\/mục của hình/],
-      ["phân bố đáp án lệch", /đáp án D chiếm \d+%/], ["unverified khi đã mở", /unit đã mở nhưng còn 2 mục 'unverified'/]
+      ["intent: quote không nằm trong q.en", /cf-s39-q2': câu hỏi intent nên chứa quote/], ["phân bố đáp án lệch", /đáp án D chiếm \d+%/], ["unverified khi đã mở", /unit đã mở nhưng còn 2 mục 'unverified'/]
     ]) check("conv-fail cảnh báo (không lỗi): " + name, new RegExp("CẢNH BÁO.*" + re.source).test(r.out) && !new RegExp("LỖI.*" + re.source).test(r.out), r.out.slice(0, 400));
     const rr = runC(load(fx("conv-fail")), ["--release"]);
     check("--release: lỗi (R) chép nguyên văn / đáp án hình / unverified đoạn", /LỖI.*cf-s32-q1.*chép nguyên văn.*--release/.test(rr.out) && /LỖI.*cf-s33-q2.*cũng xuất hiện.*--release/.test(rr.out) && /LỖI.*cf-s34-q2.*không phải một ô.*--release/.test(rr.out) && /LỖI.*cf-s28': còn 2 mục 'unverified'/.test(rr.out), rr.out.slice(-1500));

@@ -1,17 +1,15 @@
-/* conv.js - bai tap Part 3/4 (type "conv"): nghe hoi thoai / bai noi, doc truoc 3 cau hoi, chon A-D. Cham theo tung doan (3 cau mot lan).
- * Dung BS.speakSeq + BS.castVoices (core.js) va BS.quizKit (quiz.js). Du lieu: ex.sets[] { kind, speakers, lines, graphic?, questions[3] }.
- * Cham: st.ans[qid] = "A".."D", st.res[qid] = 0|1; +10 XP mot lan cho moi cau dung (uid:q:qid), khong XP neu da "Hien loi thoai". */
+/* conv.js - bai tap Part 3/4 (type "conv"): doc truoc 3 cau hoi, nghe hoi thoai/bai noi, chon A-D; cham theo doan. Dung BS.speakSeq/castVoices (core.js), BS.quizKit (quiz.js).
+ * st.ans[qid] = "A"-"D", st.res[qid] = 0|1; +10 XP/cau dung (mot lan), khong XP neu da xem loi thoai. */
 (function () {
   "use strict";
   var BS = window.BS, K = BS && BS.quizKit;
   if (!BS || !K) return;
   var el = BS.el, SPEEDS = K.SPEEDS, L = "ABCD";
   var TRAPS = { "heard-word": "Từ nghe được nhưng sai ý", "wrong-speaker": "Nhầm người nói", "wrong-detail": "Sai chi tiết", "not-mentioned": "Không được nhắc đến",
-    "changed-plan": "Kế hoạch đã đổi", "over-inference": "Suy luận quá đà", "literal": "Hiểu theo nghĩa đen", "graphic-only": "Chỉ có trong hình, không phải đáp án",
+    "changed-plan": "Kế hoạch đã đổi", "over-inference": "Suy luận quá đà", "literal": "Hiểu theo nghĩa đen", "graphic-only": "Chỉ có trong hình",
     "similar-sound": "Âm nghe giống nhau" };
-  var exam = false, syncs = []; /* Chế độ thi: chỉ trong phiên này, không lưu */
+  var exam = false, syncs = [];
 
-  /* tach dong dai (> 140 ky tu) o cuoi cau thanh nhieu phan */
   function chunks(t) {
     if (t.length <= 140) return [t];
     var sn = t.match(/[^.!?]+[.!?]+["')]*\s*|[^.!?]+$/g) || [t], out = [], cur = "";
@@ -19,7 +17,6 @@
     if (cur.trim()) out.push(cur.trim());
     return out;
   }
-  /* parts + cast cho BS.speakSeq; only = danh sach chi so dong (mac dinh: tat ca). Khong co loi dan vao */
   function seqOf(set, only) {
     var sp = set.speakers || [], lines = set.lines || [], parts = [];
     var acc = {};
@@ -40,6 +37,7 @@
     });
     return out;
   }
+  function foc(n) { try { n.focus(); } catch (e) { /* bo qua */ } }
   function btn(text, label, fn, cls) {
     return el("button", { type: "button", class: "btn" + (cls ? " " + cls : ""), "aria-label": label, text: text, onclick: fn });
   }
@@ -57,7 +55,7 @@
     return box;
   }
 
-  function buildSet(ex, set, n, total, qa, ctx) {
+  function buildSet(set, n, total, qa, ctx) {
     var qs = set.questions || [], labels = labelsOf(set);
     var graded = false, peeked = false, failed = false, played = 0, playing = false, cur = null, picks = [];
     var sec = el("section", { class: "cv-set", role: "group", "aria-label": "Đoạn " + n + " trên " + total });
@@ -94,8 +92,10 @@
       chk.disabled = graded || npicks() < qs.length; chk.hidden = graded;
       peek.hidden = graded || peeked || !(failed || ctx.noVoice());
       play.disabled = !can;
-      note.textContent = failed && !graded ? "Không phát được âm thanh trên thiết bị này. Hãy dùng nút \"Hiện lời thoại\"." : exam && !graded && played ? "Chế độ thi: bạn đã dùng lượt nghe duy nhất của đoạn này." : (!graded && !unlocked() ? "Hãy nghe trước, rồi mới chọn đáp án." : "");
-      if (!can && document.activeElement === play && qn[0] && qn[0].opts[0] && !qn[0].opts[0].b.disabled) { try { qn[0].opts[0].b.focus(); } catch (e) { /* bo qua */ } }
+      note.textContent = failed && !graded ? "Không phát được âm thanh. Hãy dùng nút \"Hiện lời thoại\"." : exam && !graded && played ? "Chế độ thi: đã dùng lượt nghe duy nhất." : (!graded && !unlocked() ? "Hãy nghe trước khi chọn." : "");
+      var fa = document.activeElement;
+      if (!can && fa === play && qn[0] && !qn[0].opts[0].b.disabled) foc(qn[0].opts[0].b);
+      else if (fa && !play.disabled && qn.some(function (x) { return x.opts.some(function (y) { return y.b === fa && y.b.disabled; }); })) foc(play);
     }
     function stop() { if (typeof BS.stopSpeak === "function") BS.stopSpeak(); playing = false; }
     function speak(sq) {
@@ -103,7 +103,6 @@
       mine = typeof BS.speakSeq !== "function" ? null : BS.speakSeq(sq.parts, { rate: ctx.rate(), cast: sq.cast, onstop: function (r) {
         if (mine !== cur) return;
         playing = false; cur = null;
-        /* Che do thi: bi huy truoc khi am thanh bat dau thi hoan lai luot nghe duy nhat */
         if (r && !r.completed && !r.started && !graded) played = Math.max(0, played - 1);
         sync();
       } });
@@ -124,7 +123,9 @@
       peeked = true; tr.textContent = "";
       tr.appendChild(el("p", { class: "muted", text: "Lời thoại (đoạn này không được XP):" }));
       (set.lines || []).forEach(function (ln) { tr.appendChild(el("p", { lang: "en" }, [labels[ln.s] + ": " + ln.en])); });
+      var hadFocus = document.activeElement === peek;
       sync();
+      if (hadFocus && qn[0]) foc(qn[0].opts[0].b);
     }
     function optMark(x, label, right, mine) {
       x.b.disabled = true; x.b.setAttribute("aria-pressed", mine ? "true" : "false");
@@ -162,11 +163,11 @@
       });
       fb.appendChild(ul2);
       sync();
-      if (focus) { try { fb.focus(); } catch (e) { /* bo qua */ } }
+      if (focus) foc(fb);
     }
     function check() {
       if (graded || npicks() < qs.length) return;
-      stop(); /* tat tieng truoc khi ghi vao vung aria-live */
+      stop();
       qn.forEach(function (x, i) {
         var q = x.q, ok = picks[i] === q.answer;
         ctx.st.ans[q.id] = picks[i]; ctx.st.res[q.id] = ok ? 1 : 0;
@@ -194,7 +195,9 @@
     qn.forEach(function (x) { sec.appendChild(x.fs); });
     sec.appendChild(el("div", { class: "row" }, [chk]));
     sec.appendChild(fb);
-    if (qs.every(function (q) { return ctx.st.res[q.id] !== undefined; })) { /* khôi phục (không cộng XP) */
+    var has = qs.filter(function (q) { return ctx.st.res[q.id] !== undefined; }).length;
+    if (has && has < qs.length) { qs.forEach(function (q) { delete ctx.st.res[q.id]; delete ctx.st.ans[q.id]; }); ctx.score(); }
+    if (has === qs.length && has) {
       picks = qs.map(function (q) { var a = ctx.st.ans[q.id]; return typeof a === "string" && /^[A-D]$/.test(a) ? a : (ctx.st.res[q.id] === 1 ? q.answer : null); });
       show(false);
     } else sync();
@@ -204,10 +207,10 @@
   BS.renderConv = function (ex, idx, st, uid) {
     var sets = ex.sets || [], rate = 0.9, noVoice = false, rows = [], all = [];
     sets.forEach(function (s) { (s.questions || []).forEach(function (q) { all.push(q); }); });
-    var talk = sets.length && sets[0].kind === "talk";
+    var nt = sets.filter(function (s) { return s.kind === "talk"; }).length, what = nt === sets.length ? "bài nói" : nt ? "hội thoại hoặc bài nói" : "hội thoại";
     var scoreBox = el("p", { class: "score", "aria-live": "polite" });
     var card = el("section", { class: "card", "aria-label": "Bài tập " + (idx + 1) }, [
-      el("div", {}, [el("h3", {}, ["Bài " + (idx + 1) + ": " + (talk ? "Nghe bài nói và chọn đáp án" : "Nghe hội thoại và chọn đáp án"), " ", BS.badgeUnverified(ex.v)]),
+      el("div", {}, [el("h3", {}, ["Bài " + (idx + 1) + ": " + "Nghe " + what + " và chọn đáp án", " ", BS.badgeUnverified(ex.v)]),
         ex.instruction_vi ? el("p", { text: ex.instruction_vi }) : null, scoreBox]),
       K.makeNotice()
     ]);
@@ -218,7 +221,7 @@
       b.addEventListener("click", function () { rate = sp.rate; syncCtl(); });
       return { b: b, sp: sp };
     });
-    var examBtn = el("button", { type: "button", class: "btn", "aria-pressed": "false", title: "Chỉ nghe một lần, tốc độ bình thường 1.0 (chỉ trong lần mở trang này)" });
+    var examBtn = el("button", { type: "button", class: "btn", "aria-pressed": "false", title: "Nghe một lần, tốc độ 1.0 (chỉ trong phiên này)" });
     function syncCtl() {
       speedBtns.forEach(function (x) { x.b.disabled = exam; x.b.setAttribute("aria-pressed", !exam && x.sp.rate === rate ? "true" : "false"); });
       examBtn.setAttribute("aria-pressed", exam ? "true" : "false");
@@ -228,16 +231,18 @@
     examBtn.addEventListener("click", function () { exam = !exam; syncs.forEach(function (f) { f(exam); }); });
     syncs.push(function (on) { if (on) rows.forEach(function (r) { if (!r.isGraded()) r.reset(); }); syncCtl(); });
     card.appendChild(el("div", { class: "row cv-ctl" }, [el("span", { class: "listen-btns", role: "group", "aria-label": "Tốc độ nghe" }, speedBtns.map(function (x) { return x.b; })), examBtn]));
-    card.appendChild(el("p", { class: "muted cv-keys", text: "Hãy đọc 3 câu hỏi trước khi nghe. Phím tắt: trong một câu, 1, 2, 3, 4 chọn đáp án A, B, C, D; R nghe lại cả đoạn. Đề thi thật chỉ đọc một lần: hãy thử Chế độ thi." }));
+    card.appendChild(el("p", { class: "muted cv-keys", text: "Đọc 3 câu hỏi trước khi nghe. Phím tắt: trong một câu, 1, 2, 3, 4 chọn A, B, C, D; R nghe lại cả đoạn. Đề thật chỉ đọc một lần: hãy thử Chế độ thi." }));
     var qa = 1;
-    sets.forEach(function (s, i) { var r = buildSet(ex, s, i + 1, sets.length, qa, ctx); qa += (s.questions || []).length; rows.push(r); card.appendChild(r.node); });
+    sets.forEach(function (s, i) { var r = buildSet(s, i + 1, sets.length, qa, ctx); qa += (s.questions || []).length; rows.push(r); card.appendChild(r.node); });
+    var firstCb = true; /* lan dau bao khong co giong: tam thoi, cho voiceschanged/800 ms */
     if (typeof BS.onVoices === "function") BS.onVoices(function (ok) {
+      if (firstCb) { firstCb = false; if (!ok) return; }
       noVoice = !ok; rows.forEach(function (r) { r.sync(); });
     });
     var redo = el("button", { type: "button", class: "btn", text: "Làm lại" });
     redo.addEventListener("click", function () {
       K.resetEx(st, ex, all); rows.forEach(function (r) { r.reset(); }); scoreBox.textContent = "";
-      if (rows[0] && !rows[0].play.disabled) { try { rows[0].play.focus(); } catch (e) { /* bo qua */ } }
+      if (rows[0] && !rows[0].play.disabled) foc(rows[0].play);
     });
     card.appendChild(el("div", { class: "row" }, [redo]));
     var prev = st.scores[ex.id];

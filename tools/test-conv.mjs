@@ -259,7 +259,8 @@ const scoreOf = (n) => byClass(n, "score")[0];
   check("hinh: boc trong vung cuon ngang (cv-scroll) cho man hinh nho", byClass(gr, "cv-scroll").length === 1);
   check("hinh nam truoc nut nghe trong doan", M.sets[0].kids.indexOf(gr.parent === M.sets[0] ? gr : gr) < M.sets[0].kids.indexOf(cplay(M.sets[0]).parent));
   check("doan khong co hinh thi khong in khung hinh", byClass(M.sets[1], "cv-graphic").length === 0);
-  check("khung diem la vung aria-live=polite duy nhat; fb khong la live region", byClass(M.card, "score")[0].getAttribute("aria-live") === "polite" && all(M.card, (x) => x.getAttribute("aria-live") !== null).length === 1 && cfb(M.sets[0]).getAttribute("tabindex") === "-1");
+  const live = all(M.card, (x) => x.getAttribute("aria-live") !== null), stat = all(M.card, (x) => x.getAttribute("role") === "status");
+  check("vung thong bao: aria-live=polite chi o khung diem; fb khong phai live region; vung role=status duy nhat la notice cua quizKit (an, rong)", live.length === 1 && live[0] === byClass(M.card, "score")[0] && live[0].getAttribute("aria-live") === "polite" && stat.length === 1 && stat[0].hidden && stat[0].textContent === "" && cfb(M.sets[0]).getAttribute("aria-live") === null && cfb(M.sets[0]).getAttribute("role") === "group" && cfb(M.sets[0]).getAttribute("tabindex") === "-1");
   check("co nut toc do va nut Che do thi; huong dan phim tat 1-4 va R", btnText(M.card, "Chậm 0.7").length === 1 && btnText(M.card, "Chế độ thi: tắt").length === 1 && /1, 2, 3, 4/.test(txt) && /R nghe lại/.test(txt));
 }
 {
@@ -434,6 +435,93 @@ const scoreOf = (n) => byClass(n, "score")[0];
   check("quiz.js: ex.type conv duoc ve boi BS.renderConv, type la bi bo qua", byClass(root, "cv-set").length === 2 && all(root, (x) => x.tag === "section" && x.getAttribute("aria-label") === "Bài tập 1").length === 1);
 }
 
+
+
+/* ================= vong sua sau danh gia ================= */
+{
+  /* castVoices > 3 nguoi: ket thuc, pitch khac nhau khi co the */
+  const E = makeEnv({ voices: [V("en-US", "Google US English")] });
+  const five = [1, 2, 3, 4, 5].map((i) => ({ id: "F" + i, accent: "us", gender: "f" }));
+  const c = E.BS.castVoices(five);
+  const ps = c.map((x) => x.pitch);
+  check("castVoices: 5 nguoi nu mot giong la: ket thuc, pitch deu trong 0.5-1.6 va khac nhau", c.length === 5 && ps.every((p) => p >= 0.5 && p <= 1.6) && new Set(ps).size === 5, ps.join());
+  const E2 = makeEnv({ voices: [] });
+  const c2 = E2.BS.castVoices([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) => ({ id: "X" + i, accent: "gb", gender: "f" })));
+  check("castVoices: 12 nguoi khong co giong van ket thuc, pitch trong 0.5-1.6", c2.length === 12 && c2.every((x) => x.pitch >= 0.5 && x.pitch <= 1.6) && new Set(c2.map((x) => x.pitch)).size >= 7);
+  const E3 = makeEnv({ voices: ["Eddy", "Flo", "Grandma", "Grandpa", "Reed", "Rocko", "Sandy", "Shelley"].map((n) => V("en-US", n)).concat([V("en-US", "Martha"), V("en-GB", "Nathan")]) });
+  const c3 = E3.BS.castVoices([{ id: "W", accent: "us", gender: "f" }, { id: "M", accent: "gb", gender: "m" }]);
+  check("castVoices: giong Eloquence (Eddy, Flo, Grandma, Sandy...) bi loai; Martha/Nathan co gioi tinh", c3[0].v.name === "Martha" && c3[1].v.name === "Nathan" && c3.every((x) => x.matched));
+}
+{
+  /* tieu diem sau khi xem loi thoai */
+  const M = mountC({ voices: [] });
+  const s = M.sets[0], pk = byClass(s, "cv-peek")[0];
+  pk.focus(); pk.click();
+  check("xem loi thoai: tieu diem khong con o nut da an, chuyen sang dap an dau cau 1 (dang mo)", pk.hidden && M.doc.activeElement === qopts(s, 0)[0] && !M.doc.activeElement.disabled && !M.doc.activeElement.hidden);
+  const M2 = mountC({ voices: [] });
+  const pk2 = byClass(M2.sets[0], "cv-peek")[0]; M2.doc.activeElement = null; pk2.click();
+  check("xem loi thoai: khong keo tieu diem neu nut khong giu tieu diem", M2.doc.activeElement === null);
+  const M3 = mountC({ noSynth: true });
+  cplay(M3.sets[0]).focus(); cplay(M3.sets[0]).click();
+  const pk3 = byClass(M3.sets[0], "cv-peek")[0]; pk3.focus(); pk3.click();
+  check("speakSeq null roi xem loi thoai: tieu diem cung khong ket tren nut an", M3.doc.activeElement === qopts(M3.sets[0], 0)[0]);
+}
+{
+  /* che do thi: hoan luot khi huy -> dap an bi khoa, tieu diem ve nut Nghe */
+  const M = mountC({ auto: false });
+  const s = M.sets[0], play = cplay(s);
+  btnText(M.card, "Chế độ thi")[0].click();
+  play.focus(); play.click();
+  check("che do thi: tieu diem sang dap an dau sau khi bam Nghe", M.doc.activeElement === qopts(s, 0)[0]);
+  M.BS.stopSpeak();
+  check("che do thi: huy truoc khi bat dau -> dap an bi khoa va tieu diem tro ve nut Nghe (khong o nut bi khoa)", M.doc.activeElement === play && !play.disabled && copts(s).every((b) => b.disabled));
+}
+{
+  /* khoi phuc mot phan: bo ket qua le, khong tinh vao diem/tien do */
+  const M = mountC({ pre: (st) => { st.res["c1-s1-q1"] = 1; st.ans["c1-s1-q1"] = "B"; st.res["c1-s1-q2"] = 0; st.ans["c1-s1-q2"] = "A"; ["c2-s1-q1", "c2-s1-q2", "c2-s1-q3"].forEach((id, i) => { st.res[id] = [1, 0, 1][i]; st.ans[id] = ["D", "C", "B"][i]; }); st.scores.cx = { c: 9, t: 6, a: 9 }; } });
+  check("khoi phuc mot phan (2/3): res/ans cua doan do bi bo, doan khac giu nguyen", M.st.res["c1-s1-q1"] === undefined && M.st.ans["c1-s1-q2"] === undefined && M.st.res["c2-s1-q1"] === 1 && M.st.res["c2-s1-q3"] === 1);
+  check("khoi phuc mot phan: diem tinh lai chi tu cac cau con lai (doan day du 2/3 dung)", JSON.stringify(M.st.scores.cx) === JSON.stringify({ c: 2, t: 6, a: 3 }) && /Điểm: 2\/6/.test(scoreOf(M.card).textContent), JSON.stringify(M.st.scores.cx));
+  const E = makeEnv({ voices: [], files: CVF });
+  const stp = E.BS.unit("p3-test"); stp.res["c1-s1-q1"] = 1;
+  const ex = EXC();
+  E.win.BS_UNITS = { "p3-test": { id: "p3-test", vocab: [], phrases: [], exercises: [ex] } };
+  E.BS.renderConv(ex, 0, stp, "p3-test");
+  check("khoi phuc mot phan: unitProgress khong dem cau le", E.BS.unitProgress("p3-test").done === 0);
+}
+{
+  /* giong chua nap: lan bao dau 'khong co giong' chi la tam thoi */
+  const E = makeEnv({ voices: [], files: CVF });
+  const card = E.BS.renderConv(EXC(), 0, E.BS.unit("p3-test"), "p3-test");
+  E.advance(100);
+  const s = byClass(card, "cv-set")[0];
+  check("giong chua nap (100 ms): chua mo dap an, chua hien nut xem loi thoai", copts(s).every((b) => b.disabled) && byClass(s, "cv-peek")[0].hidden);
+  E.advance(800);
+  check("sau 800 ms van khong co giong: mo dap an va hien nut xem loi thoai", copts(s).every((b) => !b.disabled) && !byClass(s, "cv-peek")[0].hidden);
+  const E2 = makeEnv({ voices: [V("en-US", "Alex")], files: CVF });
+  const c2 = E2.BS.renderConv(EXC(), 0, E2.BS.unit("p3-test"), "p3-test");
+  check("co giong ngay tu dau: van khoa dap an cho den khi nghe", byClass(c2, "cv-opt").every((b) => b.disabled) && byClass(c2, "cv-peek").every((b) => b.hidden));
+}
+{
+  /* du lieu chua HTML chi duoc hien thanh chu */
+  const X = '<img src=x onerror=alert(1)>';
+  const ex = EXC();
+  const s0 = ex.sets[0];
+  s0.lines[0].en = X + " Hello there."; s0.lines[0].vi = X + "vi";
+  s0.graphic.title = X + "title"; s0.graphic.cols[0] = X + "col"; s0.graphic.rows[0][0] = X + "cell";
+  s0.questions[0].q.en = X + " question?"; s0.questions[0].q.vi = X + "qvi"; s0.questions[0].options[0].en = X + "opt"; s0.questions[0].options[0].vi = X + "ovi"; s0.questions[0].options[0].why_vi = X + "why"; s0.questions[0].explain_vi = X + "exp";
+  const M = mountC({ ex: () => ex });
+  const n0 = all(M.card, (x) => x.tag === "img").length;
+  cplay(M.sets[0]).click(); pickAll(M.sets[0], ["A", "C", "A"]); cchk(M.sets[0]).click();
+  const imgs = all(M.card, (x) => x.tag === "img" || x.tag === "script" || Object.keys(x.attrs).some((k) => /^on/i.test(k)));
+  const txt = M.card.textContent;
+  check("markup trong du lieu (en/vi/graphic/dap an/giai thich) khong tao phan tu, chi hien thanh chu", n0 === 0 && imgs.length === 0 && txt.includes(X + " question?") && txt.includes(X + "cell") && txt.includes(X + "title") && txt.includes(X + "why") && txt.includes(X + "vi"));
+}
+{
+  /* tieu de bai: theo kieu cac doan */
+  const mixed = EXC(); mixed.sets[1].kind = "talk";
+  const mm = mountC({ ex: () => mixed });
+  check("bai gom hoi thoai va bai noi: tieu de trung tinh, nut nghe theo tung doan", /Nghe hội thoại hoặc bài nói và chọn đáp án/.test(mm.card.textContent) && cplay(mm.sets[0]).textContent === "Nghe hội thoại" && cplay(mm.sets[1]).textContent === "Nghe bài nói");
+}
 
 console.log("\ntest-conv: " + pass + " đạt, " + fail + " lỗi");
 process.exit(fail ? 1 : 0);

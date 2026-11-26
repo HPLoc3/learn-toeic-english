@@ -361,9 +361,14 @@ function checkUnit(entry) {
       if (!Array.isArray(q.evidence) || !q.evidence.length || q.evidence.some((x) => !Number.isInteger(x) || x < 0 || x >= lines.length)) e(wq + ": evidence phải là mảng không rỗng các chỉ số dòng hợp lệ (0-" + Math.max(0, lines.length - 1) + ").");
       if (q.kind === "intent") {
         if (!nonEmpty(q.quote)) e(wq + ": câu intent cần quote (đúng lời trong hội thoại).");
-        else if (!lnN.some((t) => cvHas(t, cvNorm(q.quote)))) e(wq + ": quote \"" + q.quote + "\" không có nguyên văn trong dòng lời thoại nào.");
+        else {
+          if (!lnN.some((t) => cvHas(t, cvNorm(q.quote)))) e(wq + ": quote \"" + q.quote + "\" không có nguyên văn trong dòng lời thoại nào.");
+          if (isObj(q.q) && !cvHas(cvNorm(q.q.en), cvNorm(q.quote))) w(wq + ": câu hỏi intent nên chứa quote trong q.en (dạng Why does the man say, \"...\"?).");
+        }
       }
       if (q.uses_graphic !== undefined && q.uses_graphic !== true) e(wq + ": uses_graphic chỉ nhận true.");
+      if ((q.kind === "graphic") !== (q.uses_graphic === true)) e(wq + ": kind \"graphic\" và uses_graphic: true phải đi cùng nhau (hiện kind '" + q.kind + "', uses_graphic " + q.uses_graphic + ").");
+      if (q.uses_graphic !== true && isObj(q.q) && /^Look at the graphic/.test(String(q.q.en || ""))) e(wq + ": câu hỏi mở đầu \"Look at the graphic\" thì phải đặt uses_graphic: true.");
       if (q.uses_graphic === true) {
         gq++;
         if (!isObj(s.graphic)) e(wq + ": uses_graphic cần graphic của đoạn.");
