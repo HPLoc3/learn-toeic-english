@@ -839,7 +839,7 @@ window.BS_UNITS["p4-01"] = {
                 },
                 {
                   "label": "B",
-                  "en": "She expects visitors to have difficulty reaching the offices",
+                  "en": "She expects visitors to struggle to reach the offices",
                   "vi": "Cô dự đoán khách sẽ khó lên tới các văn phòng"
                 },
                 {

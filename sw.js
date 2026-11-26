@@ -3,7 +3,7 @@
  * Không gửi dữ liệu đi đâu, không đụng request khác nguồn, không đụng localStorage.
  * Mỗi lần deploy có file precache đổi: sửa VERSION rồi chạy `node tools/check-sw.mjs --write`.
  */
-// content-hash: 36@35620e428cfe0245
+// content-hash: 36@a551059c04a6cf89
 "use strict";
 
 var VERSION = "36";
