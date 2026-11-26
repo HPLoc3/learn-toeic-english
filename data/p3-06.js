@@ -380,8 +380,8 @@ window.BS_UNITS["p3-06"] = {
             },
             {
               "s": "M",
-              "en": "All right. Your suitcase will be moved over automatically.",
-              "vi": "Vâng. Va li của chị sẽ được tự động chuyển sang."
+              "en": "Your suitcase will be moved over automatically.",
+              "vi": "Va li của chị sẽ được tự động chuyển sang."
             },
             {
               "s": "W",
