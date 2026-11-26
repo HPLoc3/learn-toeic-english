@@ -456,7 +456,9 @@
     exs.forEach(function (ex, i) {
       var card = ex.type === "fill" ? renderFill(ex, i, st, u.id) : ex.type === "tf" ? renderTF(ex, i, st, u.id) : ex.type === "mc" ? renderMC(ex, i, st, u.id)
         : ex.type === "qr" && typeof BS.renderQR === "function" ? BS.renderQR(ex, i, st, u.id)
-        : ex.type === "conv" && typeof BS.renderConv === "function" ? BS.renderConv(ex, i, st, u.id) : null;
+        : ex.type === "conv" && typeof BS.renderConv === "function" ? BS.renderConv(ex, i, st, u.id)
+        : ex.type === "gram" && typeof BS.renderGram === "function" ? BS.renderGram(ex, i, st, u.id)
+        : ex.type === "read" && typeof BS.renderRead === "function" ? BS.renderRead(ex, i, st, u.id) : null;
       if (card) root.appendChild(card);
     });
   };

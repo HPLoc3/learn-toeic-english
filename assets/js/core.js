@@ -530,7 +530,7 @@
     (u.phrases || []).forEach(function (w) { total++; if (st.known[w.id]) done++; });
     (u.exercises || []).forEach(function (ex) {
       if (ex.type === "mc") { total++; if (st.res[ex.id] !== undefined) done++; }
-      else if (ex.type === "conv") (ex.sets || []).forEach(function (se) { (se.questions || []).forEach(function (q) { total++; if (st.res[q.id] !== undefined) done++; }); });
+      else if (ex.type === "conv" || ex.type === "read") (ex.sets || []).forEach(function (se) { (se.questions || []).forEach(function (q) { total++; if (st.res[q.id] !== undefined) done++; }); });
       else (ex.items || []).forEach(function (it) { total++; if (st.res[it.id] !== undefined) done++; });
     });
     return { done: done, total: total, pct: total ? Math.round(done * 100 / total) : 0 };
