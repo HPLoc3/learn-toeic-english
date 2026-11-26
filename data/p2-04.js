@@ -492,10 +492,10 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "B",
-              "en": "Actually, their group meets on Friday mornings.",
-              "vi": "Thật ra nhóm của họ họp vào các sáng thứ Sáu.",
+              "en": "Our running group meets on Friday mornings.",
+              "vi": "Nhóm chạy bộ của chúng tôi họp vào các sáng thứ Sáu.",
               "trap": "repeat-word",
-              "why_vi": "Lặp lại từ Group nhưng nói về lịch họp của một nhóm, không nói đã gửi mẫu đơn hay chưa."
+              "why_vi": "Lặp lại từ group nhưng nói về lịch của một nhóm chạy bộ, không nói đã gửi mẫu đơn hay chưa."
             },
             {
               "label": "C",
@@ -601,10 +601,10 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "C",
-              "en": "A courier is bringing the new rate sheet today.",
-              "vi": "Hôm nay người giao hàng sẽ mang bảng tỷ giá mới đến.",
+              "en": "The exchange rate is posted by the front door.",
+              "vi": "Tỷ giá được niêm yết cạnh cửa trước.",
               "trap": "related-word",
-              "why_vi": "Rate gợi đến chuyện ngoại tệ nhưng nói về việc giao bảng tỷ giá, không nói máy đếm tiền có chạy hay không."
+              "why_vi": "Tỷ giá gợi đến chuyện ngoại tệ nhưng câu này chỉ nói tỷ giá được niêm yết ở đâu, không nói máy đếm tiền có chạy hay không."
             }
           ],
           "v": {
@@ -710,10 +710,10 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "C",
-              "en": "I'd rather get paper statements by mail.",
-              "vi": "Tôi muốn nhận sao kê giấy qua bưu điện hơn.",
+              "en": "The mobile app has a brand-new logo.",
+              "vi": "Ứng dụng di động có logo hoàn toàn mới.",
               "trap": "related-word",
-              "why_vi": "Liên quan đến dịch vụ tài khoản nhưng nói về cách nhận sao kê, không cho biết quyền truy cập đã được khôi phục hay chưa."
+              "why_vi": "Liên quan đến ngân hàng trực tuyến nhưng nói về logo của ứng dụng, không cho biết quyền truy cập đã được khôi phục hay chưa."
             }
           ],
           "v": {
