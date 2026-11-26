@@ -360,8 +360,8 @@ window.BS_UNITS["p3-02"] = {
           "lines": [
             {
               "s": "W",
-              "en": "Good morning. Are you returning something today, or can I help you find a size?",
-              "vi": "Chào buổi sáng. Hôm nay anh đến trả hàng hay cần tôi giúp tìm cỡ áo?"
+              "en": "Good morning. Are you returning something, or can I help you find a size?",
+              "vi": "Chào buổi sáng. Anh đến trả hàng hay cần tôi giúp tìm cỡ áo?"
             },
             {
               "s": "M",
@@ -370,8 +370,8 @@ window.BS_UNITS["p3-02"] = {
             },
             {
               "s": "W",
-              "en": "Without a receipt, I can't give you cash back. I can only offer store credit at the current price.",
-              "vi": "Không có hóa đơn thì tôi không thể hoàn tiền mặt. Tôi chỉ có thể đưa phiếu mua hàng theo giá hiện tại."
+              "en": "Without a receipt, I can't give you cash back. I can only offer store credit.",
+              "vi": "Không có hóa đơn thì tôi không thể hoàn tiền mặt. Tôi chỉ có thể đưa phiếu mua hàng."
             },
             {
               "s": "M",
@@ -380,13 +380,23 @@ window.BS_UNITS["p3-02"] = {
             },
             {
               "s": "W",
-              "en": "Let me check. Yes, forty-eight dollars on the fifth of October. Our return period is thirty days, so you're just inside it.",
-              "vi": "Để tôi kiểm tra. Có rồi, bốn mươi tám đô vào ngày mùng năm tháng Mười. Thời hạn đổi trả là ba mươi ngày nên anh vẫn còn trong hạn."
+              "en": "Let me check. Yes, I have it here, forty-eight dollars on the fifth of October.",
+              "vi": "Để tôi kiểm tra. Có rồi, bốn mươi tám đô vào ngày mùng năm tháng Mười."
             },
             {
               "s": "M",
-              "en": "That's a relief. In that case, I'd rather swap it for the next size up.",
-              "vi": "Nhẹ cả người. Vậy tôi muốn đổi sang cỡ lớn hơn một số."
+              "en": "Great. Is that still inside your return period?",
+              "vi": "Tốt quá. Vậy có còn trong thời hạn đổi trả của chị không?"
+            },
+            {
+              "s": "W",
+              "en": "Yes, we allow thirty days.",
+              "vi": "Còn, chúng tôi cho phép ba mươi ngày."
+            },
+            {
+              "s": "M",
+              "en": "That is good news. I would rather swap it for the next size up.",
+              "vi": "Vậy là tin tốt. Tôi muốn đổi sang cỡ lớn hơn một số."
             },
             {
               "s": "W",
@@ -412,7 +422,7 @@ window.BS_UNITS["p3-02"] = {
                 0,
                 1
               ],
-              "explain_vi": "Người phụ nữ hỏi khách muốn trả hàng hay tìm cỡ áo, và người đàn ông muốn trả một chiếc áo khoác (có giá phía sau, phòng thử đồ, khăn cùng bộ): đây là cửa hàng quần áo.",
+              "explain_vi": "Người phụ nữ hỏi khách muốn trả hàng hay tìm cỡ áo, và người đàn ông muốn trả một chiếc áo khoác (giá phía sau, phòng thử đồ, khăn cùng bộ): đây là cửa hàng quần áo.",
               "options": [
                 {
                   "label": "A",
@@ -428,17 +438,17 @@ window.BS_UNITS["p3-02"] = {
                 },
                 {
                   "label": "C",
-                  "en": "At a luggage shop",
-                  "vi": "Ở cửa hàng vali, túi xách",
+                  "en": "At a jewelry store",
+                  "vi": "Ở cửa hàng trang sức",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có vali hay túi xách nào được nhắc đến."
+                  "why_vi": "Không có món trang sức nào được nhắc đến."
                 },
                 {
                   "label": "D",
-                  "en": "At a furniture store",
-                  "vi": "Ở cửa hàng nội thất",
+                  "en": "At a bookstore",
+                  "vi": "Ở hiệu sách",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có món đồ nội thất nào được nhắc đến."
+                  "why_vi": "Không có cuốn sách nào được nhắc đến."
                 }
               ]
             },
@@ -449,7 +459,7 @@ window.BS_UNITS["p3-02"] = {
                 "en": "What problem does the man mention?",
                 "vi": "Người đàn ông nhắc đến vấn đề gì?"
               },
-              "answer": "D",
+              "answer": "A",
               "evidence": [
                 1
               ],
@@ -457,72 +467,72 @@ window.BS_UNITS["p3-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "The zipper on a jacket is broken.",
-                  "vi": "Khóa kéo của một chiếc áo bị hỏng.",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không ai nói khóa kéo bị hỏng; lý do trả hàng là vai áo chật."
+                  "en": "He has lost his proof of purchase.",
+                  "vi": "Anh ấy làm mất giấy tờ chứng minh đã mua."
                 },
                 {
                   "label": "B",
-                  "en": "He was charged the wrong price.",
-                  "vi": "Anh ấy bị tính sai giá.",
-                  "trap": "not-mentioned",
-                  "why_vi": "Giá bốn mươi tám đô chỉ được xác nhận khi tra giao dịch, không có sai giá."
+                  "en": "The return period has passed.",
+                  "vi": "Thời hạn đổi trả đã hết.",
+                  "trap": "wrong-detail",
+                  "why_vi": "Người phụ nữ xác nhận vẫn còn trong thời hạn ba mươi ngày."
                 },
                 {
                   "label": "C",
-                  "en": "A sale item cannot be returned.",
-                  "vi": "Hàng giảm giá không được trả.",
+                  "en": "The item was bought as a gift.",
+                  "vi": "Món hàng được mua làm quà.",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có quy định về hàng giảm giá được nhắc đến."
+                  "why_vi": "Anh ấy tự mua và trả bằng thẻ của mình."
                 },
                 {
                   "label": "D",
-                  "en": "He has misplaced a proof of purchase.",
-                  "vi": "Anh ấy làm mất giấy tờ chứng minh đã mua."
+                  "en": "The store has no record of the sale.",
+                  "vi": "Cửa hàng không có dữ liệu về giao dịch.",
+                  "trap": "wrong-detail",
+                  "why_vi": "Người phụ nữ tra ra giao dịch bằng thẻ."
                 }
               ]
             },
             {
               "id": "c1-s1-q3",
               "kind": "intent",
-              "quote": "That's a relief.",
+              "quote": "That is good news.",
               "q": {
-                "en": "What does the man mean when he says, \"That's a relief\"?",
-                "vi": "Người đàn ông muốn nói gì khi nói \"That's a relief\"?"
+                "en": "What does the man mean when he says, \"That is good news\"?",
+                "vi": "Người đàn ông muốn nói gì khi nói \"That is good news\"?"
               },
-              "answer": "A",
+              "answer": "D",
               "evidence": [
-                4,
-                5
+                6,
+                7
               ],
-              "explain_vi": "Sau khi biết giao dịch còn nằm trong thời hạn ba mươi ngày, anh ấy thấy nhẹ nhõm vì vẫn đổi được hàng.",
+              "explain_vi": "Ngay trước đó người phụ nữ cho biết cửa hàng cho phép ba mươi ngày, nên anh ấy mừng vì vẫn còn trong thời hạn đổi trả.",
               "options": [
                 {
                   "label": "A",
-                  "en": "He is glad the return can still be accepted.",
-                  "vi": "Anh ấy mừng vì vẫn được nhận trả hàng."
+                  "en": "He is glad the store found his purchase record.",
+                  "vi": "Anh ấy mừng vì cửa hàng tra ra giao dịch của anh.",
+                  "trap": "heard-word",
+                  "why_vi": "Việc tra ra giao dịch đã xảy ra trước đó và anh đáp lại bằng \"Great\"; câu này đáp lại thông tin về thời hạn."
                 },
                 {
                   "label": "B",
-                  "en": "He is glad the price was lower than expected.",
-                  "vi": "Anh ấy mừng vì giá thấp hơn dự kiến.",
-                  "trap": "wrong-detail",
-                  "why_vi": "Không ai nói giá thấp hơn dự kiến; sự nhẹ nhõm đến từ thời hạn đổi trả."
+                  "en": "He is glad the jacket is available in his size.",
+                  "vi": "Anh ấy mừng vì áo có cỡ của anh.",
+                  "trap": "changed-plan",
+                  "why_vi": "Chuyện cỡ áo mới được nhắc sau câu này, khi anh nói muốn đổi cỡ lớn hơn."
                 },
                 {
                   "label": "C",
-                  "en": "He is glad he will get his money back in cash.",
-                  "vi": "Anh ấy mừng vì sẽ được hoàn lại tiền mặt.",
+                  "en": "He is glad his money will go back to his card.",
+                  "vi": "Anh ấy mừng vì tiền sẽ về thẻ của anh.",
                   "trap": "over-inference",
-                  "why_vi": "Cô ấy chỉ nói có thể cho phiếu mua hàng; anh chọn đổi cỡ, không có hoàn tiền mặt."
+                  "why_vi": "Không ai nói hoàn tiền về thẻ; anh chọn đổi hàng."
                 },
                 {
                   "label": "D",
-                  "en": "He is glad the clerk will look for another size.",
-                  "vi": "Anh ấy mừng vì nhân viên sẽ tìm cỡ khác.",
-                  "trap": "heard-word",
-                  "why_vi": "Việc tìm cỡ khác đến sau khi anh nói; câu này đáp lại thông tin về thời hạn."
+                  "en": "He is glad he is still within the return period.",
+                  "vi": "Anh ấy mừng vì vẫn còn trong thời hạn đổi trả."
                 }
               ]
             }
@@ -570,7 +580,7 @@ window.BS_UNITS["p3-02"] = {
             {
               "s": "M",
               "en": "About fifteen minutes away. Pickup is free, and I'll take ten dollars off for the trouble.",
-              "vi": "Khoảng mười lăm phút từ chỗ chị. Nhận hàng miễn phí, và tôi sẽ trừ mười đô vì sự bất tiện này."
+              "vi": "Khoảng mười lăm phút. Nhận hàng miễn phí, và tôi sẽ trừ mười đô vì sự bất tiện này."
             },
             {
               "s": "W",
@@ -580,7 +590,7 @@ window.BS_UNITS["p3-02"] = {
             {
               "s": "M",
               "en": "The box is long, so a larger vehicle is safer. I'll email you the pickup form now.",
-              "vi": "Chiếc hộp khá dài nên xe lớn hơn sẽ an toàn hơn. Tôi sẽ gửi email mẫu nhận hàng cho chị ngay."
+              "vi": "Chiếc hộp dài nên xe lớn hơn sẽ an toàn hơn. Tôi sẽ gửi email mẫu nhận hàng cho chị ngay."
             },
             {
               "s": "W",
@@ -600,33 +610,33 @@ window.BS_UNITS["p3-02"] = {
               "evidence": [
                 1
               ],
-              "explain_vi": "Chị ấy gọi về chiếc kệ sách lẽ ra phải đến hôm qua, tức là hỏi vì sao đơn hàng bị trễ.",
+              "explain_vi": "Chị ấy gọi về chiếc kệ sách lẽ ra phải đến hôm qua, tức là hỏi về một đơn hàng chưa đến.",
               "options": [
                 {
                   "label": "A",
-                  "en": "To request a refund for a product",
-                  "vi": "Để yêu cầu hoàn tiền cho một sản phẩm",
+                  "en": "To change the day of a delivery",
+                  "vi": "Để đổi ngày giao hàng",
                   "trap": "not-mentioned",
-                  "why_vi": "Chị ấy chưa nhận hàng và không đòi hoàn tiền."
+                  "why_vi": "Chị ấy không xin đổi ngày; chị hỏi về đơn đã quá hạn."
                 },
                 {
                   "label": "B",
-                  "en": "To correct an address on an order",
-                  "vi": "Để sửa địa chỉ trên đơn hàng",
+                  "en": "To report a product that arrived damaged",
+                  "vi": "Để báo sản phẩm đến nơi bị hỏng",
                   "trap": "not-mentioned",
-                  "why_vi": "Địa chỉ giao hàng không hề được nhắc tới."
+                  "why_vi": "Chiếc kệ chưa đến nên chưa thể hỏng."
                 },
                 {
                   "label": "C",
-                  "en": "To find out why an order is late",
-                  "vi": "Để biết vì sao một đơn hàng bị trễ"
+                  "en": "To ask about an order that has not arrived",
+                  "vi": "Để hỏi về một đơn hàng chưa đến"
                 },
                 {
                   "label": "D",
-                  "en": "To ask about the size of a product",
-                  "vi": "Để hỏi về kích cỡ của một sản phẩm",
-                  "trap": "heard-word",
-                  "why_vi": "Kích cỡ chỉ xuất hiện khi chị hỏi hộp có vừa xe không, sau khi đã gọi vì đơn trễ."
+                  "en": "To correct a billing mistake",
+                  "vi": "Để sửa lỗi thanh toán",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không ai nhắc đến lỗi thanh toán."
                 }
               ]
             },
@@ -634,40 +644,40 @@ window.BS_UNITS["p3-02"] = {
               "id": "c1-s2-q2",
               "kind": "detail",
               "q": {
-                "en": "What does the man offer the woman for the inconvenience?",
-                "vi": "Người đàn ông đề nghị gì cho người phụ nữ vì sự bất tiện?"
+                "en": "What reason does the man give?",
+                "vi": "Người đàn ông đưa ra lý do gì?"
               },
-              "answer": "A",
+              "answer": "B",
               "evidence": [
-                4
+                2
               ],
-              "explain_vi": "Anh ấy nói sẽ trừ mười đô vì sự phiền toái, tức là giảm giá cho đơn hàng.",
+              "explain_vi": "Anh ấy nói chiếc kệ nằm trên xe tải bị bão giữ lại.",
               "options": [
                 {
                   "label": "A",
-                  "en": "A discount on her order",
-                  "vi": "Giảm giá cho đơn hàng của chị"
+                  "en": "A product was out of stock.",
+                  "vi": "Một sản phẩm đã hết hàng.",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có thông tin về việc hết hàng."
                 },
                 {
                   "label": "B",
-                  "en": "Free assembly at her home",
-                  "vi": "Lắp ráp miễn phí tại nhà chị",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không ai nói đến việc lắp ráp."
+                  "en": "A truck was slowed down by bad weather.",
+                  "vi": "Một chiếc xe tải bị thời tiết xấu làm chậm."
                 },
                 {
                   "label": "C",
-                  "en": "A coupon for a later visit",
-                  "vi": "Phiếu giảm giá cho lần mua sau",
+                  "en": "A warehouse miscounted an order.",
+                  "vi": "Kho đếm nhầm một đơn hàng.",
                   "trap": "not-mentioned",
-                  "why_vi": "Anh ấy trừ tiền ngay vào đơn này, không tặng phiếu."
+                  "why_vi": "Không có lỗi đếm hàng nào được nhắc đến."
                 },
                 {
                   "label": "D",
-                  "en": "An upgrade to express shipping",
-                  "vi": "Nâng cấp lên giao hàng nhanh",
-                  "trap": "changed-plan",
-                  "why_vi": "Phương án giao hàng vào thứ Sáu bị bỏ; anh không đề nghị giao nhanh."
+                  "en": "A driver was out sick.",
+                  "vi": "Một tài xế nghỉ ốm.",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không ai nhắc đến tài xế."
                 }
               ]
             },
@@ -678,7 +688,7 @@ window.BS_UNITS["p3-02"] = {
                 "en": "What will the woman most likely do tomorrow?",
                 "vi": "Ngày mai người phụ nữ nhiều khả năng sẽ làm gì?"
               },
-              "answer": "D",
+              "answer": "A",
               "evidence": [
                 5,
                 7
@@ -687,29 +697,29 @@ window.BS_UNITS["p3-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "Wait at home for a delivery truck",
-                  "vi": "Chờ ở nhà xe tải giao hàng",
+                  "en": "Collect the order at a store",
+                  "vi": "Đến một cửa hàng lấy đơn hàng"
+                },
+                {
+                  "label": "B",
+                  "en": "Wait at home for a delivery driver",
+                  "vi": "Chờ ở nhà tài xế giao hàng",
                   "trap": "changed-plan",
                   "why_vi": "Phương án giao thứ Sáu bị bỏ vì chị ấy có khách vào thứ Năm."
                 },
                 {
-                  "label": "B",
-                  "en": "Choose a different shelf at the store",
-                  "vi": "Chọn một chiếc kệ khác ở cửa hàng",
-                  "trap": "not-mentioned",
-                  "why_vi": "Chị ấy lấy đúng chiếc kệ đã đặt, không chọn kệ khác."
-                },
-                {
                   "label": "C",
-                  "en": "Email a pickup form to the store",
-                  "vi": "Gửi email mẫu nhận hàng cho cửa hàng",
-                  "trap": "wrong-speaker",
-                  "why_vi": "Người đàn ông là người gửi mẫu nhận hàng cho chị."
+                  "en": "Go back to the store to exchange it",
+                  "vi": "Quay lại cửa hàng để đổi hàng",
+                  "trap": "not-mentioned",
+                  "why_vi": "Chị ấy chưa nhận hàng nên chưa nói đến việc đổi."
                 },
                 {
                   "label": "D",
-                  "en": "Collect her order at a branch",
-                  "vi": "Đến một chi nhánh lấy đơn hàng"
+                  "en": "Meet a technician for assembly",
+                  "vi": "Gặp kỹ thuật viên để lắp ráp",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không ai nói đến việc lắp ráp."
                 }
               ]
             }
@@ -777,18 +787,13 @@ window.BS_UNITS["p3-02"] = {
           ],
           "graphic": {
             "type": "table",
-            "title": "Clearline Mobile Plans",
+            "title": "Clearline Mobile Rates",
             "cols": [
               "Plan",
               "Data",
               "Monthly price"
             ],
             "rows": [
-              [
-                "Lite",
-                "4 GB",
-                "$15"
-              ],
               [
                 "Basic",
                 "10 GB",
@@ -800,6 +805,11 @@ window.BS_UNITS["p3-02"] = {
                 "$32"
               ],
               [
+                "Lite",
+                "4 GB",
+                "$15"
+              ],
+              [
                 "Max",
                 "40 GB",
                 "$45"
@@ -809,42 +819,42 @@ window.BS_UNITS["p3-02"] = {
           "questions": [
             {
               "id": "c1-s3-q1",
-              "kind": "main",
+              "kind": "detail",
               "q": {
-                "en": "What is the man trying to do?",
-                "vi": "Người đàn ông đang cố làm gì?"
+                "en": "Why does the man need a new plan?",
+                "vi": "Tại sao người đàn ông cần một gói mới?"
               },
-              "answer": "B",
+              "answer": "D",
               "evidence": [
                 1
               ],
-              "explain_vi": "Anh ấy nói đang đổi nhà mạng vì hết dung lượng mỗi tháng, tức là chuyển sang nhà cung cấp khác.",
+              "explain_vi": "Anh ấy nói tháng nào cũng hết dung lượng dù xem nhiều video.",
               "options": [
                 {
                   "label": "A",
-                  "en": "Buy a phone to replace a broken one",
-                  "vi": "Mua điện thoại thay chiếc bị hỏng",
+                  "en": "His signal is weak at home.",
+                  "vi": "Sóng ở nhà anh yếu.",
                   "trap": "not-mentioned",
-                  "why_vi": "Anh ấy không nhắc đến chiếc điện thoại bị hỏng."
+                  "why_vi": "Không có thông tin về chất lượng sóng."
                 },
                 {
                   "label": "B",
-                  "en": "Change to a different mobile provider",
-                  "vi": "Chuyển sang nhà mạng khác"
+                  "en": "His bills have become too high.",
+                  "vi": "Hóa đơn của anh đã quá cao.",
+                  "trap": "not-mentioned",
+                  "why_vi": "Anh chỉ nêu mức giá mong muốn, không than về hóa đơn hiện tại."
                 },
                 {
                   "label": "C",
-                  "en": "Dispute a charge on his account",
-                  "vi": "Khiếu nại một khoản phí trên tài khoản",
-                  "trap": "not-mentioned",
-                  "why_vi": "Hóa đơn chỉ được nhắc để nói mức giá mong muốn."
+                  "en": "His contract is about to end.",
+                  "vi": "Hợp đồng của anh sắp hết hạn.",
+                  "trap": "heard-word",
+                  "why_vi": "Hợp đồng chỉ xuất hiện khi nhân viên giới thiệu khuyến mãi."
                 },
                 {
                   "label": "D",
-                  "en": "Add a family member to his plan",
-                  "vi": "Thêm một người nhà vào gói của anh",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không có người nhà nào được nhắc đến."
+                  "en": "He keeps using more data than he has.",
+                  "vi": "Anh luôn dùng nhiều dung lượng hơn mức anh có."
                 }
               ]
             },
@@ -864,17 +874,17 @@ window.BS_UNITS["p3-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "Lite",
-                  "vi": "Lite",
-                  "trap": "graphic-only",
-                  "why_vi": "Chỉ 4 GB, không đủ mười hai gigabyte."
-                },
-                {
-                  "label": "B",
                   "en": "Basic",
                   "vi": "Basic",
                   "trap": "wrong-detail",
                   "why_vi": "Giá hợp lý nhưng chỉ 10 GB, thiếu so với nhu cầu."
+                },
+                {
+                  "label": "B",
+                  "en": "Lite",
+                  "vi": "Lite",
+                  "trap": "graphic-only",
+                  "why_vi": "Chỉ 4 GB, không đủ mười hai gigabyte."
                 },
                 {
                   "label": "C",
@@ -897,7 +907,7 @@ window.BS_UNITS["p3-02"] = {
                 "en": "What does the man ask the woman to do?",
                 "vi": "Người đàn ông nhờ người phụ nữ làm gì?"
               },
-              "answer": "D",
+              "answer": "B",
               "evidence": [
                 7
               ],
@@ -905,29 +915,29 @@ window.BS_UNITS["p3-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "Extend a free trial",
-                  "vi": "Gia hạn dùng thử miễn phí",
+                  "en": "Mail a new SIM card to his home",
+                  "vi": "Gửi thẻ SIM mới đến nhà anh",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có gói dùng thử nào được nhắc đến."
+                  "why_vi": "Không ai nói đến thẻ SIM."
                 },
                 {
                   "label": "B",
-                  "en": "Prepare a two-year contract",
-                  "vi": "Soạn hợp đồng hai năm",
+                  "en": "Transfer his phone number",
+                  "vi": "Chuyển số điện thoại của anh ấy"
+                },
+                {
+                  "label": "C",
+                  "en": "Email the contract terms to him",
+                  "vi": "Gửi email điều khoản hợp đồng cho anh",
                   "trap": "changed-plan",
                   "why_vi": "Anh ấy đã từ chối hợp đồng hai năm."
                 },
                 {
-                  "label": "C",
-                  "en": "Mail a paper bill",
-                  "vi": "Gửi hóa đơn giấy qua bưu điện",
-                  "trap": "not-mentioned",
-                  "why_vi": "Hình thức nhận hóa đơn không được bàn."
-                },
-                {
                   "label": "D",
-                  "en": "Transfer his phone number",
-                  "vi": "Chuyển số điện thoại của anh ấy"
+                  "en": "Set up automatic bill payments",
+                  "vi": "Cài đặt thanh toán hóa đơn tự động",
+                  "trap": "not-mentioned",
+                  "why_vi": "Hình thức thanh toán không được bàn."
                 }
               ]
             }
@@ -1032,24 +1042,24 @@ window.BS_UNITS["p3-02"] = {
                 },
                 {
                   "label": "B",
-                  "en": "A building manager",
-                  "vi": "Một quản lý tòa nhà",
+                  "en": "A property manager",
+                  "vi": "Một người quản lý bất động sản",
                   "trap": "wrong-speaker",
                   "why_vi": "Quản lý tòa nhà là người mà hai người đàn ông sẽ đi hỏi, không phải người phụ nữ."
                 },
                 {
                   "label": "C",
-                  "en": "An office receptionist",
-                  "vi": "Một lễ tân văn phòng",
+                  "en": "An installation technician",
+                  "vi": "Một kỹ thuật viên lắp đặt",
                   "trap": "over-inference",
-                  "why_vi": "Tivi được mua cho sảnh văn phòng của khách; chị ấy ở cửa hàng bán tivi."
+                  "why_vi": "Chị ấy chỉ nói thợ của cửa hàng có thể lắp; chị là người báo giá và giữ hàng."
                 },
                 {
                   "label": "D",
-                  "en": "A delivery driver",
-                  "vi": "Một tài xế giao hàng",
+                  "en": "An office assistant",
+                  "vi": "Một trợ lý văn phòng",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có việc giao hàng nào được nhắc đến."
+                  "why_vi": "Văn phòng là của hai người đàn ông; chị ấy làm ở cửa hàng."
                 }
               ]
             },
@@ -1060,7 +1070,7 @@ window.BS_UNITS["p3-02"] = {
                 "en": "What does the woman say about the wall bracket?",
                 "vi": "Người phụ nữ nói gì về giá treo tường?"
               },
-              "answer": "B",
+              "answer": "D",
               "evidence": [
                 5
               ],
@@ -1075,22 +1085,22 @@ window.BS_UNITS["p3-02"] = {
                 },
                 {
                   "label": "B",
-                  "en": "It is priced separately.",
-                  "vi": "Nó được tính giá riêng."
-                },
-                {
-                  "label": "C",
                   "en": "It must be ordered in advance.",
                   "vi": "Nó phải đặt trước.",
                   "trap": "not-mentioned",
                   "why_vi": "Không có thông tin về việc đặt trước."
                 },
                 {
-                  "label": "D",
+                  "label": "C",
                   "en": "It is on sale until Sunday.",
                   "vi": "Nó giảm giá đến Chủ nhật.",
                   "trap": "wrong-detail",
                   "why_vi": "Ưu đãi đến Chủ nhật là của chiếc tivi, không phải của giá treo."
+                },
+                {
+                  "label": "D",
+                  "en": "It is priced separately.",
+                  "vi": "Nó được tính giá riêng."
                 }
               ]
             },
@@ -1098,40 +1108,41 @@ window.BS_UNITS["p3-02"] = {
               "id": "c2-s4-q3",
               "kind": "inference",
               "q": {
-                "en": "What can be inferred about the men's building?",
-                "vi": "Có thể suy ra điều gì về tòa nhà của hai người đàn ông?"
+                "en": "What can be inferred about the men?",
+                "vi": "Có thể suy ra điều gì về hai người đàn ông?"
               },
               "answer": "C",
               "evidence": [
-                6
+                6,
+                7
               ],
-              "explain_vi": "Quản lý tòa nhà phải duyệt việc khoan tường, nghĩa là một số công việc ở đó cần được duyệt trước.",
+              "explain_vi": "Quản lý tòa nhà phải duyệt việc khoan tường nên họ chưa thể lắp tivi khi chưa được cho phép; họ sẽ hỏi rồi quay lại.",
               "options": [
                 {
                   "label": "A",
-                  "en": "Its lobby is being renovated.",
-                  "vi": "Sảnh của nó đang được sửa chữa.",
+                  "en": "They have shopped at the store before.",
+                  "vi": "Họ đã từng mua ở cửa hàng này.",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có thông tin về việc sửa sảnh."
+                  "why_vi": "Không có dấu hiệu nào cho thấy họ từng mua ở đây."
                 },
                 {
                   "label": "B",
-                  "en": "Its walls are too thin for a television.",
-                  "vi": "Tường của nó quá mỏng để treo tivi.",
+                  "en": "They plan to compare prices elsewhere.",
+                  "vi": "Họ định so sánh giá ở nơi khác.",
                   "trap": "over-inference",
-                  "why_vi": "Chỉ nói việc khoan cần duyệt, không nói gì về độ dày của tường."
+                  "why_vi": "Họ nói sẽ quay lại vào ngày mai sau khi hỏi quản lý."
                 },
                 {
                   "label": "C",
-                  "en": "Some work there needs prior approval.",
-                  "vi": "Một số công việc ở đó cần được duyệt trước."
+                  "en": "They cannot install the television without permission.",
+                  "vi": "Họ không thể lắp tivi nếu chưa được cho phép."
                 },
                 {
                   "label": "D",
-                  "en": "Its tenants must share one television.",
-                  "vi": "Các bên thuê phải dùng chung một tivi.",
+                  "en": "They will buy a larger television.",
+                  "vi": "Họ sẽ mua chiếc tivi lớn hơn.",
                   "trap": "not-mentioned",
-                  "why_vi": "Không ai nói về việc dùng chung."
+                  "why_vi": "Họ thấy mẫu này nằm trong ngân sách và không nói đổi mẫu."
                 }
               ]
             }
@@ -1178,13 +1189,23 @@ window.BS_UNITS["p3-02"] = {
             },
             {
               "s": "W",
-              "en": "That's within my budget. But I'm leaving on Thursday. Can you finish by then?",
-              "vi": "Vậy nằm trong ngân sách của tôi. Nhưng thứ Năm tôi đi xa. Anh làm xong trước đó được không?"
+              "en": "That's within my budget. But I'm leaving on Thursday. Can you finish both repairs by then?",
+              "vi": "Vậy nằm trong ngân sách của tôi. Nhưng thứ Năm tôi đi xa. Anh làm xong cả hai việc trước đó được không?"
             },
             {
               "s": "M",
-              "en": "The brakes, yes. I can squeeze them in first thing tomorrow. The light part must be ordered and won't arrive until next Monday.",
-              "vi": "Phanh thì được. Tôi có thể chen việc đó vào đầu giờ sáng mai. Nhưng phụ tùng đèn phải đặt và đến thứ Hai tuần sau mới có."
+              "en": "The brakes, yes, first thing tomorrow.",
+              "vi": "Phanh thì được, làm đầu giờ sáng mai."
+            },
+            {
+              "s": "W",
+              "en": "And the light?",
+              "vi": "Còn đèn thì sao?"
+            },
+            {
+              "s": "M",
+              "en": "The light part is not in stock.",
+              "vi": "Phụ tùng đèn không có sẵn trong kho."
             },
             {
               "s": "W",
@@ -1193,8 +1214,8 @@ window.BS_UNITS["p3-02"] = {
             },
             {
               "s": "M",
-              "en": "That works. I'll order the part today and call you when it arrives.",
-              "vi": "Được. Hôm nay tôi sẽ đặt phụ tùng và gọi cô khi nó về."
+              "en": "That works. I'll order the part today, and it should come in next Monday.",
+              "vi": "Được. Hôm nay tôi sẽ đặt phụ tùng và dự kiến thứ Hai tuần sau sẽ có."
             }
           ],
           "questions": [
@@ -1205,7 +1226,7 @@ window.BS_UNITS["p3-02"] = {
                 "en": "What does the man say the brake repair will cost?",
                 "vi": "Người đàn ông nói sửa phanh sẽ tốn bao nhiêu?"
               },
-              "answer": "D",
+              "answer": "C",
               "evidence": [
                 3
               ],
@@ -1220,64 +1241,65 @@ window.BS_UNITS["p3-02"] = {
                 },
                 {
                   "label": "B",
-                  "en": "$270",
-                  "vi": "270 đô",
-                  "trap": "wrong-detail",
-                  "why_vi": "Con số này là tổng của phanh và đèn (chưa được nói ra), không phải riêng phần phanh."
+                  "en": "$180",
+                  "vi": "180 đô",
+                  "trap": "not-mentioned",
+                  "why_vi": "Con số này không được nói đến."
                 },
                 {
                   "label": "C",
+                  "en": "$210",
+                  "vi": "210 đô"
+                },
+                {
+                  "label": "D",
                   "en": "$300",
                   "vi": "300 đô",
                   "trap": "heard-word",
                   "why_vi": "Ba trăm đô là mức ngân sách chị ấy hy vọng, không phải giá sửa."
-                },
-                {
-                  "label": "D",
-                  "en": "$210",
-                  "vi": "210 đô"
                 }
               ]
             },
             {
               "id": "c2-s5-q2",
               "kind": "intent",
-              "quote": "I can squeeze them in",
+              "quote": "The light part is not in stock.",
               "q": {
-                "en": "What does the man mean when he says, \"I can squeeze them in\"?",
-                "vi": "Người đàn ông muốn nói gì khi nói \"I can squeeze them in\"?"
+                "en": "What does the man mean when he says, \"The light part is not in stock\"?",
+                "vi": "Người đàn ông muốn nói gì khi nói \"The light part is not in stock\"?"
               },
-              "answer": "C",
+              "answer": "A",
               "evidence": [
-                5
+                6,
+                7
               ],
-              "explain_vi": "Anh ấy có thể xếp việc sửa phanh vào lịch đã kín, làm đầu giờ sáng mai để kịp trước thứ Năm.",
+              "explain_vi": "Chị khách hỏi về chiếc đèn; anh đáp phụ tùng không có sẵn, nghĩa là việc sửa đèn không thể xong trước thứ Năm.",
               "options": [
                 {
                   "label": "A",
-                  "en": "He will press the parts into a smaller space.",
-                  "vi": "Anh ấy sẽ ép các bộ phận vào chỗ nhỏ hơn.",
-                  "trap": "literal",
-                  "why_vi": "Đây là nghĩa đen của squeeze; trong câu này nó có nghĩa là xếp thêm vào lịch."
+                  "en": "The repair cannot be finished in time.",
+                  "vi": "Việc sửa không thể xong kịp lúc."
                 },
                 {
                   "label": "B",
-                  "en": "He will do the work at a reduced price.",
-                  "vi": "Anh ấy sẽ làm với giá giảm.",
+                  "en": "The shop will lower the price of the repair.",
+                  "vi": "Cửa hàng sẽ giảm giá việc sửa.",
                   "trap": "not-mentioned",
                   "why_vi": "Giá không bị đề cập khi anh nói câu này."
                 },
                 {
                   "label": "C",
-                  "en": "He can fit the job into a busy schedule.",
-                  "vi": "Anh ấy có thể xếp việc này vào lịch bận."
+                  "en": "The customer should buy the part elsewhere.",
+                  "vi": "Khách nên mua phụ tùng ở nơi khác.",
+                  "trap": "over-inference",
+                  "why_vi": "Anh không đề nghị mua nơi khác; cuối cùng anh tự đặt phụ tùng."
                 },
                 {
                   "label": "D",
-                  "en": "He can finish the work before closing today.",
-                  "vi": "Anh ấy có thể xong việc trước giờ đóng cửa hôm nay.",
+                  "en": "The light does not need to be replaced.",
+                  "vi": "Đèn không cần phải thay.",
                   "trap": "wrong-detail",
-                  "why_vi": "Anh nói sẽ làm đầu giờ sáng mai, không phải hôm nay."
+                  "why_vi": "Đèn hậu bị nứt và vẫn cần sửa sau chuyến đi."
                 }
               ]
             },
@@ -1290,35 +1312,35 @@ window.BS_UNITS["p3-02"] = {
               },
               "answer": "B",
               "evidence": [
-                7
+                9
               ],
-              "explain_vi": "Anh ấy nói hôm nay sẽ đặt phụ tùng rồi gọi lại khi hàng về.",
+              "explain_vi": "Anh ấy nói hôm nay sẽ đặt phụ tùng.",
               "options": [
                 {
                   "label": "A",
-                  "en": "Call another shop about a price",
-                  "vi": "Gọi một tiệm khác để hỏi giá",
+                  "en": "Change the car's oil",
+                  "vi": "Thay dầu cho xe",
                   "trap": "not-mentioned",
-                  "why_vi": "Không ai nói đến tiệm khác."
+                  "why_vi": "Không ai nói đến dầu xe."
                 },
                 {
                   "label": "B",
-                  "en": "Order a part for the repair",
-                  "vi": "Đặt mua một phụ tùng cho việc sửa"
+                  "en": "Order a part for the car",
+                  "vi": "Đặt mua một phụ tùng cho xe"
                 },
                 {
                   "label": "C",
-                  "en": "Road-test the brakes",
-                  "vi": "Chạy thử phanh trên đường",
+                  "en": "Send the customer a bill",
+                  "vi": "Gửi hóa đơn cho khách",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có kế hoạch chạy thử."
+                  "why_vi": "Chưa có việc thanh toán nào được nhắc đến."
                 },
                 {
                   "label": "D",
-                  "en": "Cancel the light repair",
-                  "vi": "Hủy việc sửa đèn",
-                  "trap": "changed-plan",
-                  "why_vi": "Việc sửa đèn chỉ được hoãn đến sau chuyến đi chứ không hủy."
+                  "en": "Test-drive the car",
+                  "vi": "Lái thử chiếc xe",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có kế hoạch lái thử."
                 }
               ]
             }
@@ -1401,7 +1423,7 @@ window.BS_UNITS["p3-02"] = {
           ],
           "graphic": {
             "type": "table",
-            "title": "Riverside Catering Packages",
+            "title": "Riverside Catering Price List",
             "cols": [
               "Package",
               "Serves",
@@ -1433,47 +1455,6 @@ window.BS_UNITS["p3-02"] = {
           "questions": [
             {
               "id": "c2-s6-q1",
-              "kind": "detail",
-              "q": {
-                "en": "What change do the women mention about the party?",
-                "vi": "Hai người phụ nữ nhắc đến thay đổi gì về buổi tiệc?"
-              },
-              "answer": "A",
-              "evidence": [
-                3
-              ],
-              "explain_vi": "Một người nói có thêm hai phòng ban xin tham gia, nên số khách tăng lên khoảng hai mươi tám.",
-              "options": [
-                {
-                  "label": "A",
-                  "en": "More colleagues will attend.",
-                  "vi": "Nhiều đồng nghiệp hơn sẽ tham dự."
-                },
-                {
-                  "label": "B",
-                  "en": "The event has moved to a new date.",
-                  "vi": "Sự kiện đã dời sang ngày khác.",
-                  "trap": "wrong-detail",
-                  "why_vi": "Ngày mười hai chỉ được nói một lần và không đổi."
-                },
-                {
-                  "label": "C",
-                  "en": "The budget has been lowered.",
-                  "vi": "Ngân sách đã bị hạ thấp.",
-                  "trap": "wrong-detail",
-                  "why_vi": "Ngân sách được nêu ra chứ không được nói là bị hạ."
-                },
-                {
-                  "label": "D",
-                  "en": "The menu choices have been reduced.",
-                  "vi": "Các món để chọn đã bị giảm.",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không có thông tin về việc giảm thực đơn."
-                }
-              ]
-            },
-            {
-              "id": "c2-s6-q2",
               "kind": "graphic",
               "uses_graphic": true,
               "q": {
@@ -1516,7 +1497,7 @@ window.BS_UNITS["p3-02"] = {
               ]
             },
             {
-              "id": "c2-s6-q3",
+              "id": "c2-s6-q2",
               "kind": "next",
               "q": {
                 "en": "What will one of the women probably do this evening?",
@@ -1531,29 +1512,71 @@ window.BS_UNITS["p3-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "Confirm the final number of guests",
-                  "vi": "Xác nhận số khách cuối cùng",
+                  "en": "Confirm the guest count",
+                  "vi": "Xác nhận số khách",
                   "trap": "not-mentioned",
                   "why_vi": "Số khách đã được nói là khoảng hai mươi tám, không có hẹn xác nhận lại."
                 },
                 {
                   "label": "B",
-                  "en": "Send some contact details",
-                  "vi": "Gửi một số thông tin liên lạc"
+                  "en": "Send delivery details",
+                  "vi": "Gửi thông tin giao hàng"
                 },
                 {
                   "label": "C",
-                  "en": "Buy plates and napkins",
-                  "vi": "Mua đĩa và khăn giấy",
-                  "trap": "wrong-detail",
-                  "why_vi": "Bên cung cấp mang đủ mọi thứ nên họ không cần mua."
+                  "en": "Pick a dessert",
+                  "vi": "Chọn món tráng miệng",
+                  "trap": "heard-word",
+                  "why_vi": "Tráng miệng chỉ được nhắc là đã có trong mọi gói, không có việc chọn."
                 },
                 {
                   "label": "D",
-                  "en": "Pay a deposit for the order",
-                  "vi": "Trả tiền đặt cọc cho đơn hàng",
+                  "en": "Approve a written quote",
+                  "vi": "Duyệt bản báo giá bằng văn bản",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có việc đặt cọc nào được nhắc đến."
+                  "why_vi": "Không có bản báo giá nào được nhắc đến."
+                }
+              ]
+            },
+            {
+              "id": "c2-s6-q3",
+              "kind": "detail",
+              "q": {
+                "en": "When will the caterers arrive?",
+                "vi": "Khi nào bên cung cấp đồ ăn sẽ đến?"
+              },
+              "answer": "D",
+              "evidence": [
+                1,
+                9
+              ],
+              "explain_vi": "Tiệc bắt đầu lúc mười hai giờ trưa và họ bày biện sớm bốn mươi lăm phút nên đến khoảng mười một giờ mười lăm.",
+              "options": [
+                {
+                  "label": "A",
+                  "en": "At 10:30 A.M.",
+                  "vi": "Lúc 10:30 sáng",
+                  "trap": "not-mentioned",
+                  "why_vi": "Giờ này không được nói đến."
+                },
+                {
+                  "label": "B",
+                  "en": "At 11:45 A.M.",
+                  "vi": "Lúc 11:45 sáng",
+                  "trap": "wrong-detail",
+                  "why_vi": "Con số bốn mươi lăm là số phút bày biện sớm, không phải giờ đến."
+                },
+                {
+                  "label": "C",
+                  "en": "At 12:00 noon",
+                  "vi": "Lúc 12 giờ trưa",
+                  "trap": "heard-word",
+                  "why_vi": "Mười hai giờ là giờ tiệc bắt đầu, họ đến sớm hơn."
+                },
+                {
+                  "label": "D",
+                  "en": "At 11:15 A.M.",
+                  "vi": "Lúc 11:15 sáng"
                 }
               ]
             }
