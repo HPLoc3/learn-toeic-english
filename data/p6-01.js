@@ -98,7 +98,7 @@ window.BS_UNITS["p6-01"] = {
     {
       "id": "v005",
       "en": "back order",
-      "vi": "hàng đặt trước chưa có sẵn",
+      "vi": "đơn hàng chờ (hàng tạm hết)",
       "group": "Giao nhận"
     },
     {
@@ -269,7 +269,7 @@ window.BS_UNITS["p6-01"] = {
       "id": "p09",
       "en": "Attendance at the workshop is optional.",
       "vi": "Việc dự hội thảo là tùy chọn.",
-      "group_vi": "Thông báo tin vui"
+      "group_vi": "Thông báo"
     },
     {
       "id": "p10",
@@ -351,7 +351,7 @@ window.BS_UNITS["p6-01"] = {
                 ],
                 [
                   "Date",
-                  "June 4"
+                  "June 12"
                 ],
                 [
                   "Subject",
@@ -364,8 +364,8 @@ window.BS_UNITS["p6-01"] = {
                   "vi": "Cảm ơn quý khách đã kiên nhẫn chờ đơn hàng 4471, gồm hai mươi bốn chiếc ghế văn phòng. Xin quý khách nhận lời xin lỗi chân thành của chúng tôi về sự chậm trễ."
                 },
                 {
-                  "en": "The chairs were due on June 11, but our fabric supplier sent the seat covers a week late. We have now received them, and the chairs {2} to your office on June 18. {3} Our driver will phone your office on June 17 to agree on a time.",
-                  "vi": "Những chiếc ghế đáng lẽ được giao vào ngày 11 tháng 6, nhưng nhà cung cấp vải của chúng tôi gửi bọc ghế chậm một tuần. Hiện chúng tôi đã nhận được vải, và ghế sẽ được giao đến văn phòng của quý khách vào ngày 18 tháng 6. Tất cả ghế sẽ đi chung một xe tải, nên cả đơn hàng sẽ đến cùng lúc. Tài xế của chúng tôi sẽ gọi điện đến văn phòng của quý khách vào ngày 17 tháng 6 để thống nhất giờ giao."
+                  "en": "The chairs were due on June 11, but our fabric supplier sent the seat covers a week late. We have now received them. The chairs {2} to your office on June 18. {3} Our driver will phone your office on June 17 to agree on a time.",
+                  "vi": "Những chiếc ghế đáng lẽ được giao vào ngày 11 tháng 6, nhưng nhà cung cấp vải của chúng tôi gửi bọc ghế chậm một tuần. Hiện chúng tôi đã nhận được bọc ghế. Ghế sẽ được giao đến văn phòng của quý khách vào ngày 18 tháng 6. Tất cả ghế sẽ đi chung một xe tải, nên cả đơn hàng sẽ đến cùng lúc. Tài xế của chúng tôi sẽ gọi điện đến văn phòng của quý khách vào ngày 17 tháng 6 để thống nhất giờ giao."
                 },
                 {
                   "en": "Our crew will assemble the chairs on site and take away all packaging. As a courtesy, we will {4} five percent from the invoice total.",
@@ -429,7 +429,7 @@ window.BS_UNITS["p6-01"] = {
                   1
                 ]
               ],
-              "explain_vi": "Câu có chỗ trống chỉ cho ngày 18 tháng 6 nên chưa rõ thì. Câu sau nói tài xế 'will phone' vào ngày 17 tháng 6, tức là việc giao ghế chưa xảy ra; ghế là vật được giao nên dùng bị động tương lai: 'will be delivered'.",
+              "explain_vi": "Câu có chỗ trống chỉ cho ngày 18 tháng 6 nên tự nó chưa rõ thì. Thư đề ngày 12 tháng 6 và câu sau nói tài xế 'will phone' vào ngày 17 tháng 6, tức là việc giao ghế chưa xảy ra; ghế là vật được giao nên dùng bị động tương lai: 'will be delivered'.",
               "options": [
                 {
                   "label": "A",
@@ -476,10 +476,10 @@ window.BS_UNITS["p6-01"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "The first six chairs had already reached your office by June 11.",
-                  "vi": "Sáu chiếc ghế đầu tiên đã đến văn phòng của quý khách từ ngày 11 tháng 6.",
+                  "en": "They had all been packed and were waiting at our warehouse on June 11.",
+                  "vi": "Tất cả ghế đã được đóng gói và nằm chờ trong kho của chúng tôi vào ngày 11 tháng 6.",
                   "trap": "opposite",
-                  "why_vi": "Mâu thuẫn: vải về trễ một tuần nên ghế chưa làm xong, và ngày giao mới là 18 tháng 6; không thể có ghế đến từ ngày 11 tháng 6."
+                  "why_vi": "Mâu thuẫn: bọc ghế về trễ một tuần nên đến ngày 11 tháng 6 ghế chưa làm xong, không thể đã đóng gói và nằm chờ trong kho."
                 },
                 {
                   "label": "B",
@@ -488,17 +488,17 @@ window.BS_UNITS["p6-01"] = {
                 },
                 {
                   "label": "C",
-                  "en": "Mr. Brandt's team delivered a similar order to your Dallas branch last month.",
-                  "vi": "Nhóm của ông Brandt đã giao một đơn hàng tương tự cho chi nhánh Dallas của quý khách vào tháng trước.",
+                  "en": "They will be installed by the Westbrook crew that handled your last order.",
+                  "vi": "Ghế sẽ được lắp bởi nhóm Westbrook đã làm đơn hàng trước của quý khách.",
                   "trap": "wrong-reference",
-                  "why_vi": "'your Dallas branch' và ông Brandt chưa được nhắc ở đâu trong thư; câu này cũng không nối với việc tài xế gọi ở câu sau."
+                  "why_vi": "'the Westbrook crew' và 'your last order' chưa được nhắc ở đâu trong thư; đoạn sau nói nhóm của chúng tôi sẽ lắp ghế."
                 },
                 {
                   "label": "D",
-                  "en": "The chairs will be assembled and ready for use on June 16.",
-                  "vi": "Ghế sẽ được lắp xong và sẵn sàng sử dụng vào ngày 16 tháng 6.",
+                  "en": "They will be unloaded and assembled by our crew on June 16.",
+                  "vi": "Ghế sẽ được nhóm của chúng tôi dỡ xuống và lắp vào ngày 16 tháng 6.",
                   "trap": "breaks-flow",
-                  "why_vi": "Sai thứ tự thời gian: ghế chỉ đến văn phòng vào ngày 18 tháng 6, nên không thể lắp xong và dùng được vào ngày 16 tháng 6."
+                  "why_vi": "Sai thứ tự thời gian: ghế chỉ đến văn phòng vào ngày 18 tháng 6, nên không thể được dỡ và lắp vào ngày 16 tháng 6."
                 }
               ]
             },
@@ -575,8 +575,8 @@ window.BS_UNITS["p6-01"] = {
               ],
               "paras": [
                 {
-                  "en": "Resurfacing of the Linden Court parking garage will begin {1} Monday, September 9, and will take two weeks. Crews will close one level at a time, starting with Level 3.",
-                  "vi": "Việc làm lại mặt sàn nhà để xe Linden Court sẽ bắt đầu vào thứ Hai, ngày 9 tháng 9, và kéo dài hai tuần. Các thợ sẽ đóng từng tầng một, bắt đầu từ Tầng 3."
+                  "en": "Resurfacing of the Linden Court parking garage will begin {1} Monday, September 9, and will take two weeks. Crews will close one level at a time: Level 3 in the first week and Level 2 in the second.",
+                  "vi": "Việc làm lại mặt sàn nhà để xe Linden Court sẽ bắt đầu vào thứ Hai, ngày 9 tháng 9, và kéo dài hai tuần. Các thợ sẽ đóng từng tầng một: Tầng 3 trong tuần đầu và Tầng 2 trong tuần thứ hai."
                 },
                 {
                   "en": "{2} Tenants who normally park there should use Level 1 during that week. Level 1 is the closest alternative and has a covered walkway to the lobby. {3}, it has only eighty spaces, so please arrive before 8 a.m.",
@@ -636,7 +636,7 @@ window.BS_UNITS["p6-01"] = {
               "blank": 2,
               "kind": "insert",
               "ctx": true,
-              "clue": "starting with Level 3",
+              "clue": "Level 3 in the first week",
               "answer": "D",
               "evidence": [
                 [
@@ -648,33 +648,33 @@ window.BS_UNITS["p6-01"] = {
                   1
                 ]
               ],
-              "explain_vi": "'That level' chỉ Tầng 3 vừa được nhắc ở câu cuối đoạn 1; câu sau nói những người thường đỗ 'there' nên dùng Tầng 1, hợp với việc Tầng 3 bị đóng.",
+              "explain_vi": "Đoạn 1 nói Tầng 3 đóng trong tuần đầu và Tầng 2 trong tuần thứ hai; câu sau nói những người thường đỗ 'there' nên dùng Tầng 1 'during that week', nên câu chèn phải nêu Tầng 3 đóng đến hết tuần đầu (13 tháng 9).",
               "options": [
                 {
                   "label": "A",
-                  "en": "Level 3 was reopened to all vehicles on Friday, September 6.",
-                  "vi": "Tầng 3 đã mở lại cho mọi phương tiện vào thứ Sáu, ngày 6 tháng 9.",
+                  "en": "Level 3 will be closed to all vehicles until Friday, September 6.",
+                  "vi": "Tầng 3 sẽ đóng cửa với mọi phương tiện đến hết thứ Sáu, ngày 6 tháng 9.",
                   "trap": "opposite",
-                  "why_vi": "Mâu thuẫn: công việc bắt đầu từ ngày 9 tháng 9 và Tầng 3 là tầng đóng đầu tiên, nên không thể mở lại từ trước đó."
+                  "why_vi": "Mâu thuẫn: công việc chỉ bắt đầu từ thứ Hai, ngày 9 tháng 9, nên Tầng 3 không thể đóng đến ngày 6 tháng 9."
                 },
                 {
                   "label": "B",
-                  "en": "Both levels will be closed to all vehicles until Friday, September 13.",
-                  "vi": "Cả hai tầng sẽ đóng cửa với mọi phương tiện đến hết thứ Sáu, ngày 13 tháng 9.",
+                  "en": "Level 2 will be closed to all vehicles until Friday, September 13.",
+                  "vi": "Tầng 2 sẽ đóng cửa với mọi phương tiện đến hết thứ Sáu, ngày 13 tháng 9.",
                   "trap": "wrong-reference",
-                  "why_vi": "'Both levels' nhắc đến hai tầng, nhưng thông báo mới chỉ nêu một tầng (Tầng 3) và nói đóng từng tầng một."
+                  "why_vi": "Sai tầng: đoạn 1 nói Tầng 2 chỉ đóng trong tuần thứ hai, còn tuần đầu (đến ngày 13 tháng 9) là Tầng 3."
                 },
                 {
                   "label": "C",
                   "en": "Parking fees for tenants will rise by ten dollars in October.",
                   "vi": "Phí đỗ xe của người thuê sẽ tăng mười đô la vào tháng 10.",
                   "trap": "breaks-flow",
-                  "why_vi": "Lạc sang chủ đề phí, nên câu sau 'park there' không có nơi chốn để thay thế."
+                  "why_vi": "Lạc sang chủ đề phí; câu sau 'during that week' và 'park there' cần một tầng và một tuần đã được nêu ngay trước."
                 },
                 {
                   "label": "D",
-                  "en": "That level will be closed to all vehicles until Friday, September 13.",
-                  "vi": "Tầng đó sẽ đóng cửa với mọi phương tiện đến hết thứ Sáu, ngày 13 tháng 9."
+                  "en": "Level 3 will be closed to all vehicles until Friday, September 13.",
+                  "vi": "Tầng 3 sẽ đóng cửa với mọi phương tiện đến hết thứ Sáu, ngày 13 tháng 9."
                 }
               ]
             },
@@ -928,7 +928,7 @@ window.BS_UNITS["p6-01"] = {
                   "en": "Unless",
                   "vi": "Trừ khi",
                   "trap": "wrong-connector",
-                  "why_vi": "'Unless' nêu điều kiện chưa chắc xảy ra; vế sau là sự việc đã chắc chắn (chương trình đã xử lý khác)."
+                  "why_vi": "'Unless' nêu điều kiện chưa chắc xảy ra; mệnh đề đi sau 'Unless' ở đây là sự việc đã chắc chắn (chương trình đã xử lý khác)."
                 },
                 {
                   "label": "C",
@@ -949,7 +949,7 @@ window.BS_UNITS["p6-01"] = {
               "blank": 4,
               "kind": "insert",
               "ctx": true,
-              "clue": "The sessions will be held in Room 2B",
+              "clue": "For that reason, please reply to this memo",
               "answer": "A",
               "evidence": [
                 [
@@ -1065,7 +1065,7 @@ window.BS_UNITS["p6-01"] = {
               "blank": 2,
               "kind": "insert",
               "ctx": true,
-              "clue": "customers have asked for a closer shop for years",
+              "clue": "We hope the second branch will shorten those lines",
               "answer": "C",
               "evidence": [
                 [
@@ -1099,7 +1099,7 @@ window.BS_UNITS["p6-01"] = {
                   "en": "That decision came after the town council approved a new bus route.",
                   "vi": "Quyết định đó được đưa ra sau khi hội đồng thị trấn duyệt một tuyến xe buýt mới.",
                   "trap": "wrong-reference",
-                  "why_vi": "'That decision' chưa có quyết định nào được nhắc trước đó, và câu này lạc đề so với việc khách muốn tiệm gần hơn."
+                  "why_vi": "Câu trước chỉ nói khách hàng đề nghị nên 'That decision' không có quy chiếu rõ, và câu này không giới thiệu 'lines' cho câu sau 'those lines'."
                 }
               ]
             },
@@ -1197,7 +1197,7 @@ window.BS_UNITS["p6-01"] = {
         {
           "id": "fill1-1",
           "before": "The training course starts",
-          "after": "9 a.m. on Monday morning.",
+          "after": "9 a.m. sharp on Monday.",
           "answers": [
             "at"
           ]
@@ -1205,16 +1205,20 @@ window.BS_UNITS["p6-01"] = {
         {
           "id": "fill1-2",
           "before": "",
-          "after": "the road was closed, the shipment arrived two hours late.",
+          "after": "the roads were icy, the bus service was suspended for the day.",
           "answers": [
             "Because",
-            "because"
+            "because",
+            "Since",
+            "since",
+            "As",
+            "as"
           ]
         },
         {
           "id": "fill1-3",
-          "before": "Our new catalog is available",
-          "after": "request at the front desk.",
+          "before": "Free samples are available",
+          "after": "request from the sales office.",
           "answers": [
             "on",
             "upon"
@@ -1235,7 +1239,10 @@ window.BS_UNITS["p6-01"] = {
           "answers": [
             "while",
             "when",
-            "whenever"
+            "whenever",
+            "if",
+            "once",
+            "whilst"
           ]
         }
       ]
