@@ -286,7 +286,7 @@ window.BS_UNITS["p5-02"] = {
     {
       "id": "p10",
       "en": "I'll send you a summary after the walkthrough.",
-      "vi": "Sau buổi đi một vòng kiểm tra, tôi sẽ gửi bạn bản tóm tắt.",
+      "vi": "Sau buổi kiểm tra thực địa, tôi sẽ gửi bạn bản tóm tắt.",
       "group_vi": "Trao đổi"
     }
   ],
@@ -382,7 +382,7 @@ window.BS_UNITS["p5-02"] = {
           "id": "g1-02",
           "cat": "tense",
           "en": "By the time the auditors from Sedgewick Group arrived on Monday, the night supervisor ------ all the safety records.",
-          "vi": "Khi các kiểm toán viên của Sedgewick Group đến vào thứ Hai, giám sát ca đêm đã sắp xếp lưu xong toàn bộ hồ sơ an toàn.",
+          "vi": "Khi các kiểm toán viên của Sedgewick Group đến vào thứ Hai, giám sát ca đêm đã lưu xong toàn bộ hồ sơ an toàn.",
           "answer": "C",
           "explain_vi": "'By the time' + quá khứ đơn (arrived): việc ở mệnh đề chính đã xong trước đó, nên dùng quá khứ hoàn thành.",
           "options": [
@@ -895,36 +895,36 @@ window.BS_UNITS["p5-02"] = {
         {
           "id": "g2-06",
           "cat": "agreement",
-          "en": "Neither the shift supervisors nor the quality inspector ------ allowed to switch off the temperature alarm.",
-          "vi": "Cả các giám sát ca lẫn nhân viên kiểm định chất lượng đều không được phép tắt chuông báo nhiệt độ.",
+          "en": "Neither the quality inspector nor the shift supervisors ------ allowed to switch off the temperature alarm.",
+          "vi": "Cả nhân viên kiểm định chất lượng lẫn các giám sát ca đều không được phép tắt chuông báo nhiệt độ.",
           "answer": "A",
-          "explain_vi": "Với 'neither ... nor', động từ hòa hợp với chủ ngữ gần nó nhất: 'the quality inspector' (số ít).",
+          "explain_vi": "Với 'neither ... nor', động từ hòa hợp với chủ ngữ gần nhất 'the shift supervisors' (số nhiều).",
           "options": [
             {
               "label": "A",
-              "en": "is",
-              "vi": "thì, là (số ít, hiện tại)"
+              "en": "are",
+              "vi": "thì, là (số nhiều, hiện tại)"
             },
             {
               "label": "B",
-              "en": "are",
-              "vi": "thì, là (số nhiều, hiện tại)",
+              "en": "is",
+              "vi": "thì, là (số ít, hiện tại)",
               "trap": "wrong-agreement",
-              "why_vi": "Chủ ngữ gần động từ nhất 'the quality inspector' là số ít."
+              "why_vi": "'Is' là số ít, không hòa hợp với chủ ngữ gần nhất 'the shift supervisors' (số nhiều)."
             },
             {
               "label": "C",
-              "en": "were",
-              "vi": "đã (số nhiều, quá khứ)",
+              "en": "was",
+              "vi": "đã (số ít, quá khứ)",
               "trap": "wrong-agreement",
-              "why_vi": "'Were' là số nhiều, trong khi chủ ngữ gần nhất là số ít."
+              "why_vi": "'Was' là số ít, không hòa hợp với chủ ngữ gần nhất 'the shift supervisors' (số nhiều)."
             },
             {
               "label": "D",
-              "en": "have been",
-              "vi": "đã (hiện tại hoàn thành, số nhiều)",
+              "en": "has been",
+              "vi": "đã (hiện tại hoàn thành, số ít)",
               "trap": "wrong-agreement",
-              "why_vi": "'Have' là số nhiều, không hợp với chủ ngữ gần nhất số ít."
+              "why_vi": "'Has been' là số ít, không hòa hợp với chủ ngữ gần nhất 'the shift supervisors' (số nhiều)."
             }
           ]
         },
@@ -1158,7 +1158,7 @@ window.BS_UNITS["p5-02"] = {
           "id": "g3-03",
           "cat": "agreement",
           "en": "Every forklift driver at the Thornton Junction depot ------ a valid safety certificate.",
-          "vi": "Mỗi người lái xe nâng ở kho Thornton Junction đều mang theo một chứng chỉ an toàn còn hiệu lực.",
+          "vi": "Mỗi người lái xe nâng ở kho Thornton Junction đều có chứng chỉ an toàn còn hiệu lực.",
           "answer": "B",
           "explain_vi": "'Every + danh từ số ít' là chủ ngữ số ít nên động từ chia số ít.",
           "options": [
@@ -1289,7 +1289,7 @@ window.BS_UNITS["p5-02"] = {
               "en": "changed",
               "vi": "đã thay đổi (quá khứ hoặc phân từ)",
               "trap": "wrong-structure",
-              "why_vi": "Phân từ làm tính từ không đứng trước cụm đại từ 'some of'; câu cần V-ing nhận cụm này làm tân ngữ."
+              "why_vi": "Sau 'is considering' cần V-ing làm tân ngữ; dạng 'changed' (quá khứ/phân từ) không đứng ở vị trí này."
             },
             {
               "label": "D",
