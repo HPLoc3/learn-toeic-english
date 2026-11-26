@@ -334,10 +334,10 @@ window.BS_UNITS["p5-01"] = {
             },
             {
               "label": "C",
-              "en": "more careful",
-              "vi": "(adj) cẩn thận hơn",
+              "en": "care",
+              "vi": "(n, v) sự chăm sóc",
               "trap": "wrong-form",
-              "why_vi": "Dạng so sánh của tính từ không bổ nghĩa cho động từ."
+              "why_vi": "Động từ nguyên mẫu không đứng liền trước động từ 'inspect' sau chủ ngữ số nhiều."
             },
             {
               "label": "D",

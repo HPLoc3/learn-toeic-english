@@ -266,16 +266,16 @@ window.BS_UNITS["p7-01"] = {
                   "vi": "Cảm ơn bà đã đặt hai mươi chiếc ghế văn phòng. Tôi viết thư này để xác nhận ngày giao hàng mới."
                 },
                 {
-                  "en": "{1} a fault in our paint line, the factory could not finish the chairs by March 10. The work will be completed next week, and the chairs {2} to your office on March 17.",
-                  "vi": "Do một sự cố ở dây chuyền sơn của chúng tôi, nhà máy không thể hoàn thành ghế trước ngày 10 tháng 3. Công việc sẽ xong vào tuần sau, và ghế sẽ được giao đến văn phòng bà vào ngày 17 tháng 3."
+                  "en": "{1} a fault in our paint line, the factory could not finish the chairs by March 10. The work will be completed next week. The chairs {2} to your office on March 17.",
+                  "vi": "Do một sự cố ở dây chuyền sơn của chúng tôi, nhà máy không thể hoàn thành ghế trước ngày 10 tháng 3. Công việc sẽ xong vào tuần sau. Ghế sẽ được giao đến văn phòng bà vào ngày 17 tháng 3."
                 },
                 {
                   "en": "Our driver will call your office the day before. {3} Please keep the loading area clear that morning.",
                   "vi": "Tài xế của chúng tôi sẽ gọi đến văn phòng bà vào hôm trước. Anh ấy cần khoảng ba mươi phút để dỡ ghế. Xin vui lòng giữ khu vực bốc dỡ thông thoáng vào sáng hôm đó."
                 },
                 {
-                  "en": "We apologize for the {4} and thank you for your patience.",
-                  "vi": "Chúng tôi xin lỗi vì sự bất tiện này và cảm ơn sự kiên nhẫn của bà."
+                  "en": "We apologize for the {4} and appreciate your patience. Please call me if you have any questions about the delivery.",
+                  "vi": "Chúng tôi xin lỗi vì sự bất tiện này và đánh giá cao sự kiên nhẫn của bà. Xin vui lòng gọi cho tôi nếu bà có thắc mắc nào về việc giao hàng."
                 }
               ]
             }
@@ -750,8 +750,8 @@ window.BS_UNITS["p7-01"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "visit again",
-                  "vi": "đến thăm lần nữa",
+                  "en": "go back",
+                  "vi": "quay lại",
                   "trap": "other-meaning",
                   "why_vi": "Đây là nghĩa đi trở lại một nơi, không hợp với một biểu mẫu."
                 },
@@ -762,17 +762,17 @@ window.BS_UNITS["p7-01"] = {
                 },
                 {
                   "label": "C",
-                  "en": "make a profit",
+                  "en": "yield profit",
                   "vi": "sinh lợi nhuận",
                   "trap": "other-meaning",
                   "why_vi": "Đây là nghĩa tài chính của danh từ 'return'."
                 },
                 {
                   "label": "D",
-                  "en": "put in place again",
-                  "vi": "đặt lại vị trí cũ",
+                  "en": "give a verdict",
+                  "vi": "đưa ra phán quyết",
                   "trap": "other-meaning",
-                  "why_vi": "Nghĩa này dùng cho đồ vật được đặt về chỗ, không hợp với việc gửi biểu mẫu cho Hội."
+                  "why_vi": "Nghĩa này dùng trong tòa án (return a verdict), không hợp với việc gửi biểu mẫu cho Hội."
                 }
               ]
             },
@@ -946,8 +946,8 @@ window.BS_UNITS["p7-01"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "At 2:00 P.M.",
-                  "vi": "Lúc 2 giờ chiều"
+                  "en": "Around 2 P.M.",
+                  "vi": "Khoảng 2 giờ chiều"
                 },
                 {
                   "label": "B",
@@ -1011,8 +1011,8 @@ window.BS_UNITS["p7-01"] = {
                 },
                 {
                   "label": "D",
-                  "en": "Warn the client about a delay",
-                  "vi": "Báo cho khách hàng về sự chậm trễ"
+                  "en": "Tell a customer she may be late",
+                  "vi": "Báo khách hàng rằng cô có thể đến trễ"
                 }
               ]
             }
@@ -1081,8 +1081,8 @@ window.BS_UNITS["p7-01"] = {
                   "vi": "Cảm ơn bà đã quan tâm. Các buổi học kỹ năng thuyết trình được tổ chức vào ba ngày thứ Bảy trong tháng 9, lịch học và mức phí cho mỗi người nằm ở bảng bên dưới. Mọi phòng của chúng tôi đều có máy chiếu."
                 },
                 {
-                  "en": "Please let me know which session you prefer by August 15. Every group of ten or more people receives a free printed workbook for each person, and parking is available next to the building.",
-                  "vi": "Xin cho tôi biết bà chọn buổi nào trước ngày 15 tháng 8. Mỗi nhóm từ mười người trở lên được tặng một sách bài tập in cho mỗi người, và có chỗ đỗ xe cạnh tòa nhà."
+                  "en": "Please let me know which session you prefer by August 15. Seats fill quickly, so an early reply is very helpful. Every group of ten or more people receives a free printed workbook for each person, and parking is available next to the building.",
+                  "vi": "Xin cho tôi biết bà chọn buổi nào trước ngày 15 tháng 8. Chỗ ngồi hết nhanh nên một lời hồi đáp sớm sẽ rất hữu ích. Mỗi nhóm từ mười người trở lên được tặng một sách bài tập in cho mỗi người, và có chỗ đỗ xe cạnh tòa nhà."
                 }
               ],
               "table": {
@@ -1160,7 +1160,7 @@ window.BS_UNITS["p7-01"] = {
                 },
                 {
                   "label": "D",
-                  "en": "To ask about workshop options",
+                  "en": "To inquire about training choices",
                   "vi": "Để hỏi về các lựa chọn tập huấn"
                 }
               ]
@@ -1256,7 +1256,7 @@ window.BS_UNITS["p7-01"] = {
                 },
                 {
                   "label": "D",
-                  "en": "given as a gift",
+                  "en": "donated",
                   "vi": "được tặng",
                   "trap": "other-meaning",
                   "why_vi": "Đây là nghĩa tặng quà, không hợp với các buổi học có thu phí."
@@ -1330,27 +1330,27 @@ window.BS_UNITS["p7-01"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "A kitchen",
-                  "vi": "Một nhà bếp",
+                  "en": "A kitchen for preparing food",
+                  "vi": "Một nhà bếp để chuẩn bị đồ ăn",
                   "trap": "not-mentioned",
                   "why_vi": "Bà không nhắc đến nhà bếp."
                 },
                 {
                   "label": "B",
-                  "en": "Extra chairs",
-                  "vi": "Thêm ghế",
+                  "en": "Extra chairs for every guest",
+                  "vi": "Thêm ghế cho mọi khách",
                   "trap": "not-mentioned",
                   "why_vi": "Bà không yêu cầu thêm ghế."
                 },
                 {
                   "label": "C",
-                  "en": "Equipment for slides",
-                  "vi": "Thiết bị cho trang trình chiếu"
+                  "en": "Equipment for showing slides",
+                  "vi": "Thiết bị để chiếu trang trình bày"
                 },
                 {
                   "label": "D",
-                  "en": "A printed workbook",
-                  "vi": "Một cuốn sách bài tập in",
+                  "en": "A printed workbook for guests",
+                  "vi": "Một cuốn sách bài tập in cho khách",
                   "trap": "word-match",
                   "why_vi": "Sách bài tập do trung tâm tặng trong thư trả lời, không phải điều bà cần trong phòng."
                 }
@@ -1399,10 +1399,10 @@ window.BS_UNITS["p7-01"] = {
         },
         {
           "id": "fill1-5",
-          "before": "Thank you for your",
-          "after": "reply.",
+          "before": "Please send a short",
+          "after": "to confirm the booking.",
           "answers": [
-            "prompt"
+            "reply"
           ]
         }
       ]

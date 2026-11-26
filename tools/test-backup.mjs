@@ -266,5 +266,21 @@ t("Part 3/4 (conv): dap an 'A'-'D' (ke ca 'D') va res 0/1 di vong xuat/nhap nguy
   assert.deepEqual(plain(u.res), { "c1-s1-q1": 1, "c1-s1-q2": 0, "c1-s1-q3": 0 });
   assert.deepEqual(plain(u.scores.c1), { c: 1, t: 6, a: 3 });
 });
+t("Part 5/6/7 (gram, read): ban nhap ans (khong co res) va dap an day du di vong xuat/nhap nguyen ven", () => {
+  const s = sample();
+  s.units["p7-01"] = { known: {}, res: { "r1-s1-q1": 1, "r1-s1-q2": 0, "r1-s1-q3": 1, "r1-s1-q4": 0, "g1-01": 1 }, scores: { r1: { c: 2, t: 10, a: 4 }, g1: { c: 1, t: 3, a: 1 } },
+    ans: { "r1-s1-q1": "B", "r1-s1-q2": "A", "r1-s1-q3": "D", "r1-s1-q4": "C", "g1-01": "C", "r1-s2-q1": "A", "r1-s2-q2": "D" }, last: { tab: "quiz" }, game: {}, srs: {} };
+  const r = B.parse(B.buildFile(s), TODAY); assert.ok(r.ok, r.msg); assert.equal(r.dropped, 0);
+  const u = r.data.units["p7-01"];
+  assert.deepEqual(plain(u.ans), { "r1-s1-q1": "B", "r1-s1-q2": "A", "r1-s1-q3": "D", "r1-s1-q4": "C", "g1-01": "C", "r1-s2-q1": "A", "r1-s2-q2": "D" });
+  assert.equal(u.res["r1-s2-q1"], undefined); assert.equal(u.res["r1-s1-q1"], 1);
+  assert.deepEqual(plain(u.scores.r1), { c: 2, t: 10, a: 4 });
+  const a = sample(), b = sample();
+  a.units["p7-01"] = { res: { "r1-s2-q1": 1 }, ans: { "r1-s2-q1": "A", "r1-s2-q2": "B" } };
+  b.units["p7-01"] = { res: {}, ans: { "r1-s2-q2": "C" } };
+  const m = B.merge(a, b), um = m.units["p7-01"];
+  assert.equal(um.res["r1-s2-q1"], 1); assert.equal(um.ans["r1-s2-q1"], "A"); assert.ok(["B", "C"].includes(um.ans["r1-s2-q2"]));
+  assert.deepEqual(plain(B.merge(m, b)), plain(m));
+});
 console.log("\nKet qua: " + pass + "/" + total + " ca dat");
 process.exit(pass === total ? 0 : 1);

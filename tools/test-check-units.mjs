@@ -190,7 +190,7 @@ try {
     u = base(); u.exercises.push({ id: "tf9", type: "tf", instruction_vi: "x", items: [] });
     check("unit qr vẫn kiểm bài tf không có ảnh (tf thiếu image là lỗi)", /bài tf thiếu image/.test(runQ(u).out));
     u = base(); u.exercises.push({ id: "zz", type: "abc", instruction_vi: "x", items: [] });
-    check("type lạ: thông báo liệt kê cả qr và conv", /không hợp lệ \(fill, tf, mc, qr, conv\)/.test(runQ(u).out));
+    check("type lạ: thông báo liệt kê cả qr và conv", /không hợp lệ \(fill, tf, mc, qr, conv, gram, read\)/.test(runQ(u).out));
 
     /* --release: v trên từng đáp án */
     u = base(); qrs(u)[0].options[2].v = { status: "unverified" };
@@ -546,7 +546,7 @@ try {
       check("lộ đáp án chính xác (lớp 1) không được ngoại lệ lớp 2 bỏ qua", o.code === 1 && /c1-s1-q3: đáp án đúng/.test(o.out), o.out);
     }
     check("unit p3 hợp lệ không bị báo lộ nhầm: vocab/phrases/tips khác kịch bản", !/trùng/.test(runC(base(), ["--release"]).out));
-    check("thông báo type lạ có liệt kê conv", errOf((() => { const x = base(); x.exercises.push({ id: "zz", type: "abc", instruction_vi: "x", items: [] }); return x; })(), /không hợp lệ \(fill, tf, mc, qr, conv\)/));
+    check("thông báo type lạ có liệt kê conv", errOf((() => { const x = base(); x.exercises.push({ id: "zz", type: "abc", instruction_vi: "x", items: [] }); return x; })(), /không hợp lệ \(fill, tf, mc, qr, conv, gram, read\)/));
   } finally {
     fs.rmSync(ctmp, { recursive: true, force: true });
   }
@@ -610,6 +610,138 @@ try {
     check("conv-fail: có in cảnh báo grow (cùng hàng) và len (đáp án dài/ngắn)", /\[grow\]/.test(fr.out) && /\[len\]/.test(fr.out), fr.out.slice(0, 200));
   } finally {
     fs.rmSync(wtmp, { recursive: true, force: true });
+  }
+}
+
+/* ================= Part 5/6/7 (gram, read): fixture, luat loi, canh bao, lo dap an ================= */
+{
+  const rtmp = fs.mkdtempSync(path.join(os.tmpdir(), "cu-rd-"));
+  try {
+    fs.mkdirSync(path.join(rtmp, "data"));
+    const U = { "p5-01": { no: 26, title: "Từ loại trong câu" }, "p7-01": { no: 33, title: "Thư điện tử và thư tín" } };
+    const fxu = (name, id) => { const w = {}; w.window = w; vm.runInNewContext(fs.readFileSync(path.join(REAL, "tools/fixtures/" + name + ".js"), "utf8"), w); return JSON.parse(JSON.stringify(w.BS_UNITS[id])); };
+    const runR = (u, extra) => {
+      fs.writeFileSync(path.join(rtmp, "data/catalog.js"), 'window.BS_CATALOG={parts:[{id:"' + u.id.split("-")[0] + '",title:"P",units:[{id:"' + u.id + '",no:' + U[u.id].no + ',title_vi:' + JSON.stringify(U[u.id].title) + ',available:true}]}]};');
+      fs.writeFileSync(path.join(rtmp, "data/" + u.id + ".js"), "window.BS_UNITS = window.BS_UNITS || {};\nwindow.BS_UNITS['" + u.id + "'] = " + JSON.stringify(u) + ";\n");
+      const r = spawnSync(process.execPath, [path.join(REAL, "tools/check-units.mjs"), "--root", rtmp].concat(extra || []), { encoding: "utf8" });
+      return { out: (r.stdout || "") + (r.stderr || ""), code: r.status };
+    };
+    const G0 = () => fxu("gram-pass", "p5-01"), R0 = () => fxu("read-pass", "p7-01");
+    const RS = (u, k) => u.exercises.filter((x) => x.type === "read").map((x) => x.sets).flat()[k];
+    const GI = (u, k) => u.exercises[0].items[k];
+    const errRe = (u, re, extra) => { const r = runR(u, extra); return r.code === 1 && new RegExp("LỖI.*" + re.source).test(r.out); };
+    const warnRe = (u, re, extra) => { const r = runR(u, extra); return r.code === 0 && new RegExp("CẢNH BÁO.*" + re.source).test(r.out); };
+
+    /* fixture hop le */
+    let r = runR(G0(), ["--release"]);
+    check("gram-pass: 0 lỗi kể cả --release, chỉ còn cảnh báo số lượng (6 < 30 câu)", r.code === 0 && /0 lỗi, 1 cảnh báo/.test(r.out) && /câu gram \(Part 5\) 6 < 30/.test(r.out), r.out);
+    check("gram-pass: unit p5 không bị hỏi câu đúng/sai", !/câu đúng\/sai/.test(r.out), r.out);
+    r = runR(R0(), ["--release"]);
+    check("read-pass: 0 lỗi, 0 cảnh báo kể cả --release", r.code === 0 && /0 lỗi, 0 cảnh báo/.test(r.out), r.out);
+    check("read-pass: unit p7 không bị hỏi câu đúng/sai", !/câu đúng\/sai/.test(r.out), r.out);
+    r = spawnSync(process.execPath, [path.join(REAL, "tools/check-units.mjs"), "--release"], { encoding: "utf8" });
+    check("cây thật --release: 10 unit, 0 lỗi, 0 cảnh báo (p2/p3/p4 không đổi)", r.status === 0 && /Đã kiểm 10 unit .*: 0 lỗi, 0 cảnh báo\./.test(r.stdout), r.stdout);
+
+    /* read-fail: moi luat mot bo/cau */
+    const RF = runR(fxu("read-fail", "p7-01"));
+    check("fixture read-fail: exit 1", RF.code === 1, RF.out.slice(0, 300));
+    for (const [name, re] of [
+      ["kind bộ lạ", /rf-s01': kind 'weird' không hợp lệ/], ["thiếu chỗ trống {2}", /rf-s02': bài cloze cần các chỗ trống \{1\} đến \{4\}.*hiện: 1, 3, 4/], ["chỗ trống sai thứ tự", /rf-s03': bài cloze cần các chỗ trống \{1\} đến \{4\}.*hiện: 2, 1, 3, 4/],
+      ["vi chứa {n}", /rf-s04': bản dịch vi không được chứa chỗ trống/], ["cloze có q", /rf-s05-q1': câu cloze không có q/], ["blank sai thứ tự", /rf-s06-q1': blank phải là 1/],
+      ["kind cloze lạ", /rf-s07-q4': kind 'main' không hợp lệ/], ["insert không phải câu đủ", /rf-s08-q3'\.options\[A\]: đáp án insert phải là câu đầy đủ/], ["ctx thiếu clue", /rf-s09-q2': câu ctx cần clue/],
+      ["clue không có trong bài", /rf-s10-q2': clue "a phrase that is not there" không có nguyên văn/], ["clue trong chính câu chứa chỗ trống", /rf-s11-q2': clue "to your office" nằm trong chính câu chứa chỗ trống/],
+      ["cloze 3 câu hỏi", /rf-s12': bài cloze cần đúng 4 câu hỏi \(hiện 3\)/], ["single 1 câu hỏi", /rf-s13': cần 2-5 câu hỏi \(hiện 1\)/], ["single 6 câu hỏi", /rf-s14': cần 2-5 câu hỏi \(hiện 6\)/],
+      ["{n} trong bài không cloze", /rf-s15': chỗ trống \{n\} chỉ dùng cho kind "cloze"/], ["câu hỏi trùng", /rf-s16-q2': câu hỏi .* bị trùng trong bộ/], ["thiếu q.vi", /rf-s17-q1': q cần en và vi không rỗng/],
+      ["evidence ngoài phạm vi", /rf-s18-q1': evidence phải là mảng không rỗng các cặp/], ["evidence rỗng", /rf-s19-q2': evidence phải là mảng không rỗng/], ["3 đáp án", /rf-s20-q1': cần đúng 4 đáp án có label A, B, C, D/],
+      ["answer E", /rf-s21-q1': answer 'E' phải là A, B, C hoặc D/], ["đáp án đúng có trap", /rf-s22-q1'\.options\[A\]: đáp án đúng không được có trap/], ["đáp án đúng có why_vi", /rf-s22-q1'\.options\[A\]: đáp án đúng không được có why_vi/],
+      ["đáp án sai thiếu why_vi", /rf-s23-q1'\.options\[B\]: đáp án sai thiếu why_vi/], ["trap lạ", /rf-s24-q1'\.options\[C\]: đáp án sai cần trap thuộc/], ["đáp án trùng nội dung", /rf-s25-q1'\.options\[D\]: nội dung trùng với đáp án A/],
+      ["đáp án thiếu vi", /rf-s26-q1'\.options\[B\]: thiếu vi/], ["thiếu explain_vi", /rf-s27-q1': thiếu explain_vi/], ["bộ có image", /rf-s28': bộ đọc không dùng image hay audio/],
+      ["single 2 bài", /rf-s29': kind 'single' cần đúng 1 bài đọc \(hiện 2\)/], ["genre lạ", /rf-s30'.passages\[0\]: genre 'poem' không hợp lệ/], ["paras rỗng", /rf-s31'.passages\[0\]: paras phải là mảng không rỗng/],
+      ["đoạn thiếu vi", /rf-s32'.passages\[0\]\.paras\[1\]: thiếu en hoặc vi/], ["head có e-mail", /rf-s33'.passages\[0\]: head chứa địa chỉ e-mail hoặc URL/], ["head sai cặp", /rf-s34'.passages\[0\]: head phải là mảng các cặp/],
+      ["vi có URL", /rf-s35'.passages\[0\]\.paras\[0\]: chứa địa chỉ e-mail hoặc URL/], ["NOT không viết hoa", /rf-s36-q3': câu not phải có chữ NOT viết hoa/], ["not: đáp án sai không phải stated", /rf-s37-q3'\.options\[A\]: đáp án sai của câu not phải có trap "stated"/],
+      ["not: stated thiếu ref", /rf-s38-q3'\.options\[B\]: trap "stated" cần ref/], ["vocab: word không có trong đoạn", /rf-s39-q2': word "borrow" không có trong đoạn at/], ["vocab: đề không có ngoặc kép", /rf-s40-q2': đề phải chứa từ trong ngoặc kép "return"/],
+      ["vocab: thiếu closest in meaning to", /rf-s41-q2': đề vocab phải chứa "closest in meaning to"/], ["vocab: đáp án trùng từ", /rf-s42-q2': có đáp án trùng chính từ "return"/], ["vocab: at sai", /rf-s43-q2': at phải là \[bài, đoạn\] hợp lệ/],
+      ["position: câu có sẵn trong bài", /rf-s44-q1': sentence đã có sẵn trong bài/], ["position: thiếu dấu [3]", /rf-s45-q1': bài đọc 1 cần các dấu \[1\] đến \[4\].*hiện: 1, 2, 4/], ["position: đáp án không phải [n]", /rf-s46-q1': đáp án position phải đúng là/],
+      ["position: đề sai mở đầu", /rf-s47-q1': đề position phải bắt đầu bằng/], ["position: hai câu", /rf-s48-q4': mỗi bộ chỉ có tối đa một câu position/], ["dấu [n] mà không có câu position", /rf-s49'.passages\[0\]: bài có dấu \[n\] nhưng bộ không có câu position/],
+      ["position: at sai", /rf-s50-q1': at phải là chỉ số bài đọc hợp lệ/], ["intent thiếu quote", /rf-s51-q1': câu intent cần quote và at_time/], ["intent: quote không có trong chat", /rf-s52-q1': quote "That is not said anywhere\." không có nguyên văn trong dòng chat nào/],
+      ["intent: sai giờ", /rf-s53-q1': at_time '9:00 A\.M\.' không khớp/], ["intent: không phải bài chat", /rf-s54-q1': quote "I am pleased to confirm" không có nguyên văn trong dòng chat nào \(intent chỉ dùng bài chat\)/],
+      ["chat: một người gửi", /rf-s55'.passages\[0\]: chat cần ít nhất 2 người gửi/], ["chat: thiếu time", /rf-s56'.passages\[0\]\.paras\[2\]: dòng chat cần who và time/], ["bảng lệch cột", /rf-s57'.passages\[1\]\.table\.rows\[1\]: cần đúng 4 ô/],
+      ["bảng type lạ", /rf-s58'.passages\[1\]\.table: type chỉ nhận "table"/], ["cross trong bộ single", /rf-s59-q1': cross chỉ dùng trong bộ double\/triple/], ["cross chỉ một bài", /rf-s60-q2': câu cross cần evidence ở ít nhất 2 bài đọc/],
+      ["không cross mà evidence hai bài", /rf-s61-q2': câu không cross nhưng evidence nằm ở nhiều bài đọc/], ["double không có cross", /rf-s62': bộ double cần ít nhất một câu cross/], ["cross không phải true", /rf-s63-q2': cross chỉ nhận true/],
+      ["gram: cat lạ", /gf-01': cat 'syntax' không hợp lệ/], ["gram: pos chỉ cho word-form", /gf-02': pos chỉ dùng cho cat "word-form"/], ["gram: pos lạ", /gf-03': pos 'adjectival' không hợp lệ/],
+      ["gram: không có chỗ trống", /gf-04': en phải có đúng một chỗ trống "------" \(hiện 0\)/], ["gram: hai chỗ trống", /gf-05': en phải có đúng một chỗ trống "------" \(hiện 2\)/], ["gram: thêm chuỗi gạch ngang", /gf-06': en có thêm chuỗi gạch ngang/],
+      ["gram: không dấu kết câu", /gf-07': en phải kết thúc bằng dấu/], ["gram: thiếu vi", /gf-08': thiếu vi \(bản dịch câu hoàn chỉnh\)/], ["gram: 3 đáp án", /gf-09': cần đúng 4 đáp án/], ["gram: answer E", /gf-10': answer 'E'/],
+      ["gram: đáp án đúng có trap", /gf-11'\.options\[C\]: đáp án đúng không được có trap/], ["gram: đáp án sai thiếu why_vi", /gf-12'\.options\[A\]: đáp án sai thiếu why_vi/], ["gram: trap lạ", /gf-13'\.options\[B\]: đáp án sai cần trap thuộc/],
+      ["gram: đáp án trùng", /gf-14'\.options\[D\]: nội dung trùng với đáp án C/], ["gram: câu trùng trong unit", /gf-15': câu trùng với gf-01/], ["gram: có image", /gf-16': câu không dùng image hay audio/],
+      ["gram: đáp án thiếu vi", /gf-17'\.options\[B\]: thiếu vi/], ["gram: thiếu explain_vi", /gf-18': thiếu explain_vi/]
+    ]) check("read-fail báo lỗi: " + name, new RegExp("LỖI.*" + re.source).test(RF.out), RF.out.slice(0, 300));
+    for (const [name, re] of [
+      ["cloze dài quá", /rf-s65'.passages\[0\]: bài đọc \d+ từ, nên nằm trong 80-150/], ["single dài quá", /rf-s66'.passages\[0\]: bài đọc \d+ từ, nên nằm trong 90-230/], ["chat dài quá", /rf-s67'.passages\[0\]: bài đọc \d+ từ, nên nằm trong 60-170/],
+      ["bài của double dài quá", /rf-s68'.passages\[0\]: bài đọc \d+ từ, nên nằm trong 70-210/], ["cả bộ cùng đáp án", /rf-s69': cả 3 câu cùng đáp án A/], ["đáp án chép nguyên văn", /rf-s70-q1': đáp án đúng .* chép nguyên văn/],
+      ["cross chỉ một bên", /rf-s71-q4': câu cross mà đáp án đúng chỉ xuất hiện ở một bài/], ["vocab xuất hiện hai lần", /rf-s72-q2': word "return" xuất hiện 2 lần/], ["bài thừa trong double", /rf-s73'.passages\[1\]: bài đọc không được câu không-cross nào trích dẫn/],
+      ["cloze thiếu ctx", /rf-s74': bài cloze nên có ít nhất 2 câu cần ngữ cảnh/], ["cloze không có insert", /rf-s75': bài cloze cần đúng một câu chèn \(insert\), hiện có 0/], ["intent: quote không nằm trong q.en", /rf-s76-q1': câu intent nên chứa quote/],
+      ["gram: câu quá ngắn", /gf-20': câu dài 4 từ, nên nằm trong 8-25/], ["gram: 4 câu liên tiếp cùng đáp án", /có từ 4 câu liên tiếp cùng đáp án [A-D]/], ["phân bố đáp án gram lệch", /đáp án C chiếm \d+% .* các câu gram/],
+      ["unverified khi đã mở", /unit đã mở nhưng còn 3 mục 'unverified'/]
+    ]) check("read-fail cảnh báo (không lỗi): " + name, new RegExp("CẢNH BÁO.*" + re.source).test(RF.out) && !new RegExp("LỖI.*" + re.source).test(RF.out), RF.out.slice(0, 300));
+    const RR = runR(fxu("read-fail", "p7-01"), ["--release"]);
+    check("--release: (R) chép nguyên văn / cross một bên / cloze không insert / unverified thành LỖI", /LỖI.*rf-s70-q1.*chép nguyên văn.*--release/.test(RR.out) && /LỖI.*rf-s71-q4.*chỉ xuất hiện ở một bài.*--release/.test(RR.out) && /LỖI.*rf-s75.*đúng một câu chèn.*--release/.test(RR.out) && /LỖI.*exercise\[0\] 'rf': còn 2 mục 'unverified'.*--release/.test(RR.out) && /LỖI.*exercise\[1\] 'gf': còn 1 mục 'unverified'.*--release/.test(RR.out), RR.out.slice(0, 300));
+    check("--release: cảnh báo độ dài, ctx, phân bố vẫn chỉ là cảnh báo", /CẢNH BÁO.*rf-s65'.passages\[0\]: bài đọc \d+ từ/.test(RR.out) && !/LỖI.*bài đọc \d+ từ, nên nằm/.test(RR.out) && /CẢNH BÁO.*rf-s74': bài cloze nên có ít nhất 2 câu/.test(RR.out));
+
+    /* sua mot cho tren unit hop le */
+    let u = R0(); RS(u, 1).questions[0].options.pop();
+    check("read: 3 đáp án: lỗi", errRe(u, /cần đúng 4 đáp án có label A, B, C, D/));
+    u = R0(); RS(u, 4).questions[3].evidence = [[0, 0]];
+    check("read: cross mà evidence một bài: lỗi", errRe(u, /câu cross cần evidence ở ít nhất 2 bài đọc/));
+    u = R0(); RS(u, 3).questions[0].quote = "i CAN  send a car";
+    check("read: intent quote khớp sau chuẩn hóa (hoa/thường, khoảng trắng, dấu câu): hợp lệ", runR(u).code === 0);
+    u = R0(); RS(u, 2).questions[0].options[3].en = "[4]"; RS(u, 2).questions[0].options.forEach((o) => { delete o.vi; });
+    check("read: đáp án position không cần vi", runR(u).code === 0);
+    u = R0(); RS(u, 2).questions[0].options.forEach((o) => { delete o.vi; }); RS(u, 2).questions[1].options[0].vi = "";
+    check("read: đáp án thường thiếu vi vẫn lỗi dù position không cần", errRe(u, /thiếu vi/));
+    u = R0(); RS(u, 0).questions[2].options.forEach((o) => { o.en = o.en.replace(/\.$/, ""); });
+    check("read: insert thiếu dấu kết câu: lỗi", errRe(u, /đáp án insert phải là câu đầy đủ/));
+    u = R0(); u.exercises[0].sets[0].passages[0].head[0][1] = "Ms. Aldana at https://example.invalid";
+    check("read: URL trong head: lỗi", errRe(u, /head chứa địa chỉ e-mail hoặc URL/));
+    u = R0(); u.exercises[0].sets.push({ id: "r1-s9", kind: "single", passages: [], questions: [] });
+    check("read: bộ rỗng: lỗi (kind single cần 1 bài, cần 2-5 câu)", errRe(u, /r1-s9': kind 'single' cần đúng 1 bài đọc \(hiện 0\)/));
+    u = R0(); u.exercises[0].type = "reading";
+    check("type lạ 'reading': lỗi, thông báo có gram và read", errRe(u, /type 'reading' không hợp lệ \(fill, tf, mc, qr, conv, gram, read\)/));
+    u = G0(); u.exercises[0].items.push(JSON.parse(JSON.stringify(u.exercises[0].items[0])));
+    check("gram: id trùng: lỗi", errRe(u, /id 'g1-01' bị trùng/));
+
+    /* luat doan duoc: chi canh bao, co allowlist */
+    const lift = () => { const x = R0(); RS(x, 1).questions[0].options[0].en = "To confirm that the booking is done"; return x; };
+    check("lift: chỉ đáp án đúng có 3 từ liền nhau trùng bài đọc → cảnh báo", warnRe(lift(), /r1-s2-q1: \[lift\]/));
+    check("lift: không thuộc luật cho câu not/vocab/position/intent", (() => { const x = R0(); RS(x, 1).questions[2].options[2].en = "Rides to the hotel and room"; return !/\[lift\]/.test(runR(x).out); })());
+    check("offworld: câu chèn sai không chung từ nội dung nào với bài → cảnh báo", warnRe((() => { const x = R0(); RS(x, 0).questions[2].options[0].en = "Please enjoy a quiet weekend."; return x; })(), /r1-s1-q3: \[offworld\]/));
+    check("article: trước chỗ trống là a/an mà đáp án lẫn nguyên âm/phụ âm → cảnh báo", warnRe((() => { const x = G0(); GI(x, 2).en = "Our technicians gave an ------ answer to every question we asked today."; GI(x, 2).options[0].en = "open"; return x; })(), /g1-03: \[article\]/));
+    check("cap: đáp án lẫn chữ hoa/thường ở chữ đầu → cảnh báo", warnRe((() => { const x = G0(); GI(x, 0).options[0].en = "Decide"; return x; })(), /g1-01: \[cap\]/));
+    check("root: bốn đáp án word-form không chung gốc → cảnh báo", warnRe((() => { const x = G0(); GI(x, 0).options[1].en = "choice"; return x; })(), /g1-01: \[root\]/));
+    check("dupkey: cùng đáp án đúng ở hơn 2 câu → cảnh báo", warnRe((() => { const x = G0(); [1, 2].forEach((k) => { GI(x, k).options.forEach((o) => { if (o.label === GI(x, k).answer) o.en = "decision"; }); }); return x; })(), /\[dupkey\] đáp án đúng "decision" lặp ở 3 câu gram/));
+    check("len-unit: đáp án đúng luôn dài nhất ở nhiều câu gram → cảnh báo", warnRe((() => { const x = G0(); x.exercises[0].items.concat(x.exercises[1].items).forEach((it) => { it.options.forEach((o) => { if (o.label === it.answer) o.en = o.en + " longest"; }); }); return x; })(), /\[len-unit\].*câu conv\/đọc\/gram/));
+    check("len: bỏ qua câu position và bộ đáp án một từ (không cảnh báo len)", !/\[len\]/.test(runR(R0()).out));
+    process.env.CU_LEAK_ALLOW = "p7-01/r1-s2-q1|lift";
+    const al1 = runR(lift()), al2 = runR(lift(), ["--release"]); delete process.env.CU_LEAK_ALLOW;
+    check("ngoại lệ <unit>/<id câu>|lift bỏ cảnh báo, --release bỏ qua biến môi trường", !/r1-s2-q1: \[lift\]/.test(al1.out) && /r1-s2-q1: \[lift\]/.test(al2.out) && al2.code === 0, al1.out + al2.out);
+    check("cảnh báo đoán được không leo thang khi --release (exit 0, CẢNH BÁO)", (() => { const o = runR(lift(), ["--release"]); return o.code === 0 && /CẢNH BÁO.*\[lift\]/.test(o.out) && !/LỖI/.test(o.out); })());
+
+    /* khong lo cau gram / bai doc o tab bai hoc, tu vung, cum tu, nghe, bai dien */
+    u = G0(); u.phrases[0].en = "The committee will announce its final decision on the budget next Monday.";
+    check("lộ: câu Part 5 (đã điền đáp án) trùng cụm từ ở tab bài học → LỖI", errRe(u, /g1-01: câu Part 5 .* trùng với nội dung ở phrases\[0\]\.en/));
+    u = G0(); u.sentences[0].en = "The committee will soon announce the final decision about the next budget.";
+    check("lộ: câu Part 5 diễn đạt lại gần giống → cảnh báo; --release → LỖI", warnRe(u, /g1-01: câu Part 5 .* gần trùng/) && errRe(u, /g1-01: câu Part 5 .* gần trùng.*--release/, ["--release"]));
+    u = G0(); u.vocab.push({ id: "v900", en: "decision", vi: "quyết định", group: "Công việc" }); u.vocab.push({ id: "v901", en: "will have arrived", vi: "sẽ đã đến", group: "Công việc" });
+    check("vocab bằng đáp án đúng (1-3 từ): không bị coi là lộ", runR(u, ["--release"]).code === 0);
+    u = R0(); u.phrases[0].en = "I am pleased to confirm that Harbor Room 2 is reserved for your staff seminar on Friday.";
+    check("lộ: câu trong bài đọc trùng ở tab bài học → LỖI", errRe(u, /r1-s2: bài đọc .* trùng với nội dung ở phrases\[0\]\.en/));
+    u = R0(); u.phrases[0].en = "Because of a fault in our paint line, the factory could not finish the chairs by March 10.";
+    check("lộ: câu cloze (đã điền đáp án) trùng ở tab bài học → LỖI", errRe(u, /r1-s1: bài đọc .* trùng với nội dung ở phrases\[0\]\.en/));
+    u = R0(); u.focus.tips[0].examples[0].en = "The workshop will be led by a published author.";
+    check("lộ: câu cần chèn (position) trùng ở mẹo → LỖI", errRe(u, /r1-s3-q1: câu cần chèn .* trùng với nội dung ở focus\.tips\[0\]\.examples\[0\]\.en/));
+    u = R0(); u.sentences[0].en = "Tell a customer she may be late.";
+    check("lộ: đáp án đúng >= 4 từ của câu đọc trùng ở bài nghe chép → LỖI", errRe(u, /r2-s4-q3: đáp án đúng .* trùng với nội dung ở sentences\[0\]\.en/));
+  } finally {
+    fs.rmSync(rtmp, { recursive: true, force: true });
   }
 }
 
