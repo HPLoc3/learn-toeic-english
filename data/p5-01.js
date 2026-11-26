@@ -50,7 +50,7 @@ window.BS_UNITS["p5-01"] = {
           },
           {
             "en": "We hold a weekly meeting on Mondays.",
-            "vi": "Chúng tôi họp hằng tuần vào các sáng thứ Hai."
+            "vi": "Chúng tôi họp hằng tuần vào các ngày thứ Hai."
           },
           {
             "en": "The proposal was approved by the board.",
@@ -230,7 +230,7 @@ window.BS_UNITS["p5-01"] = {
     {
       "id": "p02",
       "en": "I'm writing to follow up on our last meeting.",
-      "vi": "Tôi viết thư để tiếp nối buổi họp lần trước của chúng ta.",
+      "vi": "Tôi viết thư để trao đổi tiếp về buổi họp lần trước của chúng ta.",
       "group_vi": "Thư tín"
     },
     {
@@ -389,7 +389,7 @@ window.BS_UNITS["p5-01"] = {
               "label": "B",
               "en": "application",
               "vi": "(n) đơn xin việc",
-              "trap": "wrong-form",
+              "trap": "wrong-meaning",
               "why_vi": "Đây là danh từ chỉ vật (tờ đơn); chủ ngữ của 'must send' phải là người, một tờ đơn không tự gửi hồ sơ."
             },
             {
@@ -552,7 +552,7 @@ window.BS_UNITS["p5-01"] = {
               "en": "competently",
               "vi": "(adv) một cách thành thạo",
               "trap": "wrong-form",
-              "why_vi": "Hai trạng từ liền nhau không bổ nghĩa được cho danh từ 'designer'; trạng từ này chỉ bổ nghĩa cho động từ."
+              "why_vi": "Trạng từ không bổ nghĩa cho danh từ 'designer'; 'highly competently' không đứng trước danh từ."
             }
           ]
         },
@@ -584,7 +584,7 @@ window.BS_UNITS["p5-01"] = {
               "en": "popularly",
               "vi": "(adv) một cách phổ biến",
               "trap": "wrong-form",
-              "why_vi": "Trạng từ sau 'was' phải đi với phân từ ('popularly known'); ở đây chỉ có 'among' theo sau nên không có phân từ."
+              "why_vi": "'popularly' không làm bổ ngữ cho 'was'; nó chỉ bổ nghĩa cho động từ/phân từ (popularly known), mà sau chỗ trống là 'among'."
             },
             {
               "label": "D",
@@ -619,7 +619,7 @@ window.BS_UNITS["p5-01"] = {
               "en": "friendlier",
               "vi": "(adj) thân thiện hơn",
               "trap": "wrong-form",
-              "why_vi": "Dạng so sánh hơn không đi với 'extremely' (chỉ đi với much, far) và câu không có 'than'."
+              "why_vi": "Dạng so sánh hơn không đi với 'extremely' (chỉ đi với much, far, even, a lot...) và câu không có 'than'."
             },
             {
               "label": "D",
@@ -807,7 +807,7 @@ window.BS_UNITS["p5-01"] = {
               "en": "Fortunate",
               "vi": "(adj) may mắn",
               "trap": "wrong-form",
-              "why_vi": "Tính từ đứng một mình trước dấu phẩy cần có danh từ để bổ nghĩa; mệnh đề sau đã có chủ ngữ riêng 'all of the invoices'."
+              "why_vi": "Tính từ đứng đầu câu sẽ mô tả chủ ngữ 'all of the invoices', mà hóa đơn không thể 'may mắn'; cần trạng từ bình luận cho cả câu."
             },
             {
               "label": "C",
@@ -1207,36 +1207,36 @@ window.BS_UNITS["p5-01"] = {
           "id": "g3-04",
           "cat": "word-form",
           "pos": "adverb",
-          "en": "Photography is ------ prohibited inside the research laboratory at all times.",
-          "vi": "Việc chụp ảnh bị nghiêm cấm trong phòng thí nghiệm nghiên cứu mọi lúc.",
+          "en": "The design team ------ meets with clients to review progress on each project.",
+          "vi": "Nhóm thiết kế họp với khách hàng thường xuyên để xem xét tiến độ từng dự án.",
           "answer": "B",
-          "explain_vi": "Giữa 'is' và phân từ 'prohibited' cần một trạng từ.",
+          "explain_vi": "Giữa chủ ngữ 'The design team' và động từ chính 'meets' cần một trạng từ chỉ tần suất.",
           "options": [
             {
               "label": "A",
-              "en": "strict",
-              "vi": "(adj) nghiêm khắc",
+              "en": "regular",
+              "vi": "(adj) đều đặn",
               "trap": "wrong-form",
-              "why_vi": "Tính từ không bổ nghĩa cho phân từ 'prohibited'."
+              "why_vi": "Tính từ không bổ nghĩa cho động từ 'meets'."
             },
             {
               "label": "B",
-              "en": "strictly",
-              "vi": "(adv) một cách nghiêm ngặt"
+              "en": "regularly",
+              "vi": "(adv) thường xuyên"
             },
             {
               "label": "C",
-              "en": "strictness",
-              "vi": "(n) sự nghiêm khắc",
+              "en": "regularity",
+              "vi": "(n) tính đều đặn",
               "trap": "wrong-form",
-              "why_vi": "Danh từ không đứng giữa 'is' và phân từ 'prohibited'."
+              "why_vi": "Danh từ không đứng giữa chủ ngữ và động từ chính 'meets'."
             },
             {
               "label": "D",
-              "en": "stricter",
-              "vi": "(adj) nghiêm khắc hơn",
+              "en": "regulate",
+              "vi": "(v) điều chỉnh",
               "trap": "wrong-form",
-              "why_vi": "Dạng so sánh hơn là tính từ, không bổ nghĩa cho phân từ, và câu không có 'than'."
+              "why_vi": "Sau chủ ngữ đã có động từ chính 'meets'; thêm động từ 'regulate' mà không có từ nối là sai."
             }
           ]
         },
@@ -1317,7 +1317,7 @@ window.BS_UNITS["p5-01"] = {
           "cat": "word-form",
           "pos": "adjective",
           "en": "Visitors will be given ------ access to the data center only after a safety briefing.",
-          "vi": "Khách tham quan chỉ được vào trung tâm dữ liệu ở mức hạn chế sau khi nghe hướng dẫn an toàn.",
+          "vi": "Khách tham quan chỉ được cấp quyền vào trung tâm dữ liệu có giới hạn sau khi đã nghe hướng dẫn an toàn.",
           "answer": "C",
           "explain_vi": "Trước danh từ 'access' cần một tính từ: 'limited access'.",
           "options": [
@@ -1469,10 +1469,10 @@ window.BS_UNITS["p5-01"] = {
       "items": [
         {
           "id": "fill1-1",
-          "before": "The bank offers a convenient online paym",
+          "before": "The bank offers a convenient online pay",
           "after": "service.",
           "answers": [
-            "ent"
+            "ment"
           ]
         },
         {
@@ -1501,10 +1501,10 @@ window.BS_UNITS["p5-01"] = {
         },
         {
           "id": "fill1-5",
-          "before": "The clinic hired a new recept",
+          "before": "The clinic hired a new reception",
           "after": "last week.",
           "answers": [
-            "ionist"
+            "ist"
           ]
         }
       ]
