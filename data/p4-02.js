@@ -385,15 +385,15 @@ window.BS_UNITS["p4-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "To offer an earlier time slot",
-                  "vi": "Để đề nghị một khung giờ sớm hơn",
+                  "en": "To offer a time slot this week",
+                  "vi": "Để mời một khung giờ trong tuần này",
                   "trap": "over-inference",
-                  "why_vi": "Danh sách chờ chỉ là lý do cô ấy muốn được báo sớm; cô ấy không đề nghị giờ sớm hơn."
+                  "why_vi": "Danh sách chờ chỉ là lý do cô ấy muốn được báo trước; cô ấy không mời khung giờ nào."
                 },
                 {
                   "label": "B",
-                  "en": "To explain a new cancellation fee",
-                  "vi": "Để giải thích một khoản phí hủy lịch mới",
+                  "en": "To announce a new billing fee",
+                  "vi": "Để thông báo một khoản phí mới",
                   "trap": "not-mentioned",
                   "why_vi": "Không có khoản phí nào được nhắc đến."
                 },
@@ -404,10 +404,10 @@ window.BS_UNITS["p4-02"] = {
                 },
                 {
                   "label": "D",
-                  "en": "To announce a change of dentist",
-                  "vi": "Để báo đổi nha sĩ",
+                  "en": "To introduce a different dentist",
+                  "vi": "Để giới thiệu một nha sĩ khác",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có thay đổi nha sĩ nào."
+                  "why_vi": "Không có nha sĩ mới nào."
                 }
               ]
             },
@@ -415,8 +415,8 @@ window.BS_UNITS["p4-02"] = {
               "id": "c1-s1-q2",
               "kind": "detail",
               "q": {
-                "en": "Why should the listener arrive early?",
-                "vi": "Tại sao người nghe nên đến sớm?"
+                "en": "Why should the listener come in ahead of the booked time?",
+                "vi": "Tại sao người nghe nên đến trước giờ hẹn?"
               },
               "answer": "A",
               "evidence": [
@@ -465,7 +465,7 @@ window.BS_UNITS["p4-02"] = {
                 2,
                 3
               ],
-              "explain_vi": "Cô ấy nêu danh sách chờ rồi dặn báo trước trưa thứ Tư nếu cần đổi giờ, nên đó là lý do để báo thay đổi sớm.",
+              "explain_vi": "Cô ấy nêu danh sách chờ rồi dặn báo trước trưa thứ Tư nếu cần đổi giờ, nên đó là lý do để báo sớm.",
               "options": [
                 {
                   "label": "A",
@@ -483,15 +483,15 @@ window.BS_UNITS["p4-02"] = {
                 },
                 {
                   "label": "C",
-                  "en": "She is saying that no other times are available.",
-                  "vi": "Cô ấy nói rằng không còn giờ nào khác.",
+                  "en": "She is saying the listener has been put on the waiting list.",
+                  "vi": "Cô ấy nói người nghe đã bị đưa vào danh sách chờ.",
                   "trap": "wrong-detail",
-                  "why_vi": "Cô ấy vẫn mời người nghe đổi giờ nếu cần."
+                  "why_vi": "Người nghe đã có lịch chắc chắn (booked); danh sách chờ là của các bệnh nhân khác."
                 },
                 {
                   "label": "D",
-                  "en": "She is explaining why early notice of changes matters.",
-                  "vi": "Cô ấy giải thích vì sao cần báo sớm khi có thay đổi."
+                  "en": "She is giving a reason to tell the clinic soon if plans shift.",
+                  "vi": "Cô ấy nêu lý do để người nghe báo sớm nếu kế hoạch thay đổi."
                 }
               ]
             }
@@ -991,27 +991,27 @@ window.BS_UNITS["p4-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "To say a session will be held elsewhere and later",
-                  "vi": "Để báo một buổi sẽ diễn ra ở nơi khác và muộn hơn"
+                  "en": "To say a session has been moved",
+                  "vi": "Để báo một buổi đã bị dời"
                 },
                 {
                   "label": "B",
-                  "en": "To announce that a session is cancelled",
-                  "vi": "Để thông báo một buổi bị hủy",
+                  "en": "To say a session has been cancelled",
+                  "vi": "Để báo một buổi đã bị hủy",
                   "trap": "wrong-detail",
                   "why_vi": "Buổi vẫn diễn ra, chỉ đổi phòng và giờ."
                 },
                 {
                   "label": "C",
-                  "en": "To introduce a new presenter",
-                  "vi": "Để giới thiệu một diễn giả mới",
+                  "en": "To say a presenter has been replaced",
+                  "vi": "Để báo một diễn giả đã được thay",
                   "trap": "not-mentioned",
-                  "why_vi": "Diễn giả không thay đổi."
+                  "why_vi": "Diễn giả vẫn là cô Okoye."
                 },
                 {
                   "label": "D",
-                  "en": "To add a session to the program",
-                  "vi": "Để thêm một buổi vào chương trình",
+                  "en": "To say a session has been added",
+                  "vi": "Để báo một buổi đã được thêm",
                   "trap": "not-mentioned",
                   "why_vi": "Không có buổi nào được thêm."
                 }
@@ -1386,33 +1386,33 @@ window.BS_UNITS["p4-02"] = {
                 2,
                 3
               ],
-              "explain_vi": "Sau khi báo khung giờ từ trưa đến hai giờ, anh ấy thừa nhận khung này rộng và có thể bất tiện cho người nghe.",
+              "explain_vi": "Ngay sau đó anh ấy nói còn vài điểm phải đến, nên câu này giải thích vì sao anh ấy chưa thể báo giờ chính xác hơn.",
               "options": [
                 {
                   "label": "A",
-                  "en": "To acknowledge that waiting may be inconvenient",
-                  "vi": "Để thừa nhận việc chờ đợi có thể bất tiện"
+                  "en": "To explain why he cannot be more exact",
+                  "vi": "Để giải thích vì sao anh ấy chưa thể báo giờ chính xác hơn"
                 },
                 {
                   "label": "B",
-                  "en": "To promise to arrive at the start of the window",
-                  "vi": "Để hứa sẽ đến đầu khung giờ",
-                  "trap": "over-inference",
-                  "why_vi": "Anh ấy không hứa đến sớm; còn nói còn vài điểm phải đến."
+                  "en": "To suggest picking a different day",
+                  "vi": "Để gợi ý chọn một ngày khác",
+                  "trap": "wrong-detail",
+                  "why_vi": "Anh ấy chỉ dời sang thứ Năm nếu lúc đó không có ai ở nhà."
                 },
                 {
                   "label": "C",
-                  "en": "To ask the listener to choose a narrower window",
-                  "vi": "Để nhờ người nghe chọn khung giờ hẹp hơn",
-                  "trap": "not-mentioned",
-                  "why_vi": "Anh ấy không nhờ chọn lại khung giờ."
+                  "en": "To ask the listener to stay home all day",
+                  "vi": "Để nhờ người nghe ở nhà cả ngày",
+                  "trap": "wrong-detail",
+                  "why_vi": "Khung giờ chỉ từ trưa đến hai giờ."
                 },
                 {
                   "label": "D",
-                  "en": "To explain why the repair will take long",
-                  "vi": "Để giải thích vì sao việc sửa sẽ lâu",
-                  "trap": "wrong-detail",
-                  "why_vi": "Câu này nói về khung giờ đến, không nói về thời gian sửa."
+                  "en": "To apologize for missing an earlier visit",
+                  "vi": "Để xin lỗi vì lỡ một buổi hẹn trước",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có buổi hẹn nào bị lỡ."
                 }
               ]
             },
