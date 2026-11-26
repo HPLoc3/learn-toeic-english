@@ -64,7 +64,7 @@ window.BS_UNITS["p2-07"] = {
       },
       {
         "id": "tip4",
-        "text_vi": "Các bẫy cần nhớ. Nghe giống: một từ phát âm gần giống từ trong câu hỏi, như fence và fans. Lặp từ: nhắc lại nguyên một từ rồi nói chuyện khác. Từ liên quan: cùng chủ đề nhà cửa, xây dựng nhưng không trả lời điều được hỏi. Sai thì hoặc sai chủ ngữ: hỏi việc sắp tới mà kể chuyện cũ, hỏi người khác mà nói về mình. Hãy luôn tự hỏi: câu này có giúp được người hỏi không?",
+        "text_vi": "Các bẫy cần nhớ. Nghe giống: một từ phát âm gần giống từ trong câu hỏi, như fence và fans. Lặp từ: nhắc lại nguyên một từ rồi nói chuyện khác. Từ liên quan: cùng chủ đề nhà cửa, xây dựng nhưng không trả lời điều được hỏi. Sai thì (tense) hoặc sai chủ ngữ: hỏi việc sắp tới mà kể chuyện cũ, hỏi người khác mà nói về mình. Hãy luôn tự hỏi: câu này có giúp được người hỏi không?",
         "examples": [
           {
             "q": "Is the new fence finished?",
@@ -562,7 +562,7 @@ window.BS_UNITS["p2-07"] = {
             },
             {
               "label": "B",
-              "en": "Abara has been following it, so ask her.",
+              "en": "Abara has been tracking that, so ask her.",
               "vi": "Abara đang theo dõi việc đó, bạn hỏi cô ấy nhé."
             },
             {
@@ -817,8 +817,8 @@ window.BS_UNITS["p2-07"] = {
             },
             {
               "label": "C",
-              "en": "Mossgrove hasn't given me a final figure yet.",
-              "vi": "Mossgrove vẫn chưa đưa cho tôi con số cuối cùng."
+              "en": "Mossgrove Contracting hasn't given me a final figure yet.",
+              "vi": "Mossgrove Contracting vẫn chưa đưa cho tôi con số cuối cùng."
             }
           ],
           "v": {
@@ -1032,7 +1032,7 @@ window.BS_UNITS["p2-07"] = {
               "en": "She'll be renting her first place next year.",
               "vi": "Năm sau cô ấy sẽ thuê chỗ ở đầu tiên.",
               "trap": "wrong-tense",
-              "why_vi": "Câu hỏi nói về việc đã làm; câu này nói tương lai, trong khi người gia hạn hợp đồng thì đã đang thuê rồi."
+              "why_vi": "Câu hỏi nói về việc đã làm; câu này nói tương lai, trong khi người gia hạn hợp đồng thì vốn đang thuê rồi."
             }
           ],
           "v": {
@@ -1081,12 +1081,12 @@ window.BS_UNITS["p2-07"] = {
             "vi": "Chúng ta nên để các mẫu gạch lát mới ở đâu?"
           },
           "answer": "A",
-          "explain_vi": "Trả lời gián tiếp: A hỏi lại số lượng thùng để còn chọn chỗ để phù hợp.",
+          "explain_vi": "Trả lời gián tiếp: A hỏi lại xem văn phòng công trường còn chỗ không, tức là vừa hỏi vừa gợi ý nơi để các mẫu.",
           "options": [
             {
               "label": "A",
-              "en": "How many boxes did Ironvale Works send?",
-              "vi": "Ironvale Works đã gửi bao nhiêu thùng?"
+              "en": "Is there any space left in the site office?",
+              "vi": "Trong văn phòng công trường còn chỗ trống không?"
             },
             {
               "label": "B",
@@ -1190,7 +1190,9 @@ window.BS_UNITS["p2-07"] = {
           "before": "I haven't been",
           "after": "whether balconies are part of the contract. (Tôi chưa được báo liệu ban công có nằm trong hợp đồng hay không.)",
           "answers": [
-            "told"
+            "told",
+            "informed",
+            "advised"
           ]
         },
         {
@@ -1204,9 +1206,10 @@ window.BS_UNITS["p2-07"] = {
         {
           "id": "fill1-3",
           "before": "It depends",
-          "after": "how much of the fence is damaged. (Còn tùy hàng rào bị hỏng bao nhiêu.)",
+          "after": "how many tiles are cracked. (Còn tùy có bao nhiêu viên gạch lát bị nứt.)",
           "answers": [
-            "on"
+            "on",
+            "upon"
           ]
         },
         {
