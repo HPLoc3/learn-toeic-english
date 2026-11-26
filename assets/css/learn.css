@@ -67,3 +67,37 @@
 .qr-res{font-weight:700;margin:.3em 0}
 .qr-res-ok{color:var(--ok,#1a7f37)}
 .qr-res-bad{color:var(--bad,#c62828)}
+
+/* ---- Part 3/4: hoi thoai va bai noi (conv) ---- */
+.cv-set{border-top:1px solid var(--line,#d9dee7);padding:12px 0 6px;margin-top:10px}
+.cv-set h4{margin:0 0 6px}
+.cv-play,.cv-peek,.cv-check,.cv-ctl .btn,.cv-lines .btn,.cv-script .btn{min-height:44px;min-width:44px}
+.cv-note{margin:4px 0;font-size:.95rem}
+.cv-keys{font-size:.9rem}
+.cv-q{border:0;border-top:1px dashed var(--line,#d9dee7);margin:10px 0 0;padding:8px 0 0;min-width:0}
+.cv-q legend{font-weight:700;padding:0;margin-bottom:4px}
+.cv-opts{display:flex;flex-direction:column;gap:6px;margin:6px 0}
+.cv-opt{text-align:left;white-space:normal;justify-content:flex-start;height:auto;min-height:44px}
+.cv-opts .btn.opt-ok{border-color:var(--ok,#1a7f37);background:var(--ok-bg,#e6f4ea);color:var(--ink,#1c2733)}
+.cv-opts .btn.opt-bad{border-color:var(--bad,#c62828);background:var(--bad-bg,#fdeaea);color:var(--ink,#1c2733)}
+.cv-graphic{margin:8px 0}
+.cv-graphic h5{margin:0 0 4px}
+.cv-scroll{overflow-x:auto;max-width:100%}
+.cv-scroll:focus{outline:3px solid var(--accent,#f59e0b);outline-offset:2px}
+.cv-table{border-collapse:collapse;min-width:100%}
+.cv-table caption{text-align:left;font-weight:700;padding:0 0 4px}
+.cv-table th,.cv-table td{border:1px solid var(--line,#9aa5b5);padding:6px 10px;text-align:left}
+.cv-table th{background:var(--card-alt,#eef2f7)}
+.cv-fb:focus{outline:3px solid var(--accent,#f59e0b);outline-offset:2px}
+.cv-lines,.cv-script{padding-left:0;list-style:none;margin:6px 0}
+.cv-lines li,.cv-script li{margin:8px 0}
+.cv-right{border-left:4px solid var(--ok,#1a7f37);padding-left:8px}
+.cv-wrong{border-left:4px solid var(--bad,#c62828);padding-left:8px}
+.cv-ev{background:var(--warn-bg,#fff4d6);border-left:4px solid var(--accent,#f59e0b);padding:2px 6px}
+.cv-trap{margin:.2em 0 0}
+.cv-qfb{margin:8px 0}
+.cv-res{font-weight:700;margin:.3em 0}
+.cv-res-ok{color:var(--ok,#1a7f37)}
+.cv-res-bad{color:var(--bad,#c62828)}
+.cv-tr p{margin:.2em 0}
+.cv-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
