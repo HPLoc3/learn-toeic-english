@@ -257,8 +257,8 @@ window.BS_UNITS["p5-03"] = {
     },
     {
       "id": "p08",
-      "en": "The fitness center now opens at six o'clock.",
-      "vi": "Trung tâm thể dục nay mở cửa lúc sáu giờ.",
+      "en": "The business center now opens at six o'clock.",
+      "vi": "Trung tâm dịch vụ văn phòng nay mở cửa lúc sáu giờ.",
       "group_vi": "Thông báo"
     },
     {
