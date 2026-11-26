@@ -28,7 +28,7 @@ window.BS_UNITS["p2-04"] = {
       },
       {
         "id": "tip2",
-        "text_vi": "Câu hỏi phủ định (Isn't...? Didn't...? Haven't...?) thường dùng để xác nhận điều người hỏi đang nghĩ. Trong tiếng Anh, Yes/No đi theo SỰ THẬT, không đi theo dạng câu hỏi: việc đó đúng hoặc đã xảy ra thì nói Yes, không đúng hoặc chưa xảy ra thì nói No. Điều này khác cách đáp quen thuộc trong tiếng Việt (vâng, chưa). Mẹo: tạm bỏ not trong đầu rồi trả lời như câu hỏi thường.",
+        "text_vi": "Câu hỏi phủ định (Isn't...? Didn't...? Haven't...?) thường dùng để xác nhận điều người hỏi đang nghĩ. Trong tiếng Anh, Yes/No đi theo SỰ THẬT, không đi theo dạng câu hỏi: việc đó đúng hoặc đã xảy ra thì nói Yes, không đúng hoặc chưa xảy ra thì nói No. Người Việt hay đáp theo câu hỏi ('Vâng, chưa đặt'), còn tiếng Anh phải nói 'No, I didn't'. Mẹo: tạm bỏ not trong đầu rồi trả lời như câu hỏi thường.",
         "examples": [
           {
             "q": "Didn't you order a new checkbook?",
@@ -128,7 +128,7 @@ window.BS_UNITS["p2-04"] = {
     {
       "id": "v008",
       "en": "wire transfer",
-      "vi": "chuyển tiền điện tử",
+      "vi": "chuyển khoản qua ngân hàng (điện chuyển tiền)",
       "group": "Tài khoản và giao dịch"
     },
     {
@@ -356,17 +356,17 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "B",
-              "en": "We charge a small fee for sending money abroad.",
-              "vi": "Chúng tôi thu một khoản phí nhỏ khi gửi tiền ra nước ngoài.",
+              "en": "Only if the amount is under ten thousand.",
+              "vi": "Chỉ khi số tiền dưới mười nghìn.",
               "trap": "related-word",
-              "why_vi": "Cùng chủ đề chuyển tiền nhưng nói về phí, không cho biết lệnh chuyển đã xong hay chưa."
+              "why_vi": "Nghe như đang nói về điều kiện áp dụng cho một khoản tiền, nhưng không cho biết lệnh chuyển đã xong hay chưa."
             },
             {
               "label": "C",
-              "en": "Yes, she has been transferred to Verrin Square.",
-              "vi": "Vâng, cô ấy đã được điều chuyển sang Verrin Square.",
+              "en": "Yes, she went through all of them before lunch.",
+              "vi": "Vâng, cô ấy đã xem hết chúng trước bữa trưa.",
               "trap": "repeat-word",
-              "why_vi": "Lặp lại gốc từ transfer nhưng nói về việc điều chuyển một người, không nói về khoản tiền."
+              "why_vi": "Went through lặp lại gone through nhưng ở đây là xem qua nhiều thứ (them), không phải lệnh chuyển tiền đã thực hiện xong."
             }
           ],
           "v": {
@@ -385,17 +385,17 @@ window.BS_UNITS["p2-04"] = {
           "options": [
             {
               "label": "A",
-              "en": "At the end of every month, as a rule.",
-              "vi": "Theo lệ thường là vào cuối mỗi tháng.",
+              "en": "Probably because her address has changed.",
+              "vi": "Có lẽ vì địa chỉ của cô ấy đã đổi.",
               "trap": "wrong-wh",
-              "why_vi": "Đây là câu trả lời cho When hoặc How often, không cho biết người được hỏi có sao kê hay không."
+              "why_vi": "Đây là câu trả lời cho Why, không cho biết người được hỏi có sao kê hay không."
             },
             {
               "label": "B",
-              "en": "The evening tax course starts in March.",
-              "vi": "Khóa học thuế buổi tối bắt đầu vào tháng Ba.",
+              "en": "Yes, the March newsletter went out last week.",
+              "vi": "Vâng, bản tin tháng Ba đã được gửi đi tuần trước.",
               "trap": "repeat-word",
-              "why_vi": "Lặp lại từ March nhưng nói về một khóa học, không liên quan đến sao kê."
+              "why_vi": "Lặp lại từ March nhưng nói về bản tin, không phải bản sao kê."
             },
             {
               "label": "C",
@@ -419,7 +419,7 @@ window.BS_UNITS["p2-04"] = {
           "options": [
             {
               "label": "A",
-              "en": "Yes, I did that back in May.",
+              "en": "Yes, I did that one back in May.",
               "vi": "Vâng, tôi đã làm việc đó hồi tháng Năm.",
               "trap": "wrong-tense",
               "why_vi": "Câu hỏi dùng Will, hỏi về chi nhánh trong tương lai; Yes, I did lại nói về việc người đáp đã làm trong quá khứ."
@@ -431,10 +431,10 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "C",
-              "en": "It's a short walk from the main square.",
-              "vi": "Từ quảng trường chính đi bộ một đoạn ngắn là tới.",
+              "en": "Only five minutes on foot from the square.",
+              "vi": "Từ quảng trường đi bộ chỉ năm phút.",
               "trap": "repeat-word",
-              "why_vi": "Lặp lại từ square nhưng nói về đường đi, không nói thứ Bảy có mở cửa hay không."
+              "why_vi": "Lặp lại từ square nhưng trả lời về khoảng cách, không nói thứ Bảy có mở cửa hay không."
             }
           ],
           "v": {
@@ -453,10 +453,10 @@ window.BS_UNITS["p2-04"] = {
           "options": [
             {
               "label": "A",
-              "en": "Yes, she counts on our support.",
-              "vi": "Vâng, cô ấy trông cậy vào sự hỗ trợ của chúng tôi.",
+              "en": "She's counting on a raise this spring.",
+              "vi": "Cô ấy đang trông chờ được tăng lương mùa xuân này.",
               "trap": "repeat-word",
-              "why_vi": "Lặp lại từ count nhưng count on nghĩa là trông cậy, không nói về việc đếm tiền."
+              "why_vi": "Counting on nghĩa là trông cậy, chỉ lặp lại từ count; câu này nói về chuyện tăng lương, không nói về ngăn tiền sáng nay."
             },
             {
               "label": "B",
@@ -465,8 +465,8 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "C",
-              "en": "The top drawer of the filing cabinet.",
-              "vi": "Ngăn kéo trên cùng của tủ hồ sơ.",
+              "en": "Right next to the coin trays, I believe.",
+              "vi": "Tôi nghĩ là ngay cạnh các khay đựng tiền xu.",
               "trap": "wrong-wh",
               "why_vi": "Đây là câu trả lời cho Where, không cho biết sáng nay tiền đã được đếm hay chưa."
             }
@@ -492,17 +492,17 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "B",
-              "en": "Their group photo is hanging up in the lobby.",
-              "vi": "Ảnh chụp cả nhóm của họ đang treo ở sảnh.",
+              "en": "Actually, their group meets on Friday mornings.",
+              "vi": "Thật ra nhóm của họ họp vào các sáng thứ Sáu.",
               "trap": "repeat-word",
-              "why_vi": "Lặp lại từ group nhưng nói về tấm ảnh, không nói đã gửi mẫu đơn hay chưa."
+              "why_vi": "Lặp lại từ Group nhưng nói về lịch họp của một nhóm, không nói đã gửi mẫu đơn hay chưa."
             },
             {
               "label": "C",
-              "en": "Yes, he sent me a postcard from the coast.",
-              "vi": "Có, anh ấy đã gửi cho tôi một tấm bưu thiếp từ vùng biển.",
+              "en": "Yes, he sent me a copy of his travel plans.",
+              "vi": "Có, anh ấy đã gửi cho tôi một bản kế hoạch đi lại của anh ấy.",
               "trap": "wrong-subject",
-              "why_vi": "Câu hỏi hỏi về you và các mẫu đơn; câu này nói một người khác gửi bưu thiếp cho người đáp."
+              "why_vi": "Câu hỏi hỏi về you và các mẫu đơn; câu này nói một người khác gửi tài liệu khác cho người đáp."
             }
           ],
           "v": {
@@ -513,25 +513,25 @@ window.BS_UNITS["p2-04"] = {
           "id": "qr1-06",
           "kind": "tag",
           "q": {
-            "en": "Penhallow Group's annual audit starts next week, doesn't it?",
-            "vi": "Đợt kiểm toán thường niên của Penhallow Group bắt đầu vào tuần sau, phải không?"
+            "en": "Lumora Consulting's review of our branch starts next week, doesn't it?",
+            "vi": "Đợt rà soát chi nhánh của Lumora Consulting bắt đầu vào tuần sau, phải không?"
           },
           "answer": "C",
-          "explain_vi": "Câu hỏi đuôi để xác nhận thời điểm. C đính chính: đợt đó đã bị lùi đến ngày mười lăm. Actually thường dùng để sửa lại điều người hỏi đang nghĩ.",
+          "explain_vi": "Câu hỏi đuôi để xác nhận thời điểm. C đính chính: đợt rà soát đã bị lùi đến ngày mười lăm. Actually thường dùng để sửa lại điều người hỏi đang nghĩ.",
           "options": [
             {
               "label": "A",
-              "en": "Please start by signing at the bottom.",
-              "vi": "Xin hãy bắt đầu bằng việc ký ở cuối trang.",
+              "en": "Actually, you start by signing at the bottom.",
+              "vi": "Thật ra, bạn bắt đầu bằng việc ký ở cuối trang.",
               "trap": "repeat-word",
-              "why_vi": "Lặp lại từ start nhưng là lời hướng dẫn ký giấy, không nói gì về đợt kiểm toán."
+              "why_vi": "Lặp lại từ start nhưng là lời chỉ cách điền giấy tờ, không nói gì về đợt rà soát."
             },
             {
               "label": "B",
-              "en": "That is a very smart jacket you have on.",
-              "vi": "Chiếc áo khoác bạn đang mặc trông rất bảnh.",
+              "en": "The view is much better from the third floor.",
+              "vi": "Từ tầng ba ngắm cảnh đẹp hơn nhiều.",
               "trap": "similar-sound",
-              "why_vi": "Smart nghe gần giống start nhưng ở đây là lời khen trang phục."
+              "why_vi": "View nghe gần giống phần cuối của review nhưng nghĩa là khung cảnh."
             },
             {
               "label": "C",
@@ -555,17 +555,17 @@ window.BS_UNITS["p2-04"] = {
           "options": [
             {
               "label": "A",
-              "en": "The ledge outside my office window is quite narrow.",
-              "vi": "Cái gờ bên ngoài cửa sổ phòng tôi khá hẹp.",
+              "en": "Yes, the ledge was repaired just last week.",
+              "vi": "Vâng, cái gờ tường mới được sửa tuần trước.",
               "trap": "similar-sound",
               "why_vi": "Ledge nghe gần giống ledger nhưng là cái gờ tường."
             },
             {
               "label": "B",
-              "en": "No, I'd rather pay by card, if that's all right.",
-              "vi": "Không, tôi muốn trả bằng thẻ hơn, nếu được.",
+              "en": "No, we only accept cash at that window.",
+              "vi": "Không, ở quầy đó chúng tôi chỉ nhận tiền mặt.",
               "trap": "related-word",
-              "why_vi": "Liên quan đến tiền mặt nhưng nói về cách thanh toán, không nói về sổ quỹ."
+              "why_vi": "Liên quan đến tiền mặt nhưng nói về hình thức thanh toán ở quầy, không nói về việc đối chiếu sổ quỹ."
             },
             {
               "label": "C",
@@ -589,10 +589,10 @@ window.BS_UNITS["p2-04"] = {
           "options": [
             {
               "label": "A",
-              "en": "I work three days a week at window one.",
-              "vi": "Tôi làm ba ngày một tuần ở quầy số một.",
+              "en": "I'm working the late shift on Thursday.",
+              "vi": "Thứ Năm tôi làm ca muộn.",
               "trap": "repeat-word",
-              "why_vi": "Lặp lại work, window và three nhưng nói về lịch làm của người đáp, không nói về cái máy."
+              "why_vi": "Lặp lại từ working nhưng nói về ca làm của người đáp, không nói về cái máy."
             },
             {
               "label": "B",
@@ -601,10 +601,10 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "C",
-              "en": "The exchange rate changed again overnight.",
-              "vi": "Tỷ giá lại thay đổi qua đêm.",
+              "en": "A courier is bringing the new rate sheet today.",
+              "vi": "Hôm nay người giao hàng sẽ mang bảng tỷ giá mới đến.",
               "trap": "related-word",
-              "why_vi": "Liên quan đến ngoại tệ nhưng nói về tỷ giá, không nói về máy đếm tiền."
+              "why_vi": "Rate gợi đến chuyện ngoại tệ nhưng nói về việc giao bảng tỷ giá, không nói máy đếm tiền có chạy hay không."
             }
           ],
           "v": {
@@ -630,10 +630,10 @@ window.BS_UNITS["p2-04"] = {
           "options": [
             {
               "label": "A",
-              "en": "It really wasn't anybody's fault at all.",
-              "vi": "Thật ra chẳng phải lỗi của ai cả.",
+              "en": "Actually, the billing error was our fault.",
+              "vi": "Thật ra lỗi tính phí đó là do chúng tôi.",
               "trap": "similar-sound",
-              "why_vi": "Fault nghe gần giống vault nhưng nghĩa là lỗi."
+              "why_vi": "Fault nghe gần giống vault nhưng nghĩa là lỗi; câu này nói về việc tính phí sai."
             },
             {
               "label": "B",
@@ -642,10 +642,10 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "C",
-              "en": "Yes, please keep it somewhere safe for me.",
-              "vi": "Vâng, nhờ bạn cất nó ở chỗ an toàn giúp tôi.",
+              "en": "Only the manager has the code to that safe.",
+              "vi": "Chỉ quản lý mới có mã của két đó.",
               "trap": "related-word",
-              "why_vi": "Safe (an toàn, cũng là két sắt) gợi đến kho tiền nhưng đây là lời nhờ cất đồ, không nói về việc kiểm tra."
+              "why_vi": "Safe (két sắt) gợi đến kho tiền nhưng câu này nói ai giữ mã, không nói việc kiểm tra còn diễn ra hay không."
             }
           ],
           "v": {
@@ -664,15 +664,15 @@ window.BS_UNITS["p2-04"] = {
           "options": [
             {
               "label": "A",
-              "en": "No, I filled up the tank yesterday.",
-              "vi": "Không, hôm qua tôi đã đổ đầy bình xăng.",
+              "en": "No, that position was filled last week.",
+              "vi": "Không, vị trí đó đã có người nhận từ tuần trước.",
               "trap": "similar-sound",
-              "why_vi": "Filled nghe gần giống filed nhưng ở đây là đổ đầy bình xăng."
+              "why_vi": "Filled nghe gần giống filed nhưng ở đây là tuyển được người cho một vị trí."
             },
             {
               "label": "B",
-              "en": "The deposit is refundable for thirty days.",
-              "vi": "Tiền đặt cọc được hoàn lại trong ba mươi ngày.",
+              "en": "I was told the deposit is fully refundable.",
+              "vi": "Tôi được cho biết tiền đặt cọc được hoàn lại toàn bộ.",
               "trap": "repeat-word",
               "why_vi": "Lặp lại từ deposit với nghĩa tiền đặt cọc, không nói về việc lưu phiếu."
             },
@@ -703,17 +703,17 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "B",
-              "en": "They restored the old clock over the door.",
-              "vi": "Họ đã phục chế chiếc đồng hồ cũ phía trên cửa.",
+              "en": "Yes, I saw the restored lobby this morning.",
+              "vi": "Vâng, sáng nay tôi đã thấy sảnh được tu sửa lại.",
               "trap": "repeat-word",
-              "why_vi": "Lặp lại từ restored nhưng nói về chiếc đồng hồ."
+              "why_vi": "Lặp lại từ restored nhưng nói về sảnh, không nói về quyền truy cập."
             },
             {
               "label": "C",
-              "en": "No, we'll upload the photos tomorrow.",
-              "vi": "Không, ngày mai chúng tôi mới tải ảnh lên.",
+              "en": "I'd rather get paper statements by mail.",
+              "vi": "Tôi muốn nhận sao kê giấy qua bưu điện hơn.",
               "trap": "related-word",
-              "why_vi": "Upload liên quan đến việc trên mạng nhưng nói về ảnh, không nói về quyền truy cập."
+              "why_vi": "Liên quan đến dịch vụ tài khoản nhưng nói về cách nhận sao kê, không cho biết quyền truy cập đã được khôi phục hay chưa."
             }
           ],
           "v": {
@@ -724,11 +724,11 @@ window.BS_UNITS["p2-04"] = {
           "id": "qr2-04",
           "kind": "yesno",
           "q": {
-            "en": "Can I get a receipt for this cash payment?",
-            "vi": "Tôi có thể lấy biên nhận cho khoản thanh toán tiền mặt này không?"
+            "en": "Does the machine print a receipt for cash payments?",
+            "vi": "Máy có in biên nhận cho các khoản thanh toán tiền mặt không?"
           },
           "answer": "B",
-          "explain_vi": "Đây là lời xin biên nhận. B đồng ý bằng Sure và cho biết biên nhận đang được in.",
+          "explain_vi": "Câu hỏi Yes/No: máy có in biên nhận không. B trả lời Sure, nghĩa là có, và cho biết máy đang in một tờ cho người hỏi.",
           "options": [
             {
               "label": "A",
@@ -739,15 +739,15 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "B",
-              "en": "Sure, it's printing for you right now.",
-              "vi": "Được chứ, máy đang in ngay cho bạn đây."
+              "en": "Sure, it's printing one for you right now.",
+              "vi": "Có chứ, máy đang in cho bạn ngay đây."
             },
             {
               "label": "C",
               "en": "Yes, the payment system was built overseas.",
               "vi": "Vâng, hệ thống thanh toán được xây dựng ở nước ngoài.",
               "trap": "repeat-word",
-              "why_vi": "Lặp lại từ payment nhưng nói về nguồn gốc của hệ thống, không đáp lại việc xin biên nhận."
+              "why_vi": "Lặp lại từ payment nhưng nói về nguồn gốc của hệ thống, không cho biết máy có in biên nhận hay không."
             }
           ],
           "v": {
@@ -766,17 +766,17 @@ window.BS_UNITS["p2-04"] = {
           "options": [
             {
               "label": "A",
-              "en": "She presented a service award last spring.",
-              "vi": "Mùa xuân năm ngoái cô ấy đã trao một giải thưởng cống hiến.",
+              "en": "She spoke at three different events last spring.",
+              "vi": "Mùa xuân năm ngoái cô ấy đã phát biểu tại ba sự kiện khác nhau.",
               "trap": "wrong-tense",
-              "why_vi": "Câu hỏi nói về chiều nay; câu này kể một việc đã xảy ra từ mùa xuân trước."
+              "why_vi": "Câu hỏi nói về chiều nay; câu này kể những việc đã xảy ra từ mùa xuân trước."
             },
             {
               "label": "B",
-              "en": "No, this present is for my nephew.",
-              "vi": "Không, món quà này là cho cháu trai tôi.",
+              "en": "No, at present that car park is for staff only.",
+              "vi": "Không, hiện tại bãi đỗ xe đó chỉ dành cho nhân viên.",
               "trap": "repeat-word",
-              "why_vi": "Present ở đây là món quà, cùng gốc chữ với presenting nhưng khác nghĩa."
+              "why_vi": "At present nghĩa là hiện tại, chỉ lặp gốc từ của presenting; câu này nói ai được dùng bãi đỗ xe."
             },
             {
               "label": "C",
@@ -805,10 +805,10 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "B",
-              "en": "She will close the door on her way out.",
-              "vi": "Cô ấy sẽ đóng cửa khi đi ra.",
+              "en": "She'll drop that off on her way home.",
+              "vi": "Trên đường về cô ấy sẽ ghé gửi cái đó.",
               "trap": "wrong-tense",
-              "why_vi": "Câu hỏi dùng Did để hỏi việc đã làm; câu này dùng will và nói về chuyện đóng cửa."
+              "why_vi": "Câu hỏi dùng Did để hỏi việc đã làm; câu này dùng will và nói về việc mang gửi một món đồ."
             },
             {
               "label": "C",
@@ -839,17 +839,17 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "B",
-              "en": "Yes, I approve of the new dress code.",
-              "vi": "Vâng, tôi tán thành quy định trang phục mới.",
+              "en": "No, I paid my card off in full last month.",
+              "vi": "Không, tháng trước tôi đã trả hết nợ thẻ.",
               "trap": "wrong-subject",
-              "why_vi": "Câu hỏi hỏi về anh Hoang; câu này nói ý kiến của người đáp về một việc khác."
+              "why_vi": "Câu hỏi hỏi anh Hoang đã duyệt chưa; câu này nói về việc trả nợ thẻ của người đáp."
             },
             {
               "label": "C",
-              "en": "The line at the teller window is very long.",
-              "vi": "Hàng người ở quầy giao dịch rất dài.",
+              "en": "He's been waiting in line since we opened.",
+              "vi": "Anh ấy đã xếp hàng chờ từ lúc mình mở cửa.",
               "trap": "repeat-word",
-              "why_vi": "Lặp lại từ line với nghĩa hàng người, không nói gì về việc duyệt."
+              "why_vi": "Lặp lại từ line với nghĩa hàng người, không nói gì về việc duyệt hạn mức."
             }
           ],
           "v": {
@@ -868,17 +868,17 @@ window.BS_UNITS["p2-04"] = {
           "options": [
             {
               "label": "A",
-              "en": "Yes, I need a new pair of reading glasses.",
-              "vi": "Có, tôi cần một cặp kính đọc sách mới.",
+              "en": "No, I only wear my badge on audit days.",
+              "vi": "Không, tôi chỉ đeo thẻ tên vào những ngày kiểm toán.",
               "trap": "wrong-subject",
-              "why_vi": "Câu hỏi hỏi về các giao dịch viên và mẫu chữ ký; câu này nói chuyện người đáp cần kính."
+              "why_vi": "Câu hỏi hỏi về các giao dịch viên và mẫu chữ ký; câu này nói chuyện đeo thẻ của người đáp."
             },
             {
               "label": "B",
-              "en": "The sign over there points to the stairwell.",
-              "vi": "Tấm biển đằng kia chỉ lối ra cầu thang.",
+              "en": "Only the sign by the stairwell was replaced.",
+              "vi": "Chỉ có tấm biển cạnh cầu thang được thay.",
               "trap": "similar-sound",
-              "why_vi": "Sign (tấm biển) nghe gần giống phần đầu của signature nhưng câu này nói về chỉ đường."
+              "why_vi": "Sign (tấm biển) nghe gần giống phần đầu của signature nhưng câu này nói về việc thay biển."
             },
             {
               "label": "C",
@@ -909,10 +909,10 @@ window.BS_UNITS["p2-04"] = {
           "options": [
             {
               "label": "A",
-              "en": "I paid for my lunch in cash today.",
-              "vi": "Hôm nay tôi đã trả tiền bữa trưa bằng tiền mặt.",
+              "en": "Usually I just pay for lunch in cash.",
+              "vi": "Thường thì tôi trả tiền bữa trưa bằng tiền mặt.",
               "trap": "repeat-word",
-              "why_vi": "Lặp lại từ cash nhưng nói về bữa trưa, không nói về lịch giao tiền."
+              "why_vi": "Lặp lại từ cash nhưng nói thói quen trả tiền ăn trưa, không nói về lịch giao tiền."
             },
             {
               "label": "B",
@@ -921,10 +921,10 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "C",
-              "en": "No, I can't come to the party.",
-              "vi": "Không, tôi không đến dự tiệc được.",
+              "en": "No, it comes with a free carrying case.",
+              "vi": "Không, nó được tặng kèm một túi đựng.",
               "trap": "repeat-word",
-              "why_vi": "Lặp lại động từ come nhưng nói về việc người đáp không dự tiệc."
+              "why_vi": "Comes with nghĩa là kèm theo, chỉ lặp lại động từ come; câu này nói về phụ kiện của một món đồ."
             }
           ],
           "v": {
@@ -943,17 +943,17 @@ window.BS_UNITS["p2-04"] = {
           "options": [
             {
               "label": "A",
-              "en": "Yes, you can return it within a week.",
-              "vi": "Được, bạn có thể trả lại nó trong vòng một tuần.",
+              "en": "Yes, I'm planning to return that jacket tomorrow.",
+              "vi": "Vâng, mai tôi định trả lại chiếc áo khoác đó.",
               "trap": "repeat-word",
               "why_vi": "Return ở đây là trả lại đồ, khác với tax return (tờ khai thuế)."
             },
             {
               "label": "B",
-              "en": "The taxi stand is just outside the main doors.",
-              "vi": "Bến taxi ở ngay ngoài cửa chính.",
+              "en": "He's waiting for a taxi outside the main doors.",
+              "vi": "Anh ấy đang đợi taxi ngoài cửa chính.",
               "trap": "similar-sound",
-              "why_vi": "Taxi nghe gần giống tax nhưng câu này nói về chỗ đón xe."
+              "why_vi": "Taxi nghe gần giống tax nhưng câu này nói về việc đón xe."
             },
             {
               "label": "C",
@@ -977,10 +977,10 @@ window.BS_UNITS["p2-04"] = {
           "options": [
             {
               "label": "A",
-              "en": "Yes, I've already checked the weather forecast.",
-              "vi": "Vâng, tôi đã xem dự báo thời tiết rồi.",
+              "en": "Yes, they've already checked all the smoke alarms.",
+              "vi": "Vâng, họ đã kiểm tra hết các thiết bị báo khói.",
               "trap": "similar-sound",
-              "why_vi": "Checked nghe gần giống checks nhưng ở đây là xem dự báo thời tiết."
+              "why_vi": "Checked nghe gần giống checks (séc) nhưng ở đây là kiểm tra thiết bị báo khói."
             },
             {
               "label": "B",
@@ -989,10 +989,10 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "C",
-              "en": "The window cleaners usually come early on Mondays.",
-              "vi": "Thợ lau cửa kính thường đến sớm vào thứ Hai.",
+              "en": "The window displays have to be changed every month.",
+              "vi": "Các tủ trưng bày bên cửa sổ phải được thay hằng tháng.",
               "trap": "repeat-word",
-              "why_vi": "Lặp lại từ window nhưng nói về thợ lau kính."
+              "why_vi": "Lặp lại từ window nhưng nói về việc thay đồ trưng bày."
             }
           ],
           "v": {
@@ -1016,15 +1016,15 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "B",
-              "en": "I'm only borrowing that calculator until Friday.",
-              "vi": "Tôi chỉ mượn cái máy tính đó đến thứ Sáu.",
+              "en": "He still owes the bank two monthly payments.",
+              "vi": "Anh ấy còn nợ ngân hàng hai kỳ trả hằng tháng.",
               "trap": "related-word",
-              "why_vi": "Borrow gợi đến lending nhưng nói về việc mượn máy tính, không nói về đợt rà soát."
+              "why_vi": "Chuyện nợ ngân hàng gợi đến lending (cho vay) nhưng không nói về việc rà soát quy trình."
             },
             {
               "label": "C",
-              "en": "The finish on that oak desk looks really smooth.",
-              "vi": "Lớp sơn phủ trên chiếc bàn gỗ sồi đó trông rất mịn.",
+              "en": "Actually, that desk has a natural oak finish.",
+              "vi": "Thật ra chiếc bàn đó được phủ lớp hoàn thiện màu gỗ sồi tự nhiên.",
               "trap": "repeat-word",
               "why_vi": "Finish ở đây là lớp sơn phủ, lặp lại gốc từ của finished nhưng khác nghĩa."
             }
@@ -1050,17 +1050,17 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "B",
-              "en": "We kept the old ones in a box for years.",
-              "vi": "Chúng tôi đã giữ những cái cũ trong hộp nhiều năm.",
+              "en": "They asked for the old ones two years ago.",
+              "vi": "Hai năm trước họ đã xin những cái cũ.",
               "trap": "wrong-tense",
-              "why_vi": "Câu hỏi hỏi việc sắp tới có cần hay không; câu này kể việc cất giữ trong quá khứ."
+              "why_vi": "Câu hỏi hỏi việc sắp tới (Will, trước cuối tháng này); câu này kể một yêu cầu từ hai năm trước."
             },
             {
               "label": "C",
-              "en": "No, I don't need a ride home, but thanks.",
-              "vi": "Không, tôi không cần đi nhờ về nhà, nhưng cảm ơn.",
+              "en": "No, I'll need the van on the twenty-fifth.",
+              "vi": "Không, ngày hai mươi lăm tôi sẽ cần xe tải nhỏ.",
               "trap": "wrong-subject",
-              "why_vi": "Câu hỏi hỏi bên kế toán cần gì; câu này nói người đáp không cần đi nhờ xe."
+              "why_vi": "Câu hỏi hỏi bên kế toán có cần biên lai không; câu này nói người đáp cần xe."
             }
           ],
           "v": {
@@ -1079,10 +1079,10 @@ window.BS_UNITS["p2-04"] = {
           "options": [
             {
               "label": "A",
-              "en": "Yes, I have a few coins in my pocket.",
-              "vi": "Có, tôi có vài đồng xu trong túi.",
+              "en": "Yes, I have some coins left from my trip.",
+              "vi": "Có, tôi còn vài đồng xu từ chuyến đi.",
               "trap": "wrong-subject",
-              "why_vi": "Câu hỏi hỏi chi nhánh có máy không; câu này nói người đáp có tiền xu."
+              "why_vi": "Câu hỏi hỏi chi nhánh có máy không; câu này nói người đáp còn tiền xu."
             },
             {
               "label": "B",
@@ -1091,8 +1091,8 @@ window.BS_UNITS["p2-04"] = {
             },
             {
               "label": "C",
-              "en": "The cobbler fixed my heel yesterday.",
-              "vi": "Hôm qua thợ giày đã sửa gót giày cho tôi.",
+              "en": "My boots were at the cobbler's all last week.",
+              "vi": "Cả tuần trước đôi ủng của tôi nằm ở tiệm sửa giày.",
               "trap": "repeat-word",
               "why_vi": "Cobbler ở đây là thợ sửa giày, chỉ lặp lại từ trong tên đường."
             }
@@ -1113,15 +1113,15 @@ window.BS_UNITS["p2-04"] = {
           "options": [
             {
               "label": "A",
-              "en": "Yes, I'll mail that parcel after work.",
-              "vi": "Vâng, tan làm tôi sẽ gửi bưu kiện đó.",
+              "en": "I'll mail her that parcel after work.",
+              "vi": "Tan làm tôi sẽ gửi bưu kiện đó cho cô ấy.",
               "trap": "wrong-tense",
               "why_vi": "Câu hỏi hỏi việc Kamala đã làm; câu này nói việc người đáp sẽ làm."
             },
             {
               "label": "B",
-              "en": "The auditorium seats about two hundred.",
-              "vi": "Khán phòng chứa khoảng hai trăm chỗ.",
+              "en": "Nothing in the auditorium has been moved.",
+              "vi": "Trong khán phòng chưa có gì bị di chuyển.",
               "trap": "similar-sound",
               "why_vi": "Auditorium nghe gần giống audit nhưng câu này nói về khán phòng."
             },
@@ -1147,17 +1147,17 @@ window.BS_UNITS["p2-04"] = {
           "options": [
             {
               "label": "A",
-              "en": "We played a very close match on Sunday.",
-              "vi": "Chủ nhật chúng tôi đã chơi một trận rất sít sao.",
+              "en": "The new curtains don't quite match the carpet.",
+              "vi": "Rèm mới không hợp lắm với thảm.",
               "trap": "repeat-word",
-              "why_vi": "Match ở đây là trận đấu, khác với nghĩa khớp nhau."
+              "why_vi": "Match ở đây là hợp nhau giữa rèm và thảm; chỉ lặp từ, không nói gì về chữ ký."
             },
             {
               "label": "B",
-              "en": "The new neon sign is extremely bright.",
-              "vi": "Tấm biển đèn neon mới sáng cực kỳ.",
+              "en": "The new signs look much brighter to me.",
+              "vi": "Theo tôi thì mấy tấm biển mới trông sáng hơn hẳn.",
               "trap": "similar-sound",
-              "why_vi": "Sign nghe gần giống phần đầu của signature nhưng nói về biển hiệu."
+              "why_vi": "Signs nghe gần giống phần đầu của signature nhưng nói về biển hiệu."
             },
             {
               "label": "C",
