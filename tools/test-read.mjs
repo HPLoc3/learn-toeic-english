@@ -387,6 +387,17 @@ const KEYS = (set) => set.questions.map((q) => q.answer);
   check("quiz.js: thieu read.js thi bo qua bai gram/read (khong nem loi)", !threw && !byClass(root, "rd-card").length);
 }
 
+/* ================= mau unit nap duoc va render duoc ================= */
+{
+  const tpl = (n) => { const w = {}; w.window = w; vm.runInNewContext(fs.readFileSync(path.join(ROOT, "tools/templates/" + n), "utf8"), w); return clone(w.BS_UNITS.__ID__); };
+  const T5 = tpl("unit-template-p5.js"), T67 = tpl("unit-template-p6p7.js");
+  check("mau Part 5: nap duoc, co bai gram (items) va bai fill", T5.id === "__ID__" && T5.exercises.some((x) => x.type === "gram" && x.items.length >= 1) && T5.exercises.some((x) => x.type === "fill"));
+  check("mau Part 6/7: nap duoc, co bai read voi bo cloze, single, double va bai fill", T67.exercises.filter((x) => x.type === "read").length === 2 && [].concat(...T67.exercises.filter((x) => x.sets).map((x) => x.sets)).map((x) => x.kind).sort().join() === "cloze,double,single,single" && T67.exercises.some((x) => x.type === "fill"));
+  const E = makeEnv({ files: RF }), st = E.BS.unit("tpl");
+  const cards = T5.exercises.filter((x) => x.type === "gram").map((x, i) => E.BS.renderGram(x, i, st, "tpl")).concat(T67.exercises.filter((x) => x.type === "read").map((x, i) => E.BS.renderRead(x, i, st, "tpl")));
+  check("mau Part 5 va Part 6/7 duoc read.js render ra the", cards.length === 3 && cards.every((c) => c.tag === "section" && byClass(c, "rd-opt").length >= 4));
+}
+
 /* ================= tong ket ================= */
 console.log("\ntest-read: " + pass + " đạt, " + fail + " lỗi");
 process.exit(fail ? 1 : 0);
