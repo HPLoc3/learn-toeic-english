@@ -334,6 +334,39 @@
     if (v) return { v: v, exact: true };
     return { v: vs.filter(function (x) { return /^en[-_]US$/i.test(x.lang); })[0] || vs[0] || null, exact: false };
   }
+  /* Chon giong cho nhieu nguoi noi (Part 3/4): cast = [{ id, accent: "us"|"gb"|"au", gender: "m"|"f" }] -> [{ id, v, lang, pitch, matched }].
+   * Xac dinh, chi phu thuoc danh sach giong. Gioi tinh doan theo TEN giong (+4 neu khop, -4 neu lech), roi accent dung (+2),
+   * giong da dung cho nguoi truoc (-3), giong mac dinh (+1); hoa nhau thi theo thu tu danh sach. Giong "la" (Bells, Zarvox...) bi loai.
+   * pitch 1.0 khi ten giong khop gioi tinh; nguoc lai 0.8 (nam) / 1.2 (nu). Hai nguoi cung giong + cung pitch: nguoi sau lech them 0.15.
+   * lang luon theo accent yeu cau (Chrome Android bo qua voice nhung nghe theo lang). */
+  var VOICE_F = /\b(female|woman|samantha|victoria|karen|moira|tessa|fiona|susan|hazel|zira|catherine|serena|kate|jenny|aria|sonia|libby|natasha|emma|ava|allison|amy|joanna|salli|kimberly|ivy|nicole|veena|heera|linda|michelle|ana|clara|molly)\b/i;
+  var VOICE_M = /\b(male|daniel|alex|tom|oliver|david|mark|george|james|guy|ryan|william|rishi|aaron|arthur|gordon|thomas|brian|matthew|joey|justin|russell|eric|liam|christopher|steffan|prabhat|sean)\b/i;
+  var VOICE_NOVELTY = /\b(albert|bad news|bahh|bells|boing|bubbles|cellos|good news|jester|organ|superstar|trinoids|whisper|wobble|zarvox|fred|junior|princess|ralph|kathy|deranged|hysterical|pipe organ)\b/i;
+  function voiceGender(v) {
+    var n = String(v && v.name || "");
+    return VOICE_F.test(n) ? "f" : VOICE_M.test(n) ? "m" : "";
+  }
+  function castVoices(cast) {
+    var vs = enVoices().filter(function (v) { return !VOICE_NOVELTY.test(String(v.name || "")); });
+    var out = [], used = [];
+    (Array.isArray(cast) ? cast : []).forEach(function (c) {
+      c = isObj(c) ? c : {};
+      var accent = c.accent === "gb" || c.accent === "au" ? c.accent : "us", g = c.gender === "f" ? "f" : "m";
+      var tag = { us: "US", gb: "GB", au: "AU" }[accent], re = new RegExp("^en[-_]" + tag + "$", "i"), best = null, bs = -1e9;
+      vs.forEach(function (v) {
+        var vg = voiceGender(v), sc = (vg ? (vg === g ? 4 : -4) : 0) + (re.test(v.lang || "") ? 2 : 0) + (used.indexOf(v) > -1 ? -3 : 0) + (v["default"] ? 1 : 0);
+        if (sc > bs) { bs = sc; best = v; }
+      });
+      var matched = !!best && voiceGender(best) === g;
+      var pitch = matched ? 1 : g === "f" ? 1.2 : 0.8;
+      for (var k = 0; k < out.length; k++) {
+        if (out[k].v === best && out[k].pitch === pitch) { pitch = Math.min(1.6, Math.max(0.5, Math.round((pitch + 0.15) * 100) / 100)); k = -1; }
+      }
+      if (best) used.push(best);
+      out.push({ id: c.id, v: best, lang: "en-" + tag, pitch: pitch, matched: matched });
+    });
+    return out;
+  }
   /* Doc mot day cau lien tiep (vd cau hoi, A, B, C): parts = [{ text, accent: "us"|"gb"|"au", pause: ms sau phan nay }].
    * opts: { rate, onend, onstop }. onend chi chay khi doc het (khong chay khi huy). onstop({ completed, started }) chay DUNG MOT LAN khi day ket thuc
    * vi bat ky ly do nao (doc het, huy tu ben ngoai, loi); started = da thay phan nao bat dau doc. Tra ve { cancel() } hoac null (khong ho tro / khong co phan nao).
@@ -355,6 +388,7 @@
       var onend = isObj(opts) && typeof opts.onend === "function" ? opts.onend : null;
       var onstop = isObj(opts) && typeof opts.onstop === "function" ? opts.onstop : null;
       var started = false, stopped = false, completed = false;
+      var cast = isObj(opts) && Array.isArray(opts.cast) ? castVoices(opts.cast) : null;
       cancelSeq();
       s.cancel();
       var i = 0, over = false, wd = 0, gap = 0;
@@ -386,12 +420,14 @@
         }
         try {
           var accent = p.accent === "gb" || p.accent === "au" ? p.accent : "us";
-          var m = new SpeechSynthesisUtterance(p.text), pk = pickVoice(accent);
-          m.lang = "en-" + { us: "US", gb: "GB", au: "AU" }[accent];
+          var who = cast && p.who !== undefined ? cast.filter(function (c) { return c.id === p.who; })[0] : null;
+          var m = new SpeechSynthesisUtterance(p.text), pk = who ? null : pickVoice(accent);
+          m.lang = who ? who.lang : "en-" + { us: "US", gb: "GB", au: "AU" }[accent];
           m.rate = rate;
-          if (pk.v) m.voice = pk.v;
+          if (who) { if (who.v) m.voice = who.v; m.pitch = who.pitch; }
+          else if (pk.v) m.voice = pk.v;
           h.keep = m; /* giu tham chieu: Chrome co the nuot onend neu utterance bi don rac */
-          if (!pk.exact && accent !== "us") m.pitch = 1.2;
+          if (pk && !pk.exact && accent !== "us") m.pitch = 1.2;
           m.onstart = function () { started = true; };
           m.onend = function () { started = true; adv(false); };
           m.onerror = function (ev) { var er = ev && ev.error; adv(er === "canceled" || er === "interrupted"); };
@@ -488,6 +524,7 @@
     (u.phrases || []).forEach(function (w) { total++; if (st.known[w.id]) done++; });
     (u.exercises || []).forEach(function (ex) {
       if (ex.type === "mc") { total++; if (st.res[ex.id] !== undefined) done++; }
+      else if (ex.type === "conv") (ex.sets || []).forEach(function (se) { (se.questions || []).forEach(function (q) { total++; if (st.res[q.id] !== undefined) done++; }); });
       else (ex.items || []).forEach(function (it) { total++; if (st.res[it.id] !== undefined) done++; });
     });
     return { done: done, total: total, pct: total ? Math.round(done * 100 / total) : 0 };
@@ -595,7 +632,7 @@
     el: el, state: state, save: save, unit: unit, countUnverified: countUnverified,
     badgeUnverified: badgeUnverified, viLine: viLine, img: img, isWide: isWide, norm: norm, KEY: KEY,
     dayKey: dayKey, addXP: addXP, stats: stats, pref: pref, setPref: setPref, isEdit: isEdit,
-    speak: speak, speakSeq: speakSeq, stopSpeak: stopSpeak, hasVoice: hasVoice, onVoices: onVoices,
+    speak: speak, speakSeq: speakSeq, castVoices: castVoices, stopSpeak: stopSpeak, hasVoice: hasVoice, onVoices: onVoices,
     reload: reload, exportState: exportState, importState: importState, REP_CAP: REP_CAP, celebrate: celebrate, mountHud: mountHud, unitProgress: unitProgress, bar: bar,
     render: {}
   };
