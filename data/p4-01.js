@@ -170,7 +170,7 @@ window.BS_UNITS["p4-01"] = {
     {
       "id": "v015",
       "en": "voucher",
-      "vi": "phiếu quà tặng",
+      "vi": "phiếu mua hàng, phiếu ưu đãi",
       "group": "Quảng cáo"
     },
     {
@@ -405,8 +405,8 @@ window.BS_UNITS["p4-01"] = {
                   "label": "A",
                   "en": "Employees of a garden supplier",
                   "vi": "Nhân viên của một nhà cung cấp đồ làm vườn",
-                  "trap": "wrong-speaker",
-                  "why_vi": "Người nói gọi người nghe là shoppers, không phải nhân viên."
+                  "trap": "wrong-detail",
+                  "why_vi": "Người nói gọi người nghe là shoppers (khách mua sắm); nhân viên chỉ được nhắc đến ở phần hỗ trợ khiêng đồ."
                 },
                 {
                   "label": "B",
@@ -425,7 +425,7 @@ window.BS_UNITS["p4-01"] = {
                   "en": "Drivers making a delivery",
                   "vi": "Tài xế đang giao hàng",
                   "trap": "heard-word",
-                  "why_vi": "Chỉ có nhân viên khiêng đồ ra xe của khách (dòng 5); không nói với tài xế giao hàng."
+                  "why_vi": "Chỉ có câu nhân viên khiêng đồ ra xe của khách; người nói không nói với tài xế giao hàng."
                 }
               ]
             },
@@ -440,7 +440,7 @@ window.BS_UNITS["p4-01"] = {
               "evidence": [
                 3
               ],
-              "explain_vi": "Dòng 3 nói việc giảm giá không áp dụng cho gói hạt giống và thẻ quà tặng.",
+              "explain_vi": "Người nói cho biết việc giảm giá không áp dụng cho gói hạt giống và thẻ quà tặng (The discount does not cover seed packets or gift cards).",
               "options": [
                 {
                   "label": "A",
@@ -481,7 +481,7 @@ window.BS_UNITS["p4-01"] = {
               "evidence": [
                 4
               ],
-              "explain_vi": "Dòng 4: hàng đã bán là không đổi trả, nên không nhận trả lại hàng đã giảm giá.",
+              "explain_vi": "Người nói nhắc: hàng đã bán là không đổi trả (all sales are final), nên không nhận trả lại hàng đã giảm giá.",
               "options": [
                 {
                   "label": "A",
@@ -607,7 +607,7 @@ window.BS_UNITS["p4-01"] = {
               "evidence": [
                 1
               ],
-              "explain_vi": "Dòng 1: việc sửa đường ray gần Harbour Junction gây ra thay đổi.",
+              "explain_vi": "Người nói cho biết việc sửa đường ray (track repairs) gần Harbour Junction gây ra thay đổi; đáp án diễn đạt lại thành maintenance on the railway line.",
               "options": [
                 {
                   "label": "A",
@@ -690,7 +690,7 @@ window.BS_UNITS["p4-01"] = {
               "evidence": [
                 5
               ],
-              "explain_vi": "Dòng 5: nhân viên áo vàng sẽ gọi to khi bắt đầu cho lên tàu, tức là thông báo trực tiếp.",
+              "explain_vi": "Người nói cho biết nhân viên áo vàng sẽ gọi to (call out) khi bắt đầu cho lên tàu, tức là thông báo trực tiếp.",
               "options": [
                 {
                   "label": "A",
@@ -759,8 +759,8 @@ window.BS_UNITS["p4-01"] = {
             },
             {
               "s": "A",
-              "en": "So please ask any guests to arrive after lunch.",
-              "vi": "Vì vậy xin hãy nhờ khách của bạn đến sau bữa trưa."
+              "en": "Guests arriving before then may have to wait at the front desk.",
+              "vi": "Khách đến trước lúc đó có thể phải chờ ở quầy lễ tân."
             },
             {
               "s": "A",
@@ -790,7 +790,7 @@ window.BS_UNITS["p4-01"] = {
               "evidence": [
                 1
               ],
-              "explain_vi": "Dòng 1: hai thang máy chính sẽ ngừng hoạt động từ tám giờ đến trưa ngày mai.",
+              "explain_vi": "Người nói cho biết hai thang máy chính sẽ ngừng hoạt động từ tám giờ đến trưa ngày mai.",
               "options": [
                 {
                   "label": "A",
@@ -833,7 +833,7 @@ window.BS_UNITS["p4-01"] = {
                 3,
                 4
               ],
-              "explain_vi": "Sau câu này cô nhắc nhờ khách đến sau bữa trưa: khu bốc dỡ bận nên khách nên đến muộn hơn.",
+              "explain_vi": "Ngay sau câu này, cô nói khách đến sớm có thể phải chờ ở quầy lễ tân: khu bốc dỡ bận nên khách có thể bị chậm trễ.",
               "options": [
                 {
                   "label": "A",
@@ -844,8 +844,8 @@ window.BS_UNITS["p4-01"] = {
                 },
                 {
                   "label": "B",
-                  "en": "She is advising that visitors come later",
-                  "vi": "Cô khuyên khách đến thăm nên đến muộn hơn"
+                  "en": "She is cautioning that visitors may be kept waiting",
+                  "vi": "Cô cảnh báo khách đến thăm có thể phải chờ"
                 },
                 {
                   "label": "C",
@@ -874,14 +874,14 @@ window.BS_UNITS["p4-01"] = {
               "evidence": [
                 6
               ],
-              "explain_vi": "Dòng 6: khi thanh tra xong, người nói sẽ dán thông báo ở mọi tầng.",
+              "explain_vi": "Người nói hứa khi thanh tra xong sẽ dán thông báo (put a notice) ở mọi tầng.",
               "options": [
                 {
                   "label": "A",
                   "en": "Email each department",
                   "vi": "Gửi email cho từng phòng ban",
-                  "trap": "changed-plan",
-                  "why_vi": "Người nói dùng thông báo dán ở các tầng, không gửi email."
+                  "trap": "not-mentioned",
+                  "why_vi": "Người nói không nhắc đến email; cô sẽ dán thông báo ở các tầng."
                 },
                 {
                   "label": "B",
@@ -974,8 +974,8 @@ window.BS_UNITS["p4-01"] = {
               "id": "c2-s4-q1",
               "kind": "speaker",
               "q": {
-                "en": "Where does the speaker most likely work?",
-                "vi": "Người nói nhiều khả năng làm việc ở đâu?"
+                "en": "What type of business is being advertised?",
+                "vi": "Quảng cáo này nói về loại hình kinh doanh nào?"
               },
               "answer": "A",
               "evidence": [
@@ -1023,7 +1023,7 @@ window.BS_UNITS["p4-01"] = {
               "evidence": [
                 3
               ],
-              "explain_vi": "Dòng 3: ai đăng ký trước cuối tháng Sáu được miễn phí hai tháng đầu.",
+              "explain_vi": "Người nói cho biết ai đăng ký trước cuối tháng Sáu được miễn phí hai tháng đầu.",
               "options": [
                 {
                   "label": "A",
@@ -1234,7 +1234,7 @@ window.BS_UNITS["p4-01"] = {
               "evidence": [
                 2
               ],
-              "explain_vi": "Dòng 2 nói giao hàng miễn phí ở tầng ba; trên bảng, tầng 3 là Dining Room với mức giảm 25%.",
+              "explain_vi": "Người nói cho biết hàng mua ở tầng ba được giao miễn phí; trên bảng, tầng 3 là Dining Room với mức giảm 25%.",
               "options": [
                 {
                   "label": "A",
@@ -1275,7 +1275,7 @@ window.BS_UNITS["p4-01"] = {
               "evidence": [
                 3
               ],
-              "explain_vi": "Dòng 3: cần chi tối thiểu bốn trăm bảng trong một lần mua.",
+              "explain_vi": "Người nói nêu điều kiện: chi tối thiểu bốn trăm bảng trong một lần mua.",
               "options": [
                 {
                   "label": "A",
@@ -1371,7 +1371,7 @@ window.BS_UNITS["p4-01"] = {
                 0,
                 1
               ],
-              "explain_vi": "Dòng 0 và 1 giới thiệu Lingua Path, khóa học tiếng Tây Ban Nha trực tuyến.",
+              "explain_vi": "Hai câu đầu giới thiệu Lingua Path, khóa học tiếng Tây Ban Nha trực tuyến.",
               "options": [
                 {
                   "label": "A",
@@ -1453,7 +1453,7 @@ window.BS_UNITS["p4-01"] = {
               "evidence": [
                 5
               ],
-              "explain_vi": "Dòng 5: tạo tài khoản trên trang web rồi chọn trình độ.",
+              "explain_vi": "Người nói hướng dẫn: tạo tài khoản trên trang web rồi chọn trình độ.",
               "options": [
                 {
                   "label": "A",
@@ -1465,14 +1465,14 @@ window.BS_UNITS["p4-01"] = {
                   "en": "Book a live session with a tutor",
                   "vi": "Đặt một buổi học trực tiếp với gia sư",
                   "trap": "heard-word",
-                  "why_vi": "Gia sư chỉ nhận xét phần nói mỗi tuần (dòng 2), không phải bước bắt đầu."
+                  "why_vi": "Gia sư chỉ nhận xét phần nói mỗi tuần, không phải bước bắt đầu."
                 },
                 {
                   "label": "C",
                   "en": "Download the lessons to a phone",
                   "vi": "Tải bài học về điện thoại",
                   "trap": "heard-word",
-                  "why_vi": "Tải bài về điện thoại được nhắc ở dòng 3 nhưng không phải cách bắt đầu."
+                  "why_vi": "Việc tải bài về điện thoại có được nhắc nhưng không phải cách bắt đầu."
                 },
                 {
                   "label": "D",
