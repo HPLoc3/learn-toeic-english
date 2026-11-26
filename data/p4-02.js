@@ -6,7 +6,7 @@ window.BS_UNITS["p4-02"] = {
   "unitNo": 20,
   "title_vi": "Tin nhắn thoại và cuộc gọi",
   "focus": {
-    "intro_vi": "Ở Part 4, bạn đọc trước ba câu hỏi, rồi nghe một người nói một mình. Với tin nhắn thoại và bản ghi âm điện thoại, hãy bám vào cấu trúc quen thuộc: người gọi tự giới thiệu và nêu lý do ở đầu, thông tin chính ở giữa, yêu cầu hoặc việc sẽ làm ở cuối. Unit này gồm sáu đoạn: nhắc lịch hẹn, đổi số lượng đơn hàng, bản ghi âm ngoài giờ, đổi lịch hội thảo, xác nhận đặt phòng và giờ thợ đến.",
+    "intro_vi": "Ở Part 4, bạn đọc trước ba câu hỏi, rồi nghe một người nói một mình. Với tin nhắn thoại và bản ghi âm điện thoại, hãy bám vào cấu trúc quen thuộc: người gọi tự giới thiệu và nêu lý do ở đầu, thông tin chính ở giữa, yêu cầu hoặc việc sẽ làm ở cuối. Đừng đoán đáp án từ các lựa chọn; hãy nghe rồi mới chọn.",
     "tips": [
       {
         "id": "tip1",
@@ -123,14 +123,14 @@ window.BS_UNITS["p4-02"] = {
     },
     {
       "id": "v010",
-      "en": "invoice",
-      "vi": "hóa đơn",
+      "en": "purchase order",
+      "vi": "đơn đặt hàng",
       "group": "Đơn hàng"
     },
     {
       "id": "v011",
-      "en": "revised",
-      "vi": "đã chỉnh sửa",
+      "en": "backorder",
+      "vi": "hàng đặt trước chờ bổ sung",
       "group": "Đơn hàng"
     },
     {
@@ -183,8 +183,8 @@ window.BS_UNITS["p4-02"] = {
     },
     {
       "id": "v020",
-      "en": "timetable",
-      "vi": "thời gian biểu",
+      "en": "itinerary",
+      "vi": "lịch trình",
       "group": "Lịch hẹn"
     },
     {
@@ -228,20 +228,20 @@ window.BS_UNITS["p4-02"] = {
     {
       "id": "p03",
       "en": "I'm calling to follow up on your request.",
-      "vi": "Tôi gọi để theo dõi yêu cầu của bạn.",
+      "vi": "Tôi gọi để hỏi tiếp về yêu cầu của bạn.",
       "group_vi": "Nêu lý do"
     },
     {
       "id": "p04",
-      "en": "I wanted to let you know about a change.",
-      "vi": "Tôi muốn báo bạn biết về một thay đổi.",
+      "en": "I have a quick update for you.",
+      "vi": "Tôi có một thông tin cập nhật nhanh cho bạn.",
       "group_vi": "Nêu lý do"
     },
     {
       "id": "p05",
       "en": "Unfortunately, the item is out of stock.",
       "vi": "Rất tiếc, mặt hàng đã hết.",
-      "group_vi": "Nêu lý do"
+      "group_vi": "Báo tin"
     },
     {
       "id": "p06",
@@ -377,7 +377,7 @@ window.BS_UNITS["p4-02"] = {
                 "en": "Why is the speaker calling?",
                 "vi": "Người nói gọi điện vì lý do gì?"
               },
-              "answer": "B",
+              "answer": "C",
               "evidence": [
                 0
               ],
@@ -385,29 +385,29 @@ window.BS_UNITS["p4-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "To cancel a booking",
-                  "vi": "Để hủy một lịch hẹn",
+                  "en": "To move a patient's visit to a later time",
+                  "vi": "Để dời lịch khám của bệnh nhân sang giờ muộn hơn",
                   "trap": "wrong-detail",
-                  "why_vi": "Cô ấy nhắc lịch hẹn, không hủy; chỉ nói người nghe có thể đổi giờ nếu cần."
+                  "why_vi": "Cô ấy không dời lịch; chỉ nói người nghe có thể đổi giờ nếu cần."
                 },
                 {
                   "label": "B",
-                  "en": "To remind a patient of an upcoming visit",
-                  "vi": "Để nhắc bệnh nhân về buổi khám sắp tới"
+                  "en": "To offer a patient an earlier opening",
+                  "vi": "Để mời bệnh nhân một suất khám sớm hơn",
+                  "trap": "over-inference",
+                  "why_vi": "Danh sách chờ chỉ là lý do cô ấy muốn được báo sớm, không có suất sớm nào được đề nghị."
                 },
                 {
                   "label": "C",
-                  "en": "To ask for payment of a bill",
-                  "vi": "Để yêu cầu thanh toán một hóa đơn",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không có nội dung nào nói về việc trả tiền."
+                  "en": "To remind a patient about a booked visit",
+                  "vi": "Để nhắc bệnh nhân về một lịch khám đã đặt"
                 },
                 {
                   "label": "D",
-                  "en": "To introduce a new service",
-                  "vi": "Để giới thiệu một dịch vụ mới",
+                  "en": "To report that a dentist is unavailable",
+                  "vi": "Để báo một nha sĩ không có mặt",
                   "trap": "not-mentioned",
-                  "why_vi": "Phòng khám không giới thiệu dịch vụ nào."
+                  "why_vi": "Không có thông tin nào về việc nha sĩ vắng mặt."
                 }
               ]
             },
@@ -418,7 +418,7 @@ window.BS_UNITS["p4-02"] = {
                 "en": "What is the listener asked to do on the day of the appointment?",
                 "vi": "Người nghe được yêu cầu làm gì vào ngày hẹn?"
               },
-              "answer": "D",
+              "answer": "A",
               "evidence": [
                 1
               ],
@@ -426,29 +426,29 @@ window.BS_UNITS["p4-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "Bring a payment card",
-                  "vi": "Mang theo thẻ thanh toán",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không có yêu cầu mang thẻ."
+                  "en": "Arrive early to update a form",
+                  "vi": "Đến sớm để cập nhật một biểu mẫu"
                 },
                 {
                   "label": "B",
-                  "en": "Call the office at noon",
-                  "vi": "Gọi văn phòng lúc trưa",
-                  "trap": "wrong-detail",
-                  "why_vi": "Buổi trưa chỉ là hạn chót nếu muốn đổi giờ, không phải việc làm vào ngày hẹn."
+                  "en": "Bring records from another clinic",
+                  "vi": "Mang hồ sơ từ phòng khám khác",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có yêu cầu mang hồ sơ."
                 },
                 {
                   "label": "C",
-                  "en": "Wait for a return call",
-                  "vi": "Chờ cuộc gọi lại",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không ai hứa sẽ gọi lại."
+                  "en": "Call the office to confirm the time",
+                  "vi": "Gọi văn phòng để xác nhận giờ",
+                  "trap": "wrong-detail",
+                  "why_vi": "Cuộc gọi chỉ cần khi muốn đổi giờ, và hạn là trưa thứ Tư, không phải ngày hẹn."
                 },
                 {
                   "label": "D",
-                  "en": "Arrive ahead of time to complete paperwork",
-                  "vi": "Đến sớm để hoàn tất giấy tờ"
+                  "en": "Pay a fee at the front desk",
+                  "vi": "Trả phí ở quầy lễ tân",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không nhắc đến khoản phí nào."
                 }
               ]
             },
@@ -460,7 +460,7 @@ window.BS_UNITS["p4-02"] = {
                 "en": "What does the speaker mean when she says, \"we'd hate to lose your slot\"?",
                 "vi": "Người nói có ý gì khi nói \"we'd hate to lose your slot\"?"
               },
-              "answer": "A",
+              "answer": "D",
               "evidence": [
                 2,
                 3
@@ -469,29 +469,29 @@ window.BS_UNITS["p4-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "She wants to be told early if the listener cannot attend.",
-                  "vi": "Cô ấy muốn được báo sớm nếu người nghe không đến được."
-                },
-                {
-                  "label": "B",
-                  "en": "She is worried that she has misplaced a booking.",
-                  "vi": "Cô ấy lo mình đã làm thất lạc lịch hẹn.",
+                  "en": "She is worried that she has misplaced the listener's booking.",
+                  "vi": "Cô ấy lo mình đã làm thất lạc lịch hẹn của người nghe.",
                   "trap": "literal",
                   "why_vi": "Hiểu theo nghĩa đen của từ lose; thực ra là nói về việc mất suất hẹn."
                 },
                 {
-                  "label": "C",
-                  "en": "She expects the clinic to be closed on Thursday.",
-                  "vi": "Cô ấy cho rằng phòng khám sẽ đóng cửa vào thứ Năm.",
+                  "label": "B",
+                  "en": "She suggests that the clinic may be overbooked.",
+                  "vi": "Cô ấy ngụ ý phòng khám có thể nhận quá nhiều lịch hẹn.",
                   "trap": "over-inference",
-                  "why_vi": "Không có thông tin nào cho thấy phòng khám đóng cửa."
+                  "why_vi": "Danh sách chờ không có nghĩa là đặt dư lịch."
+                },
+                {
+                  "label": "C",
+                  "en": "She is hinting that the listener has missed visits before.",
+                  "vi": "Cô ấy ám chỉ người nghe từng bỏ lỡ các buổi khám.",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có thông tin nào về những lần vắng mặt trước."
                 },
                 {
                   "label": "D",
-                  "en": "She wants the listener to pay a deposit.",
-                  "vi": "Cô ấy muốn người nghe đặt cọc.",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không hề nhắc đến tiền đặt cọc."
+                  "en": "She wants early notice if the listener cannot come.",
+                  "vi": "Cô ấy muốn được báo sớm nếu người nghe không thể đến."
                 }
               ]
             }
@@ -524,8 +524,8 @@ window.BS_UNITS["p4-02"] = {
             },
             {
               "s": "A",
-              "en": "Our weekend event has been cancelled, so I'd like to cut the item we ordered the most down to three thousand.",
-              "vi": "Sự kiện cuối tuần của chúng tôi đã bị hủy, nên tôi muốn giảm mặt hàng mà chúng tôi đặt nhiều nhất xuống còn ba nghìn."
+              "en": "Our weekend event has been cancelled, so I'd like to bring our largest item down to three thousand.",
+              "vi": "Sự kiện cuối tuần của chúng tôi đã bị hủy, nên tôi muốn giảm mặt hàng lớn nhất của chúng tôi xuống còn ba nghìn."
             },
             {
               "s": "A",
@@ -587,7 +587,7 @@ window.BS_UNITS["p4-02"] = {
                 "en": "Why is the speaker calling?",
                 "vi": "Người nói gọi điện vì lý do gì?"
               },
-              "answer": "C",
+              "answer": "B",
               "evidence": [
                 1,
                 2
@@ -596,29 +596,29 @@ window.BS_UNITS["p4-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "To report a late delivery",
-                  "vi": "Để báo giao hàng trễ",
+                  "en": "To check on the status of a shipment",
+                  "vi": "Để kiểm tra tình trạng một lô hàng",
                   "trap": "wrong-detail",
-                  "why_vi": "Ngày giao hàng thứ Sáu vẫn giữ nguyên."
+                  "why_vi": "Anh ấy không hỏi về tiến độ giao hàng."
                 },
                 {
                   "label": "B",
-                  "en": "To open a new account",
-                  "vi": "Để mở tài khoản mới",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không có nội dung nào về tài khoản."
+                  "en": "To reduce part of an existing order",
+                  "vi": "Để giảm một phần của đơn hàng đã đặt"
                 },
                 {
                   "label": "C",
-                  "en": "To change an existing order",
-                  "vi": "Để thay đổi một đơn hàng đã đặt"
+                  "en": "To add a new item to a standing order",
+                  "vi": "Để thêm mặt hàng mới vào đơn hàng thường kỳ",
+                  "trap": "wrong-detail",
+                  "why_vi": "Anh ấy giảm số lượng chứ không thêm hàng."
                 },
                 {
                   "label": "D",
-                  "en": "To complain about an invoice",
-                  "vi": "Để phàn nàn về một hóa đơn",
+                  "en": "To dispute a charge on an invoice",
+                  "vi": "Để khiếu nại một khoản trên hóa đơn",
                   "trap": "heard-word",
-                  "why_vi": "Từ invoice được nghe thấy, nhưng anh ấy chỉ nhờ gửi hóa đơn chỉnh sửa, không phàn nàn."
+                  "why_vi": "Từ invoice được nghe thấy, nhưng anh ấy chỉ nhờ gửi hóa đơn chỉnh sửa, không khiếu nại."
                 }
               ]
             },
@@ -630,11 +630,11 @@ window.BS_UNITS["p4-02"] = {
                 "en": "Look at the graphic. Which item does the speaker want to order less of?",
                 "vi": "Nhìn hình. Người nói muốn đặt ít mặt hàng nào hơn?"
               },
-              "answer": "B",
+              "answer": "D",
               "evidence": [
                 2
               ],
-              "explain_vi": "Anh ấy muốn giảm mặt hàng đặt nhiều nhất; theo bảng, đó là Napkins với 5,000.",
+              "explain_vi": "Anh ấy muốn giảm mặt hàng lớn nhất xuống ba nghìn; theo bảng, đó là Napkins với 5,000.",
               "options": [
                 {
                   "label": "A",
@@ -645,22 +645,22 @@ window.BS_UNITS["p4-02"] = {
                 },
                 {
                   "label": "B",
-                  "en": "Napkins",
-                  "vi": "Khăn giấy"
-                },
-                {
-                  "label": "C",
                   "en": "Lids",
                   "vi": "Nắp cốc",
                   "trap": "graphic-only",
                   "why_vi": "Chỉ đặt 2,000, không phải mặt hàng nhiều nhất."
                 },
                 {
-                  "label": "D",
+                  "label": "C",
                   "en": "Stirrers",
                   "vi": "Que khuấy",
                   "trap": "wrong-detail",
-                  "why_vi": "Số lượng 3,000 chỉ trùng với con số mới anh ấy nói, không phải mặt hàng đặt nhiều nhất."
+                  "why_vi": "Số lượng 3,000 chỉ trùng với con số mới anh ấy nói, không phải mặt hàng nhiều nhất."
+                },
+                {
+                  "label": "D",
+                  "en": "Napkins",
+                  "vi": "Khăn giấy"
                 }
               ]
             },
@@ -671,7 +671,7 @@ window.BS_UNITS["p4-02"] = {
                 "en": "What does the speaker ask the listener to do?",
                 "vi": "Người nói nhờ người nghe làm gì?"
               },
-              "answer": "D",
+              "answer": "A",
               "evidence": [
                 4
               ],
@@ -679,29 +679,29 @@ window.BS_UNITS["p4-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "Postpone a delivery",
-                  "vi": "Hoãn việc giao hàng",
-                  "trap": "changed-plan",
-                  "why_vi": "Ngày giao hàng thứ Sáu được giữ nguyên."
+                  "en": "Issue a revised bill reflecting the change",
+                  "vi": "Lập một hóa đơn mới phản ánh thay đổi"
                 },
                 {
                   "label": "B",
-                  "en": "Lower a unit price",
-                  "vi": "Hạ đơn giá",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không ai nhắc đến việc giảm giá."
+                  "en": "Cancel the whole order",
+                  "vi": "Hủy toàn bộ đơn hàng",
+                  "trap": "wrong-detail",
+                  "why_vi": "Anh ấy chỉ giảm một mặt hàng, không hủy cả đơn."
                 },
                 {
                   "label": "C",
-                  "en": "Visit the café",
-                  "vi": "Đến quán cà phê",
-                  "trap": "wrong-detail",
-                  "why_vi": "Anh ấy chỉ nói mình ở quán để chị gọi lại, không mời chị đến."
+                  "en": "Check whether a discount applies",
+                  "vi": "Kiểm tra xem có giảm giá không",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không ai nhắc đến giảm giá."
                 },
                 {
                   "label": "D",
-                  "en": "Provide an updated bill",
-                  "vi": "Cung cấp một hóa đơn đã cập nhật"
+                  "en": "Reconfirm the delivery address",
+                  "vi": "Xác nhận lại địa chỉ giao hàng",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không nhắc đến địa chỉ giao hàng."
                 }
               ]
             }
@@ -766,7 +766,7 @@ window.BS_UNITS["p4-02"] = {
                 "en": "What type of business is the recording for?",
                 "vi": "Bản ghi âm này dành cho loại hình doanh nghiệp nào?"
               },
-              "answer": "A",
+              "answer": "D",
               "evidence": [
                 0
               ],
@@ -774,29 +774,29 @@ window.BS_UNITS["p4-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "An insurance provider",
-                  "vi": "Một công ty bảo hiểm"
+                  "en": "A roadside assistance provider",
+                  "vi": "Một đơn vị cứu hộ trên đường",
+                  "trap": "over-inference",
+                  "why_vi": "Sự cố trên đường chỉ là một mục trong danh mục; tên đơn vị là tập đoàn bảo hiểm."
                 },
                 {
                   "label": "B",
-                  "en": "A medical clinic",
-                  "vi": "Một phòng khám",
+                  "en": "A car rental company",
+                  "vi": "Một công ty cho thuê xe",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có gì liên quan đến y tế."
+                  "why_vi": "Không có nội dung nào về thuê xe."
                 },
                 {
                   "label": "C",
-                  "en": "A car rental agency",
-                  "vi": "Một hãng cho thuê xe",
-                  "trap": "over-inference",
-                  "why_vi": "Sự cố trên đường chỉ là một mục trong danh mục, không phải loại hình doanh nghiệp."
+                  "en": "An auto repair shop",
+                  "vi": "Một xưởng sửa xe",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có nội dung nào về sửa xe."
                 },
                 {
                   "label": "D",
-                  "en": "A travel agency",
-                  "vi": "Một đại lý du lịch",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không nhắc đến du lịch."
+                  "en": "An insurance company",
+                  "vi": "Một công ty bảo hiểm"
                 }
               ]
             },
@@ -807,7 +807,7 @@ window.BS_UNITS["p4-02"] = {
                 "en": "Why would a caller press two?",
                 "vi": "Người gọi sẽ bấm phím hai để làm gì?"
               },
-              "answer": "C",
+              "answer": "B",
               "evidence": [
                 3
               ],
@@ -815,29 +815,29 @@ window.BS_UNITS["p4-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "To file a new claim",
-                  "vi": "Để khai báo yêu cầu bồi thường mới",
+                  "en": "To report an accident",
+                  "vi": "Để khai báo một vụ tai nạn",
                   "trap": "wrong-detail",
-                  "why_vi": "Việc đó là phím một."
+                  "why_vi": "Việc khai báo là phím một (yêu cầu bồi thường mới)."
                 },
                 {
                   "label": "B",
-                  "en": "To hear the office hours",
-                  "vi": "Để nghe giờ làm việc",
-                  "trap": "not-mentioned",
-                  "why_vi": "Giờ làm việc được đọc tự động, không cần bấm phím."
-                },
-                {
-                  "label": "C",
                   "en": "To inquire about an amount owed",
                   "vi": "Để hỏi về số tiền còn phải trả"
                 },
                 {
+                  "label": "C",
+                  "en": "To repeat the menu",
+                  "vi": "Để nghe lại danh mục",
+                  "trap": "not-mentioned",
+                  "why_vi": "Bản ghi âm không nói phím nào để nghe lại."
+                },
+                {
                   "label": "D",
-                  "en": "To leave a message",
-                  "vi": "Để để lại lời nhắn",
+                  "en": "To speak with an agent right away",
+                  "vi": "Để nói chuyện ngay với nhân viên",
                   "trap": "wrong-detail",
-                  "why_vi": "Lời nhắn để lại sau tiếng bíp, không phải bằng phím hai."
+                  "why_vi": "Chỉ sự cố khẩn cấp trên đường mới được giữ máy để gặp nhân viên trực."
                 }
               ]
             },
@@ -848,7 +848,7 @@ window.BS_UNITS["p4-02"] = {
                 "en": "What will happen after a caller leaves a message?",
                 "vi": "Điều gì sẽ xảy ra sau khi người gọi để lại lời nhắn?"
               },
-              "answer": "B",
+              "answer": "C",
               "evidence": [
                 5,
                 6
@@ -857,29 +857,29 @@ window.BS_UNITS["p4-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "A form will be mailed to the caller.",
-                  "vi": "Một biểu mẫu sẽ được gửi qua bưu điện.",
+                  "en": "The caller will be sent a confirmation.",
+                  "vi": "Người gọi sẽ nhận được một xác nhận.",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có biểu mẫu nào được nhắc đến."
+                  "why_vi": "Không có xác nhận nào được nhắc đến."
                 },
                 {
                   "label": "B",
+                  "en": "An agent will be sent to the caller's location.",
+                  "vi": "Một nhân viên sẽ được cử đến chỗ người gọi.",
+                  "trap": "heard-word",
+                  "why_vi": "Nhân viên trực chỉ nghe máy cho sự cố khẩn cấp trên đường, không được cử đến."
+                },
+                {
+                  "label": "C",
                   "en": "Someone will phone back on the following working day.",
                   "vi": "Sẽ có người gọi lại vào ngày làm việc sau đó."
                 },
                 {
-                  "label": "C",
-                  "en": "A duty officer will visit the caller.",
-                  "vi": "Nhân viên trực sẽ đến gặp người gọi.",
-                  "trap": "heard-word",
-                  "why_vi": "Nhân viên trực chỉ nghe máy cho sự cố khẩn cấp trên đường."
-                },
-                {
                   "label": "D",
-                  "en": "The office will reopen tonight.",
-                  "vi": "Văn phòng sẽ mở lại tối nay.",
-                  "trap": "changed-plan",
-                  "why_vi": "Văn phòng mở lại vào sáng mai, không phải tối nay."
+                  "en": "The caller will be moved to a waiting line.",
+                  "vi": "Người gọi sẽ được chuyển sang hàng chờ.",
+                  "trap": "wrong-detail",
+                  "why_vi": "Để lại lời nhắn nghĩa là kết thúc cuộc gọi, không phải chờ máy."
                 }
               ]
             }
@@ -982,7 +982,7 @@ window.BS_UNITS["p4-02"] = {
                 "en": "Why is the speaker calling?",
                 "vi": "Người nói gọi điện vì lý do gì?"
               },
-              "answer": "D",
+              "answer": "A",
               "evidence": [
                 0,
                 2
@@ -991,29 +991,29 @@ window.BS_UNITS["p4-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "To cancel a workshop",
-                  "vi": "Để hủy một buổi hội thảo",
-                  "trap": "wrong-detail",
-                  "why_vi": "Buổi hội thảo chỉ đổi phòng và giờ, không bị hủy."
+                  "en": "To let a coworker know about a schedule change",
+                  "vi": "Để cho đồng nghiệp biết về một thay đổi lịch"
                 },
                 {
                   "label": "B",
-                  "en": "To request repair services",
-                  "vi": "Để yêu cầu dịch vụ sửa chữa",
-                  "trap": "heard-word",
-                  "why_vi": "Việc sửa máy lạnh chỉ là lý do, do quản lý cơ sở vật chất lo."
+                  "en": "To ask a coworker to lead a session",
+                  "vi": "Để nhờ đồng nghiệp dẫn một buổi",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có lời nhờ dẫn buổi nào."
                 },
                 {
                   "label": "C",
-                  "en": "To ask for a presenter",
-                  "vi": "Để tìm một diễn giả",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không cần tìm diễn giả nào."
+                  "en": "To report a problem with a room booking",
+                  "vi": "Để báo vấn đề về việc đặt phòng",
+                  "trap": "heard-word",
+                  "why_vi": "Phòng chỉ được nhắc khi nói buổi của cô Okoye chuyển sang Phòng 6."
                 },
                 {
                   "label": "D",
-                  "en": "To inform a colleague of a schedule change",
-                  "vi": "Để báo cho đồng nghiệp về thay đổi lịch"
+                  "en": "To invite a coworker to a training day",
+                  "vi": "Để mời đồng nghiệp dự ngày đào tạo",
+                  "trap": "wrong-detail",
+                  "why_vi": "Anh ấy không mời; chỉ báo thay đổi về một buổi đã có lịch."
                 }
               ]
             },
@@ -1025,7 +1025,7 @@ window.BS_UNITS["p4-02"] = {
                 "en": "Look at the graphic. Which workshop has been moved?",
                 "vi": "Nhìn hình. Buổi hội thảo nào đã bị dời?"
               },
-              "answer": "A",
+              "answer": "C",
               "evidence": [
                 2
               ],
@@ -1033,22 +1033,22 @@ window.BS_UNITS["p4-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "Customer Care",
-                  "vi": "Chăm sóc khách hàng"
-                },
-                {
-                  "label": "B",
                   "en": "Budget Basics",
                   "vi": "Kiến thức cơ bản về ngân sách",
                   "trap": "graphic-only",
                   "why_vi": "Buổi này do ông Lindgren trình bày và không bị đổi."
                 },
                 {
-                  "label": "C",
+                  "label": "B",
                   "en": "Presentation Skills",
                   "vi": "Kỹ năng thuyết trình",
                   "trap": "graphic-only",
                   "why_vi": "Buổi này do cô Brandt trình bày và không bị đổi."
+                },
+                {
+                  "label": "C",
+                  "en": "Customer Care",
+                  "vi": "Chăm sóc khách hàng"
                 },
                 {
                   "label": "D",
@@ -1066,7 +1066,7 @@ window.BS_UNITS["p4-02"] = {
                 "en": "What does the speaker say he will do next?",
                 "vi": "Người nói cho biết anh ấy sẽ làm gì tiếp theo?"
               },
-              "answer": "C",
+              "answer": "B",
               "evidence": [
                 4
               ],
@@ -1074,29 +1074,29 @@ window.BS_UNITS["p4-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "Repair an air conditioner",
-                  "vi": "Sửa một máy lạnh",
-                  "trap": "wrong-speaker",
-                  "why_vi": "Việc sửa chữa do quản lý cơ sở vật chất phụ trách."
+                  "en": "Contact the facilities manager",
+                  "vi": "Liên hệ quản lý cơ sở vật chất",
+                  "trap": "heard-word",
+                  "why_vi": "Quản lý chỉ là người đã báo tin cho anh ấy."
                 },
                 {
                   "label": "B",
-                  "en": "Speak with a presenter",
-                  "vi": "Nói chuyện với một diễn giả",
-                  "trap": "not-mentioned",
-                  "why_vi": "Anh ấy không nói sẽ gặp diễn giả."
+                  "en": "Send a new schedule to the staff",
+                  "vi": "Gửi lịch mới cho nhân viên"
                 },
                 {
                   "label": "C",
-                  "en": "Circulate a revised schedule",
-                  "vi": "Phát đi lịch đã chỉnh sửa"
+                  "en": "Meet the presenters in person",
+                  "vi": "Gặp trực tiếp các diễn giả",
+                  "trap": "not-mentioned",
+                  "why_vi": "Anh ấy không nói sẽ gặp ai."
                 },
                 {
                   "label": "D",
-                  "en": "Reserve a different room",
-                  "vi": "Đặt một phòng khác",
-                  "trap": "changed-plan",
-                  "why_vi": "Phòng 6 đã được chọn rồi, anh ấy không nói sẽ đặt thêm."
+                  "en": "Book a larger room for Friday",
+                  "vi": "Đặt một phòng lớn hơn cho thứ Sáu",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có việc đặt thêm phòng nào."
                 }
               ]
             }
@@ -1161,7 +1161,7 @@ window.BS_UNITS["p4-02"] = {
                 "en": "Who most likely is the speaker?",
                 "vi": "Người nói nhiều khả năng là ai?"
               },
-              "answer": "B",
+              "answer": "C",
               "evidence": [
                 0
               ],
@@ -1169,29 +1169,29 @@ window.BS_UNITS["p4-02"] = {
               "options": [
                 {
                   "label": "A",
+                  "en": "A shuttle company dispatcher",
+                  "vi": "Một nhân viên điều phối xe đưa đón",
+                  "trap": "heard-word",
+                  "why_vi": "Xe đưa đón chỉ là thông tin cô ấy cung cấp, không phải nơi cô ấy làm việc."
+                },
+                {
+                  "label": "B",
+                  "en": "An airline agent",
+                  "vi": "Một nhân viên hãng hàng không",
+                  "trap": "heard-word",
+                  "why_vi": "Chuyến bay chỉ được nhắc khi nói giờ hạ cánh."
+                },
+                {
+                  "label": "C",
+                  "en": "A hotel front-desk clerk",
+                  "vi": "Một nhân viên quầy lễ tân khách sạn"
+                },
+                {
+                  "label": "D",
                   "en": "A travel agent",
                   "vi": "Một nhân viên đại lý du lịch",
                   "trap": "over-inference",
                   "why_vi": "Cô ấy làm ở khách sạn, không phải đại lý du lịch."
-                },
-                {
-                  "label": "B",
-                  "en": "A hotel receptionist",
-                  "vi": "Một lễ tân khách sạn"
-                },
-                {
-                  "label": "C",
-                  "en": "A shuttle driver",
-                  "vi": "Một tài xế xe đưa đón",
-                  "trap": "wrong-speaker",
-                  "why_vi": "Tài xế chỉ được nhắc đến như người sẽ đón khách."
-                },
-                {
-                  "label": "D",
-                  "en": "An airline clerk",
-                  "vi": "Một nhân viên hãng hàng không",
-                  "trap": "heard-word",
-                  "why_vi": "Chuyến bay chỉ được nhắc khi nói giờ hạ cánh."
                 }
               ]
             },
@@ -1202,7 +1202,7 @@ window.BS_UNITS["p4-02"] = {
                 "en": "What does the speaker say about the airport shuttle?",
                 "vi": "Người nói nói gì về xe đưa đón sân bay?"
               },
-              "answer": "C",
+              "answer": "D",
               "evidence": [
                 2
               ],
@@ -1210,10 +1210,10 @@ window.BS_UNITS["p4-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "It requires a reservation.",
-                  "vi": "Phải đặt chỗ trước.",
+                  "en": "It requires advance booking.",
+                  "vi": "Phải đặt trước.",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có yêu cầu đặt chỗ."
+                  "why_vi": "Không có yêu cầu đặt trước."
                 },
                 {
                   "label": "B",
@@ -1224,15 +1224,15 @@ window.BS_UNITS["p4-02"] = {
                 },
                 {
                   "label": "C",
-                  "en": "It operates twice an hour.",
-                  "vi": "Xe chạy hai chuyến mỗi giờ."
+                  "en": "It stops running at nine o'clock.",
+                  "vi": "Xe ngừng chạy lúc chín giờ.",
+                  "trap": "wrong-detail",
+                  "why_vi": "Chuyến cuối rời đi lúc mười giờ ba mươi."
                 },
                 {
                   "label": "D",
-                  "en": "It stops running at nine o'clock.",
-                  "vi": "Xe ngừng chạy lúc chín giờ.",
-                  "trap": "changed-plan",
-                  "why_vi": "Chuyến cuối rời đi lúc mười giờ ba mươi."
+                  "en": "It departs twice every hour.",
+                  "vi": "Xe khởi hành hai chuyến mỗi giờ."
                 }
               ]
             },
@@ -1243,38 +1243,38 @@ window.BS_UNITS["p4-02"] = {
                 "en": "What is implied about the listener?",
                 "vi": "Có thể suy ra điều gì về người nghe?"
               },
-              "answer": "D",
+              "answer": "A",
               "evidence": [
                 3,
                 5
               ],
-              "explain_vi": "Chuyến bay hạ cánh lúc chín giờ năm mươi tối và cô ấy nói nhận phòng muộn không thành vấn đề, nên người nghe sẽ đến khách sạn vào cuối buổi tối.",
+              "explain_vi": "Chuyến bay hạ cánh lúc chín giờ năm mươi tối và cô ấy nói nhận phòng muộn không thành vấn đề, nên người nghe sẽ đến khách sạn vào ban đêm.",
               "options": [
                 {
                   "label": "A",
-                  "en": "She has stayed at the hotel before.",
-                  "vi": "Cô ấy từng ở khách sạn này.",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không có thông tin về lần ở trước."
+                  "en": "She will arrive at the hotel at night.",
+                  "vi": "Cô ấy sẽ đến khách sạn vào ban đêm."
                 },
                 {
                   "label": "B",
-                  "en": "She asked for a larger room.",
-                  "vi": "Cô ấy xin phòng rộng hơn.",
+                  "en": "She has stayed at the inn previously.",
+                  "vi": "Cô ấy từng ở khách sạn này trước đây.",
                   "trap": "not-mentioned",
-                  "why_vi": "Cô ấy được xếp phòng đôi, không có yêu cầu đổi."
+                  "why_vi": "Không có thông tin về lần ở trước."
                 },
                 {
                   "label": "C",
                   "en": "She will miss the last shuttle.",
                   "vi": "Cô ấy sẽ lỡ chuyến xe cuối.",
                   "trap": "over-inference",
-                  "why_vi": "Hạ cánh lúc chín giờ năm mươi vẫn kịp chuyến mười giờ ba mươi theo lời người nói."
+                  "why_vi": "Người nói không hề nói cô ấy sẽ lỡ chuyến; máy bay hạ cánh lúc 9:50, chuyến cuối 10:30, và người nói còn chỉ chỗ chờ tài xế."
                 },
                 {
                   "label": "D",
-                  "en": "She will get to the hotel late in the evening.",
-                  "vi": "Cô ấy sẽ đến khách sạn vào cuối buổi tối."
+                  "en": "She plans to extend her reservation.",
+                  "vi": "Cô ấy định gia hạn đặt phòng.",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không nhắc đến việc gia hạn."
                 }
               ]
             }
@@ -1339,7 +1339,7 @@ window.BS_UNITS["p4-02"] = {
                 "en": "What problem does the speaker mention?",
                 "vi": "Người nói đề cập đến vấn đề gì?"
               },
-              "answer": "A",
+              "answer": "B",
               "evidence": [
                 1
               ],
@@ -1347,15 +1347,15 @@ window.BS_UNITS["p4-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "A previous repair ran late.",
-                  "vi": "Một ca sửa trước đó bị kéo dài."
+                  "en": "A part for the listener's refrigerator is unavailable.",
+                  "vi": "Một linh kiện cho tủ lạnh của người nghe không có sẵn.",
+                  "trap": "over-inference",
+                  "why_vi": "Linh kiện được đặt cho công việc buổi sáng, không nói là của tủ lạnh người nghe."
                 },
                 {
                   "label": "B",
-                  "en": "A part is missing from the refrigerator.",
-                  "vi": "Tủ lạnh bị thiếu một linh kiện.",
-                  "trap": "over-inference",
-                  "why_vi": "Linh kiện được đặt cho công việc buổi sáng, không nói là của tủ lạnh người nghe."
+                  "en": "An earlier job took longer than planned.",
+                  "vi": "Một công việc trước đó kéo dài hơn dự kiến."
                 },
                 {
                   "label": "C",
@@ -1381,7 +1381,7 @@ window.BS_UNITS["p4-02"] = {
                 "en": "What does the speaker mean when he says, \"my schedule is a bit of a moving target\"?",
                 "vi": "Người nói có ý gì khi nói \"my schedule is a bit of a moving target\"?"
               },
-              "answer": "D",
+              "answer": "A",
               "evidence": [
                 3
               ],
@@ -1389,29 +1389,29 @@ window.BS_UNITS["p4-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "He is unsure which job to do first.",
-                  "vi": "Anh ấy chưa biết nên làm việc nào trước.",
-                  "trap": "over-inference",
-                  "why_vi": "Không có gì cho thấy anh ấy đang phân vân thứ tự công việc."
+                  "en": "His arrival time may shift again.",
+                  "vi": "Giờ đến của anh ấy có thể lại thay đổi."
                 },
                 {
                   "label": "B",
-                  "en": "He is looking for new customers.",
-                  "vi": "Anh ấy đang tìm khách hàng mới.",
-                  "trap": "literal",
-                  "why_vi": "Hiểu theo nghĩa đen của từ target; thực ra là nói lịch không cố định."
-                },
-                {
-                  "label": "C",
                   "en": "He may have to cancel the visit.",
                   "vi": "Anh ấy có thể phải hủy buổi hẹn.",
                   "trap": "over-inference",
                   "why_vi": "Anh ấy chỉ nói giờ đến khó chắc chắn, không nói sẽ hủy."
                 },
                 {
+                  "label": "C",
+                  "en": "He is deciding which jobs to do first.",
+                  "vi": "Anh ấy đang quyết định làm việc nào trước.",
+                  "trap": "over-inference",
+                  "why_vi": "Không có gì cho thấy anh ấy đang phân vân thứ tự công việc."
+                },
+                {
                   "label": "D",
-                  "en": "His arrival time could still change.",
-                  "vi": "Giờ đến của anh ấy vẫn có thể thay đổi."
+                  "en": "He is traveling to several sites today.",
+                  "vi": "Hôm nay anh ấy phải đi nhiều địa điểm.",
+                  "trap": "literal",
+                  "why_vi": "Chỉ hiểu theo chữ moving; ý của cụm là lịch không cố định."
                 }
               ]
             },
@@ -1422,7 +1422,7 @@ window.BS_UNITS["p4-02"] = {
                 "en": "What will the speaker most likely do before he arrives?",
                 "vi": "Người nói nhiều khả năng sẽ làm gì trước khi đến?"
               },
-              "answer": "C",
+              "answer": "D",
               "evidence": [
                 5
               ],
@@ -1437,22 +1437,22 @@ window.BS_UNITS["p4-02"] = {
                 },
                 {
                   "label": "B",
-                  "en": "Call the office",
-                  "vi": "Gọi cho văn phòng",
+                  "en": "Contact the main office",
+                  "vi": "Liên hệ văn phòng chính",
                   "trap": "wrong-speaker",
                   "why_vi": "Chính người nghe mới được nhờ gọi văn phòng nếu không có ai ở nhà."
                 },
                 {
                   "label": "C",
-                  "en": "Send a message to the listener",
-                  "vi": "Gửi tin nhắn cho người nghe"
+                  "en": "Reschedule for Thursday",
+                  "vi": "Dời sang thứ Năm",
+                  "trap": "wrong-detail",
+                  "why_vi": "Chỉ dời sang thứ Năm nếu không có ai ở nhà."
                 },
                 {
                   "label": "D",
-                  "en": "Reschedule for Thursday",
-                  "vi": "Dời sang thứ Năm",
-                  "trap": "changed-plan",
-                  "why_vi": "Chỉ dời sang thứ Năm nếu không có ai ở nhà."
+                  "en": "Notify the listener by text message",
+                  "vi": "Báo cho người nghe bằng tin nhắn"
                 }
               ]
             }
@@ -1488,7 +1488,8 @@ window.BS_UNITS["p4-02"] = {
           "before": "Please leave your message",
           "after": "the tone.",
           "answers": [
-            "after"
+            "after",
+            "at"
           ]
         },
         {
