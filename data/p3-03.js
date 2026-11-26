@@ -468,8 +468,8 @@ window.BS_UNITS["p3-03"] = {
                 },
                 {
                   "label": "D",
-                  "en": "The client's board members are due to meet.",
-                  "vi": "Hội đồng quản trị bên khách hàng sắp họp."
+                  "en": "The client's directors are due to meet.",
+                  "vi": "Ban giám đốc bên khách hàng sắp họp."
                 }
               ]
             },
@@ -685,7 +685,7 @@ window.BS_UNITS["p3-03"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "Send an e-mail to their supervisor",
+                  "en": "Send an email to their supervisor",
                   "vi": "Gửi email cho giám sát của họ",
                   "trap": "changed-plan",
                   "why_vi": "Anh ấy định gửi email nhưng bỏ ý đó vì giám sát đi vắng."
@@ -756,8 +756,8 @@ window.BS_UNITS["p3-03"] = {
             },
             {
               "s": "M",
-              "en": "I see it. Is the sixty on a different line right? As for the forty-five, perhaps your office increased it later.",
-              "vi": "Tôi thấy rồi. Con số sáu mươi ở một dòng khác thì đúng chứ? Còn con số bốn mươi lăm, có lẽ sau đó văn phòng bên chị đã tăng lên."
+              "en": "I see it. And the sixty on the other line is correct? As for the forty-five, perhaps your office increased the order later.",
+              "vi": "Tôi thấy rồi. Còn con số sáu mươi ở dòng kia thì đúng chứ? Còn con số bốn mươi lăm, có lẽ sau đó văn phòng bên chị đã tăng đơn lên."
             },
             {
               "s": "W",
@@ -1031,27 +1031,27 @@ window.BS_UNITS["p3-03"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "Who will meet applicants for a job, and when",
-                  "vi": "Ai sẽ gặp các ứng viên xin việc và vào lúc nào"
+                  "en": "The panel for some job interviews",
+                  "vi": "Hội đồng cho một đợt phỏng vấn tuyển dụng"
                 },
                 {
                   "label": "B",
-                  "en": "When to hold yearly performance reviews for staff",
-                  "vi": "Khi nào tổ chức đánh giá hiệu suất hằng năm cho nhân viên",
+                  "en": "The timing of yearly staff reviews",
+                  "vi": "Thời điểm đánh giá nhân viên hằng năm",
                   "trap": "heard-word",
                   "why_vi": "Có nghe đến phiếu chấm điểm, nhưng để chấm câu trả lời phỏng vấn chứ không phải đánh giá nhân viên."
                 },
                 {
                   "label": "C",
-                  "en": "A series of visits to several suppliers",
-                  "vi": "Một loạt chuyến thăm nhiều nhà cung cấp",
+                  "en": "A series of visits to suppliers",
+                  "vi": "Một loạt chuyến thăm nhà cung cấp",
                   "trap": "not-mentioned",
                   "why_vi": "Không có nhà cung cấp nào được nhắc đến."
                 },
                 {
                   "label": "D",
-                  "en": "The date when a new employee will start work",
-                  "vi": "Ngày một nhân viên mới bắt đầu đi làm",
+                  "en": "The start date for a new employee",
+                  "vi": "Ngày bắt đầu làm việc của nhân viên mới",
                   "trap": "over-inference",
                   "why_vi": "Có nhắc đến trợ lý mới, nhưng người này chưa được chọn và không ai bàn ngày đi làm."
                 }
@@ -1600,7 +1600,8 @@ window.BS_UNITS["p3-03"] = {
           "before": "I'm calling",
           "after": "check whether Opaline Bureau has received the signed forms.",
           "answers": [
-            "to"
+            "to",
+            "in order to"
           ]
         },
         {
@@ -1613,13 +1614,10 @@ window.BS_UNITS["p3-03"] = {
         },
         {
           "id": "fill1-5",
-          "before": "",
-          "after": "the postage rates have gone up, we'll have to reprice the holiday mailing.",
+          "before": "The evening workshop was cut short owing",
+          "after": "a power failure in the building.",
           "answers": [
-            "Since",
-            "Because",
-            "As",
-            "Now that"
+            "to"
           ]
         }
       ]
