@@ -478,8 +478,8 @@ window.BS_UNITS["p3-01"] = {
         },
         {
          "label": "D",
-         "en": "Tomorrow",
-         "vi": "Ngày mai"
+         "en": "Not until tomorrow",
+         "vi": "Đến ngày mai mới đến"
         }
        ]
       },
@@ -572,13 +572,13 @@ window.BS_UNITS["p3-01"] = {
       },
       {
        "s": "W",
-       "en": "I have a board meeting until four, so I could only see you after that.",
-       "vi": "Tôi có cuộc họp hội đồng quản trị đến bốn giờ, nên chỉ có thể gặp anh sau giờ đó."
+       "en": "I have a board meeting until four, and then I leave for the airport. I'm afraid Friday won't work.",
+       "vi": "Tôi có cuộc họp hội đồng quản trị đến bốn giờ, rồi phải ra sân bay. Tiếc là thứ Sáu không được."
       },
       {
        "s": "M",
-       "en": "That would be perfect. I'll update the invitation and send the drafts to your whole team tomorrow.",
-       "vi": "Vậy thì tuyệt. Tôi sẽ cập nhật thư mời và gửi các bản nháp cho cả nhóm của cô vào ngày mai."
+       "en": "I see. Then I'll check next week's calendar and send you some options.",
+       "vi": "Vậy à. Vậy tôi sẽ xem lịch tuần sau và gửi cô vài lựa chọn."
       },
       {
        "s": "W",
@@ -684,26 +684,26 @@ window.BS_UNITS["p3-01"] = {
         4,
         5
        ],
-       "explain_vi": "Anh vừa đề nghị họp chiều thứ Sáu; cô nói mình bận đến bốn giờ nên chỉ có thể gặp sau giờ đó, tức là cô đề nghị một giờ bắt đầu muộn hơn, và anh đáp \"That would be perfect\".",
+       "explain_vi": "Anh đề nghị họp chiều thứ Sáu; cô nói mình bận đến bốn giờ rồi phải ra sân bay và thứ Sáu không được, tức là cô đang từ chối đề nghị. Anh đáp sẽ xem lịch tuần sau.",
        "options": [
         {
          "label": "A",
-         "en": "She is rejecting his request.",
-         "vi": "Cô ấy đang từ chối đề nghị của anh.",
+         "en": "She is offering a later start.",
+         "vi": "Cô ấy đang đề nghị bắt đầu muộn hơn.",
          "trap": "over-inference",
-         "why_vi": "Cô vẫn nói có thể gặp sau bốn giờ nên không từ chối."
+         "why_vi": "Cô nói thứ Sáu không được, không đề nghị giờ muộn hơn."
         },
         {
          "label": "B",
-         "en": "She is offering a later start time.",
-         "vi": "Cô ấy đang đề nghị một giờ bắt đầu muộn hơn."
+         "en": "She is declining his proposal.",
+         "vi": "Cô ấy đang từ chối đề nghị của anh."
         },
         {
          "label": "C",
          "en": "She is proposing a different day.",
          "vi": "Cô ấy đang đề xuất một ngày khác.",
          "trap": "wrong-detail",
-         "why_vi": "Cô vẫn đồng ý ngày thứ Sáu, chỉ nói giờ muộn hơn."
+         "why_vi": "Chính người đàn ông mới nói sẽ xem lịch tuần sau; cô không đề xuất ngày nào."
         },
         {
          "label": "D",
@@ -844,8 +844,8 @@ window.BS_UNITS["p3-01"] = {
         },
         {
          "label": "D",
-         "en": "A building services coordinator",
-         "vi": "Một điều phối viên dịch vụ tòa nhà"
+         "en": "A building services worker",
+         "vi": "Một nhân viên dịch vụ tòa nhà"
         }
        ]
       },
@@ -1068,10 +1068,10 @@ window.BS_UNITS["p3-01"] = {
        "options": [
         {
          "label": "A",
-         "en": "A fire safety demonstration will be held.",
-         "vi": "Sẽ có buổi trình diễn an toàn cháy nổ.",
-         "trap": "not-mentioned",
-         "why_vi": "Không có buổi trình diễn an toàn nào được nhắc."
+         "en": "Laptops will be issued to new hires.",
+         "vi": "Laptop sẽ được cấp cho nhân viên mới.",
+         "trap": "wrong-detail",
+         "why_vi": "Callum nói sẽ cài laptop vào sáng nay, không nhắc đến sảnh."
         },
         {
          "label": "B",
@@ -1080,15 +1080,15 @@ window.BS_UNITS["p3-01"] = {
         },
         {
          "label": "C",
-         "en": "A welcome coffee will be served.",
-         "vi": "Sẽ có buổi cà phê chào đón.",
+         "en": "Orientation packets will be handed out.",
+         "vi": "Bộ tài liệu định hướng sẽ được phát.",
          "trap": "not-mentioned",
-         "why_vi": "Không có hoạt động cà phê nào được nhắc."
+         "why_vi": "Không có bộ tài liệu nào được nhắc."
         },
         {
          "label": "D",
-         "en": "Parking permits will be handed out.",
-         "vi": "Thẻ đỗ xe sẽ được phát.",
+         "en": "Parking permits will be assigned.",
+         "vi": "Thẻ đỗ xe sẽ được cấp.",
          "trap": "not-mentioned",
          "why_vi": "Không ai nhắc đến thẻ đỗ xe."
         }
@@ -1178,18 +1178,18 @@ window.BS_UNITS["p3-01"] = {
       },
       {
        "s": "M",
-       "en": "That would be a huge help. I'll ask the branch managers for the numbers this afternoon.",
-       "vi": "Vậy thì giúp tôi rất nhiều. Chiều nay tôi sẽ hỏi các quản lý chi nhánh xin số liệu."
+       "en": "That would be a huge help. I'll ask the branch managers for the numbers this afternoon. Could you drop the finished report off on Friday?",
+       "vi": "Vậy thì giúp tôi rất nhiều. Chiều nay tôi sẽ hỏi các quản lý chi nhánh xin số liệu. Chị mang báo cáo hoàn chỉnh đến nộp vào thứ Sáu được không?"
       },
       {
        "s": "W",
-       "en": "The regional office closes at five on Friday.",
-       "vi": "Văn phòng khu vực đóng cửa lúc năm giờ chiều thứ Sáu."
+       "en": "The regional office closes at five on Friday, and I'm in training until six.",
+       "vi": "Văn phòng khu vực đóng cửa lúc năm giờ chiều thứ Sáu, còn tôi học tập huấn đến sáu giờ."
       },
       {
        "s": "M",
-       "en": "Then I'll aim to send everything by lunchtime.",
-       "vi": "Vậy tôi sẽ cố gửi mọi thứ trước giờ ăn trưa."
+       "en": "Oh. Then I'll take it there myself before lunch.",
+       "vi": "À. Vậy tôi sẽ tự mang đến đó trước giờ ăn trưa."
       },
       {
        "s": "W",
@@ -1213,8 +1213,8 @@ window.BS_UNITS["p3-01"] = {
        "options": [
         {
          "label": "A",
-         "en": "Data from some branches has not arrived.",
-         "vi": "Dữ liệu từ một số chi nhánh chưa được gửi đến."
+         "en": "Some of the figures are still missing.",
+         "vi": "Một số số liệu vẫn còn thiếu."
         },
         {
          "label": "B",
@@ -1275,8 +1275,8 @@ window.BS_UNITS["p3-01"] = {
         },
         {
          "label": "D",
-         "en": "Contact the branch managers for figures",
-         "vi": "Liên hệ các quản lý chi nhánh để xin số liệu"
+         "en": "Ask some managers for the numbers",
+         "vi": "Hỏi một số quản lý xin số liệu"
         }
        ]
       },
@@ -1290,36 +1290,37 @@ window.BS_UNITS["p3-01"] = {
        },
        "answer": "B",
        "evidence": [
+        4,
         5,
         6
        ],
-       "explain_vi": "Sau khi anh nói sẽ xin số liệu, cô nhắc giờ đóng cửa của văn phòng khu vực để anh thấy thời gian không nhiều; anh đáp sẽ cố gửi trước giờ ăn trưa.",
+       "explain_vi": "Anh hỏi cô có thể mang báo cáo đến nộp vào thứ Sáu không; cô nói văn phòng đóng cửa lúc năm giờ còn cô tập huấn đến sáu giờ, tức là cô giải thích vì sao không thể mang đi. Anh đáp sẽ tự mang.",
        "options": [
         {
          "label": "A",
-         "en": "She is offering to deliver the report.",
-         "vi": "Cô ấy đang đề nghị mang báo cáo đi nộp.",
+         "en": "She is reminding him of the deadline.",
+         "vi": "Cô ấy đang nhắc anh về hạn chót.",
          "trap": "over-inference",
-         "why_vi": "Cô không nói sẽ mang báo cáo đi."
+         "why_vi": "Anh đã biết hạn thứ Sáu; ở đây cô đang trả lời lời nhờ mang báo cáo đi."
         },
         {
          "label": "B",
-         "en": "She is reminding him of a time limit.",
-         "vi": "Cô ấy đang nhắc anh về giới hạn thời gian."
+         "en": "She is explaining why she cannot deliver it.",
+         "vi": "Cô ấy đang giải thích vì sao không thể mang nó đi nộp."
         },
         {
          "label": "C",
-         "en": "She is explaining why she cannot help.",
-         "vi": "Cô ấy đang giải thích vì sao không thể giúp.",
-         "trap": "wrong-detail",
-         "why_vi": "Cô đã đồng ý làm biểu đồ giúp anh."
+         "en": "She is offering to drive him there.",
+         "vi": "Cô ấy đang đề nghị chở anh đến đó.",
+         "trap": "not-mentioned",
+         "why_vi": "Cô không đề nghị chở ai."
         },
         {
          "label": "D",
          "en": "She is asking him to work late.",
          "vi": "Cô ấy đang yêu cầu anh làm việc muộn.",
-         "trap": "over-inference",
-         "why_vi": "Cô không bảo anh ở lại muộn; anh tự nói sẽ gửi trước trưa."
+         "trap": "not-mentioned",
+         "why_vi": "Cô không yêu cầu anh làm việc muộn."
         }
        ]
       }
@@ -1439,33 +1440,33 @@ window.BS_UNITS["p3-01"] = {
         0,
         4
        ],
-       "explain_vi": "Họ kiểm tra vật tư, thấy thiếu một số món, rồi gọi nhà cung cấp để đặt hàng cho văn phòng.",
+       "explain_vi": "Họ kiểm tra đồ dùng, thấy thiếu một số món, rồi gọi nhà cung cấp để bổ sung trước khi người mới đến.",
        "options": [
         {
          "label": "A",
-         "en": "Comparing prices from two suppliers",
+         "en": "Comparing prices from two vendors",
          "vi": "So sánh giá của hai nhà cung cấp",
          "trap": "over-inference",
          "why_vi": "Họ chỉ gọi một nhà cung cấp, không so sánh giá."
         },
         {
          "label": "B",
-         "en": "Correcting a mistake in a delivery",
-         "vi": "Sửa một sai sót trong lần giao hàng",
+         "en": "Fixing a mistake on an invoice",
+         "vi": "Sửa một sai sót trên hóa đơn",
          "trap": "not-mentioned",
-         "why_vi": "Không có sai sót giao hàng nào được nhắc."
+         "why_vi": "Không có hóa đơn nào được nhắc."
         },
         {
          "label": "C",
-         "en": "Returning unused supplies to a vendor",
-         "vi": "Trả lại vật tư không dùng cho nhà cung cấp",
+         "en": "Returning unused items to a vendor",
+         "vi": "Trả lại hàng không dùng cho nhà cung cấp",
          "trap": "not-mentioned",
          "why_vi": "Họ đặt thêm hàng, không trả hàng."
         },
         {
          "label": "D",
-         "en": "Ordering supplies for an office",
-         "vi": "Đặt vật dụng cho một văn phòng"
+         "en": "Restocking before new staff arrive",
+         "vi": "Bổ sung hàng trước khi nhân viên mới đến"
         }
        ]
       },
@@ -1473,40 +1474,40 @@ window.BS_UNITS["p3-01"] = {
        "id": "c2-s6-q2",
        "kind": "inference",
        "q": {
-        "en": "What does the man imply about the paper?",
-        "vi": "Người đàn ông ngụ ý điều gì về giấy?"
+        "en": "What does the man imply about the company's usual vendor?",
+        "vi": "Người đàn ông ngụ ý điều gì về nhà cung cấp quen thuộc của công ty?"
        },
        "answer": "A",
        "evidence": [
         6
        ],
-       "explain_vi": "Anh nói họ bỏ qua giấy vì một lô hàng từ nhà cung cấp quen thuộc đang trên đường tới, nên giấy được cung cấp từ nơi khác.",
+       "explain_vi": "Anh nói họ bỏ qua giấy vì một lô hàng từ nhà cung cấp quen thuộc đang trên đường tới, tức là nhà cung cấp đó đã gửi hàng.",
        "options": [
         {
          "label": "A",
-         "en": "Another source is already supplying it.",
-         "vi": "Một nguồn khác đã đang cung cấp nó."
+         "en": "It has already sent stock.",
+         "vi": "Nó đã gửi hàng đi rồi."
         },
         {
          "label": "B",
-         "en": "It costs less at another shop.",
-         "vi": "Nó rẻ hơn ở một cửa hàng khác.",
+         "en": "It offers lower prices.",
+         "vi": "Nó có giá thấp hơn.",
          "trap": "not-mentioned",
-         "why_vi": "Không ai so sánh giá giấy."
+         "why_vi": "Không ai so sánh giá giữa các nhà cung cấp."
         },
         {
          "label": "C",
-         "en": "It is kept in a different office.",
-         "vi": "Nó được cất ở một văn phòng khác.",
+         "en": "It is closed for the week.",
+         "vi": "Nó đóng cửa cả tuần.",
          "trap": "not-mentioned",
-         "why_vi": "Không có văn phòng nào khác được nhắc cho việc này."
+         "why_vi": "Nhà cung cấp quen thuộc vẫn gửi hàng nên không đóng cửa."
         },
         {
          "label": "D",
-         "en": "The interns will bring their own.",
-         "vi": "Các thực tập sinh sẽ tự mang theo.",
+         "en": "It no longer sells paper.",
+         "vi": "Nó không còn bán giấy.",
          "trap": "over-inference",
-         "why_vi": "Thực tập sinh không được nói sẽ mang giấy."
+         "why_vi": "Lô hàng từ nhà cung cấp đó đang tới, nên không phải họ ngừng bán giấy."
         }
        ]
       },
