@@ -511,10 +511,7 @@ window.BS_UNITS["p4-01"] = {
                 }
               ]
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "c1-s2",
@@ -720,10 +717,7 @@ window.BS_UNITS["p4-01"] = {
                 }
               ]
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "c1-s3",
@@ -845,8 +839,8 @@ window.BS_UNITS["p4-01"] = {
                 },
                 {
                   "label": "B",
-                  "en": "She expects visitors to have trouble getting upstairs",
-                  "vi": "Cô dự đoán khách sẽ khó lên các tầng trên"
+                  "en": "She expects visitors to have difficulty reaching the offices",
+                  "vi": "Cô dự đoán khách sẽ khó lên tới các văn phòng"
                 },
                 {
                   "label": "C",
@@ -905,10 +899,7 @@ window.BS_UNITS["p4-01"] = {
                 }
               ]
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         }
       ]
     },
@@ -1097,10 +1088,7 @@ window.BS_UNITS["p4-01"] = {
                 }
               ]
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "c2-s5",
@@ -1306,10 +1294,7 @@ window.BS_UNITS["p4-01"] = {
                 }
               ]
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "c2-s6",
@@ -1484,10 +1469,7 @@ window.BS_UNITS["p4-01"] = {
                 }
               ]
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         }
       ]
     },

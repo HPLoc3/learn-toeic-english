@@ -1,5 +1,5 @@
 window.BS_UNITS = window.BS_UNITS || {};
-/* p3-01: nội dung do site tự soạn. Giọng đọc do trình duyệt tạo, không có file âm thanh. Các đoạn còn đánh dấu unverified cho đến khi nghe thử trên thiết bị thật. */
+/* p3-01: nội dung do site tự soạn. Giọng đọc do trình duyệt tạo, không có file âm thanh. */
 window.BS_UNITS["p3-01"] = {
  "id": "p3-01",
  "part": "Part 3 - Hội thoại ngắn",
@@ -342,9 +342,6 @@ window.BS_UNITS["p3-01"] = {
     {
      "id": "c1-s1",
      "kind": "conversation",
-     "v": {
-      "status": "unverified"
-     },
      "speakers": [
       {
        "id": "W",
@@ -529,9 +526,6 @@ window.BS_UNITS["p3-01"] = {
     {
      "id": "c1-s2",
      "kind": "conversation",
-     "v": {
-      "status": "unverified"
-     },
      "speakers": [
       {
        "id": "M",
@@ -719,9 +713,6 @@ window.BS_UNITS["p3-01"] = {
     {
      "id": "c1-s3",
      "kind": "conversation",
-     "v": {
-      "status": "unverified"
-     },
      "speakers": [
       {
        "id": "W",
@@ -944,9 +935,6 @@ window.BS_UNITS["p3-01"] = {
     {
      "id": "c2-s4",
      "kind": "conversation",
-     "v": {
-      "status": "unverified"
-     },
      "speakers": [
       {
        "id": "W",
@@ -1140,9 +1128,6 @@ window.BS_UNITS["p3-01"] = {
     {
      "id": "c2-s5",
      "kind": "conversation",
-     "v": {
-      "status": "unverified"
-     },
      "speakers": [
       {
        "id": "M",
@@ -1329,9 +1314,6 @@ window.BS_UNITS["p3-01"] = {
     {
      "id": "c2-s6",
      "kind": "conversation",
-     "v": {
-      "status": "unverified"
-     },
      "speakers": [
       {
        "id": "W",

@@ -98,13 +98,13 @@ window.BS_CATALOG = {
           "id": "p3-01",
           "no": 12,
           "title_vi": "Hội thoại nơi công sở",
-          "available": false
+          "available": true
         },
         {
           "id": "p3-02",
           "no": 13,
           "title_vi": "Hội thoại mua sắm và dịch vụ",
-          "available": false
+          "available": true
         },
         {
           "id": "p3-03",
@@ -146,13 +146,13 @@ window.BS_CATALOG = {
           "id": "p4-01",
           "no": 19,
           "title_vi": "Thông báo và quảng cáo",
-          "available": false
+          "available": true
         },
         {
           "id": "p4-02",
           "no": 20,
           "title_vi": "Tin nhắn thoại và cuộc gọi",
-          "available": false
+          "available": true
         },
         {
           "id": "p4-03",

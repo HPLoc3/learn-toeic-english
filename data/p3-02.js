@@ -342,9 +342,6 @@ window.BS_UNITS["p3-02"] = {
         {
           "id": "c1-s1",
           "kind": "conversation",
-          "v": {
-            "status": "unverified"
-          },
           "speakers": [
             {
               "id": "W",
@@ -541,9 +538,6 @@ window.BS_UNITS["p3-02"] = {
         {
           "id": "c1-s2",
           "kind": "conversation",
-          "v": {
-            "status": "unverified"
-          },
           "speakers": [
             {
               "id": "M",
@@ -728,9 +722,6 @@ window.BS_UNITS["p3-02"] = {
         {
           "id": "c1-s3",
           "kind": "conversation",
-          "v": {
-            "status": "unverified"
-          },
           "speakers": [
             {
               "id": "W",
@@ -953,9 +944,6 @@ window.BS_UNITS["p3-02"] = {
         {
           "id": "c2-s4",
           "kind": "conversation",
-          "v": {
-            "status": "unverified"
-          },
           "speakers": [
             {
               "id": "M1",
@@ -1151,9 +1139,6 @@ window.BS_UNITS["p3-02"] = {
         {
           "id": "c2-s5",
           "kind": "conversation",
-          "v": {
-            "status": "unverified"
-          },
           "speakers": [
             {
               "id": "W",
@@ -1349,9 +1334,6 @@ window.BS_UNITS["p3-02"] = {
         {
           "id": "c2-s6",
           "kind": "conversation",
-          "v": {
-            "status": "unverified"
-          },
           "speakers": [
             {
               "id": "M",

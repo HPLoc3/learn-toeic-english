@@ -442,8 +442,8 @@
       seqCur = h;
       next();
       initial = false;
-      /* ket thuc dong bo truoc khi phan nao bat dau (vd speak() nem loi): coi nhu khong phat duoc, khong goi onstop */
-      if (over && !started) return null;
+      /* ket thuc dong bo (vd speak() nem loi, hoac phan bat dau va ket thuc ngay trong speak()): tra null, khong goi onstop */
+      if (over) return null;
       return h;
     } catch (e) { return null; }
   }

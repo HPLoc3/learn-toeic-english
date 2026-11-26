@@ -327,9 +327,6 @@ window.BS_UNITS["p4-02"] = {
           "id": "c1-s1",
           "kind": "talk",
           "talk_type": "voicemail",
-          "v": {
-            "status": "unverified"
-          },
           "speakers": [
             {
               "id": "A",
@@ -501,9 +498,6 @@ window.BS_UNITS["p4-02"] = {
           "id": "c1-s2",
           "kind": "talk",
           "talk_type": "voicemail",
-          "v": {
-            "status": "unverified"
-          },
           "speakers": [
             {
               "id": "A",
@@ -711,9 +705,6 @@ window.BS_UNITS["p4-02"] = {
           "id": "c1-s3",
           "kind": "talk",
           "talk_type": "recorded-message",
-          "v": {
-            "status": "unverified"
-          },
           "speakers": [
             {
               "id": "A",
@@ -896,9 +887,6 @@ window.BS_UNITS["p4-02"] = {
           "id": "c2-s4",
           "kind": "talk",
           "talk_type": "voicemail",
-          "v": {
-            "status": "unverified"
-          },
           "speakers": [
             {
               "id": "A",
@@ -1106,9 +1094,6 @@ window.BS_UNITS["p4-02"] = {
           "id": "c2-s5",
           "kind": "talk",
           "talk_type": "voicemail",
-          "v": {
-            "status": "unverified"
-          },
           "speakers": [
             {
               "id": "A",
@@ -1284,9 +1269,6 @@ window.BS_UNITS["p4-02"] = {
           "id": "c2-s6",
           "kind": "talk",
           "talk_type": "voicemail",
-          "v": {
-            "status": "unverified"
-          },
           "speakers": [
             {
               "id": "A",

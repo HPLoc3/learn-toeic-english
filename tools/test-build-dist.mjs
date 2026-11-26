@@ -163,5 +163,11 @@ try {
   check("catalog thật: p2-01 và p2-02 đã mở (không bị loại), p2-03 còn trong lộ trình nhưng bị loại khỏi dist", !realSkip.includes("p2-01") && !realSkip.includes("p2-02") && realSkip.includes("p2-03") && readFileSync(join(ROOT, "data", "catalog.js"), "utf8").includes('"p2-03"'));
 }
 
+{
+  /* unit Part 3/4 da mo duoc phat hanh, unit chua mo thi khong */
+  const skip = unavailableIds(ROOT);
+  check("catalog that: p3-01, p3-02, p4-01, p4-02 da mo (khong bi loai); p3-03 va p4-07 chua mo (bi loai)", ["p3-01", "p3-02", "p4-01", "p4-02"].every((id) => !isUnreleasedData("data/" + id + ".js", skip)) && isUnreleasedData("data/p3-03.js", skip) && isUnreleasedData("data/p4-07.js", skip));
+  check("assets/js/conv.js la tep trang web hop le (vao dist)", isSiteFile("assets/js/conv.js"));
+}
 console.log(`test-build-dist: ${total - failed}/${total} ca đạt`);
 process.exit(failed ? 1 : 0);

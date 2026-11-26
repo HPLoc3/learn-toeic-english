@@ -585,5 +585,17 @@ const scoreOf = (n) => byClass(n, "score")[0];
   check("bang cua conv: o tieu de dung --card-2 va --ink (doc duoc ca sang va toi)", /\.cv-table th\{background:var\(--card-2\);color:var\(--ink\)\}/.test(css));
 }
 
+{
+  /* phan bat dau va ket thuc ngay trong speak(): tra null, khong cho onstop */
+  const E = makeEnv({ voices: [V("en-US", "Alex")] });
+  E.synth.speak = (m) => { if (m.onstart) m.onstart({}); if (m.onerror) m.onerror({ error: "canceled" }); };
+  let stops = 0;
+  const h = E.BS.speakSeq([{ text: "A", accent: "us" }, { text: "B", accent: "us" }], { onstop: () => { stops++; } });
+  check("speakSeq: phan bat dau roi bi huy ngay trong speak(): tra null, khong goi onstop", h === null && stops === 0);
+  const M = mountC();
+  M.synth.speak = E.synth.speak;
+  cplay(M.sets[0]).click();
+  check("conv: huy dong bo sau khi bat dau: khong ket o 'Đang phát...', hien nut xem loi thoai", cplay(M.sets[0]).textContent === "Nghe hội thoại" && !byClass(M.sets[0], "cv-peek")[0].hidden);
+}
 console.log("\ntest-conv: " + pass + " đạt, " + fail + " lỗi");
 process.exit(fail ? 1 : 0);
