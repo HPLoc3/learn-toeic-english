@@ -355,13 +355,13 @@ window.BS_UNITS["p3-06"] = {
             },
             {
               "s": "M",
-              "en": "I'm sorry about that. The next open seat on our schedule is tomorrow at seven.",
-              "vi": "Tôi rất tiếc. Chỗ trống tiếp theo trong lịch bay của chúng tôi là bảy giờ ngày mai."
+              "en": "I'm sorry about that. The next open seat on our schedule is tomorrow at seven in the morning.",
+              "vi": "Tôi rất tiếc. Chỗ trống tiếp theo trong lịch bay của chúng tôi là bảy giờ sáng mai."
             },
             {
               "s": "W",
-              "en": "Tomorrow? I have to give a talk there first thing in the morning.",
-              "vi": "Ngày mai sao? Sáng sớm mai tôi phải thuyết trình ở đó rồi."
+              "en": "Tomorrow? But I'm giving a talk there first thing.",
+              "vi": "Ngày mai sao? Nhưng sáng sớm mai tôi đã phải thuyết trình ở đó rồi."
             },
             {
               "s": "M",
@@ -385,8 +385,8 @@ window.BS_UNITS["p3-06"] = {
             },
             {
               "s": "W",
-              "en": "Good. My company will ask why I arrived so late. Could I get something on paper explaining it?",
-              "vi": "Tốt. Công ty sẽ hỏi vì sao tôi đến trễ như vậy. Anh đưa tôi giấy tờ giải thích việc đó được không?"
+              "en": "Good. My company will ask why I'm arriving so late. Could I get something on paper explaining it?",
+              "vi": "Tốt. Công ty sẽ hỏi vì sao tôi đến nơi muộn như vậy. Anh đưa tôi giấy tờ giải thích việc đó được không?"
             },
             {
               "s": "M",
@@ -599,33 +599,33 @@ window.BS_UNITS["p3-06"] = {
                 1,
                 2
               ],
-              "explain_vi": "Chưa đến giờ nhận phòng và buồng phòng còn đang dọn, trong khi anh ấy đến lúc mười một giờ muốn cất đồ.",
+              "explain_vi": "Chưa đến giờ nhận phòng và buồng phòng còn đang dọn, trong khi ông ấy đến lúc mười một giờ muốn cất đồ.",
               "options": [
                 {
                   "label": "A",
                   "en": "His reservation lists the wrong dates.",
-                  "vi": "Đặt phòng của anh ghi sai ngày.",
+                  "vi": "Đặt phòng của ông ghi sai ngày.",
                   "trap": "wrong-detail",
-                  "why_vi": "Anh đặt hai đêm bắt đầu từ hôm nay và không ai nói ngày bị sai."
+                  "why_vi": "Ông đặt hai đêm bắt đầu từ hôm nay và không ai nói ngày bị sai."
                 },
                 {
                   "label": "B",
                   "en": "His credit card has been declined.",
-                  "vi": "Thẻ tín dụng của anh bị từ chối.",
+                  "vi": "Thẻ tín dụng của ông bị từ chối.",
                   "trap": "not-mentioned",
                   "why_vi": "Không có đoạn nào nói về thẻ hay thanh toán bị lỗi."
                 },
                 {
                   "label": "C",
                   "en": "He cannot check in right away.",
-                  "vi": "Anh chưa thể nhận phòng ngay."
+                  "vi": "Ông chưa thể nhận phòng ngay."
                 },
                 {
                   "label": "D",
                   "en": "His luggage did not arrive with him.",
-                  "vi": "Hành lý của anh không đến cùng anh.",
+                  "vi": "Hành lý của ông không đến cùng ông.",
                   "trap": "heard-word",
-                  "why_vi": "Từ bags được nghe thấy, nhưng hành lý đang ở với anh và sẽ được khách sạn giữ giúp."
+                  "why_vi": "Từ bags được nghe thấy, nhưng hành lý đang ở với ông và sẽ được khách sạn giữ giúp."
                 }
               ]
             },
@@ -642,7 +642,7 @@ window.BS_UNITS["p3-06"] = {
                 2,
                 3
               ],
-              "explain_vi": "Ngay sau khi anh nói muốn cất đồ và thay áo, cô nêu một ý kiến: có phòng suite đã sẵn sàng với giá không đổi. Cô nói đến việc phòng rộng hơn để anh dễ nhận đổi phòng.",
+              "explain_vi": "Ngay sau khi ông nói muốn cất đồ và thay áo, cô nêu một ý kiến: có phòng suite đã sẵn sàng với giá không đổi. Cô nói đến việc phòng rộng hơn để ông dễ nhận đổi phòng.",
               "options": [
                 {
                   "label": "A",
@@ -654,21 +654,21 @@ window.BS_UNITS["p3-06"] = {
                 {
                   "label": "B",
                   "en": "To encourage him to accept a change",
-                  "vi": "Để khuyến khích anh chấp nhận một sự thay đổi"
+                  "vi": "Để khuyến khích ông chấp nhận một sự thay đổi"
                 },
                 {
                   "label": "C",
-                  "en": "To confirm that his request was met",
-                  "vi": "Để xác nhận yêu cầu của anh đã được đáp ứng",
+                  "en": "To confirm a room type he asked for",
+                  "vi": "Để xác nhận loại phòng ông đã yêu cầu",
                   "trap": "not-mentioned",
-                  "why_vi": "Anh chưa hề yêu cầu phòng rộng hơn."
+                  "why_vi": "Ông không hề nói đã yêu cầu loại phòng rộng hơn."
                 },
                 {
                   "label": "D",
                   "en": "To describe how the building is arranged",
                   "vi": "Để mô tả cách bố trí của tòa nhà",
                   "trap": "literal",
-                  "why_vi": "Đây chỉ là nghĩa bề mặt của câu; cô nói câu này để đưa ra một lựa chọn cho anh, không phải để giới thiệu tòa nhà."
+                  "why_vi": "Đây chỉ là nghĩa bề mặt của câu; cô nói câu này để đưa ra một lựa chọn cho ông, không phải để giới thiệu tòa nhà."
                 }
               ]
             },
@@ -683,7 +683,7 @@ window.BS_UNITS["p3-06"] = {
               "evidence": [
                 7
               ],
-              "explain_vi": "Anh nói sẽ sang quán bên kia đường ăn bánh mì kẹp vì từ bữa sáng chưa ăn gì.",
+              "explain_vi": "Ông nói sẽ sang quán bên kia đường ăn bánh mì kẹp vì từ bữa sáng chưa ăn gì.",
               "options": [
                 {
                   "label": "A",
@@ -709,7 +709,7 @@ window.BS_UNITS["p3-06"] = {
                   "en": "Carry his bags up to a room",
                   "vi": "Mang hành lý lên phòng",
                   "trap": "changed-plan",
-                  "why_vi": "Lúc đầu anh định mang hành lý lên ngay, nhưng rồi quyết định giữ phòng ban đầu, nên khách sạn sẽ giữ hành lý."
+                  "why_vi": "Lúc đầu ông định mang hành lý lên ngay, nhưng rồi quyết định giữ phòng ban đầu, nên khách sạn sẽ giữ hành lý."
                 }
               ]
             }
@@ -773,8 +773,8 @@ window.BS_UNITS["p3-06"] = {
             },
             {
               "s": "M",
-              "en": "That works well, then. By the way, a pianist will be performing that night, and you'll hear it upstairs too.",
-              "vi": "Vậy thì ổn rồi. Nhân tiện, tối hôm đó sẽ có nghệ sĩ dương cầm biểu diễn, trên lầu cũng nghe được."
+              "en": "That works well, then. By the way, a pianist will be performing that night, and you'll hear the music upstairs too.",
+              "vi": "Vậy thì ổn rồi. Nhân tiện, tối hôm đó sẽ có nghệ sĩ dương cầm biểu diễn, trên lầu cũng nghe được tiếng nhạc."
             },
             {
               "s": "W",
@@ -869,8 +869,8 @@ window.BS_UNITS["p3-06"] = {
               "id": "c1-s3-q2",
               "kind": "detail",
               "q": {
-                "en": "What does the man say about the restaurant on that date?",
-                "vi": "Người đàn ông nói gì về nhà hàng vào ngày hôm đó?"
+                "en": "What does the man say about the restaurant on the twelfth?",
+                "vi": "Người đàn ông nói gì về nhà hàng vào ngày mười hai?"
               },
               "answer": "A",
               "evidence": [
@@ -901,8 +901,8 @@ window.BS_UNITS["p3-06"] = {
                   "label": "D",
                   "en": "A new chef will be cooking.",
                   "vi": "Sẽ có một đầu bếp mới nấu.",
-                  "trap": "wrong-speaker",
-                  "why_vi": "Chuyện đầu bếp do người phụ nữ nói: một vị khách từng làm đầu bếp."
+                  "trap": "heard-word",
+                  "why_vi": "Từ chef được nghe khi người phụ nữ nói một vị khách từng là đầu bếp; không ai nói có đầu bếp mới."
                 }
               ]
             },
@@ -925,15 +925,15 @@ window.BS_UNITS["p3-06"] = {
                   "label": "A",
                   "en": "$32",
                   "vi": "32 đô",
-                  "trap": "graphic-only",
-                  "why_vi": "Đây là giá Menu B, chỉ có hai món; mức giá này chỉ có trong bảng."
+                  "trap": "wrong-detail",
+                  "why_vi": "Menu B chỉ có hai món, trong khi khách cần nhiều hơn hai món."
                 },
                 {
                   "label": "B",
                   "en": "$38",
                   "vi": "38 đô",
                   "trap": "changed-plan",
-                  "why_vi": "Đây là giá một thực đơn hai món nằm trong mức bốn mươi đô dự tính ban đầu; sau đó mức tối đa đã đổi và khách cần nhiều hơn hai món."
+                  "why_vi": "Menu D là thực đơn hai món quản lý gợi ý và nằm trong mức bốn mươi đô dự tính lúc đầu; nhưng cô đã từ chối loại hai món, và mức tối đa sau đó là năm mươi đô."
                 },
                 {
                   "label": "C",
@@ -976,8 +976,8 @@ window.BS_UNITS["p3-06"] = {
           "lines": [
             {
               "s": "W",
-              "en": "Welcome to Gadwall Hire. Your small car is ready. Would you like our extra cover?",
-              "vi": "Chào mừng đến Gadwall Hire. Xe nhỏ của anh đã sẵn sàng. Anh có muốn mua thêm gói bảo hiểm mở rộng không?"
+              "en": "Welcome to Gadwall Hire. Would you like our extra cover?",
+              "vi": "Chào mừng đến Gadwall Hire. Anh có muốn mua thêm gói bảo hiểm mở rộng không?"
             },
             {
               "s": "M",
@@ -996,13 +996,13 @@ window.BS_UNITS["p3-06"] = {
             },
             {
               "s": "W",
-              "en": "Just remember, you can only add it before you drive away.",
-              "vi": "Anh nhớ là chỉ có thể mua thêm trước khi lái xe đi."
+              "en": "Just remember, you can only add it before you drive away. Will anyone else be driving?",
+              "vi": "Anh nhớ là chỉ có thể mua thêm trước khi lái xe đi. Có ai lái cùng anh không?"
             },
             {
               "s": "M",
-              "en": "I'm the only driver. But whatever I add, I have to claim back from our finance department, and they're strict.",
-              "vi": "Chỉ mình tôi lái. Nhưng mua thêm gì thì tôi cũng phải xin phòng tài chính hoàn lại, mà họ xét rất kỹ."
+              "en": "No, only me. But whatever I add, I have to claim back from our finance department, and they're strict.",
+              "vi": "Không, chỉ mình tôi. Nhưng mua thêm gì thì tôi cũng phải xin phòng tài chính hoàn lại, mà họ xét rất kỹ."
             },
             {
               "s": "W",
@@ -1621,8 +1621,8 @@ window.BS_UNITS["p3-06"] = {
         },
         {
           "id": "fill1-4",
-          "before": "Because of the rain, our walking tour has been moved",
-          "after": "Saturday.",
+          "before": "The tour bus pickup point has been moved from stop 2",
+          "after": "stop 5.",
           "answers": [
             "to"
           ]
