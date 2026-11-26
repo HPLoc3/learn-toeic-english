@@ -1,6 +1,6 @@
 # TOEIC Mỗi Ngày - Luyện thi TOEIC từng bước
 
-Trang web tĩnh (HTML/CSS/JS thuần, không cần build) giúp luyện TOEIC, học từng unit một. Toàn bộ bài học và hình minh họa là nội dung gốc do dự án tự biên soạn. Hiện có Unit 1 đến Unit 4 (Part 1, nghe mô tả hình ảnh) và Unit 5, Unit 6 (Part 2, nghe hỏi - đáp: Who/Where, When/Why), Unit 12, Unit 13 (Part 3, hội thoại: nơi công sở, mua sắm và dịch vụ) Unit 19, Unit 20 (Part 4, bài nói: thông báo và quảng cáo, tin nhắn thoại và cuộc gọi), Unit 26 (Part 5, từ loại trong câu), Unit 30 (Part 6, điền từ vào đoạn văn) và Unit 33 (Part 7, thư điện tử và thư tín); các unit và Part còn lại chưa có bài.
+Trang web tĩnh (HTML/CSS/JS thuần, không cần build) giúp luyện TOEIC, học từng unit một. Toàn bộ bài học và hình minh họa là nội dung gốc do dự án tự biên soạn. Hiện có Unit 1 đến Unit 4 (Part 1, nghe mô tả hình ảnh) và Unit 5, Unit 6 (Part 2, nghe hỏi - đáp: Who/Where, When/Why), Unit 12, Unit 13 (Part 3, hội thoại: nơi công sở, mua sắm và dịch vụ) và Unit 19, Unit 20 (Part 4, bài nói: thông báo và quảng cáo, tin nhắn thoại và cuộc gọi), Unit 26 (Part 5, từ loại trong câu), Unit 30 (Part 6, điền từ vào đoạn văn) và Unit 33 (Part 7, thư điện tử và thư tín); các unit và Part còn lại chưa có bài.
 
 ## Chạy thử
 
