@@ -64,7 +64,7 @@ window.BS_UNITS["p2-03"] = {
       },
       {
         "id": "tip3",
-        "text_vi": "How đi với một từ khác sẽ đổi nghĩa: How many (số đếm), How much (giá hoặc lượng), How long (bao lâu), How often (tần suất), How soon (còn bao lâu nữa), How far (khoảng cách). Phải nghe được cả hai từ. Bẫy hay gặp là đáp án trả lời cho một cụm How khác, ví dụ nói tần suất trong khi câu hỏi cần khoảng cách. Đáp án đúng cũng có thể nói vòng: một lời xin thêm vài phút vẫn trả lời được How soon.",
+        "text_vi": "How đi với một từ khác sẽ đổi nghĩa: How many (số đếm), How much (giá hoặc lượng), How long (bao lâu), How often (tần suất), How soon (còn bao lâu nữa), How far (khoảng cách). Phải nghe được cả hai từ. Bẫy hay gặp là đáp án trả lời cho một cụm How khác, ví dụ nói tần suất trong khi câu hỏi cần khoảng cách. Đáp án đúng cũng có thể nói vòng: một mốc giờ ước chừng vẫn trả lời được How soon.",
         "examples": [
           {
             "q": "How often is the first-aid kit checked?",
@@ -74,8 +74,8 @@ window.BS_UNITS["p2-03"] = {
           },
           {
             "q": "How soon will the side gate be open?",
-            "en": "Give us ten more minutes.",
-            "vi": "Cho chúng tôi thêm mười phút.",
+            "en": "Within the hour, I'd say.",
+            "vi": "Tôi nghĩ là trong vòng một tiếng.",
             "q_vi": "Bao lâu nữa thì cổng bên mở?"
           },
           {
@@ -91,7 +91,7 @@ window.BS_UNITS["p2-03"] = {
       },
       {
         "id": "tip4",
-        "text_vi": "How was hỏi nhận xét về một việc đã diễn ra, còn How do I hỏi cách làm. Với How was, hãy chờ một lời đánh giá hoặc một chi tiết cho thấy việc đó có suôn sẻ hay không. Với How do I, hãy chờ một bước hướng dẫn hoặc người có thể giúp. Hai loại này không trả lời bằng Yes hay No. Ngoài ra hãy coi chừng từ phát âm giống nhau, ví dụ weigh và way, và từ trong câu hỏi bị lặp lại với nghĩa khác.",
+        "text_vi": "How was hỏi nhận xét về một việc đã diễn ra, còn How do I hỏi cách làm. Với How was, hãy chờ một lời đánh giá hoặc một chi tiết cho thấy việc đó có suôn sẻ hay không. Với How do I, hãy chờ một bước hướng dẫn hoặc người có thể giúp. Hai loại này không trả lời bằng Yes hay No. Ngoài ra hãy coi chừng từ phát âm giống nhau, ví dụ list và last, và từ trong câu hỏi bị lặp lại với nghĩa khác.",
         "examples": [
           {
             "q": "How was the drive back from the depot?",
@@ -375,8 +375,8 @@ window.BS_UNITS["p2-03"] = {
     },
     {
       "id": "p05",
-      "en": "Give us ten more minutes.",
-      "vi": "Cho chúng tôi thêm mười phút.",
+      "en": "Within the hour, I'd say.",
+      "vi": "Tôi nghĩ là trong vòng một tiếng.",
       "group_vi": "Số lượng, thời gian, tần suất, khoảng cách (How ...)",
       "v": {
         "status": "unverified"
@@ -589,7 +589,7 @@ window.BS_UNITS["p2-03"] = {
             {
               "label": "B",
               "en": "We use the glass door by the office.",
-              "vi": "Chúng tôi đi bằng cửa kính cạnh văn phòng.",
+              "vi": "Chúng tôi đi lối cửa kính cạnh văn phòng.",
               "trap": "repeat-word",
               "why_vi": "Lặp lại use và glass nhưng nói về cửa ra vào, không nói về thùng."
             },
@@ -831,17 +831,17 @@ window.BS_UNITS["p2-03"] = {
             },
             {
               "label": "B",
-              "en": "It's on the way to Orrin Bridge.",
-              "vi": "Nó nằm trên đường đến Orrin Bridge.",
+              "en": "Orrin Bridge is quite a long way off.",
+              "vi": "Orrin Bridge còn cách đây khá xa.",
               "trap": "similar-sound",
-              "why_vi": "Way phát âm giống weigh nhưng nghĩa là con đường; câu này không nói cân nặng."
+              "why_vi": "Way phát âm giống weigh nhưng ở đây nói về khoảng cách đường đi, không nói cân nặng."
             },
             {
               "label": "C",
-              "en": "We wrap the fragile items twice.",
-              "vi": "Chúng tôi bọc đồ dễ vỡ hai lớp.",
+              "en": "I'll roll the cart back after lunch.",
+              "vi": "Ăn trưa xong tôi sẽ đẩy xe về chỗ cũ.",
               "trap": "repeat-word",
-              "why_vi": "Lặp lại từ wrap nhưng nói về cách bọc hàng."
+              "why_vi": "Lặp lại âm roll nhưng ở nghĩa đẩy xe, không cho biết cuộn màng bọc nặng bao nhiêu."
             }
           ],
           "v": {
@@ -1173,10 +1173,10 @@ window.BS_UNITS["p2-03"] = {
           "options": [
             {
               "label": "A",
-              "en": "They'll need a copy of the floor plan.",
-              "vi": "Họ sẽ cần một bản sơ đồ mặt bằng.",
+              "en": "It'll start right after lunch.",
+              "vi": "Nó sẽ bắt đầu ngay sau giờ trưa.",
               "trap": "wrong-tense",
-              "why_vi": "Câu hỏi nói về đợt kiểm tra đã diễn ra; câu này nói việc sắp tới và không cho biết kết quả."
+              "why_vi": "Câu hỏi nói về đợt kiểm tra đã diễn ra; câu này nói việc sắp bắt đầu."
             },
             {
               "label": "B",
