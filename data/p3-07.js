@@ -26,10 +26,10 @@ window.BS_UNITS["p3-07"] = {
    },
    {
     "id": "tip3",
-    "text_vi": "TỪ NGHE ĐƯỢC CHƯA CHẮC ĐÚNG: một lựa chọn lặp lại từ trong đoạn có thể gán cho từ đó một vai trò khác, ví dụ nơi gửi đi thay vì nơi nhận, hoặc giờ của một sự kiện khác. Hãy nghe cả câu để biết từ đó dùng cho việc gì, rồi so nghĩa chứ đừng chỉ so mặt chữ.",
+    "text_vi": "TỪ NGHE ĐƯỢC CHƯA CHẮC ĐÚNG: một lựa chọn lặp lại từ trong đoạn có thể gán cho từ đó một vai trò khác, ví dụ một nơi chốn, mốc thời gian hay món đồ có được nhắc đến nhưng gắn với một việc khác. Hãy nghe cả câu để biết từ đó dùng cho việc gì, rồi so nghĩa chứ đừng chỉ so mặt chữ.",
     "examples": [
-     {"en":"The museum closes at six, so our tour has to begin by four.","vi":"Bảo tàng đóng cửa lúc sáu giờ, nên chuyến tham quan phải bắt đầu trước bốn giờ."},
-     {"en":"We parked beside the bakery, but the class is held upstairs at the studio.","vi":"Chúng tôi đỗ xe cạnh tiệm bánh, nhưng lớp học ở phòng tập trên lầu."}
+     {"en":"The flyer mentions a discount, but that offer ended last month.","vi":"Tờ rơi có nhắc đến giảm giá, nhưng ưu đãi đó đã hết từ tháng trước."},
+     {"en":"I'm asking about the lamp, not the desk it came with.","vi":"Tôi đang hỏi về cái đèn, không phải cái bàn đi kèm nó."}
     ]
    },
    {
@@ -126,7 +126,7 @@ window.BS_UNITS["p3-07"] = {
        "evidence": [2,5,7],
        "explain_vi": "Cả cuộc trò chuyện xoay quanh việc băng rôn nên được giao đến đâu: văn phòng, gian hàng hay kho.",
        "options": [
-        {"label":"A","en":"How many items to order for a fair","vi":"Đặt bao nhiêu món đồ cho một hội chợ","trap":"heard-word","why_vi":"Có nghe đến hội chợ, nhưng không ai bàn số lượng cần đặt."},
+        {"label":"A","en":"How many items to order for a fair","vi":"Đặt bao nhiêu món đồ cho một hội chợ","trap":"heard-word","why_vi":"Có nghe food fair, nhưng hội chợ chỉ là dịp dùng băng rôn; không ai bàn chuyện đặt bao nhiêu món."},
         {"label":"B","en":"Who will pay an extra shipping fee","vi":"Ai sẽ trả thêm một khoản phí vận chuyển","trap":"not-mentioned","why_vi":"Không ai nhắc đến phí vận chuyển hay việc trả tiền."},
         {"label":"C","en":"Whether to switch courier companies","vi":"Có nên đổi sang hãng giao hàng khác không","trap":"over-inference","why_vi":"Người đàn ông chỉ định nhắn cho hãng giao hàng; không ai muốn đổi hãng."},
         {"label":"D","en":"Where some event materials should go","vi":"Đồ dùng cho sự kiện nên được gửi đến đâu"}
@@ -270,8 +270,8 @@ window.BS_UNITS["p3-07"] = {
        "options": [
         {"label":"A","en":"A sales agent for a clothing maker","vi":"Nhân viên kinh doanh của một xưởng may","trap":"heard-word","why_vi":"Có nghe sales agent, nhưng đó là người của Needlepoint mà người đàn ông nhắc đến."},
         {"label":"B","en":"A bookkeeper from an outside firm","vi":"Kế toán của một công ty bên ngoài","trap":"not-mentioned","why_vi":"Không ai nhắc đến kế toán hay công ty làm sổ sách bên ngoài."},
-        {"label":"C","en":"The person who owns a coffee shop","vi":"Chủ của một quán cà phê"},
-        {"label":"D","en":"A manager hired to train servers","vi":"Quản lý được thuê để đào tạo nhân viên phục vụ","trap":"over-inference","why_vi":"Cô ấy chỉ nhắc có hai phục vụ mới, không nói mình đào tạo họ hay được thuê."}
+        {"label":"C","en":"A business owner running a cafe","vi":"Người chủ đang điều hành một quán cà phê"},
+        {"label":"D","en":"A manager hired to train new staff","vi":"Quản lý được thuê để đào tạo nhân viên mới","trap":"over-inference","why_vi":"Cô ấy chỉ nhắc có hai phục vụ mới, không nói mình đào tạo họ hay được thuê."}
        ]
       },
       {
@@ -298,7 +298,7 @@ window.BS_UNITS["p3-07"] = {
        "explain_vi": "Cô ấy nhờ anh bảo bên may tính lại số liệu để biết tổng tiền mới.",
        "options": [
         {"label":"A","en":"Ask the supplier for updated pricing","vi":"Xin nhà cung cấp báo giá cập nhật"},
-        {"label":"B","en":"Collect the servers' clothing sizes","vi":"Thu thập cỡ quần áo của nhân viên phục vụ","trap":"wrong-speaker","why_vi":"Người đàn ông tự đề nghị thu thập cỡ; người phụ nữ không nhờ việc này."},
+        {"label":"B","en":"Collect everyone's clothing sizes","vi":"Thu thập cỡ quần áo của mọi người","trap":"wrong-speaker","why_vi":"Người đàn ông tự đề nghị thu thập cỡ; người phụ nữ không nhờ việc này."},
         {"label":"C","en":"Pick up a fabric sample from a shop","vi":"Đến cửa hàng lấy một mẫu vải","trap":"similar-sound","why_vi":"Trong bài là simple (đơn giản), nghe gần giống sample (mẫu)."},
         {"label":"D","en":"Send a deposit to the clothing maker","vi":"Gửi tiền đặt cọc cho xưởng may","trap":"heard-word","why_vi":"Có nghe deposit, nhưng chưa cần đặt cọc cho đến khi duyệt."}
        ]
@@ -321,11 +321,11 @@ window.BS_UNITS["p3-07"] = {
       {"id":"M2","gender":"m","accent":"us"}
      ],
      "lines": [
-      {"s":"M1","en":"Vanessa, Yusuf, our open house on Plover Street is Saturday, so let's split up the jobs. I'll buy the snacks and drinks.","vi":"Vanessa, Yusuf, thứ Bảy là ngày mở cửa đón khách ở Plover Street, mình chia việc nhé. Tôi sẽ mua đồ ăn nhẹ và đồ uống."},
-      {"s":"W","en":"I'd planned to set out the folding tables and chairs.","vi":"Tôi đã định bày bàn ghế gấp."},
-      {"s":"M2","en":"And I'm making the signs, plus showing neighbors around the warehouse.","vi":"Còn tôi làm bảng chỉ dẫn, và dẫn bà con hàng xóm đi xem nhà kho."},
-      {"s":"M1","en":"I'll also set aside some free samples. My car's just back from the shop, so I can haul things.","vi":"Tôi cũng sẽ để dành ít hàng mẫu miễn phí. Xe tôi vừa lấy từ tiệm sửa về nên tôi chở đồ được."},
-      {"s":"M2","en":"Thanks. But I've hit a snag with the signs. My laptop's at the repair counter until Monday, with all my design files on it.","vi":"Cảm ơn. Nhưng phần bảng chỉ dẫn của tôi gặp trục trặc. Máy tính xách tay đang ở quầy sửa đến thứ Hai, mọi tệp thiết kế đều nằm trong đó."},
+      {"s":"M1","en":"Vanessa, Yusuf, our open house on Plover Street is Saturday, so let's split up the jobs. I'll buy snacks and drinks.","vi":"Vanessa, Yusuf, thứ Bảy là ngày mở cửa đón khách ở Plover Street, mình chia việc nhé. Tôi sẽ mua đồ ăn nhẹ và đồ uống."},
+      {"s":"W","en":"I'd planned to set out the folding tables and chairs. What about you, Yusuf?","vi":"Tôi đã định bày bàn ghế gấp. Còn anh thì sao, Yusuf?"},
+      {"s":"M2","en":"I'm making the signs, plus showing neighbors around the warehouse.","vi":"Tôi làm bảng chỉ dẫn, và dẫn bà con hàng xóm đi xem nhà kho."},
+      {"s":"M1","en":"I'll also save some free samples. My car's just back from the shop, so I can drive things over.","vi":"Tôi cũng sẽ để dành ít hàng mẫu miễn phí. Xe tôi vừa lấy từ tiệm sửa về nên tôi chở đồ đến được."},
+      {"s":"M2","en":"But I've hit a snag with the signs. My laptop's at the repair counter until Monday, with all my design files on it.","vi":"Nhưng phần bảng chỉ dẫn của tôi gặp trục trặc. Máy tính xách tay đang ở quầy sửa đến thứ Hai, mọi tệp thiết kế đều nằm trong đó."},
       {"s":"W","en":"I've got a design program on mine. Why don't I take over the signs, Yusuf?","vi":"Máy tôi có phần mềm thiết kế. Hay để tôi làm bảng chỉ dẫn thay anh, Yusuf?"},
       {"s":"M2","en":"That'd help a lot. Then I could set up the tables for you.","vi":"Vậy thì đỡ quá. Đổi lại tôi bày bàn giúp chị."},
       {"s":"M1","en":"Please do. I can't lift anything heavy since I hurt my back.","vi":"Anh làm giúp nhé. Từ khi bị đau lưng, tôi không bê được đồ nặng."},
@@ -374,7 +374,7 @@ window.BS_UNITS["p3-07"] = {
         {"label":"A","en":"He has hurt his back recently.","vi":"Gần đây anh ấy bị đau lưng.","trap":"wrong-speaker","why_vi":"Người bị đau lưng là người đàn ông còn lại."},
         {"label":"B","en":"His laptop is being repaired.","vi":"Máy tính xách tay của anh ấy đang được sửa."},
         {"label":"C","en":"His car is still at a repair shop.","vi":"Xe của anh ấy vẫn còn ở tiệm sửa.","trap":"heard-word","why_vi":"Có nghe car và shop, nhưng đó là xe của người kia và đã lấy về rồi."},
-        {"label":"D","en":"He does not know the building.","vi":"Anh ấy không rành tòa nhà.","trap":"not-mentioned","why_vi":"Không ai nói vậy; Yusuf còn bảo mình thuộc từng lối đi."}
+        {"label":"D","en":"He does not know the building.","vi":"Anh ấy không rành tòa nhà.","trap":"wrong-detail","why_vi":"Không ai nói vậy; Yusuf còn bảo mình thuộc từng lối đi."}
        ]
       }
      ]
@@ -459,7 +459,7 @@ window.BS_UNITS["p3-07"] = {
       {"s":"W","en":"It would, but they've capped spending at four hundred dollars.","vi":"Đúng vậy, nhưng họ giới hạn chi tiêu ở mức bốn trăm đô."},
       {"s":"M","en":"Then only one package meets both conditions.","vi":"Vậy chỉ có một gói đáp ứng cả hai điều kiện."},
       {"s":"W","en":"Let's take that one. Could you look around on Monday? Actually, never mind. The photos I sent show everything.","vi":"Mình lấy gói đó. Thứ Hai anh ghé xem qua được không? À mà thôi. Ảnh tôi gửi đã thể hiện đủ cả."},
-      {"s":"W","en":"Instead, I'd like the whole offer on paper. I can't sign until the owners read it.","vi":"Thay vào đó, tôi muốn có toàn bộ đề xuất trên giấy. Các chủ nhà chưa đọc thì tôi chưa ký được."},
+      {"s":"W","en":"What I do need is proof that your company is insured. Could you send that?","vi":"Cái tôi thật sự cần là bằng chứng công ty anh có bảo hiểm. Anh gửi cho tôi được không?"},
       {"s":"M","en":"You'll have it tomorrow. By the way, those roses in your photos? I grow the same kind in my own garden.","vi":"Mai chị sẽ có. Nhân tiện, mấy bụi hồng trong ảnh ấy à? Tôi cũng trồng đúng loại đó ở vườn nhà."},
       {"s":"W","en":"How nice. My trip abroad next month is off, so I can let your crew in for the first visit.","vi":"Hay quá. Chuyến đi nước ngoài tháng sau của tôi hủy rồi, nên tôi mở cổng cho đội anh trong lần đến đầu tiên được."}
      ],
@@ -481,8 +481,8 @@ window.BS_UNITS["p3-07"] = {
        "kind": "inference",
        "q": {"en":"What is suggested about the woman?","vi":"Có thể suy ra điều gì về người phụ nữ?"},
        "answer": "A",
-       "evidence": [2,7],
-       "explain_vi": "Yêu cầu và hạn mức đến từ các chủ nhà, và cô ấy chưa ký được khi họ chưa đọc, nên lựa chọn của cô còn phụ thuộc người khác.",
+       "evidence": [2,4],
+       "explain_vi": "Yêu cầu mới và hạn mức chi tiêu đều do các chủ nhà đặt ra, nên lựa chọn của cô ấy còn phụ thuộc người khác.",
        "options": [
         {"label":"A","en":"Other people have a say in her choice.","vi":"Người khác có tiếng nói trong lựa chọn của cô ấy."},
         {"label":"B","en":"She has hired this company before.","vi":"Cô ấy từng thuê công ty này.","trap":"over-inference","why_vi":"Tuần trước họ mới trao đổi về phương án; không có gì cho thấy cô đã từng thuê."},
@@ -511,10 +511,10 @@ window.BS_UNITS["p3-07"] = {
        "q": {"en":"What does the woman ask the man to do?","vi":"Người phụ nữ nhờ người đàn ông làm gì?"},
        "answer": "B",
        "evidence": [7,8],
-       "explain_vi": "Cô ấy muốn có toàn bộ đề xuất trên giấy để các chủ nhà đọc; anh ấy hứa mai sẽ có.",
+       "explain_vi": "Cô ấy nói điều mình cần là bằng chứng công ty có bảo hiểm và nhờ anh gửi; anh ấy hứa mai sẽ có.",
        "options": [
         {"label":"A","en":"Visit the property on Monday","vi":"Đến khu nhà vào thứ Hai","trap":"changed-plan","why_vi":"Cô ấy vừa hỏi xong thì rút lại vì ảnh đã đủ."},
-        {"label":"B","en":"Provide the details in writing","vi":"Cung cấp thông tin chi tiết bằng văn bản"},
+        {"label":"B","en":"Send proof that the firm is insured","vi":"Gửi bằng chứng công ty có bảo hiểm"},
         {"label":"C","en":"Share the names of past clients","vi":"Cho biết tên các khách hàng cũ","trap":"not-mentioned","why_vi":"Không ai hỏi về khách hàng cũ."},
         {"label":"D","en":"Take some photos of the garden","vi":"Chụp vài tấm ảnh khu vườn","trap":"heard-word","why_vi":"Có nghe photos, nhưng người phụ nữ đã tự gửi ảnh rồi."}
        ]
@@ -526,19 +526,19 @@ window.BS_UNITS["p3-07"] = {
   {
    "id": "fill1",
    "type": "fill",
-   "instruction_vi": "Điền từ còn thiếu vào chỗ trống (mẫu câu đổi ý và đính chính).",
+   "instruction_vi": "Điền từ còn thiếu vào chỗ trống (mẫu câu đổi ý và đính chính). Nếu có chữ trong ngoặc, đó là chữ cái đầu của từ cần điền.",
    "items": [
     {
      "id": "fill1-1",
-     "before": "Actually, let's",
+     "before": "Actually, let's (g...)",
      "after": "back to the first logo design.",
-     "answers": ["go","switch"]
+     "answers": ["go","get"]
     },
     {
      "id": "fill1-2",
-     "before": "The photo shoot has been pushed",
-     "after": "to the following week.",
-     "answers": ["back","out"]
+     "before": "The photo shoot has been pushed (b...)",
+     "after": "from this Friday to the following one.",
+     "answers": ["back"]
     },
     {
      "id": "fill1-3",
