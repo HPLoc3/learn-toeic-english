@@ -1042,10 +1042,10 @@ window.BS_UNITS["p3-02"] = {
                 },
                 {
                   "label": "B",
-                  "en": "A property manager",
-                  "vi": "Một người quản lý bất động sản",
+                  "en": "A building manager",
+                  "vi": "Một người quản lý tòa nhà",
                   "trap": "heard-word",
-                  "why_vi": "Quản lý tòa nhà là người mà hai người đàn ông sẽ đi hỏi, không phải người phụ nữ."
+                  "why_vi": "Cụm building manager có trong bài, nhưng đó là người hai anh sẽ đi hỏi, không phải người phụ nữ."
                 },
                 {
                   "label": "C",
