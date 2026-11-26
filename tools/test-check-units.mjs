@@ -190,7 +190,7 @@ try {
     u = base(); u.exercises.push({ id: "tf9", type: "tf", instruction_vi: "x", items: [] });
     check("unit qr vẫn kiểm bài tf không có ảnh (tf thiếu image là lỗi)", /bài tf thiếu image/.test(runQ(u).out));
     u = base(); u.exercises.push({ id: "zz", type: "abc", instruction_vi: "x", items: [] });
-    check("type lạ: thông báo liệt kê cả qr", /không hợp lệ \(fill, tf, mc, qr\)/.test(runQ(u).out));
+    check("type lạ: thông báo liệt kê cả qr và conv", /không hợp lệ \(fill, tf, mc, qr, conv\)/.test(runQ(u).out));
 
     /* --release: v trên từng đáp án */
     u = base(); qrs(u)[0].options[2].v = { status: "unverified" };
@@ -341,6 +341,208 @@ try {
     }
   } finally {
     fs.rmSync(qtmp, { recursive: true, force: true });
+  }
+}
+
+/* ---------- Part 3/4: bai tap type "conv" ---------- */
+{
+  const ctmp = fs.mkdtempSync(path.join(os.tmpdir(), "cu-cv-"));
+  try {
+    fs.mkdirSync(path.join(ctmp, "data"));
+    const CAT = (id, no) => 'window.BS_CATALOG={parts:[{id:"p3",title:"Part 3",units:[{id:"' + id + '",no:' + no + ',title_vi:"Hội thoại nơi công sở",available:true}]}]};';
+    fs.writeFileSync(path.join(ctmp, "data/catalog.js"), CAT("p3-01", 12));
+    const fx = (n) => fs.readFileSync(path.join(REAL, "tools/fixtures/" + n + ".js"), "utf8");
+    const load = (code) => { const w = {}; w.window = w; vm.runInNewContext(code, w); return JSON.parse(JSON.stringify(w.BS_UNITS["p3-01"])); };
+    const runC = (u, extra) => {
+      fs.writeFileSync(path.join(ctmp, "data/p3-01.js"), "window.BS_UNITS = window.BS_UNITS || {};\nwindow.BS_UNITS['p3-01'] = " + JSON.stringify(u) + ";\n");
+      const r = spawnSync(process.execPath, [path.join(REAL, "tools/check-units.mjs"), "--root", ctmp].concat(extra || []), { encoding: "utf8" });
+      return { out: (r.stdout || "") + (r.stderr || ""), code: r.status };
+    };
+    const base = () => load(fx("conv-pass"));
+    const sets = (u) => [].concat(...u.exercises.filter((e) => e.type === "conv").map((e) => e.sets));
+    const S = (u, i) => sets(u)[i || 0];
+    const errOf = (u, re, extra) => { const r = runC(u, extra); return r.code === 1 && re.test(r.out); };
+    const warnOnly = (u, re, extra) => { const r = runC(u, extra); return r.code === 0 && re.test(r.out); };
+
+    let r = runC(base(), ["--release"]);
+    check("conv hợp lệ (fixture conv-pass): 0 lỗi kể cả --release", r.code === 0 && /0 lỗi/.test(r.out), r.out);
+    check("conv hợp lệ: unit p3 không bị hỏi câu đúng/sai; chỉ còn cảnh báo ít hơn 6 đoạn", !/câu đúng\/sai/.test(r.out) && /đoạn nghe \(conv\) 2 < 6/.test(r.out) && !/đáp án [ABCD] chiếm/.test(r.out) && !/lời thoại \d+ từ/.test(r.out), r.out);
+    check("conv hợp lệ: không có hình nào thiếu thì không cảnh báo hình", !/chưa có đoạn nào có hình/.test(r.out));
+
+    r = runC(load(fx("conv-fail")));
+    check("fixture conv-fail: exit 1", r.code === 1, r.out);
+    for (const [name, re] of [
+      ["kind đoạn lạ", /cf-s01': kind 'weird' không hợp lệ/], ["talk thiếu talk_type", /cf-s02': bài nói cần talk_type/], ["hội thoại có talk_type", /cf-s03': talk_type chỉ dùng cho kind "talk"/],
+      ["gender sai", /cf-s04'\.speakers\[0\]: gender phải là m hoặc f/], ["accent sai", /cf-s04'\.speakers\[1\]: accent phải thuộc/],
+      ["hội thoại 1 người nói", /cf-s05': hội thoại cần 2-3 người nói/], ["hai người cùng giọng", /cf-s06': hội thoại cần ít nhất 2 giới tính hoặc 2 giọng/], ["4 người nói", /cf-s07': cần 1-3 người nói \(hiện 4\)/],
+      ["dòng có s lạ", /cf-s08'\.lines\[2\]: s 'Z' không có trong speakers/], ["ít dòng", /cf-s09': cần ít nhất 4 dòng/], ["dòng quá 240 ký tự", /cf-s10'\.lines\[0\]: en dài \d+ ký tự, tối đa 240/],
+      ["người nói không có dòng", /cf-s11': người nói 'X' không có dòng nào/], ["2 câu hỏi", /cf-s12': cần đúng 3 câu hỏi \(hiện 2\)/], ["kind câu lạ", /cf-s13-q1': kind 'trivia' không hợp lệ/],
+      ["3 đáp án", /cf-s14-q1': cần đúng 4 đáp án có label A, B, C, D/], ["answer E", /cf-s15-q1': answer 'E' phải là A, B, C hoặc D/],
+      ["đáp án đúng có trap", /cf-s16-q1'\.options\[B\]: đáp án đúng không được có trap/], ["đáp án đúng có why_vi", /cf-s16-q1'\.options\[B\]: đáp án đúng không được có why_vi/],
+      ["đáp án sai thiếu why_vi", /cf-s17-q1'\.options\[A\]: đáp án sai thiếu why_vi/], ["trap lạ", /cf-s18-q1'\.options\[C\]: đáp án sai cần trap thuộc/],
+      ["evidence ngoài phạm vi", /cf-s19-q1': evidence phải là mảng không rỗng/], ["evidence rỗng", /cf-s19-q3': evidence phải là mảng không rỗng/],
+      ["quote không có trong lời thoại", /cf-s20-q2': quote "That is not said anywhere" không có nguyên văn/], ["intent thiếu quote", /cf-s21-q2': câu intent cần quote/],
+      ["uses_graphic không có graphic", /cf-s22-q3': uses_graphic cần graphic/], ["hàng bảng lệch cột", /cf-s23'\.graphic\.rows\[1\]: cần đúng 3 ô/], ["graphic không câu nào dùng", /cf-s24': có graphic nhưng không câu nào đặt uses_graphic/],
+      ["câu hình không mở đầu Look at the graphic", /cf-s25-q2': câu dùng hình phải bắt đầu bằng "Look at the graphic"/], ["câu hỏi trùng trong đoạn", /cf-s26-q3': câu hỏi .* bị trùng trong đoạn/],
+      ["đáp án trùng nội dung", /cf-s27-q1'\.options\[D\]: nội dung trùng với đáp án B/], ["đoạn có image", /cf-s35': đoạn conv không dùng image hay audio/], ["list ít hơn 3 mục", /cf-s36'\.graphic: list cần items/]
+    ]) check("conv-fail báo lỗi: " + name, new RegExp("LỖI.*" + re.source).test(r.out), r.out.slice(0, 400));
+    for (const [name, re] of [
+      ["cả 3 câu cùng đáp án", /cf-s29': cả 3 câu cùng đáp án B/], ["lời thoại quá ngắn", /cf-s30': lời thoại \d+ từ/], ["câu dài > 160 ký tự", /cf-s31'\.lines\[1\]: có câu dài \d+ ký tự/],
+      ["đáp án chép nguyên văn", /cf-s32-q1': đáp án đúng .* chép nguyên văn/], ["đáp án hình có trong lời thoại", /cf-s33-q2': câu dùng hình mà đáp án đúng "Birch" cũng xuất hiện/], ["đáp án hình không là ô của hình", /cf-s34-q2': .*không phải một ô\/mục của hình/],
+      ["phân bố đáp án lệch", /đáp án D chiếm \d+%/], ["unverified khi đã mở", /unit đã mở nhưng còn 2 mục 'unverified'/]
+    ]) check("conv-fail cảnh báo (không lỗi): " + name, new RegExp("CẢNH BÁO.*" + re.source).test(r.out) && !new RegExp("LỖI.*" + re.source).test(r.out), r.out.slice(0, 400));
+    const rr = runC(load(fx("conv-fail")), ["--release"]);
+    check("--release: lỗi (R) chép nguyên văn / đáp án hình / unverified đoạn", /LỖI.*cf-s32-q1.*chép nguyên văn.*--release/.test(rr.out) && /LỖI.*cf-s33-q2.*cũng xuất hiện.*--release/.test(rr.out) && /LỖI.*cf-s34-q2.*không phải một ô.*--release/.test(rr.out) && /LỖI.*cf-s28': còn 2 mục 'unverified'/.test(rr.out), rr.out.slice(-1500));
+    check("--release: cảnh báo đếm (số đoạn, phân bố, từ) vẫn chỉ là cảnh báo", /CẢNH BÁO.*lời thoại \d+ từ/.test(rr.out) && !/LỖI.*lời thoại \d+ từ/.test(rr.out));
+
+    /* sửa một chỗ trên unit hợp lệ */
+    let u = base(); S(u).questions[0].options.pop();
+    check("3 đáp án: lỗi", errOf(u, /cần đúng 4 đáp án có label A, B, C, D/));
+    u = base(); S(u).questions[0].answer = "E";
+    check("answer 'E': lỗi", errOf(u, /answer 'E' phải là A, B, C hoặc D/));
+    u = base(); S(u).questions[0].options[1].trap = "literal";
+    check("đáp án đúng có trap: lỗi", errOf(u, /đáp án đúng không được có trap/));
+    u = base(); delete S(u).questions[0].options[0].why_vi;
+    check("đáp án sai thiếu why_vi: lỗi", errOf(u, /đáp án sai thiếu why_vi/));
+    u = base(); S(u).questions.pop();
+    check("2 câu hỏi: lỗi", errOf(u, /cần đúng 3 câu hỏi \(hiện 2\)/));
+    u = base(); S(u).questions.push(JSON.parse(JSON.stringify(S(u).questions[0]))); S(u).questions[3].id = "c1-s1-q4"; S(u).questions[3].q.en = "Another question here?";
+    check("4 câu hỏi: lỗi", errOf(u, /cần đúng 3 câu hỏi \(hiện 4\)/));
+    u = base(); S(u).lines[1].s = "Q";
+    check("dòng trỏ người nói không có: lỗi", errOf(u, /s 'Q' không có trong speakers/));
+    u = base(); S(u).questions[0].evidence = [0, 6];
+    check("evidence ngoài phạm vi: lỗi", errOf(u, /evidence phải là mảng không rỗng/));
+    u = base(); S(u, 1).questions[1].quote = "It is no trouble at all";
+    check("intent: quote không có nguyên văn: lỗi", errOf(u, /quote "It is no trouble at all" không có nguyên văn/));
+    u = base(); S(u, 1).questions[1].quote = "it’s  NO trouble!";
+    check("intent: quote khớp sau chuẩn hóa (hoa/thường, nháy cong, dấu câu, khoảng trắng): hợp lệ", runC(u).code === 0);
+    u = base(); S(u).graphic.rows[0].pop();
+    check("hàng bảng lệch cột: lỗi", errOf(u, /graphic\.rows\[0\]: cần đúng 3 ô/));
+    u = base(); S(u).graphic.title = "";
+    check("graphic thiếu title: lỗi", errOf(u, /graphic: thiếu title/));
+    u = base(); S(u).graphic = { type: "list", title: "Rooms", items: ["Maple", "Cedar", "Birch"] };
+    check("graphic dạng list hợp lệ (>= 3 mục)", runC(u).code === 0);
+    u = base(); S(u).graphic.type = "map";
+    check("graphic type lạ: lỗi", errOf(u, /type 'map' không hợp lệ \(table, list\)/));
+    u = base(); delete S(u).graphic;
+    check("uses_graphic mà không có graphic: lỗi", errOf(u, /uses_graphic cần graphic của đoạn/));
+    u = base(); S(u).questions[0].audio = { q: "a.mp3" };
+    check("câu conv có audio: lỗi", errOf(u, /câu conv không dùng image hay audio/));
+    u = base(); u.exercises[0].image = "assets/img/p3-01/x.webp";
+    check("bài conv có image: lỗi", errOf(u, /bài conv không dùng image hay audio/));
+    u = base(); S(u, 1).speakers.push({ id: "W", gender: "m", accent: "us" });
+    check("id người nói trùng: lỗi", errOf(u, /id 'W' bị trùng/));
+    u = base(); S(u).questions[1].id = S(u).questions[0].id;
+    check("id câu trùng trong unit: lỗi", errOf(u, /id 'c1-s1-q1' bị trùng/));
+    u = base(); S(u, 1).id = "c1-s1";
+    check("id đoạn trùng trong unit: lỗi", errOf(u, /id 'c1-s1' bị trùng/));
+    u = base(); u.exercises[0].sets = [];
+    check("sets rỗng: lỗi", errOf(u, /sets không được rỗng/));
+    u = base(); S(u).kind = "talk"; S(u).talk_type = "meeting"; S(u).speakers = [S(u).speakers[0]]; S(u).lines.forEach((l) => { l.s = "W"; }); S(u).questions.slice(1).forEach((q) => { q.kind = "detail"; delete q.uses_graphic; });
+    delete S(u).graphic; S(u).questions[1].q.en = "What is discussed?"; S(u).questions[1].options[2].en = "Maple Room";
+    check("bài nói (talk) 1 người nói, talk_type hợp lệ: không lỗi liên quan", !/LỖI.*(talk_type|người nói)/.test(runC(u).out));
+    u = base(); S(u).kind = "talk"; S(u).talk_type = "meeting";
+    check("bài nói có 2 người nói: lỗi", errOf(u, /bài nói cần đúng 1 người nói/));
+
+    /* --release: unverified ở đoạn / câu / đáp án */
+    u = base(); S(u).v = { status: "unverified" };
+    check("--release: đoạn conv unverified: lỗi; không --release: không lỗi", errOf(u, /sets\[0\] 'c1-s1': còn 1 mục 'unverified'/, ["--release"]) && runC(u).code === 0);
+    u = base(); S(u).questions[1].v = { status: "unverified" };
+    check("--release: câu conv unverified: lỗi", errOf(u, /còn 1 mục 'unverified'/, ["--release"]));
+    u = base(); S(u).questions[1].options[0].v = { status: "unverified" };
+    check("--release: đáp án conv unverified: lỗi", errOf(u, /còn 1 mục 'unverified'/, ["--release"]));
+    u = base(); u.exercises[0].v = { status: "unverified" };
+    check("--release: cả bài conv unverified: lỗi", errOf(u, /bài conv|exercise\[0\] 'c1': còn 'unverified'/, ["--release"]));
+
+    /* cảnh báo */
+    u = base(); S(u).questions.forEach((q) => { const ia = q.options.findIndex((o) => o.label === q.answer); const t = q.options[0]; q.options[0] = q.options[ia]; q.options[ia] = t; q.options.forEach((o, j) => { o.label = "ABCD"[j]; }); q.answer = "A"; });
+    S(u, 1).questions.forEach((q) => { const ia = q.options.findIndex((o) => o.label === q.answer); const t = q.options[0]; q.options[0] = q.options[ia]; q.options[ia] = t; q.options.forEach((o, j) => { o.label = "ABCD"[j]; }); q.answer = "A"; });
+    r = runC(u);
+    check("phân bố đáp án lệch (toàn A): cảnh báo, không lỗi; cùng đáp án cả đoạn", r.code === 0 && /đáp án A chiếm 100%/.test(r.out) && /cả 3 câu cùng đáp án A/.test(r.out) && /đáp án B chiếm 0%/.test(r.out), r.out);
+    u = base(); S(u).lines.forEach((l) => { l.en = "Yes."; l.vi = "Vâng."; });
+    check("lời thoại < 60 từ: cảnh báo (không lỗi)", warnOnly(u, /CẢNH BÁO.*lời thoại 6 từ, nên nằm trong 60-160/));
+    u = base(); for (let k = 0; k < 3; k++) S(u).lines.push({ s: "W", en: "Word ".repeat(29).trim() + ".", vi: "x" });
+    check("lời thoại > 160 từ: cảnh báo", warnOnly(u, /lời thoại \d+ từ, nên nằm trong 60-160/));
+    u = base(); S(u).lines[0].en = S(u).lines[0].en.slice(0, -1) + " " + "very ".repeat(18) + "long.";
+    check("câu > 160 ký tự: cảnh báo", warnOnly(u, /có câu dài \d+ ký tự/));
+    u = base(); S(u).questions[0].options[1].en = "Then the room I booked is too small.";
+    check("đáp án đúng chép nguyên văn (>= 4 từ) từ lời thoại: cảnh báo; --release: lỗi", warnOnly(u, /chép nguyên văn/) && errOf(u, /chép nguyên văn.*--release/, ["--release"]));
+    u = base(); S(u).questions[0].options[1].en = "Too small.";
+    check("đáp án đúng ngắn (< 4 từ) trùng lời thoại: không cảnh báo", !/chép nguyên văn/.test(runC(u).out));
+    u = base(); S(u).questions[1].options[2].en = "Birch Hall";
+    check("câu hình: đáp án đúng không phải ô của hình: cảnh báo; --release: lỗi", warnOnly(u, /không phải một ô\/mục của hình/) && errOf(u, /không phải một ô\/mục của hình.*--release/, ["--release"]));
+    u = base(); S(u).lines[3].en = "Only the Birch room fits both. I'll reserve it right now.";
+    check("câu hình: đáp án đúng cũng nằm trong lời thoại: cảnh báo; --release: lỗi", warnOnly(u, /cũng xuất hiện trong lời thoại/) && errOf(u, /cũng xuất hiện trong lời thoại.*--release/, ["--release"]));
+    u = base(); S(u).graphic.rows = [["A", "1", "1"], ["B", "2", "2"]]; u.exercises[0].sets.push(JSON.parse(JSON.stringify(S(u, 1)))); u.exercises[0].sets[1].id = "c1-s9"; u.exercises[0].sets[1].questions.forEach((q, k) => { q.id = "c1-s9-q" + (k + 1); });
+    check("nhiều đoạn trong một bài conv: được phép (bài c1 có 2 đoạn)", sets(u).length === 3 && !/LỖI/.test(runC(u).out), runC(u).out);
+
+    /* tối thiểu của unit Part 3/4 */
+    u = base(); u.exercises.splice(1, 1);
+    r = runC(u);
+    check("unit p3 chỉ còn 1 đoạn: cảnh báo ít hơn 6 đoạn; không hỏi tf", r.code === 0 && /đoạn nghe \(conv\) 1 < 6/.test(r.out) && !/câu đúng\/sai/.test(r.out), r.out);
+    u = base(); delete S(u).graphic; S(u).questions[1].kind = "detail"; delete S(u).questions[1].uses_graphic; S(u).questions[1].q.en = "Which room is mentioned first?"; S(u).questions[1].options[2].en = "Birch room";
+    check("unit p3 không có đoạn nào có hình: cảnh báo", warnOnly(u, /chưa có đoạn nào có hình/));
+    u = base(); u.sentences.pop();
+    check("unit p3: vẫn kiểm mức tối thiểu câu luyện tập (4)", warnOnly(u, /câu luyện tập 3 < 4/));
+    u = base(); u.vocab.pop();
+    check("unit p3: vẫn kiểm tối thiểu từ vựng (20)", warnOnly(u, /từ vựng 19 < 20/));
+    {
+      const u9 = base(); u9.id = "l09"; u9.part = "Part 1 - Mô tả hình ảnh";
+      fs.writeFileSync(path.join(ctmp, "data/catalog.js"), CAT("l09", 12));
+      fs.writeFileSync(path.join(ctmp, "data/l09.js"), "window.BS_UNITS = window.BS_UNITS || {};\nwindow.BS_UNITS['l09'] = " + JSON.stringify(u9) + ";\n");
+      const o9 = spawnSync(process.execPath, [path.join(REAL, "tools/check-units.mjs"), "--root", ctmp], { encoding: "utf8" });
+      const out9 = (o9.stdout || "") + (o9.stderr || "");
+      check("unit không phải p3-/p4- có bài conv: vẫn hỏi câu đúng/sai (0 < 4); không áp mức 6 đoạn", /câu đúng\/sai 0 < 4/.test(out9) && !/đoạn nghe \(conv\)/.test(out9), out9);
+      fs.unlinkSync(path.join(ctmp, "data/l09.js"));
+      fs.writeFileSync(path.join(ctmp, "data/catalog.js"), CAT("p3-01", 12));
+    }
+    {
+      const u4 = base(); u4.id = "p4-02"; u4.part = "Part 4 - Bài nói"; u4.unitNo = 20;
+      fs.writeFileSync(path.join(ctmp, "data/catalog.js"), CAT("p4-02", 20));
+      fs.writeFileSync(path.join(ctmp, "data/p4-02.js"), "window.BS_UNITS = window.BS_UNITS || {};\nwindow.BS_UNITS['p4-02'] = " + JSON.stringify(u4) + ";\n");
+      const o4 = spawnSync(process.execPath, [path.join(REAL, "tools/check-units.mjs"), "--root", ctmp], { encoding: "utf8" });
+      const out4 = (o4.stdout || "") + (o4.stderr || "");
+      check("unit p4-: cũng được bỏ mức tối thiểu câu đúng/sai và chịu mức 6 đoạn", o4.status === 0 && !/câu đúng\/sai/.test(out4) && /đoạn nghe \(conv\) 2 < 6/.test(out4), out4);
+      fs.unlinkSync(path.join(ctmp, "data/p4-02.js"));
+      fs.writeFileSync(path.join(ctmp, "data/catalog.js"), CAT("p3-01", 12));
+    }
+
+    /* không để lộ lời thoại / đáp án ngoài bài conv */
+    const leakErr = (fn, re, extra) => { const x = base(); fn(x); const o = runC(x, extra); return o.code === 1 && re.test(o.out); };
+    const SENT = "We need at least ten seats, and it has to be free by one o'clock.";
+    check("lộ lời thoại: câu lời thoại chép vào sentences: LỖI", leakErr((x) => { x.sentences[0].en = SENT; }, /c1-s1: lời thoại .* trùng với nội dung ở sentences\[0\]\.en/));
+    check("lộ lời thoại: chép vào ví dụ của tip: LỖI", leakErr((x) => { x.focus.tips[0].examples[0].en = SENT; }, /c1-s1: lời thoại .* trùng với nội dung ở focus\.tips\[0\]\.examples\[0\]\.en/));
+    check("lộ lời thoại: ghép lại thành câu điền từ: LỖI", leakErr((x) => { x.exercises[2].items[0] = { id: "fill1-1", before: "We need at least ten seats, and it has", after: "be free by one o'clock.", answers: ["to"] }; }, /c1-s1: lời thoại .* trùng với nội dung ở .*câu ghép/));
+    check("lộ lời thoại: chép vào phrases: LỖI", leakErr((x) => { x.phrases[0].en = "Only one room fits both."; }, /c1-s1: lời thoại .* trùng với nội dung ở phrases\[0\]\.en/));
+    check("lộ lời thoại: chép trong chuỗi tiếng Việt xen tiếng Anh: LỖI", leakErr((x) => { x.focus.tips[0].text_vi = "Hãy nghe câu: Then the room I booked is too small. rất thường gặp."; }, /c1-s1: lời thoại .* trùng với nội dung ở focus\.tips\[0\]\.text_vi/));
+    check("lộ đáp án: đáp án đúng (>= 4 từ) chép vào tip: LỖI", leakErr((x) => { x.focus.tips[1].examples[0].en = "Notify the attendees of a change."; }, /c1-s1-q3: đáp án đúng .* trùng với nội dung ở focus\.tips\[1\]\.examples\[0\]\.en/));
+    check("lộ lời thoại: LỖI cả khi chạy --unit (không cần available)", leakErr((x) => { x.sentences[0].en = SENT; }, /c1-s1: lời thoại/, ["--unit", "p3-01"]));
+    const para = (x) => { x.sentences[0].en = "We need ten seats at least, and the room has to be free by one o'clock."; };
+    r = (() => { const x = base(); para(x); return runC(x); })();
+    check("diễn đạt gần như y hệt (đảo từ): cảnh báo gần trùng, không lỗi", r.code === 0 && /CẢNH BÁO: .*c1-s1: lời thoại .* gần trùng/.test(r.out), r.out);
+    check("diễn đạt gần như y hệt: --release thành LỖI", leakErr(para, /LỖI: .*c1-s1: lời thoại .* gần trùng.*--release/, ["--release"]));
+    {
+      const x = base(); x.phrases[0].en = "Sure, no problem."; x.phrases[1].en = "Good, thanks."; x.phrases[2].en = "Then I'll book it.";
+      const o = runC(x, ["--release"]);
+      check("câu đệm ngắn (Sure, no problem.) và câu < 5 từ không bị coi là lộ", o.code === 0 && !/trùng/.test(o.out), o.out);
+    }
+    {
+      const x = base(); para(x);
+      process.env.CU_LEAK_ALLOW = "p3-01/c1-s1|*overlap*|sentences[0].en";
+      const o = runC(x); const o2 = runC(x, ["--release"]); delete process.env.CU_LEAK_ALLOW;
+      check("ngoại lệ lớp 2 theo vị trí: dùng id đoạn (p3-01/c1-s1|*overlap*|sentences[0].en) bỏ qua cảnh báo", !/gần trùng/.test(o.out), o.out);
+      check("--release bỏ qua biến CU_LEAK_ALLOW của conv", o2.code === 1 && /gần trùng/.test(o2.out), o2.out);
+    }
+    {
+      const x = base(); x.focus.tips[0].examples[0].en = "Notify the attendees of a change.";
+      process.env.CU_LEAK_ALLOW = "p3-01/c1-s1-q3|*overlap*";
+      const o = runC(x); delete process.env.CU_LEAK_ALLOW;
+      check("lộ đáp án chính xác (lớp 1) không được ngoại lệ lớp 2 bỏ qua", o.code === 1 && /c1-s1-q3: đáp án đúng/.test(o.out), o.out);
+    }
+    check("unit p3 hợp lệ không bị báo lộ nhầm: vocab/phrases/tips khác kịch bản", !/trùng/.test(runC(base(), ["--release"]).out));
+    check("thông báo type lạ có liệt kê conv", errOf((() => { const x = base(); x.exercises.push({ id: "zz", type: "abc", instruction_vi: "x", items: [] }); return x; })(), /không hợp lệ \(fill, tf, mc, qr, conv\)/));
+  } finally {
+    fs.rmSync(ctmp, { recursive: true, force: true });
   }
 }
 

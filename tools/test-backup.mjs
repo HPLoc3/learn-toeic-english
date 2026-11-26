@@ -255,5 +255,16 @@ t("Part 2 (qr): pref khong co khoa 'che do thi' (chi trong phien): nhap khoa la 
   const r = B.parse(wrap(s), TODAY); assert.ok(r.ok); assert.equal(r.data.prefs.exam, undefined); assert.equal(r.dropped, 1);
 });
 
+
+t("Part 3/4 (conv): dap an 'A'-'D' (ke ca 'D') va res 0/1 di vong xuat/nhap nguyen ven", () => {
+  const s = sample();
+  s.units["p3-01"] = { known: {}, res: { "c1-s1-q1": 1, "c1-s1-q2": 0, "c1-s1-q3": 0 }, scores: { c1: { c: 1, t: 6, a: 3 } },
+    ans: { "c1-s1-q1": "B", "c1-s1-q2": "D", "c1-s1-q3": "C" }, last: { tab: "quiz" }, game: {}, srs: {} };
+  const r = B.parse(B.buildFile(s), TODAY); assert.ok(r.ok); assert.equal(r.dropped, 0);
+  const u = r.data.units["p3-01"];
+  assert.deepEqual(plain(u.ans), { "c1-s1-q1": "B", "c1-s1-q2": "D", "c1-s1-q3": "C" });
+  assert.deepEqual(plain(u.res), { "c1-s1-q1": 1, "c1-s1-q2": 0, "c1-s1-q3": 0 });
+  assert.deepEqual(plain(u.scores.c1), { c: 1, t: 6, a: 3 });
+});
 console.log("\nKet qua: " + pass + "/" + total + " ca dat");
 process.exit(pass === total ? 0 : 1);

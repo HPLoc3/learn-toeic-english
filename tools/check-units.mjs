@@ -89,6 +89,21 @@ const qrToks = (s) => String(s || "").toLowerCase().replace(/[’‘]/g, "'")
 const QR_OV_RAW = 0.6; /* phần từ khác nhau của câu qr (kể cả từ chức năng) phải xuất hiện trong cửa sổ */
 const qrWords = (t) => String(t || "").toLowerCase().replace(/[’‘]/g, "'").split(/[^a-z0-9]+/).filter((w) => w && !QR_STOP.has(w));
 
+/* Part 3/4 (type "conv"): hoi thoai/bai noi, moi doan 3 cau, 4 dap an A-D */
+const CV_KINDS = ["main", "speaker", "detail", "problem", "request", "inference", "next", "intent", "graphic"];
+const CV_TRAPS = ["heard-word", "wrong-speaker", "wrong-detail", "not-mentioned", "changed-plan", "over-inference", "literal", "graphic-only", "similar-sound"];
+const CV_SET_KINDS = ["conversation", "talk"];
+const CV_TALK_TYPES = ["announcement", "advertisement", "voicemail", "recorded-message", "tour", "meeting", "broadcast", "speech"];
+const CV_LABELS = ["A", "B", "C", "D"];
+const CV_ACCENTS = ["us", "gb", "au"];
+const CV_MIN_SETS = 6; /* unit Part 3/4: it hon la CANH BAO */
+const CV_LETTER_MIN = 0.15, CV_LETTER_MAX = 0.35;
+const CV_WORDS_MIN = 60, CV_WORDS_MAX = 160, CV_MAX_LINE = 240, CV_MAX_SENT = 160;
+const cvNorm = (t) => String(t || "").toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9' ]+/g, " ").replace(/\s+/g, " ").trim();
+const cvHas = (hay, needle) => !!needle && (" " + hay + " ").includes(" " + needle + " ");
+const cvWordN = (t) => cvNorm(t).split(" ").filter(Boolean).length;
+const cvCells = (g) => (isObj(g) ? (g.type === "list" ? (Array.isArray(g.items) ? g.items : []) : [].concat(...(Array.isArray(g.rows) ? g.rows : []).map((r) => (Array.isArray(r) ? r : [])))) : []).map(cvNorm);
+
 const here = path.dirname(fileURLToPath(import.meta.url));
 let ROOT = path.resolve(here, "..");
 let only = null;
@@ -277,7 +292,121 @@ function checkUnit(entry) {
     if (!isObj(x) || !nonEmpty(x.en) || !nonEmpty(x.vi)) e(wh + ": thiếu en hoặc vi.");
   });
   const exs = arr(u.exercises, "exercises");
-  let fillN = 0, tfN = 0, qrN = 0;
+  let fillN = 0, tfN = 0, qrN = 0, cvN = 0;
+  const cvSets = [], cvQs = [];
+  const rel = (m) => { if (RELEASE) e(m + " Không được phát hành (--release)."); else w(m); };
+  const cvGraphic = (g, wg) => {
+    if (!isObj(g)) { e(wg + ": graphic phải là đối tượng."); return; }
+    if (!nonEmpty(g.title)) e(wg + ": thiếu title.");
+    const strs = (a) => a.every((c) => nonEmpty(c));
+    if (g.type === "table") {
+      if (!Array.isArray(g.cols) || g.cols.length < 2 || !strs(g.cols)) { e(wg + ": table cần cols (mảng >= 2 chuỗi không rỗng)."); return; }
+      if (!Array.isArray(g.rows) || g.rows.length < 2) { e(wg + ": table cần rows (mảng >= 2 hàng)."); return; }
+      g.rows.forEach((r, i) => { if (!Array.isArray(r) || r.length !== g.cols.length || !strs(r)) e(wg + ".rows[" + i + "]: cần đúng " + g.cols.length + " ô, mỗi ô là chuỗi không rỗng."); });
+    } else if (g.type === "list") {
+      if (!Array.isArray(g.items) || g.items.length < 3 || !strs(g.items)) e(wg + ": list cần items (mảng >= 3 chuỗi không rỗng).");
+    } else e(wg + ": type '" + g.type + "' không hợp lệ (table, list).");
+  };
+  const cvSet = (s, ws) => {
+    if (!isObj(s)) { e(ws + ": không phải đối tượng."); return; }
+    uniq(s.id, ws);
+    cvSets.push(s);
+    if (s.image !== undefined || s.audio !== undefined) e(ws + ": đoạn conv không dùng image hay audio.");
+    const talk = s.kind === "talk";
+    if (!CV_SET_KINDS.includes(s.kind)) e(ws + ": kind '" + s.kind + "' không hợp lệ (" + CV_SET_KINDS.join(", ") + ").");
+    if (talk) { if (!CV_TALK_TYPES.includes(s.talk_type)) e(ws + ": bài nói cần talk_type thuộc (" + CV_TALK_TYPES.join(", ") + ")."); }
+    else if (s.talk_type !== undefined) e(ws + ": talk_type chỉ dùng cho kind \"talk\".");
+    const sp = Array.isArray(s.speakers) ? s.speakers : (e(ws + ": speakers phải là mảng."), []), ids = {};
+    sp.forEach((x, k) => {
+      const wk = ws + ".speakers[" + k + "]";
+      if (!isObj(x) || !nonEmpty(x.id)) { e(wk + ": thiếu id."); return; }
+      if (ids[x.id]) e(wk + ": id '" + x.id + "' bị trùng."); ids[x.id] = 1;
+      if (x.gender !== "m" && x.gender !== "f") e(wk + ": gender phải là m hoặc f.");
+      if (!CV_ACCENTS.includes(x.accent)) e(wk + ": accent phải thuộc (" + CV_ACCENTS.join(", ") + ").");
+    });
+    if (sp.length < 1 || sp.length > 3) e(ws + ": cần 1-3 người nói (hiện " + sp.length + ").");
+    else if (s.kind === "conversation") {
+      if (sp.length < 2) e(ws + ": hội thoại cần 2-3 người nói.");
+      else if (new Set(sp.map((x) => x && x.gender)).size < 2 && new Set(sp.map((x) => x && x.accent)).size < 2) e(ws + ": hội thoại cần ít nhất 2 giới tính hoặc 2 giọng khác nhau (để nghe phân biệt được).");
+    } else if (talk && sp.length !== 1) e(ws + ": bài nói cần đúng 1 người nói.");
+    const lines = Array.isArray(s.lines) ? s.lines : (e(ws + ": lines phải là mảng."), []);
+    if (lines.length < (talk ? 3 : 4)) e(ws + ": cần ít nhất " + (talk ? 3 : 4) + " dòng lời thoại (hiện " + lines.length + ").");
+    const used = {}; let words = 0, okLines = true;
+    lines.forEach((ln, k) => {
+      const wl = ws + ".lines[" + k + "]";
+      if (!isObj(ln)) { e(wl + ": không phải đối tượng."); okLines = false; return; }
+      if (!ids[ln.s]) e(wl + ": s '" + ln.s + "' không có trong speakers."); else used[ln.s] = 1;
+      if (!nonEmpty(ln.en) || !nonEmpty(ln.vi)) { e(wl + ": thiếu en hoặc vi."); okLines = false; return; }
+      if (ln.en.length > CV_MAX_LINE) e(wl + ": en dài " + ln.en.length + " ký tự, tối đa " + CV_MAX_LINE + ".");
+      words += cvWordN(ln.en);
+      ln.en.split(/(?<=[.!?])\s+/).forEach((t) => { if (t.length > CV_MAX_SENT) w(wl + ": có câu dài " + t.length + " ký tự (> " + CV_MAX_SENT + "), nên tách ngắn hơn."); });
+    });
+    Object.keys(ids).forEach((k) => { if (!used[k]) e(ws + ": người nói '" + k + "' không có dòng nào."); });
+    if (okLines && lines.length && (words < CV_WORDS_MIN || words > CV_WORDS_MAX)) w(ws + ": lời thoại " + words + " từ, nên nằm trong " + CV_WORDS_MIN + "-" + CV_WORDS_MAX + ".");
+    const lnN = lines.map((ln) => (isObj(ln) ? cvNorm(ln.en) : ""));
+    if (s.graphic !== undefined) cvGraphic(s.graphic, ws + ".graphic");
+    const qs = Array.isArray(s.questions) ? s.questions : (e(ws + ": questions phải là mảng."), []);
+    if (qs.length !== 3) e(ws + ": cần đúng 3 câu hỏi (hiện " + qs.length + ").");
+    const seenQ = {}, letters = []; let gq = 0;
+    qs.forEach((q, k) => {
+      const wq = ws + ".questions[" + k + "]" + (q && q.id ? " '" + q.id + "'" : "");
+      uniq(q && q.id, wq);
+      if (!isObj(q)) return;
+      cvN++; cvQs.push(q);
+      if (q.image !== undefined || q.audio !== undefined) e(wq + ": câu conv không dùng image hay audio.");
+      if (!CV_KINDS.includes(q.kind)) e(wq + ": kind '" + q.kind + "' không hợp lệ (" + CV_KINDS.join(", ") + ").");
+      if (!isObj(q.q) || !nonEmpty(q.q.en) || !nonEmpty(q.q.vi)) e(wq + ": q cần en và vi không rỗng.");
+      else { const kq = cvNorm(q.q.en); if (seenQ[kq]) e(wq + ": câu hỏi \"" + q.q.en + "\" bị trùng trong đoạn."); seenQ[kq] = 1; }
+      if (!nonEmpty(q.explain_vi)) e(wq + ": thiếu explain_vi.");
+      if (!Array.isArray(q.evidence) || !q.evidence.length || q.evidence.some((x) => !Number.isInteger(x) || x < 0 || x >= lines.length)) e(wq + ": evidence phải là mảng không rỗng các chỉ số dòng hợp lệ (0-" + Math.max(0, lines.length - 1) + ").");
+      if (q.kind === "intent") {
+        if (!nonEmpty(q.quote)) e(wq + ": câu intent cần quote (đúng lời trong hội thoại).");
+        else if (!lnN.some((t) => cvHas(t, cvNorm(q.quote)))) e(wq + ": quote \"" + q.quote + "\" không có nguyên văn trong dòng lời thoại nào.");
+      }
+      if (q.uses_graphic !== undefined && q.uses_graphic !== true) e(wq + ": uses_graphic chỉ nhận true.");
+      if (q.uses_graphic === true) {
+        gq++;
+        if (!isObj(s.graphic)) e(wq + ": uses_graphic cần graphic của đoạn.");
+        if (!isObj(q.q) || !/^Look at the graphic/.test(String(q.q.en || ""))) e(wq + ": câu dùng hình phải bắt đầu bằng \"Look at the graphic\".");
+      }
+      const os = Array.isArray(q.options) ? q.options : [];
+      if (os.length !== 4 || os.some((o, j) => !isObj(o) || o.label !== CV_LABELS[j])) { e(wq + ": cần đúng 4 đáp án có label A, B, C, D theo thứ tự."); return; }
+      if (!CV_LABELS.includes(q.answer)) { e(wq + ": answer '" + q.answer + "' phải là A, B, C hoặc D."); return; }
+      letters.push(q.answer);
+      const seenO = {};
+      os.forEach((o, j) => {
+        const wo = wq + ".options[" + CV_LABELS[j] + "]";
+        if (!nonEmpty(o.en) || !nonEmpty(o.vi)) e(wo + ": thiếu en hoặc vi.");
+        else { const ko = cvNorm(o.en); if (seenO[ko]) e(wo + ": nội dung trùng với đáp án " + seenO[ko] + "."); else seenO[ko] = o.label; }
+        if (o.label === q.answer) {
+          if (o.trap !== undefined) e(wo + ": đáp án đúng không được có trap.");
+          if (o.why_vi !== undefined) e(wo + ": đáp án đúng không được có why_vi.");
+        } else {
+          if (!CV_TRAPS.includes(o.trap)) e(wo + ": đáp án sai cần trap thuộc (" + CV_TRAPS.join(", ") + ").");
+          if (!nonEmpty(o.why_vi)) e(wo + ": đáp án sai thiếu why_vi (giải thích tiếng Việt vì sao sai).");
+        }
+      });
+      const right = os.find((o) => o.label === q.answer), kr = nonEmpty(right.en) ? cvNorm(right.en) : "";
+      if (kr && kr.split(" ").length >= 4 && lnN.some((t) => cvHas(t, kr))) rel(wq + ": đáp án đúng \"" + right.en + "\" chép nguyên văn (>= 4 từ) từ lời thoại; nên diễn đạt lại.");
+      if (kr && q.uses_graphic === true && isObj(s.graphic)) {
+        if (lnN.some((t) => cvHas(t, kr))) rel(wq + ": câu dùng hình mà đáp án đúng \"" + right.en + "\" cũng xuất hiện trong lời thoại (người học không cần nhìn hình).");
+        if (!cvCells(s.graphic).includes(kr)) rel(wq + ": câu dùng hình mà đáp án đúng \"" + right.en + "\" không phải một ô/mục của hình.");
+      }
+    });
+    if (s.graphic !== undefined && qs.length && !gq) e(ws + ": có graphic nhưng không câu nào đặt uses_graphic: true.");
+    if (letters.length === 3 && letters.every((x) => x === letters[0])) w(ws + ": cả 3 câu cùng đáp án " + letters[0] + ".");
+    if (RELEASE) { /* mọi `v` unverified trong đoạn: đoạn, câu, đáp án */
+      let n = 0;
+      (function walk(x) {
+        if (!x || typeof x !== "object") return;
+        if (Array.isArray(x)) { x.forEach(walk); return; }
+        if (x.v && typeof x.v === "object" && x.v.status === "unverified") n++;
+        Object.keys(x).forEach((k) => { if (k !== "v") walk(x[k]); });
+      })(s);
+      if (s.v && s.v.status === "unverified") n = Math.max(n, 1);
+      if (n) e(ws + ": còn " + n + " mục 'unverified' (đoạn, câu hoặc đáp án), không được phát hành (--release).");
+    }
+  };
   const qrItems = [];
   exs.forEach((ex, i) => {
     const wh = "exercise[" + i + "]" + (ex && ex.id ? " '" + ex.id + "'" : "");
@@ -370,7 +499,13 @@ function checkUnit(entry) {
           if (n) e(wi + ": còn " + n + " mục 'unverified' (câu hoặc đáp án), không được phát hành (--release).");
         }
       });
-    } else e(wh + ": type '" + ex.type + "' không hợp lệ (fill, tf, mc, qr).");
+    } else if (ex.type === "conv") {
+      if (ex.image !== undefined || ex.audio !== undefined) e(wh + ": bài conv không dùng image hay audio (Part 3/4 chỉ nghe và đọc chữ).");
+      if (RELEASE && ex.v && ex.v.status === "unverified") e(wh + ": còn 'unverified', không được phát hành (--release).");
+      const ss = arr(ex.sets, wh + ".sets");
+      if (!ss.length) e(wh + ": sets không được rỗng.");
+      ss.forEach((x, j) => cvSet(x, wh + ".sets[" + j + "]" + (x && x.id ? " '" + x.id + "'" : "")));
+    } else e(wh + ": type '" + ex.type + "' không hợp lệ (fill, tf, mc, qr, conv).");
     if (nonEmpty(ex.instruction_vi) === false) w(wh + ": thiếu instruction_vi.");
   });
 
@@ -396,13 +531,26 @@ function checkUnit(entry) {
       else seenQ[k] = it.id;
     });
   }
-  if (!(qrN && isP2)) { cnt(sentences.length, MIN.sentences, "câu luyện tập"); cnt(tfN, MIN.tfItems, "câu đúng/sai"); }
+  const isP34 = /^p[34]-/.test(id); /* unit Part 3/4 (chỉ nghe, không ảnh) chỉ được bỏ mức tối thiểu của câu đúng/sai */
+  if (!(qrN && isP2)) { cnt(sentences.length, MIN.sentences, "câu luyện tập"); if (!(cvN && isP34)) cnt(tfN, MIN.tfItems, "câu đúng/sai"); }
+  if (cvN) {
+    if (isP34) {
+      if (cvSets.length < CV_MIN_SETS) w("ít hơn mức tối thiểu: đoạn nghe (conv) " + cvSets.length + " < " + CV_MIN_SETS + ".");
+      if (!cvSets.some((x) => isObj(x) && x.graphic !== undefined)) w("ít hơn mức tối thiểu: chưa có đoạn nào có hình (graphic).");
+    }
+    const byLc = {}, okQ = cvQs.filter((q) => CV_LABELS.includes(q.answer));
+    okQ.forEach((q) => { byLc[q.answer] = (byLc[q.answer] || 0) + 1; });
+    if (okQ.length) CV_LABELS.forEach((L) => {
+      const r = (byLc[L] || 0) / okQ.length;
+      if (r < CV_LETTER_MIN || r > CV_LETTER_MAX) w("đáp án " + L + " chiếm " + Math.round(r * 100) + "% (" + (byLc[L] || 0) + "/" + okQ.length + ") các câu conv; nên nằm trong " + CV_LETTER_MIN * 100 + "-" + CV_LETTER_MAX * 100 + "%.");
+    });
+  }
   /* Không để lộ lời thoại/đáp án: câu hỏi và đáp án ĐÚNG của qr không được xuất hiện ở BẤT KỲ chuỗi nào ngoài bài qr: bài học (text_vi, ví dụ), intro_vi,
    * từ vựng, cụm từ, luyện nghe, tiêu đề, hướng dẫn, bài điền (kể cả câu ghép lại). Đáp án sai (bẫy) thì được phép.
    * So sánh sau khi chuẩn hóa (chữ thường, bỏ dấu câu); với chuỗi tiếng Việt xen tiếng Anh thì tách các đoạn tiếng Anh (cắt ở chữ có dấu và . , ; : ! ? ( )), giữ đoạn >= 3 từ.
    * LỖI: trùng khớp một chuỗi/đoạn; hoặc cả câu (>= 12 ký tự) nằm trong một chuỗi/đoạn; hoặc một đoạn tiếng Anh >= 4 từ và >= 12 ký tự nằm trong câu qr.
    * Đoạn liền nhau dài nhất giữa một đoạn tiếng Anh và câu qr (không cần cả đoạn nằm trong câu qr) dài >= 3 từ, chiếm >= 50% số từ của câu qr và có >= 2 từ không thuộc QR_LEAK_STOP: CẢNH BÁO (LỖI khi --release, trừ khi có trong QR_LEAK_ALLOW). */
-  if (qrN) {
+  if (qrN || cvN) {
     const nz = (t) => String(t || "").toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9' ]+/g, " ").replace(/\s+/g, " ").trim();
     const pool = []; /* { k, where, run } */
     const addStr = (s, where) => {
@@ -427,7 +575,7 @@ function checkUnit(entry) {
       }
       Object.keys(x).forEach((k) => {
         if (k === "v") return;
-        if (k === "exercises" && Array.isArray(x[k])) { x[k].forEach((ex, i) => { if (!(isObj(ex) && ex.type === "qr")) walk(ex, where + "exercises[" + i + "]"); }); return; }
+        if (k === "exercises" && Array.isArray(x[k])) { x[k].forEach((ex, i) => { if (!(isObj(ex) && (ex.type === "qr" || ex.type === "conv"))) walk(ex, where + "exercises[" + i + "]"); }); return; }
         walk(x[k], where ? where + "." + k : k);
       });
     })(u, "");
@@ -506,6 +654,21 @@ function checkUnit(entry) {
       if (isObj(it.q)) hit(it.q.en, "câu hỏi", it.id);
       const right = Array.isArray(it.options) ? it.options.find((o) => isObj(o) && o.label === it.answer) : null;
       if (right) hit(right.en, "đáp án đúng", it.id);
+    });
+    /* conv: câu lời thoại (>= 5 từ, >= 2 từ ngoài QR_LEAK_STOP) và đáp án đúng (>= 4 từ); câu đệm ngắn và đáp án cụm danh từ ngắn cố ý không được bảo vệ */
+    cvSets.forEach((s) => {
+      if (!isObj(s) || !Array.isArray(s.lines)) return;
+      s.lines.forEach((ln) => {
+        if (!isObj(ln) || typeof ln.en !== "string") return;
+        ln.en.split(/(?<=[.!?])\s+/).forEach((t) => {
+          const ws = nz(t).split(" ").filter(Boolean);
+          if (ws.length >= 5 && ws.filter((x) => !QR_LEAK_STOP.has(x)).length >= 2) hit(t, "lời thoại", s.id);
+        });
+      });
+    });
+    cvQs.forEach((q) => {
+      const right = Array.isArray(q.options) ? q.options.find((o) => isObj(o) && o.label === q.answer) : null;
+      if (right && typeof right.en === "string" && nz(right.en).split(" ").filter(Boolean).length >= 4) hit(right.en, "đáp án đúng", q.id);
     });
   }
 
