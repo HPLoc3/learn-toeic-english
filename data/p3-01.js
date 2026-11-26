@@ -385,8 +385,8 @@ window.BS_UNITS["p3-01"] = {
       },
       {
        "s": "M",
-       "en": "Give me the original pages, and I'll run the copies myself. I'll bring them to the conference room.",
-       "vi": "Đưa tôi các trang gốc, tôi sẽ tự photo. Tôi sẽ mang đến phòng họp."
+       "en": "Give me the original pages. I'll take them to the finance department and run the copies myself.",
+       "vi": "Đưa tôi các trang gốc. Tôi sẽ mang đến phòng tài chính và tự photo."
       },
       {
        "s": "W",
@@ -395,8 +395,8 @@ window.BS_UNITS["p3-01"] = {
       },
       {
        "s": "M",
-       "en": "Great. See you there in fifteen minutes.",
-       "vi": "Tuyệt. Mười lăm phút nữa gặp ở đó."
+       "en": "Great. See you in the conference room in fifteen minutes.",
+       "vi": "Tuyệt. Mười lăm phút nữa gặp ở phòng họp."
       }
      ],
      "questions": [
@@ -404,41 +404,41 @@ window.BS_UNITS["p3-01"] = {
        "id": "c1-s1-q1",
        "kind": "main",
        "q": {
-        "en": "What are the speakers discussing?",
-        "vi": "Hai người đang nói về điều gì?"
+        "en": "What are the speakers mainly discussing?",
+        "vi": "Hai người chủ yếu đang nói về điều gì?"
        },
-       "answer": "C",
+       "answer": "B",
        "evidence": [
         0,
-        1
+        2
        ],
-       "explain_vi": "Người phụ nữ nói máy photocopy lại kẹt giấy và người đàn ông nói thợ kỹ thuật mai mới đến, nên cả hai đang bàn về một chiếc máy photocopy hỏng.",
+       "explain_vi": "Người phụ nữ cần ba mươi bản tài liệu trước buổi thuyết trình nhưng máy photocopy kẹt, nên hai người bàn cách có tài liệu kịp giờ.",
        "options": [
         {
          "label": "A",
-         "en": "A projector that will not start",
-         "vi": "Một máy chiếu không khởi động được",
-         "trap": "heard-word",
-         "why_vi": "Máy chiếu có được nhắc nhưng chỉ là thứ người phụ nữ sẽ lắp, không phải thiết bị bị hỏng."
+         "en": "How to book a larger room",
+         "vi": "Cách đặt một phòng lớn hơn",
+         "trap": "not-mentioned",
+         "why_vi": "Không ai bàn đến việc đổi phòng; họ vẫn dùng phòng họp."
         },
         {
          "label": "B",
-         "en": "A printer that is low on toner",
-         "vi": "Một máy in sắp hết mực",
-         "trap": "not-mentioned",
-         "why_vi": "Không ai nói về mực in."
+         "en": "How to get handouts made in time",
+         "vi": "Cách có tài liệu phát tay kịp giờ"
         },
         {
          "label": "C",
-         "en": "A copier that is out of order",
-         "vi": "Một máy photocopy bị hỏng"
+         "en": "How to send slides to attendees online",
+         "vi": "Cách gửi slide cho người dự qua mạng",
+         "trap": "not-mentioned",
+         "why_vi": "Không có việc gửi slide trực tuyến."
         },
         {
          "label": "D",
-         "en": "A laptop that needs an update",
-         "vi": "Một laptop cần cập nhật",
-         "trap": "not-mentioned",
-         "why_vi": "Không có laptop nào được nhắc đến."
+         "en": "How to find a replacement projector",
+         "vi": "Cách tìm một máy chiếu thay thế",
+         "trap": "heard-word",
+         "why_vi": "Máy chiếu chỉ được nhắc khi người phụ nữ nói sẽ lắp nó."
         }
        ]
       },
@@ -449,37 +449,37 @@ window.BS_UNITS["p3-01"] = {
         "en": "When is the technician expected to arrive?",
         "vi": "Khi nào thợ kỹ thuật dự kiến đến?"
        },
-       "answer": "A",
+       "answer": "D",
        "evidence": [
         1
        ],
-       "explain_vi": "Người đàn ông nói thợ kỹ thuật không đến cho đến ngày mai, tức là vào ngày hôm sau.",
+       "explain_vi": "Người đàn ông nói thợ kỹ thuật không đến cho đến ngày mai.",
        "options": [
         {
          "label": "A",
-         "en": "The following day",
-         "vi": "Vào ngày hôm sau"
+         "en": "By noon today",
+         "vi": "Trước trưa nay",
+         "trap": "wrong-detail",
+         "why_vi": "Chính vì thợ không đến trong hôm nay nên họ phải tìm máy khác."
         },
         {
          "label": "B",
-         "en": "Before the presentation",
-         "vi": "Trước buổi thuyết trình",
-         "trap": "wrong-detail",
-         "why_vi": "Chính vì thợ đến muộn hơn buổi thuyết trình nên người phụ nữ mới phải tìm máy khác."
-        },
-        {
-         "label": "C",
-         "en": "In fifteen minutes",
-         "vi": "Sau mười lăm phút",
-         "trap": "heard-word",
-         "why_vi": "Mười lăm phút là lúc hai người gặp nhau ở phòng họp, không phải lúc thợ đến."
-        },
-        {
-         "label": "D",
-         "en": "At the end of the week",
+         "en": "Over the weekend",
          "vi": "Vào cuối tuần",
          "trap": "not-mentioned",
          "why_vi": "Không có đoạn nào nhắc đến cuối tuần."
+        },
+        {
+         "label": "C",
+         "en": "Early next week",
+         "vi": "Đầu tuần sau",
+         "trap": "not-mentioned",
+         "why_vi": "Thợ được hẹn vào ngày mai, không phải tuần sau."
+        },
+        {
+         "label": "D",
+         "en": "Tomorrow",
+         "vi": "Ngày mai"
         }
        ]
       },
@@ -490,37 +490,37 @@ window.BS_UNITS["p3-01"] = {
         "en": "What will the man probably do next?",
         "vi": "Người đàn ông có thể sẽ làm gì tiếp theo?"
        },
-       "answer": "D",
+       "answer": "C",
        "evidence": [
         5
        ],
-       "explain_vi": "Anh ấy bảo đưa các trang gốc và nói sẽ tự photo rồi mang đến phòng họp.",
+       "explain_vi": "Anh bảo đưa các trang gốc và nói sẽ mang đến phòng tài chính để tự photo.",
        "options": [
         {
          "label": "A",
-         "en": "Install a projector",
-         "vi": "Lắp một máy chiếu",
-         "trap": "wrong-speaker",
-         "why_vi": "Người phụ nữ mới là người nói sẽ lắp máy chiếu."
+         "en": "Clear the jam in the copier",
+         "vi": "Gỡ giấy kẹt trong máy photocopy",
+         "trap": "heard-word",
+         "why_vi": "Anh nhắc khay giấy mở nhưng không nói sẽ tự gỡ; anh sẽ dùng máy khác."
         },
         {
          "label": "B",
-         "en": "Call a repair service",
-         "vi": "Gọi dịch vụ sửa chữa",
-         "trap": "not-mentioned",
-         "why_vi": "Không ai nói sẽ gọi dịch vụ sửa chữa; thợ đã có lịch đến vào ngày mai."
+         "en": "Phone the technician's office",
+         "vi": "Gọi văn phòng của thợ kỹ thuật",
+         "trap": "changed-plan",
+         "why_vi": "Thợ đã hẹn vào ngày mai và họ chọn cách khác nên không gọi."
         },
         {
          "label": "C",
-         "en": "Carry some binders upstairs",
-         "vi": "Bê các bìa còng lên lầu",
-         "trap": "wrong-speaker",
-         "why_vi": "Người đang bê thùng bìa còng là người phụ nữ."
+         "en": "Use a machine in another office",
+         "vi": "Dùng một máy ở văn phòng khác"
         },
         {
          "label": "D",
-         "en": "Photocopy some pages",
-         "vi": "Photo một số trang tài liệu"
+         "en": "Send the file to a print shop",
+         "vi": "Gửi tệp đến một tiệm in",
+         "trap": "not-mentioned",
+         "why_vi": "Không có tiệm in nào được nhắc."
         }
        ]
       }
@@ -572,8 +572,8 @@ window.BS_UNITS["p3-01"] = {
       },
       {
        "s": "W",
-       "en": "Friday is tight, but I could squeeze you in at four.",
-       "vi": "Thứ Sáu khá kín lịch, nhưng tôi có thể xếp cho anh lúc bốn giờ."
+       "en": "I have a board meeting until four, so I could only see you after that.",
+       "vi": "Tôi có cuộc họp hội đồng quản trị đến bốn giờ, nên chỉ có thể gặp anh sau giờ đó."
       },
       {
        "s": "M",
@@ -594,38 +594,39 @@ window.BS_UNITS["p3-01"] = {
         "en": "Why is the man calling?",
         "vi": "Tại sao người đàn ông gọi điện?"
        },
-       "answer": "B",
+       "answer": "A",
        "evidence": [
         0,
-        2
+        2,
+        4
        ],
-       "explain_vi": "Anh ấy gọi về cuộc họp vào thứ Năm và giải thích trưởng nhóm thiết kế chưa về kịp, rồi đề nghị họp vào chiều thứ Sáu, tức là xin đổi giờ họp.",
+       "explain_vi": "Anh ấy gọi về cuộc họp vào thứ Năm, giải thích trưởng nhóm thiết kế chưa về kịp rồi đề nghị họp vào chiều thứ Sáu, tức là muốn dời cuộc họp sang ngày khác.",
        "options": [
         {
          "label": "A",
-         "en": "To confirm the place of a meeting",
-         "vi": "Để xác nhận địa điểm một cuộc họp",
+         "en": "To move a meeting to another day",
+         "vi": "Để dời một cuộc họp sang ngày khác"
+        },
+        {
+         "label": "B",
+         "en": "To change the place of a meeting",
+         "vi": "Để đổi địa điểm một cuộc họp",
          "trap": "not-mentioned",
          "why_vi": "Không ai nói về địa điểm họp."
         },
         {
-         "label": "B",
-         "en": "To request a new time for a meeting",
-         "vi": "Để đề nghị một thời gian họp mới"
-        },
-        {
          "label": "C",
-         "en": "To ask for more time on a project",
-         "vi": "Để xin thêm thời gian cho một dự án",
+         "en": "To add a guest to a meeting",
+         "vi": "Để thêm một khách mời vào cuộc họp",
          "trap": "not-mentioned",
-         "why_vi": "Người đàn ông không xin gia hạn dự án, chỉ xin đổi giờ họp."
+         "why_vi": "Không có người nào được mời thêm."
         },
         {
          "label": "D",
-         "en": "To introduce a designer to a client",
-         "vi": "Để giới thiệu một nhà thiết kế với khách hàng",
-         "trap": "heard-word",
-         "why_vi": "Nhà thiết kế chỉ được nhắc như lý do không có mặt, không có lời giới thiệu."
+         "en": "To confirm the time of a meeting",
+         "vi": "Để xác nhận giờ của một cuộc họp",
+         "trap": "wrong-detail",
+         "why_vi": "Anh không xác nhận giờ cũ mà xin dời sang ngày khác."
         }
        ]
       },
@@ -636,7 +637,7 @@ window.BS_UNITS["p3-01"] = {
         "en": "What will the woman's director do on Monday?",
         "vi": "Giám đốc của người phụ nữ sẽ làm gì vào thứ Hai?"
        },
-       "answer": "D",
+       "answer": "C",
        "evidence": [
         3
        ],
@@ -644,71 +645,72 @@ window.BS_UNITS["p3-01"] = {
        "options": [
         {
          "label": "A",
-         "en": "Visit a trade fair",
-         "vi": "Đến một hội chợ thương mại",
+         "en": "Visit a client abroad",
+         "vi": "Thăm một khách hàng ở nước ngoài",
          "trap": "heard-word",
-         "why_vi": "Hội chợ là nơi trưởng nhóm thiết kế của người đàn ông đang ở."
+         "why_vi": "Lisbon được nhắc nhưng là nơi trưởng nhóm thiết kế của người đàn ông đang ở."
         },
         {
          "label": "B",
          "en": "Approve a logo",
          "vi": "Duyệt một logo",
          "trap": "wrong-detail",
-         "why_vi": "Cô muốn duyệt logo trong tuần này, trước thứ Hai."
+         "why_vi": "Chính cô muốn duyệt logo trong tuần này, trước thứ Hai."
         },
         {
          "label": "C",
-         "en": "Return from Lisbon",
-         "vi": "Trở về từ Lisbon",
-         "trap": "wrong-speaker",
-         "why_vi": "Người từ Lisbon trở về là trưởng nhóm thiết kế của người đàn ông, vào thứ Sáu."
+         "en": "Take some time off",
+         "vi": "Nghỉ làm một thời gian"
         },
         {
          "label": "D",
-         "en": "Take some time off",
-         "vi": "Nghỉ làm một thời gian"
+         "en": "Attend a trade fair",
+         "vi": "Dự một hội chợ thương mại",
+         "trap": "heard-word",
+         "why_vi": "Hội chợ là nơi trưởng nhóm thiết kế của người đàn ông đang kẹt."
         }
        ]
       },
       {
        "id": "c1-s2-q3",
        "kind": "intent",
-       "quote": "Friday is tight",
+       "quote": "I have a board meeting until four",
        "q": {
-        "en": "What does the woman mean when she says, \"Friday is tight\"?",
-        "vi": "Người phụ nữ muốn nói gì khi cô ấy nói \"Friday is tight\"?"
+        "en": "What does the woman mean when she says, \"I have a board meeting until four\"?",
+        "vi": "Người phụ nữ muốn nói gì khi cô ấy nói \"I have a board meeting until four\"?"
        },
-       "answer": "A",
+       "answer": "B",
        "evidence": [
+        4,
         5
        ],
-       "explain_vi": "Cô nói thứ Sáu khá kín nhưng vẫn xếp được lúc bốn giờ, nghĩa là lịch ngày hôm đó gần như đã đầy.",
+       "explain_vi": "Anh vừa đề nghị họp chiều thứ Sáu; cô nói mình bận đến bốn giờ nên chỉ có thể gặp sau giờ đó, tức là cô đề nghị một giờ bắt đầu muộn hơn, và anh đáp \"That would be perfect\".",
        "options": [
         {
          "label": "A",
-         "en": "She has few free times that day.",
-         "vi": "Cô ấy còn rất ít giờ trống ngày hôm đó."
+         "en": "She is rejecting his request.",
+         "vi": "Cô ấy đang từ chối đề nghị của anh.",
+         "trap": "over-inference",
+         "why_vi": "Cô vẫn nói có thể gặp sau bốn giờ nên không từ chối."
         },
         {
          "label": "B",
-         "en": "The client's deadline is very strict.",
-         "vi": "Hạn chót của khách hàng rất khắt khe.",
-         "trap": "over-inference",
-         "why_vi": "Cô không nói gì về hạn chót của khách hàng, chỉ nói về lịch ngày thứ Sáu."
+         "en": "She is offering a later start time.",
+         "vi": "Cô ấy đang đề nghị một giờ bắt đầu muộn hơn."
         },
         {
          "label": "C",
-         "en": "She will be out of the office.",
-         "vi": "Cô ấy sẽ không có mặt ở văn phòng.",
+         "en": "She is proposing a different day.",
+         "vi": "Cô ấy đang đề xuất một ngày khác.",
          "trap": "wrong-detail",
-         "why_vi": "Cô vẫn có thể gặp lúc bốn giờ nên cô có mặt."
+         "why_vi": "Cô vẫn đồng ý ngày thứ Sáu, chỉ nói giờ muộn hơn."
         },
         {
          "label": "D",
-         "en": "A budget limit has been reached.",
-         "vi": "Ngân sách đã chạm giới hạn.",
-         "trap": "literal",
-         "why_vi": "Tight còn có nghĩa chật về tiền bạc, nhưng ở đây cô đang nói về lịch trình."
+         "en": "She is asking for a shorter meeting.",
+         "vi": "Cô ấy đang xin một cuộc họp ngắn hơn.",
+         "trap": "not-mentioned",
+         "why_vi": "Không ai nói gì về độ dài cuộc họp."
         }
        ]
       }
@@ -776,7 +778,7 @@ window.BS_UNITS["p3-01"] = {
      ],
      "graphic": {
       "type": "table",
-      "title": "Meeting Rooms - Tomorrow",
+      "title": "Tower Level 4 - Meeting Rooms",
       "cols": [
        "Room",
        "Seats",
@@ -784,19 +786,19 @@ window.BS_UNITS["p3-01"] = {
       ],
       "rows": [
        [
+        "Linden",
+        "10",
+        "2:00 P.M."
+       ],
+       [
         "Alder",
         "6",
         "1:00 P.M."
        ],
        [
-        "Linden",
-        "10",
-        "3:30 P.M."
-       ],
-       [
         "Spruce",
         "12",
-        "2:00 P.M."
+        "3:30 P.M."
        ],
        [
         "Hazel",
@@ -813,7 +815,7 @@ window.BS_UNITS["p3-01"] = {
         "en": "Who most likely is the woman?",
         "vi": "Người phụ nữ nhiều khả năng là ai?"
        },
-       "answer": "C",
+       "answer": "D",
        "evidence": [
         0
        ],
@@ -821,10 +823,10 @@ window.BS_UNITS["p3-01"] = {
        "options": [
         {
          "label": "A",
-         "en": "A property leasing agent",
-         "vi": "Một nhân viên cho thuê bất động sản",
+         "en": "A hotel front desk clerk",
+         "vi": "Một nhân viên lễ tân khách sạn",
          "trap": "not-mentioned",
-         "why_vi": "Không có việc cho thuê nhà hay văn phòng."
+         "why_vi": "Đây là cuộc gọi nội bộ giữa các nhóm của một công ty, không phải khách sạn."
         },
         {
          "label": "B",
@@ -835,15 +837,15 @@ window.BS_UNITS["p3-01"] = {
         },
         {
          "label": "C",
-         "en": "A building services coordinator",
-         "vi": "Một điều phối viên dịch vụ tòa nhà"
-        },
-        {
-         "label": "D",
          "en": "A department receptionist",
          "vi": "Một lễ tân phòng ban",
          "trap": "over-inference",
          "why_vi": "Cô nghe điện thoại ở quầy dịch vụ tòa nhà, không phải lễ tân của một phòng ban."
+        },
+        {
+         "label": "D",
+         "en": "A building services coordinator",
+         "vi": "Một điều phối viên dịch vụ tòa nhà"
         }
        ]
       },
@@ -855,37 +857,37 @@ window.BS_UNITS["p3-01"] = {
         "en": "Look at the graphic. Which room will the man most likely use?",
         "vi": "Nhìn hình. Người đàn ông nhiều khả năng sẽ dùng phòng nào?"
        },
-       "answer": "B",
+       "answer": "A",
        "evidence": [
         3
        ],
-       "explain_vi": "Nhóm có chín người và phải bắt đầu lúc hai rưỡi. Chỉ phòng Spruce đủ chỗ (12) và đã trống từ 2:00, còn Linden và Hazel đủ chỗ nhưng trống quá muộn, Alder quá nhỏ.",
+       "explain_vi": "Nhóm có chín người và bắt đầu lúc hai rưỡi. Chỉ phòng Linden đủ chỗ (10) và đã trống từ 2:00; Spruce đủ chỗ nhưng 3:30 mới trống, Hazel 4:00 mới trống, Alder chỉ có 6 chỗ.",
        "options": [
         {
          "label": "A",
          "en": "Linden",
-         "vi": "Linden",
-         "trap": "wrong-detail",
-         "why_vi": "Đủ 10 chỗ nhưng 3:30 mới trống, trong khi nhóm bắt đầu lúc 2:30."
+         "vi": "Linden"
         },
         {
          "label": "B",
          "en": "Spruce",
-         "vi": "Spruce"
+         "vi": "Spruce",
+         "trap": "wrong-detail",
+         "why_vi": "Có 12 chỗ nhưng 3:30 mới trống, trong khi nhóm bắt đầu lúc 2:30."
         },
         {
          "label": "C",
          "en": "Hazel",
          "vi": "Hazel",
          "trap": "wrong-detail",
-         "why_vi": "Có 9 chỗ nhưng chỉ trống từ 4:00."
+         "why_vi": "Có 9 chỗ nhưng 4:00 mới trống."
         },
         {
          "label": "D",
          "en": "Alder",
          "vi": "Alder",
          "trap": "graphic-only",
-         "why_vi": "Chỉ có 6 chỗ, không đủ cho chín người."
+         "why_vi": "Trống từ 1:00 nhưng chỉ có 6 chỗ, không đủ cho chín người."
         }
        ]
       },
@@ -896,7 +898,7 @@ window.BS_UNITS["p3-01"] = {
         "en": "What equipment does the man request?",
         "vi": "Người đàn ông yêu cầu thiết bị gì?"
        },
-       "answer": "A",
+       "answer": "C",
        "evidence": [
         5
        ],
@@ -904,29 +906,29 @@ window.BS_UNITS["p3-01"] = {
        "options": [
         {
          "label": "A",
-         "en": "A screen for a laptop",
-         "vi": "Một màn hình cho laptop"
+         "en": "A speakerphone for remote guests",
+         "vi": "Một loa thoại cho khách tham dự từ xa",
+         "trap": "not-mentioned",
+         "why_vi": "Không ai nhắc đến khách dự từ xa."
         },
         {
          "label": "B",
-         "en": "A microphone system",
-         "vi": "Một hệ thống micro",
+         "en": "A flip chart and stand",
+         "vi": "Một bảng lật và chân đỡ",
          "trap": "not-mentioned",
-         "why_vi": "Không có micro nào được nhắc đến."
+         "why_vi": "Anh không yêu cầu bảng lật."
         },
         {
          "label": "C",
-         "en": "A whiteboard and markers",
-         "vi": "Một bảng trắng và bút lông",
-         "trap": "not-mentioned",
-         "why_vi": "Anh không yêu cầu bảng trắng."
+         "en": "A display for a computer",
+         "vi": "Một màn hình cho máy tính"
         },
         {
          "label": "D",
-         "en": "A printer for handouts",
-         "vi": "Một máy in để in tài liệu",
+         "en": "A microphone and speakers",
+         "vi": "Micro và loa",
          "trap": "not-mentioned",
-         "why_vi": "Không ai nhắc đến việc in tài liệu."
+         "why_vi": "Không có micro hay loa nào được nhắc."
         }
        ]
       }
@@ -1017,7 +1019,7 @@ window.BS_UNITS["p3-01"] = {
         "en": "Who most likely is the woman?",
         "vi": "Người phụ nữ nhiều khả năng là ai?"
        },
-       "answer": "D",
+       "answer": "C",
        "evidence": [
         0
        ],
@@ -1039,15 +1041,15 @@ window.BS_UNITS["p3-01"] = {
         },
         {
          "label": "C",
+         "en": "A personnel department employee",
+         "vi": "Một nhân viên phòng nhân sự"
+        },
+        {
+         "label": "D",
          "en": "A finance department employee",
          "vi": "Một nhân viên phòng tài chính",
          "trap": "not-mentioned",
          "why_vi": "Phòng tài chính không được nhắc đến."
-        },
-        {
-         "label": "D",
-         "en": "A personnel department employee",
-         "vi": "Một nhân viên phòng nhân sự"
         }
        ]
       },
@@ -1058,37 +1060,37 @@ window.BS_UNITS["p3-01"] = {
         "en": "What will happen in the lobby on Wednesdays?",
         "vi": "Điều gì sẽ diễn ra ở sảnh vào các ngày thứ Tư?"
        },
-       "answer": "C",
+       "answer": "B",
        "evidence": [
         3
        ],
-       "explain_vi": "Fiona nói ảnh làm thẻ được chụp ở sảnh vào thứ Tư, nghĩa là nhân viên được chụp ảnh để làm thẻ.",
+       "explain_vi": "Fiona nói ảnh làm thẻ được chụp ở sảnh vào thứ Tư.",
        "options": [
         {
          "label": "A",
-         "en": "Guests will receive visitor passes.",
-         "vi": "Khách sẽ nhận thẻ khách.",
-         "trap": "heard-word",
-         "why_vi": "Thẻ được nhắc nhưng là thẻ của nhân viên mới, không phải thẻ khách."
+         "en": "A fire safety demonstration will be held.",
+         "vi": "Sẽ có buổi trình diễn an toàn cháy nổ.",
+         "trap": "not-mentioned",
+         "why_vi": "Không có buổi trình diễn an toàn nào được nhắc."
         },
         {
          "label": "B",
-         "en": "New hires will take a building tour.",
-         "vi": "Nhân viên mới sẽ đi tham quan tòa nhà.",
-         "trap": "not-mentioned",
-         "why_vi": "Không có chuyến tham quan nào được nhắc đến."
+         "en": "Photos will be taken for staff badges.",
+         "vi": "Ảnh sẽ được chụp để làm thẻ nhân viên."
         },
         {
          "label": "C",
-         "en": "Employees will be photographed for passes.",
-         "vi": "Nhân viên sẽ được chụp ảnh để làm thẻ."
+         "en": "A welcome coffee will be served.",
+         "vi": "Sẽ có buổi cà phê chào đón.",
+         "trap": "not-mentioned",
+         "why_vi": "Không có hoạt động cà phê nào được nhắc."
         },
         {
          "label": "D",
-         "en": "Laptops will be given to new staff.",
-         "vi": "Laptop sẽ được phát cho nhân viên mới.",
-         "trap": "wrong-detail",
-         "why_vi": "Callum nói sẽ cài laptop vào sáng nay, không nhắc đến sảnh."
+         "en": "Parking permits will be handed out.",
+         "vi": "Thẻ đỗ xe sẽ được phát.",
+         "trap": "not-mentioned",
+         "why_vi": "Không ai nhắc đến thẻ đỗ xe."
         }
        ]
       },
@@ -1099,7 +1101,7 @@ window.BS_UNITS["p3-01"] = {
         "en": "What does the woman ask the new employee to do by Friday?",
         "vi": "Người phụ nữ yêu cầu nhân viên mới làm gì trước thứ Sáu?"
        },
-       "answer": "B",
+       "answer": "D",
        "evidence": [
         5
        ],
@@ -1107,29 +1109,29 @@ window.BS_UNITS["p3-01"] = {
        "options": [
         {
          "label": "A",
-         "en": "Return a company laptop",
-         "vi": "Trả lại một laptop của công ty",
+         "en": "Submit a bank account form",
+         "vi": "Nộp mẫu thông tin tài khoản ngân hàng",
          "trap": "not-mentioned",
-         "why_vi": "Không ai nói về việc trả laptop."
+         "why_vi": "Không có mẫu ngân hàng nào được nhắc."
         },
         {
          "label": "B",
-         "en": "Return a signed document",
-         "vi": "Nộp lại một văn bản đã ký"
+         "en": "Register for a safety course",
+         "vi": "Đăng ký một khóa học an toàn",
+         "trap": "not-mentioned",
+         "why_vi": "Không có khóa học nào được nhắc."
         },
         {
          "label": "C",
-         "en": "Finish reading the handbook",
-         "vi": "Đọc xong cuốn sổ tay",
-         "trap": "wrong-detail",
-         "why_vi": "Cô nói đọc sổ tay khi nào rảnh, không có hạn chót."
+         "en": "Choose a health plan",
+         "vi": "Chọn một gói bảo hiểm sức khỏe",
+         "trap": "not-mentioned",
+         "why_vi": "Bảo hiểm sức khỏe không được nhắc."
         },
         {
          "label": "D",
-         "en": "Send in a photo for a badge",
-         "vi": "Gửi một tấm ảnh để làm thẻ",
-         "trap": "wrong-detail",
-         "why_vi": "Ảnh làm thẻ được chụp ở sảnh vào thứ Tư, không phải việc phải nộp trước thứ Sáu."
+         "en": "Sign a privacy agreement",
+         "vi": "Ký một thỏa thuận bảo mật"
         }
        ]
       }
@@ -1161,8 +1163,8 @@ window.BS_UNITS["p3-01"] = {
       },
       {
        "s": "W",
-       "en": "Sure, Mateo. What's holding you up?",
-       "vi": "Được chứ, Mateo. Điều gì đang làm anh vướng?"
+       "en": "Sure, Mateo. What's the trouble?",
+       "vi": "Được chứ, Mateo. Có chuyện gì vậy?"
       },
       {
        "s": "M",
@@ -1171,75 +1173,33 @@ window.BS_UNITS["p3-01"] = {
       },
       {
        "s": "W",
-       "en": "I'm swamped with the budget forecast myself, but I can take the charts off your plate.",
-       "vi": "Bản thân tôi cũng ngập việc với dự báo ngân sách, nhưng tôi có thể nhận phần biểu đồ giúp anh."
+       "en": "I'm busy with the budget forecast myself, but I can make the charts for you.",
+       "vi": "Bản thân tôi cũng đang bận dự báo ngân sách, nhưng tôi có thể làm biểu đồ giúp anh."
       },
       {
        "s": "M",
-       "en": "That would be a huge help. I'll chase the branch managers for the numbers this afternoon.",
-       "vi": "Vậy thì giúp tôi rất nhiều. Chiều nay tôi sẽ đi hối các quản lý chi nhánh gửi số liệu."
+       "en": "That would be a huge help. I'll ask the branch managers for the numbers this afternoon.",
+       "vi": "Vậy thì giúp tôi rất nhiều. Chiều nay tôi sẽ hỏi các quản lý chi nhánh xin số liệu."
       },
       {
        "s": "W",
-       "en": "Good. Let's compare notes again tomorrow morning so nothing slips.",
-       "vi": "Tốt. Sáng mai mình trao đổi lại để không sót việc nào."
+       "en": "The regional office closes at five on Friday.",
+       "vi": "Văn phòng khu vực đóng cửa lúc năm giờ chiều thứ Sáu."
       },
       {
        "s": "M",
-       "en": "Sounds good. I'll send you the chart template as soon as I find it.",
-       "vi": "Nghe hợp lý. Tôi sẽ gửi chị mẫu biểu đồ ngay khi tìm thấy."
+       "en": "Then I'll aim to send everything by lunchtime.",
+       "vi": "Vậy tôi sẽ cố gửi mọi thứ trước giờ ăn trưa."
       },
       {
        "s": "W",
-       "en": "No rush. Just make sure it reaches my inbox before lunch.",
-       "vi": "Không vội. Chỉ cần nó tới hộp thư của tôi trước giờ ăn trưa."
+       "en": "Good. Let's check in again tomorrow morning.",
+       "vi": "Tốt. Sáng mai mình trao đổi lại nhé."
       }
      ],
      "questions": [
       {
        "id": "c2-s5-q1",
-       "kind": "intent",
-       "quote": "What's holding you up?",
-       "q": {
-        "en": "What does the woman mean when she says, \"What's holding you up?\"",
-        "vi": "Người phụ nữ muốn nói gì khi cô ấy nói \"What's holding you up?\""
-       },
-       "answer": "B",
-       "evidence": [
-        1
-       ],
-       "explain_vi": "Sau khi nghe anh nói mình trễ tiến độ, cô hỏi để biết điều gì đang làm anh chậm; anh trả lời bằng việc thiếu số liệu và chưa làm biểu đồ.",
-       "options": [
-        {
-         "label": "A",
-         "en": "She is asking what is delaying a shipment.",
-         "vi": "Cô ấy hỏi điều gì đang làm chậm một lô hàng.",
-         "trap": "heard-word",
-         "why_vi": "Cô nói về công việc báo cáo của anh, không phải lô hàng nào."
-        },
-        {
-         "label": "B",
-         "en": "She wants to know what is causing his delay.",
-         "vi": "Cô ấy muốn biết điều gì đang làm anh chậm trễ."
-        },
-        {
-         "label": "C",
-         "en": "She is asking him to hurry up.",
-         "vi": "Cô ấy yêu cầu anh làm nhanh lên.",
-         "trap": "over-inference",
-         "why_vi": "Cô đang hỏi nguyên nhân và sau đó đề nghị giúp, không thúc giục."
-        },
-        {
-         "label": "D",
-         "en": "She is asking if he awaits her approval.",
-         "vi": "Cô ấy hỏi anh có đang chờ cô duyệt không.",
-         "trap": "wrong-detail",
-         "why_vi": "Anh không chờ sự duyệt của cô; anh chờ số liệu của các chi nhánh."
-        }
-       ]
-      },
-      {
-       "id": "c2-s5-q2",
        "kind": "problem",
        "q": {
         "en": "What problem does the man mention?",
@@ -1249,38 +1209,38 @@ window.BS_UNITS["p3-01"] = {
        "evidence": [
         2
        ],
-       "explain_vi": "Anh nói số liệu của các chi nhánh phía bắc vẫn chưa gửi về, tức là còn thiếu thông tin.",
+       "explain_vi": "Anh nói số liệu của các chi nhánh phía bắc vẫn chưa gửi về.",
        "options": [
         {
          "label": "A",
-         "en": "Some information is still missing.",
-         "vi": "Vẫn còn thiếu một số thông tin."
+         "en": "Data from some branches has not arrived.",
+         "vi": "Dữ liệu từ một số chi nhánh chưa được gửi đến."
         },
         {
          "label": "B",
-         "en": "A coworker is on leave this week.",
-         "vi": "Một đồng nghiệp nghỉ phép tuần này.",
+         "en": "A chart template cannot be found.",
+         "vi": "Không tìm thấy mẫu biểu đồ.",
          "trap": "not-mentioned",
-         "why_vi": "Không ai nói về việc nghỉ phép."
+         "why_vi": "Không ai nói về mẫu biểu đồ."
         },
         {
          "label": "C",
-         "en": "Some charts were made incorrectly.",
-         "vi": "Một số biểu đồ bị làm sai.",
-         "trap": "heard-word",
-         "why_vi": "Biểu đồ chỉ là việc anh chưa bắt đầu làm, không có lỗi nào."
+         "en": "The budget forecast is unfinished.",
+         "vi": "Dự báo ngân sách chưa xong.",
+         "trap": "wrong-speaker",
+         "why_vi": "Dự báo ngân sách là việc của người phụ nữ."
         },
         {
          "label": "D",
-         "en": "The report's due date was moved up.",
-         "vi": "Hạn nộp báo cáo bị dời sớm lên.",
+         "en": "A report came back with corrections.",
+         "vi": "Một báo cáo bị trả lại kèm chỉnh sửa.",
          "trap": "not-mentioned",
-         "why_vi": "Báo cáo vẫn phải nộp vào thứ Sáu, không ai nói hạn bị dời."
+         "why_vi": "Báo cáo vẫn chưa nộp nên chưa có chỉnh sửa nào."
         }
        ]
       },
       {
-       "id": "c2-s5-q3",
+       "id": "c2-s5-q2",
        "kind": "next",
        "q": {
         "en": "What will the man do this afternoon?",
@@ -1290,33 +1250,76 @@ window.BS_UNITS["p3-01"] = {
        "evidence": [
         4
        ],
-       "explain_vi": "Anh nói chiều nay sẽ đi hối các quản lý chi nhánh gửi số liệu, tức là hỏi xin số liệu từ họ.",
+       "explain_vi": "Anh nói chiều nay sẽ hỏi các quản lý chi nhánh xin số liệu.",
        "options": [
         {
          "label": "A",
-         "en": "Build some charts",
-         "vi": "Làm vài biểu đồ",
-         "trap": "wrong-speaker",
-         "why_vi": "Người phụ nữ mới là người nhận làm biểu đồ."
+         "en": "Revise a report after corrections",
+         "vi": "Sửa một báo cáo sau khi nhận chỉnh sửa",
+         "trap": "not-mentioned",
+         "why_vi": "Không có chỉnh sửa nào để sửa."
         },
         {
          "label": "B",
-         "en": "Visit the regional office",
-         "vi": "Đến văn phòng khu vực",
-         "trap": "heard-word",
-         "why_vi": "Văn phòng khu vực chỉ là nơi nhận báo cáo vào thứ Sáu."
+         "en": "Look for a chart template",
+         "vi": "Tìm một mẫu biểu đồ",
+         "trap": "not-mentioned",
+         "why_vi": "Không ai nhắc đến việc tìm mẫu biểu đồ."
         },
         {
          "label": "C",
-         "en": "Finish a budget forecast",
-         "vi": "Hoàn tất một dự báo ngân sách",
+         "en": "Work on the budget forecast",
+         "vi": "Làm dự báo ngân sách",
          "trap": "wrong-speaker",
-         "why_vi": "Dự báo ngân sách là việc đang làm của người phụ nữ."
+         "why_vi": "Người phụ nữ mới là người đang làm dự báo ngân sách."
         },
         {
          "label": "D",
-         "en": "Ask some managers for data",
-         "vi": "Xin số liệu từ một số quản lý"
+         "en": "Contact the branch managers for figures",
+         "vi": "Liên hệ các quản lý chi nhánh để xin số liệu"
+        }
+       ]
+      },
+      {
+       "id": "c2-s5-q3",
+       "kind": "intent",
+       "quote": "The regional office closes at five on Friday",
+       "q": {
+        "en": "What does the woman mean when she says, \"The regional office closes at five on Friday\"?",
+        "vi": "Người phụ nữ muốn nói gì khi cô ấy nói \"The regional office closes at five on Friday\"?"
+       },
+       "answer": "B",
+       "evidence": [
+        5,
+        6
+       ],
+       "explain_vi": "Sau khi anh nói sẽ xin số liệu, cô nhắc giờ đóng cửa của văn phòng khu vực để anh thấy thời gian không nhiều; anh đáp sẽ cố gửi trước giờ ăn trưa.",
+       "options": [
+        {
+         "label": "A",
+         "en": "She is offering to deliver the report.",
+         "vi": "Cô ấy đang đề nghị mang báo cáo đi nộp.",
+         "trap": "over-inference",
+         "why_vi": "Cô không nói sẽ mang báo cáo đi."
+        },
+        {
+         "label": "B",
+         "en": "She is reminding him of a time limit.",
+         "vi": "Cô ấy đang nhắc anh về giới hạn thời gian."
+        },
+        {
+         "label": "C",
+         "en": "She is explaining why she cannot help.",
+         "vi": "Cô ấy đang giải thích vì sao không thể giúp.",
+         "trap": "wrong-detail",
+         "why_vi": "Cô đã đồng ý làm biểu đồ giúp anh."
+        },
+        {
+         "label": "D",
+         "en": "She is asking him to work late.",
+         "vi": "Cô ấy đang yêu cầu anh làm việc muộn.",
+         "trap": "over-inference",
+         "why_vi": "Cô không bảo anh ở lại muộn; anh tự nói sẽ gửi trước trưa."
         }
        ]
       }
@@ -1431,38 +1434,38 @@ window.BS_UNITS["p3-01"] = {
         "en": "What is the conversation mainly about?",
         "vi": "Cuộc hội thoại chủ yếu nói về điều gì?"
        },
-       "answer": "B",
+       "answer": "D",
        "evidence": [
         0,
-        1
+        4
        ],
-       "explain_vi": "Họ kiểm tra vật tư, thấy gần hết giấy và hết giấy màu, rồi gọi nhà cung cấp, tức là bổ sung đồ dùng văn phòng.",
+       "explain_vi": "Họ kiểm tra vật tư, thấy thiếu một số món, rồi gọi nhà cung cấp để đặt hàng cho văn phòng.",
        "options": [
         {
          "label": "A",
-         "en": "Scheduling a visit from a repair worker",
-         "vi": "Hẹn lịch cho một thợ sửa chữa đến",
-         "trap": "not-mentioned",
-         "why_vi": "Không có việc sửa chữa nào được nhắc."
+         "en": "Comparing prices from two suppliers",
+         "vi": "So sánh giá của hai nhà cung cấp",
+         "trap": "over-inference",
+         "why_vi": "Họ chỉ gọi một nhà cung cấp, không so sánh giá."
         },
         {
          "label": "B",
-         "en": "Restocking items for an office",
-         "vi": "Bổ sung vật dụng cho văn phòng"
+         "en": "Correcting a mistake in a delivery",
+         "vi": "Sửa một sai sót trong lần giao hàng",
+         "trap": "not-mentioned",
+         "why_vi": "Không có sai sót giao hàng nào được nhắc."
         },
         {
          "label": "C",
-         "en": "Planning an event for the interns",
-         "vi": "Lên kế hoạch một sự kiện cho thực tập sinh",
-         "trap": "over-inference",
-         "why_vi": "Thực tập sinh chỉ là lý do cần chuẩn bị vật tư, không có sự kiện nào."
+         "en": "Returning unused supplies to a vendor",
+         "vi": "Trả lại vật tư không dùng cho nhà cung cấp",
+         "trap": "not-mentioned",
+         "why_vi": "Họ đặt thêm hàng, không trả hàng."
         },
         {
          "label": "D",
-         "en": "Choosing a vendor for a long contract",
-         "vi": "Chọn nhà cung cấp cho một hợp đồng dài hạn",
-         "trap": "over-inference",
-         "why_vi": "Họ gọi một nhà cung cấp quen để đặt một đơn nhỏ, không bàn hợp đồng."
+         "en": "Ordering supplies for an office",
+         "vi": "Đặt vật dụng cho một văn phòng"
         }
        ]
       },
@@ -1473,37 +1476,37 @@ window.BS_UNITS["p3-01"] = {
         "en": "What does the man imply about the paper?",
         "vi": "Người đàn ông ngụ ý điều gì về giấy?"
        },
-       "answer": "D",
+       "answer": "A",
        "evidence": [
         6
        ],
-       "explain_vi": "Anh nói không cần đặt vì một lô hàng từ nhà cung cấp quen thuộc đang trên đường tới, nên giấy sẽ do nơi khác giao.",
+       "explain_vi": "Anh nói họ bỏ qua giấy vì một lô hàng từ nhà cung cấp quen thuộc đang trên đường tới, nên giấy được cung cấp từ nơi khác.",
        "options": [
         {
          "label": "A",
-         "en": "It was bought at a local store.",
-         "vi": "Nó được mua ở một cửa hàng gần đây.",
-         "trap": "not-mentioned",
-         "why_vi": "Không có đoạn nào nhắc đến việc mua ở cửa hàng."
+         "en": "Another source is already supplying it.",
+         "vi": "Một nguồn khác đã đang cung cấp nó."
         },
         {
          "label": "B",
-         "en": "It will be ordered at a later date.",
-         "vi": "Nó sẽ được đặt vào một ngày sau.",
-         "trap": "changed-plan",
-         "why_vi": "Anh không hoãn việc đặt; hàng đã trên đường tới."
+         "en": "It costs less at another shop.",
+         "vi": "Nó rẻ hơn ở một cửa hàng khác.",
+         "trap": "not-mentioned",
+         "why_vi": "Không ai so sánh giá giấy."
         },
         {
          "label": "C",
-         "en": "It will be shared with another office.",
-         "vi": "Nó sẽ được chia cho một văn phòng khác.",
+         "en": "It is kept in a different office.",
+         "vi": "Nó được cất ở một văn phòng khác.",
          "trap": "not-mentioned",
-         "why_vi": "Không ai nói về việc chia giấy."
+         "why_vi": "Không có văn phòng nào khác được nhắc cho việc này."
         },
         {
          "label": "D",
-         "en": "A different company is sending it.",
-         "vi": "Một công ty khác đang gửi nó."
+         "en": "The interns will bring their own.",
+         "vi": "Các thực tập sinh sẽ tự mang theo.",
+         "trap": "over-inference",
+         "why_vi": "Thực tập sinh không được nói sẽ mang giấy."
         }
        ]
       },
