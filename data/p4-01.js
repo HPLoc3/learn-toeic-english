@@ -566,7 +566,7 @@ window.BS_UNITS["p4-01"] = {
           ],
           "graphic": {
             "type": "table",
-            "title": "Northway Rail - Station Board",
+            "title": "Northway Rail - Station Display",
             "cols": [
               "Destination",
               "Departs",
@@ -749,13 +749,18 @@ window.BS_UNITS["p4-01"] = {
             },
             {
               "s": "A",
-              "en": "Only the freight elevator behind the loading dock will run, and it is reserved for deliveries.",
-              "vi": "Chỉ thang máy chở hàng phía sau khu bốc dỡ hoạt động, và nó dành riêng cho việc giao nhận."
+              "en": "Only the freight elevator will run, and it is located behind the loading dock.",
+              "vi": "Chỉ thang máy chở hàng hoạt động, và nó nằm phía sau khu bốc dỡ."
             },
             {
               "s": "A",
-              "en": "So if your meeting is on a high floor, I'd suggest wearing comfortable shoes.",
-              "vi": "Vì vậy nếu cuộc họp của bạn ở tầng cao, tôi khuyên nên mang giày thoải mái."
+              "en": "The loading dock will be busy until noon.",
+              "vi": "Khu bốc dỡ sẽ bận đến trưa."
+            },
+            {
+              "s": "A",
+              "en": "So please ask any guests to arrive after lunch.",
+              "vi": "Vì vậy xin hãy nhờ khách của bạn đến sau bữa trưa."
             },
             {
               "s": "A",
@@ -818,43 +823,43 @@ window.BS_UNITS["p4-01"] = {
             {
               "id": "c1-s3-q2",
               "kind": "intent",
-              "quote": "it is reserved for deliveries",
+              "quote": "The loading dock will be busy until noon",
               "q": {
-                "en": "What does the speaker imply when she says, \"it is reserved for deliveries\"?",
-                "vi": "Người nói ngụ ý gì khi nói: \"it is reserved for deliveries\"?"
+                "en": "What does the speaker imply when she says, \"The loading dock will be busy until noon\"?",
+                "vi": "Người nói ngụ ý gì khi nói: \"The loading dock will be busy until noon\"?"
               },
               "answer": "B",
               "evidence": [
-                1,
-                2
+                3,
+                4
               ],
-              "explain_vi": "Chỉ thang máy chở hàng còn chạy, và nó dành cho giao nhận, nên nhân viên không được dùng nó.",
+              "explain_vi": "Sau câu này cô nhắc nhờ khách đến sau bữa trưa: khu bốc dỡ bận nên khách nên đến muộn hơn.",
               "options": [
                 {
                   "label": "A",
-                  "en": "Several packages are due in the morning",
-                  "vi": "Sáng nay có nhiều kiện hàng sắp đến",
+                  "en": "She is asking staff to help unload trucks",
+                  "vi": "Cô nhờ nhân viên giúp dỡ hàng từ xe tải",
                   "trap": "over-inference",
-                  "why_vi": "Người nói không nói có hàng sắp đến; chỉ nói thang máy dành cho giao nhận."
+                  "why_vi": "Không có lời nhờ giúp dỡ hàng; câu sau nói về việc nhờ khách đến muộn."
                 },
                 {
                   "label": "B",
-                  "en": "Employees are not allowed to ride it",
-                  "vi": "Nhân viên không được đi thang máy đó"
+                  "en": "She is advising that visitors come later",
+                  "vi": "Cô khuyên khách đến thăm nên đến muộn hơn"
                 },
                 {
                   "label": "C",
-                  "en": "Deliveries will be late tomorrow",
-                  "vi": "Hàng giao sẽ bị trễ vào ngày mai",
+                  "en": "She is announcing that deliveries are cancelled",
+                  "vi": "Cô thông báo việc giao hàng bị hủy",
                   "trap": "over-inference",
-                  "why_vi": "Không có thông tin về việc giao hàng bị trễ."
+                  "why_vi": "Khu bốc dỡ bận nghĩa là có nhiều hàng, không phải hủy giao hàng."
                 },
                 {
                   "label": "D",
-                  "en": "Staff should avoid the loading dock",
-                  "vi": "Nhân viên nên tránh khu bốc dỡ",
+                  "en": "She is warning staff not to park nearby",
+                  "vi": "Cô cảnh báo nhân viên không đỗ xe gần đó",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có lời khuyên tránh khu bốc dỡ; nhân viên chỉ không dùng thang máy đó."
+                  "why_vi": "Không có đoạn nào nói về chỗ đỗ xe."
                 }
               ]
             },
@@ -867,9 +872,9 @@ window.BS_UNITS["p4-01"] = {
               },
               "answer": "C",
               "evidence": [
-                5
+                6
               ],
-              "explain_vi": "Dòng 5: khi thanh tra xong, người nói sẽ dán thông báo ở mọi tầng.",
+              "explain_vi": "Dòng 6: khi thanh tra xong, người nói sẽ dán thông báo ở mọi tầng.",
               "options": [
                 {
                   "label": "A",
@@ -950,8 +955,13 @@ window.BS_UNITS["p4-01"] = {
             },
             {
               "s": "A",
-              "en": "So don't wait: visit our website to reserve a free tour of the building.",
-              "vi": "Vì vậy đừng chần chừ: hãy vào trang web để đặt lịch tham quan miễn phí."
+              "en": "The afternoon and evening classes still have plenty of room, though.",
+              "vi": "Tuy nhiên các lớp buổi chiều và buổi tối vẫn còn nhiều chỗ."
+            },
+            {
+              "s": "A",
+              "en": "Visit our website to reserve a free tour of the building.",
+              "vi": "Hãy vào trang web của chúng tôi để đặt lịch tham quan miễn phí."
             },
             {
               "s": "A",
@@ -1031,8 +1041,8 @@ window.BS_UNITS["p4-01"] = {
                 },
                 {
                   "label": "C",
-                  "en": "Two months without charge",
-                  "vi": "Hai tháng không mất phí"
+                  "en": "The first two months at no cost",
+                  "vi": "Hai tháng đầu không mất tiền"
                 },
                 {
                   "label": "D",
@@ -1056,33 +1066,33 @@ window.BS_UNITS["p4-01"] = {
                 4,
                 5
               ],
-              "explain_vi": "Danh sách chờ đã có, rồi ông nói \"đừng chần chừ\": ông muốn người nghe đăng ký ngay.",
+              "explain_vi": "Ngay sau đó ông nói các lớp chiều và tối còn nhiều chỗ: ông hướng người nghe sang các lớp muộn hơn.",
               "options": [
                 {
                   "label": "A",
-                  "en": "He is recommending evening classes instead",
-                  "vi": "Ông đang đề nghị chuyển sang lớp buổi tối",
-                  "trap": "over-inference",
-                  "why_vi": "Ông không nhắc lớp buổi tối; ông khuyên đừng chần chừ."
-                },
-                {
-                  "label": "B",
-                  "en": "He wants listeners to register without delay",
-                  "vi": "Ông muốn người nghe đăng ký ngay"
-                },
-                {
-                  "label": "C",
                   "en": "He is apologizing for a shortage of instructors",
-                  "vi": "Ông đang xin lỗi vì thiếu huấn luyện viên",
+                  "vi": "Ông xin lỗi vì thiếu huấn luyện viên",
                   "trap": "not-mentioned",
                   "why_vi": "Không có đoạn nào nói về thiếu huấn luyện viên."
                 },
                 {
-                  "label": "D",
-                  "en": "He is explaining a higher price for morning classes",
-                  "vi": "Ông đang giải thích giá cao hơn cho lớp buổi sáng",
+                  "label": "B",
+                  "en": "He is steering listeners toward later classes",
+                  "vi": "Ông hướng người nghe sang các lớp muộn hơn"
+                },
+                {
+                  "label": "C",
+                  "en": "He is explaining why morning classes cost more",
+                  "vi": "Ông giải thích vì sao lớp buổi sáng đắt hơn",
                   "trap": "not-mentioned",
                   "why_vi": "Không có đoạn nào nói về giá lớp buổi sáng."
+                },
+                {
+                  "label": "D",
+                  "en": "He is announcing that morning classes will end",
+                  "vi": "Ông thông báo các lớp buổi sáng sẽ ngừng",
+                  "trap": "over-inference",
+                  "why_vi": "Danh sách chờ cho thấy lớp đông, không phải sắp ngừng."
                 }
               ]
             }
@@ -1141,7 +1151,7 @@ window.BS_UNITS["p4-01"] = {
           ],
           "graphic": {
             "type": "table",
-            "title": "Oakridge Furniture - Store Directory",
+            "title": "Oakridge Furniture - Floor Guide",
             "cols": [
               "Department",
               "Discount",
@@ -1400,36 +1410,35 @@ window.BS_UNITS["p4-01"] = {
               },
               "answer": "C",
               "evidence": [
-                1,
                 2
               ],
-              "explain_vi": "Học viên mục tiêu là người bận, bài học chỉ mười lăm phút: khóa học hợp với người ít thời gian rảnh.",
+              "explain_vi": "Gia sư trực tiếp nhận xét phần nói của bạn mỗi tuần, nghĩa là học viên được góp ý riêng.",
               "options": [
                 {
                   "label": "A",
-                  "en": "It costs less than classroom lessons",
-                  "vi": "Giá rẻ hơn lớp học trực tiếp",
+                  "en": "Learners must attend scheduled group classes",
+                  "vi": "Học viên phải dự các lớp nhóm theo lịch",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có thông tin về giá."
+                  "why_vi": "Không có lớp nhóm theo lịch; bài học chỉ mười lăm phút, học lúc nào cũng được."
                 },
                 {
                   "label": "B",
-                  "en": "It adds new lessons every month",
-                  "vi": "Mỗi tháng có thêm bài học mới",
+                  "en": "Learners are graded by an automated test",
+                  "vi": "Học viên được chấm bằng bài kiểm tra tự động",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có thông tin về cập nhật bài học."
+                  "why_vi": "Phần nói được gia sư thật nhận xét, không nhắc đến chấm tự động."
                 },
                 {
                   "label": "C",
-                  "en": "It suits people with little spare time",
-                  "vi": "Nó hợp với người ít thời gian rảnh"
+                  "en": "Learners receive individual feedback",
+                  "vi": "Học viên được góp ý riêng"
                 },
                 {
                   "label": "D",
-                  "en": "It includes a certificate of completion",
-                  "vi": "Có chứng chỉ hoàn thành",
+                  "en": "Learners practice with other students",
+                  "vi": "Học viên luyện tập với các học viên khác",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có đoạn nào nói về chứng chỉ."
+                  "why_vi": "Không có đoạn nào nói về luyện tập với bạn học."
                 }
               ]
             },
@@ -1448,8 +1457,8 @@ window.BS_UNITS["p4-01"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "Sign up for an account",
-                  "vi": "Đăng ký một tài khoản"
+                  "en": "Register for a new personal account",
+                  "vi": "Đăng ký một tài khoản cá nhân mới"
                 },
                 {
                   "label": "B",
