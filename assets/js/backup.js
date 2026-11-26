@@ -30,7 +30,7 @@
   var MSG = {
     QUA_LON: "Tệp quá lớn (tối đa 1 MB). Đây có vẻ không phải tệp sao lưu của trang này.",
     KHONG_PHAI_JSON: "Nội dung không đọc được. Hãy chọn đúng tệp sao lưu (.json) hoặc dán nguyên văn bản đã sao chép.",
-    SAI_UNG_DUNG: "Tệp này không phải tệp sao lưu của Từng Bước English.",
+    SAI_UNG_DUNG: "Tệp này không phải tệp sao lưu của TOEIC Mỗi Ngày.",
     SAI_PHIEN_BAN: "Tệp sao lưu có phiên bản không được hỗ trợ.",
     KHONG_LUU_DUOC: "Không lưu được vào trình duyệt này (có thể đầy bộ nhớ hoặc đang ở chế độ riêng tư). Tiến độ cũ vẫn nguyên vẹn."
   };
@@ -373,7 +373,7 @@
         var blob = new Blob([txt], { type: "application/json" });
         var url = URL.createObjectURL(blob);
         var a = document.createElement("a");
-        a.href = url; a.download = "tungbuoc-tien-do-" + BS.dayKey() + ".json";
+        a.href = url; a.download = "toeic-moi-ngay-tien-do-" + BS.dayKey() + ".json";
         document.body.appendChild(a); a.click(); document.body.removeChild(a);
         setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
         showOk("Đã tạo tệp sao lưu. Hãy cất tệp ở nơi an toàn.");

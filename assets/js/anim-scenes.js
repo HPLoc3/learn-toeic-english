@@ -94,7 +94,7 @@
    '<div class="bss-row" role="group" aria-label="Điều khiển hoạt hình">' + b('a="toggle', 'Phát', '') + b('a="prev', 'Trước', ' bss-sec', 1) + b('a="next', 'Tiếp', '', 1) + b('a="replay', 'Xem lại', ' bss-sec') + '</div>' +
    '<div class="bss-row" role="group" aria-label="Chọn động tác">' + l + '</div>' +
    '<p class="bss-note" hidden data-r="rn">Bạn đang tắt chuyển động trên thiết bị, nên hoạt hình hiện từng bước tĩnh. Bấm “Tiếp” để sang bước sau.</p>' +
-   '<p class="bss-src">Ảnh minh họa do Từng Bước English tạo.</p><div class="bss-sr" aria-live="polite" data-r="sr"></div></div>';
+   '<p class="bss-src">Ảnh minh họa do TOEIC Mỗi Ngày tạo.</p><div class="bss-sr" aria-live="polite" data-r="sr"></div></div>';
   l = host.querySelectorAll('[data-r],[data-a],[data-s]');
   for (i = 0; i < l.length; i++) { n[l[i].getAttribute('data-r')] = X[l[i].getAttribute('data-a')] = l[i]; if (l[i].getAttribute('data-s') !== null) ch[+l[i].getAttribute('data-s')] = l[i]; }
   at(n.root, 'aria-label', d.region_vi); at(X.say, 'aria-label', 'Nghe câu tiếng Anh');

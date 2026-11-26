@@ -126,7 +126,7 @@
 
   function showNotFound(main) {
     hideChrome();
-    document.title = "Chưa có bài này | Từng Bước English";
+    document.title = "Chưa có bài này | TOEIC Mỗi Ngày";
     document.getElementById("unit-title").textContent = "Chưa có bài này";
     main.appendChild(el("div", { class: "card nf-card", role: "status" }, [
       el("p", { text: "Bài này sắp ra mắt. Bạn quay lại mục lục để chọn bài khác nhé." }),
@@ -181,7 +181,7 @@
       if (t.id === "game") return !!entry.game;
       return true;
     });
-    document.title = "Unit " + u.unitNo + ": " + u.title_vi + " | Từng Bước English";
+    document.title = "Unit " + u.unitNo + ": " + u.title_vi + " | TOEIC Mỗi Ngày";
     document.getElementById("unit-title").textContent = "Unit " + u.unitNo + ": " + u.title_vi;
     document.getElementById("unit-part").textContent = u.part;
     var unv = BS.countUnverified(u);

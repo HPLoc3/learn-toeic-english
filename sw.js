@@ -1,12 +1,12 @@
-/* sw.js - service worker của Từng Bước English.
+/* sw.js - service worker của TOEIC Mỗi Ngày.
  * Chỉ lưu file của chính trang này vào bộ nhớ đệm của trình duyệt để học được khi không có mạng.
  * Không gửi dữ liệu đi đâu, không đụng request khác nguồn, không đụng localStorage.
  * Mỗi lần deploy có file precache đổi: sửa VERSION rồi chạy `node tools/check-sw.mjs --write`.
  */
-// content-hash: 36@a551059c04a6cf89
+// content-hash: 37@10b049ed149cab14
 "use strict";
 
-var VERSION = "36";
+var VERSION = "37";
 var PREFIX = "tb-";
 var CACHE = PREFIX + VERSION;
 var NAV_TIMEOUT = 3000;

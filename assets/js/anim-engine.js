@@ -173,7 +173,7 @@
       '<div class="bsa-row" role="group" aria-label="Chọn động tác">' +
       SC.map((s, i) => btn('s="' + i + '"', 'Bước ' + (i + 1), 1)).join('') + '</div>' +
       '<p class="bsa-note" data-r="bsa.rnote" hidden>Bạn đang tắt chuyển động trên thiết bị, nên hoạt hình hiện từng bước tĩnh. Bấm “Tiếp” để sang bước sau.</p>' +
-      '<p class="bsa-src">Hoạt hình minh họa do Từng Bước English soạn.</p><div class="bsa-sr" aria-live="polite" data-r="bsa.sr"></div></div>';
+      '<p class="bsa-src">Hoạt hình minh họa do TOEIC Mỗi Ngày soạn.</p><div class="bsa-sr" aria-live="polite" data-r="bsa.sr"></div></div>';
 
     var n = {}, B = {}, chips = [], i, l, rx;
     l = el.querySelectorAll('[data-r]'); for (i = 0; i < l.length; i++) n[l[i].getAttribute('data-r').replace('bsa.', '')] = l[i];

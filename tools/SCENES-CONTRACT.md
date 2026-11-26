@@ -85,7 +85,7 @@ window.BS_ANIMS.l01 = {
  <div class="bss-row" role="group" aria-label="Điều khiển hoạt hình"> button.bss-btn[data-a=toggle|prev|next|replay] (type=button, min 44px, aria-disabled thay disabled). MOT nut `toggle`: nhan doi "Phát" <-> "Tạm dừng" (khong bao gio hidden khi khong reduced, de giu focus ban phim); chi an khi reduced-motion
  <div class="bss-row" role="group" aria-label="Chọn động tác"> button.bss-btn[data-s=k] "Bước k+1" aria-current="step" khi dang chon, aria-label "Bước k+1: <note_vi hoac en>" (bat dau bang chu hien thi, WCAG 2.5.3)
  <p class="bss-note" hidden> thong bao reduced-motion (cung chu voi .bsa-note)</p>
- <p class="bss-src">Ảnh minh họa do Từng Bước English tạo.</p> <div class="bss-sr" aria-live="polite">
+ <p class="bss-src">Ảnh minh họa do TOEIC Mỗi Ngày tạo.</p> <div class="bss-sr" aria-live="polite">
 ```
   Caption nam DUOI anh. `.bss-focus` vong = `.bss-ring` dat bang `left/top` % + kich thuoc `r*2*100%` chieu rong, hien tu `focusAt`, kem nhan `label_vi` (span aria-hidden). Mau/bien lay tu CSS vars site (`--pri`, `--ink`, `--card`, ... co fallback giong `.bsa-*`). `.bss-be`/`.bss-ing` dung y style `.bsa-be/.bsa-ing`.
 - Ken Burns: `transform: translate/scale` tren `<img>` (transform-origin 0 0), noi suy smoothstep `kb.from`->`kb.to` theo toan thoi luong canh; tam duoc kep de cua so khong lo ra ngoai anh (`c in [0.5/z, 1-0.5/z]`). Chuyen canh = doi `src/srcset/alt`, cap nhat chu, dat `.bss-p` bang class `bss-on` (opacity), vi `.bss-vi` hien o `viAt`.

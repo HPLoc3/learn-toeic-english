@@ -384,7 +384,7 @@
         var canShare = typeof navigator !== "undefined" && typeof navigator.share === "function";
         var canCopy = typeof navigator !== "undefined" && navigator.clipboard && typeof navigator.clipboard.writeText === "function";
         if (!canShare && !canCopy) return null;
-        var text = "Mình đúng " + r.score + "/" + r.total + " câu Nghe & chọn hình trên Từng Bước English";
+        var text = "Mình đúng " + r.score + "/" + r.total + " câu Nghe & chọn hình trên TOEIC Mỗi Ngày";
         var url = location.origin + location.pathname;
         if (/^https?:/.test(location.protocol)) text += " " + url;
         return el("button", { type: "button", class: "btn game-btn", text: "Chia sẻ kết quả", onclick: function () {
@@ -395,7 +395,7 @@
           }
           if (canShare) {
             var p;
-            try { p = navigator.share({ title: "Từng Bước English", text: text }); } catch (e) { copy(); return; }
+            try { p = navigator.share({ title: "TOEIC Mỗi Ngày", text: text }); } catch (e) { copy(); return; }
             if (p && p.catch) p.catch(function (err) { if (!err || err.name !== "AbortError") copy(); });
           } else copy();
         } });
