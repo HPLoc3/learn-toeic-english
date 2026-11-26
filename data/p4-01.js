@@ -390,43 +390,42 @@ window.BS_UNITS["p4-01"] = {
           "questions": [
             {
               "id": "c1-s1-q1",
-              "kind": "main",
+              "kind": "speaker",
               "q": {
-                "en": "What is the announcement mainly about?",
-                "vi": "Thông báo chủ yếu nói về điều gì?"
+                "en": "Who is the announcement intended for?",
+                "vi": "Thông báo này dành cho ai?"
               },
-              "answer": "C",
+              "answer": "B",
               "evidence": [
-                1,
-                2
+                0
               ],
-              "explain_vi": "Người nói cho biết cửa hàng sẽ đóng cửa cuối tháng (dòng 1) và mọi dụng cụ, chậu hoa đang được giảm giá để dọn hàng (dòng 2).",
+              "explain_vi": "Câu mở đầu chào quý khách mua sắm và chào mừng đến cửa hàng: đối tượng là khách đang mua hàng.",
               "options": [
                 {
                   "label": "A",
-                  "en": "A sale at a newly opened store",
-                  "vi": "Đợt giảm giá ở một cửa hàng mới khai trương",
-                  "trap": "wrong-detail",
-                  "why_vi": "Cửa hàng mới chỉ khai trương vào tháng Ba, còn đợt giảm giá diễn ra ở cửa hàng sắp đóng cửa."
+                  "en": "Employees of a garden supplier",
+                  "vi": "Nhân viên của một nhà cung cấp đồ làm vườn",
+                  "trap": "wrong-speaker",
+                  "why_vi": "Người nói gọi người nghe là shoppers, không phải nhân viên."
                 },
                 {
                   "label": "B",
-                  "en": "A sale of returned merchandise",
-                  "vi": "Đợt bán hàng đã bị trả lại",
-                  "trap": "heard-word",
-                  "why_vi": "Việc trả hàng chỉ được nhắc như một quy định (dòng 4), không phải nội dung đợt giảm giá."
+                  "en": "People shopping in a store",
+                  "vi": "Những người đang mua sắm trong cửa hàng"
                 },
                 {
                   "label": "C",
-                  "en": "A sale at a location that is closing",
-                  "vi": "Đợt giảm giá ở một cửa hàng sắp đóng cửa"
+                  "en": "Members of a gardening club",
+                  "vi": "Thành viên một câu lạc bộ làm vườn",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có đoạn nào nói về câu lạc bộ."
                 },
                 {
                   "label": "D",
-                  "en": "A sale for registered members only",
-                  "vi": "Đợt giảm giá chỉ dành cho hội viên",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không có đoạn nào nói về hội viên; ưu đãi dành cho mọi khách."
+                  "en": "Drivers making a delivery",
+                  "vi": "Tài xế đang giao hàng",
+                  "trap": "heard-word",
+                  "why_vi": "Chỉ có nhân viên khiêng đồ ra xe của khách (dòng 5); không nói với tài xế giao hàng."
                 }
               ]
             },
@@ -437,7 +436,7 @@ window.BS_UNITS["p4-01"] = {
                 "en": "Which products are excluded from the discount?",
                 "vi": "Những sản phẩm nào không được giảm giá?"
               },
-              "answer": "A",
+              "answer": "D",
               "evidence": [
                 3
               ],
@@ -445,29 +444,29 @@ window.BS_UNITS["p4-01"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "Packets of seeds and gift certificates",
-                  "vi": "Các gói hạt giống và phiếu quà tặng"
+                  "en": "Outdoor furniture and grills",
+                  "vi": "Bàn ghế ngoài trời và bếp nướng",
+                  "trap": "not-mentioned",
+                  "why_vi": "Bài nói không nhắc đến đồ nội thất ngoài trời hay bếp nướng."
                 },
                 {
                   "label": "B",
-                  "en": "Flower pots and hanging baskets",
-                  "vi": "Chậu hoa và giỏ treo",
-                  "trap": "wrong-detail",
-                  "why_vi": "Chậu hoa nằm trong diện được giảm ba mươi phần trăm (dòng 2)."
+                  "en": "Bags of soil and mulch",
+                  "vi": "Bao đất và lớp phủ gốc cây",
+                  "trap": "not-mentioned",
+                  "why_vi": "Bài nói không nhắc đến đất hay lớp phủ."
                 },
                 {
                   "label": "C",
-                  "en": "Tools and garden gloves",
-                  "vi": "Dụng cụ và găng tay làm vườn",
-                  "trap": "wrong-detail",
-                  "why_vi": "Dụng cụ được giảm giá (dòng 2)."
+                  "en": "Gloves and rain boots",
+                  "vi": "Găng tay và ủng đi mưa",
+                  "trap": "not-mentioned",
+                  "why_vi": "Bài nói không nhắc đến găng tay hay ủng."
                 },
                 {
                   "label": "D",
-                  "en": "Heavy bags of soil and fertilizer",
-                  "vi": "Bao đất và phân bón nặng",
-                  "trap": "heard-word",
-                  "why_vi": "Từ heavy chỉ nói về việc nhân viên khiêng đồ nặng ra xe (dòng 5), không phải mặt hàng bị loại trừ."
+                  "en": "Seed packets and gift cards",
+                  "vi": "Gói hạt giống và thẻ quà tặng"
                 }
               ]
             },
@@ -478,7 +477,7 @@ window.BS_UNITS["p4-01"] = {
                 "en": "What does the speaker remind customers about?",
                 "vi": "Người nói nhắc khách hàng điều gì?"
               },
-              "answer": "D",
+              "answer": "A",
               "evidence": [
                 4
               ],
@@ -486,29 +485,29 @@ window.BS_UNITS["p4-01"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "Heavy purchases will be delivered next week",
-                  "vi": "Đồ nặng sẽ được giao vào tuần sau",
-                  "trap": "wrong-detail",
-                  "why_vi": "Nhân viên sẽ khiêng đồ nặng ra xe ngay (dòng 5), không có giao hàng tuần sau."
+                  "en": "Sale items may not be returned",
+                  "vi": "Hàng giảm giá không được trả lại"
                 },
                 {
                   "label": "B",
-                  "en": "Store credit is available for returns",
-                  "vi": "Có thể nhận tín dụng cửa hàng khi trả hàng",
-                  "trap": "changed-plan",
-                  "why_vi": "Người nói nói rõ không nhận trả hàng đã giảm giá, không có tín dụng cửa hàng."
+                  "en": "Discounts cannot be used with coupons",
+                  "vi": "Giảm giá không dùng chung với phiếu",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có đoạn nào nói về phiếu giảm giá."
                 },
                 {
                   "label": "C",
-                  "en": "Customers should bring their own bags",
-                  "vi": "Khách nên tự mang túi",
+                  "en": "Only five sale items per customer",
+                  "vi": "Mỗi khách chỉ mua năm món giảm giá",
                   "trap": "not-mentioned",
-                  "why_vi": "Bài nói không đề cập đến túi."
+                  "why_vi": "Không có giới hạn số lượng mỗi khách."
                 },
                 {
                   "label": "D",
-                  "en": "Discounted merchandise is not refundable",
-                  "vi": "Hàng giảm giá không được hoàn trả"
+                  "en": "Sale prices apply in-store only",
+                  "vi": "Giá giảm chỉ áp dụng khi mua tại cửa hàng",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có đoạn nào nói về mua trực tuyến hay tại cửa hàng."
                 }
               ]
             }
@@ -567,7 +566,7 @@ window.BS_UNITS["p4-01"] = {
           ],
           "graphic": {
             "type": "table",
-            "title": "Northway Rail - Evening Departures",
+            "title": "Northway Rail - Station Board",
             "cols": [
               "Destination",
               "Departs",
@@ -575,9 +574,9 @@ window.BS_UNITS["p4-01"] = {
             ],
             "rows": [
               [
-                "Eastbridge",
+                "Dunmere",
                 "6:15 P.M.",
-                "2"
+                "3"
               ],
               [
                 "Millford",
@@ -590,51 +589,51 @@ window.BS_UNITS["p4-01"] = {
                 "1"
               ],
               [
-                "Dunmere",
+                "Eastbridge",
                 "7:00 P.M.",
-                "3"
+                "2"
               ]
             ]
           },
           "questions": [
             {
               "id": "c1-s2-q1",
-              "kind": "speaker",
+              "kind": "problem",
               "q": {
-                "en": "Who is the announcement intended for?",
-                "vi": "Thông báo này dành cho ai?"
+                "en": "What is causing the changes to tonight's departures?",
+                "vi": "Điều gì gây ra thay đổi cho các chuyến khởi hành tối nay?"
               },
-              "answer": "B",
+              "answer": "C",
               "evidence": [
-                0
+                1
               ],
-              "explain_vi": "Câu mở đầu nói rõ người nghe là hành khách đi cùng Northway Rail tối nay.",
+              "explain_vi": "Dòng 1: việc sửa đường ray gần Harbour Junction gây ra thay đổi.",
               "options": [
                 {
                   "label": "A",
-                  "en": "Employees repairing the track",
-                  "vi": "Nhân viên đang sửa đường ray",
-                  "trap": "heard-word",
-                  "why_vi": "Việc sửa đường ray chỉ là lý do gây thay đổi, không phải đối tượng nghe."
+                  "en": "A signal fault outside the station",
+                  "vi": "Lỗi tín hiệu bên ngoài nhà ga",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có đoạn nào nhắc đến lỗi tín hiệu."
                 },
                 {
                   "label": "B",
-                  "en": "Passengers departing this evening",
-                  "vi": "Hành khách khởi hành tối nay"
+                  "en": "Bad weather on the coastal route",
+                  "vi": "Thời tiết xấu trên tuyến ven biển",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có đoạn nào nhắc đến thời tiết."
                 },
                 {
                   "label": "C",
-                  "en": "Shoppers visiting the station café",
-                  "vi": "Khách đến quán cà phê trong ga",
-                  "trap": "wrong-detail",
-                  "why_vi": "Quán cà phê chỉ là nơi hành khách có thể chờ (dòng 4)."
+                  "en": "Maintenance on the railway line",
+                  "vi": "Việc bảo trì trên tuyến đường sắt"
                 },
                 {
                   "label": "D",
-                  "en": "Commuters who drive to the station",
-                  "vi": "Người lái xe đến ga",
+                  "en": "A staff shortage on the evening shift",
+                  "vi": "Thiếu nhân viên ca tối",
                   "trap": "not-mentioned",
-                  "why_vi": "Bài nói không nhắc đến người đi xe hơi."
+                  "why_vi": "Không có đoạn nào nhắc đến thiếu nhân viên."
                 }
               ]
             },
@@ -646,7 +645,7 @@ window.BS_UNITS["p4-01"] = {
                 "en": "Look at the graphic. Where is the delayed train going?",
                 "vi": "Nhìn hình. Chuyến tàu bị trễ đi đâu?"
               },
-              "answer": "D",
+              "answer": "A",
               "evidence": [
                 2
               ],
@@ -654,17 +653,15 @@ window.BS_UNITS["p4-01"] = {
               "options": [
                 {
                   "label": "A",
+                  "en": "Dunmere",
+                  "vi": "Dunmere"
+                },
+                {
+                  "label": "B",
                   "en": "Millford",
                   "vi": "Millford",
                   "trap": "wrong-detail",
                   "why_vi": "Chuyến đi Millford ở sân ga 4 và vẫn đúng giờ."
-                },
-                {
-                  "label": "B",
-                  "en": "Eastbridge",
-                  "vi": "Eastbridge",
-                  "trap": "graphic-only",
-                  "why_vi": "Chuyến đi Eastbridge ở sân ga 2, bài nói không nói nó bị trễ."
                 },
                 {
                   "label": "C",
@@ -675,8 +672,10 @@ window.BS_UNITS["p4-01"] = {
                 },
                 {
                   "label": "D",
-                  "en": "Dunmere",
-                  "vi": "Dunmere"
+                  "en": "Eastbridge",
+                  "vi": "Eastbridge",
+                  "trap": "graphic-only",
+                  "why_vi": "Chuyến đi Eastbridge ở sân ga 2, bài nói không nói nó bị trễ."
                 }
               ]
             },
@@ -687,37 +686,37 @@ window.BS_UNITS["p4-01"] = {
                 "en": "What will staff members do when boarding starts?",
                 "vi": "Nhân viên sẽ làm gì khi bắt đầu cho hành khách lên tàu?"
               },
-              "answer": "A",
+              "answer": "D",
               "evidence": [
                 5
               ],
-              "explain_vi": "Dòng 5: nhân viên áo vàng sẽ gọi to khi bắt đầu cho lên tàu, tức là thông báo bằng lời.",
+              "explain_vi": "Dòng 5: nhân viên áo vàng sẽ gọi to khi bắt đầu cho lên tàu, tức là thông báo trực tiếp.",
               "options": [
                 {
                   "label": "A",
-                  "en": "Tell passengers verbally",
-                  "vi": "Thông báo bằng lời cho hành khách"
+                  "en": "Open the barriers on the platform",
+                  "vi": "Mở rào chắn trên sân ga",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có đoạn nào nói về rào chắn."
                 },
                 {
                   "label": "B",
-                  "en": "Give out vouchers for the café",
-                  "vi": "Phát phiếu dùng ở quán cà phê",
-                  "trap": "wrong-detail",
-                  "why_vi": "Quán cà phê chỉ giảm nửa giá đồ uống nóng, không có phát phiếu."
+                  "en": "Check tickets at the gate",
+                  "vi": "Soát vé ở cổng",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có đoạn nào nói về soát vé."
                 },
                 {
                   "label": "C",
-                  "en": "Hold up signs showing platform numbers",
-                  "vi": "Giơ biển ghi số sân ga",
+                  "en": "Hand out printed timetables",
+                  "vi": "Phát lịch tàu in sẵn",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có đoạn nào nói về biển báo."
+                  "why_vi": "Không có đoạn nào nói về lịch tàu in."
                 },
                 {
                   "label": "D",
-                  "en": "Open the gates at the north end",
-                  "vi": "Mở cổng ở đầu phía bắc",
-                  "trap": "heard-word",
-                  "why_vi": "Phía bắc chỉ là vị trí quán cà phê (dòng 4), không có việc mở cổng."
+                  "en": "Announce boarding in person",
+                  "vi": "Thông báo việc lên tàu trực tiếp"
                 }
               ]
             }
@@ -765,8 +764,8 @@ window.BS_UNITS["p4-01"] = {
             },
             {
               "s": "A",
-              "en": "Once the inspectors finish, I will send an email to every department confirming that the elevators are back in service.",
-              "vi": "Khi các thanh tra làm xong, tôi sẽ gửi email đến mọi phòng ban xác nhận thang máy đã hoạt động trở lại."
+              "en": "Once the inspectors finish, I will put a notice on every floor confirming that the elevators are running again.",
+              "vi": "Khi các thanh tra làm xong, tôi sẽ dán thông báo ở mọi tầng xác nhận thang máy đã chạy lại."
             },
             {
               "s": "A",
@@ -786,75 +785,76 @@ window.BS_UNITS["p4-01"] = {
               "evidence": [
                 1
               ],
-              "explain_vi": "Dòng 1: hai thang máy chính sẽ ngừng hoạt động vài giờ vào ngày mai để kiểm tra an toàn.",
+              "explain_vi": "Dòng 1: hai thang máy chính sẽ ngừng hoạt động từ tám giờ đến trưa ngày mai.",
               "options": [
                 {
                   "label": "A",
-                  "en": "A water shutdown on the upper floors",
-                  "vi": "Cắt nước ở các tầng trên",
+                  "en": "The main entrance will be closed tomorrow morning",
+                  "vi": "Lối vào chính sẽ đóng sáng mai",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có đoạn nào nhắc đến nước."
+                  "why_vi": "Không có đoạn nào nói về lối vào chính."
                 },
                 {
                   "label": "B",
-                  "en": "A temporary closure of the loading dock",
-                  "vi": "Khu bốc dỡ hàng tạm đóng",
-                  "trap": "heard-word",
-                  "why_vi": "Khu bốc dỡ chỉ là nơi đặt thang máy chở hàng (dòng 2), nó không đóng cửa."
+                  "en": "The parking garage will be closed tomorrow morning",
+                  "vi": "Hầm đỗ xe sẽ đóng sáng mai",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có đoạn nào nói về hầm đỗ xe."
                 },
                 {
                   "label": "C",
-                  "en": "Construction noise during meeting hours",
-                  "vi": "Tiếng ồn xây dựng trong giờ họp",
+                  "en": "The side entrance will be closed tomorrow morning",
+                  "vi": "Lối vào phụ sẽ đóng sáng mai",
                   "trap": "not-mentioned",
-                  "why_vi": "Bài nói không nhắc đến tiếng ồn hay xây dựng."
+                  "why_vi": "Không có đoạn nào nói về lối vào phụ; khu bốc dỡ chỉ là nơi có thang máy chở hàng."
                 },
                 {
                   "label": "D",
-                  "en": "Limited elevator use for several hours",
-                  "vi": "Thang máy bị hạn chế sử dụng trong vài giờ"
+                  "en": "Two elevators will be out of use tomorrow morning",
+                  "vi": "Hai thang máy sẽ không dùng được sáng mai"
                 }
               ]
             },
             {
               "id": "c1-s3-q2",
               "kind": "intent",
-              "quote": "I'd suggest wearing comfortable shoes",
+              "quote": "it is reserved for deliveries",
               "q": {
-                "en": "What does the speaker imply when she says, \"I'd suggest wearing comfortable shoes\"?",
-                "vi": "Người nói ngụ ý gì khi nói: \"I'd suggest wearing comfortable shoes\"?"
+                "en": "What does the speaker imply when she says, \"it is reserved for deliveries\"?",
+                "vi": "Người nói ngụ ý gì khi nói: \"it is reserved for deliveries\"?"
               },
               "answer": "B",
               "evidence": [
-                3
+                1,
+                2
               ],
-              "explain_vi": "Thang máy chính ngừng chạy, nên ai có họp ở tầng cao có thể phải đi cầu thang; lời khuyên về giày ngụ ý điều đó.",
+              "explain_vi": "Chỉ thang máy chở hàng còn chạy, và nó dành cho giao nhận, nên nhân viên không được dùng nó.",
               "options": [
                 {
                   "label": "A",
-                  "en": "Staff should expect to walk far to the building",
-                  "vi": "Nhân viên nên chuẩn bị đi bộ xa đến tòa nhà",
+                  "en": "Several packages are due in the morning",
+                  "vi": "Sáng nay có nhiều kiện hàng sắp đến",
                   "trap": "over-inference",
-                  "why_vi": "Không có thông tin về đường đi bộ đến tòa nhà; lời khuyên liên quan việc thang máy ngừng."
+                  "why_vi": "Người nói không nói có hàng sắp đến; chỉ nói thang máy dành cho giao nhận."
                 },
                 {
                   "label": "B",
-                  "en": "Staff may need to take the stairs",
-                  "vi": "Nhân viên có thể phải đi cầu thang bộ"
+                  "en": "Employees are not allowed to ride it",
+                  "vi": "Nhân viên không được đi thang máy đó"
                 },
                 {
                   "label": "C",
-                  "en": "Visitors will be touring the grounds",
-                  "vi": "Khách sẽ tham quan khuôn viên",
+                  "en": "Deliveries will be late tomorrow",
+                  "vi": "Hàng giao sẽ bị trễ vào ngày mai",
                   "trap": "over-inference",
-                  "why_vi": "Bài nói không nhắc đến chuyến tham quan hay khách đến thăm."
+                  "why_vi": "Không có thông tin về việc giao hàng bị trễ."
                 },
                 {
                   "label": "D",
-                  "en": "Meetings will involve a lot of standing",
-                  "vi": "Các cuộc họp sẽ phải đứng nhiều",
+                  "en": "Staff should avoid the loading dock",
+                  "vi": "Nhân viên nên tránh khu bốc dỡ",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có thông tin nào về việc đứng trong họp."
+                  "why_vi": "Không có lời khuyên tránh khu bốc dỡ; nhân viên chỉ không dùng thang máy đó."
                 }
               ]
             },
@@ -862,40 +862,40 @@ window.BS_UNITS["p4-01"] = {
               "id": "c1-s3-q3",
               "kind": "next",
               "q": {
-                "en": "What will the speaker do after the inspections?",
-                "vi": "Người nói sẽ làm gì sau khi kiểm tra xong?"
+                "en": "What will the speaker do once the work is finished?",
+                "vi": "Người nói sẽ làm gì khi công việc hoàn tất?"
               },
               "answer": "C",
               "evidence": [
                 5
               ],
-              "explain_vi": "Dòng 5: khi thanh tra xong, người nói sẽ gửi email đến các phòng ban để báo thang máy đã hoạt động lại.",
+              "explain_vi": "Dòng 5: khi thanh tra xong, người nói sẽ dán thông báo ở mọi tầng.",
               "options": [
                 {
                   "label": "A",
-                  "en": "Update the building's evacuation map",
-                  "vi": "Cập nhật sơ đồ thoát hiểm của tòa nhà",
-                  "trap": "not-mentioned",
-                  "why_vi": "Bài nói không nhắc đến sơ đồ thoát hiểm."
+                  "en": "Email each department",
+                  "vi": "Gửi email cho từng phòng ban",
+                  "trap": "changed-plan",
+                  "why_vi": "Người nói dùng thông báo dán ở các tầng, không gửi email."
                 },
                 {
                   "label": "B",
-                  "en": "Schedule a second round of inspections",
-                  "vi": "Lên lịch kiểm tra đợt hai",
+                  "en": "Phone each department manager",
+                  "vi": "Gọi điện cho từng trưởng phòng",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có đợt kiểm tra thứ hai."
+                  "why_vi": "Không có đoạn nào nói về gọi điện cho trưởng phòng."
                 },
                 {
                   "label": "C",
-                  "en": "Send each department an update by email",
-                  "vi": "Gửi cho từng phòng ban thông tin cập nhật qua email"
+                  "en": "Put up signs on every floor",
+                  "vi": "Dán biển thông báo ở mọi tầng"
                 },
                 {
                   "label": "D",
-                  "en": "Call the tenants who asked for assistance",
-                  "vi": "Gọi các người thuê cần hỗ trợ",
-                  "trap": "wrong-detail",
-                  "why_vi": "Người cần hỗ trợ phải gọi quầy lễ tân (dòng 4); người nói không hứa gọi lại."
+                  "en": "Send a text message to all staff",
+                  "vi": "Nhắn tin cho toàn bộ nhân viên",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có đoạn nào nói về nhắn tin."
                 }
               ]
             }
@@ -935,8 +935,8 @@ window.BS_UNITS["p4-01"] = {
             },
             {
               "s": "A",
-              "en": "Our membership is just forty dollars a month, and we never charge a joining fee.",
-              "vi": "Phí hội viên chỉ bốn mươi đô la một tháng, và chúng tôi không bao giờ thu phí gia nhập."
+              "en": "Our membership is just forty dollars a month, with no long contract.",
+              "vi": "Phí hội viên chỉ bốn mươi đô la một tháng, không ràng buộc hợp đồng dài hạn."
             },
             {
               "s": "A",
@@ -945,13 +945,13 @@ window.BS_UNITS["p4-01"] = {
             },
             {
               "s": "A",
-              "en": "Spaces in our morning classes fill up quickly, so don't wait.",
-              "vi": "Chỗ trong các lớp buổi sáng hết rất nhanh, nên đừng chần chừ."
+              "en": "We already have a waiting list for the morning classes.",
+              "vi": "Các lớp buổi sáng của chúng tôi đã có danh sách chờ."
             },
             {
               "s": "A",
-              "en": "Visit our website to reserve a free tour of the building.",
-              "vi": "Hãy vào trang web của chúng tôi để đặt lịch tham quan miễn phí."
+              "en": "So don't wait: visit our website to reserve a free tour of the building.",
+              "vi": "Vì vậy đừng chần chừ: hãy vào trang web để đặt lịch tham quan miễn phí."
             },
             {
               "s": "A",
@@ -972,33 +972,33 @@ window.BS_UNITS["p4-01"] = {
                 0,
                 1
               ],
-              "explain_vi": "Người nói nhắc phòng tập đông đúc rồi giới thiệu hồ bơi, phòng tập và huấn luyện viên của Summit Fitness: đây là một câu lạc bộ thể hình.",
+              "explain_vi": "Người nói nhắc phòng tập đông, máy tập phải chờ rồi giới thiệu hồ bơi, ba phòng tập và huấn luyện viên: đây là một trung tâm thể hình.",
               "options": [
                 {
                   "label": "A",
-                  "en": "At a health club",
-                  "vi": "Ở một câu lạc bộ thể hình"
+                  "en": "At a fitness center",
+                  "vi": "Ở một trung tâm thể hình"
                 },
                 {
                   "label": "B",
-                  "en": "At a community swimming pool",
-                  "vi": "Ở một hồ bơi cộng đồng",
+                  "en": "At a yoga studio",
+                  "vi": "Ở một phòng tập yoga",
                   "trap": "wrong-detail",
-                  "why_vi": "Hồ bơi chỉ là một trong nhiều tiện ích, ngoài ra còn các phòng tập."
+                  "why_vi": "Phòng tập yoga không có máy tập phải chờ và hồ bơi."
                 },
                 {
                   "label": "C",
-                  "en": "At a sporting goods retailer",
-                  "vi": "Ở cửa hàng đồ thể thao",
-                  "trap": "heard-word",
-                  "why_vi": "Từ equipment chỉ nói về máy tập phải chờ, không phải hàng bán."
+                  "en": "At a dance school",
+                  "vi": "Ở một trường dạy nhảy",
+                  "trap": "wrong-detail",
+                  "why_vi": "Trường nhảy không phải nơi có máy tập, hồ bơi."
                 },
                 {
                   "label": "D",
-                  "en": "At a medical rehabilitation center",
-                  "vi": "Ở trung tâm phục hồi chức năng",
-                  "trap": "over-inference",
-                  "why_vi": "Có huấn luyện viên nhưng không có điều trị bệnh hay chấn thương."
+                  "en": "At a community pool",
+                  "vi": "Ở một hồ bơi cộng đồng",
+                  "trap": "wrong-detail",
+                  "why_vi": "Hồ bơi chỉ là một trong nhiều tiện ích."
                 }
               ]
             },
@@ -1013,21 +1013,21 @@ window.BS_UNITS["p4-01"] = {
               "evidence": [
                 3
               ],
-              "explain_vi": "Dòng 3: ai đăng ký trước cuối tháng Sáu sẽ được miễn phí hai tháng đầu.",
+              "explain_vi": "Dòng 3: ai đăng ký trước cuối tháng Sáu được miễn phí hai tháng đầu.",
               "options": [
                 {
                   "label": "A",
-                  "en": "A waived joining fee",
-                  "vi": "Miễn phí gia nhập",
-                  "trap": "wrong-detail",
-                  "why_vi": "Phí gia nhập vốn không thu (dòng 2), không phải ưu đãi riêng đến cuối tháng Sáu."
-                },
-                {
-                  "label": "B",
-                  "en": "A complimentary training session",
+                  "en": "A free personal training session",
                   "vi": "Một buổi tập kèm miễn phí",
                   "trap": "not-mentioned",
                   "why_vi": "Không có buổi tập kèm miễn phí nào được nhắc."
+                },
+                {
+                  "label": "B",
+                  "en": "A waived joining fee",
+                  "vi": "Miễn phí gia nhập",
+                  "trap": "not-mentioned",
+                  "why_vi": "Bài nói không nhắc đến phí gia nhập."
                 },
                 {
                   "label": "C",
@@ -1036,52 +1036,53 @@ window.BS_UNITS["p4-01"] = {
                 },
                 {
                   "label": "D",
-                  "en": "Reduced rates on morning classes",
-                  "vi": "Giá giảm cho lớp buổi sáng",
-                  "trap": "not-mentioned",
-                  "why_vi": "Lớp buổi sáng chỉ được nhắc là chóng hết chỗ (dòng 4), không có giảm giá."
+                  "en": "A half-price first month",
+                  "vi": "Tháng đầu nửa giá",
+                  "trap": "wrong-detail",
+                  "why_vi": "Ưu đãi là miễn phí hai tháng đầu, không phải nửa giá."
                 }
               ]
             },
             {
               "id": "c2-s4-q3",
               "kind": "intent",
-              "quote": "Spaces in our morning classes fill up quickly",
+              "quote": "We already have a waiting list for the morning classes",
               "q": {
-                "en": "What does the speaker imply when he says, \"Spaces in our morning classes fill up quickly\"?",
-                "vi": "Người nói ngụ ý gì khi nói: \"Spaces in our morning classes fill up quickly\"?"
+                "en": "What does the speaker imply when he says, \"We already have a waiting list for the morning classes\"?",
+                "vi": "Người nói ngụ ý gì khi nói: \"We already have a waiting list for the morning classes\"?"
               },
               "answer": "B",
               "evidence": [
-                4
+                4,
+                5
               ],
-              "explain_vi": "Chỗ hết nhanh nên ông khuyên đừng chần chừ: người nghe nên đăng ký sớm.",
+              "explain_vi": "Danh sách chờ đã có, rồi ông nói \"đừng chần chừ\": ông muốn người nghe đăng ký ngay.",
               "options": [
                 {
                   "label": "A",
-                  "en": "The center needs to hire more instructors",
-                  "vi": "Trung tâm cần tuyển thêm huấn luyện viên",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không có đoạn nào nói về tuyển huấn luyện viên."
+                  "en": "He is recommending evening classes instead",
+                  "vi": "Ông đang đề nghị chuyển sang lớp buổi tối",
+                  "trap": "over-inference",
+                  "why_vi": "Ông không nhắc lớp buổi tối; ông khuyên đừng chần chừ."
                 },
                 {
                   "label": "B",
-                  "en": "Interested people should register early",
-                  "vi": "Ai quan tâm nên đăng ký sớm"
+                  "en": "He wants listeners to register without delay",
+                  "vi": "Ông muốn người nghe đăng ký ngay"
                 },
                 {
                   "label": "C",
-                  "en": "Listeners may prefer to attend later classes",
-                  "vi": "Người nghe có thể thích lớp muộn hơn",
-                  "trap": "over-inference",
-                  "why_vi": "Người nói khuyên đừng chần chừ, không khuyên chuyển sang lớp khác."
+                  "en": "He is apologizing for a shortage of instructors",
+                  "vi": "Ông đang xin lỗi vì thiếu huấn luyện viên",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có đoạn nào nói về thiếu huấn luyện viên."
                 },
                 {
                   "label": "D",
-                  "en": "The center has outgrown its building",
-                  "vi": "Trung tâm đã quá chật so với tòa nhà",
-                  "trap": "over-inference",
-                  "why_vi": "Không có thông tin về cơ sở vật chất quá tải; quảng cáo còn chê nơi khác đông."
+                  "en": "He is explaining a higher price for morning classes",
+                  "vi": "Ông đang giải thích giá cao hơn cho lớp buổi sáng",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có đoạn nào nói về giá lớp buổi sáng."
                 }
               ]
             }
@@ -1114,8 +1115,8 @@ window.BS_UNITS["p4-01"] = {
             },
             {
               "s": "A",
-              "en": "On Saturday and Sunday, anything you buy on our second floor also comes with free delivery to any address within fifty miles.",
-              "vi": "Thứ Bảy và Chủ Nhật, mọi món mua ở tầng hai còn được giao miễn phí đến bất kỳ địa chỉ nào trong vòng năm mươi dặm."
+              "en": "On Saturday and Sunday, anything you buy on our third floor also comes with free delivery to any address within fifty miles.",
+              "vi": "Thứ Bảy và Chủ Nhật, mọi món mua ở tầng ba còn được giao miễn phí đến bất kỳ địa chỉ nào trong vòng năm mươi dặm."
             },
             {
               "s": "A",
@@ -1140,7 +1141,7 @@ window.BS_UNITS["p4-01"] = {
           ],
           "graphic": {
             "type": "table",
-            "title": "Oakridge Furniture - Weekend Discounts",
+            "title": "Oakridge Furniture - Store Directory",
             "cols": [
               "Department",
               "Discount",
@@ -1181,33 +1182,33 @@ window.BS_UNITS["p4-01"] = {
               "evidence": [
                 0
               ],
-              "explain_vi": "Câu mở đầu nói rõ đây là đợt giảm giá lớn của Oakridge Furniture, chỉ diễn ra cuối tuần này.",
+              "explain_vi": "Câu mở đầu nói rõ đây là đợt giảm giá lớn nhất năm của Oakridge Furniture, chỉ trong cuối tuần này.",
               "options": [
                 {
                   "label": "A",
-                  "en": "A closing sale at a furniture retailer",
-                  "vi": "Đợt giảm giá đóng cửa ở một cửa hàng nội thất",
+                  "en": "A grand-opening event at a new showroom",
+                  "vi": "Sự kiện khai trương phòng trưng bày mới",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có đoạn nào nói cửa hàng sắp đóng cửa."
+                  "why_vi": "Không có phòng trưng bày mới nào được nhắc."
                 },
                 {
                   "label": "B",
-                  "en": "A launch of a new furniture collection",
-                  "vi": "Ra mắt bộ sưu tập nội thất mới",
+                  "en": "A trade-in event for used furniture",
+                  "vi": "Sự kiện đổi đồ cũ lấy đồ mới",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có sản phẩm mới nào được giới thiệu."
+                  "why_vi": "Không có chương trình đổi đồ cũ."
                 },
                 {
                   "label": "C",
-                  "en": "A delivery service for furniture buyers",
-                  "vi": "Dịch vụ giao hàng cho người mua nội thất",
-                  "trap": "heard-word",
-                  "why_vi": "Giao hàng miễn phí chỉ là ưu đãi phụ (dòng 2), không phải nội dung chính."
+                  "en": "An anniversary sale for loyal customers",
+                  "vi": "Đợt giảm giá kỷ niệm cho khách thân thiết",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có đoạn nào nói về kỷ niệm hay khách thân thiết."
                 },
                 {
                   "label": "D",
-                  "en": "A weekend sale at a furniture retailer",
-                  "vi": "Đợt giảm giá cuối tuần ở một cửa hàng nội thất"
+                  "en": "A short-term sale at a furniture store",
+                  "vi": "Đợt giảm giá ngắn hạn ở một cửa hàng nội thất"
                 }
               ]
             },
@@ -1219,37 +1220,37 @@ window.BS_UNITS["p4-01"] = {
                 "en": "Look at the graphic. What discount applies in the department that offers free delivery?",
                 "vi": "Nhìn hình. Khu có giao hàng miễn phí được giảm bao nhiêu phần trăm?"
               },
-              "answer": "A",
+              "answer": "C",
               "evidence": [
                 2
               ],
-              "explain_vi": "Dòng 2 nói giao hàng miễn phí ở tầng hai; trên bảng, tầng 2 là Living Room với mức giảm 30%.",
+              "explain_vi": "Dòng 2 nói giao hàng miễn phí ở tầng ba; trên bảng, tầng 3 là Dining Room với mức giảm 25%.",
               "options": [
                 {
                   "label": "A",
-                  "en": "30%",
-                  "vi": "30%"
-                },
-                {
-                  "label": "B",
                   "en": "15%",
                   "vi": "15%",
                   "trap": "graphic-only",
-                  "why_vi": "15% là khu Home Office ở tầng 4, không có giao hàng miễn phí."
+                  "why_vi": "15% là khu Home Office ở tầng 4."
                 },
                 {
-                  "label": "C",
+                  "label": "B",
                   "en": "20%",
                   "vi": "20%",
                   "trap": "graphic-only",
-                  "why_vi": "20% là khu Bedroom ở tầng 1, không phải tầng hai."
+                  "why_vi": "20% là khu Bedroom ở tầng 1."
+                },
+                {
+                  "label": "C",
+                  "en": "25%",
+                  "vi": "25%"
                 },
                 {
                   "label": "D",
-                  "en": "25%",
-                  "vi": "25%",
+                  "en": "30%",
+                  "vi": "30%",
                   "trap": "wrong-detail",
-                  "why_vi": "25% là khu Dining Room ở tầng 3, không phải tầng hai."
+                  "why_vi": "30% là khu Living Room ở tầng 2, không phải tầng ba."
                 }
               ]
             },
@@ -1268,29 +1269,29 @@ window.BS_UNITS["p4-01"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "Order at least a week in advance",
-                  "vi": "Đặt hàng trước ít nhất một tuần",
+                  "en": "Join the store's rewards program",
+                  "vi": "Tham gia chương trình khách hàng thân thiết",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có yêu cầu đặt trước."
+                  "why_vi": "Không có đoạn nào nói về chương trình thành viên."
                 },
                 {
                   "label": "B",
-                  "en": "Spend a minimum amount in one transaction",
+                  "en": "Spend a minimum amount in one purchase",
                   "vi": "Chi tối thiểu một số tiền trong một lần mua"
                 },
                 {
                   "label": "C",
-                  "en": "Pay with a store credit card",
-                  "vi": "Trả bằng thẻ tín dụng của cửa hàng",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không có yêu cầu về hình thức thanh toán."
+                  "en": "Buy at least two pieces of furniture",
+                  "vi": "Mua ít nhất hai món nội thất",
+                  "trap": "wrong-detail",
+                  "why_vi": "Điều kiện là số tiền, không phải số món."
                 },
                 {
                   "label": "D",
-                  "en": "Buy two or more large items",
-                  "vi": "Mua từ hai món lớn trở lên",
-                  "trap": "wrong-detail",
-                  "why_vi": "Điều kiện là tổng số tiền trong một lần mua, không phải số món."
+                  "en": "Collect the order within a week",
+                  "vi": "Nhận hàng trong vòng một tuần",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có đoạn nào nói về thời hạn nhận hàng."
                 }
               ]
             }
@@ -1355,38 +1356,38 @@ window.BS_UNITS["p4-01"] = {
                 "en": "What is being advertised?",
                 "vi": "Quảng cáo về điều gì?"
               },
-              "answer": "C",
+              "answer": "A",
               "evidence": [
                 0,
                 1
               ],
-              "explain_vi": "Dòng 0 và 1 giới thiệu Lingua Path, một khóa học ngoại ngữ trực tuyến.",
+              "explain_vi": "Dòng 0 và 1 giới thiệu Lingua Path, khóa học tiếng Tây Ban Nha trực tuyến.",
               "options": [
                 {
                   "label": "A",
-                  "en": "A travel service for Spanish-speaking countries",
-                  "vi": "Dịch vụ du lịch đến các nước nói tiếng Tây Ban Nha",
-                  "trap": "heard-word",
-                  "why_vi": "Spanish là ngôn ngữ cần học, không phải điểm đến của chuyến đi."
+                  "en": "A web-based Spanish course",
+                  "vi": "Khóa học tiếng Tây Ban Nha trên mạng"
                 },
                 {
                   "label": "B",
-                  "en": "A phone app that translates speech",
-                  "vi": "Ứng dụng điện thoại dịch lời nói",
-                  "trap": "wrong-detail",
-                  "why_vi": "Điện thoại chỉ là nơi tải bài học về (dòng 3); đây là khóa học, không phải ứng dụng dịch."
+                  "en": "A web-based cooking course",
+                  "vi": "Khóa học nấu ăn trên mạng",
+                  "trap": "not-mentioned",
+                  "why_vi": "Môn học là tiếng Tây Ban Nha, không phải nấu ăn."
                 },
                 {
                   "label": "C",
-                  "en": "A web-based language course",
-                  "vi": "Một khóa học ngoại ngữ trên mạng"
+                  "en": "A web-based accounting course",
+                  "vi": "Khóa học kế toán trên mạng",
+                  "trap": "not-mentioned",
+                  "why_vi": "Môn học là tiếng Tây Ban Nha, không phải kế toán."
                 },
                 {
                   "label": "D",
-                  "en": "A tutoring service for school students",
-                  "vi": "Dịch vụ dạy kèm cho học sinh",
-                  "trap": "heard-word",
-                  "why_vi": "Gia sư chỉ là một phần của khóa, đối tượng là người đi làm bận rộn."
+                  "en": "A web-based photography course",
+                  "vi": "Khóa học nhiếp ảnh trên mạng",
+                  "trap": "not-mentioned",
+                  "why_vi": "Môn học là tiếng Tây Ban Nha, không phải nhiếp ảnh."
                 }
               ]
             },
@@ -1397,38 +1398,38 @@ window.BS_UNITS["p4-01"] = {
                 "en": "What does the speaker suggest about the course?",
                 "vi": "Người nói gợi ý điều gì về khóa học?"
               },
-              "answer": "D",
+              "answer": "C",
               "evidence": [
                 1,
                 2
               ],
-              "explain_vi": "Học viên mục tiêu là người bận, bài học chỉ mười lăm phút: khóa học xếp vừa lịch bận rộn.",
+              "explain_vi": "Học viên mục tiêu là người bận, bài học chỉ mười lăm phút: khóa học hợp với người ít thời gian rảnh.",
               "options": [
                 {
                   "label": "A",
-                  "en": "It is mainly for advanced learners",
-                  "vi": "Nó chủ yếu dành cho người học nâng cao",
+                  "en": "It costs less than classroom lessons",
+                  "vi": "Giá rẻ hơn lớp học trực tiếp",
                   "trap": "not-mentioned",
-                  "why_vi": "Học viên chọn trình độ của mình (dòng 5); không nói chỉ dành cho người giỏi."
+                  "why_vi": "Không có thông tin về giá."
                 },
                 {
                   "label": "B",
-                  "en": "It requires a long daily commitment",
-                  "vi": "Nó đòi hỏi dành nhiều thời gian mỗi ngày",
-                  "trap": "wrong-detail",
-                  "why_vi": "Bài học chỉ mười lăm phút, học vài phút mỗi ngày là đủ."
+                  "en": "It adds new lessons every month",
+                  "vi": "Mỗi tháng có thêm bài học mới",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có thông tin về cập nhật bài học."
                 },
                 {
                   "label": "C",
-                  "en": "It is available only on a phone",
-                  "vi": "Nó chỉ dùng được trên điện thoại",
-                  "trap": "over-inference",
-                  "why_vi": "Có thể tải về điện thoại nhưng đây là khóa học trực tuyến, không nói chỉ dùng trên điện thoại."
+                  "en": "It suits people with little spare time",
+                  "vi": "Nó hợp với người ít thời gian rảnh"
                 },
                 {
                   "label": "D",
-                  "en": "It can fit into a busy schedule",
-                  "vi": "Nó có thể xếp vừa một lịch bận rộn"
+                  "en": "It includes a certificate of completion",
+                  "vi": "Có chứng chỉ hoàn thành",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có đoạn nào nói về chứng chỉ."
                 }
               ]
             },
@@ -1439,7 +1440,7 @@ window.BS_UNITS["p4-01"] = {
                 "en": "How can listeners start the course?",
                 "vi": "Người nghe có thể bắt đầu khóa học bằng cách nào?"
               },
-              "answer": "C",
+              "answer": "A",
               "evidence": [
                 5
               ],
@@ -1447,29 +1448,29 @@ window.BS_UNITS["p4-01"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "By requesting a trial lesson by phone",
-                  "vi": "Bằng cách xin học thử qua điện thoại",
-                  "trap": "wrong-detail",
-                  "why_vi": "Học thử miễn phí có nhưng bắt đầu bằng cách tạo tài khoản trên mạng."
+                  "en": "Sign up for an account",
+                  "vi": "Đăng ký một tài khoản"
                 },
                 {
                   "label": "B",
-                  "en": "By attending a free first class in person",
-                  "vi": "Bằng cách dự buổi học đầu miễn phí tại chỗ",
-                  "trap": "not-mentioned",
-                  "why_vi": "Đây là khóa học trực tuyến, không có lớp học tại chỗ."
+                  "en": "Book a live session with a tutor",
+                  "vi": "Đặt một buổi học trực tiếp với gia sư",
+                  "trap": "heard-word",
+                  "why_vi": "Gia sư chỉ nhận xét phần nói mỗi tuần (dòng 2), không phải bước bắt đầu."
                 },
                 {
                   "label": "C",
-                  "en": "By setting up an account online",
-                  "vi": "Bằng cách lập tài khoản trực tuyến"
+                  "en": "Download the lessons to a phone",
+                  "vi": "Tải bài học về điện thoại",
+                  "trap": "heard-word",
+                  "why_vi": "Tải bài về điện thoại được nhắc ở dòng 3 nhưng không phải cách bắt đầu."
                 },
                 {
                   "label": "D",
-                  "en": "By downloading an app from a store",
-                  "vi": "Bằng cách tải ứng dụng từ cửa hàng",
-                  "trap": "heard-word",
-                  "why_vi": "Chỉ có tải bài học về điện thoại (dòng 3); cách bắt đầu là tạo tài khoản."
+                  "en": "Order a starter kit from the website",
+                  "vi": "Đặt bộ học liệu khởi đầu trên trang web",
+                  "trap": "not-mentioned",
+                  "why_vi": "Không có bộ học liệu nào."
                 }
               ]
             }
