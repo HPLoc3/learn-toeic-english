@@ -519,7 +519,7 @@ window.BS_UNITS["p2-05"] = {
           "v": {"status":"unverified"}
         },
         {"id":"fill1-2","before":"Could you","after":"the new volunteers where to leave their bags? (show)","answers":["show"],"v":{"status":"unverified"}},
-        {"id":"fill1-3","before":"Why","after":"ask Tobias to bring some spare extension cords?","answers":["not"],"v":{"status":"unverified"}},
+        {"id":"fill1-3","before":"Why","after":"ask Tobias to bring some spare extension cords? (one word)","answers":["not"],"v":{"status":"unverified"}},
         {"id":"fill1-4","before":"Would you like us","after":"collect the signed forms from the volunteers?","answers":["to"],"v":{"status":"unverified"}},
         {
           "id": "fill1-5",
