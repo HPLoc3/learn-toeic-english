@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* check-units.mjs - kiem tra du lieu cac unit cua Tung Buoc English. Chi dung node (khong phu thuoc goi ngoai).
+/* check-units.mjs - kiem tra du lieu cac unit cua TOEIC Moi Ngay. Chi dung node (khong phu thuoc goi ngoai).
  * Cach dung:
  *   node tools/check-units.mjs              kiem catalog va moi unit co "available": true
  *   node tools/check-units.mjs --unit l02   chi kiem unit do (ke ca unit chua mo)

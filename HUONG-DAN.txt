@@ -1,4 +1,4 @@
-TỪNG BƯỚC ENGLISH - HƯỚNG DẪN NHANH
+TOEIC MỖI NGÀY - HƯỚNG DẪN NHANH
 
 1. Mở terminal trong thư mục dự án, chạy:  python -m http.server 8000
 2. Mở trình duyệt, vào http://localhost:8000/

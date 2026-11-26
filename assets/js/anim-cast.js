@@ -1,4 +1,4 @@
-/* anim-cast.js - dien vien, dao cu, phong nen cho hoat hinh Tung Buoc. Ve SVG tu thiet ke, goc 100%.
+/* anim-cast.js - dien vien, dao cu, phong nen cho hoat hinh TOEIC Moi Ngay. Ve SVG tu thiet ke, goc 100%.
    Dang ky qua BSRig.register(kind,name,spec); hinh dang spec: tools/ANIM-RIG-CONTRACT.md. Khong dung id. */
 (function (g) {
   'use strict';
