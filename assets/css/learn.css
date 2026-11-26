@@ -87,7 +87,7 @@
 .cv-table{border-collapse:collapse;min-width:100%}
 .cv-table caption{text-align:left;font-weight:700;padding:0 0 4px}
 .cv-table th,.cv-table td{border:1px solid var(--line,#9aa5b5);padding:6px 10px;text-align:left}
-.cv-table th{background:var(--card-alt,#eef2f7)}
+.cv-table th{background:var(--card-2);color:var(--ink)}
 .cv-fb:focus{outline:3px solid var(--accent,#f59e0b);outline-offset:2px}
 .cv-lines,.cv-script{padding-left:0;list-style:none;margin:6px 0}
 .cv-lines li,.cv-script li{margin:8px 0}

@@ -144,7 +144,7 @@
         var ul = el("ul", { class: "list cv-lines" });
         x.opts.forEach(function (y) {
           var o = y.o, right = o.label === q.answer;
-          var li = el("li", { class: right ? "cv-right" : "cv-wrong" }, [el("strong", { text: o.label + "." + (right ? " (đúng)" : o.label === p ? " (bạn chọn, sai)" : "") + " " }), el("span", { class: "en", lang: "en", text: o.en }), o.vi ? el("span", { class: "vi muted", text: " " + o.vi }) : null]);
+          var li = el("li", { class: right ? "cv-right" : "cv-wrong" }, [el("strong", { text: o.label + "." + (right ? " (đúng)" : o.label === p ? " (bạn chọn, sai)" : "") + " " }), el("span", { class: "en", lang: "en", text: o.en }), o.vi && o.vi.toLowerCase() !== o.en.toLowerCase() ? el("span", { class: "vi muted", text: " " + o.vi }) : null]);
           if (!right) li.appendChild(el("p", { class: "explain cv-trap" }, [el("strong", { text: "Bẫy: " + (TRAPS[o.trap] || o.trap || "") + ". " }), o.why_vi || ""]));
           ul.appendChild(li);
         });

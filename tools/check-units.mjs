@@ -585,10 +585,10 @@ function checkUnit(entry) {
         nq++; if (dis.every((o) => key.en.length > o.en.length)) longest++;
         const v = q.options.map((o) => cvNum(o.en, true));
         if (v.every((x) => x !== null)) {
+          let done = false; /* hiệu a - b = c cũng là a = b + c nên chỉ cần kiểm tổng */
           for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) for (let k = j + 1; k < 4; k++) {
-            if (i !== j && i !== k && (v[i] === v[j] + v[k] || v[i] === Math.abs(v[j] - v[k])) && !q._sumDone) { q._sumDone = 1; cw(q.id, "sum", "đáp án " + q.options[i].label + " (" + q.options[i].en + ") bằng tổng hoặc hiệu của " + q.options[j].label + " và " + q.options[k].label + "; dễ đoán ra đáp án."); }
+            if (!done && i !== j && i !== k && v[i] === v[j] + v[k]) { done = true; cw(q.id, "sum", "đáp án " + q.options[i].label + " (" + q.options[i].en + ") bằng tổng của " + q.options[j].label + " và " + q.options[k].label + " (hoặc hiệu của hai đáp án khác); dễ đoán ra đáp án."); }
           }
-          delete q._sumDone;
         }
         const g2 = s.graphic;
         if (q.uses_graphic === true && isObj(g2) && g2.type === "table" && Array.isArray(g2.rows) && g2.rows.every((r2) => Array.isArray(r2))) {

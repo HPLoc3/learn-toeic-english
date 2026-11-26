@@ -564,7 +564,6 @@ try {
     const base = () => load(fs.readFileSync(path.join(REAL, "tools/fixtures/conv-pass.js"), "utf8"));
     const SS = (u, i) => u.exercises.filter((e) => e.type === "conv")[i || 0].sets[0];
     const fires = (mut, rule, qid, extra) => { const u = base(); mut(u); const r = runW(u, extra); return r.code === 0 && new RegExp("CẢNH BÁO: \\[p3-01\\] " + qid + ": \\[" + rule + "\\]").test(r.out); };
-    const rules = /\]|: \[(xq|intent-ctx|idiom|len|grow|sum)\]|\[len-unit\]/;
     let r = runW(base(), ["--release"]);
     check("conv-pass: không phát sinh cảnh báo doan duoc nào (xq, intent-ctx, idiom, len, grow, sum, len-unit)", r.code === 0 && !/: \[(xq|intent-ctx|idiom|len|grow|sum)\]|\[len-unit\]/.test(r.out), r.out);
 
@@ -585,7 +584,7 @@ try {
     check("grow: hàng đáp án giữ giá trị nhỏ nhất duy nhất của cột số", fires((u) => { SS(u).graphic.rows[2][1] = "1"; }, "grow", "c1-s1-q2"));
     check("grow: hai câu hình cùng đáp án ở cùng một hàng", fires((u) => { const s = JSON.parse(JSON.stringify(SS(u))); s.id = "c1-s9"; s.questions.forEach((q, k) => { q.id = "c1-s9-q" + (k + 1); }); u.exercises[0].sets.push(s); }, "grow", "c1-s9-q2"));
     check("sum: một đáp án số bằng tổng của hai đáp án khác", fires((u) => { const q = SS(u).questions[0]; q.q.en = "How many people will attend?"; ["4", "6", "10", "12"].forEach((n, i) => { q.options[i].en = n; q.options[i].vi = n; }); }, "sum", "c1-s1-q1"));
-    check("sum: một đáp án số bằng hiệu của hai đáp án khác", fires((u) => { const q = SS(u).questions[0]; q.q.en = "How many people will attend?"; ["3", "6", "9", "20"].forEach((n, i) => { q.options[i].en = n; q.options[i].vi = n; }); }, "sum", "c1-s1-q1"));
+    check("sum: hiệu của hai đáp án cũng bị bắt (9 - 6 = 3, tức 9 = 3 + 6)", fires((u) => { const q = SS(u).questions[0]; q.q.en = "How many people will attend?"; ["3", "6", "9", "20"].forEach((n, i) => { q.options[i].en = n; q.options[i].vi = n; }); }, "sum", "c1-s1-q1"));
     check("sum: bốn số không có quan hệ tổng/hiệu thì không cảnh báo", (() => { const u = base(); const q = SS(u).questions[0]; ["3", "6", "8", "20"].forEach((n, i) => { q.options[i].en = n; q.options[i].vi = n; }); return !/\[sum\]/.test(runW(u).out); })());
 
     /* ngoai le va --release: van chi la canh bao */
@@ -600,7 +599,9 @@ try {
     process.env.CU_LEAK_ALLOW = "p3-01/c1-s1-q1|len";
     const u2 = base(); SS(u2).questions[0].options[1].en = "Tiny.";
     const a4 = runW(u2); delete process.env.CU_LEAK_ALLOW;
-    check("ngoại lệ đúng luật mới bỏ qua: |len cho câu len; xq vẫn in nếu không khai", !/c1-s1-q1: \[len\]/.test(a4.out));
+    check("ngoại lệ |len chỉ bỏ cảnh báo len của câu đó", !/c1-s1-q1: \[len\]/.test(a4.out));
+    const a5 = (() => { const u = base(); SS(u).questions[2].q.en = "Which people will the man contact?"; process.env.CU_LEAK_ALLOW = "p3-01/c1-s1-q1|len"; const o = runW(u); delete process.env.CU_LEAK_ALLOW; return o; })();
+    check("ngoại lệ chỉ đúng một luật: khai |len thì cảnh báo xq của cùng câu vẫn được in", /c1-s1-q1: \[xq\]/.test(a5.out), a5.out);
     const fr = runW(load(fs.readFileSync(path.join(REAL, "tools/fixtures/conv-fail.js"), "utf8")));
     check("conv-fail: có in cảnh báo grow (cùng hàng) và len (đáp án dài/ngắn)", /\[grow\]/.test(fr.out) && /\[len\]/.test(fr.out), fr.out.slice(0, 200));
   } finally {

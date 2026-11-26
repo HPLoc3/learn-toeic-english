@@ -390,7 +390,7 @@
       var rate = isObj(opts) && isFinite(Number(opts.rate)) && Number(opts.rate) > 0 ? Number(opts.rate) : 0.9;
       var onend = isObj(opts) && typeof opts.onend === "function" ? opts.onend : null;
       var onstop = isObj(opts) && typeof opts.onstop === "function" ? opts.onstop : null;
-      var started = false, stopped = false, completed = false;
+      var started = false, stopped = false, completed = false, initial = true;
       var cast = isObj(opts) && Array.isArray(opts.cast) ? castVoices(opts.cast) : null;
       cancelSeq();
       s.cancel();
@@ -400,7 +400,7 @@
           over = true; clearTimeout(wd); clearTimeout(gap);
           if (stopped) return;
           stopped = true;
-          if (onstop) { try { onstop({ completed: completed, started: started }); } catch (e) { /* bo qua */ } }
+          if (onstop && !initial) { try { onstop({ completed: completed, started: started }); } catch (e) { /* bo qua */ } }
         } };
       function finish(done) {
         if (over) return;
@@ -441,6 +441,9 @@
       }
       seqCur = h;
       next();
+      initial = false;
+      /* ket thuc dong bo truoc khi phan nao bat dau (vd speak() nem loi): coi nhu khong phat duoc, khong goi onstop */
+      if (over && !started) return null;
       return h;
     } catch (e) { return null; }
   }

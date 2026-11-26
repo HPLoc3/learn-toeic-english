@@ -547,5 +547,43 @@ const scoreOf = (n) => byClass(n, "score")[0];
   check("huy ngay xen ke lan da bat dau phat: khong tinh la lien tiep", byClass(s2, "cv-peek")[0].hidden);
 }
 
+
+{
+  /* speak() nem loi dong bo: khong ket o 'Dang phat', hien nut xem loi thoai */
+  const M = mountC();
+  M.synth.speak = () => { throw new Error("boom"); };
+  const s = M.sets[0];
+  cplay(s).click();
+  check("speak() nem loi dong bo: nut nghe khong ket o 'Đang phát...'", cplay(s).textContent === "Nghe hội thoại" && !cplay(s).disabled);
+  check("speak() nem loi dong bo: dap an van khoa, hien nut 'Hiện lời thoại' va thong bao", copts(s).every((b) => b.disabled) && !byClass(s, "cv-peek")[0].hidden && /Không phát được âm thanh/.test(byClass(s, "cv-note")[0].textContent));
+  const E = makeEnv({ voices: [V("en-US", "Alex")] });
+  E.synth.speak = () => { throw new Error("boom"); };
+  let stops = 0;
+  const h = E.BS.speakSeq([{ text: "A", accent: "us" }, { text: "B", accent: "us" }], { onstop: () => { stops++; } });
+  check("speakSeq: ket thuc dong bo truoc khi phan nao bat dau -> tra null, khong goi onstop", h === null && stops === 0);
+  const E2 = makeEnv({ voices: [V("en-US", "Alex")], auto: false });
+  let stops2 = 0;
+  const h2 = E2.BS.speakSeq([{ text: "A", accent: "us" }], { onstop: () => { stops2++; } });
+  h2.cancel();
+  check("speakSeq: huy sau khi da tra tay cam van goi onstop mot lan", !!h2 && stops2 === 1);
+}
+{
+  /* vi trung en: khong in hai lan */
+  const ex = EXC();
+  const M = mountC({ ex: () => ex });
+  cplay(M.sets[0]).click(); pickAll(M.sets[0], ["B", "A", "A"]); cchk(M.sets[0]).click();
+  const li = all(cfb(M.sets[0]), (x) => x.tag === "li" && /Birch/.test(x.textContent) && /Hình|đúng/.test(x.textContent))[0];
+  check("dap an co vi trung en (Birch/Birch): chi in mot lan trong phan hoi", !!li && li.textContent.split("Birch").length === 2, li && li.textContent);
+  check("dap an co vi khac en van in ban dich", /Sẽ có nhiều người tham dự hơn/.test(cfb(M.sets[0]).textContent));
+}
+{
+  const css = fs.readFileSync(path.join(ROOT, "assets/css/learn.css"), "utf8"), site = fs.readFileSync(path.join(ROOT, "assets/css/site.css"), "utf8");
+  const cvCss = css.split("\n").filter((l) => l.startsWith(".cv-")).join(" ");
+  const used = [...cvCss.matchAll(/var\((--[a-z0-9-]+)/g)].map((m) => m[1]);
+  const undef = [...new Set(used)].filter((v) => !site.includes(v + ":") && !css.includes(v + ":"));
+  check("learn.css: moi bien mau dung deu duoc dinh nghia o site.css (khong con --card-alt)", undef.length === 0 && !/--card-alt/.test(css), undef.join());
+  check("bang cua conv: o tieu de dung --card-2 va --ink (doc duoc ca sang va toi)", /\.cv-table th\{background:var\(--card-2\);color:var\(--ink\)\}/.test(css));
+}
+
 console.log("\ntest-conv: " + pass + " đạt, " + fail + " lỗi");
 process.exit(fail ? 1 : 0);

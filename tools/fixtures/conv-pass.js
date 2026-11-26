@@ -420,21 +420,21 @@ window.BS_UNITS["p3-01"] = {
                 {
                   "label": "B",
                   "en": "Order coffee for the guests.",
-                  "vi": "Gọi cà phê.",
+                  "vi": "Gọi cà phê cho khách.",
                   "trap": "wrong-speaker",
                   "why_vi": "Người phụ nữ mới là người nhờ nhà bếp."
                 },
                 {
                   "label": "C",
                   "en": "Cancel the client meeting today.",
-                  "vi": "Hủy cuộc họp với khách.",
+                  "vi": "Hủy cuộc họp với khách hôm nay.",
                   "trap": "not-mentioned",
                   "why_vi": "Cuộc họp vẫn diễn ra."
                 },
                 {
                   "label": "D",
                   "en": "Print the schedule for everyone.",
-                  "vi": "In lịch.",
+                  "vi": "In lịch cho mọi người.",
                   "trap": "heard-word",
                   "why_vi": "Từ schedule được nghe thấy nhưng không có kế hoạch in."
                 }
