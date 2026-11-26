@@ -338,9 +338,6 @@ window.BS_UNITS["p5-02"] = {
       "id": "g1",
       "type": "gram",
       "instruction_vi": "Chọn từ đúng để hoàn thành câu.",
-      "v": {
-        "status": "unverified"
-      },
       "items": [
         {
           "id": "g1-01",
@@ -708,9 +705,6 @@ window.BS_UNITS["p5-02"] = {
       "id": "g2",
       "type": "gram",
       "instruction_vi": "Chọn từ đúng để hoàn thành câu.",
-      "v": {
-        "status": "unverified"
-      },
       "items": [
         {
           "id": "g2-01",
@@ -1078,9 +1072,6 @@ window.BS_UNITS["p5-02"] = {
       "id": "g3",
       "type": "gram",
       "instruction_vi": "Chọn từ đúng để hoàn thành câu.",
-      "v": {
-        "status": "unverified"
-      },
       "items": [
         {
           "id": "g3-01",

@@ -321,17 +321,11 @@ window.BS_UNITS["p6-02"] = {
     {
       "id": "r1",
       "type": "read",
-      "v": {
-        "status": "unverified"
-      },
       "instruction_vi": "Đọc đoạn văn và chọn đáp án đúng nhất cho mỗi chỗ trống. Bấm \"Kiểm tra\" khi đã chọn đủ bốn chỗ trống của mỗi bài.",
       "sets": [
         {
           "id": "r1-s1",
           "kind": "cloze",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r1-s1-p1",
@@ -548,9 +542,6 @@ window.BS_UNITS["p6-02"] = {
         {
           "id": "r1-s2",
           "kind": "cloze",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r1-s2-p1",
@@ -746,9 +737,6 @@ window.BS_UNITS["p6-02"] = {
         {
           "id": "r1-s3",
           "kind": "cloze",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r1-s3-p1",
@@ -946,17 +934,11 @@ window.BS_UNITS["p6-02"] = {
     {
       "id": "r2",
       "type": "read",
-      "v": {
-        "status": "unverified"
-      },
       "instruction_vi": "Đọc đoạn văn và chọn đáp án đúng nhất cho mỗi chỗ trống. Bấm \"Kiểm tra\" khi đã chọn đủ bốn chỗ trống của mỗi bài.",
       "sets": [
         {
           "id": "r2-s1",
           "kind": "cloze",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r2-s1-p1",
@@ -1169,9 +1151,6 @@ window.BS_UNITS["p6-02"] = {
         {
           "id": "r2-s2",
           "kind": "cloze",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r2-s2-p1",
@@ -1369,9 +1348,6 @@ window.BS_UNITS["p6-02"] = {
     {
       "id": "fill1",
       "type": "fill",
-      "v": {
-        "status": "unverified"
-      },
       "instruction_vi": "Điền một từ quy chiếu (ví dụ: this, these, its, them, the) dựa vào ngữ cảnh đứng trước.",
       "items": [
         {

@@ -321,9 +321,6 @@ window.BS_UNITS["p5-03"] = {
     {
       "id": "g1",
       "type": "gram",
-      "v": {
-        "status": "unverified"
-      },
       "instruction_vi": "Chọn từ đúng để hoàn thành câu.",
       "items": [
         {
@@ -691,9 +688,6 @@ window.BS_UNITS["p5-03"] = {
     {
       "id": "g2",
       "type": "gram",
-      "v": {
-        "status": "unverified"
-      },
       "instruction_vi": "Chọn từ đúng để hoàn thành câu.",
       "items": [
         {
@@ -1061,9 +1055,6 @@ window.BS_UNITS["p5-03"] = {
     {
       "id": "g3",
       "type": "gram",
-      "v": {
-        "status": "unverified"
-      },
       "instruction_vi": "Chọn từ đúng để hoàn thành câu.",
       "items": [
         {
@@ -1431,9 +1422,6 @@ window.BS_UNITS["p5-03"] = {
     {
       "id": "fill1",
       "type": "fill",
-      "v": {
-        "status": "unverified"
-      },
       "instruction_vi": "Điền một từ còn thiếu để hoàn thành câu.",
       "items": [
         {
