@@ -507,8 +507,8 @@ window.BS_UNITS["p3-01"] = {
          "label": "B",
          "en": "Phone the technician's office",
          "vi": "Gọi văn phòng của thợ kỹ thuật",
-         "trap": "changed-plan",
-         "why_vi": "Thợ đã hẹn vào ngày mai và họ chọn cách khác nên không gọi."
+         "trap": "not-mentioned",
+         "why_vi": "Không ai định gọi cho văn phòng thợ; anh chọn dùng máy ở phòng tài chính."
         },
         {
          "label": "C",
@@ -568,7 +568,7 @@ window.BS_UNITS["p3-01"] = {
       {
        "s": "M",
        "en": "I understand. Would it be possible to meet on Friday afternoon instead?",
-       "vi": "Tôi hiểu. Liệu mình có thể họp vào chiều thứ Sáu thay thế không?"
+       "vi": "Tôi hiểu. Liệu mình có thể chuyển sang họp chiều thứ Sáu được không?"
       },
       {
        "s": "W",
@@ -578,7 +578,7 @@ window.BS_UNITS["p3-01"] = {
       {
        "s": "M",
        "en": "I see. Then I'll check next week's calendar and send you some options.",
-       "vi": "Vậy à. Vậy tôi sẽ xem lịch tuần sau và gửi cô vài lựa chọn."
+       "vi": "Vậy à. Tôi sẽ xem lịch tuần sau và gửi cô vài lựa chọn."
       },
       {
        "s": "W",
@@ -702,7 +702,7 @@ window.BS_UNITS["p3-01"] = {
          "label": "C",
          "en": "She is proposing a different day.",
          "vi": "Cô ấy đang đề xuất một ngày khác.",
-         "trap": "wrong-detail",
+         "trap": "wrong-speaker",
          "why_vi": "Chính người đàn ông mới nói sẽ xem lịch tuần sau; cô không đề xuất ngày nào."
         },
         {
@@ -1130,8 +1130,8 @@ window.BS_UNITS["p3-01"] = {
         },
         {
          "label": "D",
-         "en": "Sign a privacy agreement",
-         "vi": "Ký một thỏa thuận bảo mật"
+         "en": "Sign a nondisclosure agreement",
+         "vi": "Ký một thỏa thuận không tiết lộ thông tin"
         }
        ]
       }
@@ -1159,7 +1159,7 @@ window.BS_UNITS["p3-01"] = {
       {
        "s": "M",
        "en": "Priya, do you have a minute? I'm way behind on the sales report that's due at the regional office on Friday.",
-       "vi": "Priya, chị có rảnh một chút không? Tôi trễ tiến độ nhiều với báo cáo bán hàng phải nộp cho văn phòng khu vực vào thứ Sáu."
+       "vi": "Priya, chị có rảnh một chút không? Tôi đang chậm tiến độ nhiều với bản báo cáo bán hàng phải nộp cho văn phòng khu vực vào thứ Sáu."
       },
       {
        "s": "W",
@@ -1184,7 +1184,7 @@ window.BS_UNITS["p3-01"] = {
       {
        "s": "W",
        "en": "The regional office closes at five on Friday, and I'm in training until six.",
-       "vi": "Văn phòng khu vực đóng cửa lúc năm giờ chiều thứ Sáu, còn tôi học tập huấn đến sáu giờ."
+       "vi": "Văn phòng khu vực đóng cửa lúc năm giờ chiều thứ Sáu, còn tôi phải dự tập huấn đến sáu giờ."
       },
       {
        "s": "M",
@@ -1357,8 +1357,8 @@ window.BS_UNITS["p3-01"] = {
       },
       {
        "s": "M",
-       "en": "Not great. We're nearly out of paper, and the colored pads people stick on their monitors are gone.",
-       "vi": "Không ổn lắm. Mình gần hết giấy, và những xấp giấy màu người ta dán lên màn hình thì hết sạch."
+       "en": "Not great. We're nearly out of paper, and the little colored note pads are all gone.",
+       "vi": "Không ổn lắm. Mình gần hết giấy, và những xấp giấy ghi chú nhỏ nhiều màu thì hết sạch."
       },
       {
        "s": "W",
@@ -1377,8 +1377,8 @@ window.BS_UNITS["p3-01"] = {
       },
       {
        "s": "S",
-       "en": "That's no problem. Do you still need paper?",
-       "vi": "Không vấn đề gì. Các vị còn cần giấy không?"
+       "en": "That's no problem. Will you need any paper as well?",
+       "vi": "Không vấn đề gì. Các vị có cần thêm giấy không?"
       },
       {
        "s": "M",
@@ -1387,8 +1387,8 @@ window.BS_UNITS["p3-01"] = {
       },
       {
        "s": "W",
-       "en": "So just one box of those colored pads, please.",
-       "vi": "Vậy chỉ một hộp giấy màu đó thôi, làm ơn."
+       "en": "So just one box of those colored note pads, please.",
+       "vi": "Vậy chỉ một hộp giấy ghi chú nhiều màu đó thôi, làm ơn."
       },
       {
        "s": "S",
@@ -1516,15 +1516,15 @@ window.BS_UNITS["p3-01"] = {
        "kind": "graphic",
        "uses_graphic": true,
        "q": {
-        "en": "Look at the graphic. How much will the speakers pay for their order?",
-        "vi": "Nhìn hình. Hai người sẽ trả bao nhiêu cho đơn hàng của họ?"
+        "en": "Look at the graphic. How much will the order cost?",
+        "vi": "Nhìn hình. Đơn hàng sẽ có giá bao nhiêu?"
        },
        "answer": "C",
        "evidence": [
         1,
         7
        ],
-       "explain_vi": "Họ chỉ đặt một hộp giấy màu dán lên màn hình, tức là Sticky notes, giá $14. Họ bỏ qua giấy in nên $26 là sai.",
+       "explain_vi": "Họ chỉ đặt một hộp giấy ghi chú nhiều màu, tức là Sticky notes, giá $14. Họ bỏ qua giấy in nên $26 là sai.",
        "options": [
         {
          "label": "A",
