@@ -217,7 +217,7 @@ window.BS_UNITS["p3-05"] = {
        "options": [
         {"label":"A","en":"A visitor from a partner company","vi":"Khách đến từ một công ty đối tác","trap":"not-mentioned","why_vi":"Julian không phải khách; anh nói đây là nhóm của mình."},
         {"label":"B","en":"A researcher who will act as a mentor","vi":"Một nhà nghiên cứu sẽ làm người hướng dẫn","trap":"heard-word","why_vi":"Từ mentor được nghe, nhưng người kèm cặp là Freya."},
-        {"label":"C","en":"A student who is doing an internship","vi":"Một sinh viên đang thực tập","trap":"wrong-speaker","why_vi":"Thực tập sinh là Dev."},
+        {"label":"C","en":"A newcomer who is learning the work","vi":"Người mới đến đang học việc","trap":"wrong-speaker","why_vi":"Người mới đến học việc là Dev."},
         {"label":"D","en":"A manager who leads the team","vi":"Quản lý phụ trách nhóm"}
        ]
       },
@@ -244,7 +244,7 @@ window.BS_UNITS["p3-05"] = {
        "explain_vi": "Freya nhờ Dev ghi lại những kỹ năng cậu muốn phát triển nhất.",
        "options": [
         {"label":"A","en":"Read a report on an earlier project","vi":"Đọc báo cáo về một dự án trước đó","trap":"wrong-speaker","why_vi":"Julian mới là người yêu cầu việc này."},
-        {"label":"B","en":"Send her a copy of his class schedule","vi":"Gửi cho cô ấy bản lịch học của cậu","trap":"heard-word","why_vi":"Lịch học được nhắc vì sắp thay đổi, không ai xin bản sao."},
+        {"label":"B","en":"Send her a copy of his new schedule","vi":"Gửi cho cô ấy bản lịch mới của cậu","trap":"heard-word","why_vi":"Lịch học được nhắc vì sắp thay đổi, không ai xin bản sao."},
         {"label":"C","en":"List some skills he hopes to build","vi":"Liệt kê vài kỹ năng cậu muốn rèn luyện"},
         {"label":"D","en":"Watch her carry out a test tomorrow","vi":"Xem cô ấy làm một thử nghiệm vào ngày mai","trap":"not-mentioned","why_vi":"Freya không nói về thử nghiệm nào ngày mai."}
        ]
@@ -333,7 +333,7 @@ window.BS_UNITS["p3-05"] = {
       {
        "id": "c1-s3-q3",
        "kind": "request",
-       "q": {"en":"What does Bastian ask the owners to do?","vi":"Bastian đề nghị hai người chủ làm gì?"},
+       "q": {"en":"What does Bastian ask Kirsten and Lorenzo to do?","vi":"Bastian đề nghị Kirsten và Lorenzo làm gì?"},
        "answer": "C",
        "evidence": [7],
        "explain_vi": "Bastian cần cả hai chốt màu sơn trước thứ Sáu.",
@@ -366,18 +366,18 @@ window.BS_UNITS["p3-05"] = {
       {"s":"W1","en":"Yes, Emeka. On Fridays I only work mornings, and the course runs all day.","vi":"Có, Emeka. Thứ Sáu tôi chỉ làm buổi sáng, mà khóa học kéo dài cả ngày."},
       {"s":"M","en":"All right. Mwangi, how about the day of the fire inspection? It only takes an hour.","vi":"Được rồi. Mwangi, còn ngày kiểm tra phòng cháy thì sao? Việc kiểm tra chỉ mất một giờ."},
       {"s":"W2","en":"That won't work for me. My two weeks of leave start on June twenty-second.","vi":"Ngày đó tôi không được. Hai tuần nghỉ phép của tôi bắt đầu từ ngày hai mươi hai tháng Sáu."},
-      {"s":"W1","en":"Could we go on the day the clients come instead, Mwangi?","vi":"Vậy mình học vào ngày khách hàng đến được không, Mwangi?"},
+      {"s":"W1","en":"Could we go on the day the clients come instead, Emeka?","vi":"Vậy mình học vào ngày khách hàng đến được không, Emeka?"},
       {"s":"M","en":"Not that one, sorry. I'm the person who'll be showing them around.","vi":"Xin lỗi, ngày đó không được. Tôi là người sẽ dẫn họ đi tham quan."},
       {"s":"W2","en":"Then we have just one choice left.","vi":"Vậy chỉ còn lại đúng một lựa chọn."},
       {"s":"W1","en":"Agreed, Mwangi. I saved the exercises from an earlier version, and I'll send them to you both.","vi":"Đồng ý, Mwangi. Tôi còn lưu bài tập của phiên bản trước, tôi sẽ gửi cho cả hai."},
       {"s":"M","en":"Great. I'll ask our manager to approve the fee.","vi":"Tuyệt. Tôi sẽ xin quản lý duyệt học phí."},
-      {"s":"W2","en":"Once that's done, I'll send the course provider our confirmation.","vi":"Duyệt xong, tôi sẽ gửi xác nhận cho đơn vị tổ chức khóa học."}
+      {"s":"W2","en":"Once that's done, Helene, I'll send the course provider our confirmation.","vi":"Duyệt xong thì, Helene, tôi sẽ gửi xác nhận cho đơn vị tổ chức khóa học."}
      ],
      "graphic": {
       "type": "table",
       "title": "Sablewood Industries - Calendar",
       "cols": ["Date option","Weekday","Other event that day"],
-      "rows": [["June 5","Friday","Budget review"],["June 11","Thursday","Staff photos"],["June 17","Wednesday","Client visit"],["June 23","Tuesday","Fire inspection"]]
+      "rows": [["June 5","Friday","Budget review"],["June 11","Thursday","Equipment delivery"],["June 17","Wednesday","Client visit"],["June 23","Tuesday","Fire inspection"]]
      },
      "v": {"status":"unverified","note":"Chưa được giải thử và nghe kiểm."},
      "questions": [
@@ -450,7 +450,7 @@ window.BS_UNITS["p3-05"] = {
       {"s":"M","en":"Five at a time it is. Nobody will need to take a computer home for setup.","vi":"Vậy mỗi lượt năm người. Sẽ không ai phải mang máy về nhà để cài đặt."},
       {"s":"W2","en":"Are chargers included in the price?","vi":"Giá đã gồm bộ sạc chưa?"},
       {"s":"M","en":"Yes, they are.","vi":"Rồi, đã gồm."},
-      {"s":"W2","en":"Good. I'll let our manager know the dates today.","vi":"Tốt. Hôm nay tôi sẽ báo quản lý các ngày thực hiện."},
+      {"s":"W2","en":"Good. I'll let our manager know the plan today.","vi":"Tốt. Hôm nay tôi sẽ báo quản lý về kế hoạch."},
       {
        "s": "M",
        "en": "First, I want to be sure your printers will work with this model, so I'll run a trial now.",
@@ -503,13 +503,13 @@ window.BS_UNITS["p3-05"] = {
       {
        "id": "c2-s5-q3",
        "kind": "next",
-       "q": {"en":"What will the technician most likely do next?","vi":"Kỹ thuật viên nhiều khả năng sẽ làm gì tiếp theo?"},
+       "q": {"en":"What will the man most likely do next?","vi":"Người đàn ông nhiều khả năng sẽ làm gì tiếp theo?"},
        "answer": "D",
        "evidence": [8],
        "explain_vi": "Imran muốn chắc máy in hoạt động với mẫu máy mới nên sẽ chạy thử ngay.",
        "options": [
         {"label":"A","en":"Make a list of employee names","vi":"Lập danh sách tên nhân viên","trap":"wrong-speaker","why_vi":"Chị Nilsson sẽ lập danh sách."},
-        {"label":"B","en":"Tell a manager about the dates","vi":"Báo quản lý về ngày thực hiện","trap":"wrong-speaker","why_vi":"Chị Petrov nhận việc này."},
+        {"label":"B","en":"Tell a manager about the plan","vi":"Báo quản lý về kế hoạch","trap":"wrong-speaker","why_vi":"Chị Petrov nhận việc này."},
         {"label":"C","en":"Order some extra carrying cases","vi":"Đặt thêm một số túi đựng máy","trap":"not-mentioned","why_vi":"Không ai nhắc đến túi đựng máy."},
         {"label":"D","en":"Check a connection to the printers","vi":"Kiểm tra kết nối với máy in"}
        ]
@@ -536,8 +536,8 @@ window.BS_UNITS["p3-05"] = {
       {"s":"M2","en":"True. I'll do those this week instead of waiting.","vi":"Đúng vậy. Vậy tuần này tôi làm phần đó thay vì chờ."},
       {
        "s": "W",
-       "en": "Your buffer solution is ready, but it must stay frozen. We can hold it in our cold room until the filters ship.",
-       "vi": "Dung dịch đệm của các anh đã sẵn sàng nhưng phải được giữ đông. Chúng tôi có thể giữ nó trong phòng lạnh đến khi gửi bộ lọc."
+       "en": "Dr. Ortega, your buffer solution is ready, but it must stay frozen. We can hold it in our cold room until the filters ship.",
+       "vi": "Tiến sĩ Ortega, dung dịch đệm của các anh đã sẵn sàng nhưng phải được giữ đông. Chúng tôi có thể giữ nó trong phòng lạnh đến khi gửi bộ lọc."
       },
       {
        "s": "M1",
@@ -584,7 +584,7 @@ window.BS_UNITS["p3-05"] = {
        "q": {"en":"What does Dr. Ortega mean when he says, \"Our freezer has plenty of space\"?","vi":"Tiến sĩ Ortega muốn nói gì khi nói \"Our freezer has plenty of space\"?"},
        "answer": "D",
        "evidence": [5,6,7],
-       "explain_vi": "Người phụ nữ nói dung dịch phải giữ đông và đề nghị giữ hộ. Ông đáp tủ đông còn chỗ và muốn dùng sớm: phòng thí nghiệm có thể nhận ngay.",
+       "explain_vi": "Người phụ nữ nói dung dịch phải giữ đông và đề nghị giữ hộ. Ông đáp tủ đông còn chỗ và muốn bắt đầu chuẩn bị mẫu bằng dung dịch đó, tức là phòng thí nghiệm có thể nhận nó ngay.",
        "options": [
         {
          "label": "A",
@@ -593,9 +593,15 @@ window.BS_UNITS["p3-05"] = {
          "trap": "literal",
          "why_vi": "Ông không chỉ tả cái tủ; câu này đáp lại đề nghị giữ hộ."
         },
-        {"label":"B","en":"To offer to keep some materials for a while","vi":"Đề nghị giữ hộ một số vật tư một thời gian","trap":"wrong-speaker","why_vi":"Người đề nghị giữ hộ là người phụ nữ."},
+        {
+         "label": "B",
+         "en": "To agree to let the woman store the solution",
+         "vi": "Đồng ý để người phụ nữ giữ hộ dung dịch",
+         "trap": "wrong-speaker",
+         "why_vi": "Việc giữ hộ là đề nghị của người phụ nữ; ông không nhận vì tủ của phòng thí nghiệm còn chỗ và ông muốn dùng dung dịch ngay."
+        },
         {"label":"C","en":"To propose ordering a larger quantity","vi":"Đề xuất đặt số lượng lớn hơn","trap":"over-inference","why_vi":"Không ai bàn việc đặt thêm hàng."},
-        {"label":"D","en":"To show that receiving it early would work","vi":"Cho thấy nhận nó sớm là được"}
+        {"label":"D","en":"To indicate that the lab can accept the item now","vi":"Cho biết phòng thí nghiệm có thể nhận món hàng ngay"}
        ]
       },
       {
@@ -604,9 +610,9 @@ window.BS_UNITS["p3-05"] = {
        "q": {"en":"What can be inferred about Julian?","vi":"Có thể suy ra điều gì về Julian?"},
        "answer": "A",
        "evidence": [3,4],
-       "explain_vi": "Phần đếm tế bào của Julian không dùng bộ lọc và anh sẽ làm ngay trong tuần, nên không phải việc nào của anh cũng cần hàng bị trễ.",
+       "explain_vi": "Phần đếm tế bào của Julian không dùng bộ lọc và anh sẽ làm ngay trong tuần, nên một phần công việc của anh không phụ thuộc vào bộ lọc bị trễ.",
        "options": [
-        {"label":"A","en":"Not all of his tasks need the late items.","vi":"Không phải việc nào của anh ấy cũng cần hàng bị trễ."},
+        {"label":"A","en":"Some of his work does not depend on the late kits.","vi":"Một phần công việc của anh ấy không phụ thuộc vào các bộ lọc bị trễ."},
         {
          "label": "B",
          "en": "He is going to move to another building soon.",
@@ -617,8 +623,8 @@ window.BS_UNITS["p3-05"] = {
         {"label":"C","en":"He will keep all testing on hold this week.","vi":"Anh ấy sẽ ngừng mọi thử nghiệm trong tuần này.","trap":"changed-plan","why_vi":"Lúc đầu anh định tạm dừng, nhưng sau đó đổi ý."},
         {
          "label": "D",
-         "en": "He is the keeper of the lab's stock records.",
-         "vi": "Anh ấy là người giữ sổ vật tư của phòng thí nghiệm.",
+         "en": "Part of his job is tracking the lab's stock.",
+         "vi": "Một phần việc của anh ấy là theo dõi vật tư của phòng thí nghiệm.",
          "trap": "wrong-speaker",
          "why_vi": "Tiến sĩ Ortega nói chính ông giữ sổ vật tư."
         }
