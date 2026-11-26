@@ -523,5 +523,29 @@ const scoreOf = (n) => byClass(n, "score")[0];
   check("bai gom hoi thoai va bai noi: tieu de trung tinh, nut nghe theo tung doan", /Nghe hội thoại hoặc bài nói và chọn đáp án/.test(mm.card.textContent) && cplay(mm.sets[0]).textContent === "Nghe hội thoại" && cplay(mm.sets[1]).textContent === "Nghe bài nói");
 }
 
+
+{
+  /* khoi phuc mot phan khi khong co doan nao khac da cham: khong de lai diem rong */
+  const M = mountC({ pre: (st) => { st.res["c1-s1-q1"] = 1; st.ans["c1-s1-q1"] = "B"; st.scores.cx = { c: 1, t: 6, a: 1 }; } });
+  check("khoi phuc mot phan, khong con cau nao da lam: xoa muc diem va khung diem trong", M.st.scores.cx === undefined && scoreOf(M.card).textContent === "" && !/Điểm/.test(M.card.textContent));
+}
+{
+  /* thiet bi luon huy ngay: sau 2 lan hoan luot lien tiep thi hien nut xem loi thoai */
+  const M = mountC({ auto: false });
+  const s = M.sets[0], pk = byClass(s, "cv-peek")[0];
+  cplay(s).click(); M.BS.stopSpeak();
+  check("huy ngay lan 1: da hoan luot, chua hien nut xem loi thoai", pk.hidden && copts(s).every((b) => b.disabled));
+  cplay(s).click(); M.BS.stopSpeak();
+  check("huy ngay 2 lan lien tiep: hien nut xem loi thoai va thong bao", !pk.hidden && /Không phát được âm thanh/.test(byClass(s, "cv-note")[0].textContent));
+  pk.click();
+  check("sau do xem loi thoai thi mo dap an, khong ket", copts(s).every((b) => !b.disabled));
+  const N = mountC({ auto: false });
+  const s2 = N.sets[0];
+  cplay(s2).click(); N.BS.stopSpeak();
+  cplay(s2).click(); N.synth.spoken[N.synth.spoken.length - 1].onstart({}); N.BS.stopSpeak();
+  cplay(s2).click(); N.BS.stopSpeak();
+  check("huy ngay xen ke lan da bat dau phat: khong tinh la lien tiep", byClass(s2, "cv-peek")[0].hidden);
+}
+
 console.log("\ntest-conv: " + pass + " đạt, " + fail + " lỗi");
 process.exit(fail ? 1 : 0);

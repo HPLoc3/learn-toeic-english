@@ -359,7 +359,7 @@
       });
       var matched = !!best && voiceGender(best) === g;
       var pitch = matched ? 1 : g === "f" ? 1.2 : 0.8;
-      /* tranh trung giong + pitch: thu pitch +0.15, -0.15, +0.3, ... trong 0.5-1.6 (huu han); het cho thi giu pitch goc */
+      /* tranh trung giong + pitch: thu pitch +0.15, -0.15, +0.3, ... trong 0.5-1.6 (huu han); het cho thi giu gia tri hop le cuoi cung da thu */
       var p0 = pitch;
       for (var t = 1; t <= 14 && out.some(function (o) { return o.v === best && o.pitch === pitch; }); t++) {
         var c2 = Math.round((p0 + (t % 2 ? 1 : -1) * Math.ceil(t / 2) * 0.15) * 100) / 100;

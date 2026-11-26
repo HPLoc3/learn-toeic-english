@@ -1,4 +1,4 @@
-/* conv.js - bai tap Part 3/4 (type "conv"): doc truoc 3 cau hoi, nghe hoi thoai/bai noi, chon A-D; cham theo doan. Dung BS.speakSeq/castVoices (core.js), BS.quizKit (quiz.js).
+/* conv.js - bai tap Part 3/4 (type "conv"): doc truoc 3 cau hoi, nghe hoi thoai/bai noi, chon A-D; cham theo doan.
  * st.ans[qid] = "A"-"D", st.res[qid] = 0|1; +10 XP/cau dung (mot lan), khong XP neu da xem loi thoai. */
 (function () {
   "use strict";
@@ -57,7 +57,7 @@
 
   function buildSet(set, n, total, qa, ctx) {
     var qs = set.questions || [], labels = labelsOf(set);
-    var graded = false, peeked = false, failed = false, played = 0, playing = false, cur = null, picks = [];
+    var graded = false, peeked = false, failed = false, refunds = 0, played = 0, playing = false, cur = null, picks = [];
     var sec = el("section", { class: "cv-set", role: "group", "aria-label": "Đoạn " + n + " trên " + total });
     var play = el("button", { type: "button", class: "btn btn-primary cv-play" });
     var note = el("p", { class: "muted cv-note" });
@@ -103,7 +103,7 @@
       mine = typeof BS.speakSeq !== "function" ? null : BS.speakSeq(sq.parts, { rate: ctx.rate(), cast: sq.cast, onstop: function (r) {
         if (mine !== cur) return;
         playing = false; cur = null;
-        if (r && !r.completed && !r.started && !graded) played = Math.max(0, played - 1);
+        if (r && !r.completed && !r.started && !graded) { played = Math.max(0, played - 1); if (++refunds > 1) failed = true; } else refunds = 0;
         sync();
       } });
       return mine;
@@ -176,7 +176,7 @@
       ctx.score(); show(true);
     }
     function reset() {
-      stop(); graded = false; peeked = false; failed = false; played = 0; picks = [];
+      stop(); graded = false; peeked = false; failed = false; refunds = 0; played = 0; picks = [];
       qn.forEach(function (x) { x.opts.forEach(function (y) { y.b.className = "btn opt cv-opt"; y.b.textContent = y.o.label + ". "; y.b.appendChild(el("span", { lang: "en", text: y.o.en })); }); });
       fb.textContent = ""; fb.removeAttribute("aria-label"); tr.textContent = ""; sync();
     }
@@ -215,7 +215,7 @@
       K.makeNotice()
     ]);
     var ctx = { st: st, uid: uid, rate: function () { return exam ? 1.0 : rate; }, noVoice: function () { return noVoice; },
-      score: function () { scoreBox.textContent = K.scoreText(K.saveScore(st, ex, all)); } };
+      score: function () { var s = K.saveScore(st, ex, all); if (s.a) scoreBox.textContent = K.scoreText(s); else { delete st.scores[ex.id]; scoreBox.textContent = ""; BS.save(); } } };
     var speedBtns = SPEEDS.map(function (sp) {
       var b = el("button", { type: "button", class: "btn", "aria-pressed": "false", "aria-label": "Tốc độ " + sp.say + " " + sp.rate, text: sp.name + " " + sp.rate.toFixed(1) });
       b.addEventListener("click", function () { rate = sp.rate; syncCtl(); });
