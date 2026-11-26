@@ -229,8 +229,8 @@ window.BS_UNITS["p7-01"] = {
     },
     {
       "id": "p04",
-      "en": "I regret to inform you that the class is full.",
-      "vi": "Tôi rất tiếc phải báo rằng lớp đã đầy.",
+      "en": "Unfortunately, we cannot accept late applications.",
+      "vi": "Rất tiếc, chúng tôi không thể nhận đơn nộp muộn.",
       "group_vi": "Báo tin không như mong muốn"
     },
     {
@@ -247,8 +247,8 @@ window.BS_UNITS["p7-01"] = {
     },
     {
       "id": "p07",
-      "en": "Please note that the office will be closed on Monday.",
-      "vi": "Xin lưu ý văn phòng sẽ đóng cửa vào thứ Hai.",
+      "en": "Kindly keep this message for your records.",
+      "vi": "Xin vui lòng giữ thư này để lưu hồ sơ.",
       "group_vi": "Lưu ý"
     },
     {
@@ -385,8 +385,8 @@ window.BS_UNITS["p7-01"] = {
                 {
                   "who": "Tomas Reyes",
                   "time": "10:13 A.M.",
-                  "en": "Thanks. I'll write to you when the train starts moving.",
-                  "vi": "Cảm ơn chị. Tôi sẽ nhắn cho chị khi tàu chạy lại."
+                  "en": "Thanks. I'll text you when the train starts moving.",
+                  "vi": "Cảm ơn chị. Tôi sẽ nhắn tin cho chị khi tàu chạy lại."
                 }
               ]
             }
@@ -395,54 +395,54 @@ window.BS_UNITS["p7-01"] = {
             {
               "id": "r1-s1-q1",
               "kind": "intent",
-              "quote": "The large room is reserved for a training class.",
-              "at_time": "10:09 A.M.",
+              "quote": "I may not reach the office before 11:30.",
+              "at_time": "10:05 A.M.",
               "q": {
-                "en": "At 10:09 A.M., what does Ms. Kovac mean when she writes, \"The large room is reserved for a training class\"?",
-                "vi": "Lúc 10:09 sáng, bà Kovac muốn nói gì khi viết \"The large room is reserved for a training class\"?"
+                "en": "At 10:05 A.M., what does Mr. Reyes most likely mean when he writes, \"I may not reach the office before 11:30\"?",
+                "vi": "Lúc 10:05 sáng, ông Reyes nhiều khả năng muốn nói gì khi viết \"I may not reach the office before 11:30\"?"
               },
               "answer": "C",
               "evidence": [
                 [
                   0,
-                  4
+                  2
                 ],
                 [
                   0,
-                  5
+                  3
                 ],
                 [
                   0,
                   6
                 ]
               ],
-              "explain_vi": "Ông Reyes vừa hỏi có thể dùng phòng lớn cho nhóm khách được không. Bà Kovac đáp rằng phòng đã được giữ cho một lớp đào tạo, tức là từ chối yêu cầu đó. Ngay sau đó ông chuyển sang nhờ kê thêm ghế ở Phòng 4, cho thấy phòng lớn không dùng được.",
+              "explain_vi": "Nhóm khách đến lúc 11 giờ, trước giờ ông Reyes có thể tới văn phòng. Sau đó ông nhờ kê thêm ghế, bảo phần trình chiếu có thể đợi đến khi ông tới và để bà Kovac lo mẫu sản phẩm, cà phê. Vì vậy ông trông đợi bà Kovac đón khách thay mình, chứ không hề bảo hoãn buổi gặp.",
               "options": [
                 {
                   "label": "A",
-                  "en": "She is offering to move a training class.",
-                  "vi": "Bà ấy đề nghị dời một lớp đào tạo.",
-                  "trap": "over-inference",
-                  "why_vi": "Bà không đề nghị dời lớp nào; ông Reyes còn chuyển sang nhờ kê thêm ghế ở phòng nhỏ, nghĩa là phòng lớn vẫn không dùng được."
+                  "en": "He is asking her to postpone the visit.",
+                  "vi": "Ông ấy nhờ bà hoãn buổi gặp khách.",
+                  "trap": "opposite",
+                  "why_vi": "Buổi gặp vẫn diễn ra: ông chỉ dẫn cách chuẩn bị phòng và nói phần trình chiếu đợi ông tới, không nhờ hoãn."
                 },
                 {
                   "label": "B",
-                  "en": "She is pointing out a mistake in a schedule.",
-                  "vi": "Bà ấy chỉ ra một lỗi trong lịch.",
+                  "en": "He is asking her to send a car to the station.",
+                  "vi": "Ông ấy nhờ bà cử xe đến nhà ga.",
                   "trap": "not-mentioned",
-                  "why_vi": "Không ai nhắc đến một bảng lịch hay một lỗi nào; bà chỉ nêu lý do phòng không còn trống."
+                  "why_vi": "Không ai nhắc đến việc đón ông ở nhà ga; ông chỉ nói sẽ nhắn khi tàu chạy lại."
                 },
                 {
                   "label": "C",
-                  "en": "She is turning down a request for a room.",
-                  "vi": "Bà ấy từ chối một yêu cầu về phòng."
+                  "en": "He is expecting her to welcome the guests without him.",
+                  "vi": "Ông ấy trông đợi bà đón khách khi không có ông."
                 },
                 {
                   "label": "D",
-                  "en": "She is warning that a class could be noisy.",
-                  "vi": "Bà ấy cảnh báo một lớp học có thể gây ồn.",
+                  "en": "He is asking her to call the clients and apologize.",
+                  "vi": "Ông ấy nhờ bà gọi cho khách để xin lỗi.",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có chi tiết nào về tiếng ồn; bà chỉ nói phòng lớn đã có người đặt."
+                  "why_vi": "Ông không nhờ bà gọi điện hay xin lỗi ai; ông lo việc chuẩn bị phòng và đồ tiếp khách."
                 }
               ]
             },
@@ -483,10 +483,10 @@ window.BS_UNITS["p7-01"] = {
                 },
                 {
                   "label": "D",
-                  "en": "Call the visitors about a delay",
-                  "vi": "Gọi cho khách về việc chậm trễ",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không ai nhắc đến việc gọi điện cho khách."
+                  "en": "Print the slides for the visitors",
+                  "vi": "In các trang trình chiếu cho khách",
+                  "trap": "word-match",
+                  "why_vi": "Ông Reyes nói phần trình chiếu có thể đợi đến khi ông tới; không ai nhờ lễ tân in tài liệu."
                 }
               ]
             }
@@ -509,7 +509,7 @@ window.BS_UNITS["p7-01"] = {
                 ],
                 [
                   "From",
-                  "Marcus Delacroix, Events Coordinator, Larkspur Hotel"
+                  "Marcus Delacroix, Events Coordinator, Halverton Hotel"
                 ],
                 [
                   "Date",
@@ -522,16 +522,16 @@ window.BS_UNITS["p7-01"] = {
               ],
               "paras": [
                 {
-                  "en": "Dear Ms. Okoye, I am writing about the supplier seminar that your company has booked for Thursday, October 9. A water pipe in the Birch Room must be replaced that week, so we can no longer offer you that room. To make up for the change, we have reserved the Cedar Room for the same hours, from 8:30 A.M. to 3:00 P.M.",
-                  "vi": "Kính gửi bà Okoye, tôi viết thư về buổi hội thảo nhà cung cấp mà công ty bà đã đặt vào thứ Năm, ngày 9 tháng 10. Một đường ống nước trong phòng Birch phải được thay trong tuần đó, nên chúng tôi không thể cung cấp phòng ấy cho bà nữa. Để bù đắp cho sự thay đổi này, chúng tôi đã giữ phòng Cedar cho cùng khung giờ, từ 8 giờ 30 sáng đến 3 giờ chiều."
+                  "en": "Dear Ms. Okoye, I am writing about the supplier seminar that your company has booked for Thursday, October 9. A water pipe in the Birch Room must be replaced that week, so we can no longer offer you that room. Instead, we have reserved the Cedar Room for the same hours, from 8:30 A.M. to 3:00 P.M.",
+                  "vi": "Kính gửi bà Okoye, tôi viết thư về buổi hội thảo nhà cung cấp mà công ty bà đã đặt vào thứ Năm, ngày 9 tháng 10. Một đường ống nước trong phòng Birch phải được thay trong tuần đó, nên chúng tôi không thể cung cấp phòng ấy cho bà nữa. Thay vào đó, chúng tôi đã giữ phòng Cedar cho cùng khung giờ, từ 8 giờ 30 sáng đến 3 giờ chiều."
                 },
                 {
                   "en": "The Cedar Room seats sixty guests, and the price stays at the Birch Room rate of $520. The price includes a screen with a projector and wireless internet access for all of your guests.",
                   "vi": "Phòng Cedar có sức chứa sáu mươi khách, và giá vẫn giữ ở mức của phòng Birch là 520 đô la. Giá này đã gồm màn hình kèm máy chiếu và truy cập internet không dây cho tất cả khách của bà."
                 },
                 {
-                  "en": "Coffee and tea will be set out in the corridor at 10:00 A.M. at no extra charge. If you would like lunch for your guests, our kitchen offers a buffet for $18 per person, and I would need your choice by September 26. The deposit of $130 that you paid in August will be taken off your final bill.",
-                  "vi": "Cà phê và trà sẽ được bày ở hành lang lúc 10 giờ sáng, không tính thêm phí. Nếu bà muốn dùng bữa trưa cho khách, bếp của chúng tôi có tiệc buffet giá 18 đô la mỗi người, và tôi cần biết lựa chọn của bà trước ngày 26 tháng 9. Khoản đặt cọc 130 đô la bà đã trả hồi tháng 8 sẽ được trừ vào hóa đơn cuối cùng."
+                  "en": "Coffee and tea are also included and will be set out in the corridor at 10:00 A.M. If you would like lunch for your guests, our kitchen offers a buffet for $18 per person, and I would need your choice by September 26. The deposit of $130 that you paid in August will be taken off your final bill.",
+                  "vi": "Cà phê và trà cũng đã được tính trong giá và sẽ được bày ở hành lang lúc 10 giờ sáng. Nếu bà muốn dùng bữa trưa cho khách, bếp của chúng tôi có tiệc buffet giá 18 đô la mỗi người, và tôi cần biết lựa chọn của bà trước ngày 26 tháng 9. Khoản đặt cọc 130 đô la bà đã trả hồi tháng 8 sẽ được trừ vào hóa đơn cuối cùng."
                 }
               ]
             }
@@ -599,7 +599,7 @@ window.BS_UNITS["p7-01"] = {
                   2
                 ]
               ],
-              "explain_vi": "Màn hình với máy chiếu và internet không dây được nêu ở đoạn hai, cà phê và trà được nêu ở đoạn ba với cụm không tính thêm phí. Đồ ăn nhẹ buổi chiều không hề được nhắc đến.",
+              "explain_vi": "Màn hình với máy chiếu và internet không dây được nêu ở đoạn hai, cà phê và trà được nêu ở đoạn ba với cụm cũng đã được tính trong giá. Bữa trưa buffet là dịch vụ tính thêm 18 đô la mỗi người nên không nằm trong giá.",
               "options": [
                 {
                   "label": "A",
@@ -628,7 +628,7 @@ window.BS_UNITS["p7-01"] = {
                   "en": "Morning coffee and tea",
                   "vi": "Cà phê và trà buổi sáng",
                   "trap": "stated",
-                  "why_vi": "Đoạn ba nói cà phê và trà được bày lúc 10 giờ sáng, không tính thêm phí.",
+                  "why_vi": "Đoạn ba nói cà phê và trà cũng đã được tính trong giá.",
                   "ref": [
                     0,
                     2
@@ -636,8 +636,8 @@ window.BS_UNITS["p7-01"] = {
                 },
                 {
                   "label": "D",
-                  "en": "Afternoon snacks for guests",
-                  "vi": "Đồ ăn nhẹ buổi chiều cho khách"
+                  "en": "A buffet lunch for guests",
+                  "vi": "Bữa trưa buffet cho khách"
                 }
               ]
             }
@@ -739,7 +739,7 @@ window.BS_UNITS["p7-01"] = {
                 },
                 {
                   "label": "D",
-                  "en": "A printed members’ list",
+                  "en": "A printed members' list",
                   "vi": "Một danh sách hội viên in sẵn"
                 }
               ]
@@ -748,7 +748,7 @@ window.BS_UNITS["p7-01"] = {
               "id": "r1-s3-q2",
               "kind": "position",
               "at": 0,
-              "sentence": "Each of them costs $60 for the public.",
+              "sentence": "Each of them costs non-members $60.",
               "q": {
                 "en": "In which of the positions marked [1], [2], [3], and [4] does the following sentence best belong?",
                 "vi": "Câu sau thuộc về vị trí nào trong các vị trí [1], [2], [3] và [4]?"
@@ -909,27 +909,27 @@ window.BS_UNITS["p7-01"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "It can seat all the employees expected by April.",
-                  "vi": "Nó đủ chỗ cho tất cả nhân viên dự kiến có vào tháng 4."
+                  "en": "It has enough desks for the staff expected in April.",
+                  "vi": "Nó có đủ bàn cho số nhân viên dự kiến vào tháng 4."
                 },
                 {
                   "label": "B",
-                  "en": "It will still have empty desks after April.",
-                  "vi": "Nó vẫn còn bàn trống sau tháng 4.",
+                  "en": "It will still have several empty desks after April.",
+                  "vi": "Nó vẫn còn vài bàn trống sau tháng 4.",
                   "trap": "opposite",
                   "why_vi": "Sau khi có thêm 4 người, số nhân viên bằng đúng số bàn, nên không còn bàn trống."
                 },
                 {
                   "label": "C",
-                  "en": "It was used by another team before.",
+                  "en": "It was used by a different team in the past.",
                   "vi": "Trước đây nó do một nhóm khác sử dụng.",
                   "trap": "not-mentioned",
                   "why_vi": "Bản ghi nhớ không nói gì về người từng dùng không gian này."
                 },
                 {
                   "label": "D",
-                  "en": "It costs less to rent than the old space.",
-                  "vi": "Tiền thuê rẻ hơn không gian cũ.",
+                  "en": "It costs less to rent than the third-floor space.",
+                  "vi": "Tiền thuê rẻ hơn không gian ở tầng ba.",
                   "trap": "not-mentioned",
                   "why_vi": "Không có thông tin nào về tiền thuê."
                 }
@@ -949,7 +949,7 @@ window.BS_UNITS["p7-01"] = {
                   1
                 ]
               ],
-              "explain_vi": "Đoạn hai nói nhóm CNTT sẽ kết nối máy tính vào sáng sớm thứ Hai, ngày 3 tháng 3. Thứ Bảy là ngày chuyển, nên thứ Hai là ngày làm việc đầu tiên sau đó.",
+              "explain_vi": "Việc chuyển diễn ra thứ Bảy, ngày 1 tháng 3; đoạn hai nói nhóm CNTT kết nối máy tính vào sáng sớm thứ Hai, ngày 3 tháng 3, tức hai ngày sau.",
               "options": [
                 {
                   "label": "A",
@@ -967,8 +967,8 @@ window.BS_UNITS["p7-01"] = {
                 },
                 {
                   "label": "C",
-                  "en": "On the first work day after the move",
-                  "vi": "Vào ngày làm việc đầu tiên sau khi chuyển"
+                  "en": "Two days after the move is finished",
+                  "vi": "Hai ngày sau khi việc chuyển xong"
                 },
                 {
                   "label": "D",
@@ -1060,8 +1060,8 @@ window.BS_UNITS["p7-01"] = {
               ],
               "paras": [
                 {
-                  "en": "I manage a customer service team of nine people, and I would like to enroll all of them in your Client Communication Workshop this autumn. Our staff are on the telephone for most of the week, so the only days when the whole team is free are Tuesdays and Thursdays. We also need to finish the workshop before our quarterly review meeting on November 14.",
-                  "vi": "Tôi quản lý một nhóm chăm sóc khách hàng gồm chín người, và tôi muốn ghi danh tất cả họ vào Hội thảo Giao tiếp với Khách hàng của quý vị vào mùa thu này. Nhân viên của chúng tôi trực điện thoại gần như cả tuần, nên những ngày duy nhất cả nhóm rảnh là thứ Ba và thứ Năm. Chúng tôi cũng cần học xong hội thảo trước cuộc họp đánh giá hằng quý vào ngày 14 tháng 11."
+                  "en": "I manage a customer service team of nine people, and I would like to enroll all of them in your Client Communication Workshop this autumn. Our staff take telephone calls every afternoon, so we can only attend a workshop that is held in the morning. The team is busy with year-end reports until November 3, and we must finish the workshop before our quarterly review meeting on November 14.",
+                  "vi": "Tôi quản lý một nhóm chăm sóc khách hàng gồm chín người, và tôi muốn ghi danh tất cả họ vào Hội thảo Giao tiếp với Khách hàng của quý vị vào mùa thu này. Nhân viên của chúng tôi nghe điện thoại mỗi buổi chiều, nên chỉ có thể dự hội thảo diễn ra vào buổi sáng. Nhóm bận làm báo cáo cuối năm đến hết ngày 3 tháng 11, và chúng tôi phải học xong hội thảo trước cuộc họp đánh giá hằng quý vào ngày 14 tháng 11."
                 },
                 {
                   "en": "Could you send me the dates that are available and tell me how many seats remain for each one? Please also let me know the price. Our training budget has not been approved yet, so I would like to know whether you offer any special terms for groups.",
@@ -1092,12 +1092,12 @@ window.BS_UNITS["p7-01"] = {
               ],
               "paras": [
                 {
-                  "en": "Thank you for contacting us. The workshop runs from 9:00 A.M. to 1:00 P.M., and it is offered on the four dates shown in the table below. The seat numbers are updated every evening, so I recommend that you register soon.",
-                  "vi": "Cảm ơn ông đã liên hệ với chúng tôi. Hội thảo kéo dài từ 9 giờ sáng đến 1 giờ chiều và được tổ chức vào bốn ngày nêu trong bảng bên dưới. Số chỗ được cập nhật mỗi tối, nên tôi khuyên ông đăng ký sớm."
+                  "en": "Thank you for contacting us. The workshop is offered on the four dates shown in the table below. The seat numbers are updated every evening, so I recommend that you register soon. Each session takes place in our main training room, and it is taught by one of our senior instructors.",
+                  "vi": "Cảm ơn ông đã liên hệ với chúng tôi. Hội thảo được tổ chức vào bốn ngày nêu trong bảng bên dưới. Số chỗ được cập nhật mỗi tối, nên tôi khuyên ông đăng ký sớm. Mỗi buổi diễn ra tại phòng đào tạo chính của chúng tôi và do một giảng viên cao cấp của viện giảng dạy."
                 },
                 {
-                  "en": "Any group of eight or more people receives one free place, and the value of that place is taken off the invoice. Every participant will be given a printed workbook. Registration for each session closes one week before it begins.",
-                  "vi": "Mỗi nhóm từ tám người trở lên được tặng một suất miễn phí, và giá trị suất đó được trừ vào hóa đơn. Mỗi người tham gia sẽ được phát một cuốn sách bài tập in. Việc đăng ký cho mỗi buổi đóng lại một tuần trước khi buổi đó bắt đầu."
+                  "en": "Any group of eight or more people receives one free place, and its value is taken off the invoice. Every participant will be given a printed workbook. Registration for each session closes one week before it begins.",
+                  "vi": "Mỗi nhóm từ tám người trở lên được tặng một suất miễn phí, và giá trị của suất đó được trừ vào hóa đơn. Mỗi người tham gia sẽ được phát một cuốn sách bài tập in. Việc đăng ký cho mỗi buổi đóng lại một tuần trước khi buổi đó bắt đầu."
                 }
               ],
               "table": {
@@ -1105,6 +1105,7 @@ window.BS_UNITS["p7-01"] = {
                 "cols": [
                   "Session",
                   "Date",
+                  "Time",
                   "Seats left",
                   "Fee per person"
                 ],
@@ -1112,25 +1113,29 @@ window.BS_UNITS["p7-01"] = {
                   [
                     "Session 1",
                     "Thursday, October 9",
-                    "6",
+                    "9:00 A.M. - 1:00 P.M.",
+                    "15",
                     "$90"
                   ],
                   [
                     "Session 2",
-                    "Wednesday, October 22",
-                    "14",
+                    "Tuesday, October 28",
+                    "1:00 P.M. - 5:00 P.M.",
+                    "10",
                     "$80"
                   ],
                   [
                     "Session 3",
-                    "Tuesday, November 4",
-                    "11",
+                    "Thursday, November 6",
+                    "9:00 A.M. - 1:00 P.M.",
+                    "12",
                     "$95"
                   ],
                   [
                     "Session 4",
-                    "Thursday, November 20",
-                    "10",
+                    "Tuesday, November 18",
+                    "9:00 A.M. - 1:00 P.M.",
+                    "11",
                     "$110"
                   ]
                 ]
@@ -1205,21 +1210,21 @@ window.BS_UNITS["p7-01"] = {
                   0
                 ]
               ],
-              "explain_vi": "Thư thứ nhất cho biết nhóm có chín người, chỉ rảnh thứ Ba và thứ Năm, và phải học xong trước ngày 14 tháng 11. Trong bảng của thư thứ hai, chỉ buổi 3 (thứ Ba, 4 tháng 11, còn 11 chỗ) thỏa cả ba điều kiện.",
+              "explain_vi": "Thư thứ nhất cho biết nhóm chỉ học được vào buổi sáng, bận đến hết ngày 3 tháng 11 và phải học xong trước ngày 14 tháng 11. Trong bảng của thư thứ hai, chỉ buổi 3 (sáng thứ Năm, ngày 6 tháng 11) thỏa cả ba điều kiện.",
               "options": [
                 {
                   "label": "A",
                   "en": "Session 1",
                   "vi": "Buổi 1",
                   "trap": "wrong-detail",
-                  "why_vi": "Buổi này rơi vào thứ Năm nhưng chỉ còn 6 chỗ, không đủ cho chín người."
+                  "why_vi": "Buổi này diễn ra vào sáng ngày 9 tháng 10, khi nhóm còn bận làm báo cáo cuối năm."
                 },
                 {
                   "label": "B",
                   "en": "Session 2",
                   "vi": "Buổi 2",
                   "trap": "wrong-detail",
-                  "why_vi": "Buổi này rơi vào thứ Tư, không phải ngày cả nhóm rảnh."
+                  "why_vi": "Buổi này diễn ra vào buổi chiều, lúc nhóm phải nghe điện thoại, và cũng trước ngày 3 tháng 11."
                 },
                 {
                   "label": "C",
@@ -1231,56 +1236,56 @@ window.BS_UNITS["p7-01"] = {
                   "en": "Session 4",
                   "vi": "Buổi 4",
                   "trap": "wrong-detail",
-                  "why_vi": "Buổi này rơi vào thứ Năm và đủ chỗ, nhưng diễn ra sau ngày 14 tháng 11."
+                  "why_vi": "Buổi này diễn ra vào sáng ngày 18 tháng 11, sau cuộc họp đánh giá ngày 14 tháng 11."
                 }
               ]
             },
             {
               "id": "r2-s5-q3",
               "kind": "vocab",
-              "word": "runs",
+              "word": "place",
               "at": [
                 1,
-                0
+                1
               ],
               "q": {
-                "en": "In the second e-mail, the word \"runs\" in paragraph 1 is closest in meaning to",
-                "vi": "Trong thư thứ hai, từ \"runs\" ở đoạn 1 gần nghĩa nhất với"
+                "en": "In the second e-mail, the word \"place\" in paragraph 2 is closest in meaning to",
+                "vi": "Trong thư thứ hai, từ \"place\" ở đoạn 2 gần nghĩa nhất với"
               },
               "answer": "B",
               "evidence": [
                 [
                   1,
-                  0
+                  1
                 ]
               ],
-              "explain_vi": "'The workshop runs from 9:00 A.M. to 1:00 P.M.' nghĩa là hội thảo diễn ra và kéo dài trong khoảng giờ đó, tức 'lasts'.",
+              "explain_vi": "'One free place' trong một khóa học nghĩa là một chỗ học miễn phí, tức 'seat'.",
               "options": [
                 {
                   "label": "A",
-                  "en": "races",
-                  "vi": "chạy nhanh, đua",
+                  "en": "area",
+                  "vi": "khu vực",
                   "trap": "other-meaning",
-                  "why_vi": "Đây là nghĩa chạy (run a race), không hợp với một buổi hội thảo."
+                  "why_vi": "Đây là nghĩa nơi chốn (a quiet place), không hợp với việc một nhóm được tặng một suất."
                 },
                 {
                   "label": "B",
-                  "en": "lasts",
-                  "vi": "kéo dài"
+                  "en": "seat",
+                  "vi": "chỗ ngồi, suất học"
                 },
                 {
                   "label": "C",
-                  "en": "manages",
-                  "vi": "điều hành",
+                  "en": "rank",
+                  "vi": "thứ hạng",
                   "trap": "other-meaning",
-                  "why_vi": "Đây là nghĩa điều hành (run a team); chủ ngữ là buổi hội thảo, không phải người điều hành."
+                  "why_vi": "Đây là nghĩa thứ hạng (in first place), không hợp với một suất miễn phí trong khóa học."
                 },
                 {
                   "label": "D",
-                  "en": "flows",
-                  "vi": "chảy",
+                  "en": "home",
+                  "vi": "nhà",
                   "trap": "other-meaning",
-                  "why_vi": "Đây là nghĩa chảy (water runs), dùng cho chất lỏng chứ không cho một khung giờ."
+                  "why_vi": "Đây là nghĩa nhà ở (at my place), không hợp với ngữ cảnh khóa học."
                 }
               ]
             },
@@ -1289,8 +1294,8 @@ window.BS_UNITS["p7-01"] = {
               "kind": "inference",
               "cross": true,
               "q": {
-                "en": "About how much will Mr. Fontaine's team most likely pay in total?",
-                "vi": "Nhóm của ông Fontaine nhiều khả năng sẽ trả khoảng bao nhiêu tiền?"
+                "en": "How much will Mr. Fontaine's team most likely pay in total?",
+                "vi": "Nhóm của ông Fontaine nhiều khả năng sẽ trả tổng cộng bao nhiêu tiền?"
               },
               "answer": "A",
               "evidence": [
@@ -1316,24 +1321,24 @@ window.BS_UNITS["p7-01"] = {
                 },
                 {
                   "label": "B",
-                  "en": "$640",
-                  "vi": "640 đô la",
+                  "en": "$855",
+                  "vi": "855 đô la",
                   "trap": "wrong-detail",
-                  "why_vi": "Con số này tính theo phí của buổi 2 (80 đô la), buổi mà nhóm không thể dự."
+                  "why_vi": "Con số này tính cho cả chín người (9 x 95), bỏ qua suất miễn phí dành cho nhóm từ tám người trở lên."
                 },
                 {
                   "label": "C",
                   "en": "$880",
                   "vi": "880 đô la",
                   "trap": "wrong-detail",
-                  "why_vi": "Con số này tính theo phí của buổi 4 (110 đô la), buổi diễn ra sau hạn của nhóm."
+                  "why_vi": "Con số này tính theo phí của buổi 4 (110 đô la), buổi diễn ra sau cuộc họp đánh giá của nhóm."
                 },
                 {
                   "label": "D",
                   "en": "$720",
                   "vi": "720 đô la",
                   "trap": "wrong-detail",
-                  "why_vi": "Con số này tính theo phí của buổi 1 (90 đô la), buổi không đủ chỗ cho cả nhóm."
+                  "why_vi": "Con số này tính theo phí của buổi 1 (90 đô la), buổi diễn ra trước khi nhóm rảnh."
                 }
               ]
             },
@@ -1401,9 +1406,10 @@ window.BS_UNITS["p7-01"] = {
         {
           "id": "fill1-2",
           "before": "Please reply to this message",
-          "after": "Friday at the latest.",
+          "after": "the end of the week.",
           "answers": [
-            "by"
+            "by",
+            "before"
           ]
         },
         {
@@ -1411,7 +1417,8 @@ window.BS_UNITS["p7-01"] = {
           "before": "The brochure is",
           "after": "with this letter.",
           "answers": [
-            "enclosed"
+            "enclosed",
+            "included"
           ]
         },
         {
