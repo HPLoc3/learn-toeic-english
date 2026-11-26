@@ -468,10 +468,10 @@ window.BS_UNITS["p3-07"] = {
       "title": "Tallowfield Landscaping - Packages",
       "cols": ["Package","Visits","Price"],
       "rows": [
-       ["Plan A","2 visits","$180"],
-       ["Plan B","6 visits","$520"],
-       ["Plan C","3 visits","$260"],
-       ["Plan D","4 visits","$340"]
+       ["Fern Plan","2 visits","$180"],
+       ["Willow Plan","6 visits","$520"],
+       ["Laurel Plan","3 visits","$260"],
+       ["Poppy Plan","4 visits","$340"]
       ]
      },
      "v": {"status":"unverified","note":"Chưa được người kiểm và nghe thử."},
@@ -497,12 +497,12 @@ window.BS_UNITS["p3-07"] = {
        "q": {"en":"Look at the graphic. Which package will the woman most likely choose?","vi":"Nhìn hình. Người phụ nữ nhiều khả năng sẽ chọn gói nào?"},
        "answer": "D",
        "evidence": [2,4,5,6],
-       "explain_vi": "Cần ít nhất mỗi mùa một lần (từ 4 lần trở lên) và không quá 400 đô. Plan B đủ số lần nhưng giá 520 đô; chỉ Plan D (4 lần, 340 đô) thỏa cả hai.",
+       "explain_vi": "Cần ít nhất mỗi mùa một lần (từ 4 lần trở lên) và không quá 400 đô. Willow Plan đủ số lần nhưng giá 520 đô; chỉ Poppy Plan (4 lần, 340 đô) thỏa cả hai.",
        "options": [
-        {"label":"A","en":"Plan A","vi":"Gói A","trap":"changed-plan","why_vi":"Đây là phương án hai lần đến được chọn lúc đầu, không còn đáp ứng yêu cầu mới."},
-        {"label":"B","en":"Plan B","vi":"Gói B","trap":"wrong-detail","why_vi":"Nhiều lần đến nhất nhưng giá vượt mức bốn trăm đô."},
-        {"label":"C","en":"Plan C","vi":"Gói C","trap":"graphic-only","why_vi":"Không được bàn đến; chỉ ba lần đến nên không đủ mỗi mùa một lần."},
-        {"label":"D","en":"Plan D","vi":"Gói D"}
+        {"label":"A","en":"Fern Plan","vi":"Gói Fern","trap":"changed-plan","why_vi":"Đây là phương án hai lần đến được chọn lúc đầu, không còn đáp ứng yêu cầu mới."},
+        {"label":"B","en":"Willow Plan","vi":"Gói Willow","trap":"wrong-detail","why_vi":"Nhiều lần đến nhất nhưng giá vượt mức bốn trăm đô."},
+        {"label":"C","en":"Laurel Plan","vi":"Gói Laurel","trap":"graphic-only","why_vi":"Không được bàn đến; chỉ ba lần đến nên không đủ mỗi mùa một lần."},
+        {"label":"D","en":"Poppy Plan","vi":"Gói Poppy"}
        ]
       },
       {

@@ -797,22 +797,22 @@ window.BS_UNITS["p3-06"] = {
             ],
             "rows": [
               [
-                "Menu A",
+                "Nutmeg Menu",
                 "3 courses",
                 "$45"
               ],
               [
-                "Menu B",
+                "Thyme Menu",
                 "2 courses",
                 "$32"
               ],
               [
-                "Menu C",
+                "Ginger Menu",
                 "4 courses",
                 "$52"
               ],
               [
-                "Menu D",
+                "Parsley Menu",
                 "2 courses",
                 "$38"
               ]
@@ -919,21 +919,21 @@ window.BS_UNITS["p3-06"] = {
                 5,
                 7
               ],
-              "explain_vi": "Cần nhiều hơn hai món (Menu A và Menu C) và không quá năm mươi đô mỗi người (Menu A, B, D). Chỉ Menu A đạt cả hai, giá 45 đô.",
+              "explain_vi": "Cần nhiều hơn hai món (Nutmeg Menu và Ginger Menu) và không quá năm mươi đô mỗi người (Nutmeg Menu, Thyme Menu, Parsley Menu). Chỉ Nutmeg Menu đạt cả hai, giá 45 đô.",
               "options": [
                 {
                   "label": "A",
                   "en": "$32",
                   "vi": "32 đô",
                   "trap": "wrong-detail",
-                  "why_vi": "Menu B chỉ có hai món, trong khi khách cần nhiều hơn hai món."
+                  "why_vi": "Thyme Menu chỉ có hai món, trong khi khách cần nhiều hơn hai món."
                 },
                 {
                   "label": "B",
                   "en": "$38",
                   "vi": "38 đô",
                   "trap": "changed-plan",
-                  "why_vi": "Menu D là thực đơn hai món quản lý gợi ý và nằm trong mức bốn mươi đô dự tính lúc đầu; nhưng cô đã từ chối loại hai món, và mức tối đa sau đó là năm mươi đô."
+                  "why_vi": "Parsley Menu là thực đơn hai món quản lý gợi ý và nằm trong mức bốn mươi đô dự tính lúc đầu; nhưng cô đã từ chối loại hai món, và mức tối đa sau đó là năm mươi đô."
                 },
                 {
                   "label": "C",
@@ -945,7 +945,7 @@ window.BS_UNITS["p3-06"] = {
                   "en": "$52",
                   "vi": "52 đô",
                   "trap": "wrong-detail",
-                  "why_vi": "Menu C đủ số món nhưng vượt mức năm mươi đô."
+                  "why_vi": "Ginger Menu đủ số món nhưng vượt mức năm mươi đô."
                 }
               ]
             }

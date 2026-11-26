@@ -291,7 +291,7 @@ window.BS_UNITS["p3-05"] = {
       "type": "table",
       "title": "Ellery Contracting - Work Plan",
       "cols": ["Phase","Work","Duration"],
-      "rows": [["Phase A","Wall repairs","3 days"],["Phase B","Electrical wiring","6 days"],["Phase C","Interior painting","4 days"],["Phase D","Shelf fitting","5 days"]]
+      "rows": [["Phase 1","Wall repairs","3 days"],["Phase 2","Electrical wiring","6 days"],["Phase 3","Interior painting","4 days"],["Phase 4","Shelf fitting","5 days"]]
      },
      "v": {"status":"unverified","note":"Chưa được giải thử và nghe kiểm."},
      "questions": [
@@ -322,7 +322,7 @@ window.BS_UNITS["p3-05"] = {
        "q": {"en":"Look at the graphic. Which work will most likely be postponed?","vi":"Nhìn bảng. Hạng mục nào nhiều khả năng sẽ bị hoãn?"},
        "answer": "A",
        "evidence": [3,5],
-       "explain_vi": "Lorenzo nói hạng mục ngay sau phần sơn phải đợi. Theo bảng, ngay sau giai đoạn C (sơn) là giai đoạn D: lắp kệ.",
+       "explain_vi": "Lorenzo nói hạng mục ngay sau phần sơn phải đợi. Theo bảng, ngay sau giai đoạn 3 (sơn) là giai đoạn 4: lắp kệ.",
        "options": [
         {"label":"A","en":"Shelf fitting","vi":"Lắp kệ"},
         {"label":"B","en":"Electrical wiring","vi":"Đi dây điện","trap":"changed-plan","why_vi":"Bastian đề nghị lùi phần này nhưng Lorenzo bảo giữ nguyên."},
