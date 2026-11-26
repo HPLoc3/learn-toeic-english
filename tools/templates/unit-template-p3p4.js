@@ -50,9 +50,9 @@
  *      the script line to make it true.
  *   R5 Main/speaker: all four options consistent with the world sheet (four kinds of sale, four order changes, four scheduling purposes). If that makes the script
  *      ambiguous, replace with a detail question. Keep at least 2 speaker items per unit (unless the unit brief says otherwise).
- *   R6 Graphic: neutral titles (company name + generic noun; never a word that a question asks about, e.g. no "Weekend", "Evening", "Discounts"). Use the assigned
- *      key rows (each data row at most twice per unit). Key is not the max/min of the relevant column unless a distractor is equally salient. No other question in
- *      the set asks about the deciding variable.
+ *   R6 Graphic: neutral titles (company name + generic noun; never a word that a question asks about, e.g. no "Weekend", "Evening", "Discounts"). Key rows: the two
+ *      graphic items of a unit use different rows (use the assigned rows); across units each row is used about equally. Key is not the max/min of the relevant column
+ *      unless a distractor is equally salient. No other question in the set asks about the deciding variable.
  *   R7 Form: each option length within plus or minus 30% of the mean of the other three; all four options same shape; a number option is never a sum or difference
  *      of two others.
  *   R8 Uniqueness guard: after each rewrite, re-check that the script supports exactly one option. */

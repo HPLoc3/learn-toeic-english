@@ -82,6 +82,26 @@ try {
   r = run(["--root", tmp, "--names", nf]);
   check("nhan ten: bat ten sau Mr.; bo qua thu, thang, tu chung (Street)", r.code === 1 && /ten "Dunlap"/.test(r.out) && !/ten "(Mr|Fridays|Street|March|Our|Please)"/.test(r.out), r.out);
 
+  /* X3 chinh xac: ten cua danh sach unit khac, ke ca dau cau va ten trung tu thuong */
+  const pools = { "p2-03": ["Anders", "Bhatt", "Tidewell Freight"], "p2-04": ["Gallo", "Hoang", "Bill", "Page", "Stonemere Bank", "Cobbler Street"], "p2-05": ["Hill", "Marlow Packaging"] };
+  fs.writeFileSync(nf, JSON.stringify(pools));
+  const x3 = (lines03) => { const w = clean(); w[0].sentences.push(...lines03.map((t, i) => ({ id: "z" + i, en: t }))); w[1].sentences.push({ id: "b1", en: "The bill is on the first page near the hill." }); put(w); return run(["--root", tmp, "--names", nf]); };
+  r = x3(["Bill will join the call after lunch today."]);
+  check("X3: ten o dau cau trung tu thuong (Bill) cua unit khac -> loi", r.code === 1 && /LOI X3: p2-03: "Bill" \(z0\) thuoc danh sach ten cua p2-04/.test(r.out) && !/LOI X3: p2-04/.test(r.out), r.out);
+  r = x3(["Gallo asked for another copy of the form.", "Please see Mr. Hill about the damaged crate."]);
+  check("X3: ten dau cau va ten sau Mr. cua unit khac -> loi, chi mot dong cho moi ten", r.code === 1 && (r.out.match(/LOI X3: p2-03: "Gallo"/g) || []).length === 1 && (r.out.match(/LOI X3: p2-03: .*"Hill"/g) || []).length === 1, r.out);
+  r = x3(["The shipment goes to Stonemere Bank on Friday.", "Marlow sent the boxes this morning."]);
+  check("X3: ca cum to chuc va tu rieng biet cua cum -> loi (khong bao lai tung tu cua cum da bao)", r.code === 1 && /"Stonemere Bank"/.test(r.out) && !/p2-03: "Stonemere" /.test(r.out) && /"Marlow"/.test(r.out), r.out);
+  r = x3(["The bank closes early near the freight street.", "Bank staff will check the packaging on the page.", "Street parking is free for our freight drivers.", "Please bill the client for the page count."]);
+  check("X3: tu thuong (ke ca dau cau: Bank, Street) va 'bill'/'page' chu thuong khong bi gan", r.code === 0, r.out);
+  r = x3(["Tidewell Freight will call Anders about the pallets."]);
+  check("X3: ten trong danh sach cua chinh unit khong bi gan", r.code === 0, r.out);
+
+  /* X5 khoa "vi" */
+  u = clean(); u[0].sentences[0].vi = "Xem dòng 4 trong bài."; put(u); r = run(["--root", tmp]);
+  check("X5: khoa vi (khong chi *_vi) cung bi kiem", r.code === 1 && /LOI X5: p2-03: sentences\[s0\]\.vi nhac "dòng 4"/.test(r.out), r.out);
+  check("tach cau: A.M./P.M. cuoi cau van tach; truoc thu/thang thi khong", sentencesOf("We close at 5 P.M. The staff leave later.").length === 2 && sentencesOf("Come at 9 A.M. Monday, please.").length === 1 && sentencesOf("Prof. Han lives on St. John Road.").length === 1);
+
   /* X4, X5 */
   u = clean(); u[0].exercises = qrU("p2-03", ["ABCABCAB"]).exercises; u[1].sentences.push({ id: "s6", en: "x" }); u[1].focus.tips = [{ id: "t1", text_vi: "Xem dòng 2.", examples: [] }];
   put(u); r = run(["--root", tmp]);

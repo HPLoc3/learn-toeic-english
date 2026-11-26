@@ -57,7 +57,11 @@ try {
   let n = 0;
   const file = (d) => { const f = path.join(tmp, "s" + (++n) + ".json"); fs.writeFileSync(f, JSON.stringify(d)); return f; };
   const run = (args) => { const r = spawnSync(process.execPath, [path.join(REAL, "tools/blind-compare.mjs"), "--root", tmp].concat(args), { encoding: "utf8" }); return { code: r.status, out: r.stdout + r.stderr }; };
-  const two = (a, b, extra = []) => run(["--solver", "opus=" + file(a), "--solver", "sonnet=" + file(b)].concat(extra));
+  /* two(): neu khong neu --only/--manifest thi tu them --units = moi unit co trong hai tep. --allow-identical vi cac ca nay co y dung du lieu giong nhau (luat trung lap kiem rieng ben duoi). */
+  const two = (a, b, extra = []) => {
+    const need = ["--units", "--only", "--manifest"].some((x) => extra.includes(x)) ? [] : ["--units", [...new Set([...Object.keys(a), ...Object.keys(b)])].join(",")];
+    return run(["--solver", "opus=" + file(a), "--solver", "sonnet=" + file(b), "--allow-identical"].concat(need, extra));
+  };
   const cp = (x) => JSON.parse(JSON.stringify(x));
 
   const base = perfect([P3, P5]);
@@ -80,9 +84,18 @@ try {
   b = cp(base); b["p3-01"].full[q] = [kq.answer, 5, "Second answer: C also fits"];
   r = two(base, b);
   check("flag bat dau bang 'second': thoat 1, in SECOND", r.code === 1 && new RegExp("SECOND " + q + " sonnet: Second answer").test(r.out), r.out);
-  b = cp(base); b["p3-01"].full[q] = [kq.answer, 5, "typo in line 2"];
+  b = cp(base); b["p3-01"].full[q] = [kq.answer, 5, "note: typo in line 2"];
   r = two(base, b);
-  check("flag khac chi la ghi chu: thoat 0", r.code === 0 && /ghi chu: typo in line 2/.test(r.out), r.out);
+  check("flag 'note:' chi la ghi chu: in ra, thoat 0", r.code === 0 && r.out.includes(q + " sonnet note: typo in line 2"), r.out);
+  for (const [name, flag] of [["chuoi tu do", "typo in line 2"], ["'also B'", "also B could work"], ["'2nd answer'", "2nd answer: C"], ["chi khoang trang", " "], ["'Note' khong co dau hai cham", "note C fits"], ["khong phai chuoi", true], ["null", null]]) {
+    b = cp(base); b["p3-01"].full[q] = [kq.answer, 5, flag];
+    r = two(base, b);
+    check("flag khong hop le (" + name + "): thoat 2", r.code === 2 && /flag .* khong hop le/.test(r.out), r.out);
+  }
+  b = cp(base); b["p3-01"].full[q] = [kq.answer, 5];
+  check("muc thieu flag (2 phan tu): thoat 2", two(base, b).code === 2);
+  b = cp(base); b["p3-01"].noscript = { [q]: [kq.answer, 5, "maybe D"] };
+  check("flag khong hop le o pha B cung thoat 2", two(base, b).code === 2);
   b = cp(base); b["p3-01"].full[q] = [kq.options.find((o) => o.label === kq.answer).en, 5, ""];
   check("tra loi bang nguyen van dap an: dat", two(base, b).code === 0);
   b = cp(base); b["p3-01"].full[fillId] = ["not an accepted word", 5, ""];
@@ -94,9 +107,9 @@ try {
 
   /* nhieu tep cho mot nguoi giai: pha B luu truoc, pha A luu sau */
   const bOnly = { "p3-01": { noscript: addMode(perfect([P3]), P3, "noscript")["p3-01"].noscript } };
-  r = run(["--solver", "opus=" + file(bOnly) + "," + file(base), "--solver", "sonnet=" + file(base)]);
+  r = run(["--solver", "opus=" + file(bOnly) + "," + file(base), "--solver", "sonnet=" + file(base), "--units", "p3-01,p5-01"]);
   check("mot nguoi giai nhieu tep: gop lai", r.code === 0, r.out);
-  r = run(["--solver", "opus=" + file(base) + "," + file(base), "--solver", "sonnet=" + file(base)]);
+  r = run(["--solver", "opus=" + file(base) + "," + file(base), "--solver", "sonnet=" + file(base), "--units", "p3-01,p5-01"]);
   check("cung mot muc o hai tep cua mot nguoi: thoat 2", r.code === 2 && /xuat hien o hai tep/.test(r.out), r.out);
 
   /* ---------- pha B ---------- */
@@ -139,14 +152,67 @@ try {
   b = cp(base); b["p3-01"].full[q] = [wrongOf(kq), 5, ""];
   const other = Object.keys(base["p3-01"].full)[1];
   const delta = { "p3-01": { full: { [other]: base["p3-01"].full[other] } } };
-  check("--only: chi kiem cac cau neu ten", two(delta, cp(delta), ["--only", "p3-01/" + other]).code === 0 && two(delta, cp(delta), ["--only", "p3-01/" + other + ",p3-01/" + q]).code === 1 && two(delta, cp(delta)).code === 1);
+  check("--only: chi kiem cac cau neu ten", two(delta, cp(delta), ["--only", "p3-01/" + other]).code === 0 && two(delta, cp(delta), ["--only", "p3-01/" + other + ",p3-01/" + q]).code === 1 && two(delta, cp(delta), ["--units", "p3-01"]).code === 1);
   check("--only: cau khong ton tai -> thoat 2", two(delta, delta, ["--only", "p3-01/nope"]).code === 2);
   check("--units: chi unit da chon; unit khong ai tra loi thi khong dat", two(b, cp(base), ["--units", "p5-01"]).code === 0 && two(base, base, ["--units", "p7-01"]).code === 1);
   const jf = path.join(tmp, "out.json");
   r = two(b, cp(base), ["--json", jf]);
   const j = JSON.parse(fs.readFileSync(jf, "utf8"));
   check("--json: ghi ket qua tung unit", j.results.length === 2 && j.results.find((x) => x.unit === "p3-01").pass === false && j.results.find((x) => x.unit === "p3-01").mismatches[0].id === q);
-  check("tham so sai: 1 nguoi giai, tep hong, unit la, tham so la -> thoat 2", run(["--solver", "a=" + file(base)]).code === 2 && run(["--solver", "a=" + path.join(tmp, "khong-co.json"), "--solver", "b=" + file(base)]).code === 2 && two({ "p9-99": { full: {} } }, base).code === 2 && two(base, base, ["--bogus"]).code === 2);
+  check("tham so sai: 1 nguoi giai, tep hong, unit la, tham so la -> thoat 2", run(["--solver", "a=" + file(base), "--units", "p3-01"]).code === 2 && run(["--solver", "a=" + path.join(tmp, "khong-co.json"), "--solver", "b=" + file(base), "--units", "p3-01"]).code === 2 && two({ "p9-99": { full: {} } }, base, ["--units", "p9-99"]).code === 2 && two(base, base, ["--bogus"]).code === 2);
+
+  /* ---------- danh sach can kiem khong lay tu tep nguoi giai ---------- */
+  const f1 = file(base), f2 = file(base);
+  const S2 = (extra) => run(["--solver", "opus=" + f1, "--solver", "sonnet=" + f2, "--allow-identical"].concat(extra));
+  r = S2([]);
+  check("khong co --manifest/--units/--only: thoat 2", r.code === 2 && /Can dung MOT trong --manifest/.test(r.out), r.out);
+  check("hai nguon cung luc: thoat 2", S2(["--units", "p3-01", "--only", "p3-01/" + q]).code === 2);
+  r = S2(["--units", "p3-01,p5-01,p7-01"]);
+  check("--units: unit ca hai cung bo sot -> KHONG DAT", r.code === 1 && /KHONG DAT: p7-01\./.test(r.out) && /sonnet=THIEU/.test(r.out), r.out);
+  const exp = (args) => spawnSync(process.execPath, [path.join(REAL, "tools/export-blind.mjs"), "--root", tmp].concat(args), { encoding: "utf8" });
+  const od = path.join(tmp, "pk"), mf = path.join(od, "manifest.json");
+  const e1 = exp(["--batch", "p3-01,p5-01,p7-01", "--out", od]);
+  r = S2(["--manifest", mf]);
+  check("--manifest: unit ca hai cung bo sot (p7-01) -> KHONG DAT", e1.status === 0 && r.code === 1 && /KHONG DAT: p7-01\./.test(r.out) && /3 unit/.test(r.out), e1.stderr + r.out);
+  const full3 = perfect([P3, P5, P7]);
+  check("--manifest: tra loi du moi unit -> dat", two(full3, cp(full3), ["--manifest", mf]).code === 0);
+  const miss = cp(full3); delete miss["p5-01"].full[Object.keys(miss["p5-01"].full)[2]];
+  r = two(miss, cp(miss), ["--manifest", mf]);
+  check("--manifest: cau ca hai cung bo sot -> KHONG DAT", r.code === 1 && /KHONG DAT: p5-01\./.test(r.out) && /opus=THIEU  sonnet=THIEU/.test(r.out), r.out);
+  const man = JSON.parse(fs.readFileSync(mf, "utf8"));
+  const bad = (mut) => { const m = cp(man); mut(m); const f = path.join(tmp, "m" + (++n) + ".json"); fs.writeFileSync(f, JSON.stringify(m)); return two(full3, cp(full3), ["--manifest", f]).code; };
+  check("--manifest hong/cu: thieu id cau, id la, thieu goi pha A, units rong, tep khong co -> thoat 2", bad((m) => m.packets.find((x) => x.pass === "A").ids.pop()) === 2 && bad((m) => m.packets.find((x) => x.pass === "A").ids.push("zz")) === 2 && bad((m) => { m.packets = m.packets.filter((x) => !(x.unit === "p5-01" && x.pass === "A")); }) === 2 && bad((m) => { m.units = []; }) === 2 && two(full3, cp(full3), ["--manifest", path.join(tmp, "nope.json")]).code === 2);
+  check("--units: unit thua trong tep nguoi giai duoc ghi chu", /unit khong duoc yeu cau \(bo qua\): p7-01/.test(two(full3, cp(full3), ["--units", "p3-01,p5-01"]).out));
+
+  /* goi delta: export-blind --only -> blind-compare --manifest / --only */
+  const dd = path.join(tmp, "dl"), spec = "p3-01/" + other + ",p7-01/r2-s6-q2,p7-01/r1-s1-q2";
+  const e2 = exp(["--only", spec, "--out", dd]);
+  const dm = e2.status === 0 ? JSON.parse(fs.readFileSync(path.join(dd, "manifest.json"), "utf8")) : { packets: [] };
+  const ans = {};
+  for (const pk of dm.packets) { const u = pk.unit === "p3-01" ? P3 : P7, k = unitKey(u); ans[pk.unit] = { full: Object.fromEntries(pk.ids.map((i) => [i, [rightOf(k.get(i)), 5, ""]])) }; }
+  r = two(ans, cp(ans), ["--manifest", path.join(dd, "manifest.json")]);
+  check("delta: manifest cua export-blind --only dung voi blind-compare --manifest (dat, khong co pha B)", e2.status === 0 && r.code === 0 && /kiem delta: 6 cau/.test(r.out) && !/pha B/.test(r.out), e2.stderr + r.out);
+  check("delta: cung cau tra loi dung voi --only (cau da yeu cau)", two(ans, cp(ans), ["--only", spec]).code === 0);
+  const am = cp(ans); delete am["p7-01"].full["r1-s1-q4"];
+  check("delta: bo sot cau ngu canh co trong goi (cloze gui ca bo) -> --manifest KHONG DAT", two(am, cp(am), ["--manifest", path.join(dd, "manifest.json")]).code === 1);
+
+  /* ---------- hai nguoi giai trung nhau ---------- */
+  r = run(["--solver", "opus=" + f1, "--solver", "sonnet=" + f1, "--units", "p3-01,p5-01"]);
+  check("hai nguoi giai cung mot tep: thoat 2", r.code === 2 && /cung mot tep/.test(r.out), r.out);
+  check("cung mot tep: --allow-identical cung khong cho qua; duong dan viet khac van nhan ra", run(["--solver", "opus=" + f1, "--solver", "sonnet=" + path.join(path.dirname(f1), ".", path.basename(f1)), "--units", "p3-01", "--allow-identical"]).code === 2);
+  r = run(["--solver", "opus=" + f1, "--solver", "sonnet=" + f2, "--units", "p3-01,p5-01"]);
+  check("hai tep khac nhau nhung du lieu giong het: thoat 2", r.code === 2 && /giong het nhau/.test(r.out), r.out);
+  const reordered = {}; Object.keys(base).reverse().forEach((u) => { reordered[u] = base[u]; });
+  check("du lieu giong het nhung khac thu tu khoa: van thoat 2", run(["--solver", "opus=" + f1, "--solver", "sonnet=" + file(reordered), "--units", "p3-01"]).code === 2);
+  r = run(["--solver", "opus=" + f1, "--solver", "sonnet=" + f2, "--units", "p3-01,p5-01", "--allow-identical"]);
+  check("--allow-identical: chay duoc va in CHU Y", r.code === 0 && /CHU Y: --allow-identical/.test(r.out), r.out);
+  const diff1 = cp(base); diff1["p3-01"].full[q] = [kq.answer, 4, ""];
+  check("khac nhau du chi mot conf: khong bi coi la trung", run(["--solver", "opus=" + f1, "--solver", "sonnet=" + file(diff1), "--units", "p3-01,p5-01"]).code === 0);
+
+  /* mode lesson khong duoc cham */
+  const les = cp(base); les["p3-01"].lesson = { [q]: [kq.answer, 5, ""] }; const les2 = cp(les);
+  r = two(les, les2);
+  check("mode lesson: bo qua, khong gan co, co ghi chu", r.code === 0 && /'lesson' khong duoc cham/.test(r.out) && !/\[guess\]/.test(r.out), r.out);
 } finally {
   fs.rmSync(tmp, { recursive: true, force: true });
 }

@@ -6,7 +6,10 @@
 //   X3  (--names) ten rieng khong thuoc danh sach cua unit. Tep: { "<unitId>": ["Ho Ten", "Ten To Chuc", ...] }; chi kiem unit co trong tep.
 //   X4  (unit moi) chu cai dap an tuan hoan: co 8 cau lien tiep (cung loai, theo thu tu du lieu) lap theo chu ky <= 4;
 //       hoac thu tu dap an cua cac nhom (bo conv/read, bai qr/gram; nhom >= 3 cau) giong het: >= 3 nhom giong nhau, hoac tat ca (>= 2) nhom giong nhau.
-//   X5  chuoi *_vi nhac "Dong N" / "line N" (nguoi hoc khong thay so dong).
+//       Voi --names con kiem CHINH XAC: ten trong danh sach cua unit KHAC xuat hien (viet hoa, dung nguyen tu) trong chuoi tieng Anh cua unit, ke ca o dau cau
+//       va ke ca ten trung voi tu thuong (Bill, Hill, Page). Muc mot tu (ten nguoi): so nguyen tu. Muc nhieu tu (to chuc, dia diem): so ca cum; them tung tu
+//       rieng biet cua cum (khong phai tu thuong/tu chung, chi nam trong MOT danh sach). Ten co trong danh sach cua chinh unit thi bo qua.
+//   X5  chuoi "vi" hoac *_vi nhac "Dong N" / "line N" (nguoi hoc khong thay so dong).
 // Cach nhan ten rieng: tu viet hoa dung GIUA cau (hoac sau Mr./Ms./Mrs./Dr.) trong chuoi tieng Anh khong phai tieu de, khong nam trong danh sach tu thuong (STOP),
 // va KHONG xuat hien o dang chu thuong o bat ky dau trong cac unit. Tu viet tat (toan chu hoa) bi bo qua. Day la phep doan: dung --list-names de xem.
 import fs from "node:fs";
@@ -92,7 +95,12 @@ export function englishStrings(u) {
   return out;
 }
 
-const protect = (s) => s.replace(/\b(Mr|Mrs|Ms|Dr|St|Mt|No)\./g, "$1\u0001").replace(/\b([APap])\.([Mm])\./g, "$1\u0001$2\u0001").replace(/\b(e\.g|i\.e)\./g, (m) => m.replace(/\./g, "\u0001"));
+/* bao ve dau cham cua chu viet tat de khong cat cau o do. Dau cham CUOI cua A.M./P.M. van la het cau khi sau no la chu hoa (tru thu, thang). */
+const AFTER_TIME = "(?:Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day|January|February|March|April|May|June|July|August|September|October|November|December";
+const TIME = new RegExp("\\b([APap])\\.([Mm])\\.(?=(\\s+(?!(?:" + AFTER_TIME + ")\\b)\\p{Lu}|\\s*$)?)", "gu");
+const protect = (s) => s.replace(/\b(Mr|Mrs|Ms|Dr|St|Mt|No|Prof|Jr)\./g, "$1\u0001")
+  .replace(TIME, (m, a, b, end) => a + "\u0001" + b + (end !== undefined ? "." : "\u0001"))
+  .replace(/\b(e\.g|i\.e|U\.S)\./g, (m) => m.replace(/\./g, "\u0001"));
 export function sentencesOf(s) {
   return protect(s).split(/(?<=[.!?]["”']?)\s+/).map((t) => t.replace(/\u0001/g, ".").trim()).filter(Boolean);
 }
@@ -141,6 +149,42 @@ export function findNames(units) {
   return { byUnit, strings, common };
 }
 
+/* ---------- X3 chinh xac: ten cua unit khac ---------- */
+const wordsOf = (s) => (String(s).match(WORD) || []).map(bare);
+export function foreignNames(names, strings, common) {
+  const entries = new Map(); /* cum tu -> { words, owners } */
+  const tokenOwners = new Map();
+  for (const [id, pool] of Object.entries(names)) for (const raw of pool) {
+    const w = wordsOf(raw);
+    if (!w.length) continue;
+    const k = w.join(" ");
+    if (!entries.has(k)) entries.set(k, { words: w, owners: new Set() });
+    entries.get(k).owners.add(id);
+    w.forEach((t) => { const tk = t.toLowerCase(); if (!tokenOwners.has(tk)) tokenOwners.set(tk, new Set()); tokenOwners.get(tk).add(id); });
+  }
+  /* tu rieng biet cua cum nhieu tu: viet hoa, khong phai tu thuong/chung, chi thuoc mot danh sach */
+  const single = new Map();
+  for (const { words, owners } of entries.values()) {
+    if (words.length < 2) continue;
+    for (const t of words) if (nameShape(t) && !common(t) && tokenOwners.get(t.toLowerCase()).size === 1 && !entries.has(t)) single.set(t, owners);
+  }
+  const targets = [...[...entries].map(([k, v]) => [k, v.words, v.owners]), ...[...single].map(([k, o]) => [k, [k], o])];
+  const out = [];
+  for (const [id, list] of strings) {
+    const own = new Set([].concat(...(names[id] || []).map((n) => wordsOf(n).map((t) => t.toLowerCase()))));
+    const toks = list.map((x) => ({ where: x.where, s: x.s, w: wordsOf(x.s) }));
+    const hits = [];
+    for (const [k, words, owners] of targets) {
+      if (owners.has(id) || words.every((t) => own.has(t.toLowerCase()))) continue;
+      const at = toks.find((x) => x.w.some((_, i) => words.every((t, j) => x.w[i + j] === t))); /* phan biet hoa thuong: "bill" khong phai "Bill" */
+      if (at) hits.push({ id, name: k, words, owners: [...owners], where: at.where, text: at.s });
+    }
+    /* da bao ca cum thi khong bao lai tung tu cua cum */
+    hits.filter((h) => !(h.words.length === 1 && hits.some((o) => o.words.length > 1 && o.words.includes(h.name)))).forEach((h) => out.push(h));
+  }
+  return out;
+}
+
 /* ---------- X4 ---------- */
 export function periodicRun(seq) {
   for (let p = 1; p <= 4; p++) {
@@ -180,7 +224,7 @@ export function lineRefs(u) {
     if (typeof x === "string") { if (vi) { const m = /(?<!\p{L})(dòng|line)\s*(số\s*)?\d+/iu.exec(x.normalize("NFC")); if (m) out.push({ path: p, text: m[0] }); } return; }
     if (!x || typeof x !== "object") return;
     if (Array.isArray(x)) { x.forEach((y, i) => walk(y, p + "[" + (y && typeof y === "object" && y.id ? y.id : i) + "]", vi)); return; }
-    Object.keys(x).forEach((k) => walk(x[k], p ? p + "." + k : k, vi || /_vi$/.test(k)));
+    Object.keys(x).forEach((k) => walk(x[k], p ? p + "." + k : k, vi || k === "vi" || /_vi$/.test(k)));
   })(u, "", false);
   return out;
 }
@@ -190,7 +234,7 @@ export function checkCross(units, names = null) {
   const errors = [], baseline = [], notes = [];
   const old = (ids) => ids.every((i) => BASELINE_UNITS.includes(i));
   const put = (rule, bkey, ids, msg) => { (old(ids) && BASELINE[rule.toLowerCase()].includes(bkey) ? baseline : errors).push({ rule, key: bkey, units: ids, msg }); };
-  const { byUnit, strings } = findNames(units);
+  const { byUnit, strings, common } = findNames(units);
 
   const sent = new Map();
   for (const [id, list] of strings) for (const x of list) {
@@ -215,6 +259,14 @@ export function checkCross(units, names = null) {
       const toks = new Set();
       pool.forEach((n) => (String(n).match(WORD) || []).forEach((w) => toks.add(bare(w).toLowerCase())));
       for (const [k, v] of found) if (!toks.has(k)) errors.push({ rule: "X3", key: id + "|" + k, units: [id], msg: id + ": ten \"" + v.name + "\" (" + v.where + ") khong thuoc danh sach ten cua unit" });
+    }
+  }
+  if (names) {
+    for (const h of foreignNames(names, strings, common)) {
+      /* thay muc doan (X3 heuristic) cung ten bang thong bao chinh xac, neu co */
+      const keys = new Set(h.words.map((t) => h.id + "|" + t.toLowerCase()));
+      for (let i = errors.length - 1; i >= 0; i--) if (errors[i].rule === "X3" && keys.has(errors[i].key)) errors.splice(i, 1);
+      errors.push({ rule: "X3", key: h.id + "|" + h.name.toLowerCase(), units: [h.id], msg: h.id + ": \"" + h.name + "\" (" + h.where + ") thuoc danh sach ten cua " + h.owners.join(", ") + ": \"" + h.text.slice(0, 80) + "\"" });
     }
   }
   for (const u of units) {

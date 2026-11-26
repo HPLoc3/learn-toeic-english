@@ -5,6 +5,7 @@ import path from "node:path";
 import vm from "node:vm";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { violations, blindOnly, blind } from "./export-blind.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const REAL = path.resolve(here, "..");
@@ -103,15 +104,84 @@ try {
     const man = b.status === 0 ? JSON.parse(fs.readFileSync(path.join(out, "manifest.json"), "utf8")) : { packets: [] };
     const modesOf = (u) => man.packets.filter((p) => p.unit === u).map((p) => p.mode).join();
     check("batch: chạy được, chế độ theo loại unit", b.status === 0 && modesOf("p2-01") === "full,options,lesson" && modesOf("p3-01") === "full,noscript,lesson" && modesOf("p5-01") === "full,options,lesson" && modesOf("p7-04") === "full,noscript,p1,p2,p3,lesson", b.stdout + b.stderr);
-    check("batch: pha A ở passA/, pha B ở passB/; mọi file trong manifest tồn tại và không còn khóa bị cấm", man.packets.length === 15 && man.packets.every((p) => p.file === (p.mode === "full" ? "passA/" : "passB/") + p.unit + "." + p.mode + ".json" && (() => { const k = keysOf(JSON.parse(fs.readFileSync(path.join(out, p.file), "utf8"))); return FORBID.every((x) => !k.has(x)); })()));
+    check("batch: pha A ở passA/, pha B ở passB/, lesson ở reviewer/ (pass \"reviewer\"); mọi file trong manifest tồn tại và không còn khóa bị cấm", man.packets.length === 15 && !fs.readdirSync(path.join(out, "passB")).some((f) => /lesson/.test(f)) && fs.readdirSync(path.join(out, "reviewer")).length === 4 && man.packets.every((p) => p.pass === (p.mode === "full" ? "A" : p.mode === "lesson" ? "reviewer" : "B") && p.file === (p.mode === "full" ? "passA/" : p.mode === "lesson" ? "reviewer/" : "passB/") + p.unit + "." + p.mode + ".json" && (() => { const k = keysOf(JSON.parse(fs.readFileSync(path.join(out, p.file), "utf8"))); return FORBID.every((x) => !k.has(x)); })()));
     check("batch: manifest không chứa đáp án, số câu khớp", b.status === 0 && !keysOf(man).has("answer") && man.packets.find((p) => p.unit === "p2-01" && p.mode === "full").items === nQr + nFill(U2) && fs.readdirSync(path.join(out, "passA")).length === 4);
     check("batch: từ chối ghi đè thư mục cũ (mã 2)", run(["--batch", "p2-01", "--out", out]).status === 2);
     check("batch: thiếu --out, id trùng, unit không có, dùng chung --unit đều thoát mã 2 và không ghi gì", run(["--batch", "p2-01"]).status === 2 && run(["--batch", "p2-01,p2-01", "--out", out + "2"]).status === 2 && run(["--batch", "p2-01,p9-99", "--out", out + "3"]).status === 2 && run(["--batch", "p2-01", "--unit", "p2-01", "--out", out + "4"]).status === 2 && ["2", "3", "4"].every((n) => !fs.existsSync(out + n)));
-    const bad = JSON.parse(JSON.stringify(U3));
-    bad.id = "p3-09"; bad.exercises.filter((e) => e.type === "conv").flatMap((e) => e.sets).find((s) => s.graphic).graphic.answer = "A";
-    writeUnit(bad);
-    const sc = run(["--batch", "p2-01,p3-09", "--out", out + "5"]);
-    check("batch: tự kiểm phát hiện khóa bị cấm còn sót (vd answer trong graphic) -> mã 1, không ghi gì", sc.status === 1 && /graphic\.answer/.test(sc.stderr) && !fs.existsSync(out + "5"), sc.stderr);
+    /* ---------- truong la bi chen o MOI tang: khong duoc lot vao bat ky goi nao ---------- */
+    const SENT = "LEAKSENTINEL";
+    const NAMES = ["hint", "correct", "explain", "note", "solution", "key", "rationale", "answer_en", "zz_new_field"];
+    const inject = (x) => {
+      if (Array.isArray(x)) x.forEach(inject);
+      else if (x && typeof x === "object") { Object.values(x).forEach(inject); NAMES.forEach((k) => { if (!(k in x)) x[k] = SENT + "-" + k; }); }
+    };
+    const MODES_ALL = ["full", "noscript", "options", "own-sentence", "p1", "p2", "p3", "fill", "lesson"];
+    for (const id of ["p2-01", "p3-01", "p5-01", "p7-04"]) {
+      const clean = unitOf(path.join(tmp, "data/" + id + ".js"), id), dirty = JSON.parse(JSON.stringify(clean));
+      inject(dirty); dirty.id = id;
+      const leaks = [], diffs = [];
+      for (const m of MODES_ALL) {
+        const p = blind(dirty, m);
+        if (JSON.stringify(p).includes(SENT)) leaks.push(m);
+        if (JSON.stringify(p) !== JSON.stringify(blind(clean, m))) diffs.push(m);
+        if (violations(p).length) leaks.push(m + ":" + violations(p)[0]);
+      }
+      check(id + ": chen truong la (" + NAMES.join(", ") + ") vao moi doi tuong -> moi goi giong het goi goc, khong lot", leaks.length === 0 && diffs.length === 0, leaks.join() + " / " + diffs.join());
+    }
+    {
+      const dirty = unitOf(path.join(tmp, "data/p7-04.js"), "p7-04"); inject(dirty); dirty.id = "p7-08"; writeUnit(dirty);
+      const o = out + "inj", rr = run(["--batch", "p7-08", "--out", o]);
+      const files = rr.status === 0 ? [].concat(...["passA", "passB"].map((d) => fs.readdirSync(path.join(o, d)).map((f) => fs.readFileSync(path.join(o, d, f), "utf8")))) : [];
+      check("batch voi du lieu bi chen truong la: moi tep passA/passB sach", files.length === 5 && files.every((t) => !t.includes(SENT)), rr.stderr);
+    }
+    /* tu kiem: goi bi sua tay (truong ngoai danh sach, khoa cam, sai kieu) bi violations() bat */
+    {
+      const base = () => blind(unitOf(path.join(tmp, "data/p7-04.js"), "p7-04"), "full");
+      const bad = (mut) => { const p = base(); mut(p, p.exercises.find((e) => e.type === "read")); return violations(p).join(); };
+      check("violations(): goi sach -> rong", violations(base()).length === 0);
+      check("violations(): bat truong la o set, passage, paras, question, option, packet va khoa cam", /sets\[0\]\.hint/.test(bad((p, r) => { r.sets[0].hint = 1; })) && /passages\[0\]\.correct/.test(bad((p, r) => { r.sets[0].passages[0].correct = 1; })) && /paras\[0\]\.vi/.test(bad((p, r) => { r.sets[0].passages[0].paras[0].vi = "x"; })) && /questions\[0\]\.explain/.test(bad((p, r) => { r.sets[0].questions[0].explain = "x"; })) && /options\[0\]\.note/.test(bad((p, r) => { r.sets[0].questions[0].options[0].note = "x"; })) && /\.solution/.test(bad((p) => { p.solution = 1; })) && /answer/.test(bad((p, r) => { r.sets[0].questions[0].answer = "A"; })) && /options\[0\]\.en/.test(bad((p, r) => { r.sets[0].questions[0].options[0].en = { x: 1 }; })));
+    }
+    /* gia tri smuggle: truong duoc phep nhung la doi tuong -> ma 1, khong ghi gi */
+    {
+      const bad = JSON.parse(JSON.stringify(U3));
+      bad.id = "p3-09"; bad.exercises.find((e) => e.type === "conv").sets[0].questions[0].options[0].en = { text: "x", correct: true };
+      writeUnit(bad);
+      const sc = run(["--batch", "p2-01,p3-09", "--out", out + "5"]);
+      const sg = run(["--unit", "p3-09", "--mode", "full"]);
+      check("tu kiem: gia tri sai kieu trong truong cho phep -> ma 1, khong ghi/in gi (batch va --unit)", sc.status === 1 && /TU KIEM THAT BAI/.test(sc.stderr) && !fs.existsSync(out + "5") && sg.status === 1 && sg.stdout === "", sc.stderr + sg.stderr);
+    }
+    /* own-sentence: khong cat cau o chu viet tat */
+    {
+      const u = unitOf(path.join(tmp, "data/p7-01.js"), "p7-01");
+      const cz = u.exercises.filter((e) => e.type === "read").flatMap((e) => e.sets).find((s) => s.kind === "cloze");
+      cz.passages[0].paras = [{ en: "The desk closes at 4 P.M. Mr. Day and Dr. Ng will {1} the room at 9 A.M. Monday for Ms. Lee. We open at 8 a.m. every day and {2} at noon.", vi: "x" }, { en: "Prof. Han met us on St. John Road to {3} it. {4}", vi: "y" }];
+      const p = blind(u, "own-sentence").exercises.filter((e) => e.type === "read").flatMap((e) => e.sets).find((s) => s.kind === "cloze");
+      const sn = p.questions.map((q) => q.sentence);
+      check("own-sentence: giu nguyen cau co Mr./Dr./Ms./Prof./St./A.M. (P.M. o cuoi cau van la het cau)", sn[0] === "Mr. Day and Dr. Ng will ------ the room at 9 A.M. Monday for Ms. Lee." && sn[1] === "We open at 8 a.m. every day and ------ at noon." && (p.questions[2].kind === "insert" || sn[2] === "Prof. Han met us on St. John Road to ------ it."), JSON.stringify(sn));
+    }
+
+    /* ---------- --only: goi delta ---------- */
+    {
+      const conv = U3.exercises.find((e) => e.type === "conv"), s0 = conv.sets[0], q0 = s0.questions[1].id;
+      const gSet = U3.exercises.filter((e) => e.type === "conv").flatMap((e) => e.sets).find((s) => s.graphic), gq = gSet.questions.find((q) => q.uses_graphic).id;
+      const fillIt = U3.exercises.find((e) => e.type === "fill").items[2].id;
+      const o = out + "only";
+      const rr = run(["--only", "p3-01/" + q0 + ",p3-01/" + gq + ",p3-01/" + fillIt + ",p2-01/qr1-03,p7-04/r2-s6-q2,p5-01/g1-02", "--out", o]);
+      const get = (id) => JSON.parse(fs.readFileSync(path.join(o, "passA/" + id + ".full.json"), "utf8"));
+      const m = rr.status === 0 ? JSON.parse(fs.readFileSync(path.join(o, "manifest.json"), "utf8")) : { packets: [] };
+      check("--only: chi pha A (khong passB/reviewer), manifest only:true, moi unit mot goi", rr.status === 0 && m.only === true && m.units.join() === "p3-01,p2-01,p7-04,p5-01" && m.packets.length === 4 && m.packets.every((x) => x.pass === "A") && !fs.existsSync(path.join(o, "passB")) && !fs.existsSync(path.join(o, "reviewer")), rr.stderr);
+      if (rr.status === 0) {
+        const c = get("p3-01"), cs = sets(c);
+        check("--only conv: chi cac doan co cau duoc chon, du loi thoai + hinh, chi cau duoc chon; bai dien chi cau duoc chon", cs.map((s) => s.id).sort().join() === [s0.id, gSet.id].sort().join() && cs.every((s) => s.lines.length >= 3 && s.questions.length === 1) && !!cs.find((s) => s.id === gSet.id).graphic && c.exercises.filter((e) => e.type === "fill").flatMap((e) => e.items).map((x) => x.id).join() === fillIt);
+        check("--only qr/gram: chi dung cau duoc chon, khong kem bai dien", gitems(get("p5-01")).map((x) => x.id).join() === "g1-02" && get("p5-01").exercises.length === 1 && get("p2-01").exercises.length === 1 && get("p2-01").exercises[0].items.map((x) => x.id).join() === "qr1-03");
+        const t = sets(get("p7-04"));
+        check("--only read: ca ba bai doc cua bo triple, chi cau duoc chon", t.length === 1 && t[0].passages.length === 3 && t[0].questions.map((x) => x.id).join() === "r2-s6-q2");
+        check("--only: khong con khoa bi cam; manifest ids khop goi", m.packets.every((x) => { const k = keysOf(get(x.unit)); return FORBID.every((f) => !k.has(f)); }) && m.packets.find((x) => x.unit === "p3-01").ids.slice().sort().join() === [q0, gq, fillIt].sort().join());
+      }
+      const cz = blindOnly(unitOf(path.join(tmp, "data/p7-01.js"), "p7-01"), ["r1-s1-q2"]);
+      check("--only cloze: gui ca bo 4 cau voi bai doc", sets(cz).length === 1 && sets(cz)[0].kind === "cloze" && sets(cz)[0].questions.length === 4 && sets(cz)[0].passages.length === 1);
+      check("--only sai: cau khong co, sai dang, trung, thieu --out, dung chung --batch, thu muc cu -> ma 2, khong ghi gi", run(["--only", "p3-01/nope", "--out", out + "o2"]).status === 2 && run(["--only", "p3-01", "--out", out + "o3"]).status === 2 && run(["--only", "p2-01/qr1-03,p2-01/qr1-03", "--out", out + "o4"]).status === 2 && run(["--only", "p2-01/qr1-03"]).status === 2 && run(["--only", "p2-01/qr1-03", "--batch", "p2-01", "--out", out + "o5"]).status === 2 && run(["--only", "p2-01/qr1-03", "--out", o]).status === 2 && ["o2", "o3", "o4", "o5"].every((x) => !fs.existsSync(out + x)));
+    }
   }
   {
     const rc = exp("p7-01", "full"), czq = sets(rc.j).find((s) => s.questions[0].blank).questions;
