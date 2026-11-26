@@ -417,21 +417,21 @@ window.BS_UNITS["p6-03"] = {
                   "en": "it",
                   "vi": "nó",
                   "trap": "wrong-reference",
-                  "why_vi": "'it' cần một danh từ số ít để thay thế, nhưng thứ dùng để cải tiến xe là 'fault reports' (số nhiều); không có danh từ số ít nào ở câu trước hợp nghĩa."
+                  "why_vi": "'it' cần một danh từ số ít để thay thế, nhưng thứ dùng để cải tiến xe là 'fault reports' (số nhiều); không có danh từ số ít nào ở câu trước hợp nghĩa. 'it' cũng không thể chỉ đợt thử nghiệm ở đoạn trước, vì câu 'In return…' nêu thứ Verity nhận được là các báo cáo."
                 },
                 {
                   "label": "B",
                   "en": "him",
                   "vi": "anh ấy",
                   "trap": "wrong-reference",
-                  "why_vi": "Bài không nhắc người đàn ông cụ thể nào để 'him' thay thế."
+                  "why_vi": "Người duy nhất ở số ít là người thợ cơ khí (không rõ giới tính), và các kỹ sư không 'dùng' người thợ để cải tiến xe; thứ được dùng là các báo cáo lỗi vừa nêu."
                 },
                 {
                   "label": "C",
                   "en": "her",
                   "vi": "cô ấy",
                   "trap": "wrong-reference",
-                  "why_vi": "Bài không nhắc người phụ nữ nào để 'her' thay thế."
+                  "why_vi": "Người duy nhất ở số ít là người thợ cơ khí (không rõ giới tính), và các kỹ sư không 'dùng' người thợ để cải tiến xe; thứ được dùng là các báo cáo lỗi vừa nêu."
                 },
                 {
                   "label": "D",
@@ -566,8 +566,8 @@ window.BS_UNITS["p6-03"] = {
                   "vi": "Từ ngày 1 tháng 4, hai sản phẩm của chúng tôi sẽ tăng giá sáu phần trăm: thùng carton vận chuyển và giấy gói kraft. Quý công ty có thể giữ giá hiện tại trong trọn một năm nếu ký hợp đồng cung ứng mười hai tháng chậm nhất vào ngày 15 tháng 3. Nếu không, giá cao hơn sẽ áp dụng cho mọi đơn hàng quý công ty đặt từ ngày 1 tháng 4."
                 },
                 {
-                  "en": "{3} products are made mainly from recycled fiber. The mill that supplies this material raised its rates twice last winter. {4}, we have been forced to change what we ask for them. Everything else on our list will stay at its present price. I would be glad to send you a copy of the agreement.",
-                  "vi": "Cả hai sản phẩm này đều được làm chủ yếu từ sợi tái chế. Nhà máy cung cấp nguyên liệu này đã tăng giá hai lần trong mùa đông vừa qua. Vì vậy, chúng tôi buộc phải thay đổi mức giá bán của chúng. Mọi mặt hàng khác trong danh sách của chúng tôi vẫn giữ nguyên giá. Tôi rất sẵn lòng gửi cho quý công ty một bản hợp đồng."
+                  "en": "{3} products are made mainly from recycled fiber. The mill that supplies this material raised its rates twice this winter. {4}, we have been forced to change what we ask for them. Everything else on our list will stay at its present price. I would be glad to send you a copy of the agreement.",
+                  "vi": "Cả hai sản phẩm này đều được làm chủ yếu từ sợi tái chế. Nhà máy cung cấp nguyên liệu này đã tăng giá hai lần trong mùa đông này. Vì vậy, chúng tôi buộc phải thay đổi mức giá bán của chúng. Mọi mặt hàng khác trong danh sách của chúng tôi vẫn giữ nguyên giá. Tôi rất sẵn lòng gửi cho quý công ty một bản hợp đồng."
                 }
               ]
             }
@@ -686,7 +686,7 @@ window.BS_UNITS["p6-03"] = {
                   "en": "Several",
                   "vi": "Một số",
                   "trap": "wrong-reference",
-                  "why_vi": "'Several' chỉ vài thứ không xác định, thường nhiều hơn hai, trong khi chỉ có đúng hai sản phẩm đổi giá."
+                  "why_vi": "Nếu chọn 'Several', 'them' sẽ là một số sản phẩm không rõ, thường nhiều hơn hai, bị đổi giá, trái với 'two of our products' và 'Everything else … present price'."
                 },
                 {
                   "label": "C",
@@ -707,7 +707,7 @@ window.BS_UNITS["p6-03"] = {
               "blank": 4,
               "kind": "connector",
               "ctx": true,
-              "clue": "The mill that supplies this material raised its rates twice last winter.",
+              "clue": "The mill that supplies this material raised its rates twice this winter.",
               "answer": "A",
               "evidence": [
                 [
@@ -953,7 +953,7 @@ window.BS_UNITS["p6-03"] = {
                   "en": "Riders who skip the questionnaire will lose the right to unlock a bike at any station.",
                   "vi": "Người dùng bỏ qua bảng câu hỏi sẽ mất quyền mở khóa xe ở mọi trạm.",
                   "trap": "not-mentioned",
-                  "why_vi": "Bài chỉ nói đề nghị người dùng điền bảng câu hỏi, không hề nhắc hình phạt nào cho người bỏ qua."
+                  "why_vi": "Bài chỉ nói đề nghị người dùng điền bảng câu hỏi, không hề nhắc hình phạt nào cho người bỏ qua. Bài chỉ nói 'will ask riders to fill in', tức là đề nghị tự nguyện; một hình phạt mất quyền mở khóa xe mâu thuẫn với ý đó."
                 }
               ]
             }
@@ -1187,24 +1187,28 @@ window.BS_UNITS["p6-03"] = {
       "items": [
         {
           "id": "fill1-1",
-          "before": "The lake path is longer than the road, (b...)",
-          "after": "most walkers prefer it.",
+          "before": "The lake path is longer than the road. (H...)",
+          "after": ", most walkers prefer it.",
           "answers": [
-            "but"
+            "however",
+            "However"
           ]
         },
         {
           "id": "fill1-2",
-          "before": "A storm damaged the theatre roof, (s...)",
-          "after": "tonight's show has moved to the school gym next door.",
+          "before": "A storm damaged the theater roof. (T...)",
+          "after": ", tonight's show has moved to the school hall next door.",
           "answers": [
-            "so"
+            "therefore",
+            "Therefore",
+            "Thus",
+            "thus"
           ]
         },
         {
           "id": "fill1-3",
-          "before": "The photo studio rents cameras by the day. It (a...)",
-          "after": "offers free lessons on how to use them.",
+          "before": "The bakery sells bread every morning. It (a...)",
+          "after": "offers soup at lunchtime.",
           "answers": [
             "also",
             "additionally"
@@ -1212,21 +1216,22 @@ window.BS_UNITS["p6-03"] = {
         },
         {
           "id": "fill1-4",
-          "before": "Wash the apples, cut them into thin slices, and (t...)",
-          "after": "spread the slices on a baking tray.",
+          "before": "First, wash the apples and cut them into thin slices. (A...)",
+          "after": ", spread the slices on a baking tray.",
           "answers": [
-            "then",
-            "thereafter"
+            "afterward",
+            "Afterward",
+            "Afterwards",
+            "afterwards"
           ]
         },
         {
           "id": "fill1-5",
-          "before": "Keep your pass with you at all times; (o...)",
-          "after": "the guard will not let you back in.",
+          "before": "Keep your pass with you at all times. (O...)",
+          "after": ", the guard will not let you back in.",
           "answers": [
             "otherwise",
-            "or",
-            "or else"
+            "Otherwise"
           ]
         }
       ]
