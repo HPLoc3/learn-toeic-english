@@ -279,8 +279,8 @@ window.BS_UNITS["p2-07"] = {
     },
     {
       "id": "p09",
-      "en": "How soon do you need an answer?",
-      "vi": "Bạn cần câu trả lời gấp đến mức nào?",
+      "en": "What date is your deadline for this?",
+      "vi": "Hạn chót của bạn cho việc này là ngày nào?",
       "group_vi": "Hỏi lại"
     },
     {
