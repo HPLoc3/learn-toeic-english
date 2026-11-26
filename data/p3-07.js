@@ -75,7 +75,7 @@ window.BS_UNITS["p3-07"] = {
   {"id":"p04","en":"Make that Wednesday, not Tuesday.","vi":"Sửa lại là thứ Tư, không phải thứ Ba.","group_vi":"Đính chính"},
   {"id":"p05","en":"Sorry, I misspoke just now.","vi":"Xin lỗi, lúc nãy tôi nói nhầm.","group_vi":"Đính chính"},
   {"id":"p06","en":"That was true until this morning.","vi":"Điều đó chỉ đúng đến sáng nay.","group_vi":"Đính chính"},
-  {"id":"p07","en":"I see it a little differently.","vi":"Tôi nhìn việc này hơi khác.","group_vi":"Nêu ý kiến khác"},
+  {"id":"p07","en":"My take on this isn't quite the same.","vi":"Cách tôi nhìn việc này không hoàn toàn giống vậy.","group_vi":"Nêu ý kiến khác"},
   {"id":"p08","en":"Which way are you leaning?","vi":"Bạn đang nghiêng về phía nào?","group_vi":"Nêu ý kiến khác"},
   {"id":"p09","en":"Would you rather trade shifts with me?","vi":"Bạn có muốn đổi ca với tôi không?","group_vi":"Chia việc"},
   {"id":"p10","en":"Leave the guest list to me.","vi":"Danh sách khách cứ để tôi lo.","group_vi":"Chia việc"}
