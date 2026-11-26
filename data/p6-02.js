@@ -365,7 +365,7 @@ window.BS_UNITS["p6-02"] = {
                 },
                 {
                   "en": "For your first month, your work partner will be Javier Edmund, a senior analyst on your team. He {3} you at the front desk. He has worked here for six years and can answer most everyday questions. Please write to me if you have any questions {4} these arrangements.",
-                  "vi": "Trong tháng đầu tiên, người đồng hành công việc của anh sẽ là Javier Edmund, một chuyên viên phân tích cấp cao trong nhóm của anh. Anh ấy sẽ đón anh ở quầy lễ tân. Anh ấy đã làm việc ở đây sáu năm và có thể trả lời hầu hết các câu hỏi hằng ngày. Xin hãy viết thư cho tôi nếu anh có thắc mắc gì về những sắp xếp này."
+                  "vi": "Trong tháng đầu tiên, người đồng nghiệp kèm cặp của anh sẽ là Javier Edmund, một chuyên viên phân tích cấp cao trong nhóm của anh. Anh ấy sẽ đón anh ở quầy lễ tân. Anh ấy đã làm việc ở đây sáu năm và có thể trả lời hầu hết các câu hỏi hằng ngày. Xin hãy viết thư cho tôi nếu anh có thắc mắc gì về những sắp xếp này."
                 }
               ]
             }
@@ -677,7 +677,7 @@ window.BS_UNITS["p6-02"] = {
                   "en": "its",
                   "vi": "của nó",
                   "trap": "wrong-reference",
-                  "why_vi": "Các ván cờ thuộc về những người chơi (số nhiều); không có chủ thể số ít nào ở câu trước chơi cờ."
+                  "why_vi": "Các ván cờ thuộc về những người chơi (số nhiều); không có chủ thể số ít nào ở câu trước chơi cờ. Thư viện không tổ chức các ván cờ; câu trước nói chính những người chơi cờ tự gặp nhau, nên ván cờ là của họ."
                 },
                 {
                   "label": "B",
@@ -757,7 +757,7 @@ window.BS_UNITS["p6-02"] = {
               "paras": [
                 {
                   "en": "Tired of working at your kitchen table? Cobalt Works offers shared work space on Chandler Street for freelancers and small teams. Members can {1} advantage of fast internet, free printing, and a staffed front desk from 7:00 A.M. to 9:00 P.M. on weekdays.",
-                  "vi": "Bạn chán làm việc ở bàn bếp? Cobalt Works cung cấp không gian làm việc chung trên phố Chandler Street cho người làm nghề tự do và các nhóm nhỏ. Thành viên có thể tận dụng mạng internet tốc độ cao, in ấn miễn phí và quầy lễ tân có nhân viên trực từ 7 giờ sáng đến 9 giờ tối vào các ngày trong tuần."
+                  "vi": "Bạn chán làm việc ở bàn bếp? Cobalt Works cung cấp không gian làm việc chung trên phố Chandler cho người làm nghề tự do và các nhóm nhỏ. Thành viên có thể tận dụng mạng internet tốc độ cao, in ấn miễn phí và quầy lễ tân có nhân viên trực từ 7 giờ sáng đến 9 giờ tối vào các ngày trong tuần."
                 },
                 {
                   "en": "On the first floor, shared tables give people room to chat, make phone calls, and trade ideas. {2}, the entire second floor is a quiet area where talking is not allowed. Lockers are available {3} members who want to leave equipment overnight.",
@@ -765,7 +765,7 @@ window.BS_UNITS["p6-02"] = {
                 },
                 {
                   "en": "New users can try Cobalt Works free for three days, as long as they sign up before June 30. {4}",
-                  "vi": "Người dùng mới được dùng thử Cobalt Works miễn phí trong ba ngày, miễn là đăng ký trước ngày 30 tháng 6. Để đăng ký, hãy ghé quầy lễ tân trên phố Chandler Street và mang theo giấy tờ tùy thân có ảnh."
+                  "vi": "Người dùng mới được dùng thử Cobalt Works miễn phí trong ba ngày, miễn là đăng ký trước ngày 30 tháng 6. Để đăng ký, hãy ghé quầy lễ tân trên phố Chandler và mang theo giấy tờ tùy thân có ảnh."
                 }
               ]
             }
@@ -921,7 +921,7 @@ window.BS_UNITS["p6-02"] = {
                 {
                   "label": "B",
                   "en": "To use your parking pass, show it at the front desk on Chandler Street.",
-                  "vi": "Để dùng thẻ gửi xe, hãy xuất trình thẻ tại quầy lễ tân trên phố Chandler Street.",
+                  "vi": "Để dùng thẻ gửi xe, hãy xuất trình thẻ tại quầy lễ tân trên phố Chandler.",
                   "trap": "not-mentioned",
                   "why_vi": "Quảng cáo chưa hề nhắc đến thẻ gửi xe nào."
                 },
@@ -935,7 +935,7 @@ window.BS_UNITS["p6-02"] = {
                 {
                   "label": "D",
                   "en": "To sign up, stop by the front desk on Chandler Street with a photo ID.",
-                  "vi": "Để đăng ký, hãy ghé quầy lễ tân trên phố Chandler Street và mang theo giấy tờ tùy thân có ảnh."
+                  "vi": "Để đăng ký, hãy ghé quầy lễ tân trên phố Chandler và mang theo giấy tờ tùy thân có ảnh."
                 }
               ]
             }
@@ -1184,7 +1184,7 @@ window.BS_UNITS["p6-02"] = {
                 },
                 {
                   "en": "You may leave most equipment at our Penrose Avenue counter on any day between 8:00 A.M. and 6:00 P.M. {2} A staff member must switch each one on while you wait and then sign your receipt.",
-                  "vi": "Bạn có thể gửi trả phần lớn thiết bị tại quầy của chúng tôi trên đại lộ Penrose Avenue vào bất kỳ ngày nào, từ 8 giờ sáng đến 6 giờ chiều. Tuy nhiên, máy chiếu phải được chính bạn mang đến trả vào ngày trong tuần, trước 4 giờ chiều. Nhân viên phải bật thử từng máy trong lúc bạn chờ, rồi ký vào biên nhận của bạn."
+                  "vi": "Bạn có thể gửi trả phần lớn thiết bị tại quầy của chúng tôi trên đại lộ Penrose vào bất kỳ ngày nào, từ 8 giờ sáng đến 6 giờ chiều. Tuy nhiên, máy chiếu phải được chính bạn mang đến trả vào ngày trong tuần, trước 4 giờ chiều. Nhân viên phải bật thử từng máy trong lúc bạn chờ, rồi ký vào biên nhận của bạn."
                 },
                 {
                   "en": "On September 15, we will open a second return counter at Wickford Center. You {3} microphones and tripods there as well. If any item was damaged during your rental, please complete a damage report and {4} a photo of the problem.",
@@ -1258,7 +1258,7 @@ window.BS_UNITS["p6-02"] = {
                 {
                   "label": "B",
                   "en": "However, our Penrose Avenue counter does not take back equipment on any day.",
-                  "vi": "Tuy nhiên, quầy trên đại lộ Penrose Avenue không nhận lại thiết bị vào bất kỳ ngày nào.",
+                  "vi": "Tuy nhiên, quầy trên đại lộ Penrose không nhận lại thiết bị vào bất kỳ ngày nào.",
                   "trap": "opposite",
                   "why_vi": "Phủ định hoàn toàn câu trước, vốn nói có thể trả phần lớn thiết bị tại quầy vào mọi ngày."
                 },
@@ -1372,7 +1372,7 @@ window.BS_UNITS["p6-02"] = {
       "v": {
         "status": "unverified"
       },
-      "instruction_vi": "Điền một từ quy chiếu (this, these, its, them hoặc the) dựa vào ngữ cảnh đứng trước.",
+      "instruction_vi": "Điền một từ quy chiếu (ví dụ: this, these, its, them, the) dựa vào ngữ cảnh đứng trước.",
       "items": [
         {
           "id": "fill1-1",
