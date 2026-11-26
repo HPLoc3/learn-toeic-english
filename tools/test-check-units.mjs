@@ -548,5 +548,65 @@ try {
   }
 }
 
+
+/* ---------- Part 3/4: canh bao "doan duoc" (xq, intent-ctx, idiom, len, grow, sum) ---------- */
+{
+  const wtmp = fs.mkdtempSync(path.join(os.tmpdir(), "cu-cw-"));
+  try {
+    fs.mkdirSync(path.join(wtmp, "data"));
+    fs.writeFileSync(path.join(wtmp, "data/catalog.js"), 'window.BS_CATALOG={parts:[{id:"p3",title:"Part 3",units:[{id:"p3-01",no:12,title_vi:"Hội thoại nơi công sở",available:true}]}]};');
+    const load = (code) => { const w = {}; w.window = w; vm.runInNewContext(code, w); return JSON.parse(JSON.stringify(w.BS_UNITS["p3-01"])); };
+    const runW = (u, extra) => {
+      fs.writeFileSync(path.join(wtmp, "data/p3-01.js"), "window.BS_UNITS = window.BS_UNITS || {};\nwindow.BS_UNITS['p3-01'] = " + JSON.stringify(u) + ";\n");
+      const r = spawnSync(process.execPath, [path.join(REAL, "tools/check-units.mjs"), "--root", wtmp].concat(extra || []), { encoding: "utf8" });
+      return { out: (r.stdout || "") + (r.stderr || ""), code: r.status };
+    };
+    const base = () => load(fs.readFileSync(path.join(REAL, "tools/fixtures/conv-pass.js"), "utf8"));
+    const SS = (u, i) => u.exercises.filter((e) => e.type === "conv")[i || 0].sets[0];
+    const fires = (mut, rule, qid, extra) => { const u = base(); mut(u); const r = runW(u, extra); return r.code === 0 && new RegExp("CẢNH BÁO: \\[p3-01\\] " + qid + ": \\[" + rule + "\\]").test(r.out); };
+    const rules = /\]|: \[(xq|intent-ctx|idiom|len|grow|sum)\]|\[len-unit\]/;
+    let r = runW(base(), ["--release"]);
+    check("conv-pass: không phát sinh cảnh báo doan duoc nào (xq, intent-ctx, idiom, len, grow, sum, len-unit)", r.code === 0 && !/: \[(xq|intent-ctx|idiom|len|grow|sum)\]|\[len-unit\]/.test(r.out), r.out);
+
+    check("xq: từ chỉ có ở đáp án đúng trùng cột/tiêu đề của hình", fires((u) => { SS(u).graphic.cols[0] = "People"; }, "xq", "c1-s1-q1"));
+    check("xq: trùng đề của câu khác trong đoạn", fires((u) => { SS(u).questions[2].q.en = "Which people will the man contact?"; }, "xq", "c1-s1-q1"));
+    check("xq: trùng đáp án đúng của câu khác", fires((u) => { SS(u).questions[2].options[0].en = "Tell the people about it."; }, "xq", "c1-s1-q1"));
+    check("xq: trùng với 2 đáp án của một câu khác", fires((u) => { const o = SS(u).questions[2].options; o[1].en = "Invite more people."; o[2].en = "Call the people back."; }, "xq", "c1-s1-q1"));
+    check("xq: một đáp án của câu khác thôi thì không cảnh báo", (() => { const u = base(); SS(u).questions[2].options[1].en = "Invite more people."; const o = runW(u); return !/c1-s1-q1: \[xq\]/.test(o.out); })());
+    check("xq: từ chung cả với đáp án sai của chính câu đó thì không tính", (() => { const u = base(); SS(u).graphic.cols[0] = "Room"; const o = runW(u); return !/\[xq\]/.test(o.out); })());
+
+    check("intent-ctx: evidence chỉ có dòng chứa quote", fires((u) => { SS(u, 1).questions[1].evidence = [4]; }, "intent-ctx", "c2-s1-q2"));
+    check("intent-ctx: evidence có thêm dòng ngữ cảnh thì không cảnh báo", !/\[intent-ctx\]/.test(runW(base()).out));
+    check("idiom: quote chứa thành ngữ trong danh sách", fires((u) => { const s = SS(u, 1); s.lines[4].en = "It's no trouble. I'll squeeze in the walk after the first lesson."; s.questions[1].quote = "squeeze in"; s.questions[1].q.en = 'What does Priya mean when she says, "squeeze in"?'; }, "idiom", "c2-s1-q2"));
+    check("len: đáp án đúng dài hơn 1.3 lần trung bình", fires((u) => { SS(u).questions[0].options[1].en = "More people than expected will attend the client meeting on Tuesday."; }, "len", "c1-s1-q1"));
+    check("len: đáp án đúng ngắn hơn 0.7 lần trung bình", fires((u) => { SS(u).questions[0].options[1].en = "Tiny."; }, "len", "c1-s1-q1"));
+    check("len-unit: đáp án đúng là dài nhất ở quá nhiều câu", (() => { const u = base(); u.exercises.filter((e) => e.type === "conv").forEach((e) => e.sets.forEach((s) => s.questions.forEach((q) => { q.options.find((o) => o.label === q.answer).en += " in the end"; }))); const o = runW(u); return o.code === 0 && /\[len-unit\] đáp án đúng là đáp án dài nhất ở [3-6]\/6/.test(o.out); })());
+    check("grow: hàng đáp án giữ giá trị lớn nhất duy nhất của cột số", fires((u) => { SS(u).graphic.rows[1][1] = "8"; }, "grow", "c1-s1-q2"));
+    check("grow: hàng đáp án giữ giá trị nhỏ nhất duy nhất của cột số", fires((u) => { SS(u).graphic.rows[2][1] = "1"; }, "grow", "c1-s1-q2"));
+    check("grow: hai câu hình cùng đáp án ở cùng một hàng", fires((u) => { const s = JSON.parse(JSON.stringify(SS(u))); s.id = "c1-s9"; s.questions.forEach((q, k) => { q.id = "c1-s9-q" + (k + 1); }); u.exercises[0].sets.push(s); }, "grow", "c1-s9-q2"));
+    check("sum: một đáp án số bằng tổng của hai đáp án khác", fires((u) => { const q = SS(u).questions[0]; q.q.en = "How many people will attend?"; ["4", "6", "10", "12"].forEach((n, i) => { q.options[i].en = n; q.options[i].vi = n; }); }, "sum", "c1-s1-q1"));
+    check("sum: một đáp án số bằng hiệu của hai đáp án khác", fires((u) => { const q = SS(u).questions[0]; q.q.en = "How many people will attend?"; ["3", "6", "9", "20"].forEach((n, i) => { q.options[i].en = n; q.options[i].vi = n; }); }, "sum", "c1-s1-q1"));
+    check("sum: bốn số không có quan hệ tổng/hiệu thì không cảnh báo", (() => { const u = base(); const q = SS(u).questions[0]; ["3", "6", "8", "20"].forEach((n, i) => { q.options[i].en = n; q.options[i].vi = n; }); return !/\[sum\]/.test(runW(u).out); })());
+
+    /* ngoai le va --release: van chi la canh bao */
+    const mut = (u) => { SS(u).questions[2].q.en = "Which people will the man contact?"; };
+    const u1 = base(); mut(u1);
+    process.env.CU_LEAK_ALLOW = "p3-01/c1-s1-q1|xq";
+    const a1 = runW(u1); const a2 = runW(u1, ["--release"]); delete process.env.CU_LEAK_ALLOW;
+    check("ngoại lệ <unit>/<id câu>|xq bỏ qua cảnh báo xq của đúng câu đó", !/c1-s1-q1: \[xq\]/.test(a1.out), a1.out);
+    check("--release bỏ qua biến CU_LEAK_ALLOW: vẫn in cảnh báo", /c1-s1-q1: \[xq\]/.test(a2.out));
+    const a3 = runW(u1, ["--release"]);
+    check("--release: cảnh báo doan duoc KHÔNG leo thang (exit 0, vẫn là CẢNH BÁO, không LỖI)", a3.code === 0 && /CẢNH BÁO.*c1-s1-q1: \[xq\]/.test(a3.out) && !/LỖI.*\[xq\]/.test(a3.out), a3.out);
+    process.env.CU_LEAK_ALLOW = "p3-01/c1-s1-q1|len";
+    const u2 = base(); SS(u2).questions[0].options[1].en = "Tiny.";
+    const a4 = runW(u2); delete process.env.CU_LEAK_ALLOW;
+    check("ngoại lệ đúng luật mới bỏ qua: |len cho câu len; xq vẫn in nếu không khai", !/c1-s1-q1: \[len\]/.test(a4.out));
+    const fr = runW(load(fs.readFileSync(path.join(REAL, "tools/fixtures/conv-fail.js"), "utf8")));
+    check("conv-fail: có in cảnh báo grow (cùng hàng) và len (đáp án dài/ngắn)", /\[grow\]/.test(fr.out) && /\[len\]/.test(fr.out), fr.out.slice(0, 200));
+  } finally {
+    fs.rmSync(wtmp, { recursive: true, force: true });
+  }
+}
+
 console.log("\ntest-check-units: " + pass + " đạt, " + fail + " lỗi");
 process.exit(fail ? 1 : 0);

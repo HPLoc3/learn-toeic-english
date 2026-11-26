@@ -102,6 +102,12 @@ const CV_WORDS_MIN = 60, CV_WORDS_MAX = 160, CV_MAX_LINE = 240, CV_MAX_SENT = 16
 const cvNorm = (t) => String(t || "").toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9' ]+/g, " ").replace(/\s+/g, " ").trim();
 const cvHas = (hay, needle) => !!needle && (" " + hay + " ").includes(" " + needle + " ");
 const cvWordN = (t) => cvNorm(t).split(" ").filter(Boolean).length;
+/* Canh bao "doan duoc" cho conv (KHONG leo thang khi --release). Ngoai le tung cau: "<unit>/<id cau>|<luat>" (luat: xq, intent-ctx, idiom, len, grow, sum), rieng luat len cap unit: "<unit>|len-unit".
+ * Bien moi truong CU_LEAK_ALLOW (cach nhau bang ;) cung duoc cong them khi khong --release. */
+const CV_WARN_ALLOW = [];
+const CV_IDIOMS = ["tight", "hold up", "squeeze in", "relief", "fill up", "hate to", "moving target", "comfortable shoes"];
+const CV_LEN_HI = 1.3, CV_LEN_LO = 0.7, CV_LEN_UNIT = 7 / 18;
+const cvNum = (t, unit) => { const m = (unit ? /^\$?\s*(\d[\d,]*(?:\.\d+)?)\s*(?:%|[a-z]{0,10})$/i : /^\$?\s*(\d[\d,]*(?:\.\d+)?)\s*%?$/).exec(String(t).trim()); return m ? Number(m[1].replace(/,/g, "")) : null; };
 const cvCells = (g) => (isObj(g) ? (g.type === "list" ? (Array.isArray(g.items) ? g.items : []) : [].concat(...(Array.isArray(g.rows) ? g.rows : []).map((r) => (Array.isArray(r) ? r : [])))) : []).map(cvNorm);
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -539,6 +545,68 @@ function checkUnit(entry) {
   const isP34 = /^p[34]-/.test(id); /* unit Part 3/4 (chỉ nghe, không ảnh) chỉ được bỏ mức tối thiểu của câu đúng/sai */
   if (!(qrN && isP2)) { cnt(sentences.length, MIN.sentences, "câu luyện tập"); if (!(cvN && isP34)) cnt(tfN, MIN.tfItems, "câu đúng/sai"); }
   if (cvN) {
+    /* canh bao doan duoc (xq, intent-ctx, idiom, len, grow, sum): chi CANH BAO, khong leo thang khi --release */
+    const cvAllow = (k) => CV_WARN_ALLOW.includes(k) || (!RELEASE && QR_LEAK_ALLOW_TEST.includes(k));
+    const cw = (qid, rule, msg) => { if (!cvAllow(id + "/" + qid + "|" + rule)) w(qid + ": [" + rule + "] " + msg); };
+    const T = (t) => new Set(cvNorm(t).split(" ").filter((x) => x.length > 1 && !QR_LEAK_STOP.has(x)).map(qrStem));
+    const ok4 = (q) => isObj(q) && Array.isArray(q.options) && q.options.length === 4 && q.options.every((o) => isObj(o) && nonEmpty(o.en)) && CV_LABELS.includes(q.answer);
+    let longest = 0, nq = 0;
+    const growRows = {};
+    cvSets.forEach((s) => {
+      if (!isObj(s) || !Array.isArray(s.questions)) return;
+      const lnN = (Array.isArray(s.lines) ? s.lines : []).map((ln) => (isObj(ln) ? cvNorm(ln.en) : ""));
+      s.questions.forEach((q) => {
+        if (!isObj(q) || q.kind !== "intent" || !nonEmpty(q.quote)) return;
+        const kq = cvNorm(q.quote), at = lnN.map((t, i) => (cvHas(t, kq) ? i : -1)).filter((i) => i >= 0);
+        if (Array.isArray(q.evidence) && q.evidence.length && at.length && q.evidence.every((i) => at.includes(i))) cw(q.id, "intent-ctx", "câu intent: evidence chỉ có dòng chứa quote; cần thêm dòng ngữ cảnh (dòng trước/sau) để suy ra ý.");
+        const idm = CV_IDIOMS.find((p) => cvHas(kq, p));
+        if (idm) cw(q.id, "idiom", "quote chứa thành ngữ/cụm khó \"" + idm + "\"; người học dễ hiểu sai theo nghĩa đen hoặc đoán được nhờ từ này.");
+      });
+      const gTok = new Set();
+      if (isObj(s.graphic)) [s.graphic.title].concat(Array.isArray(s.graphic.cols) ? s.graphic.cols : []).forEach((t) => T(t).forEach((x) => gTok.add(x)));
+      const qs = s.questions.filter(ok4);
+      qs.forEach((q) => {
+        const key = q.options.find((o) => o.label === q.answer), dis = q.options.filter((o) => o !== key);
+        const dT = new Set(); dis.forEach((o) => T(o.en).forEach((x) => dT.add(x)));
+        const D = [...T(key.en)].filter((x) => !dT.has(x));
+        if (D.length) { /* xq: từ chỉ có ở đáp án đúng mà lại xuất hiện ở chỗ khác trong đoạn */
+          const hit = (S) => D.filter((x) => S.has(x)), why = [];
+          const g = hit(gTok); if (g.length) why.push("tiêu đề/cột của hình (" + g.join(", ") + ")");
+          qs.forEach((o) => {
+            if (o === q) return;
+            const a = hit(T(isObj(o.q) ? o.q.en : "")); if (a.length) why.push("đề của " + o.id + " (" + a.join(", ") + ")");
+            const b = hit(T(o.options.find((x) => x.label === o.answer).en)); if (b.length) why.push("đáp án đúng của " + o.id + " (" + b.join(", ") + ")");
+            const n2 = o.options.filter((x) => hit(T(x.en)).length).length; if (n2 >= 2) why.push(n2 + " đáp án của " + o.id);
+          });
+          if (why.length) cw(q.id, "xq", "từ chỉ có ở đáp án đúng (" + D.join(", ") + ") lại xuất hiện ở: " + why.join("; ") + "; có thể đoán đáp án mà không cần nghe.");
+        }
+        const mean = dis.reduce((a, o) => a + o.en.length, 0) / 3, r = key.en.length / mean;
+        if (r > CV_LEN_HI || r < CV_LEN_LO) cw(q.id, "len", "đáp án đúng dài " + key.en.length + " ký tự, " + (r > 1 ? "dài" : "ngắn") + " hơn hẳn trung bình " + Math.round(mean) + " của ba đáp án sai (tỉ lệ " + r.toFixed(2) + ").");
+        nq++; if (dis.every((o) => key.en.length > o.en.length)) longest++;
+        const v = q.options.map((o) => cvNum(o.en, true));
+        if (v.every((x) => x !== null)) {
+          for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) for (let k = j + 1; k < 4; k++) {
+            if (i !== j && i !== k && (v[i] === v[j] + v[k] || v[i] === Math.abs(v[j] - v[k])) && !q._sumDone) { q._sumDone = 1; cw(q.id, "sum", "đáp án " + q.options[i].label + " (" + q.options[i].en + ") bằng tổng hoặc hiệu của " + q.options[j].label + " và " + q.options[k].label + "; dễ đoán ra đáp án."); }
+          }
+          delete q._sumDone;
+        }
+        const g2 = s.graphic;
+        if (q.uses_graphic === true && isObj(g2) && g2.type === "table" && Array.isArray(g2.rows) && g2.rows.every((r2) => Array.isArray(r2))) {
+          const row = g2.rows.findIndex((r2) => r2.some((c) => cvNorm(c) === cvNorm(key.en)));
+          if (row >= 0) {
+            (growRows[row] = growRows[row] || []).push(q.id);
+            if (growRows[row].length > 1) cw(q.id, "grow", "đáp án đúng của câu hình nằm cùng hàng " + (row + 1) + " với câu hình " + growRows[row][0] + " (đáp án luôn ở cùng một hàng).");
+            (g2.cols || []).forEach((cn, j) => {
+              const nums = g2.rows.map((r2) => cvNum(r2[j], false));
+              if (nums.some((x) => x === null) || nums.length < 3) return;
+              const mx = Math.max(...nums), mn = Math.min(...nums);
+              if ((nums[row] === mx && nums.filter((x) => x === mx).length === 1) || (nums[row] === mn && nums.filter((x) => x === mn).length === 1)) cw(q.id, "grow", "hàng đáp án đúng giữ giá trị " + (nums[row] === mx ? "lớn nhất" : "nhỏ nhất") + " duy nhất của cột \"" + cn + "\" (đoán được mà không cần nghe).");
+            });
+          }
+        }
+      });
+    });
+    if (nq >= 6 && longest > Math.floor(nq * CV_LEN_UNIT) && !cvAllow(id + "|len-unit")) w("[len-unit] đáp án đúng là đáp án dài nhất ở " + longest + "/" + nq + " câu conv (quá nhiều: người học đoán theo độ dài).");
     if (isP34) {
       if (cvSets.length < CV_MIN_SETS) w("ít hơn mức tối thiểu: đoạn nghe (conv) " + cvSets.length + " < " + CV_MIN_SETS + ".");
       if (!cvSets.some((x) => isObj(x) && x.graphic !== undefined)) w("ít hơn mức tối thiểu: chưa có đoạn nào có hình (graphic).");

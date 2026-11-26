@@ -117,9 +117,9 @@ window.BS_UNITS["__ID__"] = {
               "explain_vi": "Anh ấy nói sẽ gửi email cho mọi người về sự thay đổi.",
               "options": [
                 { "label": "A", "en": "Notify the attendees of a change.", "vi": "Thông báo thay đổi cho người tham dự." },
-                { "label": "B", "en": "Order some coffee.", "vi": "Gọi cà phê.", "trap": "wrong-speaker", "why_vi": "Người phụ nữ mới là người nhờ nhà bếp." },
-                { "label": "C", "en": "Cancel the client meeting.", "vi": "Hủy cuộc họp với khách.", "trap": "not-mentioned", "why_vi": "Cuộc họp vẫn diễn ra." },
-                { "label": "D", "en": "Print the schedule.", "vi": "In lịch.", "trap": "heard-word", "why_vi": "Từ schedule được nghe thấy nhưng không có kế hoạch in." }
+                { "label": "B", "en": "Order coffee for the guests.", "vi": "Gọi cà phê.", "trap": "wrong-speaker", "why_vi": "Người phụ nữ mới là người nhờ nhà bếp." },
+                { "label": "C", "en": "Cancel the client meeting today.", "vi": "Hủy cuộc họp với khách.", "trap": "not-mentioned", "why_vi": "Cuộc họp vẫn diễn ra." },
+                { "label": "D", "en": "Print the schedule for everyone.", "vi": "In lịch.", "trap": "heard-word", "why_vi": "Từ schedule được nghe thấy nhưng không có kế hoạch in." }
               ]
             }
           ]

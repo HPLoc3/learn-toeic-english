@@ -419,21 +419,21 @@ window.BS_UNITS["p3-01"] = {
                 },
                 {
                   "label": "B",
-                  "en": "Order some coffee.",
+                  "en": "Order coffee for the guests.",
                   "vi": "Gọi cà phê.",
                   "trap": "wrong-speaker",
                   "why_vi": "Người phụ nữ mới là người nhờ nhà bếp."
                 },
                 {
                   "label": "C",
-                  "en": "Cancel the client meeting.",
+                  "en": "Cancel the client meeting today.",
                   "vi": "Hủy cuộc họp với khách.",
                   "trap": "not-mentioned",
                   "why_vi": "Cuộc họp vẫn diễn ra."
                 },
                 {
                   "label": "D",
-                  "en": "Print the schedule.",
+                  "en": "Print the schedule for everyone.",
                   "vi": "In lịch.",
                   "trap": "heard-word",
                   "why_vi": "Từ schedule được nghe thấy nhưng không có kế hoạch in."
