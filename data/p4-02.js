@@ -360,8 +360,8 @@ window.BS_UNITS["p4-02"] = {
             },
             {
               "s": "A",
-              "en": "You can reach the front desk at extension 214, or press two when you hear the menu.",
-              "vi": "Ông có thể gọi quầy lễ tân qua số máy nhánh 214, hoặc bấm phím hai khi nghe danh mục lựa chọn."
+              "en": "You can reach the front desk at extension 214, or call back and choose option two.",
+              "vi": "Ông có thể gọi quầy lễ tân qua số máy nhánh 214, hoặc gọi lại và chọn phím hai."
             },
             {
               "s": "A",
@@ -381,7 +381,7 @@ window.BS_UNITS["p4-02"] = {
               "evidence": [
                 0
               ],
-              "explain_vi": "Ngay dòng đầu, cô ấy nói gọi để nhắc về buổi hẹn lấy cao răng của người nghe.",
+              "explain_vi": "Ngay phần mở đầu, cô ấy nói gọi để nhắc về buổi hẹn lấy cao răng của người nghe.",
               "options": [
                 {
                   "label": "A",
@@ -490,8 +490,8 @@ window.BS_UNITS["p4-02"] = {
                 },
                 {
                   "label": "D",
-                  "en": "She is giving a reason to tell the clinic soon if plans shift.",
-                  "vi": "Cô ấy nêu lý do để người nghe báo sớm nếu kế hoạch thay đổi."
+                  "en": "She is explaining why any change should be reported early.",
+                  "vi": "Cô ấy giải thích vì sao nên báo sớm nếu có thay đổi."
                 }
               ]
             }
@@ -524,8 +524,8 @@ window.BS_UNITS["p4-02"] = {
             },
             {
               "s": "A",
-              "en": "Our weekend event has been cancelled, so I need fewer of the item that costs five cents each. Please bring it down to three thousand.",
-              "vi": "Sự kiện cuối tuần của chúng tôi đã bị hủy, nên tôi cần ít hơn mặt hàng có giá năm xu một cái. Xin giảm nó xuống còn ba nghìn."
+              "en": "Our weekend event has been cancelled, so I need fewer of item NP-20. Please bring it down to three thousand.",
+              "vi": "Sự kiện cuối tuần của chúng tôi đã bị hủy, nên tôi cần ít hơn mặt hàng mã NP-20. Xin giảm nó xuống còn ba nghìn."
             },
             {
               "s": "A",
@@ -634,28 +634,28 @@ window.BS_UNITS["p4-02"] = {
               "evidence": [
                 2
               ],
-              "explain_vi": "Anh ấy nói mặt hàng giá năm xu một cái; theo bảng, đó là Napkins ($0.05).",
+              "explain_vi": "Anh ấy nói mã NP-20; theo bảng, đó là Napkins.",
               "options": [
                 {
                   "label": "A",
                   "en": "Paper cups",
                   "vi": "Cốc giấy",
                   "trap": "graphic-only",
-                  "why_vi": "Giá $0.12, không phải năm xu."
+                  "why_vi": "Mã PC-08, không phải NP-20."
                 },
                 {
                   "label": "B",
                   "en": "Lids",
                   "vi": "Nắp cốc",
                   "trap": "wrong-detail",
-                  "why_vi": "Giá $0.08 và số lượng đã là 3,000, không phải mặt hàng giá năm xu."
+                  "why_vi": "Mã LD-08; số lượng 3,000 chỉ trùng với con số anh muốn giảm xuống."
                 },
                 {
                   "label": "C",
                   "en": "Stirrers",
                   "vi": "Que khuấy",
                   "trap": "graphic-only",
-                  "why_vi": "Đặt nhiều nhất (6,000) nhưng giá chỉ $0.02."
+                  "why_vi": "Mã ST-05, không phải NP-20."
                 },
                 {
                   "label": "D",
@@ -878,7 +878,7 @@ window.BS_UNITS["p4-02"] = {
                   "label": "D",
                   "en": "Early next week",
                   "vi": "Đầu tuần sau",
-                  "trap": "wrong-detail",
+                  "trap": "not-mentioned",
                   "why_vi": "Cuộc gọi lại được hứa trước trưa mai, không phải tuần sau."
                 }
               ]
@@ -956,7 +956,7 @@ window.BS_UNITS["p4-02"] = {
               ],
               [
                 "Presentation Skills",
-                "Ms. Brandt",
+                "Ms. Varga",
                 "Room 5",
                 "10:30 A.M."
               ],
@@ -1043,7 +1043,7 @@ window.BS_UNITS["p4-02"] = {
                   "en": "Presentation Skills",
                   "vi": "Kỹ năng thuyết trình",
                   "trap": "graphic-only",
-                  "why_vi": "Buổi này do cô Brandt trình bày."
+                  "why_vi": "Buổi này do cô Varga trình bày."
                 },
                 {
                   "label": "C",
@@ -1421,7 +1421,7 @@ window.BS_UNITS["p4-02"] = {
               "kind": "next",
               "q": {
                 "en": "What will the speaker do later today?",
-                "vi": "Hôm nay, người nói sẽ làm gì sau đó?"
+                "vi": "Lát nữa trong hôm nay người nói sẽ làm gì?"
               },
               "answer": "D",
               "evidence": [
