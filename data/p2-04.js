@@ -368,10 +368,7 @@ window.BS_UNITS["p2-04"] = {
               "trap": "repeat-word",
               "why_vi": "Went through lặp lại gone through nhưng ở đây là xem qua nhiều thứ (them), không phải lệnh chuyển tiền đã thực hiện xong."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-02",
@@ -402,10 +399,7 @@ window.BS_UNITS["p2-04"] = {
               "en": "Yes, I printed them just before lunch.",
               "vi": "Có, tôi đã in chúng ngay trước bữa trưa."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-03",
@@ -436,10 +430,7 @@ window.BS_UNITS["p2-04"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại từ square nhưng trả lời về khoảng cách, không nói thứ Bảy có mở cửa hay không."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-04",
@@ -470,10 +461,7 @@ window.BS_UNITS["p2-04"] = {
               "trap": "wrong-wh",
               "why_vi": "Đây là câu trả lời cho Where, không cho biết sáng nay tiền đã được đếm hay chưa."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-05",
@@ -504,10 +492,7 @@ window.BS_UNITS["p2-04"] = {
               "trap": "wrong-subject",
               "why_vi": "Câu hỏi hỏi về you và các mẫu đơn; câu này nói một người khác gửi tài liệu khác cho người đáp."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-06",
@@ -538,10 +523,7 @@ window.BS_UNITS["p2-04"] = {
               "en": "Actually, it got pushed back to the fifteenth.",
               "vi": "Thật ra nó đã bị lùi đến ngày mười lăm."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-07",
@@ -572,10 +554,7 @@ window.BS_UNITS["p2-04"] = {
               "en": "Yes, everything matched down to the last cent.",
               "vi": "Rồi, mọi thứ đều khớp đến từng xu."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-08",
@@ -606,10 +585,7 @@ window.BS_UNITS["p2-04"] = {
               "trap": "related-word",
               "why_vi": "Tỷ giá gợi đến chuyện ngoại tệ nhưng câu này chỉ nói tỷ giá được niêm yết ở đâu, không nói máy đếm tiền có chạy hay không."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         }
       ]
     },
@@ -647,10 +623,7 @@ window.BS_UNITS["p2-04"] = {
               "trap": "related-word",
               "why_vi": "Safe (két sắt) gợi đến kho tiền nhưng câu này nói ai giữ mã, không nói việc kiểm tra còn diễn ra hay không."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-02",
@@ -681,10 +654,7 @@ window.BS_UNITS["p2-04"] = {
               "en": "I was just about to put them away.",
               "vi": "Tôi đang định cất chúng đi ngay đây."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-03",
@@ -715,10 +685,7 @@ window.BS_UNITS["p2-04"] = {
               "trap": "related-word",
               "why_vi": "Liên quan đến ngân hàng trực tuyến nhưng nói về logo của ứng dụng, không cho biết quyền truy cập đã được khôi phục hay chưa."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-04",
@@ -749,10 +716,7 @@ window.BS_UNITS["p2-04"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại từ payment nhưng nói về nguồn gốc của hệ thống, không cho biết máy có in biên nhận hay không."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-05",
@@ -783,10 +747,7 @@ window.BS_UNITS["p2-04"] = {
               "en": "Yes, at three in the upstairs boardroom.",
               "vi": "Đúng vậy, lúc ba giờ ở phòng họp tầng trên."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-06",
@@ -817,10 +778,7 @@ window.BS_UNITS["p2-04"] = {
               "trap": "repeat-word",
               "why_vi": "Booked lặp lại từ book (trong books) nhưng nghĩa là đặt chỗ, và nói về người đáp."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-07",
@@ -851,10 +809,7 @@ window.BS_UNITS["p2-04"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại từ line với nghĩa hàng người, không nói gì về việc duyệt hạn mức."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-08",
@@ -885,10 +840,7 @@ window.BS_UNITS["p2-04"] = {
               "en": "Only those who handle large withdrawals.",
               "vi": "Chỉ những người xử lý các khoản rút tiền lớn."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         }
       ]
     },
@@ -926,10 +878,7 @@ window.BS_UNITS["p2-04"] = {
               "trap": "repeat-word",
               "why_vi": "Comes with nghĩa là kèm theo, chỉ lặp lại động từ come; câu này nói về phụ kiện của một món đồ."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-02",
@@ -960,10 +909,7 @@ window.BS_UNITS["p2-04"] = {
               "en": "He's planning to submit it tomorrow morning.",
               "vi": "Anh ấy định nộp vào sáng mai."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-03",
@@ -994,10 +940,7 @@ window.BS_UNITS["p2-04"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại từ window nhưng nói về việc thay đồ trưng bày."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-04",
@@ -1028,10 +971,7 @@ window.BS_UNITS["p2-04"] = {
               "trap": "repeat-word",
               "why_vi": "Finish ở đây là lớp sơn phủ, lặp lại gốc từ của finished nhưng khác nghĩa."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-05",
@@ -1062,10 +1002,7 @@ window.BS_UNITS["p2-04"] = {
               "trap": "wrong-subject",
               "why_vi": "Câu hỏi hỏi bên kế toán có cần biên lai không; câu này nói người đáp cần xe."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-06",
@@ -1096,10 +1033,7 @@ window.BS_UNITS["p2-04"] = {
               "trap": "repeat-word",
               "why_vi": "Cobbler ở đây là thợ sửa giày, chỉ lặp lại từ trong tên đường."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-07",
@@ -1130,10 +1064,7 @@ window.BS_UNITS["p2-04"] = {
               "en": "No, nothing from her has reached me.",
               "vi": "Chưa, tôi chưa nhận được gì từ cô ấy."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-08",
@@ -1164,10 +1095,7 @@ window.BS_UNITS["p2-04"] = {
               "en": "The initials look quite different to me.",
               "vi": "Theo tôi thì mấy chữ cái viết tắt trông khác hẳn."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         }
       ]
     },
@@ -1184,10 +1112,7 @@ window.BS_UNITS["p2-04"] = {
             "isn't it",
             "isn’t it",
             "is it not"
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "fill1-2",
@@ -1197,10 +1122,7 @@ window.BS_UNITS["p2-04"] = {
             "don't they",
             "don’t they",
             "do they not"
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "fill1-3",
@@ -1210,10 +1132,7 @@ window.BS_UNITS["p2-04"] = {
             "didn't she",
             "didn’t she",
             "did she not"
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "fill1-4",
@@ -1223,10 +1142,7 @@ window.BS_UNITS["p2-04"] = {
             "haven't you",
             "haven’t you",
             "have you not"
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "fill1-5",
@@ -1234,10 +1150,7 @@ window.BS_UNITS["p2-04"] = {
           "after": "? We have half an hour to spare.",
           "answers": [
             "shall we"
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         }
       ]
     }

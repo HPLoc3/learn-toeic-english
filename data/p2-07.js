@@ -368,10 +368,7 @@ window.BS_UNITS["p2-07"] = {
               "trap": "related-word",
               "why_vi": "Blueprints liên quan đến bản thiết kế nhưng câu này nói chúng nằm ở đâu, không nêu người vẽ."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-02",
@@ -402,10 +399,7 @@ window.BS_UNITS["p2-07"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại từ site và hỏi sang vị trí công trường, không trả lời ai sẽ gặp thanh tra."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-03",
@@ -436,10 +430,7 @@ window.BS_UNITS["p2-07"] = {
               "trap": "yesno-to-wh",
               "why_vi": "Where là câu hỏi Wh, không trả lời bằng Yes; câu này cũng chỉ nói số bộ chìa."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-04",
@@ -470,10 +461,7 @@ window.BS_UNITS["p2-07"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại từ paint nhưng nói thời gian khô, không nói chỗ để xô."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-05",
@@ -504,10 +492,7 @@ window.BS_UNITS["p2-07"] = {
               "en": "Probably not before the very end of next week.",
               "vi": "Có lẽ phải đến tận cuối tuần sau, không sớm hơn."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-06",
@@ -538,10 +523,7 @@ window.BS_UNITS["p2-07"] = {
               "en": "On the first of next month, I believe.",
               "vi": "Tôi nhớ là ngày mùng một tháng sau."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-07",
@@ -572,10 +554,7 @@ window.BS_UNITS["p2-07"] = {
               "trap": "wrong-tense",
               "why_vi": "Kể về giấy phép cũ từ nhiều năm trước, không cho biết hồ sơ hiện tại đã được duyệt chưa."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-08",
@@ -606,15 +585,9 @@ window.BS_UNITS["p2-07"] = {
               "trap": "wrong-wh",
               "why_vi": "Đây là câu trả lời cho Where (ở đâu), trong khi câu hỏi hỏi nhà thầu nào."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         }
-      ],
-      "v": {
-        "status": "unverified"
-      }
+      ]
     },
     {
       "id": "qr2",
@@ -650,10 +623,7 @@ window.BS_UNITS["p2-07"] = {
               "en": "Because Esme came down with the flu.",
               "vi": "Vì Esme bị cúm."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-02",
@@ -684,10 +654,7 @@ window.BS_UNITS["p2-07"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại cụm living room nhưng nói về ánh nắng, không cho biết có được sơn hay không."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-03",
@@ -718,10 +685,7 @@ window.BS_UNITS["p2-07"] = {
               "trap": "related-word",
               "why_vi": "Kính liên quan đến cửa sổ nhưng nói về khả năng cách âm, không nói cách vận chuyển."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-04",
@@ -752,10 +716,7 @@ window.BS_UNITS["p2-07"] = {
               "en": "Do you mean the oak or the vinyl one?",
               "vi": "Ý bạn là mẫu gỗ sồi hay mẫu nhựa vinyl?"
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-05",
@@ -786,10 +747,7 @@ window.BS_UNITS["p2-07"] = {
               "trap": "similar-sound",
               "why_vi": "Notes nghe gần giống notice nhưng là ghi chú khi gọi điện, không phải thông báo gửi người thuê."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-06",
@@ -820,10 +778,7 @@ window.BS_UNITS["p2-07"] = {
               "en": "Mossgrove Contracting hasn't given me a final figure yet.",
               "vi": "Mossgrove Contracting vẫn chưa đưa cho tôi con số cuối cùng."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-07",
@@ -854,10 +809,7 @@ window.BS_UNITS["p2-07"] = {
               "trap": "related-word",
               "why_vi": "Drawings liên quan đến blueprints nhưng nói thời điểm vẽ xong, không đáp lại lời nhờ."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-08",
@@ -888,15 +840,9 @@ window.BS_UNITS["p2-07"] = {
               "trap": "related-word",
               "why_vi": "Màu sơn liên quan đến thợ sơn nhưng chỉ nhận xét về màu, không nói khi nào bắt đầu."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         }
-      ],
-      "v": {
-        "status": "unverified"
-      }
+      ]
     },
     {
       "id": "qr3",
@@ -932,10 +878,7 @@ window.BS_UNITS["p2-07"] = {
               "en": "Let me pull up the latest rental listings.",
               "vi": "Để tôi mở danh sách cho thuê mới nhất."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-02",
@@ -966,10 +909,7 @@ window.BS_UNITS["p2-07"] = {
               "trap": "related-word",
               "why_vi": "Đồ bảo hộ liên quan đến mặt nạ nhưng câu này nói chỗ cất, không nêu lý do đeo."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-03",
@@ -1000,10 +940,7 @@ window.BS_UNITS["p2-07"] = {
               "en": "I'm still waiting to hear back about that.",
               "vi": "Tôi vẫn đang chờ phản hồi về chuyện đó."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-04",
@@ -1034,10 +971,7 @@ window.BS_UNITS["p2-07"] = {
               "trap": "wrong-tense",
               "why_vi": "Câu hỏi nói về việc đã làm; câu này nói tương lai, trong khi người gia hạn hợp đồng thì vốn đang thuê rồi."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-05",
@@ -1068,10 +1002,7 @@ window.BS_UNITS["p2-07"] = {
               "en": "About two weeks, if the weather stays dry.",
               "vi": "Khoảng hai tuần, nếu trời cứ khô ráo."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-06",
@@ -1102,10 +1033,7 @@ window.BS_UNITS["p2-07"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại từ samples nhưng kể việc thử mẫu, không đề cập chỗ để."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-07",
@@ -1136,10 +1064,7 @@ window.BS_UNITS["p2-07"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại từ front nhưng nói về cửa sổ, không nói gì về bậc thềm."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-08",
@@ -1170,15 +1095,9 @@ window.BS_UNITS["p2-07"] = {
               "trap": "similar-sound",
               "why_vi": "Hobby nghe gần giống lobby nhưng nói về sở thích, không liên quan đến màu sơn."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         }
-      ],
-      "v": {
-        "status": "unverified"
-      }
+      ]
     },
     {
       "id": "fill1",

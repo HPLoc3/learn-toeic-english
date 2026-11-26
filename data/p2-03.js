@@ -30,10 +30,7 @@ window.BS_UNITS["p2-03"] = {
             "vi": "Băng keo loại dày và hai nắp bịt đầu.",
             "q_vi": "Cần gì để bịt kín mấy cái ống này?"
           }
-        ],
-        "v": {
-          "status": "unverified"
-        }
+        ]
       },
       {
         "id": "tip2",
@@ -57,10 +54,7 @@ window.BS_UNITS["p2-03"] = {
             "vi": "Joelle có thể chỉ cho bạn.",
             "q_vi": "Làm thêm giờ thì tôi điền mẫu nào?"
           }
-        ],
-        "v": {
-          "status": "unverified"
-        }
+        ]
       },
       {
         "id": "tip3",
@@ -84,10 +78,7 @@ window.BS_UNITS["p2-03"] = {
             "vi": "Tôi nghĩ là chưa đến năm đô la.",
             "q_vi": "Một hộp bút lông giá bao nhiêu?"
           }
-        ],
-        "v": {
-          "status": "unverified"
-        }
+        ]
       },
       {
         "id": "tip4",
@@ -111,10 +102,7 @@ window.BS_UNITS["p2-03"] = {
             "vi": "Điền phiếu màu vàng đặt cạnh cái cân.",
             "q_vi": "Làm sao báo một cái bao bị rách?"
           }
-        ],
-        "v": {
-          "status": "unverified"
-        }
+        ]
       }
     ]
   },
@@ -123,217 +111,145 @@ window.BS_UNITS["p2-03"] = {
       "id": "v001",
       "en": "warehouse",
       "vi": "nhà kho",
-      "group": "Kho hàng và thiết bị",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Kho hàng và thiết bị"
     },
     {
       "id": "v002",
       "en": "loading dock",
       "vi": "cửa bốc dỡ hàng",
-      "group": "Kho hàng và thiết bị",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Kho hàng và thiết bị"
     },
     {
       "id": "v003",
       "en": "pallet",
       "vi": "tấm kê hàng (pa-lét)",
-      "group": "Kho hàng và thiết bị",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Kho hàng và thiết bị"
     },
     {
       "id": "v004",
       "en": "carton",
       "vi": "thùng các-tông",
-      "group": "Kho hàng và thiết bị",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Kho hàng và thiết bị"
     },
     {
       "id": "v005",
       "en": "crate",
       "vi": "thùng gỗ chở hàng",
-      "group": "Kho hàng và thiết bị",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Kho hàng và thiết bị"
     },
     {
       "id": "v006",
       "en": "divider",
       "vi": "vách ngăn",
-      "group": "Kho hàng và thiết bị",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Kho hàng và thiết bị"
     },
     {
       "id": "v007",
       "en": "bubble wrap",
       "vi": "màng bọc bong bóng",
-      "group": "Kho hàng và thiết bị",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Kho hàng và thiết bị"
     },
     {
       "id": "v008",
       "en": "foam insert",
       "vi": "miếng xốp lót",
-      "group": "Kho hàng và thiết bị",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Kho hàng và thiết bị"
     },
     {
       "id": "v009",
       "en": "storage bay",
       "vi": "khu chứa hàng",
-      "group": "Kho hàng và thiết bị",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Kho hàng và thiết bị"
     },
     {
       "id": "v010",
       "en": "conveyor belt",
       "vi": "băng chuyền",
-      "group": "Kho hàng và thiết bị",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Kho hàng và thiết bị"
     },
     {
       "id": "v011",
       "en": "forklift",
       "vi": "xe nâng",
-      "group": "Kho hàng và thiết bị",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Kho hàng và thiết bị"
     },
     {
       "id": "v012",
       "en": "barcode scanner",
       "vi": "máy quét mã vạch",
-      "group": "Kho hàng và thiết bị",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Kho hàng và thiết bị"
     },
     {
       "id": "v013",
       "en": "packing list",
       "vi": "phiếu đóng gói",
-      "group": "Giấy tờ và vận chuyển",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Giấy tờ và vận chuyển"
     },
     {
       "id": "v014",
       "en": "shipping label",
       "vi": "nhãn gửi hàng",
-      "group": "Giấy tờ và vận chuyển",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Giấy tờ và vận chuyển"
     },
     {
       "id": "v015",
       "en": "customs form",
       "vi": "tờ khai hải quan",
-      "group": "Giấy tờ và vận chuyển",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Giấy tờ và vận chuyển"
     },
     {
       "id": "v016",
       "en": "container",
       "vi": "công-ten-nơ, thùng chứa",
-      "group": "Giấy tờ và vận chuyển",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Giấy tờ và vận chuyển"
     },
     {
       "id": "v017",
       "en": "delivery route",
       "vi": "tuyến đường giao hàng",
-      "group": "Giấy tờ và vận chuyển",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Giấy tờ và vận chuyển"
     },
     {
       "id": "v018",
       "en": "freight forwarder",
       "vi": "công ty giao nhận vận tải",
-      "group": "Giấy tờ và vận chuyển",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Giấy tờ và vận chuyển"
     },
     {
       "id": "v019",
       "en": "stock count",
       "vi": "đợt kiểm kê kho",
-      "group": "Công việc trong kho",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Công việc trong kho"
     },
     {
       "id": "v020",
       "en": "shift handover",
       "vi": "bàn giao ca",
-      "group": "Công việc trong kho",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Công việc trong kho"
     },
     {
       "id": "v021",
       "en": "dispatcher",
       "vi": "nhân viên điều phối xe",
-      "group": "Công việc trong kho",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Công việc trong kho"
     },
     {
       "id": "v022",
       "en": "inventory clerk",
       "vi": "nhân viên theo dõi tồn kho",
-      "group": "Công việc trong kho",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Công việc trong kho"
     },
     {
       "id": "v023",
       "en": "certification",
       "vi": "chứng chỉ",
-      "group": "Công việc trong kho",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Công việc trong kho"
     },
     {
       "id": "v024",
       "en": "fragile",
       "vi": "dễ vỡ",
-      "group": "Công việc trong kho",
-      "v": {
-        "status": "unverified"
-      }
+      "group": "Công việc trong kho"
     }
   ],
   "phrases": [
@@ -341,91 +257,61 @@ window.BS_UNITS["p2-03"] = {
       "id": "p01",
       "en": "The one with the yellow tag.",
       "vi": "Cái có gắn thẻ vàng.",
-      "group_vi": "Chỉ ra cái nào (Which)",
-      "v": {
-        "status": "unverified"
-      }
+      "group_vi": "Chỉ ra cái nào (Which)"
     },
     {
       "id": "p02",
       "en": "Either one will do.",
       "vi": "Cái nào cũng được.",
-      "group_vi": "Chỉ ra cái nào (Which)",
-      "v": {
-        "status": "unverified"
-      }
+      "group_vi": "Chỉ ra cái nào (Which)"
     },
     {
       "id": "p03",
       "en": "Whichever is easier for you.",
       "vi": "Cái nào tiện cho bạn hơn cũng được.",
-      "group_vi": "Chỉ ra cái nào (Which)",
-      "v": {
-        "status": "unverified"
-      }
+      "group_vi": "Chỉ ra cái nào (Which)"
     },
     {
       "id": "p04",
       "en": "No more than half a dozen.",
       "vi": "Không quá sáu cái.",
-      "group_vi": "Số lượng, thời gian, tần suất, khoảng cách (How ...)",
-      "v": {
-        "status": "unverified"
-      }
+      "group_vi": "Số lượng, thời gian, tần suất, khoảng cách (How ...)"
     },
     {
       "id": "p05",
       "en": "Within the hour, I'd say.",
       "vi": "Tôi nghĩ là trong vòng một tiếng.",
-      "group_vi": "Số lượng, thời gian, tần suất, khoảng cách (How ...)",
-      "v": {
-        "status": "unverified"
-      }
+      "group_vi": "Số lượng, thời gian, tần suất, khoảng cách (How ...)"
     },
     {
       "id": "p06",
       "en": "Once or twice a month.",
       "vi": "Một hoặc hai lần mỗi tháng.",
-      "group_vi": "Số lượng, thời gian, tần suất, khoảng cách (How ...)",
-      "v": {
-        "status": "unverified"
-      }
+      "group_vi": "Số lượng, thời gian, tần suất, khoảng cách (How ...)"
     },
     {
       "id": "p07",
       "en": "It's not far at all.",
       "vi": "Không xa chút nào.",
-      "group_vi": "Số lượng, thời gian, tần suất, khoảng cách (How ...)",
-      "v": {
-        "status": "unverified"
-      }
+      "group_vi": "Số lượng, thời gian, tần suất, khoảng cách (How ...)"
     },
     {
       "id": "p08",
       "en": "It went more smoothly than usual.",
       "vi": "Mọi việc suôn sẻ hơn thường lệ.",
-      "group_vi": "Nhận xét và hướng dẫn (How was, How do I)",
-      "v": {
-        "status": "unverified"
-      }
+      "group_vi": "Nhận xét và hướng dẫn (How was, How do I)"
     },
     {
       "id": "p09",
       "en": "Let me walk you through it.",
       "vi": "Để tôi hướng dẫn bạn từng bước.",
-      "group_vi": "Nhận xét và hướng dẫn (How was, How do I)",
-      "v": {
-        "status": "unverified"
-      }
+      "group_vi": "Nhận xét và hướng dẫn (How was, How do I)"
     },
     {
       "id": "p10",
       "en": "Joelle can show you.",
       "vi": "Joelle có thể chỉ cho bạn.",
-      "group_vi": "Nhận xét và hướng dẫn (How was, How do I)",
-      "v": {
-        "status": "unverified"
-      }
+      "group_vi": "Nhận xét và hướng dẫn (How was, How do I)"
     }
   ],
   "sentences_title_vi": "Nghe và chép lại câu hỏi",
@@ -433,66 +319,42 @@ window.BS_UNITS["p2-03"] = {
     {
       "id": "s01",
       "en": "What's the code for the side entrance?",
-      "vi": "Mã mở cửa hông là gì?",
-      "v": {
-        "status": "unverified"
-      }
+      "vi": "Mã mở cửa hông là gì?"
     },
     {
       "id": "s02",
       "en": "Which scale gives a more accurate reading?",
-      "vi": "Cái cân nào cho số đo chính xác hơn?",
-      "v": {
-        "status": "unverified"
-      }
+      "vi": "Cái cân nào cho số đo chính xác hơn?"
     },
     {
       "id": "s03",
       "en": "How many gloves are left in the bin?",
-      "vi": "Trong thùng còn bao nhiêu chiếc găng tay?",
-      "v": {
-        "status": "unverified"
-      }
+      "vi": "Trong thùng còn bao nhiêu chiếc găng tay?"
     },
     {
       "id": "s04",
       "en": "How long has the heater been out of order?",
-      "vi": "Máy sưởi bị hỏng bao lâu rồi?",
-      "v": {
-        "status": "unverified"
-      }
+      "vi": "Máy sưởi bị hỏng bao lâu rồi?"
     },
     {
       "id": "s05",
       "en": "How often does the recycling get collected?",
-      "vi": "Rác tái chế được thu gom bao lâu một lần?",
-      "v": {
-        "status": "unverified"
-      }
+      "vi": "Rác tái chế được thu gom bao lâu một lần?"
     },
     {
       "id": "s06",
       "en": "What kind of tape works best in cold weather?",
-      "vi": "Loại băng keo nào dùng tốt nhất khi trời lạnh?",
-      "v": {
-        "status": "unverified"
-      }
+      "vi": "Loại băng keo nào dùng tốt nhất khi trời lạnh?"
     },
     {
       "id": "s07",
       "en": "How do I sign out a hand truck?",
-      "vi": "Làm sao đăng ký mượn xe đẩy hàng?",
-      "v": {
-        "status": "unverified"
-      }
+      "vi": "Làm sao đăng ký mượn xe đẩy hàng?"
     },
     {
       "id": "s08",
       "en": "Which of these receipts is from Quillmere Supply?",
-      "vi": "Biên lai nào trong số này là của Quillmere Supply?",
-      "v": {
-        "status": "unverified"
-      }
+      "vi": "Biên lai nào trong số này là của Quillmere Supply?"
     }
   ],
   "exercises": [
@@ -530,10 +392,7 @@ window.BS_UNITS["p2-03"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại từ loading nhưng nói vị trí, không nói giờ."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-02",
@@ -564,10 +423,7 @@ window.BS_UNITS["p2-03"] = {
               "trap": "related-word",
               "why_vi": "Cùng chủ đề hàng bị hỏng nhưng nói về mẫu đơn, không cho biết Anders đã nói gì."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-03",
@@ -598,10 +454,7 @@ window.BS_UNITS["p2-03"] = {
               "en": "Something thick, with dividers inside.",
               "vi": "Loại dày, có vách ngăn bên trong."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-04",
@@ -632,10 +485,7 @@ window.BS_UNITS["p2-03"] = {
               "trap": "wrong-wh",
               "why_vi": "Trả lời cho When (bao giờ), không cho biết cửa nào."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-05",
@@ -666,10 +516,7 @@ window.BS_UNITS["p2-03"] = {
               "trap": "wrong-tense",
               "why_vi": "Câu hỏi nói về chuyến đang được sắp xếp; câu này kể chuyện tháng trước, không cho biết ai đi chuyến này."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-06",
@@ -700,10 +547,7 @@ window.BS_UNITS["p2-03"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại từ bay và có số hai, nhưng nói về việc sơn, không nói sức chứa."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-07",
@@ -734,10 +578,7 @@ window.BS_UNITS["p2-03"] = {
               "trap": "yesno-to-wh",
               "why_vi": "Câu hỏi How long không trả lời bằng No; câu này chỉ lặp từ stock."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-08",
@@ -768,10 +609,7 @@ window.BS_UNITS["p2-03"] = {
               "en": "Scan the barcode and press the green key.",
               "vi": "Quét mã vạch rồi bấm phím màu xanh lá."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         }
       ]
     },
@@ -809,10 +647,7 @@ window.BS_UNITS["p2-03"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại từ door nhưng là lời nhắc đóng cửa."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-02",
@@ -843,10 +678,7 @@ window.BS_UNITS["p2-03"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại âm roll nhưng ở nghĩa đẩy xe, không cho biết cuộn màng bọc nặng bao nhiêu."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-03",
@@ -877,10 +709,7 @@ window.BS_UNITS["p2-03"] = {
               "en": "The one Bhatt signed this morning.",
               "vi": "Tờ mà Bhatt đã ký sáng nay."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-04",
@@ -911,10 +740,7 @@ window.BS_UNITS["p2-03"] = {
               "trap": "wrong-wh",
               "why_vi": "Trả lời cho Where (ở đâu), không nói tần suất."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-05",
@@ -945,10 +771,7 @@ window.BS_UNITS["p2-03"] = {
               "trap": "wrong-wh",
               "why_vi": "Trả lời cho When, không nói cần làm gì."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-06",
@@ -979,10 +802,7 @@ window.BS_UNITS["p2-03"] = {
               "en": "Give Elena until three o'clock.",
               "vi": "Hãy cho Elena đến ba giờ."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-07",
@@ -1013,10 +833,7 @@ window.BS_UNITS["p2-03"] = {
               "en": "Medium should be big enough.",
               "vi": "Cỡ vừa chắc là đủ rộng."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-08",
@@ -1047,10 +864,7 @@ window.BS_UNITS["p2-03"] = {
               "trap": "wrong-wh",
               "why_vi": "Mô tả đường đi của băng chuyền, không nói sáng nay có sự cố gì."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         }
       ]
     },
@@ -1088,10 +902,7 @@ window.BS_UNITS["p2-03"] = {
               "en": "It's roughly a twenty-minute drive.",
               "vi": "Lái xe khoảng hai mươi phút."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-02",
@@ -1122,10 +933,7 @@ window.BS_UNITS["p2-03"] = {
               "trap": "related-word",
               "why_vi": "Cùng chuyện thi chứng chỉ nhưng không nói về trang phục."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-03",
@@ -1156,10 +964,7 @@ window.BS_UNITS["p2-03"] = {
               "trap": "related-word",
               "why_vi": "Liên quan đến việc lái xe nhưng không nêu tuyến đường."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-04",
@@ -1190,10 +995,7 @@ window.BS_UNITS["p2-03"] = {
               "en": "They only found two minor problems.",
               "vi": "Họ chỉ tìm thấy hai lỗi nhỏ."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-05",
@@ -1224,10 +1026,7 @@ window.BS_UNITS["p2-03"] = {
               "trap": "wrong-wh",
               "why_vi": "Trả lời cho When hoặc How often, không nói số người."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-06",
@@ -1258,10 +1057,7 @@ window.BS_UNITS["p2-03"] = {
               "en": "Dunlap would have that on record.",
               "vi": "Chắc Dunlap có lưu thông tin đó trong hồ sơ."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-07",
@@ -1292,10 +1088,7 @@ window.BS_UNITS["p2-03"] = {
               "en": "Two of the cartons arrived crushed.",
               "vi": "Hai thùng hàng đến nơi thì đã bị bẹp."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-08",
@@ -1326,10 +1119,7 @@ window.BS_UNITS["p2-03"] = {
               "trap": "wrong-wh",
               "why_vi": "Trả lời cho How do you get here (đi bằng gì), không nói tuần làm việc ra sao."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         }
       ]
     },
@@ -1345,10 +1135,7 @@ window.BS_UNITS["p2-03"] = {
           "answers": [
             "What",
             "what"
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "fill1-2",
@@ -1357,10 +1144,7 @@ window.BS_UNITS["p2-03"] = {
           "answers": [
             "Which",
             "which"
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "fill1-3",
@@ -1369,10 +1153,7 @@ window.BS_UNITS["p2-03"] = {
           "answers": [
             "How many",
             "how many"
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "fill1-4",
@@ -1381,10 +1162,7 @@ window.BS_UNITS["p2-03"] = {
           "answers": [
             "How long",
             "how long"
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "fill1-5",
@@ -1393,10 +1171,7 @@ window.BS_UNITS["p2-03"] = {
           "answers": [
             "How often",
             "how often"
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         }
       ]
     }

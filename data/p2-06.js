@@ -361,10 +361,7 @@ window.BS_UNITS["p2-06"] = {
               "trap": "wrong-wh",
               "why_vi": "Câu này trả lời cho When (khi nào), không cho biết người nói chọn loại tai nghe nào."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-02",
@@ -395,10 +392,7 @@ window.BS_UNITS["p2-06"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại từ laptop và có dạng nói về hai lựa chọn, nhưng nói về cục sạc, không cho biết buổi nào thuận tiện."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-03",
@@ -429,10 +423,7 @@ window.BS_UNITS["p2-06"] = {
               "trap": "repeat-word",
               "why_vi": "Monitoring cùng gốc với monitor nhưng nghĩa là theo dõi; câu này không nói người được hỏi muốn gì."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-04",
@@ -463,10 +454,7 @@ window.BS_UNITS["p2-06"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại từ one và có dạng chọn lựa, nhưng chọn theo vị trí, không cho biết thời hạn giấy phép."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-05",
@@ -497,10 +485,7 @@ window.BS_UNITS["p2-06"] = {
               "en": "It really was. I finished in minutes.",
               "vi": "Đúng là vậy. Tôi làm xong chỉ trong vài phút."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-06",
@@ -531,10 +516,7 @@ window.BS_UNITS["p2-06"] = {
               "en": "Have you changed your password recently?",
               "vi": "Gần đây bạn có đổi mật khẩu không?"
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-07",
@@ -565,10 +547,7 @@ window.BS_UNITS["p2-06"] = {
               "trap": "similar-sound",
               "why_vi": "Hair nghe gần giống hear nhưng nói về tiệm làm tóc."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr1-08",
@@ -599,10 +578,7 @@ window.BS_UNITS["p2-06"] = {
               "trap": "similar-sound",
               "why_vi": "Wife nghe gần giống Wi-Fi nhưng nói chuyện vợ mua xe, không phản hồi chuyện mạng chậm."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         }
       ]
     },
@@ -640,10 +616,7 @@ window.BS_UNITS["p2-06"] = {
               "en": "Neither, thanks. I saved copies an hour ago.",
               "vi": "Không cần lúc nào cả, cảm ơn. Tôi đã lưu bản sao một tiếng trước."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-02",
@@ -674,10 +647,7 @@ window.BS_UNITS["p2-06"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại từ meeting nhưng là lời nhận dự họp, không nhận xét về màn hình."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-03",
@@ -708,10 +678,7 @@ window.BS_UNITS["p2-06"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại từ station và cũng dùng neither, nhưng nói về tàu, không cho biết nên mua ở đâu."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-04",
@@ -742,10 +709,7 @@ window.BS_UNITS["p2-06"] = {
               "trap": "repeat-word",
               "why_vi": "Lock cùng gốc với locked và câu cũng là lời đề nghị làm giúp, nhưng nói về cửa, không giải quyết tài khoản bị khóa."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-05",
@@ -776,10 +740,7 @@ window.BS_UNITS["p2-06"] = {
               "en": "Something light that fits in my backpack.",
               "vi": "Chiếc nào nhẹ, bỏ vừa ba lô của tôi."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-06",
@@ -810,10 +771,7 @@ window.BS_UNITS["p2-06"] = {
               "trap": "repeat-word",
               "why_vi": "Lặp lại headset và có since giống một lời giải thích, nhưng kể thói quen của Celeste, không liên quan đến việc phê duyệt."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-07",
@@ -844,10 +802,7 @@ window.BS_UNITS["p2-06"] = {
               "trap": "wrong-wh",
               "why_vi": "Đây là câu trả lời cho việc chọn tầng (ngồi ở đâu), không phải chọn loại chuột."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr2-08",
@@ -878,10 +833,7 @@ window.BS_UNITS["p2-06"] = {
               "en": "Is the power cord plugged in firmly?",
               "vi": "Dây nguồn đã cắm chặt chưa?"
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         }
       ]
     },
@@ -919,10 +871,7 @@ window.BS_UNITS["p2-06"] = {
               "trap": "similar-sound",
               "why_vi": "Lose nghe gần giống loose nhưng nghĩa là thua."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-02",
@@ -953,10 +902,7 @@ window.BS_UNITS["p2-06"] = {
               "en": "Either of us can take care of it.",
               "vi": "Ai trong hai chúng tôi cũng xử lý được."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-03",
@@ -987,10 +933,7 @@ window.BS_UNITS["p2-06"] = {
               "trap": "wrong-subject",
               "why_vi": "Nói về một người (he) chưa được nhắc đến, không phản hồi chuyện pin máy tính."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-04",
@@ -1021,10 +964,7 @@ window.BS_UNITS["p2-06"] = {
               "en": "Could someone pick it up from my desk instead?",
               "vi": "Thay vào đó, có ai đến bàn tôi lấy máy được không?"
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-05",
@@ -1055,10 +995,7 @@ window.BS_UNITS["p2-06"] = {
               "trap": "wrong-wh",
               "why_vi": "Đây là câu trả lời cho việc chọn một đồ vật (cái nào), không cho biết thời điểm cập nhật."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-06",
@@ -1089,10 +1026,7 @@ window.BS_UNITS["p2-06"] = {
               "trap": "similar-sound",
               "why_vi": "Fasten nghe gần giống faster nhưng là lời nhận buộc chặt một vật."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-07",
@@ -1123,10 +1057,7 @@ window.BS_UNITS["p2-06"] = {
               "trap": "wrong-wh",
               "why_vi": "Trả lời Yes và nói về chi phí, không chọn cách xem hướng dẫn."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         },
         {
           "id": "qr3-08",
@@ -1157,10 +1088,7 @@ window.BS_UNITS["p2-06"] = {
               "trap": "wrong-subject",
               "why_vi": "Hỏi về một người (she) chưa được nhắc đến, trong khi câu nói là về màn hình của Zachary."
             }
-          ],
-          "v": {
-            "status": "unverified"
-          }
+          ]
         }
       ]
     },
