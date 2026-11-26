@@ -117,6 +117,24 @@ window.BS_CATALOG = {
           "no": 15,
           "title_vi": "Hội thoại có kèm biểu đồ hoặc bảng",
           "available": false
+        },
+        {
+          "id": "p3-05",
+          "no": 16,
+          "title_vi": "Hội thoại ba người",
+          "available": false
+        },
+        {
+          "id": "p3-06",
+          "no": 17,
+          "title_vi": "Hội thoại về đi lại, khách sạn và nhà hàng",
+          "available": false
+        },
+        {
+          "id": "p3-07",
+          "no": 18,
+          "title_vi": "Bẫy thường gặp và luyện tổng hợp",
+          "available": false
         }
       ]
     },
@@ -126,26 +144,44 @@ window.BS_CATALOG = {
       "units": [
         {
           "id": "p4-01",
-          "no": 16,
+          "no": 19,
           "title_vi": "Thông báo và quảng cáo",
           "available": false
         },
         {
           "id": "p4-02",
-          "no": 17,
+          "no": 20,
           "title_vi": "Tin nhắn thoại và cuộc gọi",
           "available": false
         },
         {
           "id": "p4-03",
-          "no": 18,
+          "no": 21,
           "title_vi": "Bài phát biểu và giới thiệu",
           "available": false
         },
         {
           "id": "p4-04",
-          "no": 19,
+          "no": 22,
           "title_vi": "Bài nói có kèm sơ đồ hoặc lịch trình",
+          "available": false
+        },
+        {
+          "id": "p4-05",
+          "no": 23,
+          "title_vi": "Bản tin và chương trình phát thanh",
+          "available": false
+        },
+        {
+          "id": "p4-06",
+          "no": 24,
+          "title_vi": "Hướng dẫn tham quan và trích đoạn cuộc họp",
+          "available": false
+        },
+        {
+          "id": "p4-07",
+          "no": 25,
+          "title_vi": "Bẫy thường gặp và luyện tổng hợp",
           "available": false
         }
       ]
@@ -156,25 +192,25 @@ window.BS_CATALOG = {
       "units": [
         {
           "id": "p5-01",
-          "no": 20,
+          "no": 26,
           "title_vi": "Từ loại trong câu",
           "available": false
         },
         {
           "id": "p5-02",
-          "no": 21,
+          "no": 27,
           "title_vi": "Thì và sự hòa hợp chủ ngữ - động từ",
           "available": false
         },
         {
           "id": "p5-03",
-          "no": 22,
+          "no": 28,
           "title_vi": "Giới từ và liên từ",
           "available": false
         },
         {
           "id": "p5-04",
-          "no": 23,
+          "no": 29,
           "title_vi": "Từ vựng theo ngữ cảnh",
           "available": false
         }
@@ -186,19 +222,19 @@ window.BS_CATALOG = {
       "units": [
         {
           "id": "p6-01",
-          "no": 24,
+          "no": 30,
           "title_vi": "Điền từ vào đoạn văn",
           "available": false
         },
         {
           "id": "p6-02",
-          "no": 25,
+          "no": 31,
           "title_vi": "Điền câu vào đoạn văn",
           "available": false
         },
         {
           "id": "p6-03",
-          "no": 26,
+          "no": 32,
           "title_vi": "Liên kết ý trong đoạn văn",
           "available": false
         }
@@ -210,25 +246,25 @@ window.BS_CATALOG = {
       "units": [
         {
           "id": "p7-01",
-          "no": 27,
+          "no": 33,
           "title_vi": "Thư điện tử và thư tín",
           "available": false
         },
         {
           "id": "p7-02",
-          "no": 28,
+          "no": 34,
           "title_vi": "Quảng cáo và thông báo",
           "available": false
         },
         {
           "id": "p7-03",
-          "no": 29,
+          "no": 35,
           "title_vi": "Bài viết và bản tin",
           "available": false
         },
         {
           "id": "p7-04",
-          "no": 30,
+          "no": 36,
           "title_vi": "Đoạn văn kép và đoạn văn ba",
           "available": false
         }

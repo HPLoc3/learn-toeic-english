@@ -25,4 +25,18 @@ b2. KHONG de lo dap an: cau hoi va dap an DUNG cua qr khong duoc trung (hoac chu
 c. Nghe thu tung cau tren thiet bi that (co giong tieng Anh en-US va en-GB) roi moi bo "v": {"status":"unverified"}. check-units --release se LOI neu unit available:true con cau qr unverified.
 d. Kiem tra: node tools/check-units.mjs --unit p2-0N   (loi: sai trap/why_vi/so dap an; canh bao: it hon 20 cau, mot chu cai dap an chiem <20% hoac >45%, dap an dung lap tu cua cau hoi, cau hoi/dap an dung bi dien dat lai o noi khac ngoai bai qr: gan trung doan lien nhau hoac trung theo tu noi dung, ke ca them/bot/dao tu va tu dong nghia; --release bien canh bao thanh LOI).
 e. Khi het loi: dat "available": true cho unit trong catalog, them data/p2-0N.js vao PRECACHE trong sw.js, chay node tools/check-sw.mjs --bump, roi node tools/check-units.mjs --release.
+UNIT PART 3 / PART 4 (Hoi thoai / bai noi, id p3-01 ... p3-07, p4-01 ... p4-07)
+a. Sao chep tools/templates/unit-template-p3p4.js thanh data/p3-0N.js hoac data/p4-0N.js (thay __ID__; "unitNo" bang "no" trong catalog; "part" dung ten Part).
+   Khong dat "game" va "anim" trong catalog (khong co hinh minh hoa); khong can anh, khong can audio.
+b. Moi unit: 4 tips, 24 vocab, 10 phrases, 8 sentences, 6 doan (set) x 3 cau = 18 cau conv chia thanh 2 bai (c1: doan 1-3, c2: doan 4-6), 2 doan co "graphic", 1 bai fill >= 5 cau.
+   Moi doan: kind "conversation" (2-3 nguoi, khac gioi tinh hoac accent) hoac "talk" (1 nguoi + talk_type); moi cau co 4 dap an A-D, "evidence" (chi so dong chua dap an),
+   dap an SAI co "trap" + "why_vi", dap an DUNG khong co hai truong do; cau "intent" co "quote" nguyen van; cau dung hinh co "uses_graphic": true va q.en bat dau "Look at the graphic".
+   Noi dung phai la GOC (ten nguoi, cong ty, dia diem, so lieu tu dat), khong chep de thi/sach.
+c. KHONG de lo: cau trong loi thoai (>= 5 tu) va dap an DUNG (>= 4 tu) khong duoc xuat hien (nguyen van hoac gan giong) o tips, phrases, sentences, intro_vi, vocab, bai fill:
+   dung tinh huong KHAC o cac muc do. check-units bao LOI (ke ca --unit); --release bien canh bao gan trung thanh LOI. Ngoai le: QR_LEAK_ALLOW, vd "p3-03/c1-s2|*overlap*|phrases[4].en".
+d. Kiem tra: node tools/check-units.mjs --unit p3-0N   (loi: cau truc, trap/why_vi, evidence, quote, hinh, lo loi thoai; canh bao: doan ngoai 60-160 tu, cau > 160 ky tu, < 6 doan, chua co doan co hinh,
+   chu cai dap an ngoai 15-35%, 3 cau cung dap an, dap an dung chep nguyen van tu loi thoai, cau hinh co dap an dung nam trong loi thoai hoac khong la o cua hinh; --release: cac canh bao ve noi dung thanh LOI).
+   Nghe thu tung doan tren thiet bi that (giong en-US, en-GB, en-AU), mo unit.html?u=p3-0N&edit=1 tren localhost, roi bo "v": {"status":"unverified"} (--release LOI neu con trong doan, cau hoac dap an).
+e. Khi het loi: dat "available": true trong catalog, them data/p3-0N.js vao PRECACHE trong sw.js, doi VERSION va chay node tools/check-sw.mjs --write, cap nhat mau ^data\/p[3-9] trong tools/test-sw.mjs,
+   roi node tools/check-units.mjs --release. Khong doi id sau khi da phat hanh.
 Luu y: tien do hoc luu theo id unit trong localStorage - khong doi id sau khi da phat hanh.
