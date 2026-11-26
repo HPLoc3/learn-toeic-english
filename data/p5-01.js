@@ -1,5 +1,5 @@
 window.BS_UNITS = window.BS_UNITS || {};
-/* p5-01: nội dung do site tự soạn. Part 5 đọc trên màn hình, không có file âm thanh. */
+/* p5-01: nội dung do site tự soạn, đã kiểm tra. */
 window.BS_UNITS["p5-01"] = {
   "id": "p5-01",
   "part": "Part 5 - Hoàn thành câu",
@@ -330,9 +330,6 @@ window.BS_UNITS["p5-01"] = {
       "id": "g1",
       "type": "gram",
       "instruction_vi": "Chọn từ đúng để hoàn thành câu.",
-      "v": {
-        "status": "unverified"
-      },
       "items": [
         {
           "id": "g1-01",
@@ -710,9 +707,6 @@ window.BS_UNITS["p5-01"] = {
       "id": "g2",
       "type": "gram",
       "instruction_vi": "Chọn từ đúng để hoàn thành câu.",
-      "v": {
-        "status": "unverified"
-      },
       "items": [
         {
           "id": "g2-01",
@@ -1090,9 +1084,6 @@ window.BS_UNITS["p5-01"] = {
       "id": "g3",
       "type": "gram",
       "instruction_vi": "Chọn từ đúng để hoàn thành câu.",
-      "v": {
-        "status": "unverified"
-      },
       "items": [
         {
           "id": "g3-01",
@@ -1463,9 +1454,6 @@ window.BS_UNITS["p5-01"] = {
       "id": "fill1",
       "type": "fill",
       "instruction_vi": "Điền hậu tố còn thiếu để hoàn thành từ.",
-      "v": {
-        "status": "unverified"
-      },
       "items": [
         {
           "id": "fill1-1",

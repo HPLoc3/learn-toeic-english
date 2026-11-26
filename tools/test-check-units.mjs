@@ -640,7 +640,7 @@ try {
     check("read-pass: 0 lỗi, 0 cảnh báo kể cả --release", r.code === 0 && /0 lỗi, 0 cảnh báo/.test(r.out), r.out);
     check("read-pass: unit p7 không bị hỏi câu đúng/sai", !/câu đúng\/sai/.test(r.out), r.out);
     r = spawnSync(process.execPath, [path.join(REAL, "tools/check-units.mjs"), "--release"], { encoding: "utf8" });
-    check("cây thật --release: 10 unit, 0 lỗi, 0 cảnh báo (p2/p3/p4 không đổi)", r.status === 0 && /Đã kiểm 10 unit .*: 0 lỗi, 0 cảnh báo\./.test(r.stdout), r.stdout);
+    check("cây thật --release: 13 unit, 0 lỗi, 0 cảnh báo", r.status === 0 && /Đã kiểm 13 unit .*: 0 lỗi, 0 cảnh báo\./.test(r.stdout), r.stdout);
 
     /* read-fail: moi luat mot bo/cau */
     const RF = runR(fxu("read-fail", "p7-01"));

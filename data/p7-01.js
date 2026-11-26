@@ -1,5 +1,5 @@
 window.BS_UNITS = window.BS_UNITS || {};
-/* p7-01: nội dung do site tự soạn. */
+/* p7-01: nội dung do site tự soạn, đã kiểm tra. */
 window.BS_UNITS["p7-01"] = {
   "id": "p7-01",
   "part": "Part 7 - Đọc hiểu",
@@ -318,16 +318,10 @@ window.BS_UNITS["p7-01"] = {
       "id": "r1",
       "type": "read",
       "instruction_vi": "Đọc các bài và chọn đáp án đúng nhất.",
-      "v": {
-        "status": "unverified"
-      },
       "sets": [
         {
           "id": "r1-s1",
           "kind": "single",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r1-s1-p1",
@@ -495,9 +489,6 @@ window.BS_UNITS["p7-01"] = {
         {
           "id": "r1-s2",
           "kind": "single",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r1-s2-p1",
@@ -646,9 +637,6 @@ window.BS_UNITS["p7-01"] = {
         {
           "id": "r1-s3",
           "kind": "single",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r1-s3-p1",
@@ -842,16 +830,10 @@ window.BS_UNITS["p7-01"] = {
       "id": "r2",
       "type": "read",
       "instruction_vi": "Đọc các bài và chọn đáp án đúng nhất.",
-      "v": {
-        "status": "unverified"
-      },
       "sets": [
         {
           "id": "r2-s4",
           "kind": "single",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r2-s4-p1",
@@ -1033,9 +1015,6 @@ window.BS_UNITS["p7-01"] = {
         {
           "id": "r2-s5",
           "kind": "double",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r2-s5-p1",

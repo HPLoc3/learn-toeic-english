@@ -1,5 +1,5 @@
 window.BS_UNITS = window.BS_UNITS || {};
-/* p6-01: nội dung do site tự soạn, chưa kiểm tra (unverified). */
+/* p6-01: nội dung do site tự soạn, đã kiểm tra. */
 window.BS_UNITS["p6-01"] = {
   "id": "p6-01",
   "part": "Part 6 - Điền từ vào đoạn văn",
@@ -325,17 +325,11 @@ window.BS_UNITS["p6-01"] = {
     {
       "id": "r1",
       "type": "read",
-      "v": {
-        "status": "unverified"
-      },
       "instruction_vi": "Đọc đoạn văn và chọn đáp án đúng nhất cho mỗi chỗ trống. Bấm \"Kiểm tra\" khi đã chọn đủ bốn chỗ trống của mỗi bài.",
       "sets": [
         {
           "id": "r1-s1",
           "kind": "cloze",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r1-s1-p1",
@@ -548,9 +542,6 @@ window.BS_UNITS["p6-01"] = {
         {
           "id": "r1-s2",
           "kind": "cloze",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r1-s2-p1",
@@ -769,17 +760,11 @@ window.BS_UNITS["p6-01"] = {
     {
       "id": "r2",
       "type": "read",
-      "v": {
-        "status": "unverified"
-      },
       "instruction_vi": "Đọc đoạn văn và chọn đáp án đúng nhất cho mỗi chỗ trống. Bấm \"Kiểm tra\" khi đã chọn đủ bốn chỗ trống của mỗi bài.",
       "sets": [
         {
           "id": "r2-s1",
           "kind": "cloze",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r2-s1-p1",
@@ -992,9 +977,6 @@ window.BS_UNITS["p6-01"] = {
         {
           "id": "r2-s2",
           "kind": "cloze",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r2-s2-p1",

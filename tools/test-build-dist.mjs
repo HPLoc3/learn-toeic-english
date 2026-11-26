@@ -169,5 +169,12 @@ try {
   check("catalog that: p3-01, p3-02, p4-01, p4-02 da mo (khong bi loai); p3-03 va p4-07 chua mo (bi loai)", ["p3-01", "p3-02", "p4-01", "p4-02"].every((id) => !isUnreleasedData("data/" + id + ".js", skip)) && isUnreleasedData("data/p3-03.js", skip) && isUnreleasedData("data/p4-07.js", skip));
   check("assets/js/conv.js la tep trang web hop le (vao dist)", isSiteFile("assets/js/conv.js"));
 }
+
+{
+  /* unit doc Part 5/6/7 da mo duoc phat hanh, unit chua mo thi khong */
+  const skip = unavailableIds(ROOT);
+  check("catalog that: p5-01, p6-01, p7-01 da mo (khong bi loai); p5-02, p6-02, p7-02 chua mo (bi loai)", ["p5-01", "p6-01", "p7-01"].every((id) => !isUnreleasedData("data/" + id + ".js", skip)) && ["p5-02", "p6-02", "p7-02"].every((id) => isUnreleasedData("data/" + id + ".js", skip)));
+  check("assets/js/read.js la tep trang web hop le (vao dist)", isSiteFile("assets/js/read.js"));
+}
 console.log(`test-build-dist: ${total - failed}/${total} ca đạt`);
 process.exit(failed ? 1 : 0);

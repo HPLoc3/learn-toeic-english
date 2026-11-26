@@ -107,7 +107,7 @@ const okFetch = (url) => {
     check("PRECACHE có 7 ảnh cảnh 800w của l02", t.PRECACHE.filter((f) => /^assets\/img\/l02\/scene\/[a-z-]+-800\.webp$/.test(f)).length === 7);
     check("PRECACHE có 7 ảnh cảnh 800w của l03, không có ảnh HD", t.PRECACHE.filter((f) => /^assets\/img\/l03\/scene\/[a-z-]+-800\.webp$/.test(f)).length === 7 && !t.PRECACHE.some((f) => /img-hd/.test(f)));
     check("PRECACHE có 7 ảnh cảnh 800w của l04, không có ảnh HD", t.PRECACHE.filter((f) => /^assets\/img\/l04\/scene\/[a-z-]+-800\.webp$/.test(f)).length === 7 && !t.PRECACHE.some((f) => /img-hd/.test(f)));
-    check("PRECACHE không chứa unit chưa available", !t.PRECACHE.some((f) => /^data\/l0[5-9]|^data\/p2-0[3-7]|^data\/p[34]-0[3-7]|^data\/p[5-9]/.test(f)));
+    check("PRECACHE không chứa unit chưa available", !t.PRECACHE.some((f) => /^data\/l0[5-9]|^data\/p2-0[3-7]|^data\/p[34]-0[3-7]|^data\/p5-0[2-4]|^data\/p6-0[23]|^data\/p7-0[2-4]|^data\/p[89]/.test(f)));
   }
   await t.fire("install", {});
   const c = t.caches.stores.get(CN);

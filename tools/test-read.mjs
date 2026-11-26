@@ -135,7 +135,7 @@ const KEYS = (set) => set.questions.map((q) => q.answer);
   check("unit.html: read.js nap ngay sau conv.js", /assets\/js\/conv\.js"><\/script>\s*<script src="assets\/js\/read\.js"><\/script>/.test(html));
   check("unit.html van noindex; index.html giu the lien he rong", /noindex/.test(html) && /<p id="contact" hidden><\/p>/.test(fs.readFileSync(path.join(ROOT, "index.html"), "utf8")));
   const sw = fs.readFileSync(path.join(ROOT, "sw.js"), "utf8");
-  check("sw.js: read.js nam trong PRECACHE, VERSION giu nguyen", /"assets\/js\/read\.js"/.test(sw) && /var VERSION = "37"/.test(sw));
+  check("sw.js: read.js nam trong PRECACHE, VERSION 38", /"assets\/js\/read\.js"/.test(sw) && /var VERSION = "38"/.test(sw));
   const css = fs.readFileSync(path.join(ROOT, "assets/css/learn.css"), "utf8");
   const blk = css.slice(css.indexOf("/* Part 5/6/7 (read.js) */"));
   check("learn.css: co khoi .rd-*", blk.length > 200 && /\.rd-blank/.test(blk) && /\.rd-pin\b/.test(blk));

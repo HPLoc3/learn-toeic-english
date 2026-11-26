@@ -194,7 +194,7 @@ window.BS_CATALOG = {
           "id": "p5-01",
           "no": 26,
           "title_vi": "Từ loại trong câu",
-          "available": false
+          "available": true
         },
         {
           "id": "p5-02",
@@ -224,7 +224,7 @@ window.BS_CATALOG = {
           "id": "p6-01",
           "no": 30,
           "title_vi": "Điền từ vào đoạn văn",
-          "available": false
+          "available": true
         },
         {
           "id": "p6-02",
@@ -248,7 +248,7 @@ window.BS_CATALOG = {
           "id": "p7-01",
           "no": 33,
           "title_vi": "Thư điện tử và thư tín",
-          "available": false
+          "available": true
         },
         {
           "id": "p7-02",
