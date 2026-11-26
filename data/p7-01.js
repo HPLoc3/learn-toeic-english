@@ -349,8 +349,8 @@ window.BS_UNITS["p7-01"] = {
                 {
                   "who": "Tomas Reyes",
                   "time": "10:05 A.M.",
-                  "en": "The driver says forty minutes at least. I may not reach the office before 11:30.",
-                  "vi": "Tài xế nói ít nhất bốn mươi phút. Có thể tôi sẽ không đến văn phòng trước 11 giờ 30."
+                  "en": "The driver says forty minutes at least.",
+                  "vi": "Tài xế nói ít nhất bốn mươi phút."
                 },
                 {
                   "who": "Lena Kovac",
@@ -361,8 +361,8 @@ window.BS_UNITS["p7-01"] = {
                 {
                   "who": "Tomas Reyes",
                   "time": "10:08 A.M.",
-                  "en": "Could we use the large room for them? Room 4 only seats four.",
-                  "vi": "Chúng ta dùng phòng lớn cho họ được không? Phòng 4 chỉ có bốn chỗ ngồi."
+                  "en": "I may not reach the office before 11:30. Could we use the large room for them? Room 4 only seats four.",
+                  "vi": "Có thể tôi sẽ không đến văn phòng trước 11 giờ 30. Chúng ta dùng phòng lớn cho họ được không? Phòng 4 chỉ có bốn chỗ ngồi."
                 },
                 {
                   "who": "Lena Kovac",
@@ -396,27 +396,27 @@ window.BS_UNITS["p7-01"] = {
               "id": "r1-s1-q1",
               "kind": "intent",
               "quote": "I may not reach the office before 11:30.",
-              "at_time": "10:05 A.M.",
+              "at_time": "10:08 A.M.",
               "q": {
-                "en": "At 10:05 A.M., what does Mr. Reyes most likely mean when he writes, \"I may not reach the office before 11:30\"?",
-                "vi": "Lúc 10:05 sáng, ông Reyes nhiều khả năng muốn nói gì khi viết \"I may not reach the office before 11:30\"?"
+                "en": "At 10:08 A.M., what does Mr. Reyes most likely mean when he writes, \"I may not reach the office before 11:30\"?",
+                "vi": "Lúc 10:08 sáng, ông Reyes nhiều khả năng muốn nói gì khi viết \"I may not reach the office before 11:30\"?"
               },
               "answer": "C",
               "evidence": [
-                [
-                  0,
-                  2
-                ],
                 [
                   0,
                   3
                 ],
                 [
                   0,
+                  4
+                ],
+                [
+                  0,
                   6
                 ]
               ],
-              "explain_vi": "Nhóm khách đến lúc 11 giờ, trước giờ ông Reyes có thể tới văn phòng. Sau đó ông nhờ kê thêm ghế và bảo phần trình chiếu có thể đợi đến khi ông tới, nên chính ông sẽ thuyết trình; bà Kovac chỉ lo tiếp khách bằng mẫu sản phẩm và cà phê trong lúc chờ. Vậy ông nhờ bà giữ khách bận rộn cho đến khi ông đến.",
+              "explain_vi": "Bà Kovac vừa nhắc nhóm khách đến lúc 11 giờ; ông Reyes đáp rằng có thể không tới văn phòng trước 11 giờ 30. Sau đó ông nhờ kê thêm ghế và bảo phần trình chiếu có thể đợi đến khi ông tới, nên chính ông sẽ thuyết trình; bà Kovac chỉ lo tiếp khách bằng mẫu sản phẩm và cà phê trong lúc chờ. Vậy ông nhờ bà giữ khách bận rộn cho đến khi ông đến.",
               "options": [
                 {
                   "label": "A",
@@ -1096,8 +1096,8 @@ window.BS_UNITS["p7-01"] = {
                   "vi": "Cảm ơn ông đã liên hệ với chúng tôi. Hội thảo được tổ chức vào bốn ngày nêu trong bảng bên dưới. Số chỗ được cập nhật mỗi tối, nên tôi khuyên ông đăng ký sớm. Mỗi buổi diễn ra tại phòng đào tạo chính của chúng tôi, phòng này chứa được mười lăm người, và do một giảng viên cao cấp của viện giảng dạy."
                 },
                 {
-                  "en": "Any group of eight or more people may bring one member free of charge, so the fee for one person is taken off the invoice. Every participant will be given a printed workbook. Registration for each session closes one week before it begins.",
-                  "vi": "Mỗi nhóm từ tám người trở lên được đưa một thành viên tham gia miễn phí, nên học phí của một người được trừ vào hóa đơn. Mỗi người tham gia sẽ được phát một cuốn sách bài tập in. Việc đăng ký cho mỗi buổi đóng lại một tuần trước khi buổi đó bắt đầu."
+                  "en": "For groups of eight or more, one participant attends free of charge, and that person's fee is taken off the invoice. Every participant will be given a printed workbook. Registration for each session closes one week before it begins.",
+                  "vi": "Với nhóm từ tám người trở lên, một người tham dự miễn phí, và học phí của người đó được trừ vào hóa đơn. Mỗi người tham gia sẽ được phát một cuốn sách bài tập in. Việc đăng ký cho mỗi buổi đóng lại một tuần trước khi buổi đó bắt đầu."
                 }
               ],
               "table": {
