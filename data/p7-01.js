@@ -416,33 +416,33 @@ window.BS_UNITS["p7-01"] = {
                   6
                 ]
               ],
-              "explain_vi": "Nhóm khách đến lúc 11 giờ, trước giờ ông Reyes có thể tới văn phòng. Sau đó ông nhờ kê thêm ghế, bảo phần trình chiếu có thể đợi đến khi ông tới và để bà Kovac lo mẫu sản phẩm, cà phê. Vì vậy ông trông đợi bà Kovac đón khách thay mình, chứ không hề bảo hoãn buổi gặp.",
+              "explain_vi": "Nhóm khách đến lúc 11 giờ, trước giờ ông Reyes có thể tới văn phòng. Sau đó ông nhờ kê thêm ghế và bảo phần trình chiếu có thể đợi đến khi ông tới, nên chính ông sẽ thuyết trình; bà Kovac chỉ lo tiếp khách bằng mẫu sản phẩm và cà phê trong lúc chờ. Vậy ông nhờ bà giữ khách bận rộn cho đến khi ông đến.",
               "options": [
                 {
                   "label": "A",
-                  "en": "He is asking her to postpone the visit.",
-                  "vi": "Ông ấy nhờ bà hoãn buổi gặp khách.",
+                  "en": "He is asking her to move the visit to the afternoon.",
+                  "vi": "Ông ấy nhờ bà dời buổi gặp sang buổi chiều.",
                   "trap": "opposite",
-                  "why_vi": "Buổi gặp vẫn diễn ra: ông chỉ dẫn cách chuẩn bị phòng và nói phần trình chiếu đợi ông tới, không nhờ hoãn."
+                  "why_vi": "Buổi gặp vẫn diễn ra: ông chỉ dẫn cách chuẩn bị phòng và nói phần trình chiếu đợi ông tới, không nhờ dời."
                 },
                 {
                   "label": "B",
-                  "en": "He is asking her to send a car to the station.",
-                  "vi": "Ông ấy nhờ bà cử xe đến nhà ga.",
-                  "trap": "not-mentioned",
-                  "why_vi": "Không ai nhắc đến việc đón ông ở nhà ga; ông chỉ nói sẽ nhắn khi tàu chạy lại."
+                  "en": "He is asking her to find another person to present.",
+                  "vi": "Ông ấy nhờ bà tìm người khác thuyết trình.",
+                  "trap": "wrong-detail",
+                  "why_vi": "Ông nói phần trình chiếu có thể đợi đến khi chính ông tới, nên ông sẽ tự thuyết trình."
                 },
                 {
                   "label": "C",
-                  "en": "He is expecting her to welcome the guests without him.",
-                  "vi": "Ông ấy trông đợi bà đón khách khi không có ông."
+                  "en": "He is asking her to keep the guests occupied until he arrives.",
+                  "vi": "Ông ấy nhờ bà tiếp khách cho đến khi ông đến."
                 },
                 {
                   "label": "D",
-                  "en": "He is asking her to call the clients and apologize.",
-                  "vi": "Ông ấy nhờ bà gọi cho khách để xin lỗi.",
+                  "en": "He is asking her to meet him at the station first.",
+                  "vi": "Ông ấy nhờ bà gặp ông ở nhà ga trước.",
                   "trap": "not-mentioned",
-                  "why_vi": "Ông không nhờ bà gọi điện hay xin lỗi ai; ông lo việc chuẩn bị phòng và đồ tiếp khách."
+                  "why_vi": "Không ai nhắc đến việc gặp nhau ở nhà ga; ông chỉ nói sẽ nhắn khi tàu chạy lại."
                 }
               ]
             },
@@ -677,8 +677,8 @@ window.BS_UNITS["p7-01"] = {
                   "vi": "Năm nay Hiệp hội đã bổ sung bốn buổi hội thảo buổi tối về khai báo thuế. Hội viên trả một nửa mức đó. Thư viện trực tuyến gồm các bản hướng dẫn cũng mở cho hội viên vào bất cứ giờ nào."
                 },
                 {
-                  "en": "The standard renewal fee is $85. Members who joined before 2021 pay the loyalty fee of $70 instead. Please return the enclosed form by November 15 so that we can confirm your place in the first seminar of the new year.",
-                  "vi": "Mức phí gia hạn tiêu chuẩn là 85 đô la. Hội viên gia nhập trước năm 2021 trả mức phí tri ân là 70 đô la thay vào đó. Xin gửi lại biểu mẫu kèm theo trước ngày 15 tháng 11 để chúng tôi xác nhận chỗ của ông trong buổi hội thảo đầu tiên của năm mới."
+                  "en": "The standard renewal fee is $85. Members who joined before 2021 pay the loyalty fee of $70 instead. Please return the enclosed form by November 15 so that we can reserve a place for you in the first seminar of the new year.",
+                  "vi": "Mức phí gia hạn tiêu chuẩn là 85 đô la. Hội viên gia nhập trước năm 2021 trả mức phí tri ân là 70 đô la thay vào đó. Xin gửi lại biểu mẫu kèm theo trước ngày 15 tháng 11 để chúng tôi giữ một chỗ cho ông trong buổi hội thảo đầu tiên của năm mới."
                 }
               ]
             }
@@ -1092,12 +1092,12 @@ window.BS_UNITS["p7-01"] = {
               ],
               "paras": [
                 {
-                  "en": "Thank you for contacting us. The workshop is offered on the four dates shown in the table below. The seat numbers are updated every evening, so I recommend that you register soon. Each session takes place in our main training room, and it is taught by one of our senior instructors.",
-                  "vi": "Cảm ơn ông đã liên hệ với chúng tôi. Hội thảo được tổ chức vào bốn ngày nêu trong bảng bên dưới. Số chỗ được cập nhật mỗi tối, nên tôi khuyên ông đăng ký sớm. Mỗi buổi diễn ra tại phòng đào tạo chính của chúng tôi và do một giảng viên cao cấp của viện giảng dạy."
+                  "en": "Thank you for contacting us. The workshop is offered on the four dates shown in the table below. The seat numbers are updated every evening, so I recommend that you register soon. Each session takes place in our main training room, which can hold fifteen people, and it is taught by one of our senior instructors.",
+                  "vi": "Cảm ơn ông đã liên hệ với chúng tôi. Hội thảo được tổ chức vào bốn ngày nêu trong bảng bên dưới. Số chỗ được cập nhật mỗi tối, nên tôi khuyên ông đăng ký sớm. Mỗi buổi diễn ra tại phòng đào tạo chính của chúng tôi, phòng này chứa được mười lăm người, và do một giảng viên cao cấp của viện giảng dạy."
                 },
                 {
-                  "en": "Any group of eight or more people receives one free place, and its value is taken off the invoice. Every participant will be given a printed workbook. Registration for each session closes one week before it begins.",
-                  "vi": "Mỗi nhóm từ tám người trở lên được tặng một suất miễn phí, và giá trị của suất đó được trừ vào hóa đơn. Mỗi người tham gia sẽ được phát một cuốn sách bài tập in. Việc đăng ký cho mỗi buổi đóng lại một tuần trước khi buổi đó bắt đầu."
+                  "en": "Any group of eight or more people may bring one member free of charge, so the fee for one person is taken off the invoice. Every participant will be given a printed workbook. Registration for each session closes one week before it begins.",
+                  "vi": "Mỗi nhóm từ tám người trở lên được đưa một thành viên tham gia miễn phí, nên học phí của một người được trừ vào hóa đơn. Mỗi người tham gia sẽ được phát một cuốn sách bài tập in. Việc đăng ký cho mỗi buổi đóng lại một tuần trước khi buổi đó bắt đầu."
                 }
               ],
               "table": {
@@ -1112,17 +1112,17 @@ window.BS_UNITS["p7-01"] = {
                 "rows": [
                   [
                     "Session 1",
+                    "Tuesday, November 18",
+                    "9:00 A.M. - 1:00 P.M.",
+                    "11",
+                    "$110"
+                  ],
+                  [
+                    "Session 2",
                     "Thursday, October 9",
                     "9:00 A.M. - 1:00 P.M.",
                     "15",
                     "$90"
-                  ],
-                  [
-                    "Session 2",
-                    "Tuesday, October 28",
-                    "1:00 P.M. - 5:00 P.M.",
-                    "10",
-                    "$80"
                   ],
                   [
                     "Session 3",
@@ -1133,10 +1133,10 @@ window.BS_UNITS["p7-01"] = {
                   ],
                   [
                     "Session 4",
-                    "Tuesday, November 18",
-                    "9:00 A.M. - 1:00 P.M.",
-                    "11",
-                    "$110"
+                    "Tuesday, October 28",
+                    "1:00 P.M. - 5:00 P.M.",
+                    "10",
+                    "$80"
                   ]
                 ]
               }
@@ -1217,14 +1217,14 @@ window.BS_UNITS["p7-01"] = {
                   "en": "Session 1",
                   "vi": "Buổi 1",
                   "trap": "wrong-detail",
-                  "why_vi": "Buổi này diễn ra vào sáng ngày 9 tháng 10, khi nhóm còn bận làm báo cáo cuối năm."
+                  "why_vi": "Buổi này diễn ra vào sáng ngày 18 tháng 11, sau cuộc họp đánh giá ngày 14 tháng 11."
                 },
                 {
                   "label": "B",
                   "en": "Session 2",
                   "vi": "Buổi 2",
                   "trap": "wrong-detail",
-                  "why_vi": "Buổi này diễn ra vào buổi chiều, lúc nhóm phải nghe điện thoại, và cũng trước ngày 3 tháng 11."
+                  "why_vi": "Buổi này diễn ra vào sáng ngày 9 tháng 10, khi nhóm còn bận làm báo cáo cuối năm."
                 },
                 {
                   "label": "C",
@@ -1236,56 +1236,56 @@ window.BS_UNITS["p7-01"] = {
                   "en": "Session 4",
                   "vi": "Buổi 4",
                   "trap": "wrong-detail",
-                  "why_vi": "Buổi này diễn ra vào sáng ngày 18 tháng 11, sau cuộc họp đánh giá ngày 14 tháng 11."
+                  "why_vi": "Buổi này diễn ra vào buổi chiều, lúc nhóm phải nghe điện thoại, và cũng trước ngày 3 tháng 11."
                 }
               ]
             },
             {
               "id": "r2-s5-q3",
               "kind": "vocab",
-              "word": "place",
+              "word": "hold",
               "at": [
                 1,
-                1
+                0
               ],
               "q": {
-                "en": "In the second e-mail, the word \"place\" in paragraph 2 is closest in meaning to",
-                "vi": "Trong thư thứ hai, từ \"place\" ở đoạn 2 gần nghĩa nhất với"
+                "en": "In the second e-mail, the word \"hold\" in paragraph 1 is closest in meaning to",
+                "vi": "Trong thư thứ hai, từ \"hold\" ở đoạn 1 gần nghĩa nhất với"
               },
               "answer": "B",
               "evidence": [
                 [
                   1,
-                  1
+                  0
                 ]
               ],
-              "explain_vi": "'One free place' trong một khóa học nghĩa là một chỗ học miễn phí, tức 'seat'.",
+              "explain_vi": "'The room can hold fifteen people' nghĩa là phòng chứa được mười lăm người, tức 'accommodate'.",
               "options": [
                 {
                   "label": "A",
-                  "en": "area",
-                  "vi": "khu vực",
+                  "en": "grip firmly",
+                  "vi": "nắm chặt",
                   "trap": "other-meaning",
-                  "why_vi": "Đây là nghĩa nơi chốn (a quiet place), không hợp với việc một nhóm được tặng một suất."
+                  "why_vi": "Đây là nghĩa cầm nắm (hold a rope), không hợp khi chủ ngữ là một căn phòng."
                 },
                 {
                   "label": "B",
-                  "en": "seat",
-                  "vi": "chỗ ngồi, suất học"
+                  "en": "accommodate",
+                  "vi": "chứa được"
                 },
                 {
                   "label": "C",
-                  "en": "rank",
-                  "vi": "thứ hạng",
+                  "en": "organize",
+                  "vi": "tổ chức",
                   "trap": "other-meaning",
-                  "why_vi": "Đây là nghĩa thứ hạng (in first place), không hợp với một suất miễn phí trong khóa học."
+                  "why_vi": "Đây là nghĩa tổ chức (hold a meeting); căn phòng không tổ chức người, và buổi học đã được nêu ở câu trước."
                 },
                 {
                   "label": "D",
-                  "en": "home",
-                  "vi": "nhà",
+                  "en": "keep waiting",
+                  "vi": "bắt phải chờ",
                   "trap": "other-meaning",
-                  "why_vi": "Đây là nghĩa nhà ở (at my place), không hợp với ngữ cảnh khóa học."
+                  "why_vi": "Đây là nghĩa giữ máy, bắt chờ (hold the line), không hợp với sức chứa của một căn phòng."
                 }
               ]
             },
@@ -1312,7 +1312,7 @@ window.BS_UNITS["p7-01"] = {
                   1
                 ]
               ],
-              "explain_vi": "Nhóm chín người dự buổi 3 với phí 95 đô la mỗi người. Nhóm từ tám người trở lên được một suất miễn phí, nên chỉ trả cho tám người: 8 x 95 = 760 đô la.",
+              "explain_vi": "Nhóm chín người dự buổi 3 với phí 95 đô la mỗi người. Nhóm từ tám người trở lên được đưa một thành viên miễn phí, nên chỉ trả cho tám người: 8 x 95 = 760 đô la.",
               "options": [
                 {
                   "label": "A",
@@ -1321,24 +1321,24 @@ window.BS_UNITS["p7-01"] = {
                 },
                 {
                   "label": "B",
-                  "en": "$855",
-                  "vi": "855 đô la",
+                  "en": "$810",
+                  "vi": "810 đô la",
                   "trap": "wrong-detail",
-                  "why_vi": "Con số này tính cho cả chín người (9 x 95), bỏ qua suất miễn phí dành cho nhóm từ tám người trở lên."
+                  "why_vi": "Con số này là 9 x 90: phí của buổi 2 (ngày 9 tháng 10, trước khi nhóm rảnh) và còn bỏ qua việc một người được miễn phí."
                 },
                 {
                   "label": "C",
                   "en": "$880",
                   "vi": "880 đô la",
                   "trap": "wrong-detail",
-                  "why_vi": "Con số này tính theo phí của buổi 4 (110 đô la), buổi diễn ra sau cuộc họp đánh giá của nhóm."
+                  "why_vi": "Con số này là 8 x 110: phí của buổi 1 (ngày 18 tháng 11), buổi diễn ra sau cuộc họp đánh giá của nhóm."
                 },
                 {
                   "label": "D",
                   "en": "$720",
                   "vi": "720 đô la",
                   "trap": "wrong-detail",
-                  "why_vi": "Con số này tính theo phí của buổi 1 (90 đô la), buổi diễn ra trước khi nhóm rảnh."
+                  "why_vi": "Con số này là 9 x 80: phí của buổi 4 (buổi chiều, trước ngày 3 tháng 11) và còn bỏ qua việc một người được miễn phí."
                 }
               ]
             },
