@@ -335,8 +335,8 @@ window.BS_UNITS["p7-04"] = {
               "title": "Embry Packaging Rethinks Its Deliveries",
               "paras": [
                 {
-                  "en": "Embry Packaging has changed the way boxes and wrapping materials leave its Netherby Road warehouse. Until this spring, each order was sent out as soon as it had been packed. As a result, trucks often set off half empty, and two of them might visit the same district only an hour apart. [1]",
-                  "vi": "Embry Packaging đã thay đổi cách thùng hộp và vật liệu bao gói rời kho của công ty trên đường Netherby Road. Cho đến mùa xuân này, mỗi đơn hàng được gửi đi ngay khi đóng gói xong. Vì thế, xe tải thường xuất phát khi mới đầy một nửa, và có khi hai xe đến cùng một quận chỉ cách nhau một giờ."
+                  "en": "Embry Packaging has changed the way boxes and wrapping materials leave its main warehouse. Until this spring, each order was sent out as soon as it had been packed. As a result, trucks often set off half empty, and two of them might visit the same district only an hour apart. [1]",
+                  "vi": "Embry Packaging đã thay đổi cách thùng hộp và vật liệu bao gói rời kho chính của công ty. Cho đến mùa xuân này, mỗi đơn hàng được gửi đi ngay khi đóng gói xong. Vì thế, xe tải thường xuất phát khi mới đầy một nửa, và có khi hai xe đến cùng một quận chỉ cách nhau một giờ."
                 },
                 {
                   "en": "Since March, staff have sorted orders by district. One truck now serves each district and departs at a set hour every afternoon. Loaders put the cartons for the final stop on board first, so drivers never have to shift one customer's goods to reach another's. Before closing the doors, they secure each stack with wide straps. [2]",
@@ -347,8 +347,8 @@ window.BS_UNITS["p7-04"] = {
                   "vi": "Ba tháng đầu cho kết quả đáng khích lệ. Chi phí nhiên liệu của công ty đã giảm khoảng 12 phần trăm, và số thùng bị móp khi đến nơi ít hơn. Một số người trong nhóm bán hàng từng lo giao hàng sẽ chậm, nhưng đơn nhận trước buổi trưa vẫn được chuyển đi ngay trong ngày."
                 },
                 {
-                  "en": "Another step is planned for September, according to warehouse manager Mr. Frederik. On their way back to Netherby Road, drivers will pick up empty wooden pallets from regular customers. [4] He expects to review the whole system again at the end of the year.",
-                  "vi": "Theo ông Frederik, quản lý kho, một bước nữa được lên kế hoạch cho tháng 9. Trên đường quay về Netherby Road, tài xế sẽ thu lại các pa-lét gỗ trống từ khách hàng quen. Ông dự kiến sẽ đánh giá lại toàn bộ hệ thống vào cuối năm."
+                  "en": "Another step is planned for September, according to warehouse manager Mr. Frederik. On their way back to the warehouse, drivers will pick up empty wooden pallets from regular customers. [4] He expects to review the whole system again at the end of the year.",
+                  "vi": "Theo ông Frederik, quản lý kho, một bước nữa được lên kế hoạch cho tháng 9. Trên đường quay về kho, tài xế sẽ thu lại các pa-lét gỗ trống từ khách hàng quen. Ông dự kiến sẽ đánh giá lại toàn bộ hệ thống vào cuối năm."
                 }
               ]
             }
@@ -456,10 +456,10 @@ window.BS_UNITS["p7-04"] = {
                 },
                 {
                   "label": "D",
-                  "en": "measure",
-                  "vi": "đo đạc",
-                  "trap": "not-mentioned",
-                  "why_vi": "Đây không phải nghĩa của 'secure', và bài không nói gì về việc đo các chồng thùng."
+                  "en": "arrest",
+                  "vi": "bắt giữ",
+                  "trap": "other-meaning",
+                  "why_vi": "'Secure' còn có nghĩa bắt và giữ một người; nghĩa này không dùng cho các chồng thùng hàng."
                 }
               ]
             },
@@ -538,11 +538,11 @@ window.BS_UNITS["p7-04"] = {
               "paras": [
                 {
                   "en": "Dear Mr. Bertil, thank you for sending the visit schedule. About 25 of our installers will watch the demonstrations in total. The machines you are bringing are full-size, but most of these workers have used only small hand-held versions, so please allow time for questions.",
-                  "vi": "Kính gửi ông Bertil, cảm ơn ông đã gửi lịch các buổi đến. Tổng cộng khoảng 25 thợ lắp đặt của chúng tôi sẽ xem trình diễn. Máy ông mang đến là loại cỡ lớn, nhưng phần đông những thợ này mới chỉ dùng loại cầm tay cỡ nhỏ, nên xin dành thời gian cho họ đặt câu hỏi."
+                  "vi": "Kính gửi ông Bertil, cảm ơn ông đã gửi lịch các buổi trình diễn. Tổng cộng khoảng 25 thợ lắp đặt của chúng tôi sẽ xem trình diễn. Máy ông mang đến là loại cỡ lớn, nhưng phần đông những thợ này mới chỉ dùng loại cầm tay cỡ nhỏ, nên xin dành thời gian cho họ đặt câu hỏi."
                 },
                 {
-                  "en": "Here are some points about our sites. A supply truck calls at each of them every Tuesday and Friday, and on those two days nobody there can step away from the unloading before 11 o'clock. A bay large enough for your trailer has already been marked off at every location. None of the sites has a roofed area outdoors. We have plenty of extension cords for indoor work, but we own none that is made for use outside.",
-                  "vi": "Sau đây là vài điểm về các cơ sở của chúng tôi. Xe tải giao vật tư ghé từng cơ sở vào mỗi thứ Ba và thứ Sáu, và trong hai ngày đó không ai ở cơ sở rời việc dỡ hàng được trước 11 giờ. Ở mọi địa điểm, chúng tôi đã vạch sẵn một chỗ đỗ đủ rộng cho rơ-moóc của ông. Không cơ sở nào có khu vực ngoài trời có mái che. Chúng tôi có nhiều dây nối điện dùng trong nhà, nhưng không có dây nào được làm để dùng ngoài trời."
+                  "en": "Here are some points about our sites. A supply truck calls at each of them every Tuesday and Friday, and on those two days nobody there can step away from the unloading before 11 o'clock. A bay large enough for your trailer has already been marked off at every location. None of the sites has a roofed area outdoors, and we own no tent or canopy. We have plenty of extension cords for indoor work, but we own none that is made for use outside.",
+                  "vi": "Sau đây là vài điểm về các cơ sở của chúng tôi. Xe tải giao vật tư ghé từng cơ sở vào mỗi thứ Ba và thứ Sáu, và trong hai ngày đó không ai ở cơ sở rời việc dỡ hàng được trước 11 giờ. Ở mọi địa điểm, chúng tôi đã vạch sẵn một chỗ đỗ đủ rộng cho rơ-moóc của ông. Không cơ sở nào có khu vực ngoài trời có mái che, và chúng tôi cũng không có lều hay mái bạt. Chúng tôi có nhiều dây nối điện dùng trong nhà, nhưng không có dây nào được làm để dùng ngoài trời."
                 },
                 {
                   "en": "I will welcome your presenter at Pennycress Lane myself. If any of these points causes a difficulty, could you send me a revised plan by May 29?",
@@ -556,8 +556,8 @@ window.BS_UNITS["p7-04"] = {
               "title": "Stannard Equipment Hire: June demonstrations for Cassowary Tools",
               "paras": [
                 {
-                  "en": "All demonstrations are held outdoors and last about 90 minutes. Your presenter will arrive 30 minutes before the time shown to set up and test each machine.",
-                  "vi": "Mọi buổi trình diễn đều tổ chức ngoài trời và kéo dài khoảng 90 phút. Người trình diễn sẽ đến trước giờ ghi trong lịch 30 phút để lắp đặt và chạy thử từng máy."
+                  "en": "All demonstrations are held outdoors and last about 90 minutes. Our presenter will arrive 30 minutes before the time shown to set up and test each machine.",
+                  "vi": "Mọi buổi trình diễn đều tổ chức ngoài trời và kéo dài khoảng 90 phút. Người trình diễn của chúng tôi sẽ đến trước giờ ghi trong lịch 30 phút để lắp đặt và chạy thử từng máy."
                 },
                 {
                   "en": "The host site provides an outdoor-grade extension cable and a parking bay for our trailer. Please send us the names of those attending two days before each visit. If it rains, the presenter puts up our own canopy, and the visit goes ahead.",
@@ -782,7 +782,7 @@ window.BS_UNITS["p7-04"] = {
                   "label": "D",
                   "en": "Pennycress Lane",
                   "vi": "Pennycress Lane",
-                  "trap": "other-passage",
+                  "trap": "wrong-detail",
                   "why_vi": "Thư chỉ nhắc địa điểm này khi nói cô Alessia sẽ đón người trình diễn; buổi đó vào chiều thứ Hai nên không vướng gì."
                 }
               ]
@@ -822,10 +822,10 @@ window.BS_UNITS["p7-04"] = {
                 },
                 {
                   "label": "C",
-                  "en": "Build a roofed shelter at each of its four sites",
-                  "vi": "Dựng một mái che ở mỗi cơ sở trong bốn cơ sở",
+                  "en": "Obtain a canopy to use in case of rain",
+                  "vi": "Kiếm một mái bạt để dùng khi trời mưa",
                   "trap": "over-inference",
-                  "why_vi": "Các cơ sở không có khu vực ngoài trời có mái che, nhưng khi mưa người trình diễn tự dựng mái bạt, nên không cần xây gì."
+                  "why_vi": "Thư cho biết công ty không có mái che hay mái bạt, nhưng bản lịch nói khi mưa người trình diễn dựng mái bạt của bên cho thuê, nên công ty không cần kiếm."
                 },
                 {
                   "label": "D",
@@ -864,7 +864,7 @@ window.BS_UNITS["p7-04"] = {
                 },
                 {
                   "en": "Managers hope the room will shorten the line at the front desk, where bags used to be left. They also hope that visitors with time to spare will settle into the new lobby café instead of heading elsewhere.",
-                  "vi": "Ban quản lý hy vọng phòng này sẽ làm hàng người ở quầy lễ tân, nơi trước đây nhận gửi túi, ngắn lại. Họ cũng mong những vị khách còn thời gian rảnh sẽ ngồi lại quán cà phê mới ở sảnh thay vì đi nơi khác."
+                  "vi": "Ban quản lý hy vọng phòng này sẽ giúp hàng người chờ ở quầy lễ tân, nơi trước đây nhận gửi túi, ngắn lại. Họ cũng mong những vị khách còn thời gian rảnh sẽ ngồi lại quán cà phê mới ở sảnh thay vì đi nơi khác."
                 }
               ]
             },
@@ -886,8 +886,8 @@ window.BS_UNITS["p7-04"] = {
                   "vi": "Bạn có ghé quầy lễ tân không? Không, tôi đi thẳng từ cửa hông đến phòng gửi hành lý."
                 },
                 {
-                  "en": "Comments: My bag fitted with space to spare. I had a free hour before the meeting, so I walked to Ockham Park to enjoy the sunshine. Our group's next meeting will also be held here, and I intend to leave my bag in the same room again.",
-                  "vi": "Ý kiến: Túi của tôi để vừa, vẫn còn dư chỗ. Tôi rảnh một giờ trước cuộc họp nên đã đi bộ đến Ockham Park để tận hưởng nắng. Cuộc họp tới của nhóm chúng tôi cũng tổ chức ở đây, và tôi định lại gửi túi ở chính phòng đó."
+                  "en": "Comments: My bag fit with room to spare. I had a free hour before the meeting, so I walked to a nearby park to enjoy the sunshine. Our group's next meeting will also be held here, and I intend to leave my bag in the same room again.",
+                  "vi": "Ý kiến: Túi của tôi để vừa, vẫn còn dư chỗ. Tôi rảnh một giờ trước cuộc họp nên đã đi bộ đến một công viên gần đó để tận hưởng nắng. Cuộc họp tới của nhóm chúng tôi cũng tổ chức ở đây, và tôi định lại gửi túi ở chính phòng đó."
                 }
               ],
               "table": {
@@ -990,8 +990,8 @@ window.BS_UNITS["p7-04"] = {
                 },
                 {
                   "label": "C",
-                  "en": "She expects to visit Averill Hotel again.",
-                  "vi": "Cô dự kiến sẽ lại đến khách sạn Averill."
+                  "en": "She expects to return to the hotel.",
+                  "vi": "Cô dự kiến sẽ quay lại khách sạn."
                 },
                 {
                   "label": "D",
@@ -1037,10 +1037,10 @@ window.BS_UNITS["p7-04"] = {
                 },
                 {
                   "label": "C",
-                  "en": "A member of the hotel team stored her bag for her.",
-                  "vi": "Một nhân viên khách sạn đã cất túi giúp cô.",
-                  "trap": "word-match",
-                  "why_vi": "Lặp lại cụm 'member of the hotel team', nhưng người đó chỉ hướng dẫn trong một phòng tự phục vụ, không cất đồ hộ."
+                  "en": "No member of the hotel team was in the room.",
+                  "vi": "Trong phòng không có nhân viên khách sạn nào.",
+                  "trap": "wrong-detail",
+                  "why_vi": "Phòng chỉ không còn người trực sau ngày 19 tháng 4, còn cô đến ngày 14 tháng 4."
                 },
                 {
                   "label": "D",
@@ -1088,10 +1088,10 @@ window.BS_UNITS["p7-04"] = {
                 },
                 {
                   "label": "C",
-                  "en": "deliver",
-                  "vi": "giao đến",
-                  "trap": "not-mentioned",
-                  "why_vi": "Đây không phải nghĩa của 'accommodate', và bài không nói ngăn tủ chuyển đồ đi đâu."
+                  "en": "oblige",
+                  "vi": "chiều theo yêu cầu, giúp đỡ",
+                  "trap": "other-meaning",
+                  "why_vi": "'Accommodate' có thể là đáp ứng yêu cầu của ai đó, nhưng ngăn tủ không làm ơn cho chiếc va li."
                 },
                 {
                   "label": "D",
@@ -1105,8 +1105,8 @@ window.BS_UNITS["p7-04"] = {
               "kind": "inference",
               "cross": true,
               "q": {
-                "en": "Based on the article and the form, which statement is most likely true?",
-                "vi": "Dựa vào bài viết và biểu mẫu, nhận định nào nhiều khả năng đúng?"
+                "en": "Which result that managers hoped for did Ms. Chiara's visit fail to produce?",
+                "vi": "Chuyến đến của cô Chiara đã không mang lại kết quả nào mà ban quản lý mong đợi?"
               },
               "answer": "D",
               "evidence": [
@@ -1119,33 +1119,33 @@ window.BS_UNITS["p7-04"] = {
                   3
                 ]
               ],
-              "explain_vi": "Ban quản lý mong khách còn thời gian rảnh sẽ ngồi lại quán cà phê ở sảnh, nhưng cô Chiara rảnh một giờ lại đi bộ đến Ockham Park, nên mong muốn đó không thành với cô.",
+              "explain_vi": "Ban quản lý mong khách còn thời gian rảnh sẽ ngồi lại quán cà phê ở sảnh thay vì đi nơi khác, nhưng cô Chiara rảnh một giờ lại đi bộ đến một công viên gần đó.",
               "options": [
                 {
                   "label": "A",
-                  "en": "The line at the front desk was shorter that day.",
-                  "vi": "Hôm đó hàng người ở quầy lễ tân ngắn hơn.",
+                  "en": "A shorter wait for people at the front desk",
+                  "vi": "Người chờ ở quầy lễ tân phải đợi ít hơn",
                   "trap": "other-passage",
-                  "why_vi": "Đây chỉ là điều bài viết mong đợi; biểu mẫu không cho biết hàng người hôm đó dài hay ngắn."
+                  "why_vi": "Đây là mong đợi nêu trong bài viết, nhưng cô đi thẳng đến phòng gửi hành lý mà không ghé quầy, nên chuyến đến của cô không đi ngược điều này."
                 },
                 {
                   "label": "B",
-                  "en": "She spent her free hour in the new lobby café.",
-                  "vi": "Cô dành giờ rảnh ở quán cà phê mới tại sảnh.",
-                  "trap": "opposite",
-                  "why_vi": "Cô viết rằng mình đã đi bộ đến Ockham Park."
+                  "en": "More meeting guests booking a room overnight",
+                  "vi": "Thêm nhiều khách dự họp đặt phòng qua đêm",
+                  "trap": "over-inference",
+                  "why_vi": "Cô không nghỉ qua đêm, nhưng bài viết không hề nói ban quản lý mong khách dự họp đặt phòng."
                 },
                 {
                   "label": "C",
-                  "en": "She dislikes the café and plans to avoid it.",
-                  "vi": "Cô không thích quán cà phê và định tránh nó.",
-                  "trap": "over-inference",
-                  "why_vi": "Việc đi dạo một lần không cho thấy cô có ý kiến gì về quán."
+                  "en": "Users finding the lockers simple to operate",
+                  "vi": "Người dùng thấy tủ dễ sử dụng",
+                  "trap": "opposite",
+                  "why_vi": "Cô đánh giá độ dễ dùng là rất tốt, nên chuyến đến của cô không đi ngược điều này."
                 },
                 {
                   "label": "D",
-                  "en": "One of the managers' hopes was not met in her case.",
-                  "vi": "Một mong muốn của ban quản lý đã không thành trong trường hợp của cô."
+                  "en": "Visitors passing spare time inside the building",
+                  "vi": "Khách dành thời gian rảnh ở trong tòa nhà"
                 }
               ]
             }
@@ -1235,8 +1235,8 @@ window.BS_UNITS["p7-04"] = {
                   "vi": "Thiệp: xin đặt vào mỗi hộp một tấm thiệp có cùng một lời chúc ngắn."
                 },
                 {
-                  "en": "Engraving: the wording for each item is shown in the table below. All engraved letters should be silver. A list of names is attached.",
-                  "vi": "Khắc chữ: nội dung khắc cho từng mặt hàng ghi trong bảng dưới đây. Mọi chữ khắc phải có màu bạc. Danh sách tên được gửi kèm."
+                  "en": "Engraving: the wording for each item is shown in the table below. All engraving should be in silver script, centered on the lid. A list of names is attached.",
+                  "vi": "Khắc chữ: nội dung khắc cho từng mặt hàng ghi trong bảng dưới đây. Mọi chữ khắc phải là kiểu chữ viết tay màu bạc, đặt chính giữa nắp. Danh sách tên được gửi kèm."
                 }
               ],
               "table": {
@@ -1287,8 +1287,8 @@ window.BS_UNITS["p7-04"] = {
                   "vi": "Xin chào, các thùng hàng do Delphinium Express chuyển đã đến chỗ chúng tôi ngày 12 tháng 6. Sáng nay tôi dành một lúc kiểm tra bên trong, vì quà sẽ được trao tại bữa tiệc tối của công ty vào thứ Sáu ngày 19 tháng 6."
                 },
                 {
-                  "en": "I am concerned about the six boxes prepared for our guest speakers. Each lid shows the right speaker's first name in small silver letters. I am afraid that this is not what we asked for.",
-                  "vi": "Tôi lo ngại về sáu hộp chuẩn bị cho các diễn giả khách mời. Mỗi nắp hộp ghi đúng tên gọi của diễn giả bằng chữ nhỏ màu bạc. E rằng đây không phải điều chúng tôi đã yêu cầu."
+                  "en": "I am concerned about the six boxes prepared for our guest speakers. Each lid has the right speaker's first name in silver script, centered on the lid. I am afraid that this is not what we asked for.",
+                  "vi": "Tôi lo ngại về sáu hộp chuẩn bị cho các diễn giả khách mời. Mỗi nắp hộp ghi đúng tên gọi của diễn giả bằng kiểu chữ viết tay màu bạc, đặt chính giữa mặt nắp. E rằng đây không phải điều chúng tôi đã yêu cầu."
                 },
                 {
                   "en": "Could you make six new lids and have them delivered to us by Thursday, June 18? Please telephone me today to let me know whether this is possible. I can send the old lids back to you afterward.",
@@ -1408,7 +1408,7 @@ window.BS_UNITS["p7-04"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "To ask for a mistake in the work to be fixed",
+                  "en": "To get a mistake in the work put right",
                   "vi": "Để yêu cầu sửa một lỗi trong sản phẩm đã làm"
                 },
                 {
@@ -1439,8 +1439,8 @@ window.BS_UNITS["p7-04"] = {
               "kind": "detail",
               "cross": true,
               "q": {
-                "en": "Which gift did Mr. Donovan order in the greatest number?",
-                "vi": "Ông Donovan đặt món quà nào với số lượng nhiều nhất?"
+                "en": "Which gift set did Mr. Donovan ask to have engraved with first names only?",
+                "vi": "Ông Donovan yêu cầu khắc chỉ tên gọi lên bộ quà nào?"
               },
               "answer": "A",
               "evidence": [
@@ -1453,7 +1453,7 @@ window.BS_UNITS["p7-04"] = {
                   3
                 ]
               ],
-              "explain_vi": "Đơn đặt hàng cho thấy mặt hàng số 23 có số lượng lớn nhất (40). Bảng trên trang web cho biết mặt hàng số 23 là sổ tay kèm bút.",
+              "explain_vi": "Bảng trong đơn ghi mặt hàng số 23 khắc tên gọi trên nắp; bảng trên trang web cho biết mặt hàng số 23 là sổ tay kèm bút.",
               "options": [
                 {
                   "label": "A",
@@ -1465,21 +1465,21 @@ window.BS_UNITS["p7-04"] = {
                   "en": "A tea tin with two cups",
                   "vi": "Một hộp trà kèm hai chiếc tách",
                   "trap": "wrong-detail",
-                  "why_vi": "Đây là mặt hàng số 58, chỉ được đặt 6 bộ."
+                  "why_vi": "Mặt hàng số 58 (hộp trà kèm hai tách) được đặt khắc họ tên đầy đủ, không phải chỉ tên gọi."
                 },
                 {
                   "label": "C",
                   "en": "A travel mug with a coaster",
                   "vi": "Một ly du lịch kèm lót ly",
-                  "trap": "other-passage",
+                  "trap": "wrong-detail",
                   "why_vi": "Món này chỉ có trên trang web (mặt hàng số 36), không có trong đơn."
                 },
                 {
                   "label": "D",
-                  "en": "Rolls of blue ribbon for wrapping presents",
-                  "vi": "Những cuộn ruy băng xanh để gói quà",
-                  "trap": "word-match",
-                  "why_vi": "Ruy băng xanh trên trang web dùng để buộc hộp, không phải món hàng được đặt."
+                  "en": "A candle with a ceramic holder",
+                  "vi": "Một cây nến kèm đế gốm",
+                  "trap": "wrong-detail",
+                  "why_vi": "Món này chỉ có trên trang web (mặt hàng số 47), không có trong đơn."
                 }
               ]
             },
@@ -1502,33 +1502,33 @@ window.BS_UNITS["p7-04"] = {
                   1
                 ]
               ],
-              "explain_vi": "Đơn yêu cầu sáu bộ (mặt hàng số 58) khắc họ tên đầy đủ, chữ màu bạc. Thư cho biết sáu hộp của diễn giả chỉ hiện tên gọi bằng chữ bạc, nên lỗi là không khắc đủ họ tên.",
+              "explain_vi": "Đơn yêu cầu sáu bộ (mặt hàng số 58) khắc họ tên đầy đủ, kiểu chữ viết tay màu bạc, đặt chính giữa. Thư cho biết sáu hộp của diễn giả đúng về màu, kiểu chữ và vị trí nhưng chỉ có tên gọi, nên lỗi là thiếu một phần tên.",
               "options": [
                 {
                   "label": "A",
                   "en": "Six lids have lettering in the wrong color.",
                   "vi": "Chữ trên sáu nắp hộp sai màu.",
                   "trap": "wrong-detail",
-                  "why_vi": "Đơn yêu cầu chữ màu bạc và thư cho biết chữ đúng là màu bạc."
+                  "why_vi": "Đơn yêu cầu chữ màu bạc và thư cho biết chữ trên nắp đúng là màu bạc."
                 },
                 {
                   "label": "B",
-                  "en": "Every lid in the order was engraved wrongly.",
-                  "vi": "Mọi nắp hộp trong đơn đều bị khắc sai.",
-                  "trap": "over-inference",
-                  "why_vi": "Thư chỉ nêu sáu hộp của diễn giả, không đủ để kết luận mọi hộp đều sai."
+                  "en": "Six lids have lettering in the wrong style.",
+                  "vi": "Chữ trên sáu nắp hộp sai kiểu.",
+                  "trap": "wrong-detail",
+                  "why_vi": "Đơn yêu cầu kiểu chữ viết tay và thư cho biết chữ trên nắp đúng là kiểu đó."
                 },
                 {
                   "label": "C",
-                  "en": "Six lids do not show the guests' complete names.",
-                  "vi": "Sáu nắp hộp không ghi đủ họ tên của các khách mời."
+                  "en": "Six lids have just part of each guest's name.",
+                  "vi": "Sáu nắp hộp chỉ có một phần tên của mỗi khách mời."
                 },
                 {
                   "label": "D",
-                  "en": "The ribbon promised on the web page is missing.",
-                  "vi": "Thiếu ruy băng mà trang web đã hứa.",
-                  "trap": "other-passage",
-                  "why_vi": "Ruy băng chỉ được nói ở trang web; đơn và thư không cho thấy thiếu ruy băng."
+                  "en": "Six lids have names in the wrong position.",
+                  "vi": "Tên trên sáu nắp hộp đặt sai vị trí.",
+                  "trap": "wrong-detail",
+                  "why_vi": "Đơn yêu cầu đặt chữ chính giữa nắp và thư cho biết tên đúng là nằm chính giữa."
                 }
               ]
             }
@@ -1557,18 +1557,18 @@ window.BS_UNITS["p7-04"] = {
                   "vi": "Hội chợ đồ thủ công mùa xuân sẽ diễn ra tại Maitland Hall vào thứ Bảy ngày 9 tháng 5, khách tham quan được vào từ 10 giờ sáng. Xin chuyển hàng vào trong khung giờ lắp đặt dành cho loại sản phẩm của quý vị, qua lối vào ghi cho loại đó."
                 },
                 {
-                  "en": "After unloading, drivers must move their vehicles to the car park on Pennycress Lane. Each exhibitor collects two badges at the registration table. Empty cartons may not be stored behind or beneath any stand.",
-                  "vi": "Sau khi dỡ hàng, tài xế phải chuyển xe sang bãi đỗ trên đường Pennycress Lane. Mỗi đơn vị trưng bày nhận hai thẻ đeo tại bàn đăng ký. Không được cất thùng rỗng phía sau hoặc bên dưới bất kỳ gian hàng nào."
+                  "en": "After unloading, drivers must move their vehicles to the parking lot on Pennycress Lane. Each exhibitor collects two badges at the registration table. Empty cartons may not be stored behind or beneath any stand.",
+                  "vi": "Sau khi dỡ hàng, tài xế phải chuyển xe sang bãi đỗ xe trên Pennycress Lane. Mỗi đơn vị trưng bày nhận hai thẻ đeo tại bàn đăng ký. Không được cất thùng rỗng phía sau hoặc bên dưới bất kỳ gian hàng nào."
                 },
                 {
-                  "en": "All aisles must be clear by 9:30 A.M. Anything still in an aisle after that time will be taken to Room 14, our storage room, by the Fernhill staff member in charge of that aisle. The staff member will then put a yellow card on the owner's stand.",
-                  "vi": "Mọi lối đi phải thông thoáng trước 9 giờ 30 sáng. Bất cứ thứ gì còn ở lối đi sau giờ đó sẽ được nhân viên Fernhill phụ trách lối đi ấy mang đến Phòng 14, phòng chứa đồ của chúng tôi. Sau đó nhân viên này sẽ đặt một tấm thẻ vàng lên gian hàng của chủ đồ."
+                  "en": "All aisles must be clear by 9:30 A.M. After that time, the Fernhill staff member in charge of an aisle deals with anything still in it. If someone is at the owner's stand, the staff member asks that person to move the items at once. If nobody is there, the staff member takes them to Room 14, our storage room, and puts a yellow card on the stand.",
+                  "vi": "Mọi lối đi phải thông thoáng trước 9 giờ 30 sáng. Sau giờ đó, nhân viên Fernhill phụ trách mỗi lối đi sẽ xử lý mọi thứ còn nằm trên lối ấy. Nếu có người ở gian hàng của chủ đồ, nhân viên yêu cầu người đó dời đồ ngay. Nếu không có ai, nhân viên mang đồ đến Phòng 14, phòng chứa đồ của chúng tôi, và đặt một tấm thẻ vàng lên gian hàng."
                 }
               ],
               "table": {
                 "title": "Maitland Hall - Set-up Slots",
                 "cols": [
-                  "Area",
+                  "Product type",
                   "Set-up time",
                   "Entrance"
                 ],
@@ -1619,8 +1619,8 @@ window.BS_UNITS["p7-04"] = {
               ],
               "paras": [
                 {
-                  "en": "Dear Mr. Yoon, I have a few things to mention about next month's fair. Last autumn a coworker took care of every detail for Brookmire Print. She has since transferred to our other office, so I am still learning how things are done.",
-                  "vi": "Kính gửi ông Yoon, tôi có vài điều muốn nói về hội chợ tháng tới. Mùa thu năm ngoái, một đồng nghiệp lo mọi chi tiết cho Brookmire Print. Cô ấy đã chuyển sang văn phòng khác của chúng tôi, nên tôi vẫn đang tìm hiểu cách mọi việc được thực hiện."
+                  "en": "Dear Mr. Yoon, I have a few things to mention about next month's fair. When Brookmire Print had a stand at your fair last autumn, a coworker took care of every detail. She has since transferred to our other office, so I am still learning how things are done.",
+                  "vi": "Kính gửi ông Yoon, tôi có vài điều muốn nói về hội chợ tháng tới. Mùa thu năm ngoái, khi Brookmire Print có gian hàng tại hội chợ của quý đơn vị, một đồng nghiệp đã lo mọi chi tiết. Cô ấy đã chuyển sang văn phòng khác của chúng tôi, nên tôi vẫn đang tìm hiểu cách mọi việc được thực hiện."
                 },
                 {
                   "en": "Our stand will offer greeting cards, desk calendars, and notebooks, all printed in our own workshop. We will finish loading the van the evening before, so my team can arrive as soon as our slot opens.",
@@ -1650,8 +1650,8 @@ window.BS_UNITS["p7-04"] = {
                   "time": "9:31 A.M."
                 },
                 {
-                  "en": "Aisle 5 still has two cartons in the middle of it. Their labels match the empty stand next to them.",
-                  "vi": "Lối đi số 5 vẫn còn hai thùng nằm ở giữa. Nhãn trên thùng khớp với gian hàng không có người ngay bên cạnh.",
+                  "en": "Aisle 5 still has two cartons in the middle of it. Their labels match the stand beside them, but nobody is there.",
+                  "vi": "Lối đi số 5 vẫn còn hai thùng nằm ở giữa. Nhãn trên thùng khớp với gian hàng ngay bên cạnh, nhưng ở đó không có ai.",
                   "who": "Mr. Moritz",
                   "time": "9:33 A.M."
                 },
@@ -1697,7 +1697,7 @@ window.BS_UNITS["p7-04"] = {
                   1
                 ]
               ],
-              "explain_vi": "Thông báo yêu cầu tài xế chuyển xe sang bãi đỗ trên đường Pennycress Lane sau khi dỡ hàng.",
+              "explain_vi": "Thông báo yêu cầu tài xế chuyển xe sang bãi đỗ xe trên Pennycress Lane sau khi dỡ hàng.",
               "options": [
                 {
                   "label": "A",
@@ -1757,10 +1757,10 @@ window.BS_UNITS["p7-04"] = {
                 },
                 {
                   "label": "C",
-                  "en": "She designs all of the calendars herself.",
-                  "vi": "Cô tự thiết kế toàn bộ các cuốn lịch.",
+                  "en": "She was recently promoted to a new job.",
+                  "vi": "Gần đây cô được thăng chức lên một vị trí mới.",
                   "trap": "not-mentioned",
-                  "why_vi": "Thư chỉ nói hàng được in tại xưởng, không nói ai thiết kế."
+                  "why_vi": "Thư không nói gì về việc cô được thăng chức hay đổi công việc."
                 },
                 {
                   "label": "D",
@@ -1799,29 +1799,29 @@ window.BS_UNITS["p7-04"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "She is correcting where the cartons were found.",
-                  "vi": "Cô đang đính chính vị trí phát hiện các thùng.",
+                  "en": "She is surprised the trouble is so near her.",
+                  "vi": "Cô ngạc nhiên vì rắc rối ở ngay gần mình.",
                   "trap": "wrong-detail",
-                  "why_vi": "Cô nói về chỗ mình đang đứng, không phải chỗ của các thùng."
+                  "why_vi": "Cô nêu khoảng cách ngay sau khi ông nói không xoay xở nổi, không phải để tỏ ý ngạc nhiên."
                 },
                 {
                   "label": "B",
-                  "en": "She can get there soon to give some help.",
-                  "vi": "Cô có thể đến đó sớm để giúp một tay."
+                  "en": "She can come over quickly to lend a hand.",
+                  "vi": "Cô có thể nhanh chóng đến giúp một tay."
                 },
                 {
                   "label": "C",
-                  "en": "She wants to trade aisles for the whole event.",
-                  "vi": "Cô muốn đổi lối đi phụ trách trong suốt sự kiện.",
+                  "en": "She wants him to bring the cartons to her.",
+                  "vi": "Cô muốn ông mang các thùng đến chỗ mình.",
                   "trap": "over-inference",
-                  "why_vi": "Cô chỉ đáp lại khó khăn trước mắt, không đề nghị đổi nhiệm vụ."
+                  "why_vi": "Cô không nhờ ông chuyển thùng; ông đáp sẽ đợi tại chỗ để cô đến."
                 },
                 {
                   "label": "D",
-                  "en": "She is unhappy with how the hall is laid out.",
-                  "vi": "Cô không hài lòng với cách bố trí hội trường.",
+                  "en": "She thinks the cartons came from her aisle.",
+                  "vi": "Cô cho rằng các thùng là từ lối đi của mình.",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có tin nhắn nào phàn nàn về cách bố trí."
+                  "why_vi": "Không tin nhắn nào nói các thùng xuất phát từ lối đi của cô."
                 }
               ]
             },
@@ -1893,7 +1893,7 @@ window.BS_UNITS["p7-04"] = {
                   2
                 ]
               ],
-              "explain_vi": "Lúc 9:33, tức sau hạn 9:30, lối đi ông Moritz đang báo cáo vẫn còn hai thùng. Theo thông báo, nhân viên phụ trách lối đi phải mang đồ đến Phòng 14 và đặt thẻ vàng lên gian hàng của chủ đồ.",
+              "explain_vi": "Lúc 9:33, tức sau hạn 9:30, lối đi ông Moritz báo cáo vẫn còn hai thùng và gian hàng của chủ đồ không có ai. Theo thông báo, khi đó nhân viên phụ trách phải mang đồ đến Phòng 14 và đặt thẻ vàng lên gian hàng.",
               "options": [
                 {
                   "label": "A",
@@ -1904,22 +1904,22 @@ window.BS_UNITS["p7-04"] = {
                   "label": "B",
                   "en": "Give out badges to people at the registration table",
                   "vi": "Phát thẻ đeo cho mọi người tại bàn đăng ký",
-                  "trap": "other-passage",
-                  "why_vi": "Thẻ đeo chỉ được nói trong thông báo và không liên quan đến việc ông đang gặp."
+                  "trap": "wrong-detail",
+                  "why_vi": "Thông báo có nói về thẻ đeo, nhưng đó là việc của đơn vị trưng bày tại bàn đăng ký, không phải việc của người phụ trách lối đi có thùng hàng."
                 },
                 {
                   "label": "C",
-                  "en": "Remove the owner's stand from the fair",
-                  "vi": "Dẹp gian hàng của chủ đồ khỏi hội chợ",
-                  "trap": "over-inference",
-                  "why_vi": "Thông báo chỉ yêu cầu chuyển đồ và để thẻ, không nói đến việc loại gian hàng."
+                  "en": "Ask someone at the owner's stand to move the cartons",
+                  "vi": "Nhờ người ở gian hàng của chủ đồ dời các thùng đi",
+                  "trap": "other-passage",
+                  "why_vi": "Cách này trong thông báo chỉ dùng khi có người ở gian hàng, còn tin nhắn cho biết ở đó không có ai."
                 },
                 {
                   "label": "D",
-                  "en": "Push the cartons underneath the empty stand",
-                  "vi": "Đẩy các thùng xuống dưới gian hàng không có người",
+                  "en": "Set the cartons beside the stand until its owner returns",
+                  "vi": "Đặt các thùng cạnh gian hàng cho đến khi chủ quay lại",
                   "trap": "wrong-detail",
-                  "why_vi": "Thông báo quy định đồ còn ở lối đi phải mang vào phòng chứa; ngay thùng rỗng cũng không được cất dưới gian hàng."
+                  "why_vi": "Thông báo quy định khi không có ai ở gian hàng thì phải mang đồ đến Phòng 14, không để chờ tại chỗ."
                 }
               ]
             }
@@ -1943,7 +1943,7 @@ window.BS_UNITS["p7-04"] = {
         {
           "id": "fill1-2",
           "before": "As explained",
-          "after": "your letter, the shelves are too narrow for our files.",
+          "after": "our last letter, the shelves are too narrow for the large folders.",
           "answers": [
             "in"
           ]
