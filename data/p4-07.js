@@ -70,7 +70,7 @@ window.BS_UNITS["p4-07"] = {
  ],
  "phrases": [
   {"id":"p01","en":"There has been a change to the plan.","vi":"Kế hoạch đã có thay đổi.","group_vi":"Báo thay đổi"},
-  {"id":"p02","en":"Please disregard the earlier notice.","vi":"Xin bỏ qua thông báo trước đó.","group_vi":"Báo thay đổi"},
+  {"id":"p02","en":"Kindly ignore what our last memo said.","vi":"Xin vui lòng bỏ qua nội dung trong bản ghi nhớ gần nhất của chúng tôi.","group_vi":"Báo thay đổi"},
   {"id":"p03","en":"That number is out of service.","vi":"Số đó đã ngừng hoạt động.","group_vi":"Báo thay đổi"},
   {"id":"p04","en":"We've decided to go another way.","vi":"Chúng tôi đã quyết định chọn cách khác.","group_vi":"Báo thay đổi"},
   {"id":"p05","en":"Just to correct what I said earlier.","vi":"Tôi xin đính chính điều đã nói lúc trước.","group_vi":"Đính chính"},
