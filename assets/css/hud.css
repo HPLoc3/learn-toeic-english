@@ -32,6 +32,8 @@
 .hud-btn:focus-visible { outline: 3px solid var(--focus, #f59e0b); outline-offset: 2px; }
 
 .site-header .hud.hud-panel {
+  --hud-btn-bg: rgba(255, 255, 255, .14);
+  --hud-btn-hover: rgba(255, 255, 255, .24);
   margin-top: 16px; padding: 12px 14px; gap: 10px 14px;
   background: rgba(16, 11, 48, .28);
   border: 1px solid rgba(255, 255, 255, .18);
@@ -43,11 +45,11 @@
 .site-header .hud-panel .hud-meter .bar-fill { background: var(--hd-focus, #ffd24a); }
 .site-header .hud-panel .hud-goals { flex-wrap: wrap; }
 .site-header .hud-btn {
-  background: rgba(255, 255, 255, .14);
+  background: var(--hud-btn-bg, rgba(0, 0, 0, .16));
   color: var(--hd-ink, #fff);
   border-color: rgba(255, 255, 255, .28);
 }
-.site-header .hud-btn:not([aria-pressed="true"]):hover { background: rgba(255, 255, 255, .24); }
+.site-header .hud-btn:not([aria-pressed="true"]):hover { background: var(--hud-btn-hover, rgba(0, 0, 0, .08)); }
 .site-header .hud-btn:focus-visible { outline-color: var(--hd-focus, #ffd24a); }
 .site-header .hud-btn[aria-pressed="true"],
 .site-header .hud-btn[aria-pressed="true"]:hover {
@@ -61,7 +63,7 @@
 .site-header .hud-btn.hud-theme[aria-pressed="true"]:hover,
 .site-header .hud-btn.hud-mascot[aria-pressed="true"],
 .site-header .hud-btn.hud-mascot[aria-pressed="true"]:hover {
-  background: rgba(255, 255, 255, .24); color: var(--hd-ink, #fff); border-color: var(--hd-focus, #ffd24a); font-weight: 700;
+  background: var(--hud-btn-hover, rgba(0, 0, 0, .08)); color: var(--hd-ink, #fff); border-color: var(--hd-focus, #ffd24a); font-weight: 700;
 }
 @media (min-width: 600px) {
   .site-header .hud-panel .hud-xp { flex: 1 1 320px; }
