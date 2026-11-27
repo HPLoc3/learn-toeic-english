@@ -71,7 +71,8 @@ await t("loi goi AI: chi thi he thong o may chu, du lieu bai nam trong the bai_t
   assert.equal(m[1].content.split("</bai_tap>").length, 2);
   const env = makeEnv(); const r = await call(env, good(), {}, DAY1);
   assert.equal(r.status, 200); assert.deepEqual(r.body, { reply: "Vi chu ngu so it.", remaining: 19 });
-  assert.equal(env.calls[0].model, DEFAULT_MODEL); assert.equal(env.calls[0].input.max_tokens, LIMITS.tokens);
+  assert.equal(env.calls[0].model, DEFAULT_MODEL); assert.equal(env.calls[0].input.max_completion_tokens, LIMITS.tokens);
+  assert.deepEqual(env.calls[0].input.chat_template_kwargs, { enable_thinking: false });
   assert.equal(r.headers.get("cache-control"), "no-store");
 });
 await t("yeu cau lon nhat ma trang co the gui (chu co dau) van duoc nhan", async () => {

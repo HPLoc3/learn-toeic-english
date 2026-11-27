@@ -124,7 +124,8 @@ export async function handle(request, env, now = Date.now()) {
   if (!used) return json(429, { error: "limit" });
 
   let out;
-  try { out = await env.AI.run(env.CHAT_MODEL || DEFAULT_MODEL, { messages, max_tokens: LIMITS.tokens }); } catch (e) {
+  /* Gemma 4 bật "suy nghĩ" theo mặc định, ăn hết giới hạn token và trả content rỗng (đã gặp khi chạy thật) */
+  try { out = await env.AI.run(env.CHAT_MODEL || DEFAULT_MODEL, { messages, max_completion_tokens: LIMITS.tokens, chat_template_kwargs: { enable_thinking: false } }); } catch (e) {
     await giveBack(key); await giveBack(TOTAL_KEY); // chỉ hoàn lượt khi lời gọi bị lỗi
     return json(502, { error: "ai" });
   }
