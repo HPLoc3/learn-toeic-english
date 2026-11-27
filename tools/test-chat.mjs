@@ -143,6 +143,7 @@ await t("doc cau tra loi: hai dang, bo khoi think, cat dai", async () => {
   assert.equal(readReply({ response: " a " }), "a");
   assert.equal(readReply({ choices: [{ message: { content: "<think>x</think>\nb" } }] }), "b");
   assert.equal(readReply(null), "");
+  assert.equal(readReply({ response: "## Giai thich\n1. **By**: han chot\n*   Vi du: **by** Friday\nThe team ___ it. 2 * 3" }), "Giai thich\n1. By: han chot\n- Vi du: by Friday\nThe team ___ it. 2 * 3");
   assert.equal(readReply({ response: "a".repeat(9000) }).length, LIMITS.reply);
 });
 await t("IPv6 gop theo /64, IPv4 giu nguyen", async () => {

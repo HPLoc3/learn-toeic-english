@@ -59,12 +59,15 @@ export function buildMessages(body) {
   return [{ role: "system", content: SYSTEM_PROMPT }, ...turns];
 }
 
+/* khung chat hiện chữ thường: bỏ dấu in đậm, tiêu đề markdown và đổi gạch đầu dòng "*" (giữ "___" của chỗ trống) */
+const plain = (s) => s.replace(/\*\*([^\n]+?)\*\*/g, "$1").replace(/^([ \t]*)\*[ \t]+/gm, "$1- ").replace(/^#{1,6}[ \t]+/gm, "");
+
 /* Workers AI trả {response} (kiểu cũ) hoặc {choices:[{message:{content}}]} (kiểu OpenAI) */
 export function readReply(out) {
   let s = "";
   if (out && typeof out.response === "string") s = out.response;
   else if (out && out.choices && out.choices[0] && out.choices[0].message && typeof out.choices[0].message.content === "string") s = out.choices[0].message.content;
-  return s.replace(/<think>[\s\S]*?(<\/think>|$)/gi, "").trim().slice(0, LIMITS.reply);
+  return plain(s.replace(/<think>[\s\S]*?(<\/think>|$)/gi, "")).trim().slice(0, LIMITS.reply);
 }
 
 /* IPv6: gộp theo /64 để một máy không đổi địa chỉ liên tục mà lấy thêm lượt */
