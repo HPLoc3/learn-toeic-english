@@ -25,9 +25,15 @@
   function listenBtns(getText, what) { return speedBtns(getText, what, null); }
 
   /* ---------- Luyen nghe ---------- */
-  function fillSentence(it) {
+  /* goi y trong ngoac "(h...)": chi hien khi chua tra loi, bo khoi cau hoan chinh */
+  var HINT = /\s*\(\p{L}(?:\.{2,}|…)\)/gu;
+  function fillSentence(it, ans) {
     if (!it.answers || !it.answers.length) return null;
-    return [it.before, it.answers[0], it.after].filter(Boolean).join(" ");
+    var a = String(ans || it.answers[0]);
+    var before = String(it.before || "").replace(HINT, "").trim();
+    var after = String(it.after || "").replace(HINT, "").trim();
+    if (!before || /[.?!]$/.test(before)) a = a.charAt(0).toUpperCase() + a.slice(1);
+    return (before ? before + " " : "") + a + (!after ? "" : (/^[,.?!;:]/.test(after) ? "" : " ") + after);
   }
 
   function collect(u) {
@@ -280,7 +286,7 @@
         /* chấm đúng bằng một đáp án khác answers[0] (vd. "What time" thay vì "When"): hiện câu với đáp án người học đã gõ */
         var text = sentence, typed = BS.norm(inp.value), a0 = BS.norm(it.answers[0]);
         if (st.res[it.id] === 1 && typed !== a0) {
-          for (var q = 1; q < it.answers.length; q++) if (BS.norm(it.answers[q]) === typed) { text = [it.before, it.answers[q], it.after].filter(Boolean).join(" "); break; }
+          for (var q = 1; q < it.answers.length; q++) if (BS.norm(it.answers[q]) === typed) { text = fillSentence(it, it.answers[q]); break; }
         }
         full.textContent = "Lời thoại: " + text;
       }
