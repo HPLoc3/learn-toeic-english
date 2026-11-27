@@ -25,13 +25,16 @@
   function listenBtns(getText, what) { return speedBtns(getText, what, null); }
 
   /* ---------- Luyen nghe ---------- */
-  /* goi y trong ngoac "(h...)": chi hien khi chua tra loi, bo khoi cau hoan chinh */
+  /* goi y trong ngoac chi thuoc cau hoi, bo khoi cau hoan chinh. Ba dang, ngoac khac giu nguyen:
+     chu cai dau "(h...)"; dong tu goc "(hire)" ngay sau cho trong; ghi chu "(...)" dung sau dau ket cau o cuoi after */
   var HINT = /\s*\(\p{L}(?:\.{2,}|…)\)/gu;
+  var VERB_HINT = /^\s*\([a-z]+\)/;
+  var TAIL_NOTE = /([.?!])\s*\([^()]*\)\s*$/;
   function fillSentence(it, ans) {
     if (!it.answers || !it.answers.length) return null;
     var a = String(ans || it.answers[0]);
     var before = String(it.before || "").replace(HINT, "").trim();
-    var after = String(it.after || "").replace(HINT, "").trim();
+    var after = String(it.after || "").replace(HINT, "").replace(VERB_HINT, "").replace(TAIL_NOTE, "$1").trim();
     if (!before || /[.?!]$/.test(before)) a = a.charAt(0).toUpperCase() + a.slice(1);
     return (before ? before + " " : "") + a + (!after ? "" : (/^[,.?!;:]/.test(after) ? "" : " ") + after);
   }

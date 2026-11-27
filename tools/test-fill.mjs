@@ -136,7 +136,12 @@ const CASES = [
   ["cho trong sau dau cham, co goi y", { id: "c5", before: "The path is long. (H...)", answers: ["however"], after: ", people like it." }, "The path is long. However, people like it."],
   ["cho trong sau dau ?", { id: "c6", before: "Why did it close?", answers: ["because"], after: "the power went out." }, "Why did it close? Because the power went out."],
   ["goi y giua cau: bo, khong viet hoa", { id: "c7", before: "Actually, let's (g...)", answers: ["go"], after: "back." }, "Actually, let's go back."],
-  ["ngoac co nghia duoc giu", { id: "c8", before: "The team", answers: ["has hired"], after: "(hire) two people (A)." }, "The team has hired (hire) two people (A)."]
+  ["ngoac co nghia duoc giu", { id: "c8", before: "The team (HR)", answers: ["has hired"], after: "two people (see page 2) for Block (a)." }, "The team (HR) has hired two people (see page 2) for Block (a)."],
+  ["ngoac ngay sau cho trong nhung khong phai mot tu viet thuong: giu", { id: "c11", before: "Our", answers: ["partner"], after: "(ABC Ltd) signed." }, "Our partner (ABC Ltd) signed."],
+  ["dong tu goc ngay sau cho trong", { id: "c12", before: "The team", answers: ["has hired"], after: "(hire) two people." }, "The team has hired two people."],
+  ["dong tu goc sau dau ? cuoi cau", { id: "c13", before: "Would you mind", answers: ["holding"], after: "the ladder? (hold)" }, "Would you mind holding the ladder?"],
+  ["ghi chu (one word) cuoi cau", { id: "c14", before: "Why", answers: ["not"], after: "ask Tobias? (one word)" }, "Why not ask Tobias?"],
+  ["nghia tieng Viet cuoi cau", { id: "c15", before: "It depends", answers: ["on"], after: "how many are cracked. (Còn tùy có bao nhiêu viên bị nứt.)" }, "It depends on how many are cracked."]
 ];
 for (const [name, it, want] of CASES) {
   const got = revealAll(exOf([it]))[0], said = spokenAll(exOf([it]))[0];
@@ -155,11 +160,21 @@ for (const [name, it, want] of CASES) {
   check("dap an khac answers[0]: khong cach truoc dau cau, bo goi y", alt2.ok && alt2.line === "It is free, is it not?", JSON.stringify(alt2.line));
 }
 
+{
+  const hinted = CASES.filter((c) => ["c12", "c13", "c14", "c15"].includes(c[1].id)).map((c) => c[1]);
+  const E = mountQuiz(exOf(hinted));
+  btnText(E.root, "Hiện lời thoại")[0].click();
+  const rows = byClass(E.root, "qrow");
+  check("cau hoi van hien (hire), (hold), (one word) va nghia tieng Viet, ca sau khi hien loi thoai", rows.length === hinted.length && hinted.every((it, i) => rows[i].kids[0].textContent.includes(it.after)));
+}
+
 /* ================= moi cau dien cho trong trong data/ ================= */
 {
   const bad = [];
   let total = 0, variants = 0;
-  const BAD = /\s[,.?!]|\(\p{L}(?:\.+|…)\)/u;
+  /* data/ hien chi co ngoac goi y: cau hoan chinh khong duoc con ngoac nao. Them ngoac co nghia vao data/ thi sua dieu kien nay */
+  const BAD = /\s[,.?!]|[()]/u;
+  let hintedItems = 0;
   for (const f of fs.readdirSync(path.join(ROOT, "data")).filter((f) => /^[lp][\d-]+\.js$/.test(f)).sort()) {
     const w = {}; w.window = w; vm.runInNewContext(fs.readFileSync(path.join(ROOT, "data", f), "utf8"), w);
     for (const u of Object.values(w.BS_UNITS || {})) {
@@ -168,6 +183,12 @@ for (const [name, it, want] of CASES) {
       const only = { id: u.id, exercises: fills };
       const items = [].concat(...fills.map((x) => x.items || [])).filter((x) => x.answers && x.answers.length);
       const shown = revealAll(only), said = spokenAll(only);
+      const asked = byClass(mountQuiz(only).root, "qrow").map((r) => r.kids[0].textContent);
+      items.forEach((it, i) => {
+        const hints = ((it.before || "") + " " + (it.after || "")).match(/\([^()]*\)/g) || [];
+        if (hints.length) hintedItems++;
+        if (!hints.every((h) => (asked[i] || "").includes(h))) bad.push(f + " " + it.id + ": cau hoi mat goi y: " + asked[i]);
+      });
       if (shown.length !== items.length || said.join("\n") !== shown.join("\n")) bad.push(f + ": so cau hien (" + shown.length + ") / doc (" + said.length + ") / du lieu (" + items.length + ") lech nhau");
       shown.forEach((s) => { total++; if (BAD.test(s)) bad.push(f + ": " + s); });
       for (const it of items) {
@@ -179,8 +200,8 @@ for (const [name, it, want] of CASES) {
       }
     }
   }
-  check("data/: co cau dien cho trong de kiem", total >= 100, String(total));
-  check("data/: " + total + " cau + " + variants + " dap an khac: khong cach truoc , . ? !, khong con goi y, dau cau viet hoa, hien = doc", !bad.length, bad.slice(0, 10).join("\n     "));
+  check("data/: co cau dien cho trong de kiem, trong do co cau mang goi y", total >= 100 && hintedItems >= 22, total + " / " + hintedItems);
+  check("data/: " + total + " cau + " + variants + " dap an khac: khong cach truoc , . ? !, cau hoan chinh khong con ngoac, cau hoi giu goi y, dau cau viet hoa, hien = doc", !bad.length, bad.slice(0, 10).join("\n     "));
 }
 
 /* ================= tong ket ================= */
