@@ -17,7 +17,7 @@
   border-radius: 999px; transition: width .4s ease;
 }
 .hud-goalbox { flex-wrap: wrap; gap: 6px 8px; }
-.hud-goal-lbl { font-weight: 600; font-size: .95em; color: var(--muted, inherit); }
+.hud-goal-lbl { font-weight: 600; font-size: .85rem; color: var(--muted, inherit); }
 .site-header .hud-goal-lbl { color: var(--hd-ink, #fff); font-weight: 500; }
 .hud-goals { display: inline-flex; gap: 6px; }
 .hud-btn {
@@ -54,7 +54,7 @@
 .site-header .hud-btn[aria-pressed="true"],
 .site-header .hud-btn[aria-pressed="true"]:hover {
   background: var(--hd-focus, #ffd24a);
-  color: #1b1740;
+  color: var(--forest-ink);
   border-color: var(--hd-focus, #ffd24a);
   font-weight: 800;
 }

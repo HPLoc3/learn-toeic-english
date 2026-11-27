@@ -1,12 +1,13 @@
 /* backup.css - giao dien Sao luu & khoi phuc. Dung bien mau cua site.css (tu doi sang/toi). */
-.bk-body{padding:4px 2px 14px;max-width:100%}
+.bk-body{padding:12px;max-width:100%;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm)}
 .bk-body *{box-sizing:border-box}
 .bk-h{font-size:1.05rem;margin:16px 0 6px;color:var(--ink)}
+.bk-body > .bk-note:first-child{margin-top:0}
 h4.bk-h{font-size:.98rem}
 .bk-note,.bk-mine{color:var(--muted);margin:6px 0;overflow-wrap:anywhere}
 .bk-mine{color:var(--ink);font-weight:600}
 .bk-row{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0}
-.bk-btn{min-height:44px;min-width:44px;padding:10px 16px;font:inherit;font-weight:700;cursor:pointer;border-radius:var(--radius-sm);border:2px solid var(--pri);background:var(--card);color:var(--pri)}
+.bk-btn{min-height:44px;min-width:44px;padding:10px 16px;font:inherit;font-weight:700;cursor:pointer;border-radius:var(--radius-sm);border:2px solid var(--pri);border-bottom-width:4px;background:var(--card);color:var(--pri)}
 .bk-btn:hover:not(:disabled){background:var(--card-2)}
 .bk-go{background:var(--pri);color:var(--pri-ink)}
 .bk-go:hover:not(:disabled){background:var(--pri-hover)}
@@ -14,18 +15,19 @@ h4.bk-h{font-size:.98rem}
 .bk-btn:focus-visible,.bk-ta:focus-visible,.bk-file:focus-visible,.bk-opt input:focus-visible,.bk-alt>summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
 .bk-lbl{display:block;font-weight:600;margin:10px 0 4px}
 .bk-ta{display:block;width:100%;max-width:100%;font:inherit;font-size:.85rem;font-family:ui-monospace,Consolas,monospace;padding:10px;border:2px solid var(--line-strong);border-radius:var(--radius-sm);background:var(--card);color:var(--ink);resize:vertical}
+.bk-file::file-selector-button{min-height:44px;padding-inline:10px;margin-inline-end:8px;font:inherit;font-size:.85rem;font-weight:700;background:var(--card-2);color:var(--ink);border:1px solid var(--line-strong);border-bottom-width:3px;border-radius:var(--radius-sm);cursor:pointer}
 .bk-file{display:block;width:100%;max-width:100%;min-height:44px;padding:8px 0;font:inherit;color:var(--ink)}
 .bk-alt{margin:10px 0}
 .bk-alt>summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font-weight:600;color:var(--pri)}
 .bk-panel{margin:10px 0}
 .bk-table{width:100%;border-collapse:collapse;margin:6px 0;font-size:.95rem}
-.bk-table th,.bk-table td{border:1px solid var(--line);padding:8px;text-align:left;overflow-wrap:anywhere}
+.bk-table th,.bk-table td{border:1px solid var(--line);padding:clamp(3px, 1vw, 8px);text-align:left;overflow-wrap:anywhere}
 .bk-table thead th{background:var(--card-2);color:var(--ink)}
 .bk-table tbody th{font-weight:600;color:var(--ink)}
 .bk-opt{display:flex;align-items:flex-start;gap:10px;min-height:44px;padding:6px 0}
 .bk-opt[hidden]{display:none}
 .bk-opt input{flex:0 0 auto;width:24px;height:24px;margin:8px 0 0}
-.bk-opt label{padding:10px 0;flex:1 1 auto;overflow-wrap:anywhere}
+.bk-opt label{display:flex;align-items:center;min-height:44px;padding:4px 0;flex:1 1 auto;cursor:pointer;overflow-wrap:anywhere}
 .bk-sure{background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-line);border-radius:var(--radius-sm);padding:6px 10px}
 .bk-msg{margin:10px 0;padding:0;overflow-wrap:anywhere}
 .bk-msg:empty{display:none}

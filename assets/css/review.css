@@ -6,7 +6,7 @@
 .review-count{margin:4px 0;font-weight:700}
 .review-bar{height:10px;margin:4px 0 8px}
 .review-card-face{cursor:pointer;min-height:180px;touch-action:manipulation;user-select:none;-webkit-user-select:none;max-width:100%}
-.review-card-face:focus-visible{outline:3px solid var(--focus,#c2410c);outline-offset:2px}
+.review-card-face:focus-visible{outline:3px solid var(--focus);outline-offset:-5px}
 .review-actions{justify-content:center}
 .review-actions .btn,.review-session .row .btn{min-height:44px;min-width:44px}
 .review-live{margin:4px 0;min-height:1.4em;font-size:.9rem;color:var(--muted)}
@@ -20,4 +20,38 @@
 }
 @media (max-width:420px){
   .review-actions .btn{flex:1 1 100%}
+}
+
+.play-review h1 {
+  max-width: 29ch;
+  margin: 0 0 8px;
+  font-size: clamp(1.9rem, 5.4vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.08;
+}
+.play-review #review-main { max-width: 900px; padding-top: 18px; }
+.play-review :is(.review-empty, .review-end, .review-session) {
+  margin-block: 0 16px;
+  padding: clamp(12px, 3vw, 24px);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+.play-review :is(.review-empty, .review-end) { text-align: start; }
+.play-review :is(.review-empty, .review-end) h2 { margin-top: 0; }
+.play-review :is(.review-empty, .review-end) .row { justify-content: start; }
+.play-review .review-count { color: var(--ink); font-variant-numeric: tabular-nums; }
+.play-review .review-card-face {
+  background: var(--review-bg);
+  color: var(--review-ink);
+  border-color: var(--review-ink);
+  border-bottom-width: 5px;
+}
+.play-review .review-card-face.is-back { background: var(--card-2); color: var(--ink); border-color: var(--line-strong); }
+.play-review .review-result {
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--review-bg);
+  color: var(--review-ink);
 }
