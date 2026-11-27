@@ -962,7 +962,7 @@ window.BS_UNITS["p7-04"] = {
               "id": "r1-s3-q2",
               "kind": "inference",
               "q": {
-                "en": "What is suggested about Ms. Chiara on the form?",
+                "en": "What does the form suggest about Ms. Chiara?",
                 "vi": "Biểu mẫu gợi ý điều gì về cô Chiara?"
               },
               "answer": "C",
@@ -1106,7 +1106,7 @@ window.BS_UNITS["p7-04"] = {
               "cross": true,
               "q": {
                 "en": "Which result that managers hoped for did Ms. Chiara's visit fail to produce?",
-                "vi": "Chuyến đến của cô Chiara đã không mang lại kết quả nào mà ban quản lý mong đợi?"
+                "vi": "Kết quả nào mà ban quản lý mong đợi đã không xảy ra trong chuyến đến của cô Chiara?"
               },
               "answer": "D",
               "evidence": [
@@ -1139,8 +1139,8 @@ window.BS_UNITS["p7-04"] = {
                   "label": "C",
                   "en": "Users finding the lockers simple to operate",
                   "vi": "Người dùng thấy tủ dễ sử dụng",
-                  "trap": "opposite",
-                  "why_vi": "Cô đánh giá độ dễ dùng là rất tốt, nên chuyến đến của cô không đi ngược điều này."
+                  "trap": "not-mentioned",
+                  "why_vi": "Bài viết không nêu việc tủ dễ dùng là một mong đợi của ban quản lý; hơn nữa cô còn đánh giá độ dễ dùng là rất tốt."
                 },
                 {
                   "label": "D",
@@ -1801,7 +1801,7 @@ window.BS_UNITS["p7-04"] = {
                   "label": "A",
                   "en": "She is surprised the trouble is so near her.",
                   "vi": "Cô ngạc nhiên vì rắc rối ở ngay gần mình.",
-                  "trap": "wrong-detail",
+                  "trap": "over-inference",
                   "why_vi": "Cô nêu khoảng cách ngay sau khi ông nói không xoay xở nổi, không phải để tỏ ý ngạc nhiên."
                 },
                 {
@@ -1911,7 +1911,7 @@ window.BS_UNITS["p7-04"] = {
                   "label": "C",
                   "en": "Ask someone at the owner's stand to move the cartons",
                   "vi": "Nhờ người ở gian hàng của chủ đồ dời các thùng đi",
-                  "trap": "other-passage",
+                  "trap": "wrong-detail",
                   "why_vi": "Cách này trong thông báo chỉ dùng khi có người ở gian hàng, còn tin nhắn cho biết ở đó không có ai."
                 },
                 {
@@ -1930,7 +1930,7 @@ window.BS_UNITS["p7-04"] = {
     {
       "id": "fill1",
       "type": "fill",
-      "instruction_vi": "Điền một từ còn thiếu vào chỗ trống.",
+      "instruction_vi": "Điền một từ còn thiếu vào chỗ trống. Nếu có chữ trong ngoặc, đó là chữ cái đầu của từ cần điền.",
       "items": [
         {
           "id": "fill1-1",
@@ -1942,7 +1942,7 @@ window.BS_UNITS["p7-04"] = {
         },
         {
           "id": "fill1-2",
-          "before": "As explained",
+          "before": "As explained (i...)",
           "after": "our last letter, the shelves are too narrow for the large folders.",
           "answers": [
             "in"

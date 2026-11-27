@@ -1036,8 +1036,8 @@ window.BS_UNITS["p7-03"] = {
                   "vi": "Inkerman Street có thể sắp yên tĩnh hơn nhiều vào cuối tuần. Hội đồng thị trấn đã đồng ý thử nghiệm lệnh cấm xe trên đoạn giữa Dunnock Road và Joliffe Bridge, một ý tưởng do ủy viên hội đồng, bà Halima, nêu ra lần đầu vào mùa đông vừa qua. Vào ngày thử nghiệm, không phương tiện nào, kể cả xe giao hàng, được vào đoạn đường đó từ 10 giờ sáng đến 6 giờ chiều. Người lái xe có thể đậu miễn phí ở bãi xe công cộng trên Dunnock Road."
                 },
                 {
-                  "en": "The test has three stages. From May through June, the ban will apply on Saturdays only. Sundays will be added for July and August. From September through October, the ban will still cover both days, and for the first time restaurants will be allowed to set tables in the empty parking spaces along the stretch.",
-                  "vi": "Đợt thử nghiệm có ba giai đoạn. Từ tháng 5 đến hết tháng 6, lệnh cấm chỉ áp dụng vào thứ Bảy. Tháng 7 và tháng 8 thêm Chủ nhật. Từ tháng 9 đến hết tháng 10, lệnh cấm vẫn áp dụng cả hai ngày, và lần đầu tiên các nhà hàng được phép kê bàn ở những chỗ đậu xe bỏ trống dọc đoạn đường."
+                  "en": "The test has three stages. From May through June, the ban will be in force on Saturdays only. Sundays will be added for July and August. From September through October, the ban will still cover both days, and for the first time restaurants will be allowed to set tables in the empty parking spaces along the stretch.",
+                  "vi": "Đợt thử nghiệm có ba giai đoạn. Từ tháng 5 đến hết tháng 6, lệnh cấm chỉ có hiệu lực vào thứ Bảy. Tháng 7 và tháng 8 thêm Chủ nhật. Từ tháng 9 đến hết tháng 10, lệnh cấm vẫn áp dụng cả hai ngày, và lần đầu tiên các nhà hàng được phép kê bàn ở những chỗ đậu xe bỏ trống dọc đoạn đường."
                 },
                 {
                   "en": "Ms. Halima argues that a calmer street will bring more shoppers. Staff will count visitors during all three stages, and in November the council will vote on whether to make the change permanent.",
@@ -1068,8 +1068,8 @@ window.BS_UNITS["p7-03"] = {
                   "vi": "Tôi cũng có một mối lo thực tế. Vào thứ Bảy, xe của tiệm bánh thường đến chỗ chúng tôi lúc mười giờ rưỡi sáng, còn xe chở cá đến sau đó khoảng một tiếng. Tôi đề nghị hội đồng gặp các chủ cơ sở kinh doanh để bàn việc giao hàng trước khi bất kỳ quy định nào có hiệu lực."
                 },
                 {
-                  "en": "One last point: I expect to hire two more servers, though not until my guests can count on a car-free street on both days of the weekend. I hope the town will give us plenty of notice.",
-                  "vi": "Điểm cuối cùng: tôi dự định thuê thêm hai nhân viên phục vụ, nhưng chỉ khi khách của tôi chắc chắn có được con phố không xe cộ trong cả hai ngày cuối tuần. Tôi mong thị trấn báo trước cho chúng tôi thật sớm."
+                  "en": "One last point: I expect to hire two more servers, though not until cars are kept off the street on Sundays as well as Saturdays. I hope the town will give us plenty of notice.",
+                  "vi": "Điểm cuối cùng: tôi dự định thuê thêm hai nhân viên phục vụ, nhưng chỉ khi xe cộ bị cấm vào phố cả Chủ nhật lẫn thứ Bảy. Tôi mong thị trấn báo trước cho chúng tôi thật sớm."
                 }
               ]
             }
@@ -1186,14 +1186,14 @@ window.BS_UNITS["p7-03"] = {
                   2
                 ]
               ],
-              "explain_vi": "Lá thư cho biết ông chỉ thuê thêm khi phố không có xe trong cả hai ngày cuối tuần. Bài báo cho biết tháng 5 và 6 chỉ cấm xe vào thứ Bảy, còn từ tháng 7 thêm Chủ nhật. Phải ghép cả hai: đầu tháng 7 là lúc điều kiện này được đáp ứng lần đầu.",
+              "explain_vi": "Lá thư cho biết ông chỉ thuê thêm khi phố cấm xe cả Chủ nhật lẫn thứ Bảy. Bài báo cho biết tháng 5 và 6 chỉ cấm vào thứ Bảy, còn từ tháng 7 thêm Chủ nhật. Ghép hai bài: đầu tháng 7.",
               "options": [
                 {
                   "label": "A",
                   "en": "At the start of May",
                   "vi": "Đầu tháng 5",
                   "trap": "wrong-detail",
-                  "why_vi": "Từ tháng 5 mới chỉ cấm xe vào thứ Bảy, chưa đủ cả hai ngày cuối tuần."
+                  "why_vi": "Tháng 5 và 6 mới chỉ cấm xe vào thứ Bảy."
                 },
                 {
                   "label": "B",
@@ -1205,14 +1205,14 @@ window.BS_UNITS["p7-03"] = {
                   "en": "At the start of September",
                   "vi": "Đầu tháng 9",
                   "trap": "wrong-detail",
-                  "why_vi": "Tháng 9 bắt đầu được kê bàn ở chỗ đậu xe, nhưng phố đã không có xe cả hai ngày từ tháng 7; thư không đặt điều kiện về việc kê bàn."
+                  "why_vi": "Tháng 9 chỉ thêm việc kê bàn; lệnh cấm cả hai ngày đã có từ tháng 7."
                 },
                 {
                   "label": "D",
                   "en": "At the start of November",
                   "vi": "Đầu tháng 11",
                   "trap": "wrong-detail",
-                  "why_vi": "Tháng 11 là lúc hội đồng bỏ phiếu, muộn hơn nhiều so với lần đầu phố không có xe cả hai ngày."
+                  "why_vi": "Tháng 11 là lúc bỏ phiếu, muộn hơn lần đầu cấm cả hai ngày."
                 }
               ]
             },
@@ -1329,7 +1329,7 @@ window.BS_UNITS["p7-03"] = {
     {
       "id": "fill1",
       "type": "fill",
-      "instruction_vi": "Điền từ còn thiếu vào chỗ trống.",
+      "instruction_vi": "Điền từ còn thiếu vào chỗ trống. Nếu có chữ trong ngoặc, đó là chữ cái đầu của từ cần điền.",
       "items": [
         {
           "id": "fill1-1",
@@ -1349,7 +1349,7 @@ window.BS_UNITS["p7-03"] = {
         },
         {
           "id": "fill1-3",
-          "before": "Because orders have doubled, the print shop will take",
+          "before": "Because orders have doubled, the print shop will take (o...)",
           "after": "three new full-time workers next month.",
           "answers": [
             "on"
