@@ -317,17 +317,11 @@ window.BS_UNITS["p7-04"] = {
     {
       "id": "r1",
       "type": "read",
-      "v": {
-        "status": "unverified"
-      },
       "instruction_vi": "Đọc các bài và chọn đáp án đúng nhất.",
       "sets": [
         {
           "id": "r1-s1",
           "kind": "single",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r1-s1-p1",
@@ -510,9 +504,6 @@ window.BS_UNITS["p7-04"] = {
         {
           "id": "r1-s2",
           "kind": "double",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r1-s2-p1",
@@ -841,9 +832,6 @@ window.BS_UNITS["p7-04"] = {
         {
           "id": "r1-s3",
           "kind": "double",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r1-s3-p1",
@@ -1156,17 +1144,11 @@ window.BS_UNITS["p7-04"] = {
     {
       "id": "r2",
       "type": "read",
-      "v": {
-        "status": "unverified"
-      },
       "instruction_vi": "Đọc các bộ ba bài đọc và chọn đáp án đúng nhất.",
       "sets": [
         {
           "id": "r2-s4",
           "kind": "triple",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r2-s4-p1",
@@ -1537,9 +1519,6 @@ window.BS_UNITS["p7-04"] = {
         {
           "id": "r2-s5",
           "kind": "triple",
-          "v": {
-            "status": "unverified"
-          },
           "passages": [
             {
               "id": "r2-s5-p1",
