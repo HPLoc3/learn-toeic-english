@@ -567,18 +567,18 @@ window.BS_UNITS["p4-04"] = {
      "lines": [
       {
        "s": "A",
-       "en": "Okay, team, a quick word about this week's rota before we open.",
+       "en": "Okay, team, a quick word about this week's schedule before we open.",
        "vi": "Được rồi cả nhóm, nói nhanh về lịch phân công tuần này trước khi mở cửa."
       },
       {
        "s": "A",
-       "en": "Bookings look normal, with no large parties, so there's nothing special to plan for in the dining room.",
+       "en": "Reservations look normal, with no large parties, so there's nothing special to plan for in the dining room.",
        "vi": "Lượng đặt bàn bình thường, không có đoàn đông, nên phòng ăn không cần chuẩn bị gì đặc biệt."
       },
       {
        "s": "A",
        "en": "But there is one change. Our new walk-in freezer was supposed to be delivered on Friday.",
-       "vi": "Nhưng có một thay đổi. Tủ đông phòng mới của chúng ta lẽ ra được giao vào thứ Sáu."
+       "vi": "Nhưng có một thay đổi. Kho đông lạnh mới của chúng ta lẽ ra được giao vào thứ Sáu."
       },
       {
        "s": "A",
@@ -592,13 +592,13 @@ window.BS_UNITS["p4-04"] = {
       },
       {
        "s": "A",
-       "en": "So whoever is on the rota the day before the freezer gets here will drop their usual job and help me clear that room.",
-       "vi": "Vì thế, ai có tên trong lịch vào ngày ngay trước hôm tủ đông đến sẽ tạm gác việc thường lệ và giúp tôi dọn phòng đó."
+       "en": "So whoever is on the schedule the day before the freezer gets here will drop their usual job and help me clear that room.",
+       "vi": "Vì thế, ai có tên trong lịch vào ngày ngay trước hôm kho đông lạnh đến sẽ tạm gác việc thường lệ và giúp tôi dọn phòng đó."
       },
       {
        "s": "A",
-       "en": "Please put on a clean apron again afterward if you've been moving boxes.",
-       "vi": "Sau đó, nếu đã khuân thùng, xin hãy thay tạp dề sạch."
+       "en": "If you've been moving boxes, please change into a clean apron afterward.",
+       "vi": "Nếu đã khuân thùng, sau đó xin hãy thay sang tạp dề sạch."
       },
       {
        "s": "A",
@@ -607,13 +607,13 @@ window.BS_UNITS["p4-04"] = {
       },
       {
        "s": "A",
-       "en": "First, I want to tell you about the pudding we're adding to the menu next month.",
-       "vi": "Trước hết, tôi muốn nói với mọi người về món tráng miệng sẽ được thêm vào thực đơn tháng sau."
+       "en": "First, I want to tell you about the new cake we're adding to the menu next month.",
+       "vi": "Trước hết, tôi muốn nói với mọi người về món bánh ngọt mới sẽ được thêm vào thực đơn tháng sau."
       }
      ],
      "graphic": {
       "type": "table",
-      "title": "Saffron Table - Weekly Rota",
+      "title": "Orchid Gazebo Cafe - Weekly Schedule",
       "cols": [
        "Day",
        "Staff member",
@@ -659,7 +659,7 @@ window.BS_UNITS["p4-04"] = {
         2,
         3
        ],
-       "explain_vi": "Tủ đông lẽ ra giao vào thứ Sáu nhưng nay đến sớm hơn, vào thứ Tư, nên phải dọn kho trước. Tức là một thiết bị sẽ đến sớm hơn dự kiến.",
+       "explain_vi": "Kho đông lạnh lẽ ra giao vào thứ Sáu nhưng nay đến sớm hơn, vào thứ Tư, nên phải dọn kho trước. Tức là một thiết bị sẽ đến sớm hơn dự kiến.",
        "options": [
         {
          "label": "A",
@@ -702,7 +702,7 @@ window.BS_UNITS["p4-04"] = {
         3,
         5
        ],
-       "explain_vi": "Tủ đông đến vào thứ Tư; người trực ngày ngay trước đó phải gác việc thường lệ. Ngày trước thứ Tư là thứ Ba, và bảng ghi thứ Ba là Rowena.",
+       "explain_vi": "Kho đông lạnh đến vào thứ Tư; người trực ngày ngay trước đó phải gác việc thường lệ. Ngày trước thứ Tư là thứ Ba, và bảng ghi thứ Ba là Rowena.",
        "options": [
         {
          "label": "A",
@@ -716,7 +716,7 @@ window.BS_UNITS["p4-04"] = {
          "en": "Vicente",
          "vi": "Vicente",
          "trap": "wrong-detail",
-         "why_vi": "Vicente trực thứ Tư, là ngày tủ đông đến, không phải ngày trước đó."
+         "why_vi": "Vicente trực thứ Tư, là ngày kho đông lạnh đến, không phải ngày trước đó."
         },
         {
          "label": "C",
@@ -744,7 +744,7 @@ window.BS_UNITS["p4-04"] = {
         7,
         8
        ],
-       "explain_vi": "Ông để phần hỏi đáp đến cuối và nói trước hết muốn giới thiệu món tráng miệng (pudding) sắp thêm vào thực đơn.",
+       "explain_vi": "Ông để phần hỏi đáp đến cuối và nói trước hết muốn giới thiệu món bánh ngọt mới sắp thêm vào thực đơn.",
        "options": [
         {
          "label": "A",
@@ -800,8 +800,8 @@ window.BS_UNITS["p4-04"] = {
       },
       {
        "s": "A",
-       "en": "Before the next session, note that one thing differs from our first arrangements.",
-       "vi": "Trước phiên tiếp theo, xin lưu ý có một điểm khác so với sắp xếp ban đầu."
+       "en": "Before the next session, please note that one thing has changed since the board was put up.",
+       "vi": "Trước phiên tiếp theo, xin lưu ý có một điểm đã thay đổi kể từ khi bảng được treo lên."
       },
       {
        "s": "A",
@@ -825,12 +825,12 @@ window.BS_UNITS["p4-04"] = {
       },
       {
        "s": "A",
-       "en": "Also, don't forget to collect your coupon for a free tea or coffee at the welcome desk.",
-       "vi": "Ngoài ra, đừng quên nhận phiếu đổi trà hoặc cà phê miễn phí tại quầy đón khách."
+       "en": "Don't forget to collect your coupon for a free tea or coffee at the welcome desk.",
+       "vi": "Đừng quên nhận phiếu đổi trà hoặc cà phê miễn phí tại quầy đón khách."
       },
       {
        "s": "A",
-       "en": "There's a map of the building on the wall beside the lift, and please keep your name badge on.",
+       "en": "There's a building map on the wall beside the lift, and please keep your name badge on.",
        "vi": "Sơ đồ tòa nhà được treo trên tường cạnh thang máy, và xin quý vị tiếp tục đeo thẻ tên."
       }
      ],
@@ -862,7 +862,7 @@ window.BS_UNITS["p4-04"] = {
         3,
         5
        ],
-       "explain_vi": "Người nói báo rằng có điểm khác so với sắp xếp ban đầu: thêm một buổi nói chuyện và cho biết nơi tổ chức. Đó là thông báo thay đổi kế hoạch.",
+       "explain_vi": "Người nói báo rằng đã có thay đổi kể từ khi bảng được treo lên: thêm một buổi nói chuyện và cho biết nơi tổ chức. Đó là thông báo thay đổi kế hoạch.",
        "options": [
         {
          "label": "A",
@@ -1232,18 +1232,18 @@ window.BS_UNITS["p4-04"] = {
       },
       {
        "s": "A",
-       "en": "However, you chose our evening time, and we can't keep it.",
-       "vi": "Tuy nhiên, ông đã chọn khung giờ buổi tối của chúng tôi, và chúng tôi không giữ được giờ đó."
+       "en": "However, you chose our evening slot, and we can't keep it.",
+       "vi": "Tuy nhiên, ông đã chọn khung giờ buổi tối, và chúng tôi không giữ được khung đó."
       },
       {
        "s": "A",
-       "en": "The city is closing Bramblewick Lane to all vehicles from four thirty for road repairs.",
-       "vi": "Thành phố sẽ cấm mọi xe vào Bramblewick Lane từ bốn giờ rưỡi để sửa đường."
+       "en": "The city is closing Bramblewick Lane, where you live, to all vehicles from four thirty for road repairs.",
+       "vi": "Thành phố sẽ cấm mọi xe vào Bramblewick Lane, nơi ông ở, từ bốn giờ rưỡi để sửa đường."
       },
       {
        "s": "A",
-       "en": "Your note also says you're at a lunch meeting and won't be home until one thirty.",
-       "vi": "Ghi chú của ông cũng cho biết ông bận họp bữa trưa và một giờ rưỡi mới về đến nhà."
+       "en": "Your note also says you'll be out from early morning and won't be home until one thirty.",
+       "vi": "Ghi chú của ông cũng cho biết ông ra ngoài từ sáng sớm và mãi một giờ rưỡi mới về nhà."
       },
       {
        "s": "A",
@@ -1370,7 +1370,7 @@ window.BS_UNITS["p4-04"] = {
          "en": "Slot 3",
          "vi": "Khung 3",
          "trap": "wrong-detail",
-         "why_vi": "Khung này kết thúc lúc 1 giờ chiều, khi ông Nasser chưa về sau buổi họp trưa."
+         "why_vi": "Khung này kết thúc lúc 1 giờ chiều, khi ông Nasser vẫn chưa về nhà."
         },
         {
          "label": "C",
@@ -1384,7 +1384,7 @@ window.BS_UNITS["p4-04"] = {
          "en": "Slot 14",
          "vi": "Khung 14",
          "trap": "graphic-only",
-         "why_vi": "Khung buổi sáng, khi ông Nasser chưa có nhà."
+         "why_vi": "Khung buổi sáng, khi ông Nasser đã ra ngoài và chưa về nhà."
         }
        ]
       },
@@ -1466,8 +1466,8 @@ window.BS_UNITS["p4-04"] = {
       },
       {
        "s": "A",
-       "en": "Our bread sessions have been a real favourite lately, so book early for those.",
-       "vi": "Dạo này các buổi làm bánh mì rất được yêu thích, nên hãy đặt chỗ sớm."
+       "en": "Our fresh pasta sessions have been a real favourite lately, so book early for those.",
+       "vi": "Dạo này các buổi làm mì Ý tươi rất được yêu thích, nên hãy đặt chỗ sớm."
       },
       {
        "s": "A",
@@ -1606,8 +1606,8 @@ window.BS_UNITS["p4-04"] = {
          "label": "A",
          "en": "Tuesday - Fresh pasta",
          "vi": "Thứ Ba - mì Ý tươi",
-         "trap": "graphic-only",
-         "why_vi": "Làm mì tươi không phải là cách giữ rau củ trong giấm."
+         "trap": "wrong-detail",
+         "why_vi": "Lớp mì tươi được nhắc là được yêu thích và nên đặt sớm, không phải lớp có ưu đãi."
         },
         {
          "label": "B",
@@ -1620,8 +1620,8 @@ window.BS_UNITS["p4-04"] = {
          "label": "C",
          "en": "Monday - Bread baking",
          "vi": "Thứ Hai - nướng bánh mì",
-         "trap": "wrong-detail",
-         "why_vi": "Bánh mì được nhắc là được yêu thích và nên đặt sớm, không phải lớp có ưu đãi."
+         "trap": "graphic-only",
+         "why_vi": "Nướng bánh mì không phải là cách giữ rau củ trong giấm."
         },
         {
          "label": "D",
@@ -1661,8 +1661,8 @@ window.BS_UNITS["p4-04"] = {
     },
     {
      "id": "fill1-3",
-     "before": "Our pottery lessons are held",
-     "after": "Mondays and Wednesdays.",
+     "before": "This month, our first pottery lesson falls",
+     "after": "a Monday.",
      "answers": [
       "on"
      ]
