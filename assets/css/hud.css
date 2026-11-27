@@ -31,9 +31,50 @@
 }
 .hud-btn:focus-visible { outline: 3px solid var(--focus, #f59e0b); outline-offset: 2px; }
 
-.hud-mascot { display: inline-flex; align-items: center; gap: 4px; }
+.site-header .hud.hud-panel {
+  margin-top: 16px; padding: 12px 14px; gap: 10px 14px;
+  background: rgba(16, 11, 48, .28);
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .14);
+}
+.site-header .hud-panel .hud-xp { flex: 1 1 150px; min-width: 140px; max-width: 100%; }
+.site-header .hud-panel .hud-meter { min-width: 56px; }
+.site-header .hud-panel .hud-meter .bar-fill { background: var(--hd-focus, #ffd24a); }
+.site-header .hud-panel .hud-goals { flex-wrap: wrap; }
+.site-header .hud-btn {
+  background: rgba(255, 255, 255, .14);
+  color: var(--hd-ink, #fff);
+  border-color: rgba(255, 255, 255, .28);
+}
+.site-header .hud-btn:not([aria-pressed="true"]):hover { background: rgba(255, 255, 255, .24); }
+.site-header .hud-btn:focus-visible { outline-color: var(--hd-focus, #ffd24a); }
+.site-header .hud-btn[aria-pressed="true"],
+.site-header .hud-btn[aria-pressed="true"]:hover {
+  background: var(--hd-focus, #ffd24a);
+  color: #1b1740;
+  border-color: var(--hd-focus, #ffd24a);
+  font-weight: 800;
+}
+/* chi muc tieu dang chon moi to vang; nut bat/tat (giao dien, linh vat) dung vien sang cho do roi mat */
+.site-header .hud-btn.hud-theme[aria-pressed="true"],
+.site-header .hud-btn.hud-theme[aria-pressed="true"]:hover,
+.site-header .hud-btn.hud-mascot[aria-pressed="true"],
+.site-header .hud-btn.hud-mascot[aria-pressed="true"]:hover {
+  background: rgba(255, 255, 255, .24); color: var(--hd-ink, #fff); border-color: var(--hd-focus, #ffd24a); font-weight: 700;
+}
+@media (min-width: 600px) {
+  .site-header .hud-panel .hud-xp { flex: 1 1 320px; }
+  .site-header .hud-panel .hud-goalbox { margin-right: auto; }
+}
+
+.mascot-mini .m-steps,.mascot-mini .m-tail,.mascot-mini .m-armL,.mascot-mini .m-armR{display:none}
+.hud-mascot { display: inline-flex; align-items: center; gap: 6px; }
 .hud-mascot-face, .hud-mascot-face .mascot { width: 28px; height: 28px; }
-.hud-mascot-face { display: inline-flex; }
+.hud-mascot-face {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: 0 0 auto; overflow: hidden;
+}
 .hud-btn[aria-pressed="true"] .hud-mascot-face { --m-scarf: var(--hd-focus, #ffd24a); }
 
 .btn-speak {

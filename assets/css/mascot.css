@@ -1,9 +1,9 @@
 .mascot-host{display:flex;align-items:center;gap:10px;margin:0 0 10px}
 .mascot-host[hidden]{display:none}
-.mascot-say{margin:0;padding:8px 12px;border-radius:14px;font-weight:600;line-height:1.4;background:var(--card-2,#ede9ff);color:var(--ink,#1b1740)}
+.mascot-say{margin:0;min-width:0;padding:8px 12px;border-radius:14px;font-weight:600;line-height:1.4;background:var(--card-2,#ede9ff);color:var(--ink,#1b1740)}
 .site-header .mascot-say{background:rgba(255,255,255,.16);color:var(--hd-ink,#fff)}
 .mascot{display:block;flex:0 0 auto;width:80px;height:80px;overflow:visible}
-.mascot-mini{width:28px;height:28px}
+.mascot-mini{width:28px;height:28px;overflow:hidden}
 .site-header .mascot-hero{--m-scarf:var(--hd-focus,#ffd24a)}
 .mf{fill:#e8892b}
 .mo{fill:#e8892b;stroke:#e8892b;stroke-width:3;stroke-linejoin:round}
