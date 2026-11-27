@@ -117,7 +117,6 @@ window.BS_UNITS["p3-05"] = {
       {"s":"M","en":"Someone should say a few words, too. He trained half of this team, including me.","vi":"Cũng nên có người phát biểu vài lời. Anh ấy đã đào tạo một nửa nhóm này, trong đó có tôi."},
       {"s":"W1","en":"I'll write something short. I'll also bring his service award photo to display.","vi":"Tôi sẽ viết vài dòng ngắn. Tôi cũng sẽ mang ảnh anh ấy nhận giải thưởng thâm niên đến để trưng."}
      ],
-     "v": {"status":"unverified","note":"Chưa được giải thử và nghe kiểm."},
      "questions": [
       {
        "id": "c1-s1-q1",
@@ -205,7 +204,6 @@ window.BS_UNITS["p3-05"] = {
       {"s":"W","en":"Yes, bring it on Friday, and we'll decide where to start.","vi":"Có, hãy mang vào thứ Sáu, rồi chúng ta quyết định bắt đầu từ đâu."},
       {"s":"M1","en":"Great. I'm due upstairs, so I'll check in with you both later.","vi":"Tốt. Tôi phải lên tầng trên, lát nữa tôi sẽ ghé hỏi thăm hai người."}
      ],
-     "v": {"status":"unverified","note":"Chưa được giải thử và nghe kiểm."},
      "questions": [
       {
        "id": "c1-s2-q1",
@@ -293,7 +291,6 @@ window.BS_UNITS["p3-05"] = {
       "cols": ["Phase","Work","Duration"],
       "rows": [["Phase 1","Wall repairs","3 days"],["Phase 2","Electrical wiring","6 days"],["Phase 3","Interior painting","4 days"],["Phase 4","Shelf fitting","5 days"]]
      },
-     "v": {"status":"unverified","note":"Chưa được giải thử và nghe kiểm."},
      "questions": [
       {
        "id": "c1-s3-q1",
@@ -379,7 +376,6 @@ window.BS_UNITS["p3-05"] = {
       "cols": ["Date option","Weekday","Other event that day"],
       "rows": [["June 5","Friday","Budget review"],["June 11","Thursday","Equipment delivery"],["June 17","Wednesday","Client visit"],["June 23","Tuesday","Fire inspection"]]
      },
-     "v": {"status":"unverified","note":"Chưa được giải thử và nghe kiểm."},
      "questions": [
       {
        "id": "c2-s4-q1",
@@ -458,7 +454,6 @@ window.BS_UNITS["p3-05"] = {
       },
       {"s":"W1","en":"Thanks. I'll draw up a name list for each time slot tonight.","vi":"Cảm ơn anh. Tối nay tôi sẽ lập danh sách tên cho từng khung giờ."}
      ],
-     "v": {"status":"unverified","note":"Chưa được giải thử và nghe kiểm."},
      "questions": [
       {
        "id": "c2-s5-q1",
@@ -549,7 +544,6 @@ window.BS_UNITS["p3-05"] = {
       {"s":"M1","en":"Good plan, Julian. And could we get a firm date for the filters by email?","vi":"Kế hoạch hay đấy, Julian. Còn chị gửi email cho chúng tôi ngày chắc chắn có bộ lọc được không?"},
       {"s":"W","en":"You'll have it by noon.","vi":"Trước buổi trưa các anh sẽ nhận được."}
      ],
-     "v": {"status":"unverified","note":"Chưa được giải thử và nghe kiểm."},
      "questions": [
       {
        "id": "c2-s6-q1",
@@ -643,19 +637,17 @@ window.BS_UNITS["p3-05"] = {
      "id": "fill1-1",
      "before": "As Gustav pointed",
      "after": "earlier, the volunteer list for the charity walk is still short.",
-     "answers": ["out"],
-     "v": {"status":"unverified","note":"Chưa được giải thử và nghe kiểm."}
+     "answers": ["out"]
     },
     {
      "id": "fill1-2",
      "before": "Picking the poster design is your project, so I'll leave that choice",
      "after": "you two.",
-     "answers": ["to","with"],
-     "v": {"status":"unverified","note":"Chưa được giải thử và nghe kiểm."}
+     "answers": ["to","with"]
     },
-    {"id":"fill1-3","before":"Can either","after":"you water the office plants while I'm away?","answers":["of"],"v":{"status":"unverified","note":"Chưa được giải thử và nghe kiểm."}},
-    {"id":"fill1-4","before":"I agree","after":"Freya that the book swap should be held indoors.","answers":["with"],"v":{"status":"unverified","note":"Chưa được giải thử và nghe kiểm."}},
-    {"id":"fill1-5","before":"Who's going to take care","after":"the sign-in sheet at the blood drive?","answers":["of"],"v":{"status":"unverified","note":"Chưa được giải thử và nghe kiểm."}}
+    {"id":"fill1-3","before":"Can either","after":"you water the office plants while I'm away?","answers":["of"]},
+    {"id":"fill1-4","before":"I agree","after":"Freya that the book swap should be held indoors.","answers":["with"]},
+    {"id":"fill1-5","before":"Who's going to take care","after":"the sign-in sheet at the blood drive?","answers":["of"]}
    ]
   }
  ]

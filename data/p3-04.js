@@ -424,10 +424,6 @@ window.BS_UNITS["p3-04"] = {
        ]
       ]
      },
-     "v": {
-      "status": "unverified",
-      "note": "Chưa nghe thử và chưa kiểm mù."
-     },
      "questions": [
       {
        "id": "c1-s1-q1",
@@ -628,10 +624,6 @@ window.BS_UNITS["p3-04"] = {
        "Suite 320 - Birkby Supply",
        "Suite 410 - Plumbago Press"
       ]
-     },
-     "v": {
-      "status": "unverified",
-      "note": "Chưa nghe thử và chưa kiểm mù."
      },
      "questions": [
       {
@@ -834,10 +826,6 @@ window.BS_UNITS["p3-04"] = {
        "1:00 - Website Design",
        "2:30 - Newsletter Design"
       ]
-     },
-     "v": {
-      "status": "unverified",
-      "note": "Chưa nghe thử và chưa kiểm mù."
      },
      "questions": [
       {
@@ -1071,10 +1059,6 @@ window.BS_UNITS["p3-04"] = {
        ]
       ]
      },
-     "v": {
-      "status": "unverified",
-      "note": "Chưa nghe thử và chưa kiểm mù."
-     },
      "questions": [
       {
        "id": "c2-s4-q1",
@@ -1296,10 +1280,6 @@ window.BS_UNITS["p3-04"] = {
         "-3%"
        ]
       ]
-     },
-     "v": {
-      "status": "unverified",
-      "note": "Chưa nghe thử và chưa kiểm mù."
      },
      "questions": [
       {
@@ -1524,10 +1504,6 @@ window.BS_UNITS["p3-04"] = {
        ]
       ]
      },
-     "v": {
-      "status": "unverified",
-      "note": "Chưa nghe thử và chưa kiểm mù."
-     },
      "questions": [
       {
        "id": "c2-s6-q1",
@@ -1662,10 +1638,6 @@ window.BS_UNITS["p3-04"] = {
    "id": "fill1",
    "type": "fill",
    "instruction_vi": "Điền từ còn thiếu vào chỗ trống (cụm thường dùng khi nói về bảng, danh sách và lựa chọn).",
-   "v": {
-    "status": "unverified",
-    "note": "Chưa nghe thử và chưa kiểm mù."
-   },
    "items": [
     {
      "id": "fill1-1",

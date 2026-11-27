@@ -385,10 +385,6 @@ window.BS_UNITS["p3-03"] = {
               "vi": "Tuyệt. Nhận được là tôi đọc ngay."
             }
           ],
-          "v": {
-            "status": "unverified",
-            "note": "Chưa nghe thử trên thiết bị và chưa qua kiểm duyệt độc lập."
-          },
           "questions": [
             {
               "id": "c1-s1-q1",
@@ -581,10 +577,6 @@ window.BS_UNITS["p3-03"] = {
               "vi": "Hay quá. Trong lúc anh làm, tôi sẽ đóng thêm một ít tờ rơi cho gian hàng."
             }
           ],
-          "v": {
-            "status": "unverified",
-            "note": "Chưa nghe thử trên thiết bị và chưa qua kiểm duyệt độc lập."
-          },
           "questions": [
             {
               "id": "c1-s2-q1",
@@ -811,10 +803,6 @@ window.BS_UNITS["p3-03"] = {
               ]
             ]
           },
-          "v": {
-            "status": "unverified",
-            "note": "Chưa nghe thử trên thiết bị và chưa qua kiểm duyệt độc lập."
-          },
           "questions": [
             {
               "id": "c1-s3-q1",
@@ -1010,10 +998,6 @@ window.BS_UNITS["p3-03"] = {
               "vi": "Cảm ơn chị. Tôi sẽ đọc kỹ trước buổi đầu tiên."
             }
           ],
-          "v": {
-            "status": "unverified",
-            "note": "Chưa nghe thử trên thiết bị và chưa qua kiểm duyệt độc lập."
-          },
           "questions": [
             {
               "id": "c2-s4-q1",
@@ -1241,10 +1225,6 @@ window.BS_UNITS["p3-03"] = {
               ]
             ]
           },
-          "v": {
-            "status": "unverified",
-            "note": "Chưa nghe thử trên thiết bị và chưa qua kiểm duyệt độc lập."
-          },
           "questions": [
             {
               "id": "c2-s5-q1",
@@ -1438,10 +1418,6 @@ window.BS_UNITS["p3-03"] = {
               "vi": "Tôi định thứ Sáu mang bản mới đến cho cô ấy, nhưng cô ấy muốn nhận qua chuyển phát, nên tôi sẽ gửi theo cách đó."
             }
           ],
-          "v": {
-            "status": "unverified",
-            "note": "Chưa nghe thử trên thiết bị và chưa qua kiểm duyệt độc lập."
-          },
           "questions": [
             {
               "id": "c2-s6-q1",

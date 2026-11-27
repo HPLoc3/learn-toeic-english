@@ -394,10 +394,6 @@ window.BS_UNITS["p3-06"] = {
               "vi": "Tất nhiên rồi. Chị sẽ nhận nó cùng với thẻ lên máy bay mới."
             }
           ],
-          "v": {
-            "status": "unverified",
-            "note": "Chưa được nghe thử và chưa qua giải mù."
-          },
           "questions": [
             {
               "id": "c1-s1-q1",
@@ -582,10 +578,6 @@ window.BS_UNITS["p3-06"] = {
               "vi": "Cảm ơn cô. Từ bữa sáng đến giờ tôi chưa ăn gì, nên tôi sẽ qua Windlass Cafe bên kia đường ăn một chiếc bánh mì kẹp."
             }
           ],
-          "v": {
-            "status": "unverified",
-            "note": "Chưa được nghe thử và chưa qua giải mù."
-          },
           "questions": [
             {
               "id": "c1-s2-q1",
@@ -818,10 +810,6 @@ window.BS_UNITS["p3-06"] = {
               ]
             ]
           },
-          "v": {
-            "status": "unverified",
-            "note": "Chưa được nghe thử và chưa qua giải mù."
-          },
           "questions": [
             {
               "id": "c1-s3-q1",
@@ -1020,10 +1008,6 @@ window.BS_UNITS["p3-06"] = {
               "vi": "Anh cứ thong thả. Tôi ra ngoài kiểm tra xe cho anh."
             }
           ],
-          "v": {
-            "status": "unverified",
-            "note": "Chưa được nghe thử và chưa qua giải mù."
-          },
           "questions": [
             {
               "id": "c2-s4-q1",
@@ -1259,10 +1243,6 @@ window.BS_UNITS["p3-06"] = {
               ]
             ]
           },
-          "v": {
-            "status": "unverified",
-            "note": "Chưa được nghe thử và chưa qua giải mù."
-          },
           "questions": [
             {
               "id": "c2-s5-q1",
@@ -1455,10 +1435,6 @@ window.BS_UNITS["p3-06"] = {
               "vi": "Tốt quá. Tôi sẽ gửi lịch trình mới cho cô trong vòng một giờ."
             }
           ],
-          "v": {
-            "status": "unverified",
-            "note": "Chưa được nghe thử và chưa qua giải mù."
-          },
           "questions": [
             {
               "id": "c2-s6-q1",

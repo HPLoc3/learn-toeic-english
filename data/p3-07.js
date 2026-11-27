@@ -116,7 +116,6 @@ window.BS_UNITS["p3-07"] = {
       {"s":"W","en":"Agreed. I'll print name labels for the volunteers. Keep your staff card handy for Saturday, too.","vi":"Đồng ý. Tôi sẽ in nhãn tên cho tình nguyện viên. Thứ Bảy anh cũng nhớ mang sẵn thẻ nhân viên nhé."},
       {"s":"M","en":"Will do. Right now, I'm messaging the courier so their records match ours.","vi":"Được. Giờ tôi sẽ nhắn cho hãng giao hàng để hồ sơ của họ khớp với của mình."}
      ],
-     "v": {"status":"unverified","note":"Chưa được người kiểm và nghe thử."},
      "questions": [
       {
        "id": "c1-s1-q1",
@@ -180,7 +179,6 @@ window.BS_UNITS["p3-07"] = {
       {"s":"W","en":"A trial's fine, as long as the mechanics test it, too.","vi":"Dùng thử thì tôi đồng ý, miễn là thợ máy cũng được thử."},
       {"s":"M","en":"Deal. I was supposed to be at the other branch Friday, but that visit's moved to next month, so I'll run a session that day.","vi":"Chốt nhé. Lẽ ra thứ Sáu tôi ở chi nhánh kia, nhưng chuyến đó dời sang tháng sau, nên hôm đó tôi sẽ tổ chức một buổi dùng thử."}
      ],
-     "v": {"status":"unverified","note":"Chưa được người kiểm và nghe thử."},
      "questions": [
       {
        "id": "c1-s2-q1",
@@ -258,7 +256,6 @@ window.BS_UNITS["p3-07"] = {
        ["Name badges","10 pieces","$60"]
       ]
      },
-     "v": {"status":"unverified","note":"Chưa được người kiểm và nghe thử."},
      "questions": [
       {
        "id": "c1-s3-q1",
@@ -333,7 +330,6 @@ window.BS_UNITS["p3-07"] = {
       {"s":"M2","en":"Absolutely. I know every aisle in that building.","vi":"Chắc chắn rồi. Tôi thuộc từng lối đi trong tòa nhà đó."},
       {"s":"M1","en":"I'll invite families from the nearby shops, too.","vi":"Tôi cũng sẽ mời các gia đình ở những cửa hàng gần đó."}
      ],
-     "v": {"status":"unverified","note":"Chưa được người kiểm và nghe thử."},
      "questions": [
       {
        "id": "c2-s4-q1",
@@ -397,7 +393,6 @@ window.BS_UNITS["p3-07"] = {
       {"s":"M","en":"Good. I'll bring the shoes I plan to wear, too.","vi":"Tốt. Tôi cũng sẽ mang theo đôi giày định đi."},
       {"s":"W","en":"Perfect. We'll see you then.","vi":"Tuyệt. Hẹn gặp anh lúc đó."}
      ],
-     "v": {"status":"unverified","note":"Chưa được người kiểm và nghe thử."},
      "questions": [
       {
        "id": "c2-s5-q1",
@@ -474,7 +469,6 @@ window.BS_UNITS["p3-07"] = {
        ["Poppy Plan","4 visits","$340"]
       ]
      },
-     "v": {"status":"unverified","note":"Chưa được người kiểm và nghe thử."},
      "questions": [
       {
        "id": "c2-s6-q1",
