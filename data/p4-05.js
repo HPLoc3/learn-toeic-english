@@ -322,10 +322,6 @@ window.BS_UNITS["p4-05"] = {
       "id": "c1",
       "type": "conv",
       "instruction_vi": "Đọc trước 3 câu hỏi, nghe bài nói rồi chọn đáp án.",
-      "v": {
-        "status": "unverified",
-        "note": "Chưa kiểm bởi người giải độc lập; chưa nghe thử trên thiết bị."
-      },
       "sets": [
         {
           "id": "c1-s1",
@@ -380,10 +376,6 @@ window.BS_UNITS["p4-05"] = {
               "vi": "Nó vẫn nằm cạnh nhà máy ở ngoại thành, nơi máy móc được chế tạo và khách mua từ nhiều nước đến tham quan."
             }
           ],
-          "v": {
-            "status": "unverified",
-            "note": "Chưa kiểm bởi người giải độc lập; chưa nghe thử trên thiết bị."
-          },
           "questions": [
             {
               "id": "c1-s1-q1",
@@ -599,10 +591,6 @@ window.BS_UNITS["p4-05"] = {
               ]
             ]
           },
-          "v": {
-            "status": "unverified",
-            "note": "Chưa kiểm bởi người giải độc lập; chưa nghe thử trên thiết bị."
-          },
           "questions": [
             {
               "id": "c1-s2-q1",
@@ -788,10 +776,6 @@ window.BS_UNITS["p4-05"] = {
               "vi": "Thay vào đó, sau giờ nghỉ ngắn này, một người trong ban tổ chức hội chợ sẽ trả lời câu hỏi của tôi."
             }
           ],
-          "v": {
-            "status": "unverified",
-            "note": "Chưa kiểm bởi người giải độc lập; chưa nghe thử trên thiết bị."
-          },
           "questions": [
             {
               "id": "c1-s3-q1",
@@ -927,10 +911,6 @@ window.BS_UNITS["p4-05"] = {
       "id": "c2",
       "type": "conv",
       "instruction_vi": "Đọc trước 3 câu hỏi, nghe bài nói rồi chọn đáp án.",
-      "v": {
-        "status": "unverified",
-        "note": "Chưa kiểm bởi người giải độc lập; chưa nghe thử trên thiết bị."
-      },
       "sets": [
         {
           "id": "c2-s4",
@@ -985,10 +965,6 @@ window.BS_UNITS["p4-05"] = {
               "vi": "Mãi tối qua tôi mới tìm được một cuốn, và Meera sẽ vào phòng thu cùng tôi ngay sau bài hát này."
             }
           ],
-          "v": {
-            "status": "unverified",
-            "note": "Chưa kiểm bởi người giải độc lập; chưa nghe thử trên thiết bị."
-          },
           "questions": [
             {
               "id": "c2-s4-q1",
@@ -1177,10 +1153,6 @@ window.BS_UNITS["p4-05"] = {
               "vi": "Vậy sau đây là một số ý kiến chúng tôi đã ghi âm bên trong tòa nhà lúc sớm hôm nay."
             }
           ],
-          "v": {
-            "status": "unverified",
-            "note": "Chưa kiểm bởi người giải độc lập; chưa nghe thử trên thiết bị."
-          },
           "questions": [
             {
               "id": "c2-s5-q1",
@@ -1397,10 +1369,6 @@ window.BS_UNITS["p4-05"] = {
               ]
             ]
           },
-          "v": {
-            "status": "unverified",
-            "note": "Chưa kiểm bởi người giải độc lập; chưa nghe thử trên thiết bị."
-          },
           "questions": [
             {
               "id": "c2-s6-q1",
@@ -1535,10 +1503,6 @@ window.BS_UNITS["p4-05"] = {
       "id": "fill1",
       "type": "fill",
       "instruction_vi": "Điền từ còn thiếu vào chỗ trống để hoàn thành cụm thường gặp trên sóng phát thanh.",
-      "v": {
-        "status": "unverified",
-        "note": "Chưa kiểm bởi người giải độc lập; chưa nghe thử trên thiết bị."
-      },
       "items": [
         {
           "id": "fill1-1",

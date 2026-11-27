@@ -421,10 +421,6 @@ window.BS_UNITS["p4-04"] = {
        ]
       ]
      },
-     "v": {
-      "status": "unverified",
-      "note": "Chưa nghe thử và chưa kiểm mù."
-     },
      "questions": [
       {
        "id": "c1-s1-q1",
@@ -642,10 +638,6 @@ window.BS_UNITS["p4-04"] = {
        ]
       ]
      },
-     "v": {
-      "status": "unverified",
-      "note": "Chưa nghe thử và chưa kiểm mù."
-     },
      "questions": [
       {
        "id": "c1-s2-q1",
@@ -843,10 +835,6 @@ window.BS_UNITS["p4-04"] = {
        "Room 31 - Chess group",
        "Room 16 - Poetry group"
       ]
-     },
-     "v": {
-      "status": "unverified",
-      "note": "Chưa nghe thử và chưa kiểm mù."
      },
      "questions": [
       {
@@ -1074,10 +1062,6 @@ window.BS_UNITS["p4-04"] = {
        ]
       ]
      },
-     "v": {
-      "status": "unverified",
-      "note": "Chưa nghe thử và chưa kiểm mù."
-     },
      "questions": [
       {
        "id": "c2-s4-q1",
@@ -1297,10 +1281,6 @@ window.BS_UNITS["p4-04"] = {
        ]
       ]
      },
-     "v": {
-      "status": "unverified",
-      "note": "Chưa nghe thử và chưa kiểm mù."
-     },
      "questions": [
       {
        "id": "c2-s5-q1",
@@ -1500,10 +1480,6 @@ window.BS_UNITS["p4-04"] = {
        "Saturday - Seafood dishes"
       ]
      },
-     "v": {
-      "status": "unverified",
-      "note": "Chưa nghe thử và chưa kiểm mù."
-     },
      "questions": [
       {
        "id": "c2-s6-q1",
@@ -1638,10 +1614,6 @@ window.BS_UNITS["p4-04"] = {
    "id": "fill1",
    "type": "fill",
    "instruction_vi": "Điền từ còn thiếu vào chỗ trống (cụm thường dùng khi nói về sơ đồ và lịch trình).",
-   "v": {
-    "status": "unverified",
-    "note": "Chưa nghe thử và chưa kiểm mù."
-   },
    "items": [
     {
      "id": "fill1-1",

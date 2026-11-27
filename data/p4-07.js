@@ -114,7 +114,6 @@ window.BS_UNITS["p4-07"] = {
       {"s":"A","en":"There is no need to visit the service desk, because your seat has not changed.","vi":"Quý khách không cần đến quầy dịch vụ, vì chỗ ngồi của quý khách không thay đổi."},
       {"s":"A","en":"Other flights are not affected. Our cabin crew look forward to welcoming you.","vi":"Các chuyến bay khác không bị ảnh hưởng. Tiếp viên của chúng tôi mong được đón quý khách."}
      ],
-     "v": {"status":"unverified","note":"Chưa được người kiểm và nghe thử."},
      "questions": [
       {
        "id": "c1-s1-q1",
@@ -177,7 +176,6 @@ window.BS_UNITS["p4-07"] = {
       {"s":"A","en":"New clients now get twenty-five percent off the first month, instead of the fifteen percent we offered last spring.","vi":"Khách mới hiện được giảm hai mươi lăm phần trăm cho tháng đầu, thay vì mười lăm phần trăm như hồi mùa xuân trước."},
       {"s":"A","en":"We've been in business for nine years. Call Snowdrop Cleaners for a free visit and quote.","vi":"Chúng tôi đã hoạt động được chín năm. Hãy gọi Snowdrop Cleaners để được khảo sát và báo giá miễn phí."}
      ],
-     "v": {"status":"unverified","note":"Chưa được người kiểm và nghe thử."},
      "questions": [
       {
        "id": "c1-s2-q1",
@@ -240,7 +238,6 @@ window.BS_UNITS["p4-07"] = {
       {"s":"A","en":"Please bring copies of your certificates. We already have your application papers.","vi":"Ông vui lòng mang theo bản sao các chứng chỉ. Hồ sơ ứng tuyển của ông chúng tôi đã có rồi."},
       {"s":"A","en":"Call me back if the new time doesn't suit you. Thanks.","vi":"Nếu giờ mới không phù hợp, xin gọi lại cho tôi. Cảm ơn ông."}
      ],
-     "v": {"status":"unverified","note":"Chưa được người kiểm và nghe thử."},
      "questions": [
       {
        "id": "c1-s3-q1",
@@ -311,7 +308,6 @@ window.BS_UNITS["p4-07"] = {
       {"s":"A","en":"Our smaller desk on Marrowgate Road has closed for good, but the Cresswell Avenue counter remains open.","vi":"Quầy nhỏ của chúng tôi trên đường Marrowgate đã đóng hẳn, nhưng quầy ở đại lộ Cresswell vẫn mở."},
       {"s":"A","en":"To hear these choices again, press nine.","vi":"Để nghe lại các lựa chọn này, xin bấm số chín."}
      ],
-     "v": {"status":"unverified","note":"Chưa được người kiểm và nghe thử."},
      "questions": [
       {
        "id": "c2-s4-q1",
@@ -387,7 +383,6 @@ window.BS_UNITS["p4-07"] = {
        ["Group 9","8 km","8:10 A.M."]
       ]
      },
-     "v": {"status":"unverified","note":"Chưa được người kiểm và nghe thử."},
      "questions": [
       {
        "id": "c2-s5-q1",
@@ -464,7 +459,6 @@ window.BS_UNITS["p4-07"] = {
        ["Packing materials","£50,000","£54,000"]
       ]
      },
-     "v": {"status":"unverified","note":"Chưa được người kiểm và nghe thử."},
      "questions": [
       {
        "id": "c2-s6-q1",

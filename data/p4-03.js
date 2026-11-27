@@ -371,9 +371,6 @@ window.BS_UNITS["p4-03"] = {
               "vi": "Vì vậy, trước khi món ăn được dọn ra, xin mời mọi người nhìn lên màn hình, nơi đồng nghiệp đã ghi lại vài lời nhắn gửi anh ấy."
             }
           ],
-          "v": {
-            "status": "unverified"
-          },
           "questions": [
             {
               "id": "c1-s1-q1",
@@ -548,9 +545,6 @@ window.BS_UNITS["p4-03"] = {
               "vi": "Trước khi ra về, xin quý vị dùng một tấm để cho chúng tôi biết quý vị nghĩ gì về công việc của quỹ."
             }
           ],
-          "v": {
-            "status": "unverified"
-          },
           "questions": [
             {
               "id": "c1-s2-q1",
@@ -762,9 +756,6 @@ window.BS_UNITS["p4-03"] = {
               ]
             ]
           },
-          "v": {
-            "status": "unverified"
-          },
           "questions": [
             {
               "id": "c1-s3-q1",
@@ -948,9 +939,6 @@ window.BS_UNITS["p4-03"] = {
               "vi": "Chị Brigitte, món quà chúng tôi tặng chị là cuốn album ảnh cũ chụp ở xưởng. Cảm ơn chị."
             }
           ],
-          "v": {
-            "status": "unverified"
-          },
           "questions": [
             {
               "id": "c2-s4-q1",
@@ -1133,9 +1121,6 @@ window.BS_UNITS["p4-03"] = {
               "vi": "Xin chúc mừng tất cả các bạn."
             }
           ],
-          "v": {
-            "status": "unverified"
-          },
           "questions": [
             {
               "id": "c2-s5-q1",
@@ -1345,9 +1330,6 @@ window.BS_UNITS["p4-03"] = {
                 "Training coach"
               ]
             ]
-          },
-          "v": {
-            "status": "unverified"
           },
           "questions": [
             {

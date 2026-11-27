@@ -371,9 +371,6 @@ window.BS_UNITS["p4-06"] = {
               "vi": "Nó nằm ngay sau dãy tủ đồ của nhân viên, mời quý vị đi theo tôi."
             }
           ],
-          "v": {
-            "status": "unverified"
-          },
           "questions": [
             {
               "id": "c1-s1-q1",
@@ -554,9 +551,6 @@ window.BS_UNITS["p4-06"] = {
               "vi": "Bên dưới chiếc đồng hồ đứng cao là chiếc bệ gỗ mới do một tình nguyện viên của chúng tôi đóng."
             }
           ],
-          "v": {
-            "status": "unverified"
-          },
           "questions": [
             {
               "id": "c1-s2-q1",
@@ -774,9 +768,6 @@ window.BS_UNITS["p4-06"] = {
               ]
             ]
           },
-          "v": {
-            "status": "unverified"
-          },
           "questions": [
             {
               "id": "c1-s3-q1",
@@ -965,9 +956,6 @@ window.BS_UNITS["p4-06"] = {
               "vi": "Điều tôi thật sự cần là mỗi người một đề xuất để phản hồi nhanh hơn. Hãy gửi e-mail cho tôi trước thứ Sáu."
             }
           ],
-          "v": {
-            "status": "unverified"
-          },
           "questions": [
             {
               "id": "c2-s4-q1",
@@ -1148,9 +1136,6 @@ window.BS_UNITS["p4-06"] = {
               "vi": "Các bạn không cần chép lại gì cả. Bây giờ tôi sẽ hướng dẫn từng ô của mẫu đơn trên màn hình."
             }
           ],
-          "v": {
-            "status": "unverified"
-          },
           "questions": [
             {
               "id": "c2-s5-q1",
@@ -1361,9 +1346,6 @@ window.BS_UNITS["p4-06"] = {
                 "March 27"
               ]
             ]
-          },
-          "v": {
-            "status": "unverified"
           },
           "questions": [
             {
