@@ -142,7 +142,7 @@ window.BS_UNITS["p7-02"] = {
     {
       "id": "v013",
       "en": "subscriber",
-      "vi": "người đăng ký dài hạn",
+      "vi": "người đăng ký (thuê bao)",
       "group": "Đăng ký dịch vụ"
     },
     {
@@ -251,8 +251,8 @@ window.BS_UNITS["p7-02"] = {
     },
     {
       "id": "p07",
-      "en": "Reserve your seat while supplies last.",
-      "vi": "Hãy giữ chỗ khi vẫn còn suất.",
+      "en": "Book now while seats last.",
+      "vi": "Hãy đặt chỗ ngay khi vẫn còn ghế.",
       "group_vi": "Quảng cáo"
     },
     {
@@ -513,10 +513,10 @@ window.BS_UNITS["p7-02"] = {
                 },
                 {
                   "label": "B",
-                  "en": "To explain an increase in the charge for water service",
-                  "vi": "Để giải thích việc tăng phí dịch vụ nước",
+                  "en": "To report an emergency repair to a broken water main",
+                  "vi": "Để báo về việc sửa khẩn cấp một đường ống nước chính bị vỡ",
                   "trap": "not-mentioned",
-                  "why_vi": "Thông báo không nói gì về giá nước."
+                  "why_vi": "Thông báo không nói có ống nào bị vỡ; đây là việc thay ống cũ được lên lịch và báo trước."
                 },
                 {
                   "label": "C",
@@ -663,8 +663,8 @@ window.BS_UNITS["p7-02"] = {
                   "vi": "Bạn có thể chuyển lên mức cao hơn bất cứ khi nào muốn. Hạn mức bài đọc lớn hơn được dùng ngay, còn giá mới được tính từ ngày tính cước tiếp theo."
                 },
                 {
-                  "en": "Not sure which level fits? Consider Eszter, a reader who studies local history. She opens about fifty articles in a typical month and often needs to look up stories published several years ago. Once any discount has ended, she does not want to pay more than $12 a month.",
-                  "vi": "Chưa biết mức nào phù hợp? Hãy xem trường hợp của Eszter, một độc giả nghiên cứu lịch sử địa phương. Cô mở khoảng năm mươi bài trong một tháng bình thường và thường cần tra lại những bài đăng từ nhiều năm trước. Khi mọi ưu đãi đã hết, cô không muốn trả quá 12 đô la một tháng."
+                  "en": "Which level is right for you? One of our readers, Eszter, studies local history. \"I open about fifty articles in a typical month, and I often need to look up stories published several years ago,\" she says. \"After any discount ends, I don't want to pay more than $12 a month.\"",
+                  "vi": "Mức nào phù hợp với bạn? Một độc giả của chúng tôi, Eszter, nghiên cứu lịch sử địa phương. Cô cho biết: \"Trong một tháng bình thường, tôi mở khoảng năm mươi bài, và tôi thường cần tra lại những bài đăng từ nhiều năm trước. Khi mọi ưu đãi đã hết, tôi không muốn trả quá 12 đô la một tháng.\""
                 }
               ],
               "table": {
@@ -685,7 +685,7 @@ window.BS_UNITS["p7-02"] = {
                   [
                     "Level 24",
                     "$7",
-                    "80",
+                    "40",
                     "Morning news summary"
                   ],
                   [
@@ -830,7 +830,7 @@ window.BS_UNITS["p7-02"] = {
                   "en": "Level 24",
                   "vi": "Mức 24",
                   "trap": "wrong-detail",
-                  "why_vi": "Mức này đủ số bài nhưng không có kho lưu trữ để tra bài cũ."
+                  "why_vi": "Mức này chỉ có 40 bài mỗi tháng, ít hơn nhu cầu khoảng năm mươi bài, và không có kho lưu trữ để tra bài cũ."
                 },
                 {
                   "label": "D",
@@ -971,10 +971,10 @@ window.BS_UNITS["p7-02"] = {
                 },
                 {
                   "label": "D",
-                  "en": "calculate again",
-                  "vi": "tính lại",
-                  "trap": "not-mentioned",
-                  "why_vi": "'Honor' không có nghĩa tính lại; cửa hàng giữ nguyên giá trên phiếu."
+                  "en": "bring pride to",
+                  "vi": "mang lại niềm vinh dự cho",
+                  "trap": "other-meaning",
+                  "why_vi": "Đây là nghĩa làm ai đó thấy vinh dự (You honor us with your visit), không dùng cho một mức giá."
                 }
               ]
             },
@@ -982,7 +982,7 @@ window.BS_UNITS["p7-02"] = {
               "id": "r2-s4-q3",
               "kind": "position",
               "at": 0,
-              "sentence": "Anything in these two groups must be paid for as soon as you choose it.",
+              "sentence": "Items in these two groups must be paid for on the day you choose them.",
               "q": {
                 "en": "In which of the positions marked [1], [2], [3], and [4] does the following sentence best belong?",
                 "vi": "Câu sau thuộc về vị trí nào trong các vị trí [1], [2], [3] và [4]?"
@@ -994,7 +994,7 @@ window.BS_UNITS["p7-02"] = {
                   1
                 ]
               ],
-              "explain_vi": "'These two groups' cần hai nhóm hàng vừa được nêu. Chỉ ở [3], ngay sau câu kể hai loại hàng không được giữ, cụm này mới có đối tượng quy chiếu; câu sau bắt đầu bằng 'All other merchandise' cũng nối tiếp tự nhiên.",
+              "explain_vi": "Cụm 'these two groups' cần hai nhóm hàng vừa được nêu. Chỉ ở [3], ngay sau câu kể hai loại hàng không được giữ, cụm này mới có đối tượng quy chiếu; câu sau bắt đầu bằng 'All other merchandise' cũng nối tiếp tự nhiên.",
               "options": [
                 {
                   "label": "A",
@@ -1039,8 +1039,8 @@ window.BS_UNITS["p7-02"] = {
                   "vi": "Bạn đang lên kế hoạch cho một hội chợ, buổi dã ngoại hay hòa nhạc ngoài trời? Sandpiper Hire cho thuê lều, quạt, đèn và bàn theo ngày. Lều che là món được hỏi thuê nhiều nhất cho các sự kiện trong công viên, nên hãy đặt sớm."
                 },
                 {
-                  "en": "This summer, if you rent at least three units of the same item for two days or longer, one of those days is free for that item. The offer applies to events held from June 1 through August 31, and your order must reach us by May 15.",
-                  "vi": "Mùa hè này, nếu bạn thuê ít nhất ba chiếc cùng một loại trong hai ngày trở lên, loại đó được miễn phí một trong các ngày thuê. Ưu đãi áp dụng cho sự kiện diễn ra từ ngày 1 tháng 6 đến ngày 31 tháng 8, và đơn đặt phải đến chỗ chúng tôi chậm nhất ngày 15 tháng 5."
+                  "en": "This summer, if you rent an item with a daily rate under $20 for two days or longer, one of those days is free for that item. The offer applies to events held from June 1 through August 31, and your order must reach us by May 15.",
+                  "vi": "Mùa hè này, nếu bạn thuê một món có đơn giá dưới 20 đô la một ngày trong hai ngày trở lên, món đó được miễn phí một trong các ngày thuê. Ưu đãi áp dụng cho sự kiện diễn ra từ ngày 1 tháng 6 đến ngày 31 tháng 8, và đơn đặt phải đến chỗ chúng tôi chậm nhất ngày 15 tháng 5."
                 },
                 {
                   "en": "Each daily rate covers cleaning and a basic safety check. A deposit is collected once for every unit, however long you keep it, and is returned when the unit comes back undamaged. We deliver within town for a flat fee of $30, or you may pick up your order at our Garland Street yard at no cost.",
@@ -1098,8 +1098,8 @@ window.BS_UNITS["p7-02"] = {
                   "vi": "Đơn này dành cho một hội chợ khu phố tại công viên Merrow Park, bắt đầu vào thứ Sáu ngày 10 tháng 7. Số ngày cần thuê của từng món được ghi trong bảng."
                 },
                 {
-                  "en": "Notes: Please deliver to the east entrance before 8:00 A.M., because the park gates are closed to vehicles after nine. Three of the folding tables will be used for serving food. If any item is not available, phone me before you substitute something else.",
-                  "vi": "Ghi chú: Xin giao hàng đến cổng phía đông trước 8 giờ sáng, vì cổng công viên đóng, không cho xe vào sau 9 giờ. Ba trong số các bàn gấp sẽ được dùng để phục vụ đồ ăn. Nếu có món nào không còn, hãy gọi cho tôi trước khi thay bằng món khác."
+                  "en": "Notes: Please deliver to the east entrance by 8:30 A.M., because the park gates close to vehicles at nine. Three of the folding tables will hold free food samples. If any item is not available, phone me before you substitute something else.",
+                  "vi": "Ghi chú: Xin giao hàng đến cổng phía đông trước 8 giờ 30 sáng, vì cổng công viên không cho xe vào từ 9 giờ. Ba trong số các bàn gấp sẽ bày đồ ăn thử miễn phí. Nếu có món nào không còn, hãy gọi cho tôi trước khi thay bằng món khác."
                 }
               ],
               "table": {
@@ -1113,7 +1113,7 @@ window.BS_UNITS["p7-02"] = {
                   [
                     "Canopy tent",
                     "4",
-                    "1"
+                    "2"
                   ],
                   [
                     "Cooling fan",
@@ -1169,10 +1169,10 @@ window.BS_UNITS["p7-02"] = {
                 },
                 {
                   "label": "C",
-                  "en": "To invite people to buy secondhand tents and tables",
-                  "vi": "Để mời mọi người mua lều và bàn đã qua sử dụng",
+                  "en": "To announce changes to the terms for renting equipment",
+                  "vi": "Để thông báo những thay đổi trong điều khoản thuê thiết bị",
                   "trap": "not-mentioned",
-                  "why_vi": "Công ty cho thuê đồ, quảng cáo không nói đến việc bán đồ cũ."
+                  "why_vi": "Quảng cáo không nói quy định nào thay đổi; các điều kiện được nêu là của ưu đãi mùa hè."
                 },
                 {
                   "label": "D",
@@ -1209,7 +1209,7 @@ window.BS_UNITS["p7-02"] = {
                   "en": "Arrival of the goods after nine in the morning",
                   "vi": "Hàng đến sau 9 giờ sáng",
                   "trap": "wrong-detail",
-                  "why_vi": "Ông muốn hàng được giao trước 8 giờ sáng; sau 9 giờ xe không được vào."
+                  "why_vi": "Ông muốn hàng được giao chậm nhất lúc 8 giờ 30 sáng; từ 9 giờ xe không được vào."
                 },
                 {
                   "label": "C",
@@ -1246,21 +1246,21 @@ window.BS_UNITS["p7-02"] = {
                   0
                 ]
               ],
-              "explain_vi": "Ưu đãi cần ít nhất ba chiếc cùng loại và thuê từ hai ngày trở lên. Theo bảng đặt hàng, chỉ đèn di động (3 chiếc, 2 ngày) đáp ứng cả hai; ngày gửi đơn và ngày sự kiện cũng đúng hạn.",
+              "explain_vi": "Ưu đãi yêu cầu món có đơn giá dưới 20 đô la một ngày và được thuê từ hai ngày trở lên. Đối chiếu hai bảng, chỉ đèn di động (12 đô la, 2 ngày) đáp ứng cả hai; ngày gửi đơn và ngày sự kiện cũng đúng hạn.",
               "options": [
                 {
                   "label": "A",
                   "en": "The canopy tents",
                   "vi": "Các lều che",
-                  "trap": "other-passage",
-                  "why_vi": "Quảng cáo chỉ nói lều được hỏi thuê nhiều; theo đơn, lều chỉ thuê một ngày."
+                  "trap": "wrong-detail",
+                  "why_vi": "Lều được thuê hai ngày nhưng đơn giá là 45 đô la một ngày, không dưới 20 đô la."
                 },
                 {
                   "label": "B",
                   "en": "The cooling fans",
                   "vi": "Các quạt làm mát",
                   "trap": "wrong-detail",
-                  "why_vi": "Quạt được thuê ba ngày nhưng chỉ có hai chiếc."
+                  "why_vi": "Quạt được thuê ba ngày nhưng đơn giá là 25 đô la một ngày, không dưới 20 đô la."
                 },
                 {
                   "label": "C",
@@ -1272,7 +1272,7 @@ window.BS_UNITS["p7-02"] = {
                   "en": "The folding tables",
                   "vi": "Các bàn gấp",
                   "trap": "word-match",
-                  "why_vi": "Đơn nhắc 'Three of the folding tables' về việc phục vụ đồ ăn, không phải điều kiện ba chiếc trong hai ngày; bàn chỉ được thuê một ngày."
+                  "why_vi": "Chữ 'free' trong ghi chú của đơn nói về đồ ăn thử miễn phí. Bàn có đơn giá 8 đô la nhưng chỉ được thuê một ngày."
                 }
               ]
             },
@@ -1299,10 +1299,10 @@ window.BS_UNITS["p7-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "$40",
-                  "vi": "40 đô la",
-                  "trap": "other-passage",
-                  "why_vi": "Đây là tiền cọc cho một chiếc trong bảng của quảng cáo, chưa tính số lượng trong đơn."
+                  "en": "$50",
+                  "vi": "50 đô la",
+                  "trap": "wrong-detail",
+                  "why_vi": "Đây là đơn giá thuê một ngày của hai quạt (2 x 25), không phải tiền cọc."
                 },
                 {
                   "label": "B",
@@ -1348,29 +1348,29 @@ window.BS_UNITS["p7-02"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "puts a lid on",
-                  "vi": "đậy nắp lên",
+                  "en": "spreads over the top of",
+                  "vi": "phủ lên bề mặt của",
                   "trap": "other-meaning",
-                  "why_vi": "Đây là nghĩa che đậy một vật, không dùng cho đơn giá."
+                  "why_vi": "Đây là nghĩa phủ lên một vật (snow covers the ground), không dùng cho đơn giá."
                 },
                 {
                   "label": "B",
-                  "en": "reports news on",
+                  "en": "reports the news about",
                   "vi": "đưa tin về",
                   "trap": "other-meaning",
                   "why_vi": "Đây là nghĩa của báo chí (đưa tin về một sự kiện)."
                 },
                 {
                   "label": "C",
-                  "en": "charges more for",
-                  "vi": "thu thêm tiền cho",
-                  "trap": "not-mentioned",
-                  "why_vi": "'Cover' không có nghĩa thu thêm; vệ sinh và kiểm tra đã nằm trong đơn giá."
+                  "en": "travels the distance of",
+                  "vi": "đi hết quãng đường",
+                  "trap": "other-meaning",
+                  "why_vi": "Đây là nghĩa đi được một quãng đường (cover twenty miles), không hợp với đơn giá."
                 },
                 {
                   "label": "D",
-                  "en": "pays the cost of",
-                  "vi": "trả chi phí cho"
+                  "en": "includes the cost of",
+                  "vi": "bao gồm chi phí của"
                 }
               ]
             }
@@ -1411,10 +1411,10 @@ window.BS_UNITS["p7-02"] = {
         },
         {
           "id": "fill1-4",
-          "before": "We apologize for any (i...)",
-          "after": "that the hallway painting may cause.",
+          "before": "We thank you for your (p...)",
+          "after": "while workers repaint the hallway.",
           "answers": [
-            "inconvenience"
+            "patience"
           ]
         },
         {
