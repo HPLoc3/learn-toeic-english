@@ -351,8 +351,8 @@ window.BS_UNITS["p4-05"] = {
             },
             {
               "s": "A",
-              "en": "When the firm started out, its office team fit into two small rooms, but today that team needs five whole floors.",
-              "vi": "Khi công ty mới thành lập, đội ngũ văn phòng chỉ cần hai phòng nhỏ, còn ngày nay đội ngũ đó cần trọn năm tầng."
+              "en": "The firm has been in the same offices ever since the day it first opened.",
+              "vi": "Công ty đã ở cùng một văn phòng từ ngày đầu mới mở cửa."
             },
             {
               "s": "A",
@@ -400,29 +400,29 @@ window.BS_UNITS["p4-05"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "A company's plan to take on more staff",
-                  "vi": "Kế hoạch tuyển thêm nhân viên của một công ty",
+                  "en": "A company's plan to open a second office",
+                  "vi": "Kế hoạch mở văn phòng thứ hai của một công ty",
                   "trap": "over-inference",
-                  "why_vi": "Đội ngũ văn phòng đã đông lên, nhưng bản tin không công bố kế hoạch tuyển thêm người."
+                  "why_vi": "Công ty đến một địa điểm mới, nhưng đây là chuyển trụ sở chính chứ không phải mở thêm văn phòng."
                 },
                 {
                   "label": "B",
-                  "en": "A company's agreement to buy a competitor",
-                  "vi": "Thỏa thuận mua lại một đối thủ của một công ty",
+                  "en": "A company's plan to open a training center",
+                  "vi": "Kế hoạch mở trung tâm đào tạo của một công ty",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có đoạn nào nói về việc mua lại công ty khác."
+                  "why_vi": "Không có đoạn nào nói về trung tâm đào tạo."
                 },
                 {
                   "label": "C",
-                  "en": "A company's decision to move its main office",
-                  "vi": "Quyết định chuyển văn phòng chính của một công ty"
+                  "en": "A company's plan to move its main office",
+                  "vi": "Kế hoạch chuyển văn phòng chính của một công ty"
                 },
                 {
                   "label": "D",
-                  "en": "A company's launch of a new kind of machine",
-                  "vi": "Việc một công ty ra mắt một loại máy mới",
+                  "en": "A company's plan to move its showroom",
+                  "vi": "Kế hoạch chuyển phòng trưng bày của một công ty",
                   "trap": "heard-word",
-                  "why_vi": "Máy móc (machines) chỉ được nhắc khi nói nơi chế tạo; không có sản phẩm mới nào."
+                  "why_vi": "Phòng trưng bày được nhắc đến nhưng nó không chuyển đi đâu."
                 }
               ]
             },
@@ -476,33 +476,33 @@ window.BS_UNITS["p4-05"] = {
               },
               "answer": "A",
               "evidence": [
-                2
+                7
               ],
-              "explain_vi": "Lúc mới thành lập, đội văn phòng chỉ cần hai phòng nhỏ, nay cần năm tầng: công ty đã lớn lên nhiều.",
+              "explain_vi": "Khách mua từ nhiều nước đến tham quan phòng trưng bày, nên công ty có khách hàng ở nước ngoài.",
               "options": [
                 {
                   "label": "A",
-                  "en": "It has become much larger over the years.",
-                  "vi": "Nó đã lớn hơn nhiều qua các năm."
+                  "en": "Some of its customers are based abroad.",
+                  "vi": "Một số khách hàng của công ty ở nước ngoài."
                 },
                 {
                   "label": "B",
-                  "en": "It has had trouble finding new workers.",
-                  "vi": "Nó gặp khó khăn trong việc tìm nhân công mới.",
+                  "en": "It has more employees than it did before.",
+                  "vi": "Công ty có nhiều nhân viên hơn trước.",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có đoạn nào nói về khó khăn tuyển người."
+                  "why_vi": "Không có đoạn nào nói số nhân viên thay đổi."
                 },
                 {
                   "label": "C",
-                  "en": "It sells most of its products in other countries.",
-                  "vi": "Nó bán phần lớn sản phẩm ở nước ngoài.",
+                  "en": "It earns most of its money in other countries.",
+                  "vi": "Công ty kiếm phần lớn tiền ở nước ngoài.",
                   "trap": "over-inference",
-                  "why_vi": "Khách từ nhiều nước đến tham quan không có nghĩa phần lớn hàng được bán ra nước ngoài."
+                  "why_vi": "Khách từ nhiều nước đến tham quan không cho biết phần lớn doanh thu đến từ nước ngoài."
                 },
                 {
                   "label": "D",
                   "en": "It builds its machines in the center of town.",
-                  "vi": "Nó chế tạo máy ở trung tâm thành phố.",
+                  "vi": "Công ty chế tạo máy ở trung tâm thành phố.",
                   "trap": "wrong-detail",
                   "why_vi": "Nhà máy, nơi chế tạo máy, nằm ở ngoại thành."
                 }
@@ -529,8 +529,8 @@ window.BS_UNITS["p4-05"] = {
             },
             {
               "s": "A",
-              "en": "Torbay Authority has published a list of road closures, and every day shown on it falls within this week.",
-              "vi": "Torbay Authority đã công bố danh sách đóng đường, và mọi ngày ghi trong đó đều thuộc tuần này."
+              "en": "Wyvern Transit has published this week's road closures.",
+              "vi": "Wyvern Transit đã công bố danh sách đóng đường trong tuần này."
             },
             {
               "s": "A",
@@ -554,8 +554,8 @@ window.BS_UNITS["p4-05"] = {
             },
             {
               "s": "A",
-              "en": "Instead, the day those passengers must plan around is when engineers bury new electricity lines, as no buses can pass.",
-              "vi": "Thay vào đó, ngày mà hành khách phải tính trước là ngày kỹ sư chôn đường dây điện mới, vì xe buýt không qua được."
+              "en": "Instead, the day they'll need to plan around is the one when engineers bury new electricity lines, because no buses will be able to get through.",
+              "vi": "Thay vào đó, ngày họ cần tính trước là ngày kỹ sư chôn đường dây điện mới, vì xe buýt sẽ không thể đi qua."
             },
             {
               "s": "A",
@@ -570,7 +570,7 @@ window.BS_UNITS["p4-05"] = {
           ],
           "graphic": {
             "type": "table",
-            "title": "Torbay Authority - Road List",
+            "title": "Wyvern Transit - Road List",
             "cols": [
               "Road",
               "Closed on",
@@ -588,7 +588,7 @@ window.BS_UNITS["p4-05"] = {
                 "Drain repair"
               ],
               [
-                "Carlisle Bridge",
+                "Norcombe Bridge",
                 "Friday",
                 "Painting"
               ],
@@ -624,24 +624,24 @@ window.BS_UNITS["p4-05"] = {
                 },
                 {
                   "label": "B",
-                  "en": "They show how long each delay will last.",
-                  "vi": "Chúng cho biết mỗi đoạn chậm kéo dài bao lâu.",
+                  "en": "They show a separate route for large trucks.",
+                  "vi": "Chúng chỉ lộ trình riêng cho xe tải lớn.",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có đoạn nào nói biển hiển thị thời gian chậm."
+                  "why_vi": "Không có đoạn nào nói về lộ trình cho xe tải."
                 },
                 {
                   "label": "C",
-                  "en": "They include a map of the town center.",
-                  "vi": "Chúng có kèm bản đồ trung tâm thị trấn.",
+                  "en": "They guide traffic into one open lane.",
+                  "vi": "Chúng hướng xe cộ vào một làn còn mở.",
                   "trap": "heard-word",
-                  "why_vi": "Bản đồ (map) được nhắc là bản đồ trên điện thoại, không phải trên biển."
+                  "why_vi": "Một làn còn mở được nhắc khi nói về xe buýt ở đoạn trải lại mặt đường, không phải về biển."
                 },
                 {
                   "label": "D",
-                  "en": "They will be taken down after one day.",
-                  "vi": "Chúng sẽ được tháo sau một ngày.",
+                  "en": "They will be set out later in the week.",
+                  "vi": "Chúng sẽ được đặt vào cuối tuần này.",
                   "trap": "wrong-detail",
-                  "why_vi": "Các biển sẽ ở đó cả tuần."
+                  "why_vi": "Các biển đã được đặt xong từ tối qua."
                 }
               ]
             },
@@ -702,10 +702,10 @@ window.BS_UNITS["p4-05"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "Leave their cars outside the town center",
-                  "vi": "Để xe bên ngoài trung tâm thị trấn",
+                  "en": "Check online for updates before leaving",
+                  "vi": "Xem cập nhật trên mạng trước khi đi",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có đoạn nào bảo gửi xe bên ngoài trung tâm."
+                  "why_vi": "Không có đoạn nào bảo xem cập nhật trên mạng."
                 },
                 {
                   "label": "B",
@@ -714,15 +714,15 @@ window.BS_UNITS["p4-05"] = {
                 },
                 {
                   "label": "C",
-                  "en": "Stay away from the town center entirely",
-                  "vi": "Tránh hẳn trung tâm thị trấn",
+                  "en": "Avoid driving through the town centre",
+                  "vi": "Tránh lái xe qua trung tâm thị trấn",
                   "trap": "changed-plan",
                   "why_vi": "Đó là lời khuyên cũ; người nói bảo giờ không cần nữa."
                 },
                 {
                   "label": "D",
-                  "en": "Follow the route shown on their phones",
-                  "vi": "Đi theo lộ trình trên điện thoại",
+                  "en": "Use their phones to find another route",
+                  "vi": "Dùng điện thoại tìm lộ trình khác",
                   "trap": "heard-word",
                   "why_vi": "Điện thoại được nhắc để cảnh báo rằng bản đồ có thể chưa cập nhật."
                 }
@@ -769,8 +769,8 @@ window.BS_UNITS["p4-05"] = {
             },
             {
               "s": "A",
-              "en": "The grass is so muddy that people's shoes would sink right in, so Torbay Authority has moved the fair to next Saturday.",
-              "vi": "Bãi cỏ lầy đến mức giày sẽ lún hẳn xuống, nên Torbay Authority đã dời hội chợ sang thứ Bảy tuần sau."
+              "en": "The grass is so muddy that people's shoes would sink right in, so the fair has been moved to next Saturday.",
+              "vi": "Bãi cỏ lầy đến mức giày sẽ lún hẳn xuống, nên hội chợ đã được dời sang thứ Bảy tuần sau."
             },
             {
               "s": "A",
@@ -971,8 +971,8 @@ window.BS_UNITS["p4-05"] = {
             },
             {
               "s": "A",
-              "en": "Since the new novel came out last month, readers have been buying it faster than stores can order it.",
-              "vi": "Từ khi tiểu thuyết mới ra mắt tháng trước, độc giả mua nhanh hơn tốc độ các cửa hàng kịp đặt thêm."
+              "en": "I should admit that I've read only the first few chapters of that new novel.",
+              "vi": "Phải thú thật là tôi mới đọc vài chương đầu của cuốn tiểu thuyết mới đó."
             },
             {
               "s": "A",
@@ -981,8 +981,8 @@ window.BS_UNITS["p4-05"] = {
             },
             {
               "s": "A",
-              "en": "Luckily, the second one did, and Meera will join me in the studio right after this song.",
-              "vi": "May là cửa hàng thứ hai còn, và Meera sẽ vào phòng thu cùng tôi ngay sau bài hát này."
+              "en": "I didn't find a copy until last night, and Meera will join me in the studio right after this song.",
+              "vi": "Mãi tối qua tôi mới tìm được một cuốn, và Meera sẽ vào phòng thu cùng tôi ngay sau bài hát này."
             }
           ],
           "v": {
@@ -1021,7 +1021,7 @@ window.BS_UNITS["p4-05"] = {
                   "en": "The publisher of a newly released novel",
                   "vi": "Nhà xuất bản của một tiểu thuyết mới ra",
                   "trap": "over-inference",
-                  "why_vi": "Người nói biết sách bán chạy không có nghĩa là người xuất bản nó."
+                  "why_vi": "Giới thiệu tác giả và sách của cô không có nghĩa là người xuất bản sách."
                 },
                 {
                   "label": "D",
@@ -1043,35 +1043,36 @@ window.BS_UNITS["p4-05"] = {
               "answer": "D",
               "evidence": [
                 5,
-                6
+                6,
+                7
               ],
-              "explain_vi": "Ngay trước đó người nói cho biết độc giả mua sách nhanh hơn tốc độ cửa hàng kịp đặt thêm; câu chuyện đi mua sách của mình là ví dụ cho thấy sách rất được ưa chuộng.",
+              "explain_vi": "Người nói thú thật mới đọc vài chương đầu, kể cửa hàng đầu tiên đã hết sách, rồi cho biết mãi tối qua mới tìm được một cuốn: câu này giải thích vì sao cô chưa đọc hết.",
               "options": [
                 {
                   "label": "A",
-                  "en": "To explain why she has not finished it",
-                  "vi": "Để giải thích vì sao cô chưa đọc xong",
-                  "trap": "not-mentioned",
-                  "why_vi": "Người nói không hề nói mình chưa đọc xong."
+                  "en": "To show how quickly the book is selling",
+                  "vi": "Để cho thấy sách đang bán nhanh thế nào",
+                  "trap": "over-inference",
+                  "why_vi": "Một cửa hàng hết sách chưa đủ để nói về sức bán; mạch lời đang nói vì sao cô mới đọc được ít."
                 },
                 {
                   "label": "B",
-                  "en": "To suggest that listeners reserve a copy",
-                  "vi": "Để gợi ý người nghe đặt giữ một cuốn",
-                  "trap": "over-inference",
+                  "en": "To suggest that listeners order it early",
+                  "vi": "Để gợi ý người nghe đặt mua sớm",
+                  "trap": "not-mentioned",
                   "why_vi": "Người nói không khuyên người nghe làm gì."
                 },
                 {
                   "label": "C",
-                  "en": "To describe her trip around the shops",
-                  "vi": "Để kể về chuyến đi vòng các cửa hàng",
+                  "en": "To describe her visit to a local shop",
+                  "vi": "Để kể về lần ghé một cửa hàng địa phương",
                   "trap": "literal",
                   "why_vi": "Hiểu theo bề mặt thì đây là chuyện đi cửa hàng, nhưng mục đích không phải kể chuyến đi."
                 },
                 {
                   "label": "D",
-                  "en": "To stress how popular the book is",
-                  "vi": "Để nhấn mạnh cuốn sách được ưa chuộng đến mức nào"
+                  "en": "To explain why she has not read it all",
+                  "vi": "Để giải thích vì sao cô chưa đọc hết"
                 }
               ]
             },
@@ -1090,10 +1091,10 @@ window.BS_UNITS["p4-05"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "She grew up in her family's bookshop.",
-                  "vi": "Cô lớn lên trong hiệu sách của gia đình.",
+                  "en": "She grew up in rooms above a bookshop.",
+                  "vi": "Cô lớn lên trong căn phòng phía trên một hiệu sách.",
                   "trap": "heard-word",
-                  "why_vi": "Hiệu sách gia đình là bối cảnh tiểu thuyết, không phải tuổi thơ của cô."
+                  "why_vi": "Hiệu sách là bối cảnh tiểu thuyết, không phải tuổi thơ của cô."
                 },
                 {
                   "label": "B",
@@ -1102,17 +1103,17 @@ window.BS_UNITS["p4-05"] = {
                 },
                 {
                   "label": "C",
-                  "en": "She wrote her first book at university.",
-                  "vi": "Cô viết cuốn sách đầu tay khi học đại học.",
+                  "en": "She wrote a book while studying engineering.",
+                  "vi": "Cô viết một cuốn sách khi đang học kỹ thuật.",
                   "trap": "wrong-detail",
-                  "why_vi": "Cô chỉ viết cuốn đầu tay nhiều năm sau khi học đại học."
+                  "why_vi": "Mãi nhiều năm sau khi học đại học cô mới viết cuốn đầu tay."
                 },
                 {
                   "label": "D",
-                  "en": "She has won a national writing award.",
-                  "vi": "Cô đã đoạt một giải văn chương toàn quốc.",
+                  "en": "She once taught science at a night school.",
+                  "vi": "Cô từng dạy khoa học ở một trường buổi tối.",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có đoạn nào nhắc đến giải thưởng."
+                  "why_vi": "Không có đoạn nào nói cô từng đi dạy."
                 }
               ]
             }
@@ -1142,13 +1143,13 @@ window.BS_UNITS["p4-05"] = {
             },
             {
               "s": "A",
-              "en": "At first, Torbay Authority meant to cover most of the cost, but cuts to its budget made that impossible.",
-              "vi": "Ban đầu Torbay Authority định chi trả phần lớn chi phí, nhưng ngân sách bị cắt giảm khiến điều đó không thể thực hiện."
+              "en": "At first, Wyvern Transit meant to cover most of the cost, but cuts to its budget made that impossible.",
+              "vi": "Ban đầu Wyvern Transit định chi trả phần lớn chi phí, nhưng ngân sách bị cắt giảm khiến điều đó không thể thực hiện."
             },
             {
               "s": "A",
               "en": "Crestline Bank then came forward and paid for well over half of the project.",
-              "vi": "Sau đó Crestline Bank đứng ra và chi trả hơn hẳn một nửa dự án."
+              "vi": "Sau đó Crestline Bank đứng ra và chi trả hơn một nửa kinh phí dự án."
             },
             {
               "s": "A",
@@ -1196,10 +1197,10 @@ window.BS_UNITS["p4-05"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "A delay in repair work at a library",
-                  "vi": "Việc sửa chữa một thư viện bị chậm",
+                  "en": "A plan to enlarge a town library",
+                  "vi": "Kế hoạch mở rộng một thư viện thị trấn",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có đoạn nào nói công việc bị chậm."
+                  "why_vi": "Không có đoạn nào nói về việc mở rộng thư viện."
                 },
                 {
                   "label": "B",
@@ -1208,17 +1209,17 @@ window.BS_UNITS["p4-05"] = {
                 },
                 {
                   "label": "C",
-                  "en": "A cut in the money given to a library",
-                  "vi": "Việc cắt giảm tiền cấp cho một thư viện",
+                  "en": "A change to a library's weekly hours",
+                  "vi": "Việc thay đổi giờ mở cửa hằng tuần của một thư viện",
                   "trap": "heard-word",
-                  "why_vi": "Cắt giảm ngân sách chỉ là lý do đổi nguồn tiền, không phải nội dung chính."
+                  "why_vi": "Lịch hằng tuần dài hơn chỉ là một chi tiết phụ ở gần cuối, không phải nội dung chính."
                 },
                 {
                   "label": "D",
-                  "en": "A call for volunteers to help a library",
-                  "vi": "Lời kêu gọi tình nguyện viên giúp một thư viện",
+                  "en": "A new program for library volunteers",
+                  "vi": "Một chương trình mới cho tình nguyện viên thư viện",
                   "trap": "over-inference",
-                  "why_vi": "Tình nguyện viên đã giúp xong việc; không có lời kêu gọi mới."
+                  "why_vi": "Tình nguyện viên chỉ giúp xếp sách; không có chương trình nào cho họ."
                 }
               ]
             },
@@ -1226,8 +1227,8 @@ window.BS_UNITS["p4-05"] = {
               "id": "c2-s5-q2",
               "kind": "detail",
               "q": {
-                "en": "Which organization provided most of the money for the building work?",
-                "vi": "Tổ chức nào cung cấp phần lớn tiền cho công việc xây dựng?"
+                "en": "Which organization has given the most money to the library?",
+                "vi": "Tổ chức nào đã đóng góp nhiều tiền nhất cho thư viện?"
               },
               "answer": "A",
               "evidence": [
@@ -1242,8 +1243,8 @@ window.BS_UNITS["p4-05"] = {
                 },
                 {
                   "label": "B",
-                  "en": "Torbay Authority",
-                  "vi": "Torbay Authority",
+                  "en": "Wyvern Transit",
+                  "vi": "Wyvern Transit",
                   "trap": "changed-plan",
                   "why_vi": "Ban đầu đơn vị này định chi phần lớn, nhưng ngân sách bị cắt nên không thực hiện được."
                 },
@@ -1346,7 +1347,7 @@ window.BS_UNITS["p4-05"] = {
             },
             {
               "s": "A",
-              "en": "It grew more than twice as fast as family cars did, although its sales are still smaller than theirs.",
+              "en": "It grew more than twice as fast as family cars did, although its sales are still lower than theirs.",
               "vi": "Bộ phận này tăng nhanh hơn gấp đôi so với ô tô gia đình, dù doanh số vẫn thấp hơn ô tô gia đình."
             },
             {
@@ -1507,10 +1508,10 @@ window.BS_UNITS["p4-05"] = {
                 },
                 {
                   "label": "B",
-                  "en": "It has recently replaced some of its leaders.",
-                  "vi": "Gần đây công ty đã thay một số lãnh đạo.",
+                  "en": "Its newest vehicles have pleased many buyers.",
+                  "vi": "Các mẫu xe mới nhất làm nhiều người mua hài lòng.",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có đoạn nào nói về lãnh đạo."
+                  "why_vi": "Không có đoạn nào nói về mẫu xe mới hay ý kiến người mua."
                 },
                 {
                   "label": "C",
@@ -1519,8 +1520,8 @@ window.BS_UNITS["p4-05"] = {
                 },
                 {
                   "label": "D",
-                  "en": "It started selling spare parts only this year.",
-                  "vi": "Năm nay công ty mới bắt đầu bán phụ tùng.",
+                  "en": "Its spare parts have only lately sold well.",
+                  "vi": "Phụ tùng của công ty chỉ mới bán tốt gần đây.",
                   "trap": "wrong-detail",
                   "why_vi": "Mảng phụ tùng đã dẫn đầu mọi quý suốt mười năm qua."
                 }
@@ -1557,29 +1558,26 @@ window.BS_UNITS["p4-05"] = {
         },
         {
           "id": "fill1-3",
-          "before": "Don't go away; stay",
-          "after": "to this station for the election results.",
+          "before": "Coming",
+          "after": "next, a review of this week's new films.",
           "answers": [
-            "tuned",
-            "connected"
+            "up"
           ]
         },
         {
           "id": "fill1-4",
-          "before": "Because the singer is ill, the concert has been put off",
-          "after": "the following month.",
+          "before": "According",
+          "after": "the latest forecast, tonight will stay dry.",
           "answers": [
-            "until",
-            "till",
             "to"
           ]
         },
         {
           "id": "fill1-5",
-          "before": "Commuters should expect delays",
-          "after": "up to half an hour near the stadium.",
+          "before": "Thank you for tuning",
+          "after": ", and good night.",
           "answers": [
-            "of"
+            "in"
           ]
         }
       ]
