@@ -236,7 +236,7 @@ window.BS_UNITS["p4-07"] = {
       {"s":"A","en":"So we'll start at eleven fifteen instead. The day and the room stay the same.","vi":"Vì vậy chúng ta sẽ bắt đầu lúc mười một giờ mười lăm. Ngày và phòng vẫn giữ nguyên."},
       {"s":"A","en":"Please get to the front desk by ten forty-five, so there's plenty of time to sign in.","vi":"Ông vui lòng đến quầy lễ tân trước mười giờ bốn mươi lăm để có đủ thời gian đăng ký vào."},
       {"s":"A","en":"If you're driving, keep this in mind. The visitor spaces are often all taken by midmorning.","vi":"Nếu ông lái xe, xin lưu ý điều này. Chỗ đỗ xe cho khách thường đã kín vào khoảng giữa buổi sáng."},
-      {"s":"A","en":"Instead of setting off earlier, you could take the train. The station is only a short walk from our door.","vi":"Thay vì đi sớm hơn nữa, ông có thể đi tàu. Ga chỉ cách cửa chúng tôi một quãng đi bộ ngắn."},
+      {"s":"A","en":"So it may be easier to come by train. The station is only a short walk from our door.","vi":"Vì vậy đi tàu có lẽ sẽ dễ hơn. Ga chỉ cách cửa chúng tôi một quãng đi bộ ngắn."},
       {"s":"A","en":"Please bring copies of your certificates. We already have your application papers.","vi":"Ông vui lòng mang theo bản sao các chứng chỉ. Hồ sơ ứng tuyển của ông chúng tôi đã có rồi."},
       {"s":"A","en":"Call me back if the new time doesn't suit you. Thanks.","vi":"Nếu giờ mới không phù hợp, xin gọi lại cho tôi. Cảm ơn ông."}
      ],
@@ -263,12 +263,12 @@ window.BS_UNITS["p4-07"] = {
        "q": {"en":"Why does the speaker say, \"The visitor spaces are often all taken by midmorning\"?","vi":"Tại sao người nói nói: \"Chỗ đỗ xe cho khách thường đã kín vào khoảng giữa buổi sáng\"?"},
        "answer": "C",
        "evidence": [2,4,5],
-       "explain_vi": "Giờ phỏng vấn mới là cuối buổi sáng; người nói nhắc người lái xe rằng khó còn chỗ đỗ, rồi khuyên rằng thay vì đi sớm hơn, có thể đi tàu.",
+       "explain_vi": "Giờ phỏng vấn mới là cuối buổi sáng; người nói nhắc người lái xe rằng khó còn chỗ đỗ, rồi gợi ý đi tàu sẽ dễ hơn.",
        "options": [
         {"label":"A","en":"To explain why a certain start time was chosen","vi":"Để giải thích vì sao một giờ bắt đầu nhất định được chọn","trap":"wrong-detail","why_vi":"Lý do liên quan đến giờ phỏng vấn là cuộc họp qua điện thoại của một người phỏng vấn, không phải chỗ đỗ xe."},
         {"label":"B","en":"To explain why a parking space is being saved","vi":"Để giải thích vì sao có một chỗ đỗ xe được giữ sẵn","trap":"not-mentioned","why_vi":"Người nói không giữ chỗ đỗ xe nào mà gợi ý đi tàu."},
         {"label":"C","en":"To suggest travelling there by other means","vi":"Để gợi ý đến đó bằng phương tiện khác"},
-        {"label":"D","en":"To urge the listener to leave home earlier","vi":"Để giục người nghe ra khỏi nhà sớm hơn","trap":"over-inference","why_vi":"Chỗ đỗ kín sớm dễ khiến ta nghĩ đến việc đi sớm, nhưng người nói bảo rằng thay vì đi sớm hơn, có thể đi tàu."}
+        {"label":"D","en":"To say that visitors may not park there","vi":"Để nói rằng khách không được đỗ xe ở đó","trap":"over-inference","why_vi":"Chỗ đỗ thường kín không có nghĩa là khách bị cấm đỗ."}
        ]
       },
       {
@@ -398,7 +398,7 @@ window.BS_UNITS["p4-07"] = {
        "evidence": [5,6],
        "explain_vi": "Mọi người thường mua đồ uống ở quán sau buổi chạy; quán không mở, câu lạc bộ cũng không cung cấp đồ uống, nên người nói bảo chuẩn bị trước, tức là gợi ý tự mang đồ uống.",
        "options": [
-        {"label":"A","en":"To say that the club will hand out free drinks","vi":"Để báo rằng câu lạc bộ sẽ phát đồ uống miễn phí","trap":"not-mentioned","why_vi":"Không có việc phát đồ uống; người nói cho biết câu lạc bộ sẽ không cung cấp đồ uống."},
+        {"label":"A","en":"To say that the club will hand out free drinks","vi":"Để báo rằng câu lạc bộ sẽ phát đồ uống miễn phí","trap":"wrong-detail","why_vi":"Không có việc phát đồ uống; người nói cho biết câu lạc bộ sẽ không cung cấp đồ uống."},
         {"label":"B","en":"To suggest that people bring their own drinks","vi":"Để gợi ý mọi người tự mang đồ uống"},
         {"label":"C","en":"To explain why members will meet somewhere else","vi":"Để giải thích vì sao các thành viên sẽ gặp nhau ở nơi khác","trap":"over-inference","why_vi":"Quán không mở, nhưng bài nói không hề nói sẽ chuyển sang gặp ở nơi khác."},
         {"label":"D","en":"To announce that a sponsor will serve breakfast","vi":"Để thông báo rằng một nhà tài trợ sẽ mời bữa sáng","trap":"heard-word","why_vi":"Nhà tài trợ và bữa sáng được nhắc đến, nhưng đó là chuyện tháng trước và lần này không lặp lại."}
@@ -544,8 +544,8 @@ window.BS_UNITS["p4-07"] = {
     },
     {
      "id": "fill1-5",
-     "before": "This week, please use the side entrance",
-     "after": "of the main doors.",
+     "before": "No paper menus will be printed tonight, so the waiter will describe each dish",
+     "after": "of handing you one.",
      "answers": ["instead"]
     }
    ]

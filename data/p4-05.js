@@ -529,8 +529,8 @@ window.BS_UNITS["p4-05"] = {
             },
             {
               "s": "A",
-              "en": "Wyvern Transit has published this week's road closures.",
-              "vi": "Wyvern Transit đã công bố danh sách đóng đường trong tuần này."
+              "en": "Wyvern Transit, which runs the local buses, has published this week's road closures.",
+              "vi": "Wyvern Transit, đơn vị vận hành xe buýt địa phương, đã công bố danh sách đóng đường trong tuần này."
             },
             {
               "s": "A",
@@ -1143,8 +1143,8 @@ window.BS_UNITS["p4-05"] = {
             },
             {
               "s": "A",
-              "en": "At first, Wyvern Transit meant to cover most of the cost, but cuts to its budget made that impossible.",
-              "vi": "Ban đầu Wyvern Transit định chi trả phần lớn chi phí, nhưng ngân sách bị cắt giảm khiến điều đó không thể thực hiện."
+              "en": "At first, Pinnacor Industries meant to cover most of the cost, but a weak sales year made that impossible.",
+              "vi": "Ban đầu Pinnacor Industries định chi trả phần lớn chi phí, nhưng một năm kinh doanh kém khiến điều đó không thể thực hiện."
             },
             {
               "s": "A",
@@ -1163,8 +1163,8 @@ window.BS_UNITS["p4-05"] = {
             },
             {
               "s": "A",
-              "en": "The library's weekly timetable is longer than before, and you'll find it posted beside the front door.",
-              "vi": "Lịch mở cửa hằng tuần của thư viện dài hơn trước, và được dán cạnh cửa chính."
+              "en": "The library is now open longer each week than before, and you'll find the new hours posted beside the front door.",
+              "vi": "Hiện nay mỗi tuần thư viện mở cửa lâu hơn trước, và giờ mở cửa mới được dán cạnh cửa chính."
             },
             {
               "s": "A",
@@ -1209,10 +1209,10 @@ window.BS_UNITS["p4-05"] = {
                 },
                 {
                   "label": "C",
-                  "en": "A change to a library's weekly hours",
-                  "vi": "Việc thay đổi giờ mở cửa hằng tuần của một thư viện",
+                  "en": "A plan to cut a library's weekly hours",
+                  "vi": "Kế hoạch cắt giảm giờ mở cửa hằng tuần của một thư viện",
                   "trap": "heard-word",
-                  "why_vi": "Lịch hằng tuần dài hơn chỉ là một chi tiết phụ ở gần cuối, không phải nội dung chính."
+                  "why_vi": "Lịch hằng tuần được nhắc là dài hơn trước, không bị cắt giảm."
                 },
                 {
                   "label": "D",
@@ -1243,10 +1243,10 @@ window.BS_UNITS["p4-05"] = {
                 },
                 {
                   "label": "B",
-                  "en": "Wyvern Transit",
-                  "vi": "Wyvern Transit",
+                  "en": "Pinnacor Industries",
+                  "vi": "Pinnacor Industries",
                   "trap": "changed-plan",
-                  "why_vi": "Ban đầu đơn vị này định chi phần lớn, nhưng ngân sách bị cắt nên không thực hiện được."
+                  "why_vi": "Ban đầu công ty này định chi phần lớn, nhưng một năm kinh doanh kém khiến việc đó không thực hiện được."
                 },
                 {
                   "label": "C",
@@ -1290,7 +1290,7 @@ window.BS_UNITS["p4-05"] = {
                   "en": "A reading of the library's weekly hours",
                   "vi": "Phần đọc giờ mở cửa hằng tuần của thư viện",
                   "trap": "heard-word",
-                  "why_vi": "Lịch hằng tuần được dán cạnh cửa; người nói không đọc nó."
+                  "why_vi": "Giờ mở cửa mới được dán cạnh cửa; người nói không đọc chúng."
                 },
                 {
                   "label": "C",

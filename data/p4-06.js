@@ -604,8 +604,8 @@ window.BS_UNITS["p4-06"] = {
               "kind": "intent",
               "quote": "There are benches in every room on this route.",
               "q": {
-                "en": "What does the speaker mean when she says, \"There are benches in every room on this route\"?",
-                "vi": "Người nói có ý gì khi nói: \"Phòng nào trên lộ trình này cũng có ghế băng\"?"
+                "en": "Why does the speaker say, \"There are benches in every room on this route\"?",
+                "vi": "Vì sao người nói nói: \"Phòng nào trên lộ trình này cũng có ghế băng\"?"
               },
               "answer": "A",
               "evidence": [
@@ -981,7 +981,7 @@ window.BS_UNITS["p4-06"] = {
                 0,
                 3
               ],
-              "explain_vi": "Cô trình bày những gì công ty mong đợi ở nhóm từ tháng Một đến tháng Ba, tức mục tiêu cho ba tháng tới.",
+              "explain_vi": "Cô trình bày những gì công ty mong đợi ở nhóm từ tháng Một đến tháng Ba, tức mục tiêu cho quý tới.",
               "options": [
                 {
                   "label": "A",
@@ -1006,8 +1006,8 @@ window.BS_UNITS["p4-06"] = {
                 },
                 {
                   "label": "D",
-                  "en": "Goals for the next three months",
-                  "vi": "Mục tiêu cho ba tháng tới"
+                  "en": "Goals for the next quarter",
+                  "vi": "Mục tiêu cho quý tới"
                 }
               ]
             },
