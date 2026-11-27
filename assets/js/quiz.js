@@ -25,9 +25,18 @@
   function listenBtns(getText, what) { return speedBtns(getText, what, null); }
 
   /* ---------- Luyen nghe ---------- */
-  function fillSentence(it) {
+  /* goi y trong ngoac chi thuoc cau hoi, bo khoi cau hoan chinh. Ba dang, ngoac khac giu nguyen:
+     chu cai dau "(h...)"; dong tu goc "(hire)" ngay sau cho trong; ghi chu "(...)" dung sau dau ket cau o cuoi after */
+  var HINT = /\s*\(\p{L}(?:\.{2,}|…)\)/gu;
+  var VERB_HINT = /^\s*\([a-z]+\)/;
+  var TAIL_NOTE = /([.?!])\s*\([^()]*\)\s*$/;
+  function fillSentence(it, ans) {
     if (!it.answers || !it.answers.length) return null;
-    return [it.before, it.answers[0], it.after].filter(Boolean).join(" ");
+    var a = String(ans || it.answers[0]);
+    var before = String(it.before || "").replace(HINT, "").trim();
+    var after = String(it.after || "").replace(HINT, "").replace(VERB_HINT, "").replace(TAIL_NOTE, "$1").trim();
+    if (!before || /[.?!]$/.test(before)) a = a.charAt(0).toUpperCase() + a.slice(1);
+    return (before ? before + " " : "") + a + (!after ? "" : (/^[,.?!;:]/.test(after) ? "" : " ") + after);
   }
 
   function collect(u) {
@@ -280,7 +289,7 @@
         /* chấm đúng bằng một đáp án khác answers[0] (vd. "What time" thay vì "When"): hiện câu với đáp án người học đã gõ */
         var text = sentence, typed = BS.norm(inp.value), a0 = BS.norm(it.answers[0]);
         if (st.res[it.id] === 1 && typed !== a0) {
-          for (var q = 1; q < it.answers.length; q++) if (BS.norm(it.answers[q]) === typed) { text = [it.before, it.answers[q], it.after].filter(Boolean).join(" "); break; }
+          for (var q = 1; q < it.answers.length; q++) if (BS.norm(it.answers[q]) === typed) { text = fillSentence(it, it.answers[q]); break; }
         }
         full.textContent = "Lời thoại: " + text;
       }
