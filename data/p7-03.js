@@ -252,7 +252,7 @@ window.BS_UNITS["p7-03"] = {
     {
       "id": "p07",
       "en": "Critics point out that expenses may climb.",
-      "vi": "Những người phản đối chỉ ra rằng chi phí có thể tăng.",
+      "vi": "Những người chỉ trích chỉ ra rằng chi phí có thể tăng.",
       "group_vi": "Ý kiến"
     },
     {
@@ -347,8 +347,8 @@ window.BS_UNITS["p7-03"] = {
                   "vi": "\"Với chúng tôi, một bản lý lịch dài không quan trọng bằng hai hay ba đoạn video ngắn do chính bạn làm, dù chỉ làm cho vui,\" bà Aurelio, giám đốc nhân sự của công ty, nói. Bà cho biết thêm rằng công ty có thể dạy người mới dùng phần mềm dựng phim của mình trong ba tuần đầu."
                 },
                 {
-                  "en": "Anyone curious about the openings can attend a free information session at the Hazelmere Center on Saturday, March 13, from 10 A.M. to 1 P.M. Employees will show samples of recent work and answer questions. No applications will be collected that day, but they will be accepted until March 31.",
-                  "vi": "Ai quan tâm đến các vị trí này có thể dự buổi giới thiệu thông tin miễn phí tại Hazelmere Center vào thứ Bảy, ngày 13 tháng 3, từ 10 giờ sáng đến 1 giờ chiều. Nhân viên sẽ trình chiếu một số sản phẩm gần đây và trả lời câu hỏi. Hôm đó công ty không nhận hồ sơ, nhưng sẽ nhận hồ sơ đến hết ngày 31 tháng 3."
+                  "en": "Anyone curious about the openings can attend a free information session at the Hazelmere Center on Saturday, March 14, from 10 A.M. to 1 P.M. Employees will show samples of recent work and answer questions. No applications will be collected that day, but they will be accepted until March 31.",
+                  "vi": "Ai quan tâm đến các vị trí này có thể dự buổi giới thiệu thông tin miễn phí tại Hazelmere Center vào thứ Bảy, ngày 14 tháng 3, từ 10 giờ sáng đến 1 giờ chiều. Nhân viên sẽ trình chiếu một số sản phẩm gần đây và trả lời câu hỏi. Hôm đó công ty không nhận hồ sơ, nhưng sẽ nhận hồ sơ đến hết ngày 31 tháng 3."
                 }
               ]
             }
@@ -416,10 +416,10 @@ window.BS_UNITS["p7-03"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "It expects to double in size again next year",
-                  "vi": "Công ty dự kiến sẽ lại tăng gấp đôi quy mô vào năm sau",
+                  "en": "It plans to hire more staff once the first lessons are done",
+                  "vi": "Công ty dự định tuyển thêm người sau khi xong đợt bài học đầu tiên",
                   "trap": "over-inference",
-                  "why_vi": "Việc tuyển thêm đợt này không cho biết gì về kế hoạch của năm sau."
+                  "why_vi": "Bài không nói gì về kế hoạch tuyển người sau đợt bài học đầu tiên."
                 },
                 {
                   "label": "B",
@@ -628,12 +628,12 @@ window.BS_UNITS["p7-03"] = {
               "title": "Transport Report",
               "paras": [
                 {
-                  "en": "Starting Monday, June 8, people who ride with Ellingham Transit will need to check their bus numbers carefully. The company is replacing a route map that has changed very little in twenty years. In that time, hundreds of homes have gone up around Clifftop Avenue, while many jobs have left the old warehouse district. [1]",
-                  "vi": "Từ thứ Hai, ngày 8 tháng 6, khách đi xe của Ellingham Transit sẽ cần kiểm tra kỹ số xe buýt. Công ty đang thay bản đồ tuyến gần như không đổi suốt hai mươi năm. Trong thời gian đó, hàng trăm ngôi nhà đã mọc lên quanh Clifftop Avenue, còn nhiều việc làm đã rời khỏi khu nhà kho cũ. [1]"
+                  "en": "Starting Monday, June 15, people who ride with Ellingham Transit will need to check their bus numbers carefully. The company is replacing a route map that has changed very little in twenty years. In that time, hundreds of homes have gone up around Clifftop Avenue, while many jobs have left the old warehouse district. [1]",
+                  "vi": "Từ thứ Hai, ngày 15 tháng 6, khách đi xe của Ellingham Transit sẽ cần kiểm tra kỹ số xe buýt. Công ty đang thay bản đồ tuyến gần như không đổi suốt hai mươi năm. Trong thời gian đó, hàng trăm ngôi nhà đã mọc lên quanh Clifftop Avenue, còn nhiều việc làm đã rời khỏi khu nhà kho cũ. [1]"
                 },
                 {
-                  "en": "Under the new arrangement, buses on two lines will no longer loop through that district, where they often run nearly empty after nine o'clock. [2] On the three most crowded lines, for example, a bus will arrive every ten minutes on weekday mornings rather than every fifteen. [3] A new service, number 31, will also take Clifftop Avenue residents straight to the Hazelmere Center without a transfer.",
-                  "vi": "Theo cách bố trí mới, xe buýt của hai tuyến sẽ không còn chạy vòng qua khu đó, nơi xe thường gần như trống sau chín giờ. [2] Chẳng hạn, trên ba tuyến đông khách nhất, sáng ngày thường cứ mười phút sẽ có một chuyến thay vì mười lăm phút. [3] Một tuyến mới, số 31, cũng sẽ đưa cư dân Clifftop Avenue đi thẳng đến Hazelmere Center mà không phải chuyển xe."
+                  "en": "Under the new arrangement, buses on two lines will no longer loop through that district, where they often run nearly empty after nine in the evening. [2] On the three most crowded lines, for example, a bus will arrive every ten minutes on weekday mornings rather than every fifteen. [3] A new service, number 31, will also take Clifftop Avenue residents straight to the Hazelmere Center without a transfer.",
+                  "vi": "Theo cách bố trí mới, xe buýt của hai tuyến sẽ không còn chạy vòng qua khu đó, nơi xe thường gần như trống sau chín giờ tối. [2] Chẳng hạn, trên ba tuyến đông khách nhất, sáng ngày thường cứ mười phút sẽ có một chuyến thay vì mười lăm phút. [3] Một tuyến mới, số 31, cũng sẽ đưa cư dân Clifftop Avenue đi thẳng đến Hazelmere Center mà không phải chuyển xe."
                 },
                 {
                   "en": "Not everyone will benefit equally. About two dozen lightly used stops will disappear, and some riders will have to walk a few extra minutes. [4] Ticket prices will stay as they are. \"We could not keep every stop and also shorten the wait,\" said Mr. Conrad, the company's planning director. \"We chose the option that helps the largest number of people.\"",
@@ -661,7 +661,7 @@ window.BS_UNITS["p7-03"] = {
                   0
                 ]
               ],
-              "explain_vi": "Toàn bài nói về việc công ty thay bản đồ tuyến từ ngày 8 tháng 6: lý do, các thay đổi, tác động và cách hỗ trợ hành khách. Đó là việc tổ chức lại các tuyến xe buýt.",
+              "explain_vi": "Toàn bài nói về việc công ty thay bản đồ tuyến từ ngày 15 tháng 6: lý do, các thay đổi, tác động và cách hỗ trợ hành khách. Đó là việc tổ chức lại các tuyến xe buýt.",
               "options": [
                 {
                   "label": "A",
@@ -779,7 +779,7 @@ window.BS_UNITS["p7-03"] = {
                   "en": "Ask workers at Bexley Square for directions",
                   "vi": "Hỏi nhân viên ở Bexley Square cách đi",
                   "trap": "wrong-detail",
-                  "why_vi": "Nhân viên chỉ đứng ở đó trong tuần đầu của dịch vụ mới, bắt đầu từ ngày 8 tháng 6."
+                  "why_vi": "Nhân viên chỉ đứng ở đó trong tuần đầu của dịch vụ mới, bắt đầu từ ngày 15 tháng 6."
                 },
                 {
                   "label": "C",
@@ -863,7 +863,7 @@ window.BS_UNITS["p7-03"] = {
               "paras": [
                 {
                   "en": "I look after the supply room at a small animal clinic. Six weeks ago, after a coworker opened the wrong carton twice in one morning because my handwritten cards had faded, I bought a handheld label printer.",
-                  "vi": "Tôi phụ trách phòng vật tư ở một phòng khám thú nhỏ. Sáu tuần trước, sau khi một đồng nghiệp mở nhầm thùng hai lần trong một buổi sáng vì các tấm thẻ viết tay của tôi bị phai, tôi đã mua một máy in nhãn cầm tay."
+                  "vi": "Tôi phụ trách phòng vật tư ở một phòng khám thú y nhỏ. Sáu tuần trước, sau khi một đồng nghiệp mở nhầm thùng hai lần trong một buổi sáng vì các tấm thẻ viết tay của tôi bị phai, tôi đã mua một máy in nhãn cầm tay."
                 },
                 {
                   "en": "There is much to like. It is not much bigger than a sandwich, so I carry it from shelf to shelf, and it takes its instructions from my phone with no cable at all. The labels have stayed firmly in place, even on plastic tubs inside our cold storage cabinet. I charged the battery on the day the box arrived and did not have to plug it in again until the fourth week.",
@@ -1064,12 +1064,12 @@ window.BS_UNITS["p7-03"] = {
                   "vi": "Tôi đã đọc bài tường thuật của quý báo về Inkerman Street với sự quan tâm. Nhà hàng của tôi nằm ở quãng giữa Dunnock Road và Joliffe Bridge, và tôi hoan nghênh mọi thử nghiệm giúp khách đi bộ đến cửa quán mà không phải hít khói xe. Tuy vậy, bạn đọc đừng cho rằng cả bãi xe trên Dunnock Road sẽ để trống chờ họ. Một phiên chợ nông sản chiếm khoảng nửa bãi vào thứ Bảy cho đến một giờ chiều."
                 },
                 {
-                  "en": "I have a practical concern as well. On Saturdays, our baker's van reaches us at eight in the morning, but the van that brings our fish cannot get here until half past ten. I ask the council to meet with business owners about delivery arrangements before any rule takes effect.",
-                  "vi": "Tôi cũng có một mối lo thực tế. Vào thứ Bảy, xe của tiệm bánh đến chỗ chúng tôi lúc tám giờ sáng, nhưng xe chở cá thì sớm nhất cũng phải mười giờ rưỡi mới tới được. Tôi đề nghị hội đồng gặp các chủ cơ sở kinh doanh để bàn việc giao hàng trước khi bất kỳ quy định nào có hiệu lực."
+                  "en": "I have a practical concern as well. On Saturdays, our baker's van usually reaches us at half past ten in the morning, and the van that brings our fish arrives about an hour later. I ask the council to meet with business owners about delivery arrangements before any rule takes effect.",
+                  "vi": "Tôi cũng có một mối lo thực tế. Vào thứ Bảy, xe của tiệm bánh thường đến chỗ chúng tôi lúc mười giờ rưỡi sáng, còn xe chở cá đến sau đó khoảng một tiếng. Tôi đề nghị hội đồng gặp các chủ cơ sở kinh doanh để bàn việc giao hàng trước khi bất kỳ quy định nào có hiệu lực."
                 },
                 {
-                  "en": "One last point: I expect to hire two more servers, though not until we are permitted to seat guests where cars now stand. I hope the town will give us plenty of notice.",
-                  "vi": "Điểm cuối cùng: tôi dự định thuê thêm hai nhân viên phục vụ, nhưng chỉ khi chúng tôi được phép xếp khách ngồi ở nơi hiện đang đậu xe. Tôi mong thị trấn báo trước cho chúng tôi thật sớm."
+                  "en": "One last point: I expect to hire two more servers, though not until my guests can count on a car-free street on both days of the weekend. I hope the town will give us plenty of notice.",
+                  "vi": "Điểm cuối cùng: tôi dự định thuê thêm hai nhân viên phục vụ, nhưng chỉ khi khách của tôi chắc chắn có được con phố không xe cộ trong cả hai ngày cuối tuần. Tôi mong thị trấn báo trước cho chúng tôi thật sớm."
                 }
               ]
             }
@@ -1141,8 +1141,8 @@ window.BS_UNITS["p7-03"] = {
               "options": [
                 {
                   "label": "A",
-                  "en": "A section of it is taken each Saturday morning",
-                  "vi": "Một phần bãi bị chiếm vào sáng thứ Bảy hằng tuần"
+                  "en": "A section of it is in use until early afternoon on Saturdays",
+                  "vi": "Một phần bãi bị chiếm đến đầu giờ chiều thứ Bảy"
                 },
                 {
                   "label": "B",
@@ -1186,33 +1186,33 @@ window.BS_UNITS["p7-03"] = {
                   2
                 ]
               ],
-              "explain_vi": "Lá thư cho biết ông chỉ thuê thêm khi được xếp khách ngồi ở chỗ đang đậu xe. Bài báo cho biết lần đầu các nhà hàng được kê bàn ở chỗ đậu xe là trong giai đoạn bắt đầu từ tháng 9. Phải ghép cả hai: đầu tháng 9.",
+              "explain_vi": "Lá thư cho biết ông chỉ thuê thêm khi phố không có xe trong cả hai ngày cuối tuần. Bài báo cho biết tháng 5 và 6 chỉ cấm xe vào thứ Bảy, còn từ tháng 7 thêm Chủ nhật. Phải ghép cả hai: đầu tháng 7 là lúc điều kiện này được đáp ứng lần đầu.",
               "options": [
                 {
                   "label": "A",
-                  "en": "In early May",
+                  "en": "At the start of May",
                   "vi": "Đầu tháng 5",
                   "trap": "wrong-detail",
-                  "why_vi": "Tháng 5 là lúc bắt đầu cấm xe vào thứ Bảy, nhưng chưa được kê bàn ở chỗ đậu xe."
+                  "why_vi": "Từ tháng 5 mới chỉ cấm xe vào thứ Bảy, chưa đủ cả hai ngày cuối tuần."
                 },
                 {
                   "label": "B",
-                  "en": "In early September",
-                  "vi": "Đầu tháng 9"
+                  "en": "At the start of July",
+                  "vi": "Đầu tháng 7"
                 },
                 {
                   "label": "C",
-                  "en": "In early July",
-                  "vi": "Đầu tháng 7",
+                  "en": "At the start of September",
+                  "vi": "Đầu tháng 9",
                   "trap": "wrong-detail",
-                  "why_vi": "Tháng 7 chỉ thêm ngày Chủ nhật vào lệnh cấm."
+                  "why_vi": "Tháng 9 bắt đầu được kê bàn ở chỗ đậu xe, nhưng phố đã không có xe cả hai ngày từ tháng 7; thư không đặt điều kiện về việc kê bàn."
                 },
                 {
                   "label": "D",
-                  "en": "In early November",
+                  "en": "At the start of November",
                   "vi": "Đầu tháng 11",
                   "trap": "wrong-detail",
-                  "why_vi": "Tháng 11 là lúc hội đồng bỏ phiếu, không phải lúc bắt đầu được kê bàn."
+                  "why_vi": "Tháng 11 là lúc hội đồng bỏ phiếu, muộn hơn nhiều so với lần đầu phố không có xe cả hai ngày."
                 }
               ]
             },
@@ -1243,82 +1243,82 @@ window.BS_UNITS["p7-03"] = {
                   1
                 ]
               ],
-              "explain_vi": "Bài báo cho biết tháng 6 lệnh cấm áp dụng vào thứ Bảy, và từ 10 giờ sáng đến 6 giờ chiều xe giao hàng cũng không được vào đoạn đường. Lá thư cho biết nhà hàng nằm trên đoạn đó, xe bánh đến lúc 8 giờ còn xe cá sớm nhất 10 giờ 30. Vậy xe bánh vào được, xe cá thì không.",
+              "explain_vi": "Bài báo cho biết tháng 6 lệnh cấm áp dụng vào thứ Bảy, và từ 10 giờ sáng đến 6 giờ chiều xe giao hàng cũng không được vào đoạn đường. Lá thư cho biết nhà hàng nằm trên đoạn đó, xe bánh thường đến lúc 10 giờ 30 và xe cá đến muộn hơn khoảng một tiếng. Cả hai đều rơi vào giờ cấm.",
               "options": [
                 {
                   "label": "A",
                   "en": "Both vans can still drive up at their usual times",
                   "vi": "Cả hai xe vẫn chạy đến tận nơi vào giờ thường lệ",
                   "trap": "opposite",
-                  "why_vi": "Xe cá đến sau 10 giờ, lúc xe giao hàng đã bị cấm vào."
+                  "why_vi": "Cả hai xe thường đến sau 10 giờ, lúc xe giao hàng đã bị cấm vào."
                 },
                 {
                   "label": "B",
-                  "en": "Both vans will arrive too late to drive up",
-                  "vi": "Cả hai xe đều đến quá muộn để chạy vào",
+                  "en": "Only the baker's van can drive up at its usual time",
+                  "vi": "Chỉ xe bánh chạy đến được vào giờ thường lệ",
                   "trap": "wrong-detail",
-                  "why_vi": "Xe bánh đến lúc 8 giờ, trước khi lệnh cấm bắt đầu."
+                  "why_vi": "Xe bánh thường đến lúc 10 giờ 30, tức là sau khi lệnh cấm bắt đầu lúc 10 giờ."
                 },
                 {
                   "label": "C",
-                  "en": "Both suppliers will stop selling to the restaurant",
-                  "vi": "Cả hai nhà cung cấp sẽ ngừng bán cho nhà hàng",
-                  "trap": "over-inference",
-                  "why_vi": "Không bài nào cho thấy nhà cung cấp sẽ ngừng bán."
+                  "en": "Only the fish van can drive up at its usual time",
+                  "vi": "Chỉ xe cá chạy đến được vào giờ thường lệ",
+                  "trap": "wrong-detail",
+                  "why_vi": "Xe cá đến còn muộn hơn xe bánh, vẫn trong giờ cấm."
                 },
                 {
                   "label": "D",
-                  "en": "The bread van can drive up, but the fish van cannot",
-                  "vi": "Xe bánh chạy đến được, còn xe cá thì không"
+                  "en": "Neither van can drive up at its usual time",
+                  "vi": "Không xe nào chạy đến được vào giờ thường lệ"
                 }
               ]
             },
             {
               "id": "r2-s5-q5",
               "kind": "vocab",
-              "word": "floated",
+              "word": "cover",
               "at": [
                 0,
-                0
+                1
               ],
               "q": {
-                "en": "In the article, the word \"floated\" in the first paragraph is closest in meaning to",
-                "vi": "Trong bài báo, từ \"floated\" ở đoạn đầu gần nghĩa nhất với từ nào?"
+                "en": "In the article, the word \"cover\" in the second paragraph is closest in meaning to",
+                "vi": "Trong bài báo, từ \"cover\" ở đoạn thứ hai gần nghĩa nhất với từ nào?"
               },
               "answer": "B",
               "evidence": [
                 [
                   0,
-                  0
+                  1
                 ]
               ],
-              "explain_vi": "\"float an idea\" nghĩa là nêu một ý tưởng ra để mọi người xem xét, nên \"suggested\" thay vào được.",
+              "explain_vi": "Chủ ngữ là lệnh cấm và tân ngữ là hai ngày cuối tuần, nên \"cover\" nghĩa là áp dụng cho cả hai ngày; \"apply to\" thay vào được.",
               "options": [
                 {
                   "label": "A",
-                  "en": "drifted",
-                  "vi": "trôi dạt",
+                  "en": "hide",
+                  "vi": "che đi",
                   "trap": "other-meaning",
-                  "why_vi": "\"float\" có nghĩa là trôi trên mặt nước hoặc trong không khí, nhưng ở đây một người chủ động nêu ra một ý tưởng."
+                  "why_vi": "\"cover\" có nghĩa là che, đậy, nhưng một lệnh cấm không che giấu các ngày."
                 },
                 {
                   "label": "B",
-                  "en": "suggested",
-                  "vi": "đề xuất"
+                  "en": "apply to",
+                  "vi": "áp dụng cho"
                 },
                 {
                   "label": "C",
-                  "en": "financed",
-                  "vi": "cấp vốn",
+                  "en": "pay for",
+                  "vi": "chi trả cho",
                   "trap": "other-meaning",
-                  "why_vi": "Trong tài chính, \"float\" liên quan đến việc phát hành cổ phần để huy động vốn, không hợp với một ý tưởng."
+                  "why_vi": "\"cover\" có nghĩa là đủ để chi trả một khoản phí, nhưng ở đây tân ngữ là hai ngày chứ không phải chi phí."
                 },
                 {
                   "label": "D",
-                  "en": "rejected",
-                  "vi": "bác bỏ",
-                  "trap": "not-mentioned",
-                  "why_vi": "\"float\" không có nghĩa là bác bỏ, và hội đồng còn đồng ý thử ý tưởng này."
+                  "en": "report on",
+                  "vi": "đưa tin về",
+                  "trap": "other-meaning",
+                  "why_vi": "\"cover\" có nghĩa là đưa tin về một sự kiện, nhưng người đưa tin phải là phóng viên hay tờ báo, không phải lệnh cấm."
                 }
               ]
             }
@@ -1349,8 +1349,8 @@ window.BS_UNITS["p7-03"] = {
         },
         {
           "id": "fill1-3",
-          "before": "The theater plans to take",
-          "after": "two extra stagehands for the summer festival.",
+          "before": "Because orders have doubled, the print shop will take",
+          "after": "three new full-time workers next month.",
           "answers": [
             "on"
           ]
