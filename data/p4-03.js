@@ -263,8 +263,8 @@ window.BS_UNITS["p4-03"] = {
     },
     {
       "id": "p09",
-      "en": "Without further delay, let's get started.",
-      "vi": "Không để chờ lâu hơn, chúng ta bắt đầu thôi.",
+      "en": "Without further ado, let's get started.",
+      "vi": "Không để quý vị chờ lâu thêm, chúng ta bắt đầu nhé.",
       "group_vi": "Chuyển phần, kết thúc"
     },
     {
@@ -514,8 +514,8 @@ window.BS_UNITS["p4-03"] = {
           "lines": [
             {
               "s": "A",
-              "en": "Good evening, and welcome to Winslow Hall. My name is Cedric, and I'm delighted that you could join us.",
-              "vi": "Chào buổi tối, chào mừng quý vị đến Winslow Hall. Tôi là Cedric, rất vui vì quý vị đã đến."
+              "en": "Good evening, and welcome to Marchbank Plaza. My name is Cedric, and I'm delighted that you could join us.",
+              "vi": "Chào buổi tối, chào mừng quý vị đến Marchbank Plaza. Tôi là Cedric, rất vui vì quý vị đã đến."
             },
             {
               "s": "A",
@@ -544,8 +544,8 @@ window.BS_UNITS["p4-03"] = {
             },
             {
               "s": "A",
-              "en": "Before you leave, please use one to share a moment you remember from your time with us.",
-              "vi": "Trước khi ra về, xin quý vị dùng một tấm để chia sẻ một khoảnh khắc quý vị còn nhớ trong thời gian gắn bó với chúng tôi."
+              "en": "Before you leave, please use one to tell us what you think of the foundation's work.",
+              "vi": "Trước khi ra về, xin quý vị dùng một tấm để cho chúng tôi biết quý vị nghĩ gì về công việc của quỹ."
             }
           ],
           "v": {
@@ -597,40 +597,40 @@ window.BS_UNITS["p4-03"] = {
               "id": "c1-s2-q2",
               "kind": "detail",
               "q": {
-                "en": "What does the speaker say about how the Wrenfield Foundation started?",
-                "vi": "Người nói cho biết điều gì về lúc Wrenfield Foundation mới thành lập?"
+                "en": "What does the speaker say about the Wrenfield Foundation's volunteers?",
+                "vi": "Người nói cho biết điều gì về các tình nguyện viên của Wrenfield Foundation?"
               },
               "answer": "A",
               "evidence": [
                 2
               ],
-              "explain_vi": "Hồi đó toàn bộ công việc chỉ do ba tình nguyện viên gánh vác.",
+              "explain_vi": "Hồi đó toàn bộ công việc chỉ do ba tình nguyện viên gánh vác, còn nay có hơn sáu mươi: trước đây nhóm nhỏ hơn nhiều.",
               "options": [
                 {
                   "label": "A",
-                  "en": "It started with only three volunteers.",
-                  "vi": "Ban đầu chỉ có ba tình nguyện viên."
+                  "en": "Their group used to be much smaller.",
+                  "vi": "Nhóm của họ trước đây nhỏ hơn nhiều."
                 },
                 {
                   "label": "B",
-                  "en": "It started with over sixty volunteers.",
-                  "vi": "Ban đầu có hơn sáu mươi tình nguyện viên.",
+                  "en": "Their group has only three people now.",
+                  "vi": "Nhóm của họ hiện chỉ có ba người.",
                   "trap": "wrong-detail",
-                  "why_vi": "Hơn sáu mươi là số tình nguyện viên hiện nay."
+                  "why_vi": "Ba là số người hồi trước; hiện nay có hơn sáu mươi."
                 },
                 {
                   "label": "C",
-                  "en": "It started with a large public grant.",
-                  "vi": "Ban đầu có một khoản tài trợ công lớn.",
+                  "en": "Their group meets only on weekends.",
+                  "vi": "Nhóm của họ chỉ gặp nhau vào cuối tuần.",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có đoạn nào nhắc đến khoản tài trợ công."
+                  "why_vi": "Không có đoạn nào nói về lịch gặp vào cuối tuần."
                 },
                 {
                   "label": "D",
-                  "en": "It started inside Winslow Hall.",
-                  "vi": "Ban đầu hoạt động bên trong Winslow Hall.",
+                  "en": "Their group first met at Marchbank Plaza.",
+                  "vi": "Nhóm của họ gặp nhau lần đầu ở Marchbank Plaza.",
                   "trap": "heard-word",
-                  "why_vi": "Winslow Hall được nhắc đến là nơi tổ chức sự kiện tối nay."
+                  "why_vi": "Marchbank Plaza được nhắc đến là nơi tổ chức sự kiện tối nay."
                 }
               ]
             },
@@ -646,7 +646,7 @@ window.BS_UNITS["p4-03"] = {
                 5,
                 6
               ],
-              "explain_vi": "Ông đề nghị khách dùng một tấm thiệp trên bàn để chia sẻ một khoảnh khắc đáng nhớ.",
+              "explain_vi": "Ông đề nghị khách dùng một tấm thiệp trên bàn để nêu suy nghĩ về công việc của quỹ.",
               "options": [
                 {
                   "label": "A",
@@ -664,8 +664,8 @@ window.BS_UNITS["p4-03"] = {
                 },
                 {
                   "label": "C",
-                  "en": "Write down a memory on a card",
-                  "vi": "Viết một kỷ niệm lên thiệp"
+                  "en": "Write down some comments on a card",
+                  "vi": "Viết vài nhận xét lên thiệp"
                 },
                 {
                   "label": "D",
@@ -717,8 +717,8 @@ window.BS_UNITS["p4-03"] = {
             },
             {
               "s": "A",
-              "en": "Here's where he fits in. Your programme lists four sessions in time order.",
-              "vi": "Còn đây là vị trí phần của ông. Tờ chương trình liệt kê bốn phiên theo thứ tự thời gian."
+              "en": "Here's where he fits in. Your programme lists four sessions in time order, but not the breaks.",
+              "vi": "Còn đây là thời điểm diễn ra phần của ông. Tờ chương trình liệt kê bốn phiên theo thứ tự thời gian, nhưng không ghi giờ nghỉ."
             },
             {
               "s": "A",
@@ -997,43 +997,43 @@ window.BS_UNITS["p4-03"] = {
             {
               "id": "c2-s4-q2",
               "kind": "intent",
-              "quote": "The night shift still uses the checklist she wrote",
+              "quote": "She moved off the night shift six years ago",
               "q": {
-                "en": "Why does the speaker say, \"The night shift still uses the checklist she wrote\"?",
-                "vi": "Vì sao người nói nói câu \"The night shift still uses the checklist she wrote\"?"
+                "en": "Why does the speaker say, \"She moved off the night shift six years ago\"?",
+                "vi": "Vì sao người nói nói câu \"She moved off the night shift six years ago\"?"
               },
               "answer": "B",
               "evidence": [
                 3,
                 4
               ],
-              "explain_vi": "Ngay trước đó ông nói thói quen tốt của chị sẽ không biến mất khi chị đi; việc ca đêm vẫn dùng bảng kiểm dù chị đã rời ca sáu năm là bằng chứng cho điều đó.",
+              "explain_vi": "Ông vừa nói thói quen tốt của chị sẽ không biến mất khi chị đi, và ngay sau câu này cho biết ca đêm vẫn dùng bảng kiểm do chị viết: chị rời ca đã sáu năm mà ảnh hưởng vẫn còn.",
               "options": [
                 {
                   "label": "A",
-                  "en": "To explain how the night shift is organized",
-                  "vi": "Để giải thích cách tổ chức ca đêm",
+                  "en": "To describe when her schedule changed",
+                  "vi": "Để cho biết lịch làm việc của chị đổi khi nào",
                   "trap": "literal",
-                  "why_vi": "Câu có nhắc ca đêm, nhưng ông không đang mô tả cách ca này được tổ chức."
+                  "why_vi": "Câu có nêu thời điểm chị đổi ca, nhưng ông không nhằm kể lại lịch làm việc của chị."
                 },
                 {
                   "label": "B",
-                  "en": "To show that her influence is long-lasting",
-                  "vi": "Để cho thấy ảnh hưởng của chị còn bền lâu"
+                  "en": "To show that her influence has lasted",
+                  "vi": "Để cho thấy ảnh hưởng của chị vẫn còn lâu dài"
                 },
                 {
                   "label": "C",
-                  "en": "To suggest that a document needs updating",
-                  "vi": "Để gợi ý rằng một tài liệu cần được cập nhật",
+                  "en": "To suggest she was ready for a bigger role",
+                  "vi": "Để gợi ý rằng chị đã sẵn sàng cho vai trò lớn hơn",
                   "trap": "over-inference",
-                  "why_vi": "Bảng kiểm đã lâu năm, nhưng ông không hề nói nó lỗi thời."
+                  "why_vi": "Việc chuyển ca không cho thấy chị nhận vai trò lớn hơn; ông không hề nói vậy."
                 },
                 {
                   "label": "D",
-                  "en": "To point out that her job is still unfilled",
-                  "vi": "Để nêu rằng vị trí của chị chưa có người thay",
+                  "en": "To explain why night staff are not present",
+                  "vi": "Để giải thích vì sao nhân viên ca đêm vắng mặt",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có đoạn nào nói về việc tìm người thay thế."
+                  "why_vi": "Không có đoạn nào nói nhân viên ca đêm vắng mặt."
                 }
               ]
             },
@@ -1301,8 +1301,8 @@ window.BS_UNITS["p4-03"] = {
             },
             {
               "s": "A",
-              "en": "The account manager will open in her place. We nearly moved the design lead's part too, but that's no longer necessary.",
-              "vi": "Quản lý khách hàng sẽ mở màn thay cô ấy. Suýt nữa chúng tôi cũng phải dời phần của trưởng nhóm thiết kế, nhưng giờ không cần nữa."
+              "en": "The account manager will open in her place. We nearly moved the design lead's part too, but that's no longer necessary. I'll confirm any new times later.",
+              "vi": "Quản lý khách hàng sẽ mở màn thay cô ấy. Suýt nữa chúng tôi cũng phải dời phần của trưởng nhóm thiết kế, nhưng giờ không cần nữa. Tôi sẽ xác nhận các giờ mới (nếu có) sau."
             },
             {
               "s": "A",
