@@ -535,8 +535,8 @@ window.BS_UNITS["p4-06"] = {
             },
             {
               "s": "A",
-              "en": "The tour lasts ninety minutes on foot, and some of you may wonder how your legs will manage.",
-              "vi": "Chuyến tham quan đi bộ kéo dài chín mươi phút, và có thể một số người đang băn khoăn không biết đôi chân mình có chịu nổi không."
+              "en": "It's a ninety-minute walking tour, and some of you may be worried about being on your feet that long.",
+              "vi": "Đây là chuyến tham quan đi bộ dài chín mươi phút, và có thể một số người lo phải đứng và đi lâu như vậy."
             },
             {
               "s": "A",
@@ -546,12 +546,12 @@ window.BS_UNITS["p4-06"] = {
             {
               "s": "A",
               "en": "We'll finish at the tall clock. A staff member still winds it by hand each morning.",
-              "vi": "Chúng ta sẽ kết thúc ở chiếc đồng hồ lớn. Sáng nào một nhân viên cũng vẫn lên dây cót cho nó bằng tay."
+              "vi": "Chúng ta sẽ kết thúc ở chiếc đồng hồ đứng cao. Sáng nào một nhân viên cũng vẫn lên dây cót cho nó bằng tay."
             },
             {
               "s": "A",
               "en": "Under it is a new wooden stand that one of our volunteers built.",
-              "vi": "Bên dưới là chiếc bệ gỗ mới do một tình nguyện viên của chúng tôi đóng."
+              "vi": "Bên dưới chiếc đồng hồ đứng cao là chiếc bệ gỗ mới do một tình nguyện viên của chúng tôi đóng."
             }
           ],
           "v": {
@@ -612,7 +612,7 @@ window.BS_UNITS["p4-06"] = {
                 4,
                 5
               ],
-              "explain_vi": "Ngay trước đó cô nhắc rằng có người lo đi bộ chín mươi phút sẽ mỏi chân; câu về ghế băng là để họ yên tâm.",
+              "explain_vi": "Ngay trước đó cô nhắc rằng có người lo phải đứng và đi suốt chín mươi phút; câu về ghế băng là để họ yên tâm.",
               "options": [
                 {
                   "label": "A",
@@ -621,24 +621,24 @@ window.BS_UNITS["p4-06"] = {
                 },
                 {
                   "label": "B",
-                  "en": "To describe how the rooms are furnished",
-                  "vi": "Để mô tả cách bài trí đồ đạc trong các phòng",
+                  "en": "To point out a feature of the building",
+                  "vi": "Để giới thiệu một đặc điểm của tòa nhà",
                   "trap": "literal",
-                  "why_vi": "Đây chỉ là nghĩa bề mặt; câu được nói để đáp lại nỗi lo mỏi chân."
+                  "why_vi": "Đây chỉ là hiểu theo bề mặt, coi câu này là thông tin về tòa nhà; thật ra nó đáp lại nỗi lo phải đứng và đi lâu."
                 },
                 {
                   "label": "C",
-                  "en": "To advise some guests to skip the tour",
-                  "vi": "Để khuyên một số khách bỏ chuyến tham quan",
+                  "en": "To urge people to linger over the exhibits",
+                  "vi": "Để khuyến khích mọi người nán lại ngắm hiện vật",
                   "trap": "over-inference",
-                  "why_vi": "Cô không khuyên ai bỏ chuyến đi; ghế băng giúp họ vẫn đi được."
+                  "why_vi": "Có ghế không có nghĩa là cô muốn khách xem lâu hơn; câu trước đó nói về nỗi lo phải đứng và đi lâu, không nói về hiện vật."
                 },
                 {
                   "label": "D",
-                  "en": "To ask guests to keep the seats clean",
-                  "vi": "Để đề nghị khách giữ ghế sạch sẽ",
+                  "en": "To invite people to stop and make sketches",
+                  "vi": "Để mời mọi người dừng lại vẽ phác họa",
                   "trap": "not-mentioned",
-                  "why_vi": "Không có yêu cầu nào về giữ vệ sinh ghế."
+                  "why_vi": "Bài nói không nhắc đến việc vẽ phác họa."
                 }
               ]
             },
@@ -647,13 +647,13 @@ window.BS_UNITS["p4-06"] = {
               "kind": "detail",
               "q": {
                 "en": "What does the speaker say about the tall clock?",
-                "vi": "Người nói cho biết gì về chiếc đồng hồ lớn?"
+                "vi": "Người nói cho biết gì về chiếc đồng hồ đứng cao?"
               },
               "answer": "B",
               "evidence": [
                 6
               ],
-              "explain_vi": "Một nhân viên vẫn lên dây cót bằng tay vào mỗi buổi sáng.",
+              "explain_vi": "Một nhân viên vẫn lên dây cót bằng tay cho chiếc đồng hồ đứng cao vào mỗi buổi sáng.",
               "options": [
                 {
                   "label": "A",
@@ -926,8 +926,8 @@ window.BS_UNITS["p4-06"] = {
           "lines": [
             {
               "s": "A",
-              "en": "Okay, team. Here's what Talcott Industries wants from our support desk between January and March.",
-              "vi": "Được rồi cả nhóm. Đây là những gì Talcott Industries mong đợi ở bộ phận hỗ trợ chúng ta từ tháng Một đến tháng Ba."
+              "en": "Okay, team. Here's what Talcott Industries wants from our support desk next quarter, from January to March.",
+              "vi": "Được rồi cả nhóm. Đây là những gì Talcott Industries mong đợi ở bộ phận hỗ trợ chúng ta trong quý tới, từ tháng Một đến tháng Ba."
             },
             {
               "s": "A",
@@ -1198,8 +1198,8 @@ window.BS_UNITS["p4-06"] = {
               "id": "c2-s5-q2",
               "kind": "detail",
               "q": {
-                "en": "Under the changed rule, who will approve vacation days?",
-                "vi": "Theo quy định đã đổi, ai sẽ duyệt ngày nghỉ phép?"
+                "en": "Under the new procedure, who will approve vacation days?",
+                "vi": "Theo quy trình mới, ai sẽ duyệt ngày nghỉ phép?"
               },
               "answer": "D",
               "evidence": [
@@ -1223,10 +1223,10 @@ window.BS_UNITS["p4-06"] = {
                 },
                 {
                   "label": "C",
-                  "en": "The head of the department",
-                  "vi": "Trưởng bộ phận",
+                  "en": "The person leading the meeting",
+                  "vi": "Người đang chủ trì cuộc họp",
                   "trap": "wrong-detail",
-                  "why_vi": "Người nói dặn đừng mang đơn đến cho mình."
+                  "why_vi": "Người nói, cũng là người chủ trì cuộc họp, dặn đừng mang đơn đến cho mình."
                 },
                 {
                   "label": "D",
@@ -1312,8 +1312,8 @@ window.BS_UNITS["p4-06"] = {
             },
             {
               "s": "A",
-              "en": "But going by the due dates, whatever comes straight after that needs more time.",
-              "vi": "Nhưng xét theo ngày đến hạn, việc đứng ngay sau đó cần thêm thời gian."
+              "en": "But the job that falls due next after that needs more time.",
+              "vi": "Nhưng công việc đến hạn kế tiếp sau đó cần thêm thời gian."
             },
             {
               "s": "A",
@@ -1378,12 +1378,12 @@ window.BS_UNITS["p4-06"] = {
                 0,
                 1
               ],
-              "explain_vi": "Cuộc họp rà soát công việc cho cuốn kỷ yếu mười năm, kèm lịch ở xưởng in, nên người nghe là nhóm đang làm cuốn sách nhỏ.",
+              "explain_vi": "Cuộc họp rà soát công việc cho cuốn kỷ yếu mười năm, kèm lịch ở xưởng in, nên người nghe là nhóm đang làm cuốn kỷ yếu (sách nhỏ).",
               "options": [
                 {
                   "label": "A",
                   "en": "A team putting together a booklet",
-                  "vi": "Nhóm đang biên soạn một cuốn sách nhỏ"
+                  "vi": "Nhóm đang biên soạn một cuốn kỷ yếu (sách nhỏ)"
                 },
                 {
                   "label": "B",
@@ -1489,8 +1489,8 @@ window.BS_UNITS["p4-06"] = {
                 },
                 {
                   "label": "D",
-                  "en": "It has little room to run late",
-                  "vi": "Nó hầu như không còn chỗ để trễ hạn"
+                  "en": "Its schedule leaves little room for delay",
+                  "vi": "Lịch trình của nó gần như không cho phép chậm trễ"
                 }
               ]
             }
