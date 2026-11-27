@@ -60,7 +60,8 @@ export function buildMessages(body) {
 }
 
 /* khung chat hiện chữ thường: bỏ dấu in đậm, tiêu đề markdown và đổi gạch đầu dòng "*" (giữ "___" của chỗ trống) */
-const plain = (s) => s.replace(/\*\*([^\n]+?)\*\*/g, "$1").replace(/^([ \t]*)\*[ \t]+/gm, "$1- ").replace(/^#{1,6}[ \t]+/gm, "");
+const plain = (s) => s.replace(/\*\*([^\n]+?)\*\*/g, "$1").replace(/^([ \t]*)\*[ \t]+/gm, "$1- ").replace(/^#{1,6}[ \t]+/gm, "")
+  .replace(/(^|[^*\w])\*(?![\s*])([^*\n]*[^\s*])\*(?![\w*])/g, "$1$2"); // in nghiêng *chữ*; "2 * 3" giữ nguyên
 
 /* Workers AI trả {response} (kiểu cũ) hoặc {choices:[{message:{content}}]} (kiểu OpenAI) */
 export function readReply(out) {
