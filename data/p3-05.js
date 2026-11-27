@@ -536,8 +536,8 @@ window.BS_UNITS["p3-05"] = {
       {"s":"M2","en":"True. I'll do those this week instead of waiting.","vi":"Đúng vậy. Vậy tuần này tôi làm phần đó thay vì chờ."},
       {
        "s": "W",
-       "en": "Dr. Ortega, your buffer solution is ready, but it must stay frozen. We can hold it in our cold room until the filters ship.",
-       "vi": "Tiến sĩ Ortega, dung dịch đệm của các anh đã sẵn sàng nhưng phải được giữ đông. Chúng tôi có thể giữ nó trong phòng lạnh đến khi gửi bộ lọc."
+       "en": "Dr. Ortega, your buffer solution is ready, but it must stay frozen. We can hold it in our freezer room until the filters ship.",
+       "vi": "Tiến sĩ Ortega, dung dịch đệm của các anh đã sẵn sàng nhưng phải được giữ đông. Chúng tôi có thể giữ nó trong phòng đông lạnh đến khi gửi bộ lọc."
       },
       {
        "s": "M1",
@@ -573,7 +573,7 @@ window.BS_UNITS["p3-05"] = {
          "en": "A manager of a shared storage facility",
          "vi": "Quản lý một kho lưu trữ dùng chung",
          "trap": "over-inference",
-         "why_vi": "Việc đề nghị giữ hàng trong phòng lạnh chưa cho thấy cô quản lý kho dùng chung."
+         "why_vi": "Việc đề nghị giữ hàng trong phòng đông lạnh chưa cho thấy cô quản lý kho dùng chung."
         }
        ]
       },
