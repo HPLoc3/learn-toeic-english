@@ -208,6 +208,15 @@ try {
     leak((x) => { x.sentences[0].en = "  " + rightOf(qrs(x)[2]).en + " "; }, /qr1-03: đáp án đúng .* sentences\[0\]/, "đáp án đúng trùng câu trong Luyện nghe (sentences): LỖI");
     leak((x) => { x.phrases[0].en = rightOf(qrs(x)[3]).en; }, /qr1-04: đáp án đúng .* phrases\[0\]/, "đáp án đúng trùng cụm từ (phrases): LỖI");
     leak((x) => { const f = x.exercises.find((e) => e.type === "fill"); f.items[0].before = "Who is leading the sales meeting"; f.items[0].after = "this afternoon?"; f.items[0].answers = ["?"]; }, /qr1-01: câu hỏi .* \(câu ghép\)/, "câu hỏi qr bị ghép lại trong bài fill: LỖI");
+    /* fill co join: true ("dien not tu"): cau ghep noi lien hai nua tu */
+    const joinItem = (x, before, answer, flag) => Object.assign(x.exercises.find((e) => e.type === "fill").items[0], { join: flag, before, after: "today.", answers: [answer] });
+    leak((x) => { const t = qrs(x)[0].q.en.replace(/\?$/, ""); joinItem(x, t.slice(0, -2), t.slice(-2), true).after = "?"; }, /qr1-01: câu hỏi .* \(câu ghép\)/, "fill join: câu ghép nối liền hai nửa từ khi dò lộ câu hỏi: LỖI");
+    u = base(); joinItem(u, "We sent the pay", "ment", true);
+    r = runQ(u);
+    check("fill join: true hợp lệ được chấp nhận", r.code === 0, r.out);
+    leak((x) => { joinItem(x, "We sent the pay", "ment", "yes"); }, /items\[0\]: join chỉ nhận true/, "fill join khác true: LỖI");
+    leak((x) => { joinItem(x, "We sent the pay ", "ment", true); }, /items\[0\]: join: before phải kết thúc bằng chữ cái/, "fill join mà before kết thúc bằng dấu cách: LỖI");
+    leak((x) => { joinItem(x, "We sent the pay", "-ment", true); }, /items\[0\]: join: before phải kết thúc bằng chữ cái/, "fill join mà đáp án không bắt đầu bằng chữ cái: LỖI");
     leak((x) => { x.focus.tips[1].examples[0].en = rightOf(qrs(x)[1]).en; }, /qr1-02: đáp án đúng/, "lộ đáp án: LỖI cả khi chạy --unit (không cần available)", ["--unit", "p2-01"]);
     leak((x) => { x.sentences[1].en = "Please say, " + rightOf(qrs(x)[0]).en + " again please."; }, /qr1-01: đáp án đúng/, "câu Luyện nghe chứa nguyên đáp án đúng (câu dài): LỖI");
     u = base(); u.focus.tips[0].examples[0].en = qrs(u)[0].options[0].en; u.sentences[0].en = qrs(u)[1].options[1].en;

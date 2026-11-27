@@ -1431,6 +1431,7 @@ window.BS_UNITS["p5-04"] = {
       "items": [
         {
           "id": "fill1-1",
+          "join": true,
           "before": "The speaker asked everyone to pay att",
           "after": "to the next chart.",
           "answers": [
@@ -1439,6 +1440,7 @@ window.BS_UNITS["p5-04"] = {
         },
         {
           "id": "fill1-2",
+          "join": true,
           "before": "After a week of talks, the two firms reached an ag",
           "after": "on parking spaces.",
           "answers": [
@@ -1447,6 +1449,7 @@ window.BS_UNITS["p5-04"] = {
         },
         {
           "id": "fill1-3",
+          "join": true,
           "before": "Our building team will take ca",
           "after": "of the broken entrance sign.",
           "answers": [
@@ -1455,6 +1458,7 @@ window.BS_UNITS["p5-04"] = {
         },
         {
           "id": "fill1-4",
+          "join": true,
           "before": "The committee will take travel costs into ac",
           "after": "before voting.",
           "answers": [
@@ -1463,6 +1467,7 @@ window.BS_UNITS["p5-04"] = {
         },
         {
           "id": "fill1-5",
+          "join": true,
           "before": "Before visiting the print shop, please make an ap",
           "after": "with the designer.",
           "answers": [

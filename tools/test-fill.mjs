@@ -4,6 +4,8 @@ import fs from "node:fs";
 import vm from "node:vm";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { blind, violations } from "./export-blind.mjs";
+import { englishStrings } from "./check-cross.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(here, "..");
@@ -166,6 +168,52 @@ for (const [name, it, want] of CASES) {
   btnText(E.root, "Hiện lời thoại")[0].click();
   const rows = byClass(E.root, "qrow");
   check("cau hoi van hien (hire), (hold), (one word) va nghia tieng Viet, ca sau khi hien loi thoai", rows.length === hinted.length && hinted.every((it, i) => rows[i].kids[0].textContent.includes(it.after)));
+}
+
+/* ================= "dien not tu" (join: true) ================= */
+{
+  const it = { id: "j1", join: true, before: "Our team will take ca", answers: ["re"], after: "of the sign." };
+  const want = "Our team will take care of the sign.";
+  const got = revealAll(exOf([it]))[0], said = spokenAll(exOf([it]))[0];
+  check("join: hien dap an noi lien hai nua tu", got === want, JSON.stringify(got));
+  check("join: doc to noi lien hai nua tu", said === want, JSON.stringify(said));
+  const first = revealAll(exOf([{ id: "j2", join: true, before: "pay", answers: ["ment"], after: ", then leave." }]))[0];
+  check("join: khong viet hoa phan duoi tu, khong cach truoc dau phay", first === "payment, then leave.", JSON.stringify(first));
+  check("join: cham diem nhu truoc (go phan con thieu la dung, go ca tu la sai)", gradeWith(it, "re").ok && gradeWith(it, "RE").ok && !gradeWith(it, "care").ok);
+  const inline = (item) => byClass(mountQuiz(exOf([item])).root, "qrow")[0].kids[0];
+  /* chuoi chu truoc o nhap, va kiem o nhap nam cung span khong xuong dong voi nua dau cua tu */
+  const beforeInput = (p) => { let s = "", hit = false; (function walk(n) { if (hit) return; if (n.tag === "input") { hit = true; return; } if (n.isText) s += n.t; n.kids.forEach(walk); })(p); return s; };
+  const p = inline(it), wrap = all(p, (x) => x.tag === "span" && x.attrs.style === "white-space:nowrap")[0];
+  check("join: o nhap dinh lien nua dau cua tu (khong dau cach), cung mot span nowrap", beforeInput(p) === "Our team will take ca" && !!wrap && wrap.textContent === "ca" && wrap.kids.some((k) => k.tag === "input"), JSON.stringify(beforeInput(p)));
+  check("khong join: van co dau cach truoc o nhap", beforeInput(inline(CASES[0][1])) === "Please ");
+}
+{
+  const FULL = {
+    "p5-01": ["payment service", "particularly good", "knowledgeable about", "generous donation", "receptionist last"],
+    "p5-04": ["pay attention to", "an agreement on", "take care of", "into account before", "an appointment with"]
+  };
+  const joined = [], bad = [];
+  for (const f of fs.readdirSync(path.join(ROOT, "data")).filter((f) => /^[lp][\d-]+\.js$/.test(f)).sort()) {
+    const w = {}; w.window = w; vm.runInNewContext(fs.readFileSync(path.join(ROOT, "data", f), "utf8"), w);
+    for (const u of Object.values(w.BS_UNITS || {})) for (const ex of (u.exercises || []).filter((x) => x.type === "fill")) {
+      const partial = /hậu tố|tiền tố|phần còn thiếu của từ|nốt từ/i.test(ex.instruction_vi || "");
+      for (const it of ex.items || []) {
+        if (partial && it.join !== true) bad.push(u.id + " " + it.id + ": de bai dien mot phan tu nhung thieu join");
+        if (it.join === true) joined.push([u.id, it]);
+      }
+    }
+  }
+  check("data/: dung 10 cau join (p5-01, p5-04), bai co de 'phan cua tu' deu co join", !bad.length && joined.length === 10 && joined.every(([id]) => FULL[id]), bad.concat(joined.length).join("\n     "));
+  for (const id of Object.keys(FULL)) {
+    const items = joined.filter((x) => x[0] === id).map((x) => clone(x[1]));
+    const shown = revealAll(exOf(items)), said = spokenAll(exOf(items));
+    check("data/ " + id + ": cau hoan chinh co tu lien (hien va doc)", shown.length === 5 && shown.every((s, i) => s.includes(FULL[id][i])) && said.join("\n") === shown.join("\n"), shown.join("\n     "));
+    const out = blind({ id, exercises: [{ id: "fill1", type: "fill", items }] }, "fill");
+    check("export-blind " + id + ": goi giu join, khong lo dap an", !violations(out).length && out.exercises[0].items.every((x) => x.join === true && Object.keys(x).sort().join() === "after,before,id,join"));
+    const audit = englishStrings({ exercises: [{ id: "fill1", type: "fill", items }] }).map((x) => x.s);
+    check("check-cross " + id + ": cau ghep noi lien hai nua tu", audit.length === 5 && audit.every((s, i) => s.includes(FULL[id][i])), audit.join("\n     "));
+  }
+  check("quiz.js: khong dung unicode property escape (can ES2018, trinh duyet cu loi cu phap ca file)", !/\\p\{/.test(src("quiz.js")));
 }
 
 /* ================= moi cau dien cho trong trong data/ ================= */

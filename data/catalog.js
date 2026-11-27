@@ -188,7 +188,7 @@ window.BS_CATALOG = {
     },
     {
       "id": "p5",
-      "title": "Part 5 - Điền câu",
+      "title": "Part 5 - Hoàn thành câu",
       "units": [
         {
           "id": "p5-01",
@@ -218,7 +218,7 @@ window.BS_CATALOG = {
     },
     {
       "id": "p6",
-      "title": "Part 6 - Điền đoạn văn",
+      "title": "Part 6 - Điền từ vào đoạn văn",
       "units": [
         {
           "id": "p6-01",

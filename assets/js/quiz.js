@@ -27,16 +27,17 @@
   /* ---------- Luyen nghe ---------- */
   /* goi y trong ngoac chi thuoc cau hoi, bo khoi cau hoan chinh. Ba dang, ngoac khac giu nguyen:
      chu cai dau "(h...)"; dong tu goc "(hire)" ngay sau cho trong; ghi chu "(...)" dung sau dau ket cau o cuoi after */
-  var HINT = /\s*\(\p{L}(?:\.{2,}|…)\)/gu;
+  var HINT = /\s*\([A-Za-z](?:\.{2,}|…)\)/g;
   var VERB_HINT = /^\s*\([a-z]+\)/;
   var TAIL_NOTE = /([.?!])\s*\([^()]*\)\s*$/;
+  /* it.join: bai "dien not tu", dap an noi lien vao chu cuoi cua before ("pay" + "ment") */
   function fillSentence(it, ans) {
     if (!it.answers || !it.answers.length) return null;
     var a = String(ans || it.answers[0]);
     var before = String(it.before || "").replace(HINT, "").trim();
     var after = String(it.after || "").replace(HINT, "").replace(VERB_HINT, "").replace(TAIL_NOTE, "$1").trim();
     if (!before || /[.?!]$/.test(before)) a = a.charAt(0).toUpperCase() + a.slice(1);
-    return (before ? before + " " : "") + a + (!after ? "" : (/^[,.?!;:]/.test(after) ? "" : " ") + after);
+    return (before ? before + (it.join ? "" : " ") : "") + a + (!after ? "" : (/^[,.?!;:]/.test(after) ? "" : " ") + after);
   }
 
   function collect(u) {
@@ -302,8 +303,13 @@
         for (var k = j + 1; k < rows.length; k++) if (!rows[k].inp.readOnly) { rows[k].inp.focus(); return; }
         gradeAll();
       });
+      var lead = [(it.before || "") + " ", inp];
+      if (it.join) { /* o nhap dinh lien phan dau cua tu, khong xuong dong giua hai phan */
+        var head = String(it.before || ""), cut = head.lastIndexOf(" ") + 1;
+        lead = [head.slice(0, cut), el("span", { style: "white-space:nowrap" }, [head.slice(cut), inp])];
+      }
       var row = el("div", { class: "qrow" }, [
-        el("p", { class: "en", lang: "en" }, [(it.before || "") + " ", inp, " " + (it.after || ""), " ", BS.badgeUnverified(it.v)]),
+        el("p", { class: "en", lang: "en" }, lead.concat([" " + (it.after || ""), " ", BS.badgeUnverified(it.v)])),
         sentence ? listenBtns(function () { return sentence; }, "câu " + (j + 1)) : null, fb, full]);
       var r = { it: it, inp: inp, fb: fb, full: full, reveal: reveal };
       rows.push(r);

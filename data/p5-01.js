@@ -1457,6 +1457,7 @@ window.BS_UNITS["p5-01"] = {
       "items": [
         {
           "id": "fill1-1",
+          "join": true,
           "before": "The bank offers a convenient online pay",
           "after": "service.",
           "answers": [
@@ -1465,6 +1466,7 @@ window.BS_UNITS["p5-01"] = {
         },
         {
           "id": "fill1-2",
+          "join": true,
           "before": "He is particular",
           "after": "good at negotiating prices.",
           "answers": [
@@ -1473,6 +1475,7 @@ window.BS_UNITS["p5-01"] = {
         },
         {
           "id": "fill1-3",
+          "join": true,
           "before": "The tour guide was knowledge",
           "after": "about local history.",
           "answers": [
@@ -1481,6 +1484,7 @@ window.BS_UNITS["p5-01"] = {
         },
         {
           "id": "fill1-4",
+          "join": true,
           "before": "We received a gener",
           "after": "donation from a local firm.",
           "answers": [
@@ -1489,6 +1493,7 @@ window.BS_UNITS["p5-01"] = {
         },
         {
           "id": "fill1-5",
+          "join": true,
           "before": "The clinic hired a new reception",
           "after": "last week.",
           "answers": [

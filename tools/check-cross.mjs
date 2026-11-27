@@ -72,7 +72,7 @@ export function englishStrings(u) {
   (u.sentences || []).forEach((x) => add(x.en, x.id, true));
   (u.exercises || []).forEach((ex) => {
     if (ex.type === "fill") (ex.items || []).forEach((it) => {
-      const a = String((it.answers || [])[0] || ""), join = (x) => [it.before, x, it.after].filter(Boolean).join(" ").trim();
+      const a = String((it.answers || [])[0] || ""), join = (x) => (it.join === true ? [String(it.before || "") + x, it.after] : [it.before, x, it.after]).filter(Boolean).join(" ").trim();
       add(join(a), it.id, true);
       if (a && atBoundary(it.before)) out[out.length - 1].d = join(a.charAt(0).toLowerCase() + a.slice(1));
     });

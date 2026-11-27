@@ -709,6 +709,10 @@ function checkUnit(entry) {
         fillN++;
         if (typeof it.before !== "string" || typeof it.after !== "string") e(wi + ": thiếu before/after.");
         if (!Array.isArray(it.answers) || !it.answers.length || it.answers.some((a) => !nonEmpty(a))) e(wi + ": answers rỗng hoặc có đáp án rỗng.");
+        if (it.join !== undefined) { /* "điền nốt từ": đáp án nối liền vào chữ cuối của before */
+          if (it.join !== true) e(wi + ": join chỉ nhận true (bỏ trường này nếu chỗ trống là cả từ).");
+          else if (!/\p{L}$/u.test(String(it.before || "")) || (Array.isArray(it.answers) && it.answers.some((a) => !/^\p{L}/u.test(String(a))))) e(wi + ": join: before phải kết thúc bằng chữ cái (không dấu cách) và mỗi đáp án bắt đầu bằng chữ cái.");
+        }
       });
     } else if (ex.type === "tf") {
       if (ex.image === undefined) e(wh + ": bài tf thiếu image.");
@@ -985,7 +989,8 @@ function checkUnit(entry) {
       if (!x || typeof x !== "object") return;
       if (Array.isArray(x)) { x.forEach((y, i) => walk(y, where + "[" + i + "]")); return; }
       if (Array.isArray(x.answers) && typeof x.after === "string") { /* bài điền: ghép lại câu hoàn chỉnh */
-        addStr([x.before, x.answers[0], x.after].filter(Boolean).join(" "), where + " (câu ghép)");
+        const head = x.join === true ? [String(x.before || "") + x.answers[0]] : [x.before, x.answers[0]];
+        addStr(head.concat(x.after).filter(Boolean).join(" "), where + " (câu ghép)");
       }
       Object.keys(x).forEach((k) => {
         if (k === "v") return;

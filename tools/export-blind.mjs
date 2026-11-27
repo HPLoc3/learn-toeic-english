@@ -51,7 +51,7 @@ const READ_Q = { id: S, blank: S, kind: S, q: { en: S }, options: [OPTION], sent
 export const SHAPES = {
   qr: withHead({ items: [{ id: S, q: { en: S }, options: [OPTION] }] }),
   gram: withHead({ items: [{ id: S, en: S, options: [OPTION] }] }),
-  fill: withHead({ items: [{ id: S, before: S, after: S }] }),
+  fill: withHead({ items: [{ id: S, before: S, after: S, join: S }] }), /* join: cho trong la phan con lai cua tu cuoi before (khong lo dap an) */
   conv: withHead({ sets: [{ id: S, kind: S, talk_type: S, speakers: [{ id: S, gender: S }], lines: [{ i: S, s: S, en: S }], graphic: GRAPHIC, questions: [{ id: S, q: { en: S }, options: [OPTION] }] }] }),
   read: withHead({ sets: [{ id: S, kind: S, passages: [PASSAGE], questions: [READ_Q] }] }),
 };
