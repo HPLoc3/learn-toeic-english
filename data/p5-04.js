@@ -1,5 +1,5 @@
 window.BS_UNITS = window.BS_UNITS || {};
-/* p5-04: nội dung do site tự soạn, chưa kiểm duyệt. */
+/* p5-04: nội dung do site tự soạn, đã kiểm tra. */
 window.BS_UNITS["p5-04"] = {
   "id": "p5-04",
   "part": "Part 5 - Hoàn thành câu",

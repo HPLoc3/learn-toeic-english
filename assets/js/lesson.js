@@ -129,7 +129,7 @@
     document.title = "Chưa có bài này | TOEIC Mỗi Ngày";
     document.getElementById("unit-title").textContent = "Chưa có bài này";
     main.appendChild(el("div", { class: "card nf-card", role: "status" }, [
-      el("p", { text: "Bài này sắp ra mắt. Bạn quay lại mục lục để chọn bài khác nhé." }),
+      el("p", { text: "Không tìm thấy bài này. Bạn quay lại mục lục để chọn bài khác nhé." }),
       el("p", {}, [el("a", { class: "btn btn-primary next-btn", href: "index.html", text: "Về mục lục" })])
     ]));
   }

@@ -62,31 +62,31 @@ window.BS_CATALOG = {
           "id": "p2-03",
           "no": 7,
           "title_vi": "Câu hỏi What, Which và How",
-          "available": false
+          "available": true
         },
         {
           "id": "p2-04",
           "no": 8,
           "title_vi": "Câu hỏi Yes/No, phủ định và câu hỏi đuôi",
-          "available": false
+          "available": true
         },
         {
           "id": "p2-05",
           "no": 9,
           "title_vi": "Lời đề nghị, gợi ý và yêu cầu",
-          "available": false
+          "available": true
         },
         {
           "id": "p2-06",
           "no": 10,
           "title_vi": "Câu hỏi lựa chọn và câu trần thuật",
-          "available": false
+          "available": true
         },
         {
           "id": "p2-07",
           "no": 11,
           "title_vi": "Bẫy thường gặp và câu trả lời gián tiếp",
-          "available": false
+          "available": true
         }
       ]
     },
@@ -110,31 +110,31 @@ window.BS_CATALOG = {
           "id": "p3-03",
           "no": 14,
           "title_vi": "Nghe hiểu ý định và lý do",
-          "available": false
+          "available": true
         },
         {
           "id": "p3-04",
           "no": 15,
           "title_vi": "Hội thoại có kèm biểu đồ hoặc bảng",
-          "available": false
+          "available": true
         },
         {
           "id": "p3-05",
           "no": 16,
           "title_vi": "Hội thoại ba người",
-          "available": false
+          "available": true
         },
         {
           "id": "p3-06",
           "no": 17,
           "title_vi": "Hội thoại về đi lại, khách sạn và nhà hàng",
-          "available": false
+          "available": true
         },
         {
           "id": "p3-07",
           "no": 18,
           "title_vi": "Bẫy thường gặp và luyện tổng hợp",
-          "available": false
+          "available": true
         }
       ]
     },
@@ -158,31 +158,31 @@ window.BS_CATALOG = {
           "id": "p4-03",
           "no": 21,
           "title_vi": "Bài phát biểu và giới thiệu",
-          "available": false
+          "available": true
         },
         {
           "id": "p4-04",
           "no": 22,
           "title_vi": "Bài nói có kèm sơ đồ hoặc lịch trình",
-          "available": false
+          "available": true
         },
         {
           "id": "p4-05",
           "no": 23,
           "title_vi": "Bản tin và chương trình phát thanh",
-          "available": false
+          "available": true
         },
         {
           "id": "p4-06",
           "no": 24,
           "title_vi": "Hướng dẫn tham quan và trích đoạn cuộc họp",
-          "available": false
+          "available": true
         },
         {
           "id": "p4-07",
           "no": 25,
           "title_vi": "Bẫy thường gặp và luyện tổng hợp",
-          "available": false
+          "available": true
         }
       ]
     },
@@ -200,19 +200,19 @@ window.BS_CATALOG = {
           "id": "p5-02",
           "no": 27,
           "title_vi": "Thì và sự hòa hợp chủ ngữ - động từ",
-          "available": false
+          "available": true
         },
         {
           "id": "p5-03",
           "no": 28,
           "title_vi": "Giới từ và liên từ",
-          "available": false
+          "available": true
         },
         {
           "id": "p5-04",
           "no": 29,
           "title_vi": "Từ vựng theo ngữ cảnh",
-          "available": false
+          "available": true
         }
       ]
     },
@@ -230,13 +230,13 @@ window.BS_CATALOG = {
           "id": "p6-02",
           "no": 31,
           "title_vi": "Điền câu vào đoạn văn",
-          "available": false
+          "available": true
         },
         {
           "id": "p6-03",
           "no": 32,
           "title_vi": "Liên kết ý trong đoạn văn",
-          "available": false
+          "available": true
         }
       ]
     },
@@ -254,19 +254,19 @@ window.BS_CATALOG = {
           "id": "p7-02",
           "no": 34,
           "title_vi": "Quảng cáo và thông báo",
-          "available": false
+          "available": true
         },
         {
           "id": "p7-03",
           "no": 35,
           "title_vi": "Bài viết và bản tin",
-          "available": false
+          "available": true
         },
         {
           "id": "p7-04",
           "no": 36,
           "title_vi": "Đoạn văn kép và đoạn văn ba",
-          "available": false
+          "available": true
         }
       ]
     }

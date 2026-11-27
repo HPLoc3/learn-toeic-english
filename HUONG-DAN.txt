@@ -2,7 +2,7 @@ TOEIC MỖI NGÀY - HƯỚNG DẪN NHANH
 
 1. Mở terminal trong thư mục dự án, chạy:  python -m http.server 8000
 2. Mở trình duyệt, vào http://localhost:8000/
-3. Bấm nút "Bắt đầu Unit 1" để học.
+3. Bấm nút "Bắt đầu Unit 1" để học. Hiện đã mở đủ 36 unit (Part 1 đến Part 7).
 4. Tiến độ chỉ lưu trong trình duyệt của bạn, không gửi đi đâu.
 5. Phần "Luyện nghe" dùng giọng đọc của trình duyệt (cần giọng tiếng Anh).
 6. Ôn tập: mục "Ôn tập" trên trang chủ gom thẻ đến hạn. Sao lưu tiến độ ở trang chủ (xuất tệp, nhập lại khi đổi máy).
@@ -10,7 +10,7 @@ TOEIC MỖI NGÀY - HƯỚNG DẪN NHANH
    Service worker chỉ lưu file của chính trang này, không gửi dữ liệu đi đâu. Trên localhost mặc định tắt (thêm ?pwa=1 để thử, ?pwa=0 để gỡ).
 8. Thêm Unit mới: xem tools/templates/HUONG-DAN-UNIT.txt.
 9. MỖI LẦN DEPLOY: chạy  node tools/check-sw.mjs --bump  (tự tăng VERSION trong sw.js và ghi hash), rồi  node tools/check-sw.mjs  (phải đạt). Thêm Unit mới: nhớ thêm file của unit vào PRECACHE trong sw.js.
-10. Hoạt hình: dữ liệu ở data/<id>-anim.js, bật bằng "anim": true trong data/catalog.js (xem README.md, mục Hoạt hình theo dữ liệu; mẫu: tools/templates/unit-template-anim.js). Cả bốn unit dùng kiểu "scenes" (ảnh tĩnh Ken Burns): "animKind": "scenes" trong catalog, engine assets/js/anim-scenes.js, mẫu tools/templates/unit-template-scenes.js. Kiểu "rig" (SVG, nhân vật Nam, Mai, cô Hạnh) vẫn được hỗ trợ.
+10. Hoạt hình: dữ liệu ở data/<id>-anim.js, bật bằng "anim": true trong data/catalog.js (xem README.md, mục Hoạt hình theo dữ liệu; mẫu: tools/templates/unit-template-anim.js). Cả bốn unit Part 1 dùng kiểu "scenes" (ảnh tĩnh Ken Burns): "animKind": "scenes" trong catalog, engine assets/js/anim-scenes.js, mẫu tools/templates/unit-template-scenes.js. Kiểu "rig" (SVG, nhân vật Nam, Mai, cô Hạnh) vẫn được hỗ trợ.
 11. Linh vật Bước (chú cáo con): bật/tắt bằng nút "Linh vật Bước" trên thanh HUD (prefs.mascot).
 12. Trước khi phát hành lần đầu: LEGACY_ANCHOR trong assets/js/srs.js phải là ngày deploy thật (đã đặt 2026-11-21). Số VERSION xem trong sw.js; mỗi lần deploy chạy node tools/check-sw.mjs --bump.
     Deploy lên Cloudflare Pages: nhánh main, framework preset None, build command  node tools/build-dist.mjs , build output directory  dist , root directory để trống, tên miền hophuloc.online.

@@ -3,10 +3,10 @@
  * Không gửi dữ liệu đi đâu, không đụng request khác nguồn, không đụng localStorage.
  * Mỗi lần deploy có file precache đổi: sửa VERSION rồi chạy `node tools/check-sw.mjs --write`.
  */
-// content-hash: 38@999e575ee0f1902d
+// content-hash: 39@200e6aaf7dae84d9
 "use strict";
 
-var VERSION = "38";
+var VERSION = "39";
 var PREFIX = "tb-";
 var CACHE = PREFIX + VERSION;
 var NAV_TIMEOUT = 3000;
@@ -117,13 +117,36 @@ var PRECACHE = [
   "data/l04.js",
   "data/p2-01.js",
   "data/p2-02.js",
+  "data/p2-03.js",
+  "data/p2-04.js",
+  "data/p2-05.js",
+  "data/p2-06.js",
+  "data/p2-07.js",
   "data/p3-01.js",
   "data/p3-02.js",
+  "data/p3-03.js",
+  "data/p3-04.js",
+  "data/p3-05.js",
+  "data/p3-06.js",
+  "data/p3-07.js",
   "data/p4-01.js",
   "data/p4-02.js",
+  "data/p4-03.js",
+  "data/p4-04.js",
+  "data/p4-05.js",
+  "data/p4-06.js",
+  "data/p4-07.js",
   "data/p5-01.js",
+  "data/p5-02.js",
+  "data/p5-03.js",
+  "data/p5-04.js",
   "data/p6-01.js",
+  "data/p6-02.js",
+  "data/p6-03.js",
   "data/p7-01.js",
+  "data/p7-02.js",
+  "data/p7-03.js",
+  "data/p7-04.js",
   "favicon.ico",
   "index.html",
   "manifest.webmanifest",
