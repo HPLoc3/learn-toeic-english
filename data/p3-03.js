@@ -1601,7 +1601,8 @@ window.BS_UNITS["p3-03"] = {
           "after": "check whether Opaline Bureau has received the signed forms.",
           "answers": [
             "to",
-            "in order to"
+            "in order to",
+            "so as to"
           ]
         },
         {
