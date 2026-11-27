@@ -1,0 +1,21 @@
+/* chat.css - nút và khung "Chat Bot"; chỉ dùng token trong site.css */
+.cb-ask{display:inline-flex;align-items:center;margin:8px 0 0;border-color:var(--line-strong);font-weight:700}
+.cb-panel{position:fixed;right:16px;bottom:16px;z-index:900;display:flex;flex-direction:column;gap:8px;width:min(400px,calc(100vw - 32px));max-height:min(640px,calc(100vh - 32px));max-height:min(640px,calc(100dvh - 32px));padding:14px;overflow:auto;background:var(--card);color:var(--ink);border:2px solid var(--pri);border-radius:var(--radius);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.cb-panel[hidden]{display:none}
+.cb-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cb-head h2{margin:0}
+.cb-note{margin:0;font-size:.82rem;line-height:1.45}
+.cb-log{flex:1 1 auto;min-height:120px;overflow:auto;display:flex;flex-direction:column;gap:8px}
+.cb-msg{margin:0;padding:8px 12px;border-radius:14px;white-space:pre-wrap;max-width:92%}
+.cb-assistant{align-self:flex-start;background:var(--card-2)}
+.cb-user{align-self:flex-end;background:var(--pri);color:var(--pri-ink)}
+.cb-error{align-self:stretch;max-width:100%;background:var(--warn-bg);color:var(--warn-ink)}
+.cb-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cb-quick{display:flex;flex-wrap:wrap;gap:6px}
+.cb-chip{font-size:.85rem;font-weight:600;padding:6px 10px;border-color:var(--line-strong)}
+.cb-form{display:flex;gap:8px;align-items:flex-end}
+.cb-form .btn{flex:0 0 auto;white-space:nowrap}
+.cb-input{flex:1 1 auto;min-width:0;resize:vertical;font:inherit;font-size:16px}
+.cb-left{margin:0;font-size:.82rem}
+.cb-left:empty{display:none}
+@media (max-width:599px){.cb-panel{left:8px;right:8px;bottom:8px;width:auto;max-height:calc(100vh - 16px);max-height:calc(100dvh - 16px)}}
