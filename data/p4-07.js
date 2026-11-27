@@ -232,11 +232,11 @@ window.BS_UNITS["p4-07"] = {
      ],
      "lines": [
       {"s":"A","en":"Hello, Mr. Wendell. This is Ramona from Tessellate Bank, calling about your interview on Thursday.","vi":"Chào ông Wendell. Tôi là Ramona ở Tessellate Bank, gọi về buổi phỏng vấn của ông vào thứ Năm."},
-      {"s":"A","en":"We had set it for nine thirty, but one of your two interviewers now has a conference call then.","vi":"Chúng tôi đã xếp lúc chín giờ rưỡi, nhưng một trong hai người phỏng vấn ông nay có cuộc họp trực tuyến vào giờ đó."},
+      {"s":"A","en":"We had set it for nine thirty, but one of your two interviewers now has a conference call then.","vi":"Chúng tôi đã xếp lúc chín giờ rưỡi, nhưng một trong hai người phỏng vấn ông nay có một cuộc họp qua điện thoại vào giờ đó."},
       {"s":"A","en":"So we'll start at eleven fifteen instead. The day and the room stay the same.","vi":"Vì vậy chúng ta sẽ bắt đầu lúc mười một giờ mười lăm. Ngày và phòng vẫn giữ nguyên."},
-      {"s":"A","en":"Please reach the front desk by ten forty-five, so there's plenty of time to sign in.","vi":"Ông vui lòng đến quầy lễ tân trước mười giờ bốn mươi lăm để có đủ thời gian đăng ký vào."},
+      {"s":"A","en":"Please get to the front desk by ten forty-five, so there's plenty of time to sign in.","vi":"Ông vui lòng đến quầy lễ tân trước mười giờ bốn mươi lăm để có đủ thời gian đăng ký vào."},
       {"s":"A","en":"If you're driving, keep this in mind. The visitor spaces are often all taken by midmorning.","vi":"Nếu ông lái xe, xin lưu ý điều này. Chỗ đỗ xe cho khách thường đã kín vào khoảng giữa buổi sáng."},
-      {"s":"A","en":"The train station is only a short walk from our door, so that may be the easier choice.","vi":"Ga tàu chỉ cách cửa chúng tôi một quãng đi bộ ngắn, nên đi tàu có lẽ tiện hơn."},
+      {"s":"A","en":"Instead of setting off earlier, you could take the train. The station is only a short walk from our door.","vi":"Thay vì đi sớm hơn nữa, ông có thể đi tàu. Ga chỉ cách cửa chúng tôi một quãng đi bộ ngắn."},
       {"s":"A","en":"Please bring copies of your certificates. We already have your application papers.","vi":"Ông vui lòng mang theo bản sao các chứng chỉ. Hồ sơ ứng tuyển của ông chúng tôi đã có rồi."},
       {"s":"A","en":"Call me back if the new time doesn't suit you. Thanks.","vi":"Nếu giờ mới không phù hợp, xin gọi lại cho tôi. Cảm ơn ông."}
      ],
@@ -263,12 +263,12 @@ window.BS_UNITS["p4-07"] = {
        "q": {"en":"Why does the speaker say, \"The visitor spaces are often all taken by midmorning\"?","vi":"Tại sao người nói nói: \"Chỗ đỗ xe cho khách thường đã kín vào khoảng giữa buổi sáng\"?"},
        "answer": "C",
        "evidence": [2,4,5],
-       "explain_vi": "Giờ phỏng vấn mới là cuối buổi sáng; người nói nhắc người lái xe rằng khó còn chỗ đỗ, rồi cho biết đi tàu có thể tiện hơn.",
+       "explain_vi": "Giờ phỏng vấn mới là cuối buổi sáng; người nói nhắc người lái xe rằng khó còn chỗ đỗ, rồi khuyên rằng thay vì đi sớm hơn, có thể đi tàu.",
        "options": [
-        {"label":"A","en":"To describe the parking area that the bank has","vi":"Để mô tả khu đỗ xe của ngân hàng","trap":"literal","why_vi":"Câu này không nhằm giới thiệu khu đỗ xe; nó đi sau lời lưu ý dành cho người lái xe và dẫn đến gợi ý đi tàu."},
-        {"label":"B","en":"To say that visitors are not allowed to park","vi":"Để nói rằng khách không được phép đỗ xe","trap":"over-inference","why_vi":"Chỗ đỗ thường kín không có nghĩa là khách bị cấm đỗ."},
-        {"label":"C","en":"To hint that coming by car may not be ideal","vi":"Để ngụ ý rằng đi ô tô đến có thể không phải là cách hay"},
-        {"label":"D","en":"To offer to save the listener a parking space","vi":"Để đề nghị giữ cho người nghe một chỗ đỗ xe","trap":"not-mentioned","why_vi":"Người nói không đề nghị giữ chỗ mà gợi ý đi tàu."}
+        {"label":"A","en":"To explain why a certain start time was chosen","vi":"Để giải thích vì sao một giờ bắt đầu nhất định được chọn","trap":"wrong-detail","why_vi":"Lý do liên quan đến giờ phỏng vấn là cuộc họp qua điện thoại của một người phỏng vấn, không phải chỗ đỗ xe."},
+        {"label":"B","en":"To explain why a parking space is being saved","vi":"Để giải thích vì sao có một chỗ đỗ xe được giữ sẵn","trap":"not-mentioned","why_vi":"Người nói không giữ chỗ đỗ xe nào mà gợi ý đi tàu."},
+        {"label":"C","en":"To suggest travelling there by other means","vi":"Để gợi ý đến đó bằng phương tiện khác"},
+        {"label":"D","en":"To urge the listener to leave home earlier","vi":"Để giục người nghe ra khỏi nhà sớm hơn","trap":"over-inference","why_vi":"Chỗ đỗ kín sớm dễ khiến ta nghĩ đến việc đi sớm, nhưng người nói bảo rằng thay vì đi sớm hơn, có thể đi tàu."}
        ]
       },
       {
@@ -366,13 +366,13 @@ window.BS_UNITS["p4-07"] = {
      ],
      "lines": [
       {"s":"A","en":"This is Harbinger Radio with news of Sunday's Velocity Club community run in Linley Park.","vi":"Đây là Harbinger Radio với tin về buổi chạy cộng đồng ngày Chủ nhật của Velocity Club tại công viên Linley."},
-      {"s":"A","en":"All routes begin at the bandstand. The earliest start is meant for members training for a race.","vi":"Mọi cự ly đều xuất phát ở bục nhạc trong công viên. Giờ xuất phát sớm nhất dành cho các thành viên đang tập luyện cho một cuộc đua."},
+      {"s":"A","en":"All routes begin at the bandstand. The earliest start is for members training for a race.","vi":"Mọi cự ly đều xuất phát ở bục nhạc trong công viên. Giờ xuất phát sớm nhất dành cho các thành viên đang tập luyện cho một cuộc đua."},
       {"s":"A","en":"Check-in now opens at seven fifteen, not at seven forty-five as we said last week.","vi":"Giờ làm thủ tục nay bắt đầu lúc bảy giờ mười lăm, không phải bảy giờ bốn mươi lăm như chúng tôi đã nói tuần trước."},
       {"s":"A","en":"We also told first-timers to join the three-kilometer route.","vi":"Chúng tôi cũng đã bảo người tham gia lần đầu chọn đường chạy ba ki-lô-mét."},
       {"s":"A","en":"Organizers now want them to cover twice that distance, walking if necessary.","vi":"Ban tổ chức nay muốn họ đi gấp đôi quãng đường đó, có thể đi bộ nếu cần."},
       {"s":"A","en":"Members usually buy drinks at the park cafe afterwards. The cafe will not be open that morning.","vi":"Sau buổi chạy, các thành viên thường mua đồ uống ở quán cà phê trong công viên. Sáng hôm ấy quán sẽ không mở cửa."},
-      {"s":"A","en":"So please plan ahead. Last month's sponsor breakfast won't be repeated, either.","vi":"Vì vậy xin chuẩn bị trước. Bữa sáng do nhà tài trợ mời hồi tháng trước cũng sẽ không có nữa."},
-      {"s":"A","en":"The results of last month's run are on our website.","vi":"Kết quả buổi chạy tháng trước có trên trang web của chúng tôi."},
+      {"s":"A","en":"The club won't be supplying drinks, and last month's sponsor breakfast won't be repeated, either. So please plan ahead.","vi":"Câu lạc bộ sẽ không cung cấp đồ uống, và bữa sáng do nhà tài trợ mời hồi tháng trước cũng sẽ không có nữa. Vì vậy xin chuẩn bị trước."},
+      {"s":"A","en":"Last month's results are on our website.","vi":"Kết quả tháng trước có trên trang web của chúng tôi."},
       {"s":"A","en":"I'd normally read the weather now, but the forecast has moved to the top of the hour.","vi":"Bình thường lúc này tôi đọc tin thời tiết, nhưng bản dự báo đã chuyển sang đầu giờ sau."},
       {"s":"A","en":"After this short break, hear my conversation with Odessa, who volunteers at these runs.","vi":"Sau ít phút nghỉ, mời quý vị nghe cuộc trò chuyện của tôi với Odessa, một tình nguyện viên của các buổi chạy này."}
      ],
@@ -396,12 +396,12 @@ window.BS_UNITS["p4-07"] = {
        "q": {"en":"Why does the speaker say, \"The cafe will not be open that morning\"?","vi":"Tại sao người nói nói: \"Sáng hôm ấy quán cà phê sẽ không mở cửa\"?"},
        "answer": "B",
        "evidence": [5,6],
-       "explain_vi": "Mọi người thường mua đồ uống ở quán sau buổi chạy; vì quán không mở nên người nói bảo chuẩn bị trước, tức là gợi ý tự mang đồ uống.",
+       "explain_vi": "Mọi người thường mua đồ uống ở quán sau buổi chạy; quán không mở, câu lạc bộ cũng không cung cấp đồ uống, nên người nói bảo chuẩn bị trước, tức là gợi ý tự mang đồ uống.",
        "options": [
-        {"label":"A","en":"To give news about a business in the park","vi":"Để đưa tin về một cơ sở kinh doanh trong công viên","trap":"literal","why_vi":"Đây không phải bản tin về quán; câu này gắn với thói quen mua đồ uống sau buổi chạy."},
+        {"label":"A","en":"To say that the club will hand out free drinks","vi":"Để báo rằng câu lạc bộ sẽ phát đồ uống miễn phí","trap":"not-mentioned","why_vi":"Không có việc phát đồ uống; người nói cho biết câu lạc bộ sẽ không cung cấp đồ uống."},
         {"label":"B","en":"To suggest that people bring their own drinks","vi":"Để gợi ý mọi người tự mang đồ uống"},
-        {"label":"C","en":"To explain why members will meet elsewhere","vi":"Để giải thích vì sao các thành viên sẽ gặp nhau ở nơi khác","trap":"over-inference","why_vi":"Quán không mở, nhưng bài nói không hề nói sẽ chuyển sang gặp ở nơi khác."},
-        {"label":"D","en":"To announce that a free breakfast will be served","vi":"Để thông báo rằng sẽ có bữa sáng miễn phí","trap":"heard-word","why_vi":"Bữa sáng được nhắc đến, nhưng lần này sẽ không có."}
+        {"label":"C","en":"To explain why members will meet somewhere else","vi":"Để giải thích vì sao các thành viên sẽ gặp nhau ở nơi khác","trap":"over-inference","why_vi":"Quán không mở, nhưng bài nói không hề nói sẽ chuyển sang gặp ở nơi khác."},
+        {"label":"D","en":"To announce that a sponsor will serve breakfast","vi":"Để thông báo rằng một nhà tài trợ sẽ mời bữa sáng","trap":"heard-word","why_vi":"Nhà tài trợ và bữa sáng được nhắc đến, nhưng đó là chuyện tháng trước và lần này không lặp lại."}
        ]
       },
       {
@@ -422,7 +422,7 @@ window.BS_UNITS["p4-07"] = {
       {
        "id": "c2-s5-q3",
        "kind": "next",
-       "q": {"en":"What will listeners most likely hear next?","vi":"Nhiều khả năng người nghe sẽ nghe gì tiếp theo?"},
+       "q": {"en":"What will listeners most likely hear after the break?","vi":"Nhiều khả năng người nghe sẽ nghe gì sau ít phút nghỉ?"},
        "answer": "D",
        "evidence": [8,9],
        "explain_vi": "Dự báo thời tiết đã chuyển sang đầu giờ sau; ngay sau ít phút nghỉ là cuộc trò chuyện với Odessa, một tình nguyện viên.",
@@ -445,11 +445,11 @@ window.BS_UNITS["p4-07"] = {
      "lines": [
       {"s":"A","en":"Right, everyone, let's go through our team's draft budget before I send it to the finance director.","vi":"Nào mọi người, chúng ta cùng xem bản ngân sách nháp của nhóm trước khi tôi gửi cho giám đốc tài chính."},
       {"s":"A","en":"As your manager, I need our spending to stay within the limit she set.","vi":"Là quản lý của các bạn, tôi cần chi tiêu của chúng ta nằm trong mức bà ấy đặt ra."},
-      {"s":"A","en":"The screen shows Nimbus Express amounts for this year, next to what we're proposing.","vi":"Màn hình hiển thị các khoản của Nimbus Express năm nay, bên cạnh mức chúng ta đề xuất."},
-      {"s":"A","en":"Vehicle repairs show the biggest rise, but our vans are getting older, so that line stays.","vi":"Chi phí sửa xe tăng nhiều nhất, nhưng xe tải của chúng ta ngày càng cũ, nên khoản đó giữ nguyên."},
+      {"s":"A","en":"On the screen are this year's Nimbus Express figures, next to the ones we're proposing.","vi":"Trên màn hình là số liệu năm nay của Nimbus Express, bên cạnh các con số chúng ta đề xuất."},
+      {"s":"A","en":"Vehicle repairs show the biggest rise, but our vans are getting older, so that line stays.","vi":"Chi phí sửa xe tăng nhiều nhất, nhưng xe tải của chúng ta ngày càng cũ, nên khoản đó vẫn giữ như đề xuất."},
       {"s":"A","en":"I will rework one line, though. Its proposed rise matches the extra yearly cost in our main supplier's new quote.","vi":"Tuy vậy tôi sẽ làm lại một khoản. Mức tăng đề xuất của nó đúng bằng phần chi phí tăng thêm mỗi năm trong báo giá mới của nhà cung cấp chính."},
       {"s":"A","en":"That cost is four thousand pounds, not the two thousand I estimated last week.","vi":"Phần chi phí đó là bốn nghìn bảng, không phải hai nghìn như tôi ước tính tuần trước."},
-      {"s":"A","en":"First, I want to compare another supplier. Its sales representative visits on Thursday.","vi":"Trước hết tôi muốn so sánh với một nhà cung cấp khác. Đại diện kinh doanh của họ sẽ đến vào thứ Năm."},
+      {"s":"A","en":"First, I'd like to compare prices with another supplier. Its sales representative visits on Thursday.","vi":"Trước hết tôi muốn so sánh giá với một nhà cung cấp khác. Đại diện kinh doanh của họ sẽ đến vào thứ Năm."},
       {"s":"A","en":"We'd planned to meet again on Monday, but we won't need to.","vi":"Chúng ta đã định họp lại vào thứ Hai, nhưng không cần nữa."},
       {"s":"A","en":"Just email me your comments by Friday, and the director will make the final decision.","vi":"Các bạn chỉ cần gửi email góp ý cho tôi chậm nhất thứ Sáu, còn giám đốc sẽ quyết định cuối cùng."}
      ],
@@ -491,7 +491,7 @@ window.BS_UNITS["p4-07"] = {
        "options": [
         {"label":"A","en":"Packing materials","vi":"Vật liệu đóng gói"},
         {"label":"B","en":"Staff uniforms","vi":"Đồng phục nhân viên","trap":"changed-plan","why_vi":"Khoản này tăng 2.000 bảng, khớp với con số ước tính cũ đã được sửa."},
-        {"label":"C","en":"Vehicle repairs","vi":"Sửa chữa xe","trap":"wrong-detail","why_vi":"Khoản này tăng nhiều nhất và được giữ nguyên."},
+        {"label":"C","en":"Vehicle repairs","vi":"Sửa chữa xe","trap":"wrong-detail","why_vi":"Khoản này tăng nhiều nhất và vẫn được giữ như đề xuất."},
         {"label":"D","en":"Warehouse lighting","vi":"Chiếu sáng nhà kho","trap":"graphic-only","why_vi":"Khoản này chỉ có trong bảng và còn giảm so với năm nay."}
        ]
       },
@@ -520,7 +520,7 @@ window.BS_UNITS["p4-07"] = {
    "items": [
     {
      "id": "fill1-1",
-     "before": "The staff picnic has now been moved",
+     "before": "The staff picnic has now been postponed",
      "after": "a later date.",
      "answers": ["to","until","till"]
     },
@@ -544,8 +544,8 @@ window.BS_UNITS["p4-07"] = {
     },
     {
      "id": "fill1-5",
-     "before": "Please dial the new number",
-     "after": "of the old one.",
+     "before": "This week, please use the side entrance",
+     "after": "of the main doors.",
      "answers": ["instead"]
     }
    ]
